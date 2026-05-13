@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0D5F7FEA-2238-4031-A4C2-B23CDF8CC5F0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Python4Pascal.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Python4Pascal">
+        <MSBuild Projects="Python4Pascal.dproj"/>
+    </Target>
+    <Target Name="Python4Pascal:Clean">
+        <MSBuild Projects="Python4Pascal.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Python4Pascal:Make">
+        <MSBuild Projects="Python4Pascal.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Python4Pascal"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Python4Pascal:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Python4Pascal:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

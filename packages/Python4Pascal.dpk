@@ -1,0 +1,87 @@
+package Python4Pascal;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl;
+
+contains
+  uP4P.LibFunctions in '..\source\uP4P.LibFunctions.pas',
+  uP4P.Constants in '..\source\uP4P.Constants.pas',
+  uP4P.Types in '..\source\uP4P.Types.pas',
+  uP4P.Loader in '..\source\uP4P.Loader.pas',
+  uP4P.MiscFunctions in '..\source\uP4P.MiscFunctions.pas',
+  uP4P.PyInitConfig in '..\source\uP4P.PyInitConfig.pas',
+  uP4P.PyConfig in '..\source\uP4P.PyConfig.pas',
+  uP4P.PyPreConfig in '..\source\uP4P.PyPreConfig.pas',
+  uP4P.PyStatus in '..\source\uP4P.PyStatus.pas',
+  uP4P.Interfaces in '..\source\uP4P.Interfaces.pas',
+  uP4P.PyWideStringList in '..\source\uP4P.PyWideStringList.pas',
+  uP4P.PyObject in '..\source\uP4P.PyObject.pas',
+  uP4P.PyMem in '..\source\uP4P.PyMem.pas',
+  uP4P.PyBool in '..\source\uP4P.PyBool.pas',
+  uP4P.PyMutex in '..\source\uP4P.PyMutex.pas',
+  uP4P.PyCriticalSection in '..\source\uP4P.PyCriticalSection.pas',
+  uP4P.PyNone in '..\source\uP4P.PyNone.pas',
+  uP4P.PyNotImplemented in '..\source\uP4P.PyNotImplemented.pas',
+  uP4P.PyTypeObject in '..\source\uP4P.PyTypeObject.pas',
+  uP4P.PyLong in '..\source\uP4P.PyLong.pas',
+  uP4P.PyLongExport in '..\source\uP4P.PyLongExport.pas',
+  uP4P.PyFloat in '..\source\uP4P.PyFloat.pas',
+  uP4P.PyMath in '..\source\uP4P.PyMath.pas',
+  uP4P.PyComplex in '..\source\uP4P.PyComplex.pas',
+  uP4P.PyRange in '..\source\uP4P.PyRange.pas',
+  uP4P.PyMemoryView in '..\source\uP4P.PyMemoryView.pas',
+  uP4P.PyTuple in '..\source\uP4P.PyTuple.pas',
+  uP4P.PyList in '..\source\uP4P.PyList.pas',
+  uP4P.PyDict in '..\source\uP4P.PyDict.pas',
+  uP4P.PyUnicode in '..\source\uP4P.PyUnicode.pas',
+  uP4P.PyBytes in '..\source\uP4P.PyBytes.pas',
+  uP4P.PyByteArray in '..\source\uP4P.PyByteArray.pas',
+  uP4P.PyNumber in '..\source\uP4P.PyNumber.pas',
+  uP4P.PyUnicodeWriter in '..\source\uP4P.PyUnicodeWriter.pas',
+  uP4P.PyBuffer in '..\source\uP4P.PyBuffer.pas',
+  uP4P.PyCallable in '..\source\uP4P.PyCallable.pas',
+  uP4P.PyRefTracer in '..\source\uP4P.PyRefTracer.pas',
+  uP4P.PyGC in '..\source\uP4P.PyGC.pas',
+  uP4P.PyHash in '..\source\uP4P.PyHash.pas',
+  uP4P.PyDebug in '..\source\uP4P.PyDebug.pas',
+  uP4P.PyErr in '..\source\uP4P.PyErr.pas',
+  uP4P.Py in '..\source\uP4P.Py.pas',
+  uP4P.PyException in '..\source\uP4P.PyException.pas',
+  uP4P.PyExceptionName in '..\source\uP4P.PyExceptionName.pas',
+  uP4P.PyUnicodeDecodeError in '..\source\uP4P.PyUnicodeDecodeError.pas',
+  uP4P.PyUnicodeEncodeError in '..\source\uP4P.PyUnicodeEncodeError.pas',
+  uP4P.PyUnicodeTranslateError in '..\source\uP4P.PyUnicodeTranslateError.pas',
+  uP4P.PyOS in '..\source\uP4P.PyOS.pas',
+  uP4P.PySignal in '..\source\uP4P.PySignal.pas',
+  uP4P.PyLongWriter in '..\source\uP4P.PyLongWriter.pas',
+  uP4P.PyODict in '..\source\uP4P.PyODict.pas',
+  uP4P.PySet in '..\source\uP4P.PySet.pas';
+
+end.
