@@ -82,6 +82,9 @@ contains
   uP4P.PySignal in '..\source\uP4P.PySignal.pas',
   uP4P.PyLongWriter in '..\source\uP4P.PyLongWriter.pas',
   uP4P.PyODict in '..\source\uP4P.PyODict.pas',
-  uP4P.PySet in '..\source\uP4P.PySet.pas';
+  uP4P.PySet in '..\source\uP4P.PySet.pas',
+  uP4P.PyFrozenSet in '..\source\uP4P.PyFrozenSet.pas',
+  uP4P.PyCFunction in '..\source\uP4P.PyCFunction.pas',
+  uP4P.PyCMethod in '..\source\uP4P.PyCMethod.pas';
 
 end.

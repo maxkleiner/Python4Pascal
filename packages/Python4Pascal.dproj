@@ -144,6 +144,9 @@
         <DCCReference Include="..\source\uP4P.PyLongWriter.pas"/>
         <DCCReference Include="..\source\uP4P.PyODict.pas"/>
         <DCCReference Include="..\source\uP4P.PySet.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFrozenSet.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCFunction.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCMethod.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

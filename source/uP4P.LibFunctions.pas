@@ -666,8 +666,8 @@ var
   PySet_Type                                     : PPyTypeObject;
   PyFrozenSet_Type                               : PPyTypeObject;
   PySetIter_Type                                 : PPyTypeObject;
-  PySet_New                                      : function(obj: PPyObject): PPyObject; cdecl;
-  PyFrozenSet_New                                : function(obj: PPyObject): PPyObject; cdecl;
+  PySet_New                                      : function(iterable: PPyObject): PPyObject; cdecl;
+  PyFrozenSet_New                                : function(iterable: PPyObject): PPyObject; cdecl;
   PySet_Add                                      : function(set_, key: PPyObject): integer; cdecl;
   PySet_Clear                                    : function(set_: PPyObject): integer; cdecl;
   PySet_Contains                                 : function(anyset, key: PPyObject): integer; cdecl;
@@ -677,12 +677,12 @@ var
 
   {* include/methodobject.h  include/cpython/methodobject.h *}
   PyCFunction_Type                               : PPyTypeObject;
-  PyCFunction_GetFunction                        : function(obj: PPyObject): Pointer; cdecl;
-  PyCFunction_GetSelf                            : function(obj: PPyObject): PPyObject; cdecl;
-  PyCFunction_GetFlags                           : function(obj: PPyObject): integer; cdecl;
-  PyCFunction_New                                : function(method: PPyMethodDef; obj: PPyObject): PPyObject; cdecl;
-  PyCFunction_NewEx                              : function(method: PPyMethodDef; obj1, obj2: PPyObject): PPyObject; cdecl;
-  PyCMethod_New                                  : function(method: PPyMethodDef; obj1, obj2: PPyObject; type_: PyTypeObject): PPyObject; cdecl;
+  PyCFunction_GetFunction                        : function(func: PPyObject): PyCFunction; cdecl;
+  PyCFunction_GetSelf                            : function(func: PPyObject): PPyObject; cdecl;
+  PyCFunction_GetFlags                           : function(func: PPyObject): integer; cdecl;
+  PyCFunction_New                                : function(method: PPyMethodDef; self: PPyObject): PPyObject; cdecl;
+  PyCFunction_NewEx                              : function(method: PPyMethodDef; self, module: PPyObject): PPyObject; cdecl;
+  PyCMethod_New                                  : function(method: PPyMethodDef; self, module: PPyObject; cls: PPyTypeObject): PPyObject; cdecl;
   PyCMethod_Type                                 : PPyTypeObject;
 
   {* include/moduleobject.h *}
