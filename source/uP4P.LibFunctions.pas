@@ -689,13 +689,13 @@ var
   PyModule_Type                                  : PPyTypeObject;
   PyModule_NewObject                             : function(name_: PPyObject): PPyObject; cdecl;
   PyModule_New                                   : function(const name_: PAnsiChar): PPyObject; cdecl;
-  PyModule_GetDict                               : function(obj: PPyObject): PPyObject; cdecl;
-  PyModule_GetNameObject                         : function(obj: PPyObject): PPyObject; cdecl;
-  PyModule_GetName                               : function(obj: PPyObject): PAnsiChar; cdecl;
-  PyModule_GetFilenameObject                     : function(obj: PPyObject): PPyObject; cdecl;
-  PyModule_GetDef                                : function(obj: PPyObject): PPyModuleDef; cdecl;
-  PyModule_GetState                              : function(obj: PPyObject): Pointer; cdecl;
-  PyModuleDef_Init                               : function(module_: PPyModuleDef): PPyObject; cdecl;
+  PyModule_GetDict                               : function(module_: PPyObject): PPyObject; cdecl;
+  PyModule_GetNameObject                         : function(module_: PPyObject): PPyObject; cdecl;
+  PyModule_GetName                               : function(module_: PPyObject): PAnsiChar; cdecl;
+  PyModule_GetFilenameObject                     : function(module_: PPyObject): PPyObject; cdecl;
+  PyModule_GetDef                                : function(module_: PPyObject): PPyModuleDef; cdecl;
+  PyModule_GetState                              : function(module_: PPyObject): Pointer; cdecl;
+  PyModuleDef_Init                               : function(def: PPyModuleDef): PPyObject; cdecl;
   PyModuleDef_Type                               : PPyTypeObject;
 
   {* include/monitoring.h  include/cpython/monitoring.h *}
@@ -704,35 +704,35 @@ var
 
   {* include/cpython/funcobject.h *}
   PyFunction_Type                                : PPyTypeObject;
-  PyFunction_New                                 : function(obj1, obj2: PPyObject): PPyObject; cdecl;
-  PyFunction_NewWithQualName                     : function(obj1, obj2, obj3: PPyObject): PPyObject; cdecl;
-  PyFunction_GetCode                             : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_GetGlobals                          : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_GetModule                           : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_GetDefaults                         : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_SetDefaults                         : function(obj1, obj2: PPyObject): integer; cdecl;
-  PyFunction_SetVectorcall                       : procedure(funcobj: PPyFunctionObject; vcfunc: vectorcallfunc); cdecl;
-  PyFunction_GetKwDefaults                       : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_SetKwDefaults                       : function(obj1, obj2: PPyObject): integer; cdecl;
-  PyFunction_GetClosure                          : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_SetClosure                          : function(obj1, obj2: PPyObject): integer; cdecl;
-  PyFunction_GetAnnotations                      : function(obj: PPyObject): PPyObject; cdecl;
-  PyFunction_SetAnnotations                      : function(obj1, obj2: PPyObject): integer; cdecl;
+  PyFunction_New                                 : function(code, globals: PPyObject): PPyObject; cdecl;
+  PyFunction_NewWithQualName                     : function(code, globals, qualname: PPyObject): PPyObject; cdecl;
+  PyFunction_GetCode                             : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_GetGlobals                          : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_GetModule                           : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_GetDefaults                         : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_SetDefaults                         : function(op, defaults: PPyObject): integer; cdecl;
+  PyFunction_SetVectorcall                       : procedure(func: PPyFunctionObject; vectorcall: vectorcallfunc); cdecl;
+  PyFunction_GetKwDefaults                       : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_SetKwDefaults                       : function(op, defaults: PPyObject): integer; cdecl;
+  PyFunction_GetClosure                          : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_SetClosure                          : function(op, closure: PPyObject): integer; cdecl;
+  PyFunction_GetAnnotations                      : function(op: PPyObject): PPyObject; cdecl;
+  PyFunction_SetAnnotations                      : function(op, annotations: PPyObject): integer; cdecl;
   PyClassMethod_Type                             : PPyTypeObject;
   PyStaticMethod_Type                            : PPyTypeObject;
-  PyClassMethod_New                              : function(obj: PPyObject): PPyObject; cdecl;
-  PyStaticMethod_New                             : function(obj: PPyObject): PPyObject; cdecl;
+  PyClassMethod_New                              : function(callable: PPyObject): PPyObject; cdecl;
+  PyStaticMethod_New                             : function(callable: PPyObject): PPyObject; cdecl;
   PyFunction_AddWatcher                          : function(callback: PyFunction_WatchCallback): integer; cdecl;
   PyFunction_ClearWatcher                        : function(watcher_id: integer): integer;
 
   {* include/cpython/classobject.h *}
   PyMethod_Type                                  : PPyTypeObject;
-  PyMethod_New                                   : function(obj1, obj2: PPyObject): PPyObject; cdecl;
-  PyMethod_Function                              : function(obj: PPyObject): PPyObject; cdecl;
-  PyMethod_Self                                  : function(obj: PPyObject): PPyObject; cdecl;
+  PyMethod_New                                   : function(func, self_: PPyObject): PPyObject; cdecl;
+  PyMethod_Function                              : function(meth: PPyObject): PPyObject; cdecl;
+  PyMethod_Self                                  : function(meth: PPyObject): PPyObject; cdecl;
   PyInstanceMethod_Type                          : PPyTypeObject;
-  PyInstanceMethod_New                           : function(obj: PPyObject): PPyObject; cdecl;
-  PyInstanceMethod_Function                      : function(obj: PPyObject): PPyObject; cdecl;
+  PyInstanceMethod_New                           : function(func: PPyObject): PPyObject; cdecl;
+  PyInstanceMethod_Function                      : function(im: PPyObject): PPyObject; cdecl;
 
   {* include/fileobject.h  include/cpython/fileobject.h *}
   PyFile_FromFd                                  : function(int1: integer; const str1, str2: PAnsiChar; int2: integer; const str3, str4, str5: PAnsiChar; int3: integer): PPyObject; cdecl;

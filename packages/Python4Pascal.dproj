@@ -147,6 +147,14 @@
         <DCCReference Include="..\source\uP4P.PyFrozenSet.pas"/>
         <DCCReference Include="..\source\uP4P.PyCFunction.pas"/>
         <DCCReference Include="..\source\uP4P.PyCMethod.pas"/>
+        <DCCReference Include="..\source\uP4P.PyModule.pas"/>
+        <DCCReference Include="..\source\uP4P.PyModuleDef.pas"/>
+        <DCCReference Include="..\source\uP4P.PyMonitoring.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFunction.pas"/>
+        <DCCReference Include="..\source\uP4P.PyClassMethod.pas"/>
+        <DCCReference Include="..\source\uP4P.PyStaticMethod.pas"/>
+        <DCCReference Include="..\source\uP4P.PyMethod.pas"/>
+        <DCCReference Include="..\source\uP4P.PyInstanceMethod.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

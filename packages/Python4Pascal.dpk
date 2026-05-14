@@ -85,6 +85,14 @@ contains
   uP4P.PySet in '..\source\uP4P.PySet.pas',
   uP4P.PyFrozenSet in '..\source\uP4P.PyFrozenSet.pas',
   uP4P.PyCFunction in '..\source\uP4P.PyCFunction.pas',
-  uP4P.PyCMethod in '..\source\uP4P.PyCMethod.pas';
+  uP4P.PyCMethod in '..\source\uP4P.PyCMethod.pas',
+  uP4P.PyModule in '..\source\uP4P.PyModule.pas',
+  uP4P.PyModuleDef in '..\source\uP4P.PyModuleDef.pas',
+  uP4P.PyMonitoring in '..\source\uP4P.PyMonitoring.pas',
+  uP4P.PyFunction in '..\source\uP4P.PyFunction.pas',
+  uP4P.PyClassMethod in '..\source\uP4P.PyClassMethod.pas',
+  uP4P.PyStaticMethod in '..\source\uP4P.PyStaticMethod.pas',
+  uP4P.PyMethod in '..\source\uP4P.PyMethod.pas',
+  uP4P.PyInstanceMethod in '..\source\uP4P.PyInstanceMethod.pas';
 
 end.

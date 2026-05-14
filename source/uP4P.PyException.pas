@@ -35,6 +35,8 @@ uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyNone;
 
 class function TPyException.SetTraceback(const ex, tb: IPyObject): boolean;
+var
+  TempNone : IPyObject;
 begin
   Result := False;
 
@@ -44,7 +46,11 @@ begin
       if TPyObject.IsInitialized(tb) then
         Result := (PyException_SetTraceback(ex.PyObject, tb.PyObject) <> 0)
        else
-        Result := (PyException_SetTraceback(ex.PyObject, TPyNone.New.PyObject) <> 0);
+        begin
+          TempNone := TPyNone.New;
+          Result   := (PyException_SetTraceback(ex.PyObject, TempNone.PyObject) <> 0);
+          TempNone := nil;
+        end;
     end;
 end;
 
