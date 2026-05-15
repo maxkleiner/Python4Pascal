@@ -155,6 +155,10 @@
         <DCCReference Include="..\source\uP4P.PyStaticMethod.pas"/>
         <DCCReference Include="..\source\uP4P.PyMethod.pas"/>
         <DCCReference Include="..\source\uP4P.PyInstanceMethod.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFile.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCapsule.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCode.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFrame.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

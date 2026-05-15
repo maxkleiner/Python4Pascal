@@ -735,17 +735,17 @@ var
   PyInstanceMethod_Function                      : function(im: PPyObject): PPyObject; cdecl;
 
   {* include/fileobject.h  include/cpython/fileobject.h *}
-  PyFile_FromFd                                  : function(int1: integer; const str1, str2: PAnsiChar; int2: integer; const str3, str4, str5: PAnsiChar; int3: integer): PPyObject; cdecl;
-  PyFile_GetLine                                 : function(obj: PPyObject; i: integer): PPyObject; cdecl;
-  PyFile_WriteObject                             : function(obj1, obj2: PPyObject; i: integer): integer; cdecl;
-  PyFile_WriteString                             : function(const str: PAnsiChar; obj: PPyObject): integer; cdecl;
-  PyObject_AsFileDescriptor                      : function(obj: PPyObject): integer; cdecl;
-  Py_UniversalNewlineFgets                       : function(ch: PAnsiChar; i: integer; file_: PFILE; obj: PPyObject): PAnsiChar; cdecl;
-  PyFile_NewStdPrinter                           : function(i: integer): PPyObject; cdecl;
+  PyFile_FromFd                                  : function(fd: integer; const name_, mode: PAnsiChar; buffering: integer; const encoding, errors, newline: PAnsiChar; closefd: integer): PPyObject; cdecl;
+  PyFile_GetLine                                 : function(p: PPyObject; n: integer): PPyObject; cdecl;
+  PyFile_WriteObject                             : function(obj, p: PPyObject; flags: integer): integer; cdecl;
+  PyFile_WriteString                             : function(const s: PAnsiChar; p: PPyObject): integer; cdecl;
+  PyObject_AsFileDescriptor                      : function(p: PPyObject): integer; cdecl;
+  Py_UniversalNewlineFgets                       : function(buf: PAnsiChar; n: integer; stream: PFILE; fobj: PPyObject): PAnsiChar; cdecl;
+  PyFile_NewStdPrinter                           : function(fd: integer): PPyObject; cdecl;
   PyStdPrinter_Type                              : PPyTypeObject;
-  PyFile_OpenCode                                : function(const utf8path: PAnsiChar): PPyObject; cdecl;
+  PyFile_OpenCode                                : function(const path: PAnsiChar): PPyObject; cdecl;
   PyFile_OpenCodeObject                          : function(path: PPyObject): PPyObject; cdecl;
-  PyFile_SetOpenCodeHook                         : function(hook: Py_OpenCodeHookFunction; userData: Pointer): integer; cdecl;
+  PyFile_SetOpenCodeHook                         : function(handler: Py_OpenCodeHookFunction; userData: Pointer): integer; cdecl;
 
   {* include/pycapsule.h *}
   PyCapsule_Type                                 : PPyTypeObject;
@@ -764,15 +764,15 @@ var
   {* include/cpython/code.h *}
   PyCode_Type                                    : PPyTypeObject;
   PyCode_NewEmpty                                : function(const filename, funcname: PAnsiChar; firstlineno: integer): PPyCodeObject; cdecl;
-  PyCode_Addr2Line                               : function(code: PPyCodeObject; i: integer): integer; cdecl;
-  PyCode_Addr2Location                           : function(code: PPyCodeObject; i1: integer; i2, i3, i4, i5: PInteger): integer; cdecl;
+  PyCode_Addr2Line                               : function(co: PPyCodeObject; byte_offset: integer): integer; cdecl;
+  PyCode_Addr2Location                           : function(co: PPyCodeObject; byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): integer; cdecl;
   PyCode_AddWatcher                              : function(callback: PyCode_WatchCallback): integer; cdecl;
   PyCode_ClearWatcher                            : function(watcher_id: integer): integer; cdecl;
   PyCode_Optimize                                : function(code, consts, names, lnotab: PPyObject): PPyObject; cdecl;
-  PyCode_GetCode                                 : function(code: PPyCodeObject): PPyObject; cdecl;
-  PyCode_GetVarnames                             : function(code: PPyCodeObject): PPyObject; cdecl;
-  PyCode_GetCellvars                             : function(code: PPyCodeObject): PPyObject; cdecl;
-  PyCode_GetFreevars                             : function(code: PPyCodeObject): PPyObject; cdecl;
+  PyCode_GetCode                                 : function(co: PPyCodeObject): PPyObject; cdecl;
+  PyCode_GetVarnames                             : function(co: PPyCodeObject): PPyObject; cdecl;
+  PyCode_GetCellvars                             : function(co: PPyCodeObject): PPyObject; cdecl;
+  PyCode_GetFreevars                             : function(co: PPyCodeObject): PPyObject; cdecl;
 
   {* include/pyframe.h  include/cpython/pyframe.h *}
   PyFrame_GetLineNumber                          : function(frame: PPyFrameObject): integer; cdecl;

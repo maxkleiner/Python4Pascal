@@ -22,15 +22,15 @@ type
       FPyObject    : PPyObject;
       FObjRefOwner : boolean;
 
-      function  GetPyObject: PPyObject;
-      function  GetInitialized: boolean;
+      function  GetPyObject: PPyObject; virtual;
+      function  GetInitialized: boolean; virtual;
       function  GetRefCnt: integer;
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
       function  GetTypeData(cls: PPyTypeObject): Pointer;
 
       procedure SetObjRefOwner(aValue: boolean);
-      procedure SetPyObject(aValue: PPyObject);
+      procedure SetPyObject(aValue: PPyObject); virtual;
 
       function  IsTrueSingleton: boolean;
       function  IsFalseSingleton: boolean;
@@ -92,6 +92,7 @@ type
       function  IsFinalized: boolean;
       function  IS_GC: boolean;
       function  GenericHash: Py_hash_t;
+      function  AsFileDescriptor: integer;
 
       property Initialized : boolean   read GetInitialized;
       property PyObject    : PPyObject read GetPyObject    write SetPyObject;
@@ -99,7 +100,7 @@ type
       property RefCnt      : integer   read GetRefCnt;
 
     public
-      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
+      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
       function    UnWrap: Pointer;
 
@@ -205,7 +206,7 @@ end;
 
 function TPyObject.UnWrap: Pointer;
 begin
-  Result       := FPyObject;
+  Result       := PyObject;
   FObjRefOwner := False;
 end;
 
@@ -222,7 +223,7 @@ end;
 
 procedure TPyObject.InitPyObject;
 begin
-  FPyObject    := nil;
+  PyObject     := nil;
   FObjRefOwner := False;
 end;
 
@@ -232,7 +233,7 @@ begin
      assigned(PyObject_IsInstance) and
      assigned(aTypeOrClass) and
      aTypeOrClass.Initialized then
-    Result := PyObject_IsInstance(FPyObject, aTypeOrClass.PyObject)
+    Result := PyObject_IsInstance(PyObject, aTypeOrClass.PyObject)
    else
     Result := 0;
 end;
@@ -243,7 +244,7 @@ begin
      assigned(PyObject_IsSubclass) and
      assigned(aTypeOrClass) and
      aTypeOrClass.Initialized then
-    Result := PyObject_IsSubclass(FPyObject, aTypeOrClass.PyObject)
+    Result := PyObject_IsSubclass(PyObject, aTypeOrClass.PyObject)
    else
     Result := 0;
 end;
@@ -252,7 +253,7 @@ function TPyObject.GenericGetDict(context: Pointer): IPyObject;
 begin
   if initialized and
      assigned(PyObject_GenericGetDict) then
-    Result := Wrap(PyObject_GenericGetDict(FPyObject, context))
+    Result := Wrap(PyObject_GenericGetDict(PyObject, context))
    else
     Result := nil;
 end;
@@ -261,14 +262,14 @@ function TPyObject.CheckBuffer: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_CheckBuffer) and
-            (PyObject_CheckBuffer(FPyObject) <> 0);
+            (PyObject_CheckBuffer(PyObject) <> 0);
 end;
 
 function TPyObject.GetBuffer(var view: Py_buffer; flags: Integer): boolean;
 begin
   Result := Initialized and
             assigned(PyObject_GetBuffer) and
-            (PyObject_GetBuffer(FPyObject, @view, flags) = 0);
+            (PyObject_GetBuffer(PyObject, @view, flags) = 0);
 end;
 
 function TPyObject.CopyData(const src: IPyObject): boolean;
@@ -276,14 +277,14 @@ begin
   Result := Initialized and
             IsInitialized(src) and
             assigned(PyObject_CopyData) and
-            (PyObject_CopyData(FPyObject, src.PyObject) = 0);
+            (PyObject_CopyData(PyObject, src.PyObject) = 0);
 end;
 
 function TPyObject.Repr: IPyObject;
 begin
   if initialized and
      assigned(PyObject_Repr) then
-    Result := Wrap(PyObject_Repr(FPyObject))
+    Result := Wrap(PyObject_Repr(PyObject))
    else
     Result := nil;
 end;
@@ -292,7 +293,7 @@ function TPyObject.Str: IPyObject;
 begin
   if initialized and
      assigned(PyObject_Str) then
-    Result := Wrap(PyObject_Str(FPyObject))
+    Result := Wrap(PyObject_Str(PyObject))
    else
     Result := nil;
 end;
@@ -301,7 +302,7 @@ function TPyObject.ASCII: IPyObject;
 begin
   if initialized and
      assigned(PyObject_ASCII) then
-    Result := Wrap(PyObject_ASCII(FPyObject))
+    Result := Wrap(PyObject_ASCII(PyObject))
    else
     Result := nil;
 end;
@@ -310,7 +311,7 @@ function TPyObject.Bytes: IPyObject;
 begin
   if initialized and
      assigned(PyObject_Bytes) then
-    Result := Wrap(PyObject_Bytes(FPyObject))
+    Result := Wrap(PyObject_Bytes(PyObject))
    else
     Result := nil;
 end;
@@ -321,7 +322,7 @@ begin
      assigned(PyObject_RichCompare) and
      IsInitialized(obj) and
      (opid in [Py_LT..Py_GE]) then
-    Result := Wrap(PyObject_RichCompare(FPyObject, obj.PyObject, opid))
+    Result := Wrap(PyObject_RichCompare(PyObject, obj.PyObject, opid))
    else
     Result := nil;
 end;
@@ -332,7 +333,7 @@ begin
      assigned(PyObject_RichCompareBool) and
      IsInitialized(obj) and
      (opid in [Py_LT..Py_GE]) then
-    Result := PyObject_RichCompareBool(FPyObject, obj.PyObject, opid)
+    Result := PyObject_RichCompareBool(PyObject, obj.PyObject, opid)
    else
     Result := -1;
 end;
@@ -344,7 +345,7 @@ begin
   if Initialized and assigned(PyObject_GetAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := Wrap(PyObject_GetAttrString(FPyObject, PAnsiChar(TempName)))
+      Result   := Wrap(PyObject_GetAttrString(PyObject, PAnsiChar(TempName)))
     end
    else
     Result := nil;
@@ -359,7 +360,7 @@ begin
      IsInitialized(value) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_SetAttrString(FPyObject, PAnsiChar(TempName), value.PyObject) = 0)
+      Result   := (PyObject_SetAttrString(PyObject, PAnsiChar(TempName), value.PyObject) = 0)
     end
    else
     Result := False;
@@ -372,7 +373,7 @@ begin
   if Initialized and assigned(PyObject_DelAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_DelAttrString(FPyObject, PAnsiChar(TempName)) = 0)
+      Result   := (PyObject_DelAttrString(PyObject, PAnsiChar(TempName)) = 0)
     end
    else
     Result := False;
@@ -385,7 +386,7 @@ begin
   if Initialized and assigned(PyObject_HasAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_HasAttrString(FPyObject, PAnsiChar(TempName)) <> 0)
+      Result   := (PyObject_HasAttrString(PyObject, PAnsiChar(TempName)) <> 0)
     end
    else
     Result := False;
@@ -396,7 +397,7 @@ begin
   if Initialized and
      assigned(PyObject_GetAttr) and
      IsInitialized(attr_name) then
-    Result := Wrap(PyObject_GetAttr(FPyObject, attr_name.PyObject))
+    Result := Wrap(PyObject_GetAttr(PyObject, attr_name.PyObject))
    else
     Result := nil;
 end;
@@ -409,7 +410,7 @@ begin
      assigned(PyObject_GetOptionalAttr) and
      IsInitialized(attr_name) then
     begin
-      Result  := (PyObject_GetOptionalAttr(FPyObject, attr_name.PyObject, @TempObj) <> 0);
+      Result  := (PyObject_GetOptionalAttr(PyObject, attr_name.PyObject, @TempObj) <> 0);
       result_ := Wrap(TempObj);
     end
    else
@@ -425,7 +426,7 @@ begin
      assigned(PyObject_GetOptionalAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_GetOptionalAttrString(FPyObject, PAnsiChar(TempName), @TempObj) <> 0);
+      Result   := (PyObject_GetOptionalAttrString(PyObject, PAnsiChar(TempName), @TempObj) <> 0);
       result_  := Wrap(TempObj);
     end
    else
@@ -438,7 +439,7 @@ begin
      assigned(PyObject_SetAttr) and
      IsInitialized(attr_name) and
      IsInitialized(value) then
-    Result := (PyObject_SetAttr(FPyObject, attr_name.PyObject, value.PyObject) = 0)
+    Result := (PyObject_SetAttr(PyObject, attr_name.PyObject, value.PyObject) = 0)
    else
     Result := False;
 end;
@@ -448,7 +449,7 @@ begin
   if Initialized and
      assigned(PyObject_DelAttr) and
      IsInitialized(attr_name) then
-    Result := (PyObject_DelAttr(FPyObject, attr_name.PyObject) = 0)
+    Result := (PyObject_DelAttr(PyObject, attr_name.PyObject) = 0)
    else
     Result := False;
 end;
@@ -458,7 +459,7 @@ begin
   if Initialized and
      assigned(PyObject_HasAttr) and
      IsInitialized(attr_name) then
-    Result := (PyObject_HasAttr(FPyObject, attr_name.PyObject) <> 0)
+    Result := (PyObject_HasAttr(PyObject, attr_name.PyObject) <> 0)
    else
     Result := False;
 end;
@@ -468,7 +469,7 @@ begin
   if Initialized and
      assigned(PyObject_HasAttr) and
      IsInitialized(attr_name) then
-    Result := PyObject_HasAttr(FPyObject, attr_name.PyObject)
+    Result := PyObject_HasAttr(PyObject, attr_name.PyObject)
    else
     Result := -1;
 end;
@@ -480,7 +481,7 @@ begin
   if Initialized and assigned(PyObject_HasAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := PyObject_HasAttrString(FPyObject, PAnsiChar(TempName))
+      Result   := PyObject_HasAttrString(PyObject, PAnsiChar(TempName))
     end
    else
     Result := -1;
@@ -490,7 +491,7 @@ function TPyObject.SelfIter: IPyObject;
 begin
   if Initialized and
      assigned(PyObject_SelfIter) then
-    Result := Wrap(PyObject_SelfIter(FPyObject))
+    Result := Wrap(PyObject_SelfIter(PyObject))
    else
     Result := nil;
 end;
@@ -500,7 +501,7 @@ begin
   if Initialized and
      assigned(PyObject_GenericGetAttr) and
      IsInitialized(name_) then
-    Result := Wrap(PyObject_GenericGetAttr(FPyObject, name_.PyObject))
+    Result := Wrap(PyObject_GenericGetAttr(PyObject, name_.PyObject))
    else
     Result := nil;
 end;
@@ -511,7 +512,7 @@ begin
      assigned(PyObject_GenericSetAttr) and
      IsInitialized(name_) and
      IsInitialized(value) then
-    Result := (PyObject_GenericSetAttr(FPyObject, name_.PyObject, value.PyObject) = 0)
+    Result := (PyObject_GenericSetAttr(PyObject, name_.PyObject, value.PyObject) = 0)
    else
     Result := False;
 end;
@@ -521,7 +522,7 @@ begin
   if Initialized and
      assigned(PyObject_GenericSetDict) and
      IsInitialized(value) then
-    Result := (PyObject_GenericSetDict(FPyObject, value.PyObject, context) = 0)
+    Result := (PyObject_GenericSetDict(PyObject, value.PyObject, context) = 0)
    else
     Result := False;
 end;
@@ -529,7 +530,7 @@ end;
 function TPyObject.Hash: Py_hash_t;
 begin
   if Initialized and assigned(PyObject_Hash) then
-    Result := PyObject_Hash(FPyObject)
+    Result := PyObject_Hash(PyObject)
    else
     Result := -1;
 end;
@@ -537,7 +538,7 @@ end;
 function TPyObject.HashNotImplemented: Py_hash_t;
 begin
   if Initialized and assigned(PyObject_HashNotImplemented) then
-    Result := PyObject_HashNotImplemented(FPyObject)
+    Result := PyObject_HashNotImplemented(PyObject)
    else
     Result := -1;
 end;
@@ -545,7 +546,7 @@ end;
 function TPyObject.IsTrue: integer;
 begin
   if Initialized and assigned(PyObject_IsTrue) then
-    Result := PyObject_IsTrue(FPyObject)
+    Result := PyObject_IsTrue(PyObject)
    else
     Result := -1;
 end;
@@ -553,7 +554,7 @@ end;
 function TPyObject.Not_: integer;
 begin
   if Initialized and assigned(PyObject_Not) then
-    Result := PyObject_Not(FPyObject)
+    Result := PyObject_Not(PyObject)
    else
     Result := -1;
 end;
@@ -561,14 +562,14 @@ end;
 procedure TPyObject.ClearWeakRefs;
 begin
   if Initialized and assigned(PyObject_ClearWeakRefs) then
-    PyObject_ClearWeakRefs(FPyObject);
+    PyObject_ClearWeakRefs(PyObject);
 end;
 
 function TPyObject.Dir: IPyObject;
 begin
   if Initialized and
      assigned(PyObject_Dir) then
-    Result := Wrap(PyObject_Dir(FPyObject))
+    Result := Wrap(PyObject_Dir(PyObject))
    else
     Result := nil;
 end;
@@ -577,13 +578,13 @@ function TPyObject.ReprEnter: boolean;
 begin
   Result := Initialized and
             assigned(Py_ReprEnter) and
-            (Py_ReprEnter(FPyObject) = 0);
+            (Py_ReprEnter(PyObject) = 0);
 end;
 
 procedure TPyObject.ReprLeave;
 begin
   if Initialized and assigned(Py_ReprLeave) then
-    Py_ReprLeave(FPyObject);
+    Py_ReprLeave(PyObject);
 end;
 
 function TPyObject.Print(file_: PFILE; flags: integer): boolean;
@@ -591,26 +592,26 @@ begin
   Result := Initialized and
             assigned(PyObject_Print) and
             assigned(file_) and
-            (PyObject_Print(FPyObject, file_, flags) = 0);
+            (PyObject_Print(PyObject, file_, flags) = 0);
 end;
 
 procedure TPyObject.CallFinalizer;
 begin
   if Initialized and assigned(PyObject_CallFinalizer) then
-    PyObject_CallFinalizer(FPyObject);
+    PyObject_CallFinalizer(PyObject);
 end;
 
 function TPyObject.CallFinalizerFromDealloc: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_CallFinalizerFromDealloc) and
-            (PyObject_CallFinalizerFromDealloc(FPyObject) = 0);
+            (PyObject_CallFinalizerFromDealloc(PyObject) = 0);
 end;
 
 function TPyObject.GetItemData: Pointer;
 begin
   if Initialized and assigned(PyObject_GetItemData) then
-    Result := PyObject_GetItemData(FPyObject)
+    Result := PyObject_GetItemData(PyObject)
    else
     Result := nil;
 end;
@@ -618,7 +619,7 @@ end;
 function TPyObject.VisitManagedDict(visit: visitproc; arg: Pointer): integer;
 begin
   if Initialized and assigned(PyObject_VisitManagedDict) then
-    Result := PyObject_VisitManagedDict(FPyObject, visit, arg)
+    Result := PyObject_VisitManagedDict(PyObject, visit, arg)
    else
     Result := 0;
 end;
@@ -626,46 +627,54 @@ end;
 procedure TPyObject.ClearManagedDict;
 begin
   if Initialized and assigned(PyObject_ClearManagedDict) then
-    PyObject_ClearManagedDict(FPyObject);
+    PyObject_ClearManagedDict(PyObject);
 end;
 
 procedure TPyObject.Track;
 begin
   if Initialized and assigned(PyObject_GC_Track) then
-    PyObject_GC_Track(FPyObject);
+    PyObject_GC_Track(PyObject);
 end;
 
 procedure TPyObject.UnTrack;
 begin
   if Initialized and assigned(PyObject_GC_UnTrack) then
-    PyObject_GC_UnTrack(FPyObject);
+    PyObject_GC_UnTrack(PyObject);
 end;
 
 function TPyObject.IsTracked: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_GC_IsTracked) and
-            (PyObject_GC_IsTracked(FPyObject) <> 0);
+            (PyObject_GC_IsTracked(PyObject) <> 0);
 end;
 
 function TPyObject.IsFinalized: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_GC_IsFinalized) and
-            (PyObject_GC_IsFinalized(FPyObject) <> 0);
+            (PyObject_GC_IsFinalized(PyObject) <> 0);
 end;
 
 function TPyObject.IS_GC: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_IS_GC) and
-            (PyObject_IS_GC(FPyObject) <> 0);
+            (PyObject_IS_GC(PyObject) <> 0);
 end;
 
 function TPyObject.GenericHash: Py_hash_t;
 begin
   if Initialized and assigned(PyObject_GenericHash) then
-    Result := PyObject_GenericHash(FPyObject)
+    Result := PyObject_GenericHash(PyObject)
+   else
+    Result := -1;
+end;
+
+function TPyObject.AsFileDescriptor: integer;
+begin
+  if Initialized and assigned(PyObject_AsFileDescriptor) then
+    Result := PyObject_AsFileDescriptor(PyObject)
    else
     Result := -1;
 end;
@@ -683,7 +692,7 @@ end;
 function TPyObject.GetRefCnt: integer;
 begin
   if Initialized and assigned(Py_REFCNT) then
-    Result := Py_REFCNT(FPyObject)
+    Result := Py_REFCNT(PyObject)
    else
     Result := 0;
 end;
@@ -697,27 +706,27 @@ function TPyObject.IsTrueSingleton: boolean;
 begin
   Result :=  Initialized and
              assigned(Py_IsTrue) and
-             (Py_IsTrue(FPyObject) <> 0);
+             (Py_IsTrue(PyObject) <> 0);
 end;
 
 function TPyObject.IsFalseSingleton: boolean;
 begin
   Result :=  Initialized and
              assigned(Py_IsFalse) and
-             (Py_IsFalse(FPyObject) <> 0);
+             (Py_IsFalse(PyObject) <> 0);
 end;
 
 function TPyObject.IsNoneSingleton: boolean;
 begin
   Result :=  Initialized and
              assigned(Py_IsNone) and
-             (Py_IsNone(FPyObject) <> 0);
+             (Py_IsNone(PyObject) <> 0);
 end;
 
 function TPyObject.GetPyTypeObject: PPyTypeObject;
 begin
   if Initialized and assigned(Py_TYPE) then
-    Result := Py_TYPE(FPyObject)
+    Result := Py_TYPE(PyObject)
    else
     Result := nil;
 end;
@@ -725,7 +734,7 @@ end;
 function TPyObject.GetTypeData(cls: PPyTypeObject): Pointer;
 begin
   if Initialized and assigned(PyObject_GetTypeData) then
-    Result := PyObject_GetTypeData(FPyObject, cls)
+    Result := PyObject_GetTypeData(PyObject, cls)
    else
     Result := nil;
 end;
@@ -737,25 +746,25 @@ end;
 
 procedure TPyObject.SetPyObject(aValue: PPyObject);
 begin
-  FPyObject := aValue;
+  PyObject := aValue;
 end;
 
 procedure TPyObject.IncRef;
 begin
   if Initialized and assigned(Py_IncRef) then
-    Py_IncRef(FPyObject);
+    Py_IncRef(PyObject);
 end;
 
 procedure TPyObject.DecRef;
 begin
   if Initialized and assigned(Py_DecRef) then
-    Py_DecRef(FPyObject);
+    Py_DecRef(PyObject);
 end;
 
 function TPyObject.NewRef: Pointer;
 begin
   if Initialized and assigned(Py_NewRef) then
-    Result := Py_NewRef(FPyObject)
+    Result := Py_NewRef(PyObject)
    else
     Result := nil;
 end;
@@ -763,7 +772,7 @@ end;
 function TPyObject.XNewRef: Pointer;
 begin
   if assigned(Py_XNewRef) then
-    Result := Py_XNewRef(FPyObject)
+    Result := Py_XNewRef(PyObject)
    else
     Result := nil;
 end;
@@ -772,7 +781,7 @@ function TPyObject.SameAs(aPyObject: Pointer): boolean;
 begin
   Result := Initialized and
             assigned(Py_Is) and
-            (Py_Is(FPyObject, aPyObject) <> 0);
+            (Py_Is(PyObject, aPyObject) <> 0);
 end;
 
 function TPyObject.SameAs(const aPyObject: IPyObject): boolean;

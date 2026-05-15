@@ -161,7 +161,7 @@ type
   PPyGetSetDef                    = ^PyGetSetDef;
   P_PyCoCached                    = ^_PyCoCached;
   P_PyExecutorArray               = ^_PyExecutorArray;
-  PPyFrameObject                  = type Pointer; // opaque
+  PPyFrameObject                  = type Poi nter; // opaque    Encontrar la implementacion porque se necesita el puntero PPyObject
   PPyInterpreterState             = type Pointer; // opaque
   PPyThreadState                  = type Pointer; // opaque
   PPyType_Spec                    = ^PyType_Spec;

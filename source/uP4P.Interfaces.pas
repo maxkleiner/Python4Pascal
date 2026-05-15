@@ -27,6 +27,7 @@ type
   IPyCriticalSection2 = interface;
   IPyLongExport = interface;
   IPyLongWriter = interface;
+  IPyCodeObject = interface;
 
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
@@ -98,6 +99,7 @@ type
     function  IsFinalized: boolean;
     function  IS_GC: boolean;
     function  GenericHash: Py_hash_t;
+    function  AsFileDescriptor: integer;
 
     function  UnWrap: Pointer;
 
@@ -106,6 +108,24 @@ type
     property ObjRefOwner  : boolean         read GetObjRefOwner   write SetObjRefOwner;
     property RefCnt       : integer         read GetRefCnt;
     property PyTypeObject : PPyTypeObject   read GetPyTypeObject;
+  end;
+
+  IPyCodeObject = interface(IPyObject)
+    ['{41274CBA-BABC-4305-BF6A-C3BDA7A86BCC}']
+    function  GetPyCodeObject: PPyCodeObject;
+    function  Addr2Line(byte_offset: integer): integer;
+    function  Addr2Location(byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): boolean;
+    function  GetCode: IPyObject;
+    function  GetVarnames: IPyObject;
+    function  GetCellvars: IPyObject;
+    function  GetFreevars: IPyObject;
+
+    property PyCodeObject : PPyCodeObject read GetPyCodeObject;
+  end;
+
+  IPyFrameObject = interface(IPyObject)
+    ['{F3237C51-EE6A-46B8-8AA2-468927854373}']
+
   end;
 
   IPyLongExport = interface

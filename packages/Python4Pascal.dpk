@@ -93,6 +93,10 @@ contains
   uP4P.PyClassMethod in '..\source\uP4P.PyClassMethod.pas',
   uP4P.PyStaticMethod in '..\source\uP4P.PyStaticMethod.pas',
   uP4P.PyMethod in '..\source\uP4P.PyMethod.pas',
-  uP4P.PyInstanceMethod in '..\source\uP4P.PyInstanceMethod.pas';
+  uP4P.PyInstanceMethod in '..\source\uP4P.PyInstanceMethod.pas',
+  uP4P.PyFile in '..\source\uP4P.PyFile.pas',
+  uP4P.PyCapsule in '..\source\uP4P.PyCapsule.pas',
+  uP4P.PyCode in '..\source\uP4P.PyCode.pas',
+  uP4P.PyFrame in '..\source\uP4P.PyFrame.pas';
 
 end.

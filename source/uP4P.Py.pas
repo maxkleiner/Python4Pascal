@@ -20,6 +20,7 @@ type
   TPy = class
     public
       class procedure FatalError(const message_: string);
+      class function UniversalNewlineFgets(buf: PByte; n: integer; stream: PFILE): PByte;
   end;
 
 implementation
@@ -36,6 +37,15 @@ begin
       TempMessage := StringToPyUTF8(message_);
       Py_FatalError(PAnsiChar(TempMessage));
     end;
+end;
+
+class function TPy.UniversalNewlineFgets(buf: PByte; n: integer; stream: PFILE): PByte;
+begin
+  // The fobj parameter exists solely for legacy reasons and must be NULL.
+  if assigned(Py_UniversalNewlineFgets) then
+    Result := PByte(Py_UniversalNewlineFgets(PAnsiChar(buf), n, stream, nil))
+   else
+    Result := nil;
 end;
 
 end.
