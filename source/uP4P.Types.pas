@@ -161,7 +161,7 @@ type
   PPyGetSetDef                    = ^PyGetSetDef;
   P_PyCoCached                    = ^_PyCoCached;
   P_PyExecutorArray               = ^_PyExecutorArray;
-  PPyFrameObject                  = type Poi nter; // opaque    Encontrar la implementacion porque se necesita el puntero PPyObject
+  PPyFrameObject                  = ^PyFrameObject;
   PPyInterpreterState             = type Pointer; // opaque
   PPyThreadState                  = type Pointer; // opaque
   PPyType_Spec                    = ^PyType_Spec;
@@ -1313,6 +1313,23 @@ type
     DateTime_FromDateAndTimeAndFold : PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func;
     Time_FromTimeAndFold            : PyDateTime_CAPI_Time_FromTimeAndFold_func;
   end;
+
+
+  {* Include/internal/pycore_frame.h *}
+  _frame  = record
+    ob_base                     : PyObject; // PyObject_HEAD
+    f_back                      : PPyFrameObject;
+    f_frame                     : Pointer; // not implemented. pointer to _PyInterpreterFrame; /Include/internal/pycore_interpframe_structs.h
+    f_trace                     : PPyObject;
+    f_lineno                    : integer;
+    f_trace_lines               : AnsiChar;
+    f_trace_opcodes             : AnsiChar;
+    f_extra_locals              : PPyObject;
+    f_locals_cache              : PPyObject;
+    f_overwritten_fast_locals   : PPyObject;
+    _f_frame_data               : array[0..0] of PPyObject;
+  end;
+  PyFrameObject = type _frame;
 
 implementation
 

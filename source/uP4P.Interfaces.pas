@@ -28,6 +28,7 @@ type
   IPyLongExport = interface;
   IPyLongWriter = interface;
   IPyCodeObject = interface;
+  IPyFrameObject = interface;
 
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
@@ -125,7 +126,19 @@ type
 
   IPyFrameObject = interface(IPyObject)
     ['{F3237C51-EE6A-46B8-8AA2-468927854373}']
+    function  GetPyFrameObject: PPyFrameObject;
+    function  GetLineNumber: integer;
+    function  GetCode: IPyCodeObject;
+    function  GetBack: IPyFrameObject;
+    function  GetLocals: IPyObject;
+    function  GetGlobals: IPyObject;
+    function  GetBuiltins: IPyObject;
+    function  GetGenerator: IPyObject;
+    function  GetLasti: integer;
+    function  GetVar(const name_: IPyObject): IPyObject;
+    function  GetVarString(const name_: string): IPyObject;
 
+    property PyFrameObject : PPyFrameObject read GetPyFrameObject;
   end;
 
   IPyLongExport = interface

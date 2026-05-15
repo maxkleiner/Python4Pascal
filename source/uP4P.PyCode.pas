@@ -35,7 +35,7 @@ type
     public
       constructor Create(aPyCodeObject: PPyCodeObject); reintroduce;
 
-      class function CheckExact(const aPyObject: IPyObject): boolean;
+      class function Check(const aPyObject: IPyObject): boolean;
       class function WrapCodeObj(aPyCodeObject: Pointer): IPyCodeObject; inline;
       class function NewEmpty(const filename, funcname: string; firstlineno: integer): IPyCodeObject;
       class function AddWatcher(callback: PyCode_WatchCallback): integer;
@@ -58,7 +58,7 @@ begin
   FObjRefOwner  := True;
 end;
 
-class function TPyCode.CheckExact(const aPyObject: IPyObject): boolean;
+class function TPyCode.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
             aPyObject.IsType(PyCode_Type);
@@ -80,7 +80,7 @@ begin
     begin
       TempFilename := StringToPyUTF8(filename);
       TempFuncname := StringToPyUTF8(funcname);
-      Result       := WrapCodeObj(PyCode_NewEmpty(PAnsiChar(TempFilename), PAnsiChar(TempFuncname), firstlineno));
+      Result       := TPyCode.WrapCodeObj(PyCode_NewEmpty(PAnsiChar(TempFilename), PAnsiChar(TempFuncname), firstlineno));
     end
    else
     Result := nil;
