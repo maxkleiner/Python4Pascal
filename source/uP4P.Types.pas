@@ -246,6 +246,7 @@ type
   PPyMemAllocatorEx               = ^PyMemAllocatorEx;
   PC_ULong                        = ^C_ULong;
   PPyBiteOrder                    = ^TPyBiteOrder;
+  PPyTracebackObject              = ^PyTracebackObject;
 
 
 
@@ -996,7 +997,16 @@ type
   PyCode_WatchCallback           = function(event: PyCodeEvent; co: PPyCodeObject): integer; cdecl;
 
   {* include/pyframe.h *}
-  {* include/traceback.h *}
+  {* include/traceback.h   include/cpython/traceback.h *}
+  _traceback = record
+    ob_base     : PyObject;           // PyObject_HEAD
+    tb_next     : PPyTracebackObject;
+    tb_frame    : PPyFrameObject;
+    tb_lasti    : integer;
+    tb_lineno   : integer;
+  end;
+  PyTracebackObject = type _traceback;
+
   {* include/sliceobject.h *}
   PySliceObject = record
     ob_base     : PyObject;           // PyObject_HEAD

@@ -59,13 +59,9 @@ type
       function  ReadLibraryVersionInfo(const aLibraryPath: string): boolean;
       function  ReadVersionFromFilename(const aLibraryPath: string): boolean;
       function  LoadPythonLibrary(const aLibraryPath: string): boolean;
-      function  IsIntialized: boolean;
-      function  InitializeFromInitConfig(const aConfig: Pointer): boolean;
-      function  InitializeFromConfig(const aConfig: Pointer): IPyStatus;
       function  Version(var aMajor, aMinor, aMicro: integer): boolean;
       function  GetVersion(var aMajor, aMinor, aMicro: integer): boolean;
       function  GetFileVersion(var aFileVersion : TFileVersionInfo): boolean;
-      function  GetArgcArgv(var argc: integer; var argv: TStringList): boolean;
       procedure Finalize;
       procedure doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig = nil);
       function  Initialize_PEP741: boolean;
@@ -260,7 +256,7 @@ uses
   Math,
   {$ENDIF}
   uP4P.Constants, uP4P.MiscFunctions, uP4P.PyInitConfig, uP4P.PyConfig,
-  uP4P.PyStatus;
+  uP4P.PyStatus, uP4P.Py;
 
 procedure DestroyGlobalP4PLoader;
 begin
@@ -631,8 +627,8 @@ begin
 
         doOnBeforeInitialization(TempConfig);
 
-        if InitializeFromInitConfig(TempConfig.Config) and
-           IsIntialized then
+        if TPy.InitializeFromInitConfig(TempConfig.Config) and
+           TPy.IsIntialized then
           begin
             FStatus := plsInitialized;
             Result  := True;
@@ -686,7 +682,7 @@ begin
     TempConfig.module_search_paths := FModuleSearchPaths;
 
     doOnBeforeInitialization(nil, TempConfig);
-    TempStatus := InitializeFromConfig(TempConfig.Config);
+    TempStatus := TPy.InitializeFromConfig(TempConfig.Config);
 
     if assigned(TempStatus) then
       begin
@@ -699,7 +695,7 @@ begin
                                    'Exit code: ' + inttostr(TempStatus.ExitCode);
           end
          else
-          if IsIntialized then
+          if TPy.IsIntialized then
             begin
               FStatus := plsInitialized;
               Result  := True;
@@ -723,25 +719,6 @@ begin
     Result := Initialize_PEP741
    else
     Result := Initialize_PEP587;
-end;
-
-function TP4PLoader.InitializeFromInitConfig(const aConfig: Pointer): boolean;
-begin
-  Result := assigned(Py_InitializeFromInitConfig) and
-            (Py_InitializeFromInitConfig(aConfig) = 0);
-end;
-
-function TP4PLoader.InitializeFromConfig(const aConfig: Pointer): IPyStatus;
-begin
-  if assigned(Py_InitializeFromConfig) then
-    Result := TPyStatus.Create(Py_InitializeFromConfig(aConfig))
-   else
-    Result := nil;
-end;
-
-function TP4PLoader.IsIntialized: boolean;
-begin
-  Result := assigned(Py_IsInitialized) and (Py_IsInitialized() <> 0);
 end;
 
 function TP4PLoader.Version(var aMajor, aMinor, aMicro: integer): boolean;
@@ -837,19 +814,6 @@ begin
       aFileVersion.Minor := uint16(TempMinor);
       aFileVersion.Micro := uint16(TempMicro);
       Result             := True;
-    end;
-end;
-
-function TP4PLoader.GetArgcArgv(var argc: integer; var argv: TStringList): boolean;
-var
-  TempArgv : PPWCharT;
-begin
-  Result := False;
-
-  if assigned(Py_GetArgcArgv) then
-    begin
-      Py_GetArgcArgv(argc, TempArgv);
-      Result := WCharTArrayToStringList(TempArgv, argc, argv);
     end;
 end;
 

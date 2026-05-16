@@ -97,6 +97,13 @@ contains
   uP4P.PyFile in '..\source\uP4P.PyFile.pas',
   uP4P.PyCapsule in '..\source\uP4P.PyCapsule.pas',
   uP4P.PyCode in '..\source\uP4P.PyCode.pas',
-  uP4P.PyFrame in '..\source\uP4P.PyFrame.pas';
+  uP4P.PyFrame in '..\source\uP4P.PyFrame.pas',
+  uP4P.PyFrameLocalsProxy in '..\source\uP4P.PyFrameLocalsProxy.pas',
+  uP4P.PyTraceBack in '..\source\uP4P.PyTraceBack.pas',
+  uP4P.PySlice in '..\source\uP4P.PySlice.pas',
+  uP4P.PyEllipsis in '..\source\uP4P.PyEllipsis.pas',
+  uP4P.PyCell in '..\source\uP4P.PyCell.pas',
+  uP4P.PySeqIter in '..\source\uP4P.PySeqIter.pas',
+  uP4P.PyCallIter in '..\source\uP4P.PyCallIter.pas';
 
 end.

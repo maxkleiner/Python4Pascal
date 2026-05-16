@@ -159,6 +159,13 @@
         <DCCReference Include="..\source\uP4P.PyCapsule.pas"/>
         <DCCReference Include="..\source\uP4P.PyCode.pas"/>
         <DCCReference Include="..\source\uP4P.PyFrame.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFrameLocalsProxy.pas"/>
+        <DCCReference Include="..\source\uP4P.PyTraceBack.pas"/>
+        <DCCReference Include="..\source\uP4P.PySlice.pas"/>
+        <DCCReference Include="..\source\uP4P.PyEllipsis.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCell.pas"/>
+        <DCCReference Include="..\source\uP4P.PySeqIter.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCallIter.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

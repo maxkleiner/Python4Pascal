@@ -39,6 +39,7 @@ type
       property IsException : boolean   read GetIsException;
       property IsError     : boolean   read GetIsError;
       property IsExit      : boolean   read GetIsExit;
+      property Status      : PyStatus  read FStatus;
   end;
 
 implementation

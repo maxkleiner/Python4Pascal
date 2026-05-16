@@ -137,6 +137,9 @@ type
     function  GetLasti: integer;
     function  GetVar(const name_: IPyObject): IPyObject;
     function  GetVarString(const name_: string): IPyObject;
+    procedure LocalsToFast(clear: boolean);
+    function  FastToLocalsWithError: boolean;
+    procedure FastToLocals;
 
     property PyFrameObject : PPyFrameObject read GetPyFrameObject;
   end;

@@ -20,10 +20,10 @@ type
   TPyConfig = class
     public
       class function Names: IPyObject;
-      class function GetInt(const aName: string; var aValue: integer): boolean;
-      class function GetBoolean(const aName: string; var aValue: boolean): boolean;
-      class function GetObject(const aName: string): IPyObject;
-      class function SetObject(const aName: string; const aValue: IPyObject): boolean;
+      class function GetInt(const name_: string; var value: integer): boolean;
+      class function GetBoolean(const name_: string; var value: boolean): boolean;
+      class function Get(const name_: string): IPyObject;
+      class function Set_(const name_: string; const value: IPyObject): boolean;
   end;
 
   TPyConfigBase = class(TInterfacedObject, IPyConfig)
@@ -1188,49 +1188,69 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyStatus;
+  uP4P.MiscFunctions, uP4P.PyObject, uP4P.PyStatus;
 
 {$REGION 'TPyConfig'}
 class function TPyConfig.Names: IPyObject;
 begin
-  Result := nil; //TODO: Implement PyConfig_Names in TPyConfigBase.Names
+  if assigned(PyConfig_Names) then
+    Result := TPyObject.Wrap(PyConfig_Names())
+   else
+    Result := nil;
 end;
 
-class function TPyConfig.GetInt(const aName: string; var aValue: integer): boolean;
+class function TPyConfig.GetInt(const name_: string; var value: integer): boolean;
 var
   TempName : AnsiString;
 begin
   Result := False;
 
   if assigned(PyConfig_GetInt) and
-     (length(aName) > 0) then
+     (length(name_) > 0) then
     begin
-      TempName := StringToPyUTF8(aName);
-      Result   := (PyConfig_GetInt(PAnsiChar(TempName), aValue) = 0);
+      TempName := StringToPyUTF8(name_);
+      Result   := (PyConfig_GetInt(PAnsiChar(TempName), value) = 0);
     end;
 end;
 
-class function TPyConfig.GetBoolean(const aName: string; var aValue: boolean): boolean;
+class function TPyConfig.GetBoolean(const name_: string; var value: boolean): boolean;
 var
   TempValue: integer;
 begin
   Result := False;
 
-  if GetInt(aName, TempValue) then
+  if GetInt(name_, TempValue) then
     begin
-      aValue := (TempValue <> 0);
+      value  := (TempValue <> 0);
       Result := True;
     end;
 end;
 
-class function TPyConfig.GetObject(const aName: string): IPyObject;
+class function TPyConfig.Get(const name_: string): IPyObject;
+var
+  TempName : AnsiString;
 begin
-  Result := nil; //TODO: Implement PyConfig_Get in TPyConfigBase.GetObject
+  if assigned(PyConfig_Get) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := TPyObject.Wrap(PyConfig_Get(PAnsiChar(TempName)));
+    end
+   else
+    Result := nil;
 end;
 
-class function TPyConfig.SetObject(const aName: string; const aValue: IPyObject): boolean;
+class function TPyConfig.Set_(const name_: string; const value: IPyObject): boolean;
+var
+  TempName : AnsiString;
 begin
-  Result := False; //TODO: Implement PyConfig_Set in TPyConfigBase.SetObject
+  if assigned(PyConfig_Set) and
+     TPyObject.IsInitialized(value) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := (PyConfig_Set(PAnsiChar(TempName), value.PyObject) = 0);
+    end
+   else
+    Result := False;
 end;
 {$ENDREGION}
 

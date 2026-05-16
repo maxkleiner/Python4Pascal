@@ -35,13 +35,17 @@ type
       function  GetLasti: integer;
       function  GetVar(const name_: IPyObject): IPyObject;
       function  GetVarString(const name_: string): IPyObject;
+      procedure LocalsToFast(clear: boolean);
+      function  FastToLocalsWithError: boolean;
+      procedure FastToLocals;
 
     public
       constructor Create(aPyFrameObject: PPyFrameObject); reintroduce;
 
       class function Check(const aPyObject: IPyObject): boolean;
       class function WrapFrameObj(aPyFrameObject: Pointer): IPyFrameObject; inline;
-
+      class function IsInitialized(const aPyFrameObject: IPyFrameObject): boolean; inline;
+      class function New(tstate: PPyThreadState; const code: IPyCodeObject; const globals, locals: IPyObject): IPyFrameObject;
 
       property PyFrameObject : PPyFrameObject read GetPyFrameObject;
   end;
@@ -70,6 +74,22 @@ class function TPyFrame.WrapFrameObj(aPyFrameObject: Pointer): IPyFrameObject;
 begin
   if assigned(aPyFrameObject) then
     Result := TPyFrame.Create(aPyFrameObject)
+   else
+    Result := nil;
+end;
+
+class function TPyFrame.IsInitialized(const aPyFrameObject: IPyFrameObject): boolean;
+begin
+  Result := (aPyFrameObject <> nil) and aPyFrameObject.Initialized;
+end;
+
+class function TPyFrame.New(tstate: PPyThreadState; const code: IPyCodeObject; const globals, locals: IPyObject): IPyFrameObject;
+begin
+  if assigned(PyFrame_New) and
+     TPyCode.IsInitialized(code) and
+     TPyObject.IsInitialized(globals) and
+     TPyObject.IsInitialized(locals) then
+    Result := TPyFrame.WrapFrameObj(PyFrame_New(tstate, code.PyCodeObject, globals.PyObject, locals.PyObject))
    else
     Result := nil;
 end;
@@ -179,6 +199,25 @@ begin
     end
    else
     Result := nil;
+end;
+
+procedure TPyFrame.LocalsToFast(clear: boolean);
+begin
+  if Initialized and assigned(PyFrame_LocalsToFast) then
+    PyFrame_LocalsToFast(PyFrameObject, ord(clear));
+end;
+
+function TPyFrame.FastToLocalsWithError: boolean;
+begin
+  Result := Initialized and
+            assigned(PyFrame_FastToLocalsWithError) and
+            (PyFrame_FastToLocalsWithError(PyFrameObject) = 0);
+end;
+
+procedure TPyFrame.FastToLocals;
+begin
+  if Initialized and assigned(PyFrame_FastToLocals) then
+    PyFrame_FastToLocals(PyFrameObject);
 end;
 
 end.

@@ -37,6 +37,7 @@ type
 
       class function Check(const aPyObject: IPyObject): boolean;
       class function WrapCodeObj(aPyCodeObject: Pointer): IPyCodeObject; inline;
+      class function IsInitialized(const aPyCodeObject: IPyCodeObject): boolean; inline;
       class function NewEmpty(const filename, funcname: string; firstlineno: integer): IPyCodeObject;
       class function AddWatcher(callback: PyCode_WatchCallback): integer;
       class function ClearWatcher(watcher_id: integer): boolean;
@@ -70,6 +71,11 @@ begin
     Result := TPyCode.Create(aPyCodeObject)
    else
     Result := nil;
+end;
+
+class function TPyCode.IsInitialized(const aPyCodeObject: IPyCodeObject): boolean;
+begin
+  Result := (aPyCodeObject <> nil) and aPyCodeObject.Initialized;
 end;
 
 class function TPyCode.NewEmpty(const filename, funcname: string; firstlineno: integer): IPyCodeObject;

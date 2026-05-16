@@ -788,9 +788,9 @@ var
   PyFrame_GetVar                                 : function(frame: PPyFrameObject; name_: PPyObject): PPyObject; cdecl;
   PyFrame_GetVarString                           : function(frame: PPyFrameObject; const name_: PAnsiChar): PPyObject; cdecl;
 
-  {* include/traceback.h *}
-  PyTraceBack_Here                               : function(frame: PPyFrameObject): integer; cdecl;
-  PyTraceBack_Print                              : function(obj1, obj2: PPyObject): integer; cdecl;
+  {* include/traceback.h  include/cpython/traceback.h *}
+  PyTraceBack_Here                               : function(f: PPyFrameObject): integer; cdecl;
+  PyTraceBack_Print                              : function(tb, f: PPyObject): integer; cdecl;
   PyTraceBack_Type                               : PPyTypeObject;
 
   {* include/sliceobject.h *}
@@ -798,22 +798,22 @@ var
   PySlice_Type                                   : PPyTypeObject;
   PyEllipsis_Type                                : PPyTypeObject;
   PySlice_New                                    : function(start, stop, step: PPyObject): PPyObject; cdecl;
-  PySlice_GetIndices                             : function(r: PPyObject; length: Py_ssize_t; start, stop, step: PPy_ssize_t): integer; cdecl;
-  PySlice_GetIndicesEx                           : function(r: PPyObject; length: Py_ssize_t; start, stop, step, slicelength: PPy_ssize_t): integer; cdecl;
+  PySlice_GetIndices                             : function(slice: PPyObject; length: Py_ssize_t; start, stop, step: PPy_ssize_t): integer; cdecl;
+  PySlice_GetIndicesEx                           : function(slice: PPyObject; length: Py_ssize_t; start, stop, step, slicelength: PPy_ssize_t): integer; cdecl;
   PySlice_Unpack                                 : function(slice: PPyObject; start, stop, step: PPy_ssize_t): integer; cdecl;
   PySlice_AdjustIndices                          : function(length: Py_ssize_t; start, stop: PPy_ssize_t; step: Py_ssize_t): Py_ssize_t; cdecl;
 
   {* include/cpython/cellobject.h *}
   PyCell_Type                                    : PPyTypeObject;
-  PyCell_New                                     : function(obj: PPyObject): PPyObject; cdecl;
-  PyCell_Get                                     : function(obj: PPyObject): PPyObject; cdecl;
-  PyCell_Set                                     : function(obj1, obj2: PPyObject): integer; cdecl;
+  PyCell_New                                     : function(ob: PPyObject): PPyObject; cdecl;
+  PyCell_Get                                     : function(cell: PPyObject): PPyObject; cdecl;
+  PyCell_Set                                     : function(cell, value: PPyObject): integer; cdecl;
 
   {* include/iterobject.h *}
   PySeqIter_Type                                 : PPyTypeObject;
   PyCallIter_Type                                : PPyTypeObject;
-  PySeqIter_New                                  : function(obj: PPyObject): PPyObject; cdecl;
-  PyCallIter_New                                 : function(obj1, obj2: PPyObject): integer; cdecl;
+  PySeqIter_New                                  : function(seq: PPyObject): PPyObject; cdecl;
+  PyCallIter_New                                 : function(callable, sentinel: PPyObject): PPyObject; cdecl;
 
   {* include/cpython/initconfig.h *}
   PyStatus_Ok                                    : function(): PyStatus; cdecl;
@@ -1318,8 +1318,8 @@ var
   PyTraceMalloc_Untrack                          : function(domain: cardinal; ptr: Py_uintptr_t): integer; cdecl;
 
   {* include/frameobject.h  include/cpython/frameobject.h *}
-  PyFrame_New                                    : function(state: PPyThreadState; code: PPyCodeObject; obj1, obj2: PPyObject): PPyFrameObject; cdecl;
-  PyFrame_LocalsToFast                           : procedure(f: PPyFrameObject; i: integer); cdecl;
+  PyFrame_New                                    : function(tstate: PPyThreadState; code: PPyCodeObject; globals, locals: PPyObject): PPyFrameObject; cdecl;
+  PyFrame_LocalsToFast                           : procedure(f: PPyFrameObject; clear: integer); cdecl;
   PyFrame_FastToLocalsWithError                  : function(f: PPyFrameObject): integer; cdecl;
   PyFrame_FastToLocals                           : procedure(f: PPyFrameObject); cdecl;
 

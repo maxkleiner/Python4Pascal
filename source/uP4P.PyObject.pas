@@ -212,7 +212,7 @@ end;
 
 function TPyObject.IsType(aPyTypeObject: PPyTypeObject): boolean;
 begin
-  Result := (GetPyTypeObject = aPyTypeObject);
+  Result := (aPyTypeObject <> nil) and (GetPyTypeObject = aPyTypeObject);
 end;
 
 function TPyObject.TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
