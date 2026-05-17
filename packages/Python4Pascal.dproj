@@ -166,6 +166,13 @@
         <DCCReference Include="..\source\uP4P.PyCell.pas"/>
         <DCCReference Include="..\source\uP4P.PySeqIter.pas"/>
         <DCCReference Include="..\source\uP4P.PyCallIter.pas"/>
+        <DCCReference Include="..\source\uP4P.PyInterpreterState.pas"/>
+        <DCCReference Include="..\source\uP4P.PyState.pas"/>
+        <DCCReference Include="..\source\uP4P.PyThreadState.pas"/>
+        <DCCReference Include="..\source\uP4P.PyGILState.pas"/>
+        <DCCReference Include="..\source\uP4P.PyGen.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCoro.pas"/>
+        <DCCReference Include="..\source\uP4P.PyAsyncGen.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

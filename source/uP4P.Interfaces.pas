@@ -29,6 +29,9 @@ type
   IPyLongWriter = interface;
   IPyCodeObject = interface;
   IPyFrameObject = interface;
+  IPyInterpreterState = interface;
+  IPyThreadState = interface;
+  IPyGILState = interface;
 
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
@@ -201,6 +204,60 @@ type
     property IsException : boolean   read GetIsException;
     property IsError     : boolean   read GetIsError;
     property IsExit      : boolean   read GetIsExit;
+  end;
+
+  IPyInterpreterState = interface
+    ['{26733A3F-135C-4889-BBA0-84B78764EA94}']
+    function  GetInitialized: boolean;
+    function  GetState: PPyInterpreterState;
+    function  GetID: int64;
+    function  GetDict: IPyObject;
+    procedure SetState(aState: PPyInterpreterState);
+    procedure Clear;
+    procedure Delete;
+    function  Next: IPyInterpreterState;
+    function  ThreadHead: IPyThreadState;
+
+    property Initialized  : boolean               read GetInitialized;
+    property State        : PPyInterpreterState   read GetState         write SetState;
+    property ID           : int64                 read GetID;
+    property Dict         : IPyObject             read GetDict;
+  end;
+
+  IPyThreadState = interface
+    ['{0C8502D8-C0EF-4F8E-A7B3-42AB050BA121}']
+    function  GetInitialized: boolean;
+    function  GetThreadState: PPyThreadState;
+    function  GetID: int64;
+    function  GetDict: IPyObject;
+    function  GetInterpreter: IPyInterpreterState;
+    function  GetFrame: IPyFrameObject;
+    procedure SetThreadState(aThreadState: PPyThreadState);
+    procedure Clear;
+    procedure Delete;
+    function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
+    procedure EnterTracing;
+    procedure LeaveTracing;
+    function  Next: IPyThreadState;
+
+    property Initialized  : boolean               read GetInitialized;
+    property ThreadState  : PPyThreadState        read GetThreadState         write SetThreadState;
+    property ID           : int64                 read GetID;
+    property Dict         : IPyObject             read GetDict;
+    property Interpreter  : IPyInterpreterState   read GetInterpreter;
+    property Frame        : IPyFrameObject        read GetFrame;
+  end;
+
+  IPyGILState = interface
+    ['{FA7CC9AD-C157-4070-B577-8C08DFAB41C4}']
+    function  GetInitialized: boolean;
+    function  GetState: PyGILState_STATE;
+    procedure SetInitialized(aValue: boolean);
+    procedure SetState(aState: PyGILState_STATE);
+    procedure Release;
+
+    property Initialized  : boolean           read GetInitialized   write SetInitialized;
+    property State        : PyGILState_STATE  read GetState         write SetState;
   end;
 
   IPyInitConfig = interface

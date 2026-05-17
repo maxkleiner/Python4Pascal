@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
   TPyStatus = class(TInterfacedObject, IPyStatus)
@@ -29,9 +29,13 @@ type
       function GetIsExit: boolean;
 
     public
-      constructor Create(const aStatus: PyStatus); overload;
-      constructor Create(aStatusType: TPyStatusType; const aErrorMessage: string; aExitCode: integer); overload;
+      constructor Create(const aStatus: PyStatus);
       procedure   ExitStatusException;
+
+      class function Ok: IPyStatus;
+      class function Error(const err_msg: string): IPyStatus;
+      class function NoMemory: IPyStatus;
+      class function Exit_(exitcode: integer): IPyStatus;
 
       property func        : string    read GetFunc;
       property ErrMsg      : string    read GetErrMsg;
@@ -54,23 +58,41 @@ begin
   FStatus := aStatus;
 end;
 
-constructor TPyStatus.Create(aStatusType: TPyStatusType; const aErrorMessage: string; aExitCode: integer);
-var
-  TempMsg : AnsiString;
+class function TPyStatus.Ok: IPyStatus;
 begin
-  inherited Create;
+  if assigned(PyStatus_Ok) then
+    Result := TPyStatus.Create(PyStatus_Ok())
+   else
+    Result := nil;
+end;
 
-  case aStatusType of
-    CustomPyStatusOk       : if assigned(PyStatus_Ok)       then FStatus := PyStatus_Ok();
-    CustomPyStatusNoMemory : if assigned(PyStatus_NoMemory) then FStatus := PyStatus_NoMemory();
-    CustomPyStatusExit     : if assigned(PyStatus_Exit)     then FStatus := PyStatus_Exit(aExitCode);
-    CustomPyStatusError    :
-      if assigned(PyStatus_Error) then
-        begin
-          TempMsg := StringToPyUTF8(aErrorMessage);
-          FStatus := PyStatus_Error(PAnsiChar(TempMsg));
-        end;
-  end;
+class function TPyStatus.Error(const err_msg: string): IPyStatus;
+var
+  TempErrorMsg : AnsiString;
+begin
+  if assigned(PyStatus_Error) then
+    begin
+      TempErrorMsg := StringToPyUTF8(err_msg);
+      Result       := TPyStatus.Create(PyStatus_Error(PAnsiChar(TempErrorMsg)));
+    end
+   else
+    Result := nil;
+end;
+
+class function TPyStatus.NoMemory: IPyStatus;
+begin
+  if assigned(PyStatus_NoMemory) then
+    Result := TPyStatus.Create(PyStatus_NoMemory())
+   else
+    Result := nil;
+end;
+
+class function TPyStatus.Exit_(exitcode: integer): IPyStatus;
+begin
+  if assigned(PyStatus_Exit) then
+    Result := TPyStatus.Create(PyStatus_Exit(exitcode))
+   else
+    Result := nil;
 end;
 
 function TPyStatus.GetFunc: string;

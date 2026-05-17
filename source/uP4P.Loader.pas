@@ -1856,7 +1856,6 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyCoro_Type{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyCoro_Type');
   {$IFDEF FPC}Pointer({$ENDIF}PyCoro_New{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyCoro_New');
   {$IFDEF FPC}Pointer({$ENDIF}PyAsyncGen_Type{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyAsyncGen_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}_PyAsyncGenASend_Type{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, '_PyAsyncGenASend_Type');
   {$IFDEF FPC}Pointer({$ENDIF}PyAsyncGen_New{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyAsyncGen_New');
 end;
 

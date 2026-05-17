@@ -858,21 +858,21 @@ var
 
   {* include/pystate.h  include/cpython/pystate.h *}
   PyInterpreterState_New                         : function(): PPyInterpreterState; cdecl;
-  PyInterpreterState_Clear                       : procedure(ptr: PPyInterpreterState); cdecl;
-  PyInterpreterState_Delete                      : procedure(ptr: PPyInterpreterState); cdecl;
+  PyInterpreterState_Clear                       : procedure(interp: PPyInterpreterState); cdecl;
+  PyInterpreterState_Delete                      : procedure(interp: PPyInterpreterState); cdecl;
   PyInterpreterState_Get                         : function(): PPyInterpreterState; cdecl;
-  PyInterpreterState_GetDict                     : function(ptr: PPyInterpreterState): PPyObject; cdecl;
-  PyInterpreterState_GetID                       : function(ptr: PPyInterpreterState): int64; cdecl;
-  PyState_AddModule                              : function(obj: PPyObject; moddef: PPyModuleDef): integer; cdecl;
-  PyState_RemoveModule                           : function(ptr: PPyModuleDef): integer; cdecl;
-  PyState_FindModule                             : function(ptr: PPyModuleDef): PPyObject; cdecl;
+  PyInterpreterState_GetDict                     : function(interp: PPyInterpreterState): PPyObject; cdecl;
+  PyInterpreterState_GetID                       : function(interp: PPyInterpreterState): int64; cdecl;
+  PyState_AddModule                              : function(module: PPyObject; def: PPyModuleDef): integer; cdecl;
+  PyState_RemoveModule                           : function(def: PPyModuleDef): integer; cdecl;
+  PyState_FindModule                             : function(def: PPyModuleDef): PPyObject; cdecl;
   PyThreadState_New                              : function(state: PPyInterpreterState): PPyThreadState; cdecl;
-  PyThreadState_Clear                            : procedure(ptr: PPyThreadState); cdecl;
-  PyThreadState_Delete                           : procedure(ptr: PPyThreadState); cdecl;
+  PyThreadState_Clear                            : procedure(tstate: PPyThreadState); cdecl;
+  PyThreadState_Delete                           : procedure(tstate: PPyThreadState); cdecl;
   PyThreadState_Get                              : function(): PPyThreadState; cdecl;
-  PyThreadState_Swap                             : function(ptr: PPyThreadState): PPyThreadState; cdecl;
+  PyThreadState_Swap                             : function(tstate: PPyThreadState): PPyThreadState; cdecl;
   PyThreadState_GetDict                          : function(): PPyObject; cdecl;
-  PyThreadState_SetAsyncExc                      : function(i: C_ULong; obj: PPyObject): integer; cdecl;
+  PyThreadState_SetAsyncExc                      : function(id: C_ULong; exc: PPyObject): integer; cdecl;
   PyThreadState_GetInterpreter                   : function(tstate: PPyThreadState): PPyInterpreterState; cdecl;
   PyThreadState_GetFrame                         : function(tstate: PPyThreadState): PPyFrameObject; cdecl;
   PyThreadState_GetID                            : function(tstate: PPyThreadState): uint64; cdecl;
@@ -898,7 +898,6 @@ var
   PyCoro_Type                                    : PPyTypeObject;
   PyCoro_New                                     : function(frame: PPyFrameObject; name_, qualname: PPyObject): PPyObject; cdecl;
   PyAsyncGen_Type                                : PPyTypeObject;
-  _PyAsyncGenASend_Type                          : PPyTypeObject;
   PyAsyncGen_New                                 : function(frame: PPyFrameObject; name_, qualname: PPyObject): PPyObject; cdecl;
 
   {* include/descrobject.h  include/cpython/descrobject.h *}

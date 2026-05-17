@@ -94,11 +94,6 @@ type
       function  GenericHash: Py_hash_t;
       function  AsFileDescriptor: integer;
 
-      property Initialized : boolean   read GetInitialized;
-      property PyObject    : PPyObject read GetPyObject    write SetPyObject;
-      property ObjRefOwner : boolean   read GetObjRefOwner write SetObjRefOwner;
-      property RefCnt      : integer   read GetRefCnt;
-
     public
       constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
@@ -112,6 +107,11 @@ type
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
       class procedure FreePointer(ptr: pointer);
+
+      property Initialized   : boolean     read GetInitialized;
+      property PyObject      : PPyObject   read GetPyObject      write SetPyObject;
+      property ObjRefOwner   : boolean     read GetObjRefOwner   write SetObjRefOwner;
+      property RefCnt        : integer     read GetRefCnt;
   end;
 
 implementation

@@ -60,16 +60,6 @@ type
   end;
 
   /// <summary>
-  /// PyStatus type used for the constructor of TPyStatus to create custom PyStatus instances.
-  /// </summary>
-  TPyStatusType = (
-    CustomPyStatusOk,
-    CustomPyStatusError,
-    CustomPyStatusNoMemory,
-    CustomPyStatusExit
-  );
-
-  /// <summary>
   /// Python verbose mode
   /// </summary>
   /// <remarks>

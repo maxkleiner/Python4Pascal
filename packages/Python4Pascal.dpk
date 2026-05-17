@@ -104,6 +104,13 @@ contains
   uP4P.PyEllipsis in '..\source\uP4P.PyEllipsis.pas',
   uP4P.PyCell in '..\source\uP4P.PyCell.pas',
   uP4P.PySeqIter in '..\source\uP4P.PySeqIter.pas',
-  uP4P.PyCallIter in '..\source\uP4P.PyCallIter.pas';
+  uP4P.PyCallIter in '..\source\uP4P.PyCallIter.pas',
+  uP4P.PyInterpreterState in '..\source\uP4P.PyInterpreterState.pas',
+  uP4P.PyState in '..\source\uP4P.PyState.pas',
+  uP4P.PyThreadState in '..\source\uP4P.PyThreadState.pas',
+  uP4P.PyGILState in '..\source\uP4P.PyGILState.pas',
+  uP4P.PyGen in '..\source\uP4P.PyGen.pas',
+  uP4P.PyCoro in '..\source\uP4P.PyCoro.pas',
+  uP4P.PyAsyncGen in '..\source\uP4P.PyAsyncGen.pas';
 
 end.
