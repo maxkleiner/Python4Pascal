@@ -21,15 +21,15 @@ type
     public
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
-      class function New(const frame: IPyFrameObject): IPyObject;
-      class function NewWithQualName(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
-      class function GetCode(const gen: IPyObject): IPyCodeObject;
+      class function New(const frame: IPyObject): IPyObject;
+      class function NewWithQualName(const frame, name_, qualname: IPyObject): IPyObject;
+      class function GetCode(const gen: IPyObject): IPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyFrame, uP4P.PyCode;
+  uP4P.MiscFunctions, uP4P.PyTypeObject;
 
 class function TPyGen.Check(const aPyObject: IPyObject): boolean;
 begin
@@ -43,31 +43,31 @@ begin
             aPyObject.IsType(PyGen_Type);
 end;
 
-class function TPyGen.New(const frame: IPyFrameObject): IPyObject;
+class function TPyGen.New(const frame: IPyObject): IPyObject;
 begin
   if assigned(PyGen_New) and
-     TPyFrame.IsInitialized(frame) then
-    Result := TPyObject.Wrap(PyGen_New(frame.PyFrameObject))
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyGen_New(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-class function TPyGen.NewWithQualName(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
+class function TPyGen.NewWithQualName(const frame, name_, qualname: IPyObject): IPyObject;
 begin
   if assigned(PyGen_NewWithQualName) and
-     TPyFrame.IsInitialized(frame) and
+     TPyObject.IsInitialized(frame) and
      TPyObject.IsInitialized(name_) and
      TPyObject.IsInitialized(qualname) then
-    Result := TPyObject.Wrap(PyGen_NewWithQualName(frame.PyFrameObject, name_.PyObject, qualname.PyObject))
+    Result := TPyObject.Wrap(PyGen_NewWithQualName(PPyFrameObject(frame.PyObject), name_.PyObject, qualname.PyObject))
    else
     Result := nil;
 end;
 
-class function TPyGen.GetCode(const gen: IPyObject): IPyCodeObject;
+class function TPyGen.GetCode(const gen: IPyObject): IPyObject;
 begin
   if assigned(PyGen_GetCode) and
      TPyObject.IsInitialized(gen) then
-    Result := TPyCode.WrapCodeObj(PyGen_GetCode(PPyGenObject(gen.PyObject)))
+    Result := TPyObject.Wrap(PyGen_GetCode(PPyGenObject(gen.PyObject)))
    else
     Result := nil;
 end;

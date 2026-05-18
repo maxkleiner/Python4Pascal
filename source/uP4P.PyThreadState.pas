@@ -26,7 +26,7 @@ type
       function  GetID: int64;
       function  GetDict: IPyObject;
       function  GetInterpreter: IPyInterpreterState;
-      function  GetFrame: IPyFrameObject;
+      function  GetFrame: IPyObject;
 
       procedure SetThreadState(aThreadState: PPyThreadState);
 
@@ -54,13 +54,13 @@ type
       property ID           : int64                 read GetID;
       property Dict         : IPyObject             read GetDict;
       property Interpreter  : IPyInterpreterState   read GetInterpreter;
-      property Frame        : IPyFrameObject        read GetFrame;
+      property Frame        : IPyObject             read GetFrame;
   end;
 
 implementation
 
 uses
-  uP4P.PyInterpreterState, uP4P.PyFrame;
+  uP4P.PyInterpreterState;
 
 constructor TPyThreadState.Create(aPyThreadState: PPyThreadState);
 begin
@@ -163,10 +163,10 @@ begin
     Result := nil;
 end;
 
-function TPyThreadState.GetFrame: IPyFrameObject;
+function TPyThreadState.GetFrame: IPyObject;
 begin
   if Initialized and assigned(PyThreadState_GetFrame) then
-    Result := TPyFrame.WrapFrameObj(PyThreadState_GetFrame(ThreadState))
+    Result := TPyObject.Wrap(PyThreadState_GetFrame(ThreadState))
    else
     Result := nil;
 end;

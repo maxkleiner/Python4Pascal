@@ -908,19 +908,19 @@ var
   PyWrapperDescr_Type                            : PPyTypeObject;
   PyDictProxy_Type                               : PPyTypeObject;
   PyProperty_Type                                : PPyTypeObject;
-  PyDescr_NewMethod                              : function(typeobj: PPyTypeObject; methoddef: PPyMethodDef): PPyObject; cdecl;
-  PyDescr_NewClassMethod                         : function(typeobj: PPyTypeObject; methoddef: PPyMethodDef): PPyObject; cdecl;
-  PyDescr_NewMember                              : function(typeobj: PPyTypeObject; memberdef: PPyMemberDef): PPyObject; cdecl;
-  PyDescr_NewGetSet                              : function(typeobj: PPyTypeObject; getsetdef: PPyGetSetDef): PPyObject; cdecl;
-  PyDictProxy_New                                : function(obj: PPyObject): PPyObject; cdecl;
+  PyDescr_NewMethod                              : function(type_: PPyTypeObject; meth: PPyMethodDef): PPyObject; cdecl;
+  PyDescr_NewClassMethod                         : function(type_: PPyTypeObject; meth: PPyMethodDef): PPyObject; cdecl;
+  PyDescr_NewMember                              : function(type_: PPyTypeObject; meth: PPyMemberDef): PPyObject; cdecl;
+  PyDescr_NewGetSet                              : function(type_: PPyTypeObject; getset: PPyGetSetDef): PPyObject; cdecl;
+  PyDictProxy_New                                : function(mapping: PPyObject): PPyObject; cdecl;
   PyWrapper_New                                  : function(obj1, obj2: PPyObject): PPyObject; cdecl;
-  PyMember_GetOne                                : function(const str: PAnsiChar; memberdef: PPyMemberDef): PPyObject; cdecl;
-  PyMember_SetOne                                : function(str: PAnsiChar; memberdef: PPyMemberDef; obj: PPyObject): integer; cdecl;
-  PyDescr_NewWrapper                             : function(type_: PPyTypeObject; wrapper: Pwrapperbase; ptr: Pointer): PPyObject; cdecl;
-  PyDescr_IsData                                 : function(obj: PPyObject): integer; cdecl;
+  PyMember_GetOne                                : function(const obj_addr: PAnsiChar; m: PPyMemberDef): PPyObject; cdecl;
+  PyMember_SetOne                                : function(obj_addr: PAnsiChar; m: PPyMemberDef; o: PPyObject): integer; cdecl;
+  PyDescr_NewWrapper                             : function(type_: PPyTypeObject; wrapper: Pwrapperbase; wrapped: Pointer): PPyObject; cdecl;
+  PyDescr_IsData                                 : function(descr: PPyObject): integer; cdecl;
 
   {* include/genericaliasobject.h *}
-  Py_GenericAlias                                : function(obj1, obj2: PPyObject): PPyObject; cdecl;
+  Py_GenericAlias                                : function(origin, args: PPyObject): PPyObject; cdecl;
   Py_GenericAliasType                            : PPyTypeObject;
 
   {* include/warnings.h  include/cpython/warnings.h*}

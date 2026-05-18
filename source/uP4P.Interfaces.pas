@@ -27,8 +27,6 @@ type
   IPyCriticalSection2 = interface;
   IPyLongExport = interface;
   IPyLongWriter = interface;
-  IPyCodeObject = interface;
-  IPyFrameObject = interface;
   IPyInterpreterState = interface;
   IPyThreadState = interface;
   IPyGILState = interface;
@@ -40,7 +38,7 @@ type
     function  GetRefCnt: integer;
     function  GetObjRefOwner: boolean;
     function  GetPyTypeObject: PPyTypeObject;
-    function  GetTypeData(cls: PPyTypeObject): Pointer;
+    function  GetTypeData(const cls: PyTypeObject): Pointer;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -112,39 +110,6 @@ type
     property ObjRefOwner  : boolean         read GetObjRefOwner   write SetObjRefOwner;
     property RefCnt       : integer         read GetRefCnt;
     property PyTypeObject : PPyTypeObject   read GetPyTypeObject;
-  end;
-
-  IPyCodeObject = interface(IPyObject)
-    ['{41274CBA-BABC-4305-BF6A-C3BDA7A86BCC}']
-    function  GetPyCodeObject: PPyCodeObject;
-    function  Addr2Line(byte_offset: integer): integer;
-    function  Addr2Location(byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): boolean;
-    function  GetCode: IPyObject;
-    function  GetVarnames: IPyObject;
-    function  GetCellvars: IPyObject;
-    function  GetFreevars: IPyObject;
-
-    property PyCodeObject : PPyCodeObject read GetPyCodeObject;
-  end;
-
-  IPyFrameObject = interface(IPyObject)
-    ['{F3237C51-EE6A-46B8-8AA2-468927854373}']
-    function  GetPyFrameObject: PPyFrameObject;
-    function  GetLineNumber: integer;
-    function  GetCode: IPyCodeObject;
-    function  GetBack: IPyFrameObject;
-    function  GetLocals: IPyObject;
-    function  GetGlobals: IPyObject;
-    function  GetBuiltins: IPyObject;
-    function  GetGenerator: IPyObject;
-    function  GetLasti: integer;
-    function  GetVar(const name_: IPyObject): IPyObject;
-    function  GetVarString(const name_: string): IPyObject;
-    procedure LocalsToFast(clear: boolean);
-    function  FastToLocalsWithError: boolean;
-    procedure FastToLocals;
-
-    property PyFrameObject : PPyFrameObject read GetPyFrameObject;
   end;
 
   IPyLongExport = interface
@@ -231,7 +196,7 @@ type
     function  GetID: int64;
     function  GetDict: IPyObject;
     function  GetInterpreter: IPyInterpreterState;
-    function  GetFrame: IPyFrameObject;
+    function  GetFrame: IPyObject;
     procedure SetThreadState(aThreadState: PPyThreadState);
     procedure Clear;
     procedure Delete;
@@ -245,7 +210,7 @@ type
     property ID           : int64                 read GetID;
     property Dict         : IPyObject             read GetDict;
     property Interpreter  : IPyInterpreterState   read GetInterpreter;
-    property Frame        : IPyFrameObject        read GetFrame;
+    property Frame        : IPyObject             read GetFrame;
   end;
 
   IPyGILState = interface

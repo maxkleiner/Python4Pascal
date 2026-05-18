@@ -19,7 +19,7 @@ uses
 type
   TPyTraceBack = class
     public
-      class function Here(const f: IPyFrameObject): boolean;
+      class function Here(const frame: IPyObject): boolean;
       class function Print(const tb, f: IPyObject): boolean;
       class function Check(const aPyObject: IPyObject): boolean;
   end;
@@ -29,11 +29,11 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyFrame;
 
-class function TPyTraceBack.Here(const f: IPyFrameObject): boolean;
+class function TPyTraceBack.Here(const frame: IPyObject): boolean;
 begin
-  Result := TPyFrame.IsInitialized(f) and
+  Result := TPyObject.IsInitialized(frame) and
             assigned(PyTraceBack_Here) and
-            (PyTraceBack_Here(f.PyFrameObject) = 0);
+            (PyTraceBack_Here(PPyFrameObject(frame.PyObject)) = 0);
 end;
 
 class function TPyTraceBack.Print(const tb, f: IPyObject): boolean;

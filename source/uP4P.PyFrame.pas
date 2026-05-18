@@ -17,52 +17,29 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
-  TPyFrame = class(TPyObject, IPyFrameObject)
-    protected
-      FPyFrameObject : PPyFrameObject;
-
-      function  GetInitialized: boolean; override;
-      function  GetPyObject: PPyObject; override;
-      function  GetPyFrameObject: PPyFrameObject;
-      procedure SetPyObject(aValue: PPyObject); override;
-      function  GetLineNumber: integer;
-      function  GetCode: IPyCodeObject;
-      function  GetBack: IPyFrameObject;
-      function  GetLocals: IPyObject;
-      function  GetGlobals: IPyObject;
-      function  GetBuiltins: IPyObject;
-      function  GetGenerator: IPyObject;
-      function  GetLasti: integer;
-      function  GetVar(const name_: IPyObject): IPyObject;
-      function  GetVarString(const name_: string): IPyObject;
-      procedure LocalsToFast(clear: boolean);
-      function  FastToLocalsWithError: boolean;
-      procedure FastToLocals;
-
+  TPyFrame = class
     public
-      constructor Create(aPyFrameObject: PPyFrameObject); reintroduce;
-
-      class function Check(const aPyObject: IPyObject): boolean;
-      class function WrapFrameObj(aPyFrameObject: Pointer): IPyFrameObject; inline;
-      class function IsInitialized(const aPyFrameObject: IPyFrameObject): boolean; inline;
-      class function New(tstate: PPyThreadState; const code: IPyCodeObject; const globals, locals: IPyObject): IPyFrameObject;
-
-      property PyFrameObject : PPyFrameObject read GetPyFrameObject;
+      class function  Check(const aPyObject: IPyObject): boolean;
+      class function  New(tstate: PPyThreadState; const code, globals, locals: IPyObject): IPyObject;
+      class function  GetLineNumber(const frame: IPyObject): integer;
+      class function  GetCode(const frame: IPyObject): IPyObject;
+      class function  GetBack(const frame: IPyObject): IPyObject;
+      class function  GetLocals(const frame: IPyObject): IPyObject;
+      class function  GetGlobals(const frame: IPyObject): IPyObject;
+      class function  GetBuiltins(const frame: IPyObject): IPyObject;
+      class function  GetGenerator(const frame: IPyObject): IPyObject;
+      class function  GetLasti(const frame: IPyObject): integer;
+      class function  GetVar(const frame, name_: IPyObject): IPyObject;
+      class function  GetVarString(const frame: IPyObject; const name_: string): IPyObject;
+      class procedure LocalsToFast(const frame: IPyObject; clear: boolean);
+      class function  FastToLocalsWithError(const frame: IPyObject): boolean;
+      class procedure FastToLocals(const frame: IPyObject);
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyCode;
-
-constructor TPyFrame.Create(aPyFrameObject: PPyFrameObject);
-begin
-  inherited Create;
-
-  FPyObject      := nil;
-  FPyFrameObject := aPyFrameObject;
-  FObjRefOwner   := True;
-end;
+  uP4P.MiscFunctions, uP4P.PyTypeObject;
 
 class function TPyFrame.Check(const aPyObject: IPyObject): boolean;
 begin
@@ -70,154 +47,132 @@ begin
             aPyObject.IsType(PyFrame_Type);
 end;
 
-class function TPyFrame.WrapFrameObj(aPyFrameObject: Pointer): IPyFrameObject;
-begin
-  if assigned(aPyFrameObject) then
-    Result := TPyFrame.Create(aPyFrameObject)
-   else
-    Result := nil;
-end;
-
-class function TPyFrame.IsInitialized(const aPyFrameObject: IPyFrameObject): boolean;
-begin
-  Result := (aPyFrameObject <> nil) and aPyFrameObject.Initialized;
-end;
-
-class function TPyFrame.New(tstate: PPyThreadState; const code: IPyCodeObject; const globals, locals: IPyObject): IPyFrameObject;
+class function TPyFrame.New(tstate: PPyThreadState; const code, globals, locals: IPyObject): IPyObject;
 begin
   if assigned(PyFrame_New) and
-     TPyCode.IsInitialized(code) and
+     TPyObject.IsInitialized(code) and
      TPyObject.IsInitialized(globals) and
      TPyObject.IsInitialized(locals) then
-    Result := TPyFrame.WrapFrameObj(PyFrame_New(tstate, code.PyCodeObject, globals.PyObject, locals.PyObject))
+    Result := TPyObject.Wrap(PyFrame_New(tstate, PPyCodeObject(code.PyObject), globals.PyObject, locals.PyObject))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetInitialized: boolean;
+class function TPyFrame.GetLineNumber(const frame: IPyObject): integer;
 begin
-  Result := assigned(FPyFrameObject);
-end;
-
-function TPyFrame.GetPyObject: PPyObject;
-begin
-  Result := @FPyFrameObject.ob_base;
-end;
-
-function TPyFrame.GetPyFrameObject: PPyFrameObject;
-begin
-  Result := @FPyFrameObject;
-end;
-
-procedure TPyFrame.SetPyObject(aValue: PPyObject);
-begin
-  FPyFrameObject.ob_base := aValue^;
-end;
-
-function TPyFrame.GetLineNumber: integer;
-begin
-  if Initialized and assigned(PyFrame_GetLineNumber) then
-    Result := PyFrame_GetLineNumber(PyFrameObject)
+  if assigned(PyFrame_GetLineNumber) and
+     TPyObject.IsInitialized(frame) then
+    Result := PyFrame_GetLineNumber(PPyFrameObject(frame.PyObject))
    else
     Result := -1;
 end;
 
-function TPyFrame.GetCode: IPyCodeObject;
+class function TPyFrame.GetCode(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetCode) then
-    Result := TPyCode.WrapCodeObj(PyFrame_GetCode(PyFrameObject))
+  if assigned(PyFrame_GetCode) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetCode(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetBack: IPyFrameObject;
+class function TPyFrame.GetBack(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetBack) then
-    Result := TPyFrame.WrapFrameObj(PyFrame_GetBack(PyFrameObject))
+  if assigned(PyFrame_GetBack) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetBack(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetLocals: IPyObject;
+class function TPyFrame.GetLocals(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetLocals) then
-    Result := TPyObject.Wrap(PyFrame_GetLocals(PyFrameObject))
+  if assigned(PyFrame_GetLocals) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetLocals(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetGlobals: IPyObject;
+class function TPyFrame.GetGlobals(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetGlobals) then
-    Result := TPyObject.Wrap(PyFrame_GetGlobals(PyFrameObject))
+  if assigned(PyFrame_GetGlobals) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetGlobals(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetBuiltins: IPyObject;
+class function TPyFrame.GetBuiltins(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetBuiltins) then
-    Result := TPyObject.Wrap(PyFrame_GetBuiltins(PyFrameObject))
+  if assigned(PyFrame_GetBuiltins) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetBuiltins(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetGenerator: IPyObject;
+class function TPyFrame.GetGenerator(const frame: IPyObject): IPyObject;
 begin
-  if Initialized and assigned(PyFrame_GetGenerator) then
-    Result := TPyObject.Wrap(PyFrame_GetGenerator(PyFrameObject))
+  if assigned(PyFrame_GetGenerator) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetGenerator(PPyFrameObject(frame.PyObject)))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetLasti: integer;
+class function TPyFrame.GetLasti(const frame: IPyObject): integer;
 begin
-  if Initialized and assigned(PyFrame_GetLasti) then
-    Result := PyFrame_GetLasti(PyFrameObject)
+  if assigned(PyFrame_GetLasti) and
+     TPyObject.IsInitialized(frame) then
+    Result := PyFrame_GetLasti(PPyFrameObject(frame.PyObject))
    else
     Result := -1;
 end;
 
-function TPyFrame.GetVar(const name_: IPyObject): IPyObject;
+class function TPyFrame.GetVar(const frame, name_: IPyObject): IPyObject;
 begin
-  if Initialized and
-     assigned(PyFrame_GetVar) and
-     TPyObject.IsInitialized(name_) then
-    Result := TPyObject.Wrap(PyFrame_GetVar(PyFrameObject, name_.PyObject))
+  if assigned(PyFrame_GetVar) and
+     TPyObject.IsInitialized(name_) and
+     TPyObject.IsInitialized(frame) then
+    Result := TPyObject.Wrap(PyFrame_GetVar(PPyFrameObject(frame.PyObject), name_.PyObject))
    else
     Result := nil;
 end;
 
-function TPyFrame.GetVarString(const name_: string): IPyObject;
+class function TPyFrame.GetVarString(const frame: IPyObject; const name_: string): IPyObject;
 var
   TempName : AnsiString;
 begin
-  if Initialized and assigned(PyFrame_GetVarString) then
+  if assigned(PyFrame_GetVarString) and
+     TPyObject.IsInitialized(frame) then
     begin
       TempName := StringToPyUTF8(name_);
-      Result   := TPyObject.Wrap(PyFrame_GetVarString(PyFrameObject, PAnsiChar(TempName)));
+      Result   := TPyObject.Wrap(PyFrame_GetVarString(PPyFrameObject(frame.PyObject), PAnsiChar(TempName)));
     end
    else
     Result := nil;
 end;
 
-procedure TPyFrame.LocalsToFast(clear: boolean);
+class procedure TPyFrame.LocalsToFast(const frame: IPyObject; clear: boolean);
 begin
-  if Initialized and assigned(PyFrame_LocalsToFast) then
-    PyFrame_LocalsToFast(PyFrameObject, ord(clear));
+  if assigned(PyFrame_LocalsToFast) and
+     TPyObject.IsInitialized(frame) then
+    PyFrame_LocalsToFast(PPyFrameObject(frame.PyObject), ord(clear));
 end;
 
-function TPyFrame.FastToLocalsWithError: boolean;
+class function TPyFrame.FastToLocalsWithError(const frame: IPyObject): boolean;
 begin
-  Result := Initialized and
-            assigned(PyFrame_FastToLocalsWithError) and
-            (PyFrame_FastToLocalsWithError(PyFrameObject) = 0);
+  Result := assigned(PyFrame_FastToLocalsWithError) and
+            TPyObject.IsInitialized(frame) and
+            (PyFrame_FastToLocalsWithError(PPyFrameObject(frame.PyObject)) = 0);
 end;
 
-procedure TPyFrame.FastToLocals;
+class procedure TPyFrame.FastToLocals(const frame: IPyObject);
 begin
-  if Initialized and assigned(PyFrame_FastToLocals) then
-    PyFrame_FastToLocals(PyFrameObject);
+  if assigned(PyFrame_FastToLocals) and
+     TPyObject.IsInitialized(frame) then
+    PyFrame_FastToLocals(PPyFrameObject(frame.PyObject));
 end;
 
 end.

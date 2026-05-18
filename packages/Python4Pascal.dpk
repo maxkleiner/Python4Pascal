@@ -111,6 +111,10 @@ contains
   uP4P.PyGILState in '..\source\uP4P.PyGILState.pas',
   uP4P.PyGen in '..\source\uP4P.PyGen.pas',
   uP4P.PyCoro in '..\source\uP4P.PyCoro.pas',
-  uP4P.PyAsyncGen in '..\source\uP4P.PyAsyncGen.pas';
+  uP4P.PyAsyncGen in '..\source\uP4P.PyAsyncGen.pas',
+  uP4P.PyDescr in '..\source\uP4P.PyDescr.pas',
+  uP4P.PyDictProxy in '..\source\uP4P.PyDictProxy.pas',
+  uP4P.PyWrapper in '..\source\uP4P.PyWrapper.pas',
+  uP4P.PyMember in '..\source\uP4P.PyMember.pas';
 
 end.

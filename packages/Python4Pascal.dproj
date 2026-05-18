@@ -173,6 +173,10 @@
         <DCCReference Include="..\source\uP4P.PyGen.pas"/>
         <DCCReference Include="..\source\uP4P.PyCoro.pas"/>
         <DCCReference Include="..\source\uP4P.PyAsyncGen.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDescr.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDictProxy.pas"/>
+        <DCCReference Include="..\source\uP4P.PyWrapper.pas"/>
+        <DCCReference Include="..\source\uP4P.PyMember.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

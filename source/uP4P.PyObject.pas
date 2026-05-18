@@ -27,7 +27,7 @@ type
       function  GetRefCnt: integer;
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
-      function  GetTypeData(cls: PPyTypeObject): Pointer;
+      function  GetTypeData(const cls: PyTypeObject): Pointer;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
@@ -731,10 +731,10 @@ begin
     Result := nil;
 end;
 
-function TPyObject.GetTypeData(cls: PPyTypeObject): Pointer;
+function TPyObject.GetTypeData(const cls: PyTypeObject): Pointer;
 begin
   if Initialized and assigned(PyObject_GetTypeData) then
-    Result := PyObject_GetTypeData(PyObject, cls)
+    Result := PyObject_GetTypeData(PyObject, @cls)
    else
     Result := nil;
 end;

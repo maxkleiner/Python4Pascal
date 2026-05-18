@@ -25,6 +25,7 @@ type
       class function InitializeFromInitConfig(config: PPyInitConfig): boolean;
       class function InitializeFromConfig(config: PPyConfig): IPyStatus;
       class function IsIntialized: boolean;
+      class function GenericAlias(const origin, args: IPyObject): IPyObject;
   end;
 
 implementation
@@ -83,6 +84,16 @@ class function TPy.IsIntialized: boolean;
 begin
   Result := assigned(Py_IsInitialized) and
             (Py_IsInitialized() <> 0);
+end;
+
+class function TPy.GenericAlias(const origin, args: IPyObject): IPyObject;
+begin
+  if assigned(Py_GenericAlias) and
+     TPyObject.IsInitialized(origin) and
+     TPyObject.IsInitialized(args) then
+    Result := TPyObject.Wrap(Py_GenericAlias(origin.PyObject, args.PyObject))
+   else
+    Result := nil;
 end;
 
 end.

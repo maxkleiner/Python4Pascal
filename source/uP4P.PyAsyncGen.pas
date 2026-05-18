@@ -20,7 +20,7 @@ type
   TPyAsyncGen = class
     public
       class function CheckExact(const aPyObject: IPyObject): boolean;
-      class function New(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
+      class function New(const frame, name_, qualname: IPyObject): IPyObject;
   end;
 
 implementation
@@ -34,13 +34,13 @@ begin
             aPyObject.IsType(PyAsyncGen_Type);
 end;
 
-class function TPyAsyncGen.New(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
+class function TPyAsyncGen.New(const frame, name_, qualname: IPyObject): IPyObject;
 begin
   if assigned(PyAsyncGen_New) and
-     TPyFrame.IsInitialized(frame) and
+     TPyObject.IsInitialized(frame) and
      TPyObject.IsInitialized(name_) and
      TPyObject.IsInitialized(qualname) then
-    Result := TPyObject.Wrap(PyAsyncGen_New(frame.PyFrameObject, name_.PyObject, qualname.PyObject))
+    Result := TPyObject.Wrap(PyAsyncGen_New(PPyFrameObject(frame.PyObject), name_.PyObject, qualname.PyObject))
    else
     Result := nil;
 end;

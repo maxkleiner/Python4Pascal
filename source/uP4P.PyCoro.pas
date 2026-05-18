@@ -20,7 +20,7 @@ type
   TPyCoro = class
     public
       class function CheckExact(const aPyObject: IPyObject): boolean;
-      class function New(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
+      class function New(const frame, name_, qualname: IPyObject): IPyObject;
   end;
 
 implementation
@@ -34,13 +34,13 @@ begin
             aPyObject.IsType(PyCoro_Type);
 end;
 
-class function TPyCoro.New(const frame: IPyFrameObject; const name_, qualname: IPyObject): IPyObject;
+class function TPyCoro.New(const frame, name_, qualname: IPyObject): IPyObject;
 begin
   if assigned(PyCoro_New) and
-     TPyFrame.IsInitialized(frame) and
+     TPyObject.IsInitialized(frame) and
      TPyObject.IsInitialized(name_) and
      TPyObject.IsInitialized(qualname) then
-    Result := TPyObject.Wrap(PyCoro_New(frame.PyFrameObject, name_.PyObject, qualname.PyObject))
+    Result := TPyObject.Wrap(PyCoro_New(PPyFrameObject(frame.PyObject), name_.PyObject, qualname.PyObject))
    else
     Result := nil;
 end;
