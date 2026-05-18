@@ -177,6 +177,9 @@
         <DCCReference Include="..\source\uP4P.PyDictProxy.pas"/>
         <DCCReference Include="..\source\uP4P.PyWrapper.pas"/>
         <DCCReference Include="..\source\uP4P.PyMember.pas"/>
+        <DCCReference Include="..\source\uP4P.PyWeakref.pas"/>
+        <DCCReference Include="..\source\uP4P.PyStructSequence.pas"/>
+        <DCCReference Include="..\source\uP4P.PyPickleBuffer.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

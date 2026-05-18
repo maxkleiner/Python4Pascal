@@ -39,8 +39,7 @@ type
       procedure DecRef;
       function  NewRef: Pointer;
       function  XNewRef: Pointer;
-      function  SameAs(aPyObject: Pointer): boolean; overload;
-      function  SameAs(const aPyObject: IPyObject): boolean; overload;
+      function  SameAs(const other: IPyObject): boolean;
       function  IsType(aPyTypeObject: PPyTypeObject): boolean;
       function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
       procedure InitPyObject;
@@ -95,11 +94,11 @@ type
       function  AsFileDescriptor: integer;
 
     public
-      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
+      constructor Create(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
       function    UnWrap: Pointer;
 
-      class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
+      class function  Wrap(aPyObject: PPyConfig; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
       class function  GetConstant(constant_id: cardinal): IPyObject;
       class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
@@ -117,16 +116,16 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py;
 
-constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
+constructor TPyObject.Create(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean);
 begin
   inherited Create;
 
-  if aUseNewRef and assigned(aPyObject) and assigned(Py_NewRef) then
+  if aUseNewRef and assigned(aPyObject) then
     begin
-      FPyObject    := Py_NewRef(aPyObject);
-      FObjRefOwner := True;
+      FPyObject    := TPy.NewRef(aPyObject);
+      FObjRefOwner := assigned(FPyObject);
     end
    else
     begin
@@ -143,7 +142,7 @@ begin
   inherited Destroy;
 end;
 
-class function TPyObject.Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject;
+class function TPyObject.Wrap(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean): IPyObject;
 begin
   if assigned(aPyObject) then
     Result := TPyObject.Create(aPyObject, aObjRefOwner, aUseNewRef)
@@ -158,20 +157,12 @@ end;
 
 class function TPyObject.GetConstant(constant_id: cardinal): IPyObject;
 begin
-  if assigned(Py_GetConstant) and
-     (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
-    Result := Wrap(Py_GetConstant(constant_id))
-   else
-    Result := nil;
+  Result := Wrap(TPy.GetConstant(constant_id));
 end;
 
 class function TPyObject.GetConstantBorrowed(constant_id: cardinal): IPyObject;
 begin
-  if assigned(Py_GetConstantBorrowed) and
-     (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
-    Result := Wrap(Py_GetConstantBorrowed(constant_id), False)
-   else
-    Result := nil;
+  Result := Wrap(TPy.GetConstantBorrowed(constant_id), False);
 end;
 
 class function TPyObject.Malloc(size: NativeUInt): pointer;
@@ -576,15 +567,12 @@ end;
 
 function TPyObject.ReprEnter: boolean;
 begin
-  Result := Initialized and
-            assigned(Py_ReprEnter) and
-            (Py_ReprEnter(PyObject) = 0);
+  Result := TPy.ReprEnter(self);
 end;
 
 procedure TPyObject.ReprLeave;
 begin
-  if Initialized and assigned(Py_ReprLeave) then
-    Py_ReprLeave(PyObject);
+  TPy.ReprLeave(self);
 end;
 
 function TPyObject.Print(file_: PFILE; flags: integer): boolean;
@@ -691,10 +679,7 @@ end;
 
 function TPyObject.GetRefCnt: integer;
 begin
-  if Initialized and assigned(Py_REFCNT) then
-    Result := Py_REFCNT(PyObject)
-   else
-    Result := 0;
+  Result := TPy.RefCnt(self);
 end;
 
 function TPyObject.GetObjRefOwner: boolean;
@@ -704,31 +689,22 @@ end;
 
 function TPyObject.IsTrueSingleton: boolean;
 begin
-  Result :=  Initialized and
-             assigned(Py_IsTrue) and
-             (Py_IsTrue(PyObject) <> 0);
+  Result := TPy.IsTrue(self);
 end;
 
 function TPyObject.IsFalseSingleton: boolean;
 begin
-  Result :=  Initialized and
-             assigned(Py_IsFalse) and
-             (Py_IsFalse(PyObject) <> 0);
+  Result := TPy.IsFalse(self);
 end;
 
 function TPyObject.IsNoneSingleton: boolean;
 begin
-  Result :=  Initialized and
-             assigned(Py_IsNone) and
-             (Py_IsNone(PyObject) <> 0);
+  Result := TPy.IsNone(self);
 end;
 
 function TPyObject.GetPyTypeObject: PPyTypeObject;
 begin
-  if Initialized and assigned(Py_TYPE) then
-    Result := Py_TYPE(PyObject)
-   else
-    Result := nil;
+  Result := TPy.Type_(self);
 end;
 
 function TPyObject.GetTypeData(const cls: PyTypeObject): Pointer;
@@ -751,42 +727,27 @@ end;
 
 procedure TPyObject.IncRef;
 begin
-  if Initialized and assigned(Py_IncRef) then
-    Py_IncRef(PyObject);
+  TPy.IncRef(self);
 end;
 
 procedure TPyObject.DecRef;
 begin
-  if Initialized and assigned(Py_DecRef) then
-    Py_DecRef(PyObject);
+  TPy.DecRef(self);
 end;
 
 function TPyObject.NewRef: Pointer;
 begin
-  if Initialized and assigned(Py_NewRef) then
-    Result := Py_NewRef(PyObject)
-   else
-    Result := nil;
+  Result := TPy.NewRef(self);
 end;
 
 function TPyObject.XNewRef: Pointer;
 begin
-  if assigned(Py_XNewRef) then
-    Result := Py_XNewRef(PyObject)
-   else
-    Result := nil;
+  Result := TPy.XNewRef(self);
 end;
 
-function TPyObject.SameAs(aPyObject: Pointer): boolean;
+function TPyObject.SameAs(const other: IPyObject): boolean;
 begin
-  Result := Initialized and
-            assigned(Py_Is) and
-            (Py_Is(PyObject, aPyObject) <> 0);
-end;
-
-function TPyObject.SameAs(const aPyObject: IPyObject): boolean;
-begin
-  Result := SameAs(aPyObject.PyObject);
+  Result := TPy.Is_(self, other);
 end;
 
 end.

@@ -115,6 +115,9 @@ contains
   uP4P.PyDescr in '..\source\uP4P.PyDescr.pas',
   uP4P.PyDictProxy in '..\source\uP4P.PyDictProxy.pas',
   uP4P.PyWrapper in '..\source\uP4P.PyWrapper.pas',
-  uP4P.PyMember in '..\source\uP4P.PyMember.pas';
+  uP4P.PyMember in '..\source\uP4P.PyMember.pas',
+  uP4P.PyWeakref in '..\source\uP4P.PyWeakref.pas',
+  uP4P.PyStructSequence in '..\source\uP4P.PyStructSequence.pas',
+  uP4P.PyPickleBuffer in '..\source\uP4P.PyPickleBuffer.pas';
 
 end.

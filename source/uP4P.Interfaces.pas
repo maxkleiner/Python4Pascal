@@ -48,8 +48,7 @@ type
     procedure DecRef;
     function  NewRef: Pointer;
     function  XNewRef: Pointer;
-    function  SameAs(aPyObject: Pointer): boolean; overload;
-    function  SameAs(const aPyObject: IPyObject): boolean; overload;
+    function  SameAs(const other: IPyObject): boolean;
     function  IsType(aPyTypeObject: PPyTypeObject): boolean;
     function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
     procedure InitPyObject;

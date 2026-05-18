@@ -927,7 +927,7 @@ var
   PyErr_WarnEx                                   : function(category: PPyObject; const message_: PAnsiChar; stack_level: Py_ssize_t): integer; cdecl;
   PyErr_WarnFormat                               : function(category: PPyObject; stack_level: Py_ssize_t; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
   PyErr_ResourceWarning                          : function(source: PPyObject; stack_level: Py_ssize_t; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
-  PyErr_WarnExplicit                             : function(category: PPyObject; const message_, filename: PAnsiChar; lineno: integer; const module_: PAnsiChar; registry: PPyObject): integer; cdecl;
+  PyErr_WarnExplicit                             : function(category: PPyObject; const message_, filename: PAnsiChar; lineno: integer; const module_: PAnsiChar; registry_: PPyObject): integer; cdecl;
   PyErr_WarnExplicitObject                       : function(category, message_, filename: PPyObject; lineno: integer; module_, registry_: PPyObject): integer; cdecl;
   PyErr_WarnExplicitFormat                       : function(category: PPyObject; const filename: PAnsiChar; lineno: integer; const module_: PAnsiChar; registry_: PPyObject; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
 
@@ -945,8 +945,8 @@ var
   PyStructSequence_InitType2                     : function(type_: PPyTypeObject; desc: PPyStructSequence_Desc): integer; cdecl;
   PyStructSequence_NewType                       : function(desc: PPyStructSequence_Desc): PPyTypeObject; cdecl;
   PyStructSequence_New                           : function(type_: PPyTypeObject): PPyObject; cdecl;
-  PyStructSequence_SetItem                       : procedure(obj1: PPyObject; size: Py_ssize_t; obj2: PPyObject); cdecl;
-  PyStructSequence_GetItem                       : function(obj: PPyObject; size: Py_ssize_t): PPyObject; cdecl;
+  PyStructSequence_SetItem                       : procedure(p: PPyObject; pos: Py_ssize_t; o: PPyObject); cdecl;
+  PyStructSequence_GetItem                       : function(p: PPyObject; pos: Py_ssize_t): PPyObject; cdecl;
 
   {* include/cpython/picklebufobject.h *}
   PyPickleBuffer_Type                            : PPyTypeObject;

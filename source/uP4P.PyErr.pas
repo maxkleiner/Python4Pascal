@@ -62,12 +62,15 @@ type
       class procedure SyntaxLocationObject(const filename: IPyObject; lineno, col_offset: integer);
       class procedure RangedSyntaxLocationObject(const filename: IPyObject; lineno, col_offset, end_lineno, end_col_offset: integer);
       class function ProgramTextObject(const filename: IPyObject; lineno: integer): IPyObject;
+      class function WarnEx(const category: IPyObject; const message_: string; stack_level: Py_ssize_t): boolean;
+      class function WarnExplicit(const category: IPyObject; const message_, filename: string; lineno: integer; const module_: string; const registry_: IPyObject): boolean;
+      class function WarnExplicitObject(const category, message_, filename: IPyObject; lineno: integer; const module_, registry_: IPyObject): boolean;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyUnicode;
 
 class procedure TPyErr.SetNone(const type_: IPyObject);
 begin
@@ -580,6 +583,87 @@ begin
     Result := TPyObject.Wrap(PyErr_ProgramTextObject(filename.PyObject, lineno))
    else
     Result := nil;
+end;
+
+class function TPyErr.WarnEx(const category: IPyObject; const message_: string; stack_level: Py_ssize_t): boolean;
+var
+  TempMessage : AnsiString;
+begin
+  Result := False;
+
+  if assigned(PyErr_WarnEx) then
+    begin
+      TempMessage := StringToPyUTF8(message_);
+
+      if TPyObject.IsInitialized(category) then
+        Result := (PyErr_WarnEx(category.PyObject, PAnsiChar(TempMessage), stack_level) = 0)
+       else
+        Result := (PyErr_WarnEx(nil, PAnsiChar(TempMessage), stack_level) = 0);
+    end;
+end;
+
+class function TPyErr.WarnExplicit(const category: IPyObject; const message_, filename: string; lineno: integer; const module_: string; const registry_: IPyObject): boolean;
+var
+  TempMessage, TempFilename, TempModule : AnsiString;
+  TempCategory, TempRegistry : PPyObject;
+begin
+  Result := False;
+
+  if assigned(PyErr_WarnExplicit) then
+    begin
+      TempMessage  := StringToPyUTF8(message_);
+      TempFilename := StringToPyUTF8(filename);
+      TempModule   := StringToPyUTF8(module_);
+
+      if TPyObject.IsInitialized(category) then
+        TempCategory := category.PyObject
+       else
+        TempCategory := nil;
+
+      if TPyObject.IsInitialized(registry_) then
+        TempRegistry := registry_.PyObject
+       else
+        TempRegistry := nil;
+
+      Result := (PyErr_WarnExplicit(TempCategory, PAnsiChar(TempMessage), PAnsiChar(TempFilename), lineno, PAnsiChar(TempModule), TempRegistry) = 0);
+    end;
+end;
+
+class function TPyErr.WarnExplicitObject(const category, message_, filename: IPyObject; lineno: integer; const module_, registry_: IPyObject): boolean;
+var
+  TempCategory, TempMessage, TempFilename, TempModule, TempRegistry : PPyObject;
+begin
+  Result := False;
+
+  if assigned(PyErr_WarnExplicitObject) then
+    begin
+      if TPyObject.IsInitialized(category) then
+        TempCategory := category.PyObject
+       else
+        TempCategory := nil;
+
+      if TPyObject.IsInitialized(message_) then
+        TempMessage := message_.PyObject
+       else
+        TempMessage := nil;
+
+      if TPyObject.IsInitialized(filename) then
+        TempFilename := filename.PyObject
+       else
+        TempFilename := nil;
+
+      if TPyObject.IsInitialized(module_) then
+        TempModule := module_.PyObject
+       else
+        TempModule := nil;
+
+      if TPyObject.IsInitialized(registry_) then
+        TempRegistry := registry_.PyObject
+       else
+        TempRegistry := nil;
+
+      Result := (PyErr_WarnExplicitObject(TempCategory, TempMessage, TempFilename, lineno, TempModule, TempRegistry) = 0);
+    end;
 end;
 
 end.
