@@ -118,6 +118,14 @@ contains
   uP4P.PyMember in '..\source\uP4P.PyMember.pas',
   uP4P.PyWeakref in '..\source\uP4P.PyWeakref.pas',
   uP4P.PyStructSequence in '..\source\uP4P.PyStructSequence.pas',
-  uP4P.PyPickleBuffer in '..\source\uP4P.PyPickleBuffer.pas';
+  uP4P.PyPickleBuffer in '..\source\uP4P.PyPickleBuffer.pas',
+  uP4P.PyTime in '..\source\uP4P.PyTime.pas',
+  uP4P.PyCodec in '..\source\uP4P.PyCodec.pas',
+  uP4P.PyThread in '..\source\uP4P.PyThread.pas',
+  uP4P.PyThreadTSS in '..\source\uP4P.PyThreadTSS.pas',
+  uP4P.PyThreadLock in '..\source\uP4P.PyThreadLock.pas',
+  uP4P.PyContext in '..\source\uP4P.PyContext.pas',
+  uP4P.PyContextVar in '..\source\uP4P.PyContextVar.pas',
+  uP4P.PyContextToken in '..\source\uP4P.PyContextToken.pas';
 
 end.

@@ -52,19 +52,19 @@ end;
 procedure TPyMutex.Lock;
 begin
   if assigned(PyMutex_Lock) then
-    PyMutex_Lock(@FPyMutex);
+    PyMutex_Lock(PyMutex);
 end;
 
 procedure TPyMutex.Unlock;
 begin
   if assigned(PyMutex_Unlock) then
-    PyMutex_Unlock(@FPyMutex);
+    PyMutex_Unlock(PyMutex);
 end;
 
 function TPyMutex.IsLocked: boolean;
 begin
   Result := assigned(PyMutex_IsLocked) and
-            (PyMutex_IsLocked(@FPyMutex) <> 0);
+            (PyMutex_IsLocked(PyMutex) <> 0);
 end;
 
 function TPyMutex.GetPyMutex: Pointer;

@@ -986,12 +986,12 @@ var
 
   {* include/pythread.h  include/cpython/pythread.h *}
   PyThread_init_thread                           : procedure(); cdecl;
-  PyThread_start_new_thread                      : function(func_: PyThread_start_new_thread_func; ptr: Pointer): C_ULong; cdecl;
+  PyThread_start_new_thread                      : function(func_: PyThread_start_new_thread_func; arg: Pointer): C_ULong; cdecl;
   PyThread_get_thread_ident                      : function(): C_ULong; cdecl;
   PyThread_get_thread_native_id                  : function(): C_ULong; cdecl;
   PyThread_allocate_lock                         : function(): PyThread_type_lock; cdecl;
   PyThread_free_lock                             : procedure(lock: PyThread_type_lock); cdecl;
-  PyThread_acquire_lock                          : function(lock: PyThread_type_lock; i: integer): integer; cdecl;
+  PyThread_acquire_lock                          : function(lock: PyThread_type_lock; waitflag: integer): integer; cdecl;
   PyThread_acquire_lock_timed                    : function(lock: PyThread_type_lock; microseconds: PY_TIMEOUT_T; intr_flag: integer): PyLockStatus; cdecl;
   PyThread_release_lock                          : procedure(lock: PyThread_type_lock); cdecl;
   PyThread_get_stacksize                         : function(): NativeUInt; cdecl;
@@ -1010,13 +1010,13 @@ var
   PyContextVar_Type                              : PPyTypeObject;
   PyContextToken_Type                            : PPyTypeObject;
   PyContext_New                                  : function(): PPyObject; cdecl;
-  PyContext_Copy                                 : function(obj: PPyObject): PPyObject; cdecl;
+  PyContext_Copy                                 : function(ctx: PPyObject): PPyObject; cdecl;
   PyContext_CopyCurrent                          : function(): PPyObject; cdecl;
-  PyContext_Enter                                : function(obj: PPyObject): integer; cdecl;
-  PyContext_Exit                                 : function(obj: PPyObject): integer; cdecl;
+  PyContext_Enter                                : function(ctx: PPyObject): integer; cdecl;
+  PyContext_Exit                                 : function(ctx: PPyObject): integer; cdecl;
   PyContext_AddWatcher                           : function(callback: PyContext_WatchCallback): integer; cdecl;
   PyContext_ClearWatcher                         : function(watcher_id: integer): integer; cdecl;
-  PyContextVar_New                               : function(const name_: PAnsiChar; default_value: PPyObject): PPyObject; cdecl;
+  PyContextVar_New                               : function(const name_: PAnsiChar; def: PPyObject): PPyObject; cdecl;
   PyContextVar_Get                               : function(var_, default_value: PPyObject; out value: PPyObject): integer; cdecl;
   PyContextVar_Set                               : function(var_, value: PPyObject): PPyObject; cdecl;
   PyContextVar_Reset                             : function(var_, token: PPyObject): integer; cdecl;

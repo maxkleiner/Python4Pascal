@@ -30,6 +30,8 @@ type
   IPyInterpreterState = interface;
   IPyThreadState = interface;
   IPyGILState = interface;
+  IPyThreadLock = interface;
+  IPyThreadTSS = interface;
 
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
@@ -222,6 +224,38 @@ type
 
     property Initialized  : boolean           read GetInitialized   write SetInitialized;
     property State        : PyGILState_STATE  read GetState         write SetState;
+  end;
+
+  IPyThreadLock = interface
+    ['{A39E9504-264D-4648-92D6-F6FD54F16FA5}']
+    function  GetInitialized: boolean;
+    function  GetLock: PyThread_type_lock;
+    procedure AllocateLock;
+    procedure FreeLock;
+    function  AcquireLock(waitflag: boolean): PyLockStatus;
+    function  AcquireLockTimed(microseconds: PY_TIMEOUT_T; intr_flag: boolean): PyLockStatus;
+    procedure ReleaseLock;
+
+    property Initialized : boolean              read GetInitialized;
+    property Lock        : PyThread_type_lock   read GetLock;
+  end;
+
+  IPyThreadTSS = interface
+    ['{5F88B7E1-C685-492E-A829-35EF92288C9E}']
+    function  GetInitialized: boolean;
+    function  GetKey: PPy_tss_t;
+    function  GetIsCreated: boolean;
+    function  GetValue: pointer;
+    procedure SetValue(value: pointer);
+    procedure TSSAlloc;
+    procedure TSSFree;
+    function  TSSCreate: boolean;
+    procedure TSSDelete;
+
+    property Initialized : boolean     read GetInitialized;
+    property Key         : PPy_tss_t   read GetKey;
+    property IsCreated   : boolean     read GetIsCreated;
+    property Value       : pointer     read GetValue        write SetValue;
   end;
 
   IPyInitConfig = interface

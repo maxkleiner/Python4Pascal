@@ -178,7 +178,7 @@ type
   PPyStructSequence_Desc          = ^PyStructSequence_Desc;
   PPyTime_t                       = ^PyTime_t;
   PyThread_type_lock              = type Pointer;
-  PPy_tss_t                       = ^Py_tss_t;
+  PPy_tss_t                       = type Pointer; // opaque
   PPyContext                      = type Pointer; // opaque
   PPyContextVar                   = type Pointer; // opaque
   PPyContextToken                 = type Pointer; // opaque
@@ -1154,12 +1154,6 @@ type
     PY_LOCK_ACQUIRED = 1,
     PY_LOCK_INTR
   );
-
-  _Py_tss_t = record
-    _is_initialized : integer;
-    _key            : C_ULong;
-  end;
-  Py_tss_t = type _Py_tss_t;
 
   {* include/cpython/context.h *}
   PyContextEvent = (

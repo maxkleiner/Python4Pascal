@@ -452,6 +452,14 @@ const
   {$ENDIF}
   PY_TIMEOUT_MAX        = PY_TIMEOUT_MAX_VALUE;
 
+
+{* #define PYTHREAD_INVALID_THREAD_ID ((unsigned long)-1) *}
+{$IFDEF MSWINDOWS}
+  PYTHREAD_INVALID_THREAD_ID = Cardinal(-1);
+{$ELSE}
+  PYTHREAD_INVALID_THREAD_ID = NativeUInt(-1);
+{$ENDIF}
+
   {* include/cpython/context.h *}
   {* include/modsupport.h *}
   {* include/compile.h *}
