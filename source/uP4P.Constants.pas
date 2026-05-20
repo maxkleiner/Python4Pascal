@@ -461,8 +461,14 @@ const
 {$ENDIF}
 
   {* include/cpython/context.h *}
-  {* include/modsupport.h *}
-  {* include/compile.h *}
+  {* include/modsupport.h  include/cpython/modsupport.h *}
+  Py_CLEANUP_SUPPORTED = $20000;
+  PYTHON_API_VERSION   = 1013;
+  PYTHON_API_STRING    = '1013';
+  PYTHON_ABI_VERSION   = 3;
+  PYTHON_ABI_STRING    = '3';
+
+  {* include/compile.h  include/cpython/compile.h *}
   Py_single_input    = 256;
   Py_file_input      = 257;
   Py_eval_input      = 258;
@@ -502,6 +508,8 @@ const
   FUTURE_BARRY_AS_BDFL    = 'barry_as_FLUFL';
   FUTURE_GENERATOR_STOP   = 'generator_stop';
   FUTURE_ANNOTATIONS      = 'annotations';
+
+  PY_INVALID_STACK_EFFECT = high(integer);
 
   {* include/pythonrun.h *}
   {* include/pylifecycle.h *}

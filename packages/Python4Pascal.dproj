@@ -188,6 +188,8 @@
         <DCCReference Include="..\source\uP4P.PyContext.pas"/>
         <DCCReference Include="..\source\uP4P.PyContextVar.pas"/>
         <DCCReference Include="..\source\uP4P.PyContextToken.pas"/>
+        <DCCReference Include="..\source\uP4P.PyCompile.pas"/>
+        <DCCReference Include="..\source\uP4P.PyArg.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

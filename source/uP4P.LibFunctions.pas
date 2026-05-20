@@ -1021,26 +1021,26 @@ var
   PyContextVar_Set                               : function(var_, value: PPyObject): PPyObject; cdecl;
   PyContextVar_Reset                             : function(var_, token: PPyObject): integer; cdecl;
 
-  {* include/modsupport.h *}
+  {* include/modsupport.h  include/cpython/modsupport.h *}
   PyArg_Parse                                    : function(obj: PPyObject; const str: PAnsiChar {; ...}): integer; cdecl varargs;
   PyArg_ParseTuple                               : function(obj: PPyObject; const str: PAnsiChar {; ...}): integer; cdecl varargs;
   PyArg_ParseTupleAndKeywords                    : function(obj1, obj2: PPyObject; const str1, str2: PAnsiChar {; ...}): integer; cdecl varargs;
   //PyArg_VaParse not implemented  // PyAPI_FUNC(int) PyArg_VaParse(PyObject *, const char *, va_list);
   //PyArg_VaParseTupleAndKeywords not implemented  // PyAPI_FUNC(int) PyArg_VaParseTupleAndKeywords(PyObject *, PyObject *, const char *, PY_CXX_CONST char * const *, va_list);
-  PyArg_ValidateKeywordArguments                 : function(obj: PPyObject): integer; cdecl;
+  PyArg_ValidateKeywordArguments                 : function(kwargs: PPyObject): integer; cdecl;
   PyArg_UnpackTuple                              : function(obj: PPyObject; const str: PAnsiChar; size1, size2: Py_ssize_t {; ...}): integer; cdecl varargs;
   Py_BuildValue                                  : function(const str: PAnsiChar {; ...}): PPyObject; cdecl varargs;
   //Py_VaBuildValue not implemented  // PyAPI_FUNC(PyObject *) Py_VaBuildValue(const char *, va_list);
-  PyModule_AddObjectRef                          : function(mod_: PPyObject; const name_: PAnsiChar; value_: PPyObject): integer; cdecl;
-  PyModule_Add                                   : function(mod_: PPyObject; const name_: PAnsiChar; value_: PPyObject): integer; cdecl;
-  PyModule_AddObject                             : function(mod_: PPyObject; const str: PAnsiChar; value_: PPyObject): integer; cdecl;
-  PyModule_AddIntConstant                        : function(obj: PPyObject; const str: PAnsiChar; i: C_Long): integer; cdecl;
-  PyModule_AddStringConstant                     : function(obj: PPyObject; const str1, str2: PAnsiChar): integer; cdecl;
-  PyModule_AddType                               : function(module_: PPyObject; type_: PPyTypeObject): integer; cdecl;
-  PyModule_SetDocString                          : function(obj: PPyObject; const str: PAnsiChar): integer; cdecl;
-  PyModule_AddFunctions                          : function(obj: PPyObject; methoddef: PPyMethodDef): integer; cdecl;
-  PyModule_ExecDef                               : function(module_: PPyObject; def: PPyModuleDef): integer; cdecl;
-  PyModule_Create2                               : function(def: PPyModuleDef; apiver: integer): PPyObject; cdecl;
+  PyModule_AddObjectRef                          : function(module: PPyObject; const name_: PAnsiChar; value: PPyObject): integer; cdecl;
+  PyModule_Add                                   : function(module: PPyObject; const name_: PAnsiChar; value: PPyObject): integer; cdecl;
+  PyModule_AddObject                             : function(module: PPyObject; const name_: PAnsiChar; value: PPyObject): integer; cdecl;
+  PyModule_AddIntConstant                        : function(module: PPyObject; const name_: PAnsiChar; value: C_Long): integer; cdecl;
+  PyModule_AddStringConstant                     : function(module: PPyObject; const name_, value: PAnsiChar): integer; cdecl;
+  PyModule_AddType                               : function(module: PPyObject; type_: PPyTypeObject): integer; cdecl;
+  PyModule_SetDocString                          : function(module: PPyObject; const docstring: PAnsiChar): integer; cdecl;
+  PyModule_AddFunctions                          : function(module: PPyObject; functions: PPyMethodDef): integer; cdecl;
+  PyModule_ExecDef                               : function(module: PPyObject; def: PPyModuleDef): integer; cdecl;
+  PyModule_Create2                               : function(def: PPyModuleDef; module_api_version: integer): PPyObject; cdecl;
   PyModule_FromDefAndSpec2                       : function(def: PPyModuleDef; spec: PPyObject; module_api_version: integer): PPyObject; cdecl;
 
   {* include/compile.h  include/cpython/compile.h *}
