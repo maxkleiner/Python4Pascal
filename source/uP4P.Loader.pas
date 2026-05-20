@@ -348,39 +348,27 @@ end;
 
 function TP4PLoader.GetIsFinalizing : boolean;
 begin
-  Result := assigned(Py_IsFinalizing) and (Py_IsFinalizing() <> 0);
+  Result := TPy.IsFinalizing;
 end;
 
 function TP4PLoader.GetPlatform: string;
 begin
-  if assigned(Py_GetPlatform) then
-    Result := PyUTF8ToString(Py_GetPlatform())
-   else
-    Result := '';
+  Result := TPy.GetPlatform;
 end;
 
 function TP4PLoader.GetCopyright: string;
 begin
-  if assigned(Py_GetCopyright) then
-    Result := PyUTF8ToString(Py_GetCopyright())
-   else
-    Result := '';
+  Result := TPy.GetCopyright;
 end;
 
 function TP4PLoader.GetCompiler: string;
 begin
-  if assigned(Py_GetCompiler) then
-    Result := PyUTF8ToString(Py_GetCompiler())
-   else
-    Result := '';
+  Result := TPy.GetCompiler;
 end;
 
 function TP4PLoader.GetBuildInfo: string;
 begin
-  if assigned(Py_GetBuildInfo) then
-    Result := PyUTF8ToString(Py_GetBuildInfo())
-   else
-    Result := '';
+  Result := TPy.GetBuildInfo;
 end;
 
 function TP4PLoader.PythonLibIsGreaterOrEqualThan(aMajor, aMinor, aMicro: integer): boolean;
@@ -739,45 +727,40 @@ end;
 
 function TP4PLoader.GetVersion(var aMajor, aMinor, aMicro: integer): boolean;
 var
-  TempValue : PAnsiChar;
-  TempString : string;
+  TempVersion : string;
   i, TempMajor, TempMinor, TempMicro : integer;
 begin
   Result := False;
-  if not(assigned(Py_GetVersion)) then exit;
-
-  TempValue := Py_GetVersion();
-  if not(assigned(TempValue)) then exit;
 
   // "3.0a5+ (py3k:63103M, May 12 2008, 00:53:55) \n[GCC 4.2.3]"
   // "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 15:53:00) [MSC v.1944 32 bit (Intel)]"
-  TempString := trim(PyUTF8ToString(TempValue));
+  TempVersion := trim(TPy.GetVersion);
 
-  i := pos(' ', TempString);
+  i := pos(' ', TempVersion);
   if (i <= 0) then exit;
 
-  TempString := copy(TempString, 1, pred(i));
-  if (length(TempString) = 0) then exit;
+  TempVersion := copy(TempVersion, 1, pred(i));
+  if (length(TempVersion) = 0) then exit;
 
-  i := pos('.', TempString);
+  i := pos('.', TempVersion);
   if (i <= 0) then exit;
 
-  if not(TryStrToInt(copy(TempString, 1, pred(i)), TempMajor)) then exit;
+  if not(TryStrToInt(copy(TempVersion, 1, pred(i)), TempMajor)) then exit;
 
-  TempString := copy(TempString, succ(i), length(TempString));
+  TempVersion := copy(TempVersion, succ(i), length(TempVersion));
 
-  i := pos('.', TempString);
+  i := pos('.', TempVersion);
   if (i > 0) then
     begin
-      if not(TryStrToInt(copy(TempString, 1, pred(i)), TempMinor)) then exit;
+      if not(TryStrToInt(copy(TempVersion, 1, pred(i)), TempMinor)) then exit;
 
-      TempString := copy(TempString, succ(i), length(TempString));
+      TempVersion := copy(TempVersion, succ(i), length(TempVersion));
 
       i := 1;
-      while (i <= length(TempString)) and CharInSet(TempString[i], ['0'..'9']) do
+      while (i <= length(TempVersion)) and CharInSet(TempVersion[i], ['0'..'9']) do
         inc(i);
 
-      if TryStrToInt(copy(TempString, 1, pred(i)), TempMicro) then
+      if TryStrToInt(copy(TempVersion, 1, pred(i)), TempMicro) then
         begin
           aMajor := TempMajor;
           aMinor := TempMinor;
@@ -788,10 +771,10 @@ begin
    else
     begin
       i := 1;
-      while (i <= length(TempString)) and CharInSet(TempString[i], ['0'..'9']) do
+      while (i <= length(TempVersion)) and CharInSet(TempVersion[i], ['0'..'9']) do
         inc(i);
 
-      if TryStrToInt(copy(TempString, 1, pred(i)), TempMinor) then
+      if TryStrToInt(copy(TempVersion, 1, pred(i)), TempMinor) then
         begin
           aMajor := TempMajor;
           aMinor := TempMinor;
@@ -819,8 +802,7 @@ end;
 
 procedure TP4PLoader.Finalize;
 begin
-  if assigned(Py_Finalize) then
-    Py_Finalize();
+  TPy.Finalize;
 
   FStatus := plsFinalized;
 end;

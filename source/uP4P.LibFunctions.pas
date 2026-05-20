@@ -1048,39 +1048,39 @@ var
   PyCompile_OpcodeStackEffectWithJump            : function(opcode, oparg, jump: integer): integer; cdecl;
 
   {* include/pythonrun.h  include/cpython/pythonrun.h *}
-  Py_CompileString                               : function(const str1, str2: PAnsiChar; i: integer): PPyObject; cdecl;
+  Py_CompileString                               : function(const str, filename: PAnsiChar; start: integer): PPyObject; cdecl;
   PyErr_Print                                    : procedure(); cdecl;
-  PyErr_PrintEx                                  : procedure(i: integer); cdecl;
-  PyErr_Display                                  : procedure(obj1, obj2, obj3: PPyObject); cdecl;
-  PyErr_DisplayException                         : procedure(obj: PPyObject); cdecl;
+  PyErr_PrintEx                                  : procedure(set_sys_last_vars: integer); cdecl;
+  PyErr_Display                                  : procedure(unused, value, tb: PPyObject); cdecl;
+  PyErr_DisplayException                         : procedure(exc: PPyObject); cdecl;
   PyOS_CheckStack                                : function(): integer; cdecl;
-  PyRun_SimpleStringFlags                        : function(const str: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
+  PyRun_SimpleStringFlags                        : function(const command: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_AnyFileExFlags                           : function(fp: PFILE; const filename: PAnsiChar; closeit: integer; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_SimpleFileExFlags                        : function(fp: PFILE; const filename: PAnsiChar; closeit: integer; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_InteractiveOneFlags                      : function(fp: PFILE; const filename: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_InteractiveOneObject                     : function(fp: PFILE; filename: PPyObject; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_InteractiveLoopFlags                     : function(fp: PFILE; const filename: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
-  PyRun_StringFlags                              : function(const str: PAnsiChar; i: integer; obj1, obj2: PPyObject; flags: PPyCompilerFlags): PPyObject; cdecl;
+  PyRun_StringFlags                              : function(const str: PAnsiChar; start: integer; globals, locals: PPyObject; flags: PPyCompilerFlags): PPyObject; cdecl;
   PyRun_FileExFlags                              : function(fp: PFILE; const filename: PAnsiChar; start: integer; globals, locals: PPyObject; closeit: integer; flags: PPyCompilerFlags): PPyObject; cdecl;
   Py_CompileStringExFlags                        : function(const str, filename: PAnsiChar; start: integer; flags: PPyCompilerFlags; optimize: integer): PPyObject; cdecl;
   Py_CompileStringObject                         : function(const str: PAnsiChar; filename: PPyObject; start: integer; flags: PPyCompilerFlags; optimize: integer): PPyObject; cdecl;
-  PyRun_String                                   : function(const str: PAnsiChar; s: integer; g, l: PPyObject): PPyObject; cdecl;
+  PyRun_String                                   : function(const str: PAnsiChar; start: integer; globals, locals: PPyObject): PPyObject; cdecl;
   PyRun_AnyFile                                  : function(fp: PFILE; const name_: PAnsiChar): integer; cdecl;
   PyRun_AnyFileEx                                : function(fp: PFILE; const name_: PAnsiChar; closeit: integer): integer; cdecl;
   PyRun_AnyFileFlags                             : function(fp: PFILE; const name_: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
-  PyRun_SimpleString                             : function(const s: PAnsiChar): integer; cdecl;
-  PyRun_SimpleFile                               : function(f: PFILE; const p: PAnsiChar): integer; cdecl;
-  PyRun_SimpleFileEx                             : function(f: PFILE; const p: PAnsiChar; c: integer): integer; cdecl;
-  PyRun_InteractiveOne                           : function(f: PFILE; const p: PAnsiChar): integer; cdecl;
-  PyRun_InteractiveLoop                          : function(f: PFILE; const p: PAnsiChar): integer; cdecl;
-  PyRun_File                                     : function(fp: PFILE; const p: PAnsiChar; s: integer; g, l: PPyObject): PPyObject; cdecl;
-  PyRun_FileEx                                   : function(fp: PFILE; const p: PAnsiChar; s: integer; g, l: PPyObject; c: integer): PPyObject; cdecl;
-  PyRun_FileFlags                                : function(fp: PFILE; const p: PAnsiChar; s: integer; g, l: PPyObject; flags: PPyCompilerFlags): PPyObject; cdecl;
-  PyOS_Readline                                  : function(file1, file2: PFILE; const str: PAnsiChar): PAnsiChar; cdecl;
+  PyRun_SimpleString                             : function(const command: PAnsiChar): integer; cdecl;
+  PyRun_SimpleFile                               : function(fp: PFILE; const filename: PAnsiChar): integer; cdecl;
+  PyRun_SimpleFileEx                             : function(fp: PFILE; const filename: PAnsiChar; closeit: integer): integer; cdecl;
+  PyRun_InteractiveOne                           : function(fp: PFILE; const filename: PAnsiChar): integer; cdecl;
+  PyRun_InteractiveLoop                          : function(fp: PFILE; const filename: PAnsiChar): integer; cdecl;
+  PyRun_File                                     : function(fp: PFILE; const filename: PAnsiChar; start: integer; globals, locals: PPyObject): PPyObject; cdecl;
+  PyRun_FileEx                                   : function(fp: PFILE; const filename: PAnsiChar; start: integer; globals, locals: PPyObject; closeit: integer): PPyObject; cdecl;
+  PyRun_FileFlags                                : function(fp: PFILE; const filename: PAnsiChar; start: integer; globals, locals: PPyObject; flags: PPyCompilerFlags): PPyObject; cdecl;
+  PyOS_Readline                                  : function(sys_stdin, sys_stdout: PFILE; const prompt: PAnsiChar): PAnsiChar; cdecl;
 
   {* include/pylifecycle.h  include/cpython/pylifecycle.h *}
   Py_Initialize                                  : procedure(); cdecl;
-  Py_InitializeEx                                : procedure(i: integer); cdecl;
+  Py_InitializeEx                                : procedure(initsigs: integer); cdecl;
   Py_Finalize                                    : procedure(); cdecl;
   Py_FinalizeEx                                  : function(): integer; cdecl;
   Py_IsInitialized                               : function(): integer; cdecl;

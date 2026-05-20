@@ -21,6 +21,10 @@ type
     public
       class function strtoul(const str: string; base: integer): C_ULong;
       class function strtol(const str: string; base: integer): C_Long;
+      class function CheckStack: boolean;
+      class function Readline(sys_stdin, sys_stdout: PFILE; const prompt: string): string;
+      class function getsig(i: integer): PyOS_sighandler_t;
+      class function setsig(i: integer; s: PyOS_sighandler_t): PyOS_sighandler_t;
   end;
 
 implementation
@@ -54,5 +58,39 @@ begin
     Result := 0;
 end;
 
+class function TPyOS.CheckStack: boolean;
+begin
+  Result := assigned(PyOS_CheckStack) and
+            (PyOS_CheckStack() <> 0);
+end;
+
+class function TPyOS.Readline(sys_stdin, sys_stdout: PFILE; const prompt: string): string;
+var
+  TempPrompt : AnsiString;
+begin
+  Result := '';
+
+  if assigned(PyOS_Readline) then
+    begin
+      TempPrompt := StringToPyUTF8(prompt);
+      Result     := PyUTF8ToString(PyOS_Readline(sys_stdin, sys_stdout, PAnsiChar(TempPrompt)));
+    end;
+end;
+
+class function TPyOS.getsig(i: integer): PyOS_sighandler_t;
+begin
+  if assigned(PyOS_getsig) then
+    Result := PyOS_getsig(i)
+   else
+    Result := nil;
+end;
+
+class function TPyOS.setsig(i: integer; s: PyOS_sighandler_t): PyOS_sighandler_t;
+begin
+  if assigned(PyOS_setsig) then
+    Result := PyOS_setsig(i, s)
+   else
+    Result := nil;
+end;
 
 end.

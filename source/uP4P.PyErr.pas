@@ -65,6 +65,10 @@ type
       class function WarnEx(const category: IPyObject; const message_: string; stack_level: Py_ssize_t): boolean;
       class function WarnExplicit(const category: IPyObject; const message_, filename: string; lineno: integer; const module_: string; const registry_: IPyObject): boolean;
       class function WarnExplicitObject(const category, message_, filename: IPyObject; lineno: integer; const module_, registry_: IPyObject): boolean;
+      class procedure Print;
+      class procedure PrintEx(set_sys_last_vars: integer);
+      class procedure Display(const unused, value, tb: IPyObject);
+      class procedure DisplayException(const exc: IPyObject);
   end;
 
 implementation
@@ -664,6 +668,34 @@ begin
 
       Result := (PyErr_WarnExplicitObject(TempCategory, TempMessage, TempFilename, lineno, TempModule, TempRegistry) = 0);
     end;
+end;
+
+class procedure TPyErr.Print;
+begin
+  if assigned(PyErr_Print) then
+    PyErr_Print();
+end;
+
+class procedure TPyErr.PrintEx(set_sys_last_vars: integer);
+begin
+  if assigned(PyErr_PrintEx) then
+    PyErr_PrintEx(set_sys_last_vars);
+end;
+
+class procedure TPyErr.Display(const unused, value, tb: IPyObject);
+begin
+  if assigned(PyErr_Display) and
+     TPyObject.IsInitialized(unused) and
+     TPyObject.IsInitialized(value) and
+     TPyObject.IsInitialized(tb) then
+    PyErr_Display(unused.PyObject, value.PyObject, tb.PyObject);
+end;
+
+class procedure TPyErr.DisplayException(const exc: IPyObject);
+begin
+  if assigned(PyErr_DisplayException) and
+     TPyObject.IsInitialized(exc) then
+    PyErr_DisplayException(exc.PyObject);
 end;
 
 end.
