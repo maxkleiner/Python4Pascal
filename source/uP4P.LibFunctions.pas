@@ -1109,8 +1109,8 @@ var
   Py_NewInterpreterFromConfig                    : function(out tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus; cdecl;
 
   {* include/ceval.h  include/cpython/ceval.h *}
-  PyEval_EvalCode                                : function(obj1, obj2, obj3: PPyObject): PPyObject; cdecl;
-  PyEval_EvalCodeEx                              : function(co, globals, locals: PPyObject; var args: PPyObject; argc: integer; var kwds: PPyObject; kwdc: integer; var defs: PPyObject; defc: integer; kwdefs, closure: PPyObject): PPyObject; cdecl;
+  PyEval_EvalCode                                : function(co, globals, locals: PPyObject): PPyObject; cdecl;
+  PyEval_EvalCodeEx                              : function(co, globals, locals: PPyObject; args: PPPyObject; argcount: integer; kwds: PPPyObject; kwcount: integer; defs: PPPyObject; defcount: integer; kwdefs, closure: PPyObject): PPyObject; cdecl;
   PyEval_GetBuiltins                             : function(): PPyObject; cdecl;
   PyEval_GetGlobals                              : function(): PPyObject; cdecl;
   PyEval_GetLocals                               : function(): PPyObject; cdecl;
@@ -1120,14 +1120,14 @@ var
   PyEval_GetFrameLocals                          : function(): PPyObject; cdecl;
   Py_AddPendingCall                              : function(func: Py_AddPendingCall_func; arg: pointer): integer; cdecl;
   Py_MakePendingCalls                            : function(): integer; cdecl;
-  Py_SetRecursionLimit                           : procedure(i: Integer); cdecl;
+  Py_SetRecursionLimit                           : procedure(new_limit: Integer); cdecl;
   Py_GetRecursionLimit                           : function(): integer; cdecl;
   Py_EnterRecursiveCall                          : function(const where_: PAnsiChar): integer; cdecl;
   Py_LeaveRecursiveCall                          : procedure(); cdecl;
-  PyEval_GetFuncName                             : function(obj: PPyObject): PAnsiChar; cdecl;
-  PyEval_GetFuncDesc                             : function(obj: PPyObject): PAnsiChar; cdecl;
+  PyEval_GetFuncName                             : function(func: PPyObject): PAnsiChar; cdecl;
+  PyEval_GetFuncDesc                             : function(func: PPyObject): PAnsiChar; cdecl;
   PyEval_EvalFrame                               : function(f: PPyFrameObject): PPyObject; cdecl;
-  PyEval_EvalFrameEx                             : function(f: PPyFrameObject; exc: integer): PPyObject; cdecl;
+  PyEval_EvalFrameEx                             : function(f: PPyFrameObject; throwflag: integer): PPyObject; cdecl;
   PyEval_SaveThread                              : function(): PPyThreadState; cdecl;
   PyEval_RestoreThread                           : procedure(tstate: PPyThreadState); cdecl;
   PyEval_AcquireThread                           : procedure(tstate: PPyThreadState); cdecl;
@@ -1139,8 +1139,8 @@ var
   PyEval_MergeCompilerFlags                      : function(cf: PPyCompilerFlags): integer; cdecl;
 
   {* include/sysmodule.h *}
-  PySys_GetObject                                : function(const str: PAnsiChar): PPyObject; cdecl;
-  PySys_SetObject                                : function(const str: PAnsiChar; obj: PPyObject): integer; cdecl;
+  PySys_GetObject                                : function(const name_: PAnsiChar): PPyObject; cdecl;
+  PySys_SetObject                                : function(const name_: PAnsiChar; v: PPyObject): integer; cdecl;
   PySys_WriteStdout                              : procedure(const format: PAnsiChar {; ...}); cdecl varargs;
   PySys_WriteStderr                              : procedure(const format: PAnsiChar {; ...}); cdecl varargs;
   PySys_FormatStdout                             : procedure(const format: PAnsiChar {; ...}); cdecl varargs;
@@ -1150,7 +1150,7 @@ var
   {* include/audit.h  include/cpython/audit.h *}
   PySys_Audit                                    : function(const event, argFormat: PAnsiChar {; ...}): integer; cdecl varargs;
   PySys_AuditTuple                               : function(const event: PAnsiChar; args: PPyObject): integer; cdecl;
-  PySys_AddAuditHook                             : function(func: Py_AuditHookFunction; ptr: Pointer): integer; cdecl;
+  PySys_AddAuditHook                             : function(hook: Py_AuditHookFunction; userData: Pointer): integer; cdecl;
 
   {* include/osmodule.h *}
   PyOS_FSPath                                    : function(path: PPyObject): PPyObject; cdecl;

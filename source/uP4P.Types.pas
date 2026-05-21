@@ -239,6 +239,8 @@ type
   PPyTracebackObject              = ^PyTracebackObject;
 
 
+  // custom PPyObject array type
+  PPyObjectArray = array of PPyObject;
 
 
   {* include/pyport.h *}

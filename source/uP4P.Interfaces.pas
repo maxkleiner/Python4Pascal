@@ -34,6 +34,9 @@ type
   IPyThreadLock = interface;
   IPyThreadTSS = interface;
 
+  // custom IPyObject array type
+  IPyObjectArray = array of IPyObject;
+
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
     function  GetPyObject: PPyObject;

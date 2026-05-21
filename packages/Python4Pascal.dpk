@@ -130,6 +130,9 @@ contains
   uP4P.PyCompile in '..\source\uP4P.PyCompile.pas',
   uP4P.PyArg in '..\source\uP4P.PyArg.pas',
   uP4P.PyRun in '..\source\uP4P.PyRun.pas',
-  uP4P.PyInterpreterConfig in '..\source\uP4P.PyInterpreterConfig.pas';
+  uP4P.PyInterpreterConfig in '..\source\uP4P.PyInterpreterConfig.pas',
+  uP4P.PyEval in '..\source\uP4P.PyEval.pas',
+  uP4P.PySys in '..\source\uP4P.PySys.pas',
+  uP4P.PyImport in '..\source\uP4P.PyImport.pas';
 
 end.

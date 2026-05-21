@@ -25,6 +25,8 @@ type
       class function Readline(sys_stdin, sys_stdout: PFILE; const prompt: string): string;
       class function getsig(i: integer): PyOS_sighandler_t;
       class function setsig(i: integer; s: PyOS_sighandler_t): PyOS_sighandler_t;
+      class function FSPath(const path: IPyObject): IPyObject;
+      class function InterruptOccurred: boolean;
   end;
 
 implementation
@@ -91,6 +93,21 @@ begin
     Result := PyOS_setsig(i, s)
    else
     Result := nil;
+end;
+
+class function TPyOS.FSPath(const path: IPyObject): IPyObject;
+begin
+  if assigned(PyOS_FSPath) and
+     TPyObject.IsInitialized(path) then
+    Result := TPyObject.Wrap(PyOS_FSPath(path.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPyOS.InterruptOccurred: boolean;
+begin
+  Result := assigned(PyOS_InterruptOccurred) and
+            (PyOS_InterruptOccurred() <> 0);
 end;
 
 end.

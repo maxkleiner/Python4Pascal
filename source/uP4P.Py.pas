@@ -68,6 +68,12 @@ type
       class procedure ExitStatusException(const status: IPyStatus);
       class function  FdIsInteractive(file_: PFILE; const filename: string): boolean;
       class function  NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
+      class function  AddPendingCall(func: Py_AddPendingCall_func; arg: pointer): boolean;
+      class function  MakePendingCalls: boolean;
+      class procedure SetRecursionLimit(new_limit: Integer);
+      class function  GetRecursionLimit: integer;
+      class function  EnterRecursiveCall(const where_: string): boolean;
+      class procedure LeaveRecursiveCall;
   end;
 
 implementation
@@ -493,6 +499,51 @@ begin
     end
    else
     Result := nil;
+end;
+
+class function TPy.AddPendingCall(func: Py_AddPendingCall_func; arg: pointer): boolean;
+begin
+  Result := assigned(Py_AddPendingCall) and
+            (Py_AddPendingCall(func, arg) = 0);
+end;
+
+class function TPy.MakePendingCalls: boolean;
+begin
+  Result := assigned(Py_MakePendingCalls) and
+            (Py_MakePendingCalls() = 0);
+end;
+
+class procedure TPy.SetRecursionLimit(new_limit: Integer);
+begin
+  if assigned(Py_SetRecursionLimit) then
+    Py_SetRecursionLimit(new_limit);
+end;
+
+class function TPy.GetRecursionLimit: integer;
+begin
+  if assigned(Py_GetRecursionLimit) then
+    Result := Py_GetRecursionLimit()
+   else
+    Result := 0;
+end;
+
+class function TPy.EnterRecursiveCall(const where_: string): boolean;
+var
+  TempWhere : AnsiString;
+begin
+  if assigned(Py_EnterRecursiveCall) then
+    begin
+      TempWhere := StringToPyUTF8(where_);
+      Result    := (Py_EnterRecursiveCall(PAnsiChar(TempWhere)) = 0);
+    end
+   else
+    Result := False;
+end;
+
+class procedure TPy.LeaveRecursiveCall;
+begin
+  if assigned(Py_LeaveRecursiveCall) then
+    Py_LeaveRecursiveCall();
 end;
 
 end.
