@@ -40,6 +40,7 @@ type
     public
       constructor Create(aPyThreadState: PPyThreadState);
       destructor  Destroy; override;
+      function    UnWrap: Pointer;
 
       class function  Wrap(aPyThreadState: PPyThreadState): IPyThreadState; inline;
       class function  New(const state: IPyInterpreterState): IPyThreadState;
@@ -76,6 +77,12 @@ begin
   finally
     inherited Destroy;
   end;
+end;
+
+function TPyThreadState.UnWrap: Pointer;
+begin
+  Result         := FPyThreadState;
+  FPyThreadState := nil;
 end;
 
 class function TPyThreadState.Wrap(aPyThreadState: PPyThreadState): IPyThreadState;

@@ -21,6 +21,7 @@ type
     protected
       FStatus : PyStatus;
 
+      function GetStatus: PyStatus;
       function GetFunc: string;
       function GetErrMsg: string;
       function GetExitCode: integer;
@@ -43,7 +44,7 @@ type
       property IsException : boolean   read GetIsException;
       property IsError     : boolean   read GetIsError;
       property IsExit      : boolean   read GetIsExit;
-      property Status      : PyStatus  read FStatus;
+      property Status      : PyStatus  read GetStatus;
   end;
 
 implementation
@@ -93,6 +94,11 @@ begin
     Result := TPyStatus.Create(PyStatus_Exit(exitcode))
    else
     Result := nil;
+end;
+
+function TPyStatus.GetStatus: PyStatus;
+begin
+  Result := FStatus;
 end;
 
 function TPyStatus.GetFunc: string;

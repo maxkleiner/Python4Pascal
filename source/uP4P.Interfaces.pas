@@ -27,6 +27,7 @@ type
   IPyCriticalSection2 = interface;
   IPyLongExport = interface;
   IPyLongWriter = interface;
+  IPyInterpreterConfig = interface;
   IPyInterpreterState = interface;
   IPyThreadState = interface;
   IPyGILState = interface;
@@ -156,6 +157,7 @@ type
 
   IPyStatus = interface
     ['{C7582FA6-89AA-49E9-84E3-B100E272D872}']
+    function  GetStatus: PyStatus;
     function  GetFunc: string;
     function  GetErrMsg: string;
     function  GetExitCode: integer;
@@ -170,6 +172,35 @@ type
     property IsException : boolean   read GetIsException;
     property IsError     : boolean   read GetIsError;
     property IsExit      : boolean   read GetIsExit;
+    property Status      : PyStatus  read GetStatus;
+  end;
+
+  IPyInterpreterConfig = interface
+    ['{E188197E-2A57-4466-9018-DF0534D96BD1}']
+    function GetConfig: Pointer;
+    function Get_use_main_obmalloc: boolean;
+    function Get_allow_fork: boolean;
+    function Get_allow_exec: boolean;
+    function Get_allow_threads: boolean;
+    function Get_allow_daemon_threads: boolean;
+    function Get_check_multi_interp_extensions: boolean;
+    function Get_gil: Integer;
+    procedure Set_use_main_obmalloc(aValue: boolean);
+    procedure Set_allow_fork(aValue: boolean);
+    procedure Set_allow_exec(aValue: boolean);
+    procedure Set_allow_threads(aValue: boolean);
+    procedure Set_allow_daemon_threads(aValue: boolean);
+    procedure Set_check_multi_interp_extensions(aValue: boolean);
+    procedure Set_gil(aValue: Integer);
+
+    property Config                        : Pointer     read GetConfig;
+    property use_main_obmalloc             : boolean     read Get_use_main_obmalloc              write Set_use_main_obmalloc;
+    property allow_fork                    : boolean     read Get_allow_fork                     write Set_allow_fork;
+    property allow_exec                    : boolean     read Get_allow_exec                     write Set_allow_exec;
+    property allow_threads                 : boolean     read Get_allow_threads                  write Set_allow_threads;
+    property allow_daemon_threads          : boolean     read Get_allow_daemon_threads           write Set_allow_daemon_threads;
+    property check_multi_interp_extensions : boolean     read Get_check_multi_interp_extensions  write Set_check_multi_interp_extensions;
+    property gil                           : Integer     read Get_gil                            write Set_gil;
   end;
 
   IPyInterpreterState = interface
@@ -205,6 +236,7 @@ type
     procedure EnterTracing;
     procedure LeaveTracing;
     function  Next: IPyThreadState;
+    function  UnWrap: Pointer;
 
     property Initialized  : boolean               read GetInitialized;
     property ThreadState  : PPyThreadState        read GetThreadState         write SetThreadState;
@@ -489,6 +521,7 @@ type
   IPyPreConfig = interface
     ['{53194E16-1452-46CF-AA81-11E7D2F179A1}']
     function GetConfig: Pointer;
+    function GetInitialized: boolean;
     function Get_parse_argv: boolean;
     function Get_isolated: boolean;
     function Get_use_environment: boolean;
@@ -504,6 +537,7 @@ type
     procedure InitIsolatedConfig;
 
     property Config                     : Pointer            read GetConfig;
+    property Initialized                : boolean            read GetInitialized;
     property parse_argv                 : boolean            read Get_parse_argv;
     property isolated                   : boolean            read Get_isolated;
     property use_environment            : boolean            read Get_use_environment;

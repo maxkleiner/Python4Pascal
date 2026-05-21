@@ -49,10 +49,10 @@ type
       class procedure InitializeEx(initsigs: integer);
       class procedure Finalize;
       class function  FinalizeEx: boolean;
-      class function  NewInterpreter: PPyThreadState;
-      class procedure EndInterpreter(threadstate: PPyThreadState);
+      class function  NewInterpreter: IPyThreadState;
+      class procedure EndInterpreter(const tstate: IPyThreadState);
       class function  AtExit(proc: AtExitProc): boolean;
-      class procedure Exit(i: Integer);
+      class procedure Exit(status: Integer);
       class function  Main(argc: integer; argv: PPWCharT): integer;
       class function  BytesMain(argc: integer; argv: PPAnsiChar): integer;
       class function  GetVersion: string;
@@ -61,19 +61,20 @@ type
       class function  GetCompiler: string;
       class function  GetBuildInfo: string;
       class function  IsFinalizing: boolean;
-      class function  PreInitialize(src_config: PPyPreConfig): PyStatus;
-      class function  PreInitializeFromBytesArgs(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): PyStatus;
-      class function  PreInitializeFromArgs(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): PyStatus;
+      class function  PreInitialize(const src_config: IPyPreConfig): IPyStatus;
+      class function  PreInitializeFromBytesArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): IPyStatus;
+      class function  PreInitializeFromArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): IPyStatus;
       class function  RunMain: integer;
-      class procedure ExitStatusException(err: PyStatus);
-      class function  FdIsInteractive(file_: PFILE; const str: string): boolean;
-      class function  NewInterpreterFromConfig(var tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus;
+      class procedure ExitStatusException(const status: IPyStatus);
+      class function  FdIsInteractive(file_: PFILE; const filename: string): boolean;
+      class function  NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyStatus;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyStatus, uP4P.PyThreadState,
+  uP4P.PyPreConfig;
 
 class procedure TPy.FatalError(const message_: string);
 var
@@ -327,12 +328,49 @@ begin
             (Py_FinalizeEx() = 0);
 end;
 
-class function TPy.NewInterpreter: PPyThreadState;
-class procedure TPy.EndInterpreter(threadstate: PPyThreadState);
+class function TPy.NewInterpreter: IPyThreadState;
+begin
+  if assigned(Py_NewInterpreter) then
+    Result := TPyThreadState.Wrap(Py_NewInterpreter())
+   else
+    Result := nil;
+end;
+
+class procedure TPy.EndInterpreter(const tstate: IPyThreadState);
+begin
+  if assigned(Py_EndInterpreter) and
+     TPyThreadState.IsInitialized(tstate) then
+    Py_EndInterpreter(tstate.UnWrap);
+end;
+
 class function TPy.AtExit(proc: AtExitProc): boolean;
-class procedure TPy.Exit(i: Integer);
+begin
+  Result := assigned(Py_AtExit) and
+            assigned(proc) and
+            (Py_AtExit(proc) = 0);
+end;
+
+class procedure TPy.Exit(status: Integer);
+begin
+  if assigned(Py_Exit) then
+    Py_Exit(status);
+end;
+
 class function TPy.Main(argc: integer; argv: PPWCharT): integer;
+begin
+  if assigned(Py_Main) then
+    Result := Py_Main(argc, argv)
+   else
+    Result := 0;
+end;
+
 class function TPy.BytesMain(argc: integer; argv: PPAnsiChar): integer;
+begin
+  if assigned(Py_BytesMain) then
+    Result := Py_BytesMain(argc, argv)
+   else
+    Result := 0;
+end;
 
 class function TPy.GetVersion: string;
 begin
@@ -379,26 +417,82 @@ begin
   Result := assigned(Py_IsFinalizing) and (Py_IsFinalizing() <> 0);
 end;
 
-class function TPy.PreInitialize(src_config: PPyPreConfig): PyStatus;
-class function TPy.PreInitializeFromBytesArgs(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): PyStatus;
-class function TPy.PreInitializeFromArgs(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): PyStatus;
-class function TPy.RunMain: integer;
-class procedure TPy.ExitStatusException(err: PyStatus);
-class function TPy.FdIsInteractive(file_: PFILE; const str: string): boolean;
-class function TPy.NewInterpreterFromConfig(var tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus;
+class function TPy.PreInitialize(const src_config: IPyPreConfig): IPyStatus;
+begin
+  if assigned(Py_PreInitialize) and
+     TPyPreConfig.IsInitialized(src_config) then
+    Result := TPyStatus.Create(Py_PreInitialize(src_config.Config))
+   else
+    Result := nil;
+end;
 
-  Py_NewInterpreter                              : function(): PPyThreadState; cdecl;
-  Py_EndInterpreter                              : procedure(threadstate: PPyThreadState); cdecl;
-  Py_AtExit                                      : function(proc: AtExitProc): integer; cdecl;
-  Py_Exit                                        : procedure(i: Integer); cdecl;
-  Py_Main                                        : function(argc: integer; argv: PPWCharT): integer; cdecl;
-  Py_BytesMain                                   : function(argc: integer; argv: PPAnsiChar): integer; cdecl;
-  Py_PreInitialize                               : function(src_config: PPyPreConfig): PyStatus; cdecl;
-  Py_PreInitializeFromBytesArgs                  : function(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): PyStatus; cdecl;
-  Py_PreInitializeFromArgs                       : function(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): PyStatus; cdecl;
-  Py_RunMain                                     : function(): integer; cdecl;
-  Py_ExitStatusException                         : procedure(err: PyStatus); cdecl;
-  Py_FdIsInteractive                             : function(file_: PFILE; const str: PAnsiChar): integer; cdecl;
-  Py_NewInterpreterFromConfig                    : function(var tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus; cdecl;
+class function TPy.PreInitializeFromBytesArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): IPyStatus;
+begin
+  if assigned(Py_PreInitializeFromBytesArgs) and
+     TPyPreConfig.IsInitialized(src_config) then
+    Result := TPyStatus.Create(Py_PreInitializeFromBytesArgs(src_config.Config, argc, argv))
+   else
+    Result := nil;
+end;
+
+class function TPy.PreInitializeFromArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): IPyStatus;
+begin
+  if assigned(Py_PreInitializeFromArgs) and
+     TPyPreConfig.IsInitialized(src_config) then
+    Result := TPyStatus.Create(Py_PreInitializeFromArgs(src_config.Config, argc, argv))
+   else
+    Result := nil;
+end;
+
+class function TPy.RunMain: integer;
+begin
+  if assigned(Py_RunMain) then
+    Result := Py_RunMain()
+   else
+    REsult := 0;
+end;
+
+class procedure TPy.ExitStatusException(const status: IPyStatus);
+begin
+  if assigned(Py_ExitStatusException) and
+     assigned(status) then
+    Py_ExitStatusException(status.Status)
+end;
+
+class function TPy.FdIsInteractive(file_: PFILE; const filename: string): boolean;
+var
+  TempFilename : AnsiString;
+  TempFilenamePtr : PAnsiChar;
+begin
+  Result := False;
+
+  if assigned(Py_FdIsInteractive) then
+    begin
+      if (length(filename) > 0) then
+        begin
+          TempFilename    := StringToPyUTF8(filename);
+          TempFilenamePtr := PAnsiChar(TempFilename);
+        end
+       else
+        TempFilenamePtr := nil;
+
+      Result := (Py_FdIsInteractive(file_, TempFilenamePtr) <> 0);
+    end;
+end;
+
+class function TPy.NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
+var
+  TempTState : PPyThreadState;
+begin
+  if assigned(Py_NewInterpreterFromConfig) and
+     assigned(config) then
+    begin
+      TempTState := nil;
+      Result     := TPyStatus.Create(Py_NewInterpreterFromConfig(TempTState, config.Config));
+      tstate     := TPyThreadState.Wrap(TempTState);
+    end
+   else
+    Result := nil;
+end;
 
 end.

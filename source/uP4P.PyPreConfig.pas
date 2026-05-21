@@ -19,9 +19,11 @@ uses
 type
   TPyPreConfig = class(TInterfacedObject, IPyPreConfig)
     protected
-      FConfig : PyPreConfig;
+      FConfig      : PyPreConfig;
+      FInitialized : boolean;
 
       function GetConfig: Pointer;
+      function GetInitialized: boolean;
       function Get_parse_argv: boolean;
       function Get_isolated: boolean;
       function Get_use_environment: boolean;
@@ -34,10 +36,14 @@ type
       function Get_allocator: PyMemAllocatorName;
 
     public
+      constructor Create;
       procedure InitPythonConfig;
       procedure InitIsolatedConfig;
 
+      class function  IsInitialized(const aPyPreConfig: IPyPreConfig): boolean; inline;
+
       property Config                     : Pointer            read GetConfig;
+      property Initialized                : boolean            read GetInitialized;
       property parse_argv                 : boolean            read Get_parse_argv;
       property isolated                   : boolean            read Get_isolated;
       property use_environment            : boolean            read Get_use_environment;
@@ -52,21 +58,44 @@ type
 
 implementation
 
+constructor TPyPreConfig.Create;
+begin
+  inherited Create;
+
+  FInitialized := False;
+end;
+
+class function TPyPreConfig.IsInitialized(const aPyPreConfig: IPyPreConfig): boolean;
+begin
+  Result := assigned(aPyPreConfig) and aPyPreConfig.Initialized;
+end;
+
 procedure TPyPreConfig.InitPythonConfig;
 begin
   if assigned(PyPreConfig_InitPythonConfig) then
-    PyPreConfig_InitPythonConfig(Config);
+    begin
+      PyPreConfig_InitPythonConfig(Config);
+      FInitialized := True;
+    end;
 end;
 
 procedure TPyPreConfig.InitIsolatedConfig;
 begin
   if assigned(PyPreConfig_InitIsolatedConfig) then
-    PyPreConfig_InitIsolatedConfig(Config);
+    begin
+      PyPreConfig_InitIsolatedConfig(Config);
+      FInitialized := True;
+    end;
 end;
 
 function TPyPreConfig.GetConfig: Pointer;
 begin
   Result := @FConfig;
+end;
+
+function TPyPreConfig.GetInitialized: boolean;
+begin
+  Result := FInitialized;
 end;
 
 function TPyPreConfig.Get_parse_argv: boolean;

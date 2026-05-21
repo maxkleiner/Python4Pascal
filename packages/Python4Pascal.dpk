@@ -129,6 +129,7 @@ contains
   uP4P.PyContextToken in '..\source\uP4P.PyContextToken.pas',
   uP4P.PyCompile in '..\source\uP4P.PyCompile.pas',
   uP4P.PyArg in '..\source\uP4P.PyArg.pas',
-  uP4P.PyRun in '..\source\uP4P.PyRun.pas';
+  uP4P.PyRun in '..\source\uP4P.PyRun.pas',
+  uP4P.PyInterpreterConfig in '..\source\uP4P.PyInterpreterConfig.pas';
 
 end.

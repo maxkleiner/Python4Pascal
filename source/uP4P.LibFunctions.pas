@@ -1085,9 +1085,9 @@ var
   Py_FinalizeEx                                  : function(): integer; cdecl;
   Py_IsInitialized                               : function(): integer; cdecl;
   Py_NewInterpreter                              : function(): PPyThreadState; cdecl;
-  Py_EndInterpreter                              : procedure(threadstate: PPyThreadState); cdecl;
+  Py_EndInterpreter                              : procedure(tstate: PPyThreadState); cdecl;
   Py_AtExit                                      : function(proc: AtExitProc): integer; cdecl;
-  Py_Exit                                        : procedure(i: Integer); cdecl;
+  Py_Exit                                        : procedure(status: Integer); cdecl;
   Py_Main                                        : function(argc: integer; argv: PPWCharT): integer; cdecl;
   Py_BytesMain                                   : function(argc: integer; argv: PPAnsiChar): integer; cdecl;
   Py_GetVersion                                  : function(): PAnsiChar; cdecl;
@@ -1104,9 +1104,9 @@ var
   Py_PreInitializeFromArgs                       : function(src_config: PPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): PyStatus; cdecl;
   Py_InitializeFromConfig                        : function(config: PPyConfig): PyStatus; cdecl;
   Py_RunMain                                     : function(): integer; cdecl;
-  Py_ExitStatusException                         : procedure(err: PyStatus); cdecl;
-  Py_FdIsInteractive                             : function(file_: PFILE; const str: PAnsiChar): integer; cdecl;
-  Py_NewInterpreterFromConfig                    : function(var tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus; cdecl;
+  Py_ExitStatusException                         : procedure(status: PyStatus); cdecl;
+  Py_FdIsInteractive                             : function(file_: PFILE; const filename: PAnsiChar): integer; cdecl;
+  Py_NewInterpreterFromConfig                    : function(out tstate: PPyThreadState; config: PPyInterpreterConfig): PyStatus; cdecl;
 
   {* include/ceval.h  include/cpython/ceval.h *}
   PyEval_EvalCode                                : function(obj1, obj2, obj3: PPyObject): PPyObject; cdecl;

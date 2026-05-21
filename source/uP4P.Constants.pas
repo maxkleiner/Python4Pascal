@@ -513,6 +513,10 @@ const
 
   {* include/pythonrun.h *}
   {* include/pylifecycle.h *}
+  PyInterpreterConfig_DEFAULT_GIL = 0;
+  PyInterpreterConfig_SHARED_GIL  = 1;
+  PyInterpreterConfig_OWN_GIL     = 2;
+
   {* include/ceval.h *}
   FVC_MASK      = $3;
   FVC_NONE      = $0;
