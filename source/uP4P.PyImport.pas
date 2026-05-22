@@ -31,7 +31,7 @@ type
       class function AddModule(const name_: string): IPyObject;
       class function AddModuleRef(const name_: string): IPyObject;
       class function ImportModule(const name_: string): IPyObject;
-      class function ImportModuleLevel(const name_: string; globals, locals, fromlist: IPyObject; level: integer): IPyObject;
+      class function ImportModuleLevel(const name_: string; const globals, locals, fromlist: IPyObject; level: integer): IPyObject;
       class function ImportModuleLevelObject(const name_, globals, locals, fromlist: IPyObject; level: integer): IPyObject;
       class function GetImporter(const path: IPyObject): IPyObject;
       class function Import(const name_: IPyObject): IPyObject;
@@ -205,79 +205,138 @@ begin
 end;
 
 class function TPyImport.ImportModule(const name_: string): IPyObject;
+var
+  TempName : AnsiString;
 begin
-
+  if assigned(PyImport_ImportModule) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := TPyObject.Wrap(PyImport_ImportModule(PAnsiChar(TempName)));
+    end
+   else
+    Result := nil;
 end;
 
-class function TPyImport.ImportModuleLevel(const name_: string; globals, locals, fromlist: IPyObject; level: integer): IPyObject;
+class function TPyImport.ImportModuleLevel(const name_: string; const globals, locals, fromlist: IPyObject; level: integer): IPyObject;
+var
+  TempName : AnsiString;
 begin
-
+  if assigned(PyImport_ImportModuleLevel) and
+     TPyObject.IsInitialized(globals) and
+     TPyObject.IsInitialized(locals) and
+     TPyObject.IsInitialized(fromlist) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := TPyObject.Wrap(PyImport_ImportModuleLevel(PAnsiChar(TempName), globals.PyObject, locals.PyObject, fromlist.PyObject, level));
+    end
+   else
+    Result := nil;
 end;
 
 class function TPyImport.ImportModuleLevelObject(const name_, globals, locals, fromlist: IPyObject; level: integer): IPyObject;
 begin
-
+  if assigned(PyImport_ImportModuleLevelObject) and
+     TPyObject.IsInitialized(name_) and
+     TPyObject.IsInitialized(globals) and
+     TPyObject.IsInitialized(locals) and
+     TPyObject.IsInitialized(fromlist) then
+    Result := TPyObject.Wrap(PyImport_ImportModuleLevelObject(name_.PyObject, globals.PyObject, locals.PyObject, fromlist.PyObject, level))
+   else
+    Result := nil;
 end;
 
 class function TPyImport.GetImporter(const path: IPyObject): IPyObject;
 begin
-
+  if assigned(PyImport_GetImporter) and
+     TPyObject.IsInitialized(path) then
+    Result := TPyObject.Wrap(PyImport_GetImporter(path.PyObject))
+   else
+    Result := nil;
 end;
 
 class function TPyImport.Import(const name_: IPyObject): IPyObject;
 begin
-
+  if assigned(PyImport_Import) and
+     TPyObject.IsInitialized(name_) then
+    Result := TPyObject.Wrap(PyImport_Import(name_.PyObject))
+   else
+    Result := nil;
 end;
 
 class function TPyImport.ReloadModule(const m: IPyObject): IPyObject;
 begin
-
+  if assigned(PyImport_ReloadModule) and
+     TPyObject.IsInitialized(m) then
+    Result := TPyObject.Wrap(PyImport_ReloadModule(m.PyObject))
+   else
+    Result := nil;
 end;
-
-  PyImport_ImportModule                          : function(const name_: PAnsiChar): PPyObject; cdecl;
-  PyImport_ImportModuleLevel                     : function(const name_: PAnsiChar; globals, locals, fromlist: PPyObject; level: integer): PPyObject; cdecl;
-  PyImport_ImportModuleLevelObject               : function(name_, globals, locals, fromlist: PPyObject; level: integer): PPyObject; cdecl;
-  PyImport_GetImporter                           : function(path: PPyObject): PPyObject; cdecl;
-  PyImport_Import                                : function(name_: PPyObject): PPyObject; cdecl;
-  PyImport_ReloadModule                          : function(m: PPyObject): PPyObject; cdecl;
 
 class function TPyImport.ImportFrozenModuleObject(const name_: IPyObject): integer;
 begin
-
+  if assigned(PyImport_ImportFrozenModuleObject) and
+     TPyObject.IsInitialized(name_) then
+    Result := PyImport_ImportFrozenModuleObject(name_.PyObject)
+   else
+    Result := -1;
 end;
 
 class function TPyImport.ImportFrozenModule(const name_: string): integer;
+var
+  TempName : AnsiString;
 begin
-
+  if assigned(PyImport_ImportFrozenModule) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := PyImport_ImportFrozenModule(PAnsiChar(TempName));
+    end
+   else
+    Result := -1;
 end;
 
 class function TPyImport.AppendInittab(const name_: string; initfunc_: initfunc): boolean;
+var
+  TempName : AnsiString;
 begin
-
+  if assigned(PyImport_AppendInittab) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := (PyImport_AppendInittab(PAnsiChar(TempName), initfunc_) = 0);
+    end
+   else
+    Result := False;
 end;
 
 class function TPyImport.ExtendInittab(newtab: P_inittab): boolean;
 begin
-
+  if assigned(PyImport_ExtendInittab) and assigned(newtab) then
+    Result := (PyImport_ExtendInittab(newtab) = 0)
+   else
+    Result := False;
 end;
 
 class function TPyImport.ImportModuleAttr(const mod_name, attr_name: IPyObject): IPyObject;
 begin
-
+  if assigned(PyImport_ImportModuleAttr) and
+     TPyObject.IsInitialized(mod_name) and
+     TPyObject.IsInitialized(attr_name) then
+    Result := TPyObject.Wrap(PyImport_ImportModuleAttr(mod_name.PyObject, attr_name.PyObject))
+   else
+    Result := nil;
 end;
 
 class function TPyImport.ImportModuleAttrString(const mod_name, attr_name: string): IPyObject;
+var
+  TempModName, TempAttrName : AnsiString;
 begin
-
+  if assigned(PyImport_ImportModuleAttrString) then
+    begin
+      TempModName  := StringToPyUTF8(mod_name);
+      TempAttrName := StringToPyUTF8(attr_name);
+      Result       := TPyObject.Wrap(PyImport_ImportModuleAttrString(PAnsiChar(TempModName), PAnsiChar(TempAttrName)));
+    end
+   else
+    Result := nil;
 end;
-
-  PyImport_ImportFrozenModuleObject              : function(name_: PPyObject): integer; cdecl;
-  PyImport_ImportFrozenModule                    : function(const name_: PAnsiChar): integer; cdecl;
-  PyImport_AppendInittab                         : function(const name_: PAnsiChar; initfunc_: initfunc): integer; cdecl;
-  PyImport_Inittab                               : P_inittab;
-  PyImport_ExtendInittab                         : function(newtab: P_inittab): integer; cdecl;
-  PyImport_FrozenModules                         : P_frozen;
-  PyImport_ImportModuleAttr                      : function(mod_name, attr_name: PPyObject): PPyObject; cdecl;
-  PyImport_ImportModuleAttrString                : function(const mod_name, attr_name: PAnsiChar): PPyObject; cdecl;
 
 end.

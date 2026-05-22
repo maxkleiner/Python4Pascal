@@ -92,6 +92,17 @@ type
       function  IS_GC: boolean;
       function  GenericHash: Py_hash_t;
       function  AsFileDescriptor: integer;
+      function  Type_: IPyObject;
+      function  Size: Py_ssize_t;
+      function  Length: Py_ssize_t;
+      function  GetItem(const key: IPyObject): IPyObject;
+      function  SetItem(const key, v: IPyObject): boolean;
+
+  PyObject_DelItemString                         : function(o: PPyObject; const key: PAnsiChar): integer; cdecl;
+  PyObject_DelItem                               : function(o, key: PPyObject): integer; cdecl;
+  PyObject_Format                                : function(obj, format_spec: PPyObject): PPyObject; cdecl;
+  PyObject_GetIter                               : function(obj: PPyObject): PPyObject; cdecl;
+  PyObject_GetAIter                              : function(obj: PPyObject): PPyObject; cdecl;
 
     public
       constructor Create(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean); overload;
@@ -106,6 +117,11 @@ type
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
       class procedure FreePointer(ptr: pointer);
+      class function  CallNoArgs(const callable: IPyObject): IPyObject;
+      class function  Call(const callable, args, kwargs: IPyObject): IPyObject;
+      class function  CallObject(const callable, args: IPyObject): IPyObject;
+      class function  Vectorcall(const callable: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+      class function  VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
 
       property Initialized   : boolean     read GetInitialized;
       property PyObject      : PPyObject   read GetPyObject      write SetPyObject;
@@ -193,6 +209,112 @@ class procedure TPyObject.FreePointer(ptr: pointer);
 begin
   if assigned(PyObject_Free) then
     PyObject_Free(ptr);
+end;
+
+class function TPyObject.CallNoArgs(const callable: IPyObject): IPyObject;
+begin
+  if assigned(PyObject_CallNoArgs) and
+     TPyObject.IsInitialized(callable) then
+    Result := TPyObject.Wrap(PyObject_CallNoArgs(callable.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPyObject.Call(const callable, args, kwargs: IPyObject): IPyObject;
+begin
+  if assigned(PyObject_Call) and
+     TPyObject.IsInitialized(callable) and
+     TPyObject.IsInitialized(args) then
+    begin
+      if TPyObject.IsInitialized(kwargs) then
+        Result := TPyObject.Wrap(PyObject_Call(callable.PyObject, args.PyObject, kwargs.PyObject))
+       else
+        Result := TPyObject.Wrap(PyObject_Call(callable.PyObject, args.PyObject, nil));
+    end
+   else
+    Result := nil;
+end;
+
+class function TPyObject.CallObject(const callable, args: IPyObject): IPyObject;
+begin
+  if assigned(PyObject_CallObject) and
+     TPyObject.IsInitialized(callable) then
+    begin
+      if TPyObject.IsInitialized(args) then
+        Result := TPyObject.Wrap(PyObject_CallObject(callable.PyObject, args.PyObject))
+       else
+        Result := TPyObject.Wrap(PyObject_CallObject(callable.PyObject, nil));
+    end
+   else
+    Result := nil;
+end;
+
+class function TPyObject.Vectorcall(const callable: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+var
+  TempArgs : PPyObjectArray;
+  TempArgsPtr : PPPyObject;
+  TempArgsLen, i : integer;
+  TempKwnames : PPyObject;
+begin
+  Result := nil;
+
+  if assigned(PyObject_Vectorcall) and
+     TPyObject.IsInitialized(callable) then
+    begin
+      TempArgsLen := System.length(args);
+      if (TempArgsLen > 0) then
+        begin
+          SetLength(TempArgs, TempArgsLen);
+
+          for i := 0 to pred(TempArgsLen) do
+            TempArgs[i] := args[i].PyObject;
+
+          TempArgsPtr := @TempArgs[0];
+        end
+       else
+        TempArgsPtr := nil;
+
+      if TPyObject.IsInitialized(kwnames) then
+        TempKwnames := kwnames.PyObject
+       else
+        TempKwnames := nil;
+
+      Result := TPyObject.Wrap(PyObject_Vectorcall(callable.PyObject, TempArgsPtr, TempArgsLen, TempKwnames));
+    end;
+end;
+
+class function TPyObject.VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+var
+  TempArgs : PPyObjectArray;
+  TempArgsPtr : PPPyObject;
+  TempArgsLen, i : integer;
+  TempKwnames : PPyObject;
+begin
+  Result := nil;
+
+  if assigned(PyObject_VectorcallMethod) and
+     TPyObject.IsInitialized(name) then
+    begin
+      TempArgsLen := System.length(args);
+      if (TempArgsLen > 0) then
+        begin
+          SetLength(TempArgs, TempArgsLen);
+
+          for i := 0 to pred(TempArgsLen) do
+            TempArgs[i] := args[i].PyObject;
+
+          TempArgsPtr := @TempArgs[0];
+        end
+       else
+        TempArgsPtr := nil;
+
+      if TPyObject.IsInitialized(kwnames) then
+        TempKwnames := kwnames.PyObject
+       else
+        TempKwnames := nil;
+
+      Result := TPyObject.Wrap(PyObject_VectorcallMethod(name.PyObject, TempArgsPtr, TempArgsLen, TempKwnames));
+    end;
 end;
 
 function TPyObject.UnWrap: Pointer;
@@ -665,6 +787,49 @@ begin
     Result := PyObject_AsFileDescriptor(PyObject)
    else
     Result := -1;
+end;
+
+function TPyObject.Type_: IPyObject;
+begin
+  if Initialized and assigned(PyObject_Type) then
+    Result := TPyObject.Wrap(PyObject_Type(FPyObject))
+   else
+    Result := nil;
+end;
+
+function TPyObject.Size: Py_ssize_t;
+begin
+  if Initialized and assigned(PyObject_Size) then
+    Result := PyObject_Size(FPyObject)
+   else
+    Result := -1;
+end;
+
+function TPyObject.Length: Py_ssize_t;
+begin
+  if Initialized and assigned(PyObject_Length) then
+    Result := PyObject_Length(FPyObject)
+   else
+    Result := -1;
+end;
+
+function TPyObject.GetItem(const key: IPyObject): IPyObject;
+begin
+  if Initialized and
+     assigned(PyObject_GetItem) and
+     TPyObject.IsInitialized(key) then
+    Result := TPyObject.Wrap(PyObject_GetItem(FPyObject, key.PyObject))
+   else
+    Result := nil;
+end;
+
+function TPyObject.SetItem(const key, v: IPyObject): boolean;
+begin
+  Result := Initialized and
+            assigned(PyObject_SetItem) and
+            TPyObject.IsInitialized(key) and
+            TPyObject.IsInitialized(v) and
+            (PyObject_SetItem(FPyObject, key.PyObject, v.PyObject) = 0);
 end;
 
 function TPyObject.GetInitialized: boolean;

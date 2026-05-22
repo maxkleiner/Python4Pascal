@@ -1186,7 +1186,7 @@ var
   PyImport_ImportModuleAttrString                : function(const mod_name, attr_name: PAnsiChar): PPyObject; cdecl;
 
   {* include/abstract.h  include/cpython/abstract.h *}
-  PyObject_CallNoArgs                            : function(func: PPyObject): PPyObject; cdecl;
+  PyObject_CallNoArgs                            : function(callable: PPyObject): PPyObject; cdecl;
   PyObject_Call                                  : function(callable, args, kwargs: PPyObject): PPyObject; cdecl;
   PyObject_CallObject                            : function(callable, args: PPyObject): PPyObject; cdecl;
   PyObject_CallFunction                          : function(callable: PPyObject; const format: PAnsiChar {; ...}): PPyObject; cdecl varargs;
@@ -1195,8 +1195,8 @@ var
   PyObject_CallMethodObjArgs                     : function(obj, name_: PPyObject {; ...}): PPyObject; cdecl varargs;
   PyVectorcall_NARGS                             : function(nargsf: NativeUInt): Py_ssize_t; cdecl;
   PyVectorcall_Call                              : function(callable, tuple, dict: PPyObject): PPyObject; cdecl;
-  PyObject_Vectorcall                            : function(callable: PPyObject; var args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
-  PyObject_VectorcallMethod                      : function(name: PPyObject; var args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
+  PyObject_Vectorcall                            : function(callable: PPyObject; args: PPPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
+  PyObject_VectorcallMethod                      : function(name: PPyObject; args: PPPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
   PyObject_Type                                  : function(o: PPyObject): PPyObject; cdecl;
   PyObject_Size                                  : function(o: PPyObject): Py_ssize_t; cdecl;
   PyObject_Length                                : function(o: PPyObject): Py_ssize_t; cdecl;

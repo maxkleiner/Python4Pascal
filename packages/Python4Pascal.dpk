@@ -133,6 +133,7 @@ contains
   uP4P.PyInterpreterConfig in '..\source\uP4P.PyInterpreterConfig.pas',
   uP4P.PyEval in '..\source\uP4P.PyEval.pas',
   uP4P.PySys in '..\source\uP4P.PySys.pas',
-  uP4P.PyImport in '..\source\uP4P.PyImport.pas';
+  uP4P.PyImport in '..\source\uP4P.PyImport.pas',
+  uP4P.PyVectorcall in '..\source\uP4P.PyVectorcall.pas';
 
 end.
