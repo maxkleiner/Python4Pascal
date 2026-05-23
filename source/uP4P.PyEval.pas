@@ -80,7 +80,7 @@ begin
      TPyObject.IsInitialized(co) and
      TPyObject.IsInitialized(globals) then
     begin
-      TempArgsLen := length(args);
+      TempArgsLen := System.length(args);
       if (TempArgsLen > 0) then
         begin
           SetLength(TempArgs, TempArgsLen);
@@ -93,7 +93,7 @@ begin
        else
         TempArgsPtr := nil;
 
-      TempKwdsLen := length(kwds);
+      TempKwdsLen := System.length(kwds);
       if (TempKwdsLen > 0) then
         begin
           SetLength(TempKwds, TempKwdsLen);
@@ -106,7 +106,7 @@ begin
        else
         TempKwdsPtr := nil;
 
-      TempDefsLen := length(defs);
+      TempDefsLen := System.length(defs);
       if (TempDefsLen > 0) then
         begin
           SetLength(TempDefs, TempDefsLen);

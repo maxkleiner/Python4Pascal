@@ -21,6 +21,7 @@ type
     public
       class function NARGS(nargsf: NativeUInt): Py_ssize_t;
       class function Call(const callable, tuple, dict: IPyObject): IPyObject;
+      class function Function_(const callable: IPyObject): vectorcallfunc;
   end;
 
 implementation
@@ -44,6 +45,15 @@ begin
        else
         Result := TPyObject.Wrap(PyVectorcall_Call(callable.PyObject, tuple.PyObject, nil));
     end
+   else
+    Result := nil;
+end;
+
+class function TPyVectorcall.Function_(const callable: IPyObject): vectorcallfunc;
+begin
+  if assigned(PyVectorcall_Function) and
+     TPyObject.IsInitialized(callable) then
+    Result := PyVectorcall_Function(callable.PyObject)
    else
     Result := nil;
 end;

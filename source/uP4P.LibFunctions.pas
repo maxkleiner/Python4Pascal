@@ -1209,9 +1209,9 @@ var
   PyObject_GetAIter                              : function(obj: PPyObject): PPyObject; cdecl;
   PyIter_Check                                   : function(obj: PPyObject): integer; cdecl;
   PyAIter_Check                                  : function(obj: PPyObject): integer; cdecl;
-  PyIter_NextItem                                : function(iter: PPyObject; var item: PPyObject): integer; cdecl;
+  PyIter_NextItem                                : function(iter: PPyObject; out item: PPyObject): integer; cdecl;
   PyIter_Next                                    : function(obj: PPyObject): PPyObject; cdecl;
-  PyIter_Send                                    : function(obj1, obj2: PPyObject; var obj3: PPyObject): PySendResult; cdecl;
+  PyIter_Send                                    : function(iter, arg: PPyObject; out presult: PPyObject): PySendResult; cdecl;
   PyNumber_Check                                 : function(o: PPyObject): integer; cdecl;
   PyNumber_Add                                   : function(o1, o2: PPyObject): PPyObject; cdecl;
   PyNumber_Subtract                              : function(o1, o2: PPyObject): PPyObject; cdecl;
@@ -1265,7 +1265,7 @@ var
   PySequence_List                                : function(o: PPyObject): PPyObject; cdecl;
   PySequence_Fast                                : function(o: PPyObject; const m: PAnsiChar): PPyObject; cdecl;
   PySequence_Count                               : function(o, value: PPyObject): Py_ssize_t; cdecl;
-  PySequence_Contains                            : function(seq, ob: PPyObject): integer; cdecl;
+  PySequence_Contains                            : function(o, value: PPyObject): integer; cdecl;
   PySequence_In                                  : function(o, value: PPyObject): integer; cdecl;
   PySequence_Index                               : function(o, value: PPyObject): Py_ssize_t; cdecl;
   PySequence_InPlaceConcat                       : function(o1, o2: PPyObject): PPyObject; cdecl;
@@ -1281,15 +1281,15 @@ var
   PyMapping_Values                               : function(o: PPyObject): PPyObject; cdecl;
   PyMapping_Items                                : function(o: PPyObject): PPyObject; cdecl;
   PyMapping_GetItemString                        : function(o: PPyObject; const key: PAnsiChar): PPyObject; cdecl;
-  PyMapping_GetOptionalItem                      : function(o1, o2: PPyObject; var o3: PPyObject): integer; cdecl;
-  PyMapping_GetOptionalItemString                : function(o1: PPyObject; const str: PAnsiChar; var o2: PPyObject): integer; cdecl;
-  PyMapping_SetItemString                        : function(o: PPyObject; const key: PAnsiChar; value: PPyObject): integer; cdecl;
-  PyObject_IsInstance                            : function(object_, typeorclass: PPyObject): integer; cdecl;
-  PyObject_IsSubclass                            : function(object_, typeorclass: PPyObject): integer; cdecl;
+  PyMapping_GetOptionalItem                      : function(obj, key: PPyObject; out result_: PPyObject): integer; cdecl;
+  PyMapping_GetOptionalItemString                : function(obj: PPyObject; const key: PAnsiChar; out result_: PPyObject): integer; cdecl;
+  PyMapping_SetItemString                        : function(o: PPyObject; const key: PAnsiChar; v: PPyObject): integer; cdecl;
+  PyObject_IsInstance                            : function(inst, cls: PPyObject): integer; cdecl;
+  PyObject_IsSubclass                            : function(derived, cls: PPyObject): integer; cdecl;
   PyVectorcall_Function                          : function(callable: PPyObject): vectorcallfunc; cdecl;
   PyObject_VectorcallDict                        : function(callable: PPyObject; args: PPPyObject; nargsf: NativeUInt; kwargs: PPyObject): PPyObject; cdecl;
-  PyObject_CallOneArg                            : function(func, arg: PPyObject): PPyObject; cdecl;
-  PyObject_LengthHint                            : function(o: PPyObject; size: Py_ssize_t): Py_ssize_t; cdecl;
+  PyObject_CallOneArg                            : function(callable, arg: PPyObject): PPyObject; cdecl;
+  PyObject_LengthHint                            : function(o: PPyObject; defaultvalue: Py_ssize_t): Py_ssize_t; cdecl;
 
   {* include/bltinmodule.h *}
   PyFilter_Type                                  : PPyTypeObject;
@@ -1298,7 +1298,7 @@ var
 
   {* include/cpython/pyctype.h *}
   {* include/pystrtod.h *}
-  PyOS_string_to_double                          : function(const str: PAnsiChar; var endptr: PAnsiChar; overflow_exception: PPyObject): double; cdecl;
+  PyOS_string_to_double                          : function(const str: PAnsiChar; endptr: PPAnsiChar; overflow_exception: PPyObject): double; cdecl;
   PyOS_double_to_string                          : function(val: double; format_code: AnsiChar; precision, flags: integer; out type_: integer): PAnsiChar; cdecl;
 
   {* include/pystrcmp.h *}

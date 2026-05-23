@@ -27,6 +27,8 @@ type
       class function setsig(i: integer; s: PyOS_sighandler_t): PyOS_sighandler_t;
       class function FSPath(const path: IPyObject): IPyObject;
       class function InterruptOccurred: boolean;
+      class function string_to_double(const str: string; const overflow_exception: IPyObject): double;
+      class function double_to_string(val: double; format_code: AnsiChar; precision, flags: integer; out type_: integer): PAnsiChar; cdecl;
   end;
 
 implementation
@@ -108,6 +110,21 @@ class function TPyOS.InterruptOccurred: boolean;
 begin
   Result := assigned(PyOS_InterruptOccurred) and
             (PyOS_InterruptOccurred() <> 0);
+end;
+
+class function TPyOS.string_to_double(const str: string; const overflow_exception: IPyObject): double;
+var
+  TempStr : AnsiString;
+begin
+  Result := -1;
+
+  if assigned(PyOS_string_to_double) then
+    begin
+      TempStr := StringToPyUTF8(str);
+
+      if
+      Result  := PyOS_string_to_double(PAnsiChar(TempStr), nil,
+    end;
 end;
 
 end.
