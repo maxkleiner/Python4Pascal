@@ -74,6 +74,10 @@ type
       class function  GetRecursionLimit: integer;
       class function  EnterRecursiveCall(const where_: string): boolean;
       class procedure LeaveRecursiveCall;
+      class function  DecodeLocale(const arg: PAnsiChar; size: NativeUInt): PWCharT;
+      class function  EncodeLocale(const text: PWCharT; error_pos: NativeUInt): PAnsiChar;
+      class function  fopen(const path: IPyObject; const mode: string): PFILE;
+      class function  fclose(file_: PFILE): integer;
   end;
 
 implementation
@@ -544,6 +548,45 @@ class procedure TPy.LeaveRecursiveCall;
 begin
   if assigned(Py_LeaveRecursiveCall) then
     Py_LeaveRecursiveCall();
+end;
+
+class function TPy.DecodeLocale(const arg: PAnsiChar; size: NativeUInt): PWCharT;
+begin
+  if assigned(Py_DecodeLocale) then
+    Result := Py_DecodeLocale(arg, size)
+   else
+    Result := nil;
+end;
+
+class function TPy.EncodeLocale(const text: PWCharT; error_pos: NativeUInt): PAnsiChar;
+begin
+  if assigned(Py_EncodeLocale) then
+    Result := Py_EncodeLocale(text, error_pos)
+   else
+    Result := nil;
+end;
+
+class function TPy.fopen(const path: IPyObject; const mode: string): PFILE;
+var
+  TempMode : AnsiString;
+begin
+  if assigned(Py_fopen) and
+     TPyObject.IsInitialized(path) then
+    begin
+      TempMode := StringToPyUTF8(mode);
+      Result   := Py_fopen(path.PyObject, PAnsiChar(TempMode));
+    end
+   else
+    Result := nil;
+end;
+
+class function TPy.fclose(file_: PFILE): integer;
+begin
+  if assigned(Py_fclose) and
+     assigned(file_) then
+    Result := Py_fclose(file_)
+   else
+    Result := 0;
 end;
 
 end.

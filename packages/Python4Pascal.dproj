@@ -201,6 +201,7 @@
         <DCCReference Include="..\source\uP4P.PyIndex.pas"/>
         <DCCReference Include="..\source\uP4P.PySequence.pas"/>
         <DCCReference Include="..\source\uP4P.PyMapping.pas"/>
+        <DCCReference Include="..\source\uP4P.PyTraceMalloc.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

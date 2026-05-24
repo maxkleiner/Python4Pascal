@@ -139,6 +139,7 @@ contains
   uP4P.PyAIter in '..\source\uP4P.PyAIter.pas',
   uP4P.PyIndex in '..\source\uP4P.PyIndex.pas',
   uP4P.PySequence in '..\source\uP4P.PySequence.pas',
-  uP4P.PyMapping in '..\source\uP4P.PyMapping.pas';
+  uP4P.PyMapping in '..\source\uP4P.PyMapping.pas',
+  uP4P.PyTraceMalloc in '..\source\uP4P.PyTraceMalloc.pas';
 
 end.

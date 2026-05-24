@@ -29,7 +29,7 @@ procedure OutputDebugMessage(const aMessage : string);
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
 procedure ShowErrorMessageDlg(const aError : string);
 
-function PyUTF8ToString(aString: PAnsiChar): string;
+function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
 function StringToPyUTF8(const aString: string): AnsiString;
 
 {$IFDEF MSWINDOWS}
@@ -49,7 +49,7 @@ implementation
 
 uses
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
-  uP4P.Loader, uP4P.LibFunctions;
+  uP4P.Loader, uP4P.LibFunctions, uP4P.PyMem;
 
 function GetModulePath : string;
 {$IFDEF MACOSX}
@@ -144,7 +144,7 @@ begin
     end;
 end;
 
-function PyUTF8ToString(aString: PAnsiChar): string;
+function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean): string;
 begin
   if assigned(aString) then
     begin
@@ -157,6 +157,8 @@ begin
         Result := UTF8Decode(UTF8String(aString));
         {$ENDIF}
       {$ENDIF}
+      if aFreeMem then
+        TPyMem.Free(aString);
     end
    else
     Result := '';

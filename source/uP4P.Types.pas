@@ -130,6 +130,16 @@ type
     pbfFortran
   );
 
+  TPyDoubleToStringFormatCode = (
+    fc_lowercase_e,
+    fc_E,
+    fc_lowercase_f,
+    fc_F,
+    fc_lowercase_g,
+    fc_G,
+    fc_r
+  );
+
   PPy_ssize_t                     = ^Py_ssize_t;
   PPyTypeObject                   = ^PyTypeObject;
   PPPyTypeObject                  = ^PPyTypeObject;
