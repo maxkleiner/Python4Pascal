@@ -205,7 +205,7 @@ end;
 
 class function TPy.NewRef(aPyObject: PPyConfig): PPyObject;
 begin
-  if assigned(Py_NewRef) then
+  if assigned(Py_NewRef) and assigned(aPyObject) then
     Result := Py_NewRef(aPyObject)
    else
     Result := nil;
@@ -219,18 +219,18 @@ begin
     Result := nil;
 end;
 
-class function TPy.XNewRef(const aPyObject: IPyObject): PPyObject;
+class function TPy.XNewRef(const aPyObject: PPyConfig): PPyObject;
 begin
-  if TPyObject.IsInitialized(aPyObject) then
-    Result := XNewRef(aPyObject.PyObject)
+  if assigned(Py_XNewRef) and assigned(aPyObject) then
+    Result := Py_XNewRef(aPyObject)
    else
     Result := nil;
 end;
 
-class function TPy.XNewRef(const aPyObject: PPyConfig): PPyObject;
+class function TPy.XNewRef(const aPyObject: IPyObject): PPyObject;
 begin
-  if assigned(Py_XNewRef) then
-    Result := Py_XNewRef(aPyObject)
+  if TPyObject.IsInitialized(aPyObject) then
+    Result := XNewRef(aPyObject.PyObject)
    else
     Result := nil;
 end;

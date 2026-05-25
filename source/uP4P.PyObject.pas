@@ -111,8 +111,6 @@ type
 
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
-      class function  GetConstant(constant_id: cardinal): IPyObject;
-      class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
       class function  Malloc(size: NativeUInt): pointer;
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
@@ -173,16 +171,6 @@ end;
 class function TPyObject.IsInitialized(const aPyObject: IPyObject): boolean;
 begin
   Result := (aPyObject <> nil) and aPyObject.Initialized;
-end;
-
-class function TPyObject.GetConstant(constant_id: cardinal): IPyObject;
-begin
-  Result := TPy.GetConstant(constant_id);
-end;
-
-class function TPyObject.GetConstantBorrowed(constant_id: cardinal): IPyObject;
-begin
-  Result := TPy.GetConstantBorrowed(constant_id);
 end;
 
 class function TPyObject.Malloc(size: NativeUInt): pointer;
