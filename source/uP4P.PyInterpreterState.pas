@@ -137,7 +137,7 @@ end;
 function TPyInterpreterState.GetDict: IPyObject;
 begin
   if Initialized and assigned(PyInterpreterState_GetDict) then
-    Result := TPyObject.Wrap(PyInterpreterState_GetDict(State), False, False)
+    Result := TPyObject.Wrap(PyInterpreterState_GetDict(State), False)
    else
     Result := nil;
 end;

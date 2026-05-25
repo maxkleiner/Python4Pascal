@@ -50,7 +50,7 @@ class function TPyMethod.Function_(const meth: IPyObject): IPyObject;
 begin
   if assigned(PyMethod_Function) and
      TPyObject.IsInitialized(meth) then
-    Result := TPyObject.Wrap(PyMethod_Function(meth.PyObject), False, False)
+    Result := TPyObject.Wrap(PyMethod_Function(meth.PyObject), False)
    else
     Result := nil;
 end;
@@ -59,7 +59,7 @@ class function TPyMethod.Self_(const meth: IPyObject): IPyObject;
 begin
   if assigned(PyMethod_Self) and
      TPyObject.IsInitialized(meth) then
-    Result := TPyObject.Wrap(PyMethod_Self(meth.PyObject), False, False)
+    Result := TPyObject.Wrap(PyMethod_Self(meth.PyObject), False)
    else
     Result := nil;
 end;

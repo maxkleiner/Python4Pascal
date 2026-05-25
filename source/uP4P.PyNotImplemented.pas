@@ -30,7 +30,7 @@ uses
 class function TPyNotImplemented.New: IPyObject;
 begin
   if GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    Result := TPyObject.Wrap(Py_NotImplemented, False, False)
+    Result := TPyObject.Wrap(Py_NotImplemented, False)
    else
     Result := TPyObject.Wrap(Py_NotImplemented, True, True);
 end;

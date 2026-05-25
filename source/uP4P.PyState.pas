@@ -44,7 +44,7 @@ end;
 class function TPyState.FindModule(def: PPyModuleDef): IPyObject;
 begin
   if assigned(PyState_FindModule) and assigned(def) then
-    Result := TPyObject.Wrap(PyState_FindModule(def))
+    Result := TPyObject.Wrap(PyState_FindModule(def), False)
    else
     Result := nil;
 end;

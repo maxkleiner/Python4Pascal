@@ -48,7 +48,7 @@ class function TPyInstanceMethod.Function_(const im: IPyObject): IPyObject;
 begin
   if assigned(PyInstanceMethod_Function) and
      TPyObject.IsInitialized(im) then
-    Result := TPyObject.Wrap(PyInstanceMethod_Function(im.PyObject), False, False)
+    Result := TPyObject.Wrap(PyInstanceMethod_Function(im.PyObject), False)
    else
     Result := nil;
 end;

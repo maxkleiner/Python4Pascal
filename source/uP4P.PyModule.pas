@@ -87,7 +87,7 @@ class function TPyModule.GetDict(const module_: IPyObject): IPyObject;
 begin
   if assigned(PyModule_GetDict) and
      TPyObject.IsInitialized(module_) then
-    Result := TPyObject.Wrap(PyModule_GetDict(module_.PyObject), False, False)
+    Result := TPyObject.Wrap(PyModule_GetDict(module_.PyObject), False)
    else
     Result := nil;
 end;

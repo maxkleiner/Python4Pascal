@@ -74,7 +74,7 @@ class function TPyFunction.GetCode(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetCode) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetCode(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetCode(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -83,7 +83,7 @@ class function TPyFunction.GetGlobals(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetGlobals) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetGlobals(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetGlobals(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -92,7 +92,7 @@ class function TPyFunction.GetModule(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetModule) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetModule(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetModule(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -101,7 +101,7 @@ class function TPyFunction.GetDefaults(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetDefaults) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetDefaults(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetDefaults(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -136,7 +136,7 @@ class function TPyFunction.GetKwDefaults(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetKwDefaults) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetKwDefaults(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetKwDefaults(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -165,7 +165,7 @@ class function TPyFunction.GetClosure(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetClosure) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetClosure(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetClosure(op.PyObject), False)
    else
     Result := nil;
 end;
@@ -194,7 +194,7 @@ class function TPyFunction.GetAnnotations(const op: IPyObject): IPyObject;
 begin
   if assigned(PyFunction_GetAnnotations) and
      TPyObject.IsInitialized(op) then
-    Result := TPyObject.Wrap(PyFunction_GetAnnotations(op.PyObject), False, False)
+    Result := TPyObject.Wrap(PyFunction_GetAnnotations(op.PyObject), False)
    else
     Result := nil;
 end;

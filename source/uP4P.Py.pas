@@ -33,12 +33,13 @@ type
       class function  RefCnt(const aPyObject: IPyObject): integer;
       class procedure IncRef(const aPyObject: IPyObject);
       class procedure DecRef(const aPyObject: IPyObject);
-      class function  NewRef(const aPyObject: IPyObject): PPyConfig; overload;
-      class function  NewRef(aPyObject: PPyConfig): PPyConfig; overload;
-      class function  XNewRef(const aPyObject: IPyObject): PPyConfig;
+      class function  NewRef(const aPyObject: IPyObject): PPyObject; overload;
+      class function  NewRef(aPyObject: PPyConfig): PPyObject; overload;
+      class function  XNewRef(const aPyObject: IPyObject): PPyObject; overload;
+      class function  XNewRef(const aPyObject: PPyConfig): PPyObject; overload;
       class function  Is_(const x, y: IPyObject): boolean;
-      class function  GetConstant(constant_id: cardinal): PPyConfig;
-      class function  GetConstantBorrowed(constant_id: cardinal): PPyConfig;
+      class function  GetConstant(constant_id: cardinal): IPyObject;
+      class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
       class function  ReprEnter(const aPyObject: IPyObject): boolean;
       class procedure ReprLeave(const aPyObject: IPyObject);
       class function  CompileString(const str, filename: string; start: integer): IPyObject;
@@ -202,7 +203,7 @@ begin
     Py_DecRef(aPyObject.PyObject);
 end;
 
-class function TPy.NewRef(aPyObject: PPyConfig): PPyConfig;
+class function TPy.NewRef(aPyObject: PPyConfig): PPyObject;
 begin
   if assigned(Py_NewRef) then
     Result := Py_NewRef(aPyObject)
@@ -210,7 +211,7 @@ begin
     Result := nil;
 end;
 
-class function TPy.NewRef(const aPyObject: IPyObject): PPyConfig;
+class function TPy.NewRef(const aPyObject: IPyObject): PPyObject;
 begin
   if TPyObject.IsInitialized(aPyObject) then
     Result := NewRef(aPyObject.PyObject)
@@ -218,11 +219,18 @@ begin
     Result := nil;
 end;
 
-class function TPy.XNewRef(const aPyObject: IPyObject): PPyConfig;
+class function TPy.XNewRef(const aPyObject: IPyObject): PPyObject;
 begin
-  if assigned(Py_XNewRef) and
-     TPyObject.IsInitialized(aPyObject) then
-    Result := Py_XNewRef(aPyObject.PyObject)
+  if TPyObject.IsInitialized(aPyObject) then
+    Result := XNewRef(aPyObject.PyObject)
+   else
+    Result := nil;
+end;
+
+class function TPy.XNewRef(const aPyObject: PPyConfig): PPyObject;
+begin
+  if assigned(Py_XNewRef) then
+    Result := Py_XNewRef(aPyObject)
    else
     Result := nil;
 end;
@@ -235,20 +243,20 @@ begin
             (Py_Is(x.PyObject, y.PyObject) <> 0);
 end;
 
-class function TPy.GetConstant(constant_id: cardinal): PPyConfig;
+class function TPy.GetConstant(constant_id: cardinal): IPyObject;
 begin
   if assigned(Py_GetConstant) and
      (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
-    Result := Py_GetConstant(constant_id)
+    Result := TPyObject.Wrap(Py_GetConstant(constant_id))
    else
     Result := nil;
 end;
 
-class function TPy.GetConstantBorrowed(constant_id: cardinal): PPyConfig;
+class function TPy.GetConstantBorrowed(constant_id: cardinal): IPyObject;
 begin
   if assigned(Py_GetConstantBorrowed) and
      (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
-    Result := Py_GetConstantBorrowed(constant_id)
+    Result := TPyObject.Wrap(Py_GetConstantBorrowed(constant_id), False)
    else
     Result := nil;
 end;
@@ -256,7 +264,7 @@ end;
 class function TPy.ReprEnter(const aPyObject: IPyObject): boolean;
 begin
   Result := assigned(Py_ReprEnter) and
-            TPyObject.IsInitialized(aPyObject)  and
+            TPyObject.IsInitialized(aPyObject) and
             (Py_ReprEnter(aPyObject.PyObject) = 0);
 end;
 

@@ -145,7 +145,7 @@ end;
 class function TPyEval.GetBuiltins: IPyObject;
 begin
   if assigned(PyEval_GetBuiltins) then
-    Result := TPyObject.Wrap(PyEval_GetBuiltins())
+    Result := TPyObject.Wrap(PyEval_GetBuiltins(), False)
    else
     Result := nil;
 end;
@@ -153,7 +153,7 @@ end;
 class function TPyEval.GetGlobals: IPyObject;
 begin
   if assigned(PyEval_GetGlobals) then
-    Result := TPyObject.Wrap(PyEval_GetGlobals())
+    Result := TPyObject.Wrap(PyEval_GetGlobals(), False)
    else
     Result := nil;
 end;
@@ -161,7 +161,7 @@ end;
 class function TPyEval.GetLocals: IPyObject;
 begin
   if assigned(PyEval_GetLocals) then
-    Result := TPyObject.Wrap(PyEval_GetLocals())
+    Result := TPyObject.Wrap(PyEval_GetLocals(), False)
    else
     Result := nil;
 end;
@@ -169,7 +169,7 @@ end;
 class function TPyEval.GetFrame: IPyObject;
 begin
   if assigned(PyEval_GetFrame) then
-    Result := TPyObject.Wrap(PyEval_GetFrame())
+    Result := TPyObject.Wrap(PyEval_GetFrame(), False)
    else
     Result := nil;
 end;

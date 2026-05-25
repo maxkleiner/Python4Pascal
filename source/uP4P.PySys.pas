@@ -38,7 +38,7 @@ begin
   if assigned(PySys_GetObject) then
     begin
       TempName := StringToPyUTF8(name_);
-      Result   := TPyObject.Wrap(PySys_GetObject(PAnsiChar(TempName)));
+      Result   := TPyObject.Wrap(PySys_GetObject(PAnsiChar(TempName)), False);
     end
    else
     Result := nil;
@@ -61,7 +61,7 @@ end;
 class function TPySys.GetXOptions: IPyObject;
 begin
   if assigned(PySys_GetXOptions) then
-    Result := TPyObject.Wrap(PySys_GetXOptions())
+    Result := TPyObject.Wrap(PySys_GetXOptions(), False)
    else
     Result := nil;
 end;

@@ -27,7 +27,7 @@ implementation
 class function TPyModuleDef.Init(def: PPyModuleDef): IPyObject;
 begin
   if assigned(PyModuleDef_Init) then
-    Result := TPyObject.Wrap(PyModuleDef_Init(def), False, False)
+    Result := TPyObject.Wrap(PyModuleDef_Init(def), False)
    else
     Result := nil;
 end;

@@ -105,11 +105,11 @@ type
       function  LengthHint(defaultvalue: Py_ssize_t): Py_ssize_t;
 
     public
-      constructor Create(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean); overload;
+      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
       function    UnWrap: Pointer;
 
-      class function  Wrap(aPyObject: PPyConfig; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
+      class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
       class function  GetConstant(constant_id: cardinal): IPyObject;
       class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
@@ -136,7 +136,7 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py;
 
-constructor TPyObject.Create(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean);
+constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
   inherited Create;
 
@@ -154,13 +154,15 @@ end;
 
 destructor TPyObject.Destroy;
 begin
-  if FObjRefOwner then
-    DecRef;
-
-  inherited Destroy;
+  try
+    if FObjRefOwner then
+      DecRef;
+  finally
+    inherited Destroy;
+  end;
 end;
 
-class function TPyObject.Wrap(aPyObject: PPyConfig; aObjRefOwner, aUseNewRef: boolean): IPyObject;
+class function TPyObject.Wrap(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean): IPyObject;
 begin
   if assigned(aPyObject) then
     Result := TPyObject.Create(aPyObject, aObjRefOwner, aUseNewRef)
@@ -175,12 +177,12 @@ end;
 
 class function TPyObject.GetConstant(constant_id: cardinal): IPyObject;
 begin
-  Result := Wrap(TPy.GetConstant(constant_id));
+  Result := TPy.GetConstant(constant_id);
 end;
 
 class function TPyObject.GetConstantBorrowed(constant_id: cardinal): IPyObject;
 begin
-  Result := Wrap(TPy.GetConstantBorrowed(constant_id), False);
+  Result := TPy.GetConstantBorrowed(constant_id);
 end;
 
 class function TPyObject.Malloc(size: NativeUInt): pointer;

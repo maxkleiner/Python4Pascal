@@ -77,7 +77,7 @@ begin
   if assigned(PyDict_GetItem) and
      TPyObject.IsInitialized(od) and
      TPyObject.IsInitialized(key) then
-    Result := TPyObject.Wrap(PyDict_GetItem(od.PyObject, key.PyObject), False, False)
+    Result := TPyObject.Wrap(PyDict_GetItem(od.PyObject, key.PyObject), False)
    else
     Result := nil;
 end;
@@ -87,7 +87,7 @@ begin
   if assigned(PyDict_GetItemWithError) and
      TPyObject.IsInitialized(od) and
      TPyObject.IsInitialized(key) then
-    Result := TPyObject.Wrap(PyDict_GetItemWithError(od.PyObject, key.PyObject), False, False)
+    Result := TPyObject.Wrap(PyDict_GetItemWithError(od.PyObject, key.PyObject), False)
    else
     Result := nil;
 end;
@@ -107,7 +107,7 @@ begin
   if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(od) then
     begin
       TempString := StringToPyUTF8(key);
-      Result     := TPyObject.Wrap(PyDict_GetItemString(od.PyObject, PAnsiChar(TempString)), False, False)
+      Result     := TPyObject.Wrap(PyDict_GetItemString(od.PyObject, PAnsiChar(TempString)), False)
     end
    else
     Result := nil;

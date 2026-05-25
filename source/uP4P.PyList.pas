@@ -74,7 +74,7 @@ end;
 class function TPyList.GetItem(const list: IPyObject; index: Py_ssize_t): IPyObject;
 begin
   if assigned(PyList_GetItem) then
-    Result := TPyObject.Wrap(PyList_GetItem(list.PyObject, index), False, False)
+    Result := TPyObject.Wrap(PyList_GetItem(list.PyObject, index), False)
    else
     Result := nil;
 end;

@@ -94,7 +94,7 @@ end;
 class function TPyTuple.GetItem(const p: IPyObject; pos: Py_ssize_t): IPyObject;
 begin
   if assigned(PyTuple_GetItem) then
-    Result := TPyObject.Wrap(PyTuple_GetItem(p.PyObject, pos), False, False)
+    Result := TPyObject.Wrap(PyTuple_GetItem(p.PyObject, pos), False)
    else
     Result := nil;
 end;

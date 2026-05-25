@@ -157,7 +157,7 @@ end;
 function TPyThreadState.GetDict: IPyObject;
 begin
   if Initialized and assigned(PyThreadState_GetDict) then
-    Result := TPyObject.Wrap(PyThreadState_GetDict(), False, False)
+    Result := TPyObject.Wrap(PyThreadState_GetDict(), False)
    else
     Result := nil;
 end;

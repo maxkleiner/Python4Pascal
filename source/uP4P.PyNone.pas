@@ -30,7 +30,7 @@ uses
 class function TPyNone.New: IPyObject;
 begin
   if GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    Result := TPyObject.Wrap(Py_None, False, False)
+    Result := TPyObject.Wrap(Py_None, False)
    else
     Result := TPyObject.Wrap(Py_None, True, True);
 end;

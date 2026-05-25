@@ -30,7 +30,7 @@ uses
 class function TPyEllipsis.New: IPyObject;
 begin
   if GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    Result := TPyObject.Wrap(Py_Ellipsis, False, False)
+    Result := TPyObject.Wrap(Py_Ellipsis, False)
    else
     Result := TPyObject.Wrap(Py_Ellipsis, True, True);
 end;

@@ -106,7 +106,7 @@ end;
 class function TPyErr.Occurred(): IPyObject;
 begin
   if assigned(PyErr_Occurred) then
-    Result := TPyObject.Wrap(PyErr_Occurred(), False, False)
+    Result := TPyObject.Wrap(PyErr_Occurred(), False)
    else
     Result := nil;
 end;
