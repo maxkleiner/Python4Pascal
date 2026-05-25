@@ -19,6 +19,7 @@ uses
 type
   TPyMemoryView = class
     public
+      class function Check(const aPyObject: IPyObject): boolean;
       class function GetContiguous(const obj: IPyObject; buffertype: integer; order: TPyMemoryViewOrder): IPyObject;
       class function FromObject(const obj: IPyObject): IPyObject;
       class function FromMemory(mem: Pointer; size: Py_ssize_t; flags: integer): IPyObject;
@@ -26,6 +27,12 @@ type
   end;
 
 implementation
+
+class function TPyMemoryView.Check(const aPyObject: IPyObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(aPyObject) and
+            aPyObject.IsType(PyMemoryView_Type);
+end;
 
 class function TPyMemoryView.FromObject(const obj: IPyObject): IPyObject;
 begin

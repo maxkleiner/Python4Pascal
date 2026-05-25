@@ -140,6 +140,13 @@ contains
   uP4P.PyIndex in '..\source\uP4P.PyIndex.pas',
   uP4P.PySequence in '..\source\uP4P.PySequence.pas',
   uP4P.PyMapping in '..\source\uP4P.PyMapping.pas',
-  uP4P.PyTraceMalloc in '..\source\uP4P.PyTraceMalloc.pas';
+  uP4P.PyTraceMalloc in '..\source\uP4P.PyTraceMalloc.pas',
+  uP4P.PyDictKeys in '..\source\uP4P.PyDictKeys.pas',
+  uP4P.PyDictValues in '..\source\uP4P.PyDictValues.pas',
+  uP4P.PyDictItems in '..\source\uP4P.PyDictItems.pas',
+  uP4P.PyDictViewSet in '..\source\uP4P.PyDictViewSet.pas',
+  uP4P.PyAnySet in '..\source\uP4P.PyAnySet.pas',
+  uP4P.PyExceptionClass in '..\source\uP4P.PyExceptionClass.pas',
+  uP4P.PyExceptionInstance in '..\source\uP4P.PyExceptionInstance.pas';
 
 end.

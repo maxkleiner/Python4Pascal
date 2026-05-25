@@ -175,7 +175,7 @@ class function TPy.Type_(const aPyObject: IPyObject): PPyTypeObject;
 begin
   if assigned(Py_TYPE) and
      TPyObject.IsInitialized(aPyObject) then
-    Result := Py_TYPE(aPyObject.PyObject)
+    Result := Py_TYPE(aPyObject.PyObject)  // Borrowed reference.
    else
     Result := nil;
 end;

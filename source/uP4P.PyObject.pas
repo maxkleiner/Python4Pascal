@@ -85,10 +85,10 @@ type
       function  GetItemData: Pointer;
       function  VisitManagedDict(visit: visitproc; arg: Pointer): integer;
       procedure ClearManagedDict;
-      procedure Track;
-      procedure UnTrack;
-      function  IsTracked: boolean;
-      function  IsFinalized: boolean;
+      procedure GC_Track;
+      procedure GC_UnTrack;
+      function  GC_IsTracked: boolean;
+      function  GC_IsFinalized: boolean;
       function  IS_GC: boolean;
       function  GenericHash: Py_hash_t;
       function  AsFileDescriptor: integer;
@@ -114,7 +114,11 @@ type
       class function  Malloc(size: NativeUInt): pointer;
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
-      class procedure FreePointer(ptr: pointer);
+      class procedure Free_(ptr: pointer);
+      class function  Init(const ob: IPyObject; type_: PPyTypeObject): IPyObject;
+      class function  InitVar(const ob: IPyObject; type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+      class function  New(type_: PPyTypeObject): IPyObject;
+      class function  NewVar(type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
       class function  CallNoArgs(const callable: IPyObject): IPyObject;
       class function  Call(const callable, args, kwargs: IPyObject): IPyObject;
       class function  CallObject(const callable, args: IPyObject): IPyObject;
@@ -122,6 +126,12 @@ type
       class function  VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
       class function  VectorcallDict(const callable: IPyObject; const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
       class function  CallOneArg(const callable, arg: IPyObject): IPyObject;
+      class function  GC_Resize(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject;
+      class function  GC_New(type_: PPyTypeObject): IPyObject;
+      class function  GC_NewVar(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject;
+      class procedure GC_Del(ptr: pointer);
+      class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
+      class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
 
       property Initialized   : boolean     read GetInitialized;
       property PyObject      : PPyObject   read GetPyObject      write SetPyObject;
@@ -197,10 +207,48 @@ begin
     Result := nil;
 end;
 
-class procedure TPyObject.FreePointer(ptr: pointer);
+class procedure TPyObject.Free_(ptr: pointer);
 begin
   if assigned(PyObject_Free) then
     PyObject_Free(ptr);
+end;
+
+class function TPyObject.Init(const ob: IPyObject; type_: PPyTypeObject): IPyObject;
+begin
+  if assigned(PyObject_Init) and
+     TPyObject.IsInitialized(ob) and
+     assigned(type_) then
+    Result := TPyObject.Wrap(PyObject_Init(ob.PyObject, type_), False)
+   else
+    Result := nil;
+end;
+
+class function TPyObject.InitVar(const ob: IPyObject; type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+begin
+  if assigned(PyObject_InitVar) and
+     TPyObject.IsInitialized(ob) and
+     assigned(type_) then
+    Result := TPyObject.Wrap(PyObject_InitVar(PPyVarObject(ob.PyObject), type_, size), False)
+   else
+    Result := nil;
+end;
+
+class function TPyObject.New(type_: PPyTypeObject): IPyObject;
+begin
+  if assigned(PyObject_New) and
+     assigned(type_) then
+    Result := TPyObject.Wrap(PyObject_New(type_))
+   else
+    Result := nil;
+end;
+
+class function TPyObject.NewVar(type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+begin
+  if assigned(PyObject_NewVar) and
+     assigned(type_) then
+    Result := TPyObject.Wrap(PyObject_NewVar(type_, size))
+   else
+    Result := nil;
 end;
 
 class function TPyObject.CallNoArgs(const callable: IPyObject): IPyObject;
@@ -730,26 +778,26 @@ begin
     PyObject_ClearManagedDict(PyObject);
 end;
 
-procedure TPyObject.Track;
+procedure TPyObject.GC_Track;
 begin
   if Initialized and assigned(PyObject_GC_Track) then
     PyObject_GC_Track(PyObject);
 end;
 
-procedure TPyObject.UnTrack;
+procedure TPyObject.GC_UnTrack;
 begin
   if Initialized and assigned(PyObject_GC_UnTrack) then
     PyObject_GC_UnTrack(PyObject);
 end;
 
-function TPyObject.IsTracked: boolean;
+function TPyObject.GC_IsTracked: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_GC_IsTracked) and
             (PyObject_GC_IsTracked(PyObject) <> 0);
 end;
 
-function TPyObject.IsFinalized: boolean;
+function TPyObject.GC_IsFinalized: boolean;
 begin
   Result := Initialized and
             assigned(PyObject_GC_IsFinalized) and
@@ -927,6 +975,49 @@ begin
     Result := TPyObject.Wrap(PyObject_CallOneArg(callable.PyObject, arg.PyObject))
    else
     Result := nil;
+end;
+
+
+class function TPyObject.GC_Resize(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject;
+begin
+  if assigned(PyObject_GC_Resize) then
+    Result := PyObject_GC_Resize(varobj, size)
+   else
+    Result := nil;
+end;
+
+class function TPyObject.GC_New(type_: PPyTypeObject): IPyObject;
+begin
+  if assigned(PyObject_GC_New) then
+    Result := TPyObject.Wrap(PyObject_GC_New(type_))
+   else
+    Result := nil;
+end;
+
+class function TPyObject.GC_NewVar(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject;
+begin
+  if assigned(PyObject_GC_NewVar) then
+    Result := PyObject_GC_NewVar(type_, size)
+   else
+    Result := nil;
+end;
+
+class procedure TPyObject.GC_Del(ptr: pointer);
+begin
+  if assigned(PyObject_GC_Del) and assigned(ptr) then
+    PyObject_GC_Del(ptr);
+end;
+
+class procedure TPyObject.GetArenaAllocator(allocator: PPyObjectArenaAllocator);
+begin
+  if assigned(PyObject_GetArenaAllocator) then
+    PyObject_GetArenaAllocator(allocator);
+end;
+
+class procedure TPyObject.SetArenaAllocator(allocator: PPyObjectArenaAllocator);
+begin
+  if assigned(PyObject_SetArenaAllocator) then
+    PyObject_SetArenaAllocator(allocator);
 end;
 
 function TPyObject.GetInitialized: boolean;

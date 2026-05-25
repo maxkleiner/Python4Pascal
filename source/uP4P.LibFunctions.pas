@@ -163,15 +163,15 @@ var
   PyObject_Free                                  : procedure(ptr: pointer); cdecl;
   PyObject_Init                                  : function(ob: PPyObject; type_: PPyTypeObject): PPyObject; cdecl;
   PyObject_InitVar                               : function(ob: PPyVarObject; type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;
-  _PyObject_New                                  : function(type_: PPyTypeObject): PPyObject; cdecl;
-  _PyObject_NewVar                               : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;
+  PyObject_New                                   : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_New
+  PyObject_NewVar                                : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_NewVar
   PyGC_Collect                                   : function(): Py_ssize_t; cdecl;
   PyGC_Enable                                    : function(): integer; cdecl;
   PyGC_Disable                                   : function(): integer; cdecl;
   PyGC_IsEnabled                                 : function(): integer; cdecl;
-  _PyObject_GC_Resize                            : function(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject; cdecl;
-  _PyObject_GC_New                               : function(type_: PPyTypeObject): PPyObject; cdecl;
-  _PyObject_GC_NewVar                            : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;
+  PyObject_GC_Resize                             : function(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_Resize
+  PyObject_GC_New                                : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_GC_New
+  PyObject_GC_NewVar                             : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_NewVar
   PyObject_GC_Track                              : procedure(ob: PPyObject); cdecl;
   PyObject_GC_UnTrack                            : procedure(ptr: pointer); cdecl;
   PyObject_GC_Del                                : procedure(ptr: pointer); cdecl;
@@ -586,7 +586,7 @@ var
   PyTuple_GetSlice                               : function(p: PPyObject; low, high: Py_ssize_t): PPyObject; cdecl;
   PyTuple_Pack                                   : function(n: Py_ssize_t {; ...}): PPyObject; cdecl varargs;
 
-  {* include/listobject.h *}
+  {* include/listobject.h  include/cpython/listobject.h *}
   PyList_Type                                    : PPyTypeObject;
   PyListIter_Type                                : PPyTypeObject;
   PyListRevIter_Type                             : PPyTypeObject;

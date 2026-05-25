@@ -49,7 +49,7 @@ type
        class function SUPPORTS_WEAKREFS(type_: PPyTypeObject): boolean;
        class function HasFeature(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
        class function FastSubclass(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
-       class function Check(const aPyObject: IPyObject; feature: C_ULong): boolean;
+       class function Check(const aPyObject: IPyObject): boolean;
        class function CheckExact(const aPyObject: IPyObject): boolean;
    end;
 
@@ -105,7 +105,7 @@ end;
 class function TPyTypeObject.GetModule(type_: PPyTypeObject): IPyObject;
 begin
   if assigned(PyType_GetModule) then
-    Result := TPyObject.Wrap(PyType_GetModule(type_))
+    Result := TPyObject.Wrap(PyType_GetModule(type_), False)
    else
     Result := nil;
 end;
@@ -243,7 +243,7 @@ end;
 class function TPyTypeObject.GetModuleByDef(type_: PPyTypeObject; def: PPyModuleDef): IPyObject;
 begin
   if assigned(PyType_GetModuleByDef) then
-    Result := TPyObject.Wrap(PyType_GetModuleByDef(type_, def))
+    Result := TPyObject.Wrap(PyType_GetModuleByDef(type_, def), False)
    else
     Result := nil;
 end;
@@ -307,7 +307,7 @@ begin
   Result := HasFeature(aPyTypeObject, feature);
 end;
 
-class function TPyTypeObject.Check(const aPyObject: IPyObject; feature: C_ULong): boolean;
+class function TPyTypeObject.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
             FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_TYPE_SUBCLASS));

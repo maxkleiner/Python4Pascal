@@ -100,10 +100,10 @@ type
     function  GetItemData: Pointer;
     function  VisitManagedDict(visit: visitproc; arg: Pointer): integer;
     procedure ClearManagedDict;
-    procedure Track;
-    procedure UnTrack;
-    function  IsTracked: boolean;
-    function  IsFinalized: boolean;
+    procedure GC_Track;
+    procedure GC_UnTrack;
+    function  GC_IsTracked: boolean;
+    function  GC_IsFinalized: boolean;
     function  IS_GC: boolean;
     function  GenericHash: Py_hash_t;
     function  AsFileDescriptor: integer;

@@ -19,13 +19,13 @@ uses
 type
   TPyException = class
     public
-      class function SetTraceback(const ex, tb: IPyObject): boolean;
-      class function GetTraceback(const ex: IPyObject): IPyObject;
-      class function GetCause(const ex: IPyObject): IPyObject;
+      class function  SetTraceback(const ex, tb: IPyObject): boolean;
+      class function  GetTraceback(const ex: IPyObject): IPyObject;
+      class function  GetCause(const ex: IPyObject): IPyObject;
       class procedure SetCause(const ex, cause: IPyObject);
-      class function GetContext(const ex: IPyObject): IPyObject;
+      class function  GetContext(const ex: IPyObject): IPyObject;
       class procedure SetContext(const ex, ctx: IPyObject);
-      class function GetArgs(const ex: IPyObject): IPyObject;
+      class function  GetArgs(const ex: IPyObject): IPyObject;
       class procedure SetArgs(const ex, args: IPyObject);
   end;
 

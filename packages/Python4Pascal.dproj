@@ -202,6 +202,13 @@
         <DCCReference Include="..\source\uP4P.PySequence.pas"/>
         <DCCReference Include="..\source\uP4P.PyMapping.pas"/>
         <DCCReference Include="..\source\uP4P.PyTraceMalloc.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDictKeys.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDictValues.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDictItems.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDictViewSet.pas"/>
+        <DCCReference Include="..\source\uP4P.PyAnySet.pas"/>
+        <DCCReference Include="..\source\uP4P.PyExceptionClass.pas"/>
+        <DCCReference Include="..\source\uP4P.PyExceptionInstance.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
