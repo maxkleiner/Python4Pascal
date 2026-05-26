@@ -75,7 +75,7 @@ begin
   if assigned(PyException_SetCause) and
      TPyObject.IsInitialized(ex) and
      TPyObject.IsInitialized(cause) then
-    PyException_SetCause(ex.PyObject, cause.PyObject);
+    PyException_SetCause(ex.PyObject, cause.Unwrap);
 end;
 
 class function TPyException.GetContext(const ex: IPyObject): IPyObject;
@@ -91,7 +91,7 @@ begin
   if assigned(PyException_SetContext) and
      TPyObject.IsInitialized(ex) and
      TPyObject.IsInitialized(ctx) then
-    PyException_SetContext(ex.PyObject, ctx.PyObject);
+    PyException_SetContext(ex.PyObject, ctx.Unwrap);
 end;
 
 class function TPyException.GetArgs(const ex: IPyObject): IPyObject;

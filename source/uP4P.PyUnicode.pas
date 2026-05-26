@@ -813,14 +813,11 @@ begin
      TPyObject.IsInitialized(left) and
      TPyObject.IsInitialized(right) then
     begin
-      TempObj := left.PyObject;
+      TempObj := left.Unwrap;
 
       PyUnicode_Append(@TempObj, right.PyObject);
 
       left.PyObject := TempObj;
-
-      if not(assigned(TempObj)) then
-        left.ObjRefOwner := False;
     end;
 end;
 
@@ -833,15 +830,12 @@ begin
      TPyObject.IsInitialized(left) and
      TPyObject.IsInitialized(right) then
     begin
-      TempObj    := left.PyObject;
+      TempObj    := left.Unwrap;
       TempRefCnt := right.RefCnt;
 
       PyUnicode_AppendAndDel(@TempObj, right.PyObject);
 
       left.PyObject := TempObj;
-
-      if not(assigned(TempObj)) then
-        left.ObjRefOwner := False;
 
       if (TempRefCnt = 1) then
         right.InitPyObject;

@@ -222,17 +222,17 @@ begin
   if assigned(PyErr_SetExcInfo) then
     begin
       if TPyObject.IsInitialized(type_) then
-        TempType := type_.PyObject
+        TempType := type_.Unwrap
        else
         TempType := nil;
 
       if TPyObject.IsInitialized(value) then
-        TempValue := value.PyObject
+        TempValue := value.Unwrap
        else
         TempValue := nil;
 
       if TPyObject.IsInitialized(traceback) then
-        TempTraceback := traceback.PyObject
+        TempTraceback := traceback.Unwrap
        else
         TempTraceback := nil;
 
