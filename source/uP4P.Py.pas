@@ -21,7 +21,8 @@ type
     public
       class procedure FatalError(const message_: string);
       class function  UniversalNewlineFgets(buf: PByte; n: integer; stream: PFILE): PByte;
-      class function  GetArgcArgv(var argc: integer; var argv: TStringList): boolean;
+      class function  GetArgcArgv(var argc: integer; var argv: TStringList): boolean; overload;
+      class function  GetArgcArgv(out argc: integer; out argv: PPWCharT): boolean; overload;
       class function  InitializeFromInitConfig(config: PPyInitConfig): boolean;
       class function  InitializeFromConfig(config: PPyConfig): IPyStatus;
       class function  IsIntialized: boolean;
@@ -107,17 +108,23 @@ begin
     Result := nil;
 end;
 
+class function TPy.GetArgcArgv(out argc: integer; out argv: PPWCharT): boolean;
+begin
+  if assigned(Py_GetArgcArgv) then
+    begin
+      Py_GetArgcArgv(argc, argv);
+      Result := True;
+    end
+   else
+    Result := False;
+end;
+
 class function TPy.GetArgcArgv(var argc: integer; var argv: TStringList): boolean;
 var
   TempArgv : PPWCharT;
 begin
-  Result := False;
-
-  if assigned(Py_GetArgcArgv) then
-    begin
-      Py_GetArgcArgv(argc, TempArgv);
-      Result := WCharTArrayToStringList(TempArgv, argc, argv);
-    end;
+  Result := GetArgcArgv(argc, TempArgv) and
+            WCharTArrayToStringList(TempArgv, argc, argv);
 end;
 
 class function TPy.InitializeFromInitConfig(config: PPyInitConfig): boolean;
