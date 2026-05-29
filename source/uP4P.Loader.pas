@@ -615,7 +615,7 @@ begin
 
         doOnBeforeInitialization(TempConfig);
 
-        if TPy.InitializeFromInitConfig(TempConfig.Config) and
+        if TPy.InitializeFromInitConfig(TempConfig) and
            TPy.IsIntialized then
           begin
             FStatus := plsInitialized;

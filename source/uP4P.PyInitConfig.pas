@@ -178,6 +178,10 @@ type
     public
       constructor Create;
       destructor  Destroy; override;
+
+      class function  CreateInitConfig: PPyInitConfig;
+      class procedure FreeInitConfig(var config: PPyInitConfig);
+      class function  IsInitialized(const config: IPyInitConfig): boolean; inline;
   end;
 
 implementation
@@ -189,21 +193,37 @@ constructor TPyInitConfig.Create;
 begin
   inherited Create;
 
-  if assigned(PyInitConfig_Create) then
-    FConfig := PyInitConfig_Create()
-   else
-    FConfig := nil;
+  FConfig := CreateInitConfig();
 end;
 
 destructor TPyInitConfig.Destroy;
 begin
-  if assigned(FConfig) then
-    begin
-      PyInitConfig_Free(FConfig);
-      FConfig := nil;
-    end;
+  FreeInitConfig(FConfig);
 
   inherited Destroy;
+end;
+
+class function TPyInitConfig.CreateInitConfig: PPyInitConfig;
+begin
+  if assigned(PyInitConfig_Create) then
+    Result := PyInitConfig_Create()
+   else
+    Result := nil;
+end;
+
+class procedure TPyInitConfig.FreeInitConfig(var config: PPyInitConfig);
+begin
+  if assigned(PyInitConfig_Free) and
+     assigned(config) then
+    begin
+      PyInitConfig_Free(config);
+      config := nil;
+    end;
+end;
+
+class function TPyInitConfig.IsInitialized(const config: IPyInitConfig): boolean;
+begin
+  Result := assigned(config) and config.Initialized;
 end;
 
 function TPyInitConfig.GetConfig: Pointer;

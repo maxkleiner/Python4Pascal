@@ -23,7 +23,7 @@ type
       class function  UniversalNewlineFgets(buf: PByte; n: integer; stream: PFILE): PByte;
       class function  GetArgcArgv(var argc: integer; var argv: TStringList): boolean; overload;
       class function  GetArgcArgv(out argc: integer; out argv: PPWCharT): boolean; overload;
-      class function  InitializeFromInitConfig(config: PPyInitConfig): boolean;
+      class function  InitializeFromInitConfig(const initconfig: IPyInitConfig): boolean;
       class function  InitializeFromConfig(config: PPyConfig): IPyStatus;
       class function  IsIntialized: boolean;
       class function  GenericAlias(const origin, args: IPyObject): IPyObject;
@@ -86,7 +86,7 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyStatus, uP4P.PyThreadState,
-  uP4P.PyPreConfig;
+  uP4P.PyInitConfig, uP4P.PyPreConfig;
 
 class procedure TPy.FatalError(const message_: string);
 var
@@ -127,10 +127,11 @@ begin
             WCharTArrayToStringList(TempArgv, argc, argv);
 end;
 
-class function TPy.InitializeFromInitConfig(config: PPyInitConfig): boolean;
+class function TPy.InitializeFromInitConfig(const initconfig: IPyInitConfig): boolean;
 begin
   Result := assigned(Py_InitializeFromInitConfig) and
-            (Py_InitializeFromInitConfig(config) = 0);
+            TPyInitConfig.IsInitialized(initconfig) and
+            (Py_InitializeFromInitConfig(initconfig.config) = 0);
 end;
 
 class function TPy.InitializeFromConfig(config: PPyConfig): IPyStatus;
