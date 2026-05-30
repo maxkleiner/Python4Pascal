@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  uP4P.Interfaces, uP4P.PyObject, uP4P.Loader, uP4P.Py, uP4P.PyImport, uP4P.PyModule, uP4P.PyEval;
+  uP4P.Interfaces, uP4P.PyObject, uP4P.Loader, uP4P.Py, uP4P.PyImport, uP4P.PyModule, uP4P.PyEval, uP4P.PyRun;
 
 type
   TMainForm = class(TForm)
@@ -35,12 +35,15 @@ begin
 end;
 
 procedure TMainForm.InitChkClick(Sender: TObject);
+const
+  PYTHON_LIB = 'python314.dll';
 var
   TempPythonPath, TempPythonLibPath, TempPythonPackagesPath  : string;
 begin
-  //TempPythonPath         := 'C:\Users\usuario\Desktop\python-3.14.4-embed-win32';
+  //TempPythonPath         := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32';
   TempPythonPath         := 'C:\Users\usuario\AppData\Local\Python\pythoncore-3.14-64';
   TempPythonLibPath      := TempPythonPath + '\Lib';
+  //TempPythonLibPath      := 'C:\Users\usuario\AppData\Local\Python\pythoncore-3.14-64\Lib';
   TempPythonPackagesPath := TempPythonLibPath + '\site-packages';
 
   if not(assigned(GlobalP4PLoader)) then
@@ -50,10 +53,11 @@ begin
     begin
       if not(GlobalP4PLoader.Initialized) then
         begin
-         GlobalP4PLoader.Home := TempPythonLibPath;
-         GlobalP4PLoader.ModuleSearchPaths := TempPythonPackagesPath;
+          GlobalP4PLoader.SetCurrentDir := True;
+          GlobalP4PLoader.Home := TempPythonLibPath;
+          GlobalP4PLoader.ModuleSearchPaths := TempPythonLibPath + ',' + TempPythonPackagesPath;
 
-          if GlobalP4PLoader.Load(TempPythonPath + '\python314.dll') and
+          if GlobalP4PLoader.Load(TempPythonPath + '\' + PYTHON_LIB) and
              GlobalP4PLoader.Initialize then
             Memo1.Lines.Add('Python initialized. ' + GlobalP4PLoader.buildinfo)
            else
@@ -69,25 +73,35 @@ begin
       Memo1.Lines.Add('Python uninitialized');
     end;
 end;
+{
+procedure TMainForm.RunBtnClick(Sender: TObject);
+begin
+  if TPyRun.SimpleString(CodeEdt.Text) then
+    Memo1.Lines.Add('Code run correctly.')
+   else
+    Memo1.Lines.Add('There was an error running the code.');
+end;
+}
 
 procedure TMainForm.RunBtnClick(Sender: TObject);
 var
   TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule: IPyObject;
 begin
-  TempBytecode := TPy.CompileStringExFlags(CodeEdt.Text, '<string>', 1, nil, -1);
+  TempMainModule := TPyImport.AddModule('__main__');
 
-  if TPyObject.IsInitialized(TempBytecode) then
+  if TPyObject.IsInitialized(TempMainModule) then
     begin
-      Memo1.Lines.Add('Code compiled correctly.');
+      Memo1.Lines.Add('__main__ module obtained correctly.');
 
-      TempMainModule := TPyImport.AddModule('__main__');
+      TempLocals  := TPyModule.GetDict(TempMainModule);
+      TempGlobals := TempLocals;
 
-      if TPyObject.IsInitialized(TempMainModule) then
+      //TempBytecode := TPy.CompileStringExFlags(CodeEdt.Text, '<string>', 1, nil, -1);
+      TempBytecode := TPy.CompileString(CodeEdt.Text, '<string>', 1);
+
+      if TPyObject.IsInitialized(TempBytecode) then
         begin
-          Memo1.Lines.Add('__main__ module obtained correctly.');
-
-          TempLocals  := TPyModule.GetDict(TempMainModule);
-          TempGlobals := TempLocals;
+          Memo1.Lines.Add('Code compiled correctly.');
 
           TempResult  := TPyEval.EvalCode(TempBytecode, TempGlobals, TempLocals);
 
@@ -97,10 +111,10 @@ begin
             Memo1.Lines.Add('There was an error evaluating the bytecode.')
         end
        else
-        Memo1.Lines.Add('There was an error getting the __main__ module.');
+        Memo1.Lines.Add('There was an error compiling the code.');
     end
    else
-    Memo1.Lines.Add('There was an error compiling the code.');
+    Memo1.Lines.Add('There was an error getting the __main__ module.');
 end;
 
 end.

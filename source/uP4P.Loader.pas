@@ -64,6 +64,7 @@ type
       function  GetFileVersion(var aFileVersion : TFileVersionInfo): boolean;
       procedure Finalize;
       procedure doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig = nil);
+      procedure SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
       function  Initialize_PEP741: boolean;
       function  Initialize_PEP587: boolean;
       {$IFDEF MSWINDOWS}
@@ -587,6 +588,25 @@ begin
     ShowErrorMessageDlg(FLastErrorMessage);
 end;
 
+procedure TP4PLoader.SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
+var
+  I: Integer;
+  TempSL: TStringList;
+begin
+  aConfig.parse_argv := False;
+
+  TempSL := TStringList.Create;
+
+  for I := 0 to ParamCount do
+    if I = 0 then
+      TempSL.Add('')
+     else
+      TempSL.Add(ParamStr(I));
+
+  aConfig.SetStrList(PYINITCONFIGOPTION_ARGV, TempSL);
+  TempSL.Free;
+end;
+
 function TP4PLoader.Initialize_PEP741: boolean;
 var
   TempConfig : IPyInitConfig;
@@ -612,6 +632,8 @@ begin
         TempConfig.executable          := FExecutable;
         TempConfig.program_name        := FProgramName;
         TempConfig.module_search_paths := FModuleSearchPaths;
+
+        SetProgramArgs_PEP741(TempConfig);
 
         doOnBeforeInitialization(TempConfig);
 
