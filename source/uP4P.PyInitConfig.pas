@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.SysUtils,
   {$ELSE}
-    Classes,
+    Classes, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
@@ -1254,8 +1254,8 @@ procedure TPyInitConfig.Set_module_search_paths(const aValue: string);
 var
   TempSL: TStringList;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
+  TempSL      := TStringList.Create;
+  TempSL.Text := StringReplace(aValue, ';', #13, [rfReplaceAll]);
   SetStrList(PYINITCONFIGOPTION_MODULE_SEARCH_PATHS, TempSL);
   TempSL.Free;
 end;

@@ -1027,7 +1027,7 @@ end;
 
 function TPyObject.GetPyObject: PPyObject;
 begin
-  Result := @FPyObject;
+  Result := FPyObject;
 end;
 
 function TPyObject.GetRefCnt: integer;

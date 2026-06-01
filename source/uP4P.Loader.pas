@@ -11,10 +11,10 @@ interface
 uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ENDIF}
-    System.Classes, System.SysUtils, System.SyncObjs,
+    System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
-    {$IFDEF FPC}dynlibs,{$ENDIF}
+    {$IFDEF FPC}dynlibs, FileUtil,{$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
@@ -54,6 +54,8 @@ type
       function GetCopyright: string;
       function GetCompiler: string;
       function GetBuildInfo: string;
+      function GetOSPythonHome: string;
+      function GetOSPythonLibPath: string;
 
       procedure FreePythonLibrary;
       function  ReadLibraryVersionInfo(const aLibraryPath: string): boolean;
@@ -70,7 +72,12 @@ type
       {$IFDEF MSWINDOWS}
       function  GetExtendedFileVersion(const aFileName : string) : uint64;
       function  GetDLLVersion(const aFileName : string) : boolean;
+      function  SearchPythonRegistry(const aRegPath: string; aLocalMachine: boolean; var aInstallPath: string): boolean;
+      function  SearchMicrosoftStoreRegistry(var aInstallPath: string): boolean;
+      function  SearchUninstallRegistry(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;
       {$ENDIF}
+      function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
+      function  ValidPythonHomePath(const aPath: string): boolean;
 
       procedure LoadAllFunctions;
       procedure Load_pymacro;
@@ -152,7 +159,7 @@ type
       /// <summary>
       /// Load the Python library.
       /// </summary>
-      function    Load(const aLibraryPath: string) : boolean;
+      function    Load(const aLibraryPath: string = '') : boolean;
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
@@ -218,6 +225,14 @@ type
       /// Python build information.
       /// </summary>
       property BuildInfo                         : string                                       read GetBuildInfo;
+      /// <summary>
+      /// Returns the Python home path when it's installed in the OS.
+      /// </summary>
+      property OSPythonHome                      : string                                       read GetOSPythonHome;
+      /// <summary>
+      /// Returns the Python library path when it's installed in the OS.
+      /// </summary>
+      property OSPythonLibPath                   : string                                       read GetOSPythonLibPath;
 
       property Isolated                          : boolean                                      read FIsolated                          write FIsolated;
       property ParserDebug                       : boolean                                      read FParserDebug                       write FParserDebug;
@@ -370,6 +385,129 @@ end;
 function TP4PLoader.GetBuildInfo: string;
 begin
   Result := TPy.GetBuildInfo;
+end;
+
+function TP4PLoader.GetOSPythonHome: string;
+{$IFDEF MSWINDOWS}
+const
+  PTYHON_REG_PATH     = 'SOFTWARE\Python\PythonCore';
+  PTYHON_REG_PATH_WOW = 'SOFTWARE\Wow6432Node\Python\PythonCore';
+  UNINST_PATH_32BIT   = 'SOFTWARE\Microsoft\Windows\CurrentVersion\UnInstall';
+  UNINST_PATH_64BIT   = 'SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall';
+{$ENDIF}
+var
+  TempPath : string;
+begin
+  Result := '';
+
+  try
+    if SearchPythonHomeEnvironmentVariable(TempPath) then
+      begin
+        Result := TempPath;
+        exit;
+      end;
+
+    {$IFDEF MSWINDOWS}
+    if SearchPythonRegistry(PTYHON_REG_PATH,     False, TempPath) or
+       SearchPythonRegistry(PTYHON_REG_PATH,     True,  TempPath) or
+       SearchPythonRegistry(PTYHON_REG_PATH_WOW, False, TempPath) or
+       SearchPythonRegistry(PTYHON_REG_PATH_WOW, True,  TempPath) or
+       SearchMicrosoftStoreRegistry(TempPath) or
+       SearchUninstallRegistry(UNINST_PATH_32BIT, False, TempPath) or
+       SearchUninstallRegistry(UNINST_PATH_32BIT, True,  TempPath) or
+       SearchUninstallRegistry(UNINST_PATH_64BIT, False, TempPath) or
+       SearchUninstallRegistry(UNINST_PATH_64BIT, True,  TempPath) then
+      begin
+        Result := TempPath;
+        exit;
+      end;
+    {$ENDIF}
+  except
+    on e : exception do
+      if CustomExceptionHandler('TP4PLoader.GetOSPythonHome', e) then raise;
+  end;
+end;
+
+function TP4PLoader.GetOSPythonLibPath: string;
+var
+  {$IFDEF FPC}
+  TempFiles : TStringList;
+  {$ELSE}
+  TempFiles : TStringDynArray;
+  {$ENDIF}
+  i, TempCount : integer;
+  TempSize, TempMaxSize : int64;
+  TempLib : string;
+begin
+  Result    := '';
+  TempFiles := nil;
+
+  try
+    try
+      if (length(FHome) > 0) then
+        begin
+          {$IFDEF FPC}
+          TempFiles := FindAllFiles(FHome, 'python*.dll', False);
+          TempCount := TempFiles.Count;
+          {$ELSE}
+          TempFiles := TDirectory.GetFiles(FHome, 'python*.dll', TSearchOption.soTopDirectoryOnly);
+          TempCount := Length(TempFiles);
+          {$ENDIF}
+
+          TempLib     := '';
+          TempMaxSize := 0;
+
+          i := 0;
+          while (i < TempCount) do
+            begin
+              {$IFDEF FPC}
+              //TODO: Call FileSize in Lazarus.
+              {$ELSE}
+              TempSize := TFile.GetSize(TempFiles[i]);
+              {$ENDIF}
+
+              if (TempMaxSize < TempSize) then
+                begin
+                  TempMaxSize := TempSize;
+                  TempLib     := TempFiles[i];
+                end;
+
+              inc(i);
+            end;
+
+          Result := TempLib;
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('TP4PLoader.GetOSPythonLibPath', e) then raise;
+    end;
+  finally
+    {$IFDEF FPC}
+    if assigned(TempFiles) then FreeAndNil(TempFiles);
+    {$ENDIF}
+  end;
+end;
+
+function TP4PLoader.ValidPythonHomePath(const aPath: string): boolean;
+begin
+  Result := (length(aPath) > 0) and
+            DirectoryExists(aPath) and
+            FileExists(IncludeTrailingPathDelimiter(aPath) + 'python.exe');
+end;
+
+function TP4PLoader.SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
+var
+  TempPath : string;
+begin
+  Result       := False;
+  aInstallPath := '';
+  TempPath     := GetEnvironmentVariable('PYTHONHOME');
+
+  if ValidPythonHomePath(TempPath) then
+    begin
+      aInstallPath := TempPath;
+      Result       := True;
+    end;
 end;
 
 function TP4PLoader.PythonLibIsGreaterOrEqualThan(aMajor, aMinor, aMicro: integer): boolean;
@@ -569,15 +707,224 @@ begin
       if CustomExceptionHandler('TP4PLoader.GetDLLVersion', e) then raise;
   end;
 end;
+
+function TP4PLoader.SearchPythonRegistry(const aRegPath: string; aLocalMachine: boolean; var aInstallPath: string): boolean;
+var
+  TempReg : TRegistry;
+  TempKeys : TStringList;
+  i : integer;
+  TempKey, TempPath : string;
+begin
+  Result   := False;
+  TempReg  := nil;
+  TempKeys := nil;
+
+  try
+    try
+      TempReg := TRegistry.Create;
+
+      if aLocalMachine then
+        TempReg.RootKey := HKEY_LOCAL_MACHINE
+       else
+        TempReg.RootKey := HKEY_CURRENT_USER;
+
+      if TempReg.OpenKeyReadOnly(aRegPath) then
+        begin
+          TempKeys := TStringList.Create;
+          TempReg.GetKeyNames(TStrings(TempKeys));
+          TempReg.CloseKey;
+
+          TempKeys.Sort;
+
+          i := pred(TempKeys.Count);
+
+          while (i >= 0) and not(Result) do
+            begin
+              TempKey := TempKeys[i];
+
+              if TempReg.OpenKeyReadOnly(aRegPath + '\' + TempKey + '\InstallPath') then
+                begin
+                  TempPath := TempReg.ReadString('');
+
+                  if ValidPythonHomePath(TempPath) then
+                    begin
+                      aInstallPath := TempPath;
+                      Result       := True;
+                    end;
+
+                  TempReg.CloseKey;
+                end;
+
+              dec(i);
+            end;
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('TP4PLoader.SearchPythonRegistry', e) then raise;
+    end;
+  finally
+    if (TempReg  <> nil) then FreeAndNil(TempReg);
+    if (TempKeys <> nil) then FreeAndNil(TempKeys);
+  end;
+end;
+
+function TP4PLoader.SearchMicrosoftStoreRegistry(var aInstallPath: string): boolean;
+const
+  APPSTORE_REG = 'SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Packages';
+  PACKAGEROOTFOLDER_KEY = 'PackageRootFolder';
+var
+  TempReg : TRegistry;
+  TempKeys : TStringList;
+  i : integer;
+  TempKey, TempPath : string;
+begin
+  Result   := False;
+  TempReg  := nil;
+  TempKeys := nil;
+
+  try
+    try
+      TempReg         := TRegistry.Create;
+      TempReg.RootKey := HKEY_CURRENT_USER;
+
+      if TempReg.OpenKeyReadOnly(APPSTORE_REG) then
+        begin
+          TempKeys := TStringList.Create;
+          TempReg.GetKeyNames(TStrings(TempKeys));
+          TempReg.CloseKey;
+
+          i := 0;
+          while (i < TempKeys.Count) and not(Result) do
+            begin
+              TempKey := TempKeys[i];
+
+              if (pos('python', lowercase(TempKey)) > 0) and
+                 TempReg.OpenKeyReadOnly(APPSTORE_REG + '\' + TempKey) then
+                begin
+                  if TempReg.ValueExists(PACKAGEROOTFOLDER_KEY) then
+                    begin
+                      TempPath := TempReg.ReadString(PACKAGEROOTFOLDER_KEY);
+
+                      if ValidPythonHomePath(TempPath) then
+                        begin
+                          aInstallPath := TempPath;
+                          Result       := True;
+                        end;
+                    end;
+
+                  TempReg.CloseKey;
+                end;
+
+              inc(i);
+            end;
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('TP4PLoader.SearchMicrosoftStoreRegistry', e) then raise;
+    end;
+  finally
+    if (TempReg  <> nil) then FreeAndNil(TempReg);
+    if (TempKeys <> nil) then FreeAndNil(TempKeys);
+  end;
+end;
+
+function TP4PLoader.SearchUninstallRegistry(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;
+const
+  DISPLAYNAME_KEY     = 'DisplayName';
+  INSTALLLOCATION_KEY = 'InstallLocation';
+var
+  TempReg : TRegistry;
+  TempKeys : TStringList;
+  i : integer;
+  TempDisplayName, TempPath, TempKey : string;
+begin
+  Result   := False;
+  TempReg  := nil;
+  TempKeys := nil;
+
+  try
+    try
+      TempReg := TRegistry.Create;
+
+      if aLocalMachine then
+        TempReg.RootKey := HKEY_LOCAL_MACHINE
+       else
+        TempReg.RootKey := HKEY_CURRENT_USER;
+
+      if TempReg.OpenKeyReadOnly(aRegPath) then
+        begin
+          TempKeys := TStringList.Create;
+          TempReg.GetKeyNames(TStrings(TempKeys));
+          TempReg.CloseKey;
+
+          i := 0;
+          while (i < TempKeys.Count) and not(Result) do
+            begin
+              TempKey := TempKeys[i];
+
+              if TempReg.OpenKeyReadOnly(aRegPath + '\' + TempKey) then
+                begin
+                  if TempReg.ValueExists(DISPLAYNAME_KEY) and
+                     TempReg.ValueExists(INSTALLLOCATION_KEY) then
+                    begin
+                      TempDisplayName := lowercase(TempReg.ReadString(DISPLAYNAME_KEY));
+
+                      if (Pos('python', TempDisplayName) > 0) then
+                        begin
+                          TempPath := TempReg.ReadString(INSTALLLOCATION_KEY);
+
+                          if ValidPythonHomePath(TempPath) then
+                            begin
+                              aInstallPath := TempPath;
+                              Result       := True;
+                            end;
+                        end;
+                    end;
+
+                  TempReg.CloseKey;
+                end;
+
+              inc(i);
+            end;
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('TP4PLoader.SearchUninstallRegistry', e) then raise;
+    end;
+  finally
+    if (TempReg  <> nil) then FreeAndNil(TempReg);
+    if (TempKeys <> nil) then FreeAndNil(TempKeys);
+  end;
+end;
 {$ENDIF}
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
+var
+  TempPythonDLLPath, TempPythonLibPath, TempPythonPackagesPath : string;
 begin
   Result            := False;
   FLastErrorMessage := '';
 
-  if ReadLibraryVersionInfo(aLibraryPath) and
-     LoadPythonLibrary(aLibraryPath) then
+  if (length(FHome) = 0) then
+    FHome := OSPythonHome;
+
+  if (length(FModuleSearchPaths) = 0) then
+    begin
+      TempPythonLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
+      TempPythonPackagesPath := IncludeTrailingPathDelimiter(TempPythonLibPath) + 'site-packages';
+
+      if DirectoryExists(TempPythonLibPath) and
+         DirectoryExists(TempPythonPackagesPath) then
+        FModuleSearchPaths := TempPythonLibPath + ';' + TempPythonPackagesPath;
+    end;
+
+  if (length(aLibraryPath) > 0) then
+    TempPythonDLLPath := aLibraryPath
+   else
+    TempPythonDLLPath := OSPythonLibPath;
+
+  if ReadLibraryVersionInfo(TempPythonDLLPath) and
+     LoadPythonLibrary(TempPythonDLLPath) then
     begin
       LoadAllFunctions;
       GetFileVersion(FFileVersion);
@@ -2077,6 +2424,14 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}Py_Exit{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'Py_Exit');
   {$IFDEF FPC}Pointer({$ENDIF}Py_Main{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'Py_Main');
   {$IFDEF FPC}Pointer({$ENDIF}Py_BytesMain{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'Py_BytesMain');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_SetProgramName{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'Py_SetProgramName');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetProgramName{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'Py_GetProgramName');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_SetPythonHome{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'Py_SetPythonHome');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetPythonHome{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'Py_GetPythonHome');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetProgramFullPath{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'Py_GetProgramFullPath');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetPrefix{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'Py_GetPrefix');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetExecPrefix{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'Py_GetExecPrefix');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_GetPath{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'Py_GetPath');
   {$IFDEF FPC}Pointer({$ENDIF}Py_GetVersion{$IFDEF FPC}){$ENDIF}                 := GetProcAddress(FLibHandle, 'Py_GetVersion');
   {$IFDEF FPC}Pointer({$ENDIF}Py_GetPlatform{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'Py_GetPlatform');
   {$IFDEF FPC}Pointer({$ENDIF}Py_GetCopyright{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'Py_GetCopyright');

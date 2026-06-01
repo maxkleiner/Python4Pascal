@@ -57,6 +57,16 @@ type
       class procedure Exit(status: Integer);
       class function  Main(argc: integer; argv: PPWCharT): integer;
       class function  BytesMain(argc: integer; argv: PPAnsiChar): integer;
+
+      class function  SetProgramName(const name_: string): boolean;
+      class function  GetProgramName: string;
+      class function  SetPythonHome(const home: string): boolean;
+      class function  GetPythonHome: string;
+      class function  GetProgramFullPath: string;
+      class function  GetPrefix: string;
+      class function  GetExecPrefix: string;
+      class function  GetPath: string;
+
       class function  GetVersion: string;
       class function  GetPlatform: string;
       class function  GetCopyright: string;
@@ -396,6 +406,80 @@ begin
     Result := Py_BytesMain(argc, argv)
    else
     Result := 0;
+end;
+
+class function TPy.SetProgramName(const name_: string): boolean;
+var
+  TempName : WCharTString;
+begin
+  Result := False;
+  if assigned(Py_SetProgramName) then
+    begin
+      TempName := StringToPyWCharTString(name_);
+      Py_SetProgramName(PWCharT(TempName));
+      Result := True;
+    end;
+end;
+
+class function TPy.GetProgramName: string;
+begin
+  if assigned(Py_GetProgramName) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetProgramName()))
+   else
+    Result := '';
+end;
+
+class function TPy.SetPythonHome(const home: string): boolean;
+var
+  TempHome : WCharTString;
+begin
+  Result := False;
+  if assigned(Py_SetPythonHome) then
+    begin
+      TempHome := StringToPyWCharTString(home);
+      Py_SetPythonHome(PWCharT(TempHome));
+      Result := True;
+    end;
+end;
+
+class function TPy.GetPythonHome: string;
+begin
+  if assigned(Py_GetPythonHome) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetPythonHome()))
+   else
+    Result := '';
+end;
+
+class function TPy.GetProgramFullPath: string;
+begin
+  if assigned(Py_GetProgramFullPath) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetProgramFullPath()))
+   else
+    Result := '';
+end;
+
+class function TPy.GetPrefix: string;
+begin
+  if assigned(Py_GetPrefix) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetPrefix()))
+   else
+    Result := '';
+end;
+
+class function TPy.GetExecPrefix: string;
+begin
+  if assigned(Py_GetExecPrefix) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetExecPrefix()))
+   else
+    Result := '';
+end;
+
+class function TPy.GetPath: string;
+begin
+  if assigned(Py_GetPath) then
+    Result := PyWCharTStringToString(WCharTString(Py_GetPath()))
+   else
+    Result := '';
 end;
 
 class function TPy.GetVersion: string;

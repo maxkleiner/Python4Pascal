@@ -1090,6 +1090,14 @@ var
   Py_Exit                                        : procedure(status: Integer); cdecl;
   Py_Main                                        : function(argc: integer; argv: PPWCharT): integer; cdecl;
   Py_BytesMain                                   : function(argc: integer; argv: PPAnsiChar): integer; cdecl;
+  Py_SetProgramName                              : procedure(const name_: PWCharT); cdecl;
+  Py_GetProgramName                              : function(): PWCharT; cdecl;
+  Py_SetPythonHome                               : procedure(const home: PWCharT); cdecl;
+  Py_GetPythonHome                               : function(): PWCharT; cdecl;
+  Py_GetProgramFullPath                          : function(): PWCharT; cdecl;
+  Py_GetPrefix                                   : function(): PWCharT; cdecl;
+  Py_GetExecPrefix                               : function(): PWCharT; cdecl;
+  Py_GetPath                                     : function(): PWCharT; cdecl;
   Py_GetVersion                                  : function(): PAnsiChar; cdecl;
   Py_GetPlatform                                 : function(): PAnsiChar; cdecl;
   Py_GetCopyright                                : function(): PAnsiChar; cdecl;
