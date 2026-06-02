@@ -45,11 +45,13 @@ function PyWideStringListToStringList(const aList: PyWideStringList; var aResult
 
 function ErrorToAnsiString(error: TPyCodecErrors): AnsiString;
 
+function PyStartSymbolToInt(start: TPyStartSymbols): integer;
+
 implementation
 
 uses
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
-  uP4P.Loader, uP4P.LibFunctions, uP4P.PyMem;
+  uP4P.Loader, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
 
 function GetModulePath : string;
 {$IFDEF MACOSX}
@@ -267,6 +269,17 @@ begin
     pceReplace : Result := 'replace' + #0;
     pceIgnore  : Result := 'ignore' + #0;
     else         Result := 'surrogateescape' + #0;
+  end;
+end;
+
+function PyStartSymbolToInt(start: TPyStartSymbols): integer;
+begin
+  case start of
+    ssSingle   : Result := Py_single_input;
+    ssFile     : Result := Py_file_input;
+    ssEval     : Result := Py_eval_input;
+    ssFuncType : Result := Py_func_type_input;
+    else         Result := Py_file_input;
   end;
 end;
 

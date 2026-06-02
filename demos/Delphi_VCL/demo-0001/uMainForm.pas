@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Loader, uP4P.Py, uP4P.PyImport,
-  uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.PyUnicode;
+  uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
 
 type
   TMainForm = class(TForm)
@@ -46,7 +46,10 @@ begin
     begin
       if not(GlobalP4PLoader.Initialized) then
         begin
-          if GlobalP4PLoader.Load and
+          GlobalP4PLoader.SetCurrentDir := True;
+
+          //if GlobalP4PLoader.Load('C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll') and
+          if GlobalP4PLoader.Load() and
              GlobalP4PLoader.Initialize then
             Memo1.Lines.Add('Python initialized. ' + GlobalP4PLoader.buildinfo)
            else
@@ -73,23 +76,19 @@ end;
 
 procedure TMainForm.RunBtnClick(Sender: TObject);
 var
-  TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule, TempFilename: IPyObject;
+  TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule : IPyObject;
 begin
-  TempMainModule := TPyImport.AddModuleRef('__main__');
+  TempMainModule := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
 
   if TPyObject.IsInitialized(TempMainModule) then
     begin
       try
-        Memo1.Lines.Add('__main__ module obtained correctly.');
+        Memo1.Lines.Add(MAIN_MODULE_NAME + ' module obtained correctly.');
 
         TempLocals  := TPyModule.GetDict(TempMainModule);
         TempGlobals := TempLocals;
 
-        TempFilename := TPyUnicode.FromString('<string>');
-
-        //TempBytecode := TPy.CompileStringExFlags(CodeEdt.Text, '<string>', 1, nil, -1);
-        //TempBytecode := TPy.CompileString(CodeEdt.Text, '<string>', 1);
-        TempBytecode := TPy.CompileStringObject(CodeEdt.Text, TempFilename, 1, nil, -1);
+        TempBytecode := TPy.CompileString(CodeEdt.Text);
 
         if TPyObject.IsInitialized(TempBytecode) then
           begin
@@ -106,7 +105,6 @@ begin
           Memo1.Lines.Add('There was an error compiling the code.');
       finally
         TempMainModule := nil;
-        TempFilename := nil;
       end;
     end
    else

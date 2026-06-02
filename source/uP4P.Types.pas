@@ -140,6 +140,21 @@ type
     fc_r
   );
 
+  /// <summary>
+  /// Custom type to avoid invalid "start" values in TPy.Compile*.
+  /// These values are converted to Py_single_input, Py_file_input,
+  /// Py_eval_input or Py_func_type_input.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/veryhigh.html#available-start-symbols">See the article about Start Symbols.</see></para>
+  /// </remarks>
+  TPyStartSymbols = (
+    ssSingle,
+    ssFile,
+    ssEval,
+    ssFuncType
+  );
+
   PPy_ssize_t                     = ^Py_ssize_t;
   PPyTypeObject                   = ^PyTypeObject;
   PPPyTypeObject                  = ^PPyTypeObject;

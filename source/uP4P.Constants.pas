@@ -25,6 +25,10 @@ const
   TAB             = #09;
   CRLF            = CR+LF;
 
+  MAIN_MODULE_NAME         = '__main__';
+  DEFAULT_COMPILE_FILENAME = '<string>';
+
+
   PYINITCONFIGOPTION_ALLOCATOR                  = 'allocator';
   PYINITCONFIGOPTION_ARGV                       = 'argv';
   PYINITCONFIGOPTION_BASE_EXEC_PREFIX           = 'base_exec_prefix';

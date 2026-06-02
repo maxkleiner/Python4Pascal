@@ -43,10 +43,10 @@ type
       class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
       class function  ReprEnter(const aPyObject: IPyObject): boolean;
       class procedure ReprLeave(const aPyObject: IPyObject);
-      class function  CompileString(const str, filename: string; start: integer): IPyObject;
-      class function  CompileStringExFlags(const str, filename: string; start: integer; flags: PPyCompilerFlags; optimize: integer): IPyObject;
-      class function  CompileStringObject(const str: string; const filename: IPyObject; start: integer; flags: PPyCompilerFlags; optimize: integer): IPyObject;
-      class function  CompileStringFlags(const str, filename: string; start: integer; flags: PPyCompilerFlags): IPyObject;
+      class function  CompileString(const str: string; const filename: string = DEFAULT_COMPILE_FILENAME; start: TPyStartSymbols = ssFile): IPyObject;
+      class function  CompileStringExFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
+      class function  CompileStringObject(const str: string; const filename: IPyObject; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
+      class function  CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
       class procedure Initialize;
       class procedure InitializeEx(initsigs: integer);
       class procedure Finalize;
@@ -293,7 +293,7 @@ begin
     Py_ReprLeave(aPyObject.PyObject);
 end;
 
-class function TPy.CompileString(const str, filename: string; start: integer): IPyObject;
+class function TPy.CompileString(const str, filename: string; start: TPyStartSymbols): IPyObject;
 var
   TempString, TempFilename : AnsiString;
 begin
@@ -301,13 +301,13 @@ begin
     begin
       TempString   := StringToPyUTF8(str);
       TempFilename := StringToPyUTF8(filename);
-      Result       := TPyObject.Wrap(Py_CompileString(PAnsiChar(TempString), PAnsiChar(TempFilename), start));
+      Result       := TPyObject.Wrap(Py_CompileString(PAnsiChar(TempString), PAnsiChar(TempFilename), PyStartSymbolToInt(start)));
     end
    else
     Result := nil;
 end;
 
-class function TPy.CompileStringExFlags(const str, filename: string; start: integer; flags: PPyCompilerFlags; optimize: integer): IPyObject;
+class function TPy.CompileStringExFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
 var
   TempString, TempFilename : AnsiString;
 begin
@@ -315,13 +315,13 @@ begin
     begin
       TempString   := StringToPyUTF8(str);
       TempFilename := StringToPyUTF8(filename);
-      Result       := TPyObject.Wrap(Py_CompileStringExFlags(PAnsiChar(TempString), PAnsiChar(TempFilename), start, flags, optimize));
+      Result       := TPyObject.Wrap(Py_CompileStringExFlags(PAnsiChar(TempString), PAnsiChar(TempFilename), PyStartSymbolToInt(start), flags, optimize));
     end
    else
     Result := nil;
 end;
 
-class function TPy.CompileStringObject(const str: string; const filename: IPyObject; start: integer; flags: PPyCompilerFlags; optimize: integer): IPyObject;
+class function TPy.CompileStringObject(const str: string; const filename: IPyObject; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
 var
   TempString : AnsiString;
 begin
@@ -329,13 +329,13 @@ begin
      TPyObject.IsInitialized(filename) then
     begin
       TempString := StringToPyUTF8(str);
-      Result     := TPyObject.Wrap(Py_CompileStringObject(PAnsiChar(TempString), filename.PyObject, start, flags, optimize));
+      Result     := TPyObject.Wrap(Py_CompileStringObject(PAnsiChar(TempString), filename.PyObject, PyStartSymbolToInt(start), flags, optimize));
     end
    else
     Result := nil;
 end;
 
-class function TPy.CompileStringFlags(const str, filename: string; start: integer; flags: PPyCompilerFlags): IPyObject;
+class function TPy.CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
 begin
   Result := TPy.CompileStringExFlags(str, filename, start, flags, -1);
 end;
