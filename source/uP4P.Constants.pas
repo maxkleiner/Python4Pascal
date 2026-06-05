@@ -28,6 +28,16 @@ const
   MAIN_MODULE_NAME         = '__main__';
   DEFAULT_COMPILE_FILENAME = '<string>';
 
+  {$IFDEF MSWINDOWS}
+  PYTHON_LIB_EXT = 'dll';
+  {$ELSE}
+    {$IFDEF MACOSX}
+    PYTHON_LIB_EXT = 'dylib';
+    {$ELSE}
+    PYTHON_LIB_EXT = 'so';
+    {$ENDIF}
+  {$ENDIF}
+
 
   PYINITCONFIGOPTION_ALLOCATOR                  = 'allocator';
   PYINITCONFIGOPTION_ARGV                       = 'argv';

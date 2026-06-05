@@ -224,7 +224,8 @@ begin
   if assigned(PyImport_ImportModuleLevel) and
      TPyObject.IsInitialized(globals) and
      TPyObject.IsInitialized(locals) and
-     TPyObject.IsInitialized(fromlist) then
+     TPyObject.IsInitialized(fromlist) and
+     (level >= 0) then
     begin
       TempName := StringToPyUTF8(name_);
       Result   := TPyObject.Wrap(PyImport_ImportModuleLevel(PAnsiChar(TempName), globals.PyObject, locals.PyObject, fromlist.PyObject, level));

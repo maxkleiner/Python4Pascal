@@ -69,6 +69,8 @@ type
       procedure SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
       function  Initialize_PEP741: boolean;
       function  Initialize_PEP587: boolean;
+      function  FindPythonLib(const aPath: string; var aFiles: TStringList): boolean;
+      function  PythonLibExists(const aPath: string): boolean;
       {$IFDEF MSWINDOWS}
       function  GetExtendedFileVersion(const aFileName : string) : uint64;
       function  GetDLLVersion(const aFileName : string) : boolean;
@@ -77,7 +79,6 @@ type
       function  SearchUninstallRegistry(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;
       {$ENDIF}
       function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
-      function  ValidPythonHomePath(const aPath: string): boolean;
 
       procedure LoadAllFunctions;
       procedure Load_pymacro;
@@ -428,14 +429,78 @@ begin
   end;
 end;
 
-function TP4PLoader.GetOSPythonLibPath: string;
+function TP4PLoader.PythonLibExists(const aPath: string): boolean;
 var
   {$IFDEF FPC}
   TempFiles : TStringList;
   {$ELSE}
   TempFiles : TStringDynArray;
   {$ENDIF}
-  i, TempCount : integer;
+begin
+  Result := False;
+  {$IFDEF FPC}
+  TempFiles := nil;
+  {$ENDIF}
+
+  try
+    try
+      if (length(aPath) > 0) and DirectoryExists(aPath) then
+        begin
+          {$IFDEF FPC}
+          TempFiles := FindAllFiles(aPath, 'python*.' + PYTHON_LIB_EXT, False);
+          Result    := (TempFiles.Count > 0);
+          {$ELSE}
+          TempFiles := TDirectory.GetFiles(aPath, 'python*.' + PYTHON_LIB_EXT, TSearchOption.soTopDirectoryOnly);
+          Result    := (length(TempFiles) > 0);
+          {$ENDIF}
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('TP4PLoader.PythonLibExists', e) then raise;
+    end;
+  finally
+    {$IFDEF FPC}
+    if assigned(TempFiles) then FreeAndNil(TempFiles);
+    {$ENDIF}
+  end;
+end;
+
+function TP4PLoader.FindPythonLib(const aPath: string; var aFiles: TStringList): boolean;
+{$IFNDEF FPC}
+var
+  TempFiles : TStringDynArray;
+  i : integer;
+{$ENDIF}
+begin
+  Result := False;
+
+  try
+    if (length(aPath) > 0) and DirectoryExists(aPath) then
+      begin
+        {$IFDEF FPC}
+        aFiles := FindAllFiles(aPath, 'python*.' + PYTHON_LIB_EXT, False);
+        {$ELSE}
+        TempFiles := TDirectory.GetFiles(aPath, 'python*.' + PYTHON_LIB_EXT, TSearchOption.soTopDirectoryOnly);
+        aFiles    := TStringList.Create;
+
+        for i := 0 to pred(length(TempFiles)) do
+          aFiles.Add(TempFiles[i]);
+        {$ENDIF}
+
+        Result := assigned(aFiles) and (aFiles.Count > 0);
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TP4PLoader.FindPythonLib', e) then raise;
+  end;
+end;
+
+function TP4PLoader.GetOSPythonLibPath: string;
+const
+  CAN_USE_DEBUG_LIB = {$IFDEF DEBUG}True;{$ELSE}False;{$ENDIF}
+var
+  TempFiles : TStringList;
+  i : integer;
   TempSize, TempMaxSize : int64;
   TempLib : string;
 begin
@@ -444,21 +509,13 @@ begin
 
   try
     try
-      if (length(FHome) > 0) then
+      if FindPythonLib(FHome, TempFiles) then
         begin
-          {$IFDEF FPC}
-          TempFiles := FindAllFiles(FHome, 'python*.dll', False);
-          TempCount := TempFiles.Count;
-          {$ELSE}
-          TempFiles := TDirectory.GetFiles(FHome, 'python*.dll', TSearchOption.soTopDirectoryOnly);
-          TempCount := Length(TempFiles);
-          {$ENDIF}
-
           TempLib     := '';
           TempMaxSize := 0;
 
           i := 0;
-          while (i < TempCount) do
+          while (i < TempFiles.Count) do
             begin
               {$IFDEF FPC}
               //TODO: Call FileSize in Lazarus.
@@ -468,8 +525,17 @@ begin
 
               if (TempMaxSize < TempSize) then
                 begin
-                  TempMaxSize := TempSize;
-                  TempLib     := TempFiles[i];
+                  if CAN_USE_DEBUG_LIB then
+                    begin
+                      TempMaxSize := TempSize;
+                      TempLib     := TempFiles[i];
+                    end
+                   else
+                    if (pos('_d', ExtractFilename(TempFiles[i])) = 0) then
+                      begin
+                        TempMaxSize := TempSize;
+                        TempLib     := TempFiles[i];
+                      end;
                 end;
 
               inc(i);
@@ -482,17 +548,8 @@ begin
         if CustomExceptionHandler('TP4PLoader.GetOSPythonLibPath', e) then raise;
     end;
   finally
-    {$IFDEF FPC}
     if assigned(TempFiles) then FreeAndNil(TempFiles);
-    {$ENDIF}
   end;
-end;
-
-function TP4PLoader.ValidPythonHomePath(const aPath: string): boolean;
-begin
-  Result := (length(aPath) > 0) and
-            DirectoryExists(aPath) and
-            FileExists(IncludeTrailingPathDelimiter(aPath) + 'python.exe');
 end;
 
 function TP4PLoader.SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
@@ -503,7 +560,7 @@ begin
   aInstallPath := '';
   TempPath     := GetEnvironmentVariable('PYTHONHOME');
 
-  if ValidPythonHomePath(TempPath) then
+  if PythonLibExists(TempPath) then
     begin
       aInstallPath := TempPath;
       Result       := True;
@@ -746,7 +803,7 @@ begin
                 begin
                   TempPath := TempReg.ReadString('');
 
-                  if ValidPythonHomePath(TempPath) then
+                  if PythonLibExists(TempPath) then
                     begin
                       aInstallPath := TempPath;
                       Result       := True;
@@ -805,7 +862,7 @@ begin
                     begin
                       TempPath := TempReg.ReadString(PACKAGEROOTFOLDER_KEY);
 
-                      if ValidPythonHomePath(TempPath) then
+                      if PythonLibExists(TempPath) then
                         begin
                           aInstallPath := TempPath;
                           Result       := True;
@@ -873,7 +930,7 @@ begin
                         begin
                           TempPath := TempReg.ReadString(INSTALLLOCATION_KEY);
 
-                          if ValidPythonHomePath(TempPath) then
+                          if PythonLibExists(TempPath) then
                             begin
                               aInstallPath := TempPath;
                               Result       := True;
@@ -908,7 +965,7 @@ begin
   if (length(FHome) = 0) then
     FHome := OSPythonHome;
 
-  if (length(FModuleSearchPaths) = 0) then
+  if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
       TempPythonLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
       TempPythonPackagesPath := IncludeTrailingPathDelimiter(TempPythonLibPath) + 'site-packages';

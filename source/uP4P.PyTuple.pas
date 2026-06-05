@@ -24,7 +24,7 @@ type
       class function SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean;
       class function GetSlice(const p: IPyObject; low, high: Py_ssize_t): IPyObject;
       class function New(len: Py_ssize_t): IPyObject;
-      class function Pack(const objects: array of IPyObject): IPyObject; virtual;
+      class function Pack(const objects: IPyObjectArray): IPyObject;
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
   end;
@@ -42,7 +42,7 @@ begin
     Result := nil;
 end;
 
-class function TPyTuple.Pack(const objects: array of IPyObject): IPyObject;
+class function TPyTuple.Pack(const objects: IPyObjectArray): IPyObject;
 var
   TempObject: PPyObject;
   n: Py_ssize_t;

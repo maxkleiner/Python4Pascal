@@ -19,15 +19,15 @@ uses
 type
   TPyModuleDef = class
     public
-      class function Init(def: PPyModuleDef): IPyObject;
+      class function Init(const def: PyModuleDef): PPyObject;
   end;
 
 implementation
 
-class function TPyModuleDef.Init(def: PPyModuleDef): IPyObject;
+class function TPyModuleDef.Init(const def: PyModuleDef): PPyObject;
 begin
   if assigned(PyModuleDef_Init) then
-    Result := TPyObject.Wrap(PyModuleDef_Init(def), False)
+    Result := PyModuleDef_Init(@def)
    else
     Result := nil;
 end;
