@@ -147,6 +147,8 @@ contains
   uP4P.PyDictViewSet in '..\source\uP4P.PyDictViewSet.pas',
   uP4P.PyAnySet in '..\source\uP4P.PyAnySet.pas',
   uP4P.PyExceptionClass in '..\source\uP4P.PyExceptionClass.pas',
-  uP4P.PyExceptionInstance in '..\source\uP4P.PyExceptionInstance.pas';
+  uP4P.PyExceptionInstance in '..\source\uP4P.PyExceptionInstance.pas',
+  uP4P.PyModuleSpecHelper in '..\source\uP4P.PyModuleSpecHelper.pas',
+  uP4P.CustomPyModule in '..\source\uP4P.CustomPyModule.pas';
 
 end.

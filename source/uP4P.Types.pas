@@ -858,6 +858,7 @@ type
      ml_flags : Integer;
      ml_doc   : PAnsiChar;
   end;
+  PyMethodDefArray = array of PPyMethodDef;
 
   PyCFunctionObject = record
     ob_base       : PyObject; // PyObject_HEAD
@@ -887,6 +888,7 @@ type
     slot  : integer;
     value : Pointer;
   end;
+  PyModuleDefSlotArray = array of PyModuleDef_Slot;
 
   PyModuleDef = record
     m_base     : PyModuleDef_Base;

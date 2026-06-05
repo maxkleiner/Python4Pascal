@@ -266,8 +266,9 @@ begin
      TPyObject.IsInitialized(mp) and
      TPyObject.IsInitialized(key) then
     begin
-      Result  := PyDict_GetItemRef(mp.PyObject, key.PyObject, @TempResult);
-      result_ := TPyObject.Wrap(TempResult);
+      TempResult := nil;
+      Result     := PyDict_GetItemRef(mp.PyObject, key.PyObject, @TempResult);
+      result_    := TPyObject.Wrap(TempResult);
     end
    else
     begin
@@ -284,6 +285,7 @@ begin
   if assigned(PyDict_GetItemStringRef) and
      TPyObject.IsInitialized(mp) then
     begin
+      TempResult := nil;
       TempString := StringToPyUTF8(key);
       Result     := PyDict_GetItemStringRef(mp.PyObject, PAnsiChar(TempString), @TempResult);
       result_    := TPyObject.Wrap(TempResult);

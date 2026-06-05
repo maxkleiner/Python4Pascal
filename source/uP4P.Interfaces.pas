@@ -33,6 +33,7 @@ type
   IPyGILState = interface;
   IPyThreadLock = interface;
   IPyThreadTSS = interface;
+  ICustomPyModule = interface;
 
   // custom IPyObject array type
   IPyObjectArray = array of IPyObject;
@@ -58,8 +59,8 @@ type
     function  IsType(aPyTypeObject: PPyTypeObject): boolean;
     function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
     procedure InitPyObject;
-    function  IsInstance(const aTypeOrClass: IPyObject): integer;
-    function  IsSubclass(const aTypeOrClass: IPyObject): integer;
+    function  IsInstance(const cls: IPyObject): integer;
+    function  IsSubclass(const cls: IPyObject): integer;
     function  GenericGetDict(context: Pointer): IPyObject;
     function  CheckBuffer: boolean;
     function  GetBuffer(var view: Py_buffer; flags: Integer): boolean;
@@ -107,6 +108,23 @@ type
     function  IS_GC: boolean;
     function  GenericHash: Py_hash_t;
     function  AsFileDescriptor: integer;
+    function  Type_: IPyObject;
+    function  Size: Py_ssize_t;
+    function  Length: Py_ssize_t;
+    function  GetItem(const key: IPyObject): IPyObject;
+    function  SetItem(const key, v: IPyObject): boolean;
+    function  DelItemString(const key: string): boolean;
+    function  DelItem(const key: IPyObject): boolean;
+    function  Format(const format_spec: IPyObject): IPyObject;
+    function  GetIter: IPyObject;
+    function  GetAIter: IPyObject;
+    function  LengthHint(defaultvalue: Py_ssize_t): Py_ssize_t;
+    function  CallNoArgs: IPyObject;
+    function  Call(const args, kwargs: IPyObject): IPyObject;
+    function  CallObject(const args: IPyObject): IPyObject;
+    function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+    function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
+    function  CallOneArg(const arg: IPyObject): IPyObject;
 
     function  UnWrap: Pointer;
 
@@ -809,6 +827,11 @@ type
     procedure End_;
 
     property PyCriticalSection : Pointer read GetPyCriticalSection;
+  end;
+
+  ICustomPyModule = interface
+    ['{C5D21FF1-0C57-4A09-85A6-7CB4037DACEA}']
+
   end;
 
 implementation

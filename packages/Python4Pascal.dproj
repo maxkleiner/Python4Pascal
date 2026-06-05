@@ -209,6 +209,8 @@
         <DCCReference Include="..\source\uP4P.PyAnySet.pas"/>
         <DCCReference Include="..\source\uP4P.PyExceptionClass.pas"/>
         <DCCReference Include="..\source\uP4P.PyExceptionInstance.pas"/>
+        <DCCReference Include="..\source\uP4P.PyModuleSpecHelper.pas"/>
+        <DCCReference Include="..\source\uP4P.CustomPyModule.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

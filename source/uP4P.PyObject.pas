@@ -103,6 +103,12 @@ type
       function  GetIter: IPyObject;
       function  GetAIter: IPyObject;
       function  LengthHint(defaultvalue: Py_ssize_t): Py_ssize_t;
+      function  CallNoArgs: IPyObject;
+      function  Call(const args, kwargs: IPyObject): IPyObject;
+      function  CallObject(const args: IPyObject): IPyObject;
+      function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+      function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
+      function  CallOneArg(const arg: IPyObject): IPyObject;
 
     public
       constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
@@ -119,13 +125,7 @@ type
       class function  InitVar(const ob: IPyObject; type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
       class function  New(type_: PPyTypeObject): IPyObject;
       class function  NewVar(type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
-      class function  CallNoArgs(const callable: IPyObject): IPyObject;
-      class function  Call(const callable, args, kwargs: IPyObject): IPyObject;
-      class function  CallObject(const callable, args: IPyObject): IPyObject;
-      class function  Vectorcall(const callable: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
       class function  VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
-      class function  VectorcallDict(const callable: IPyObject; const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
-      class function  CallOneArg(const callable, arg: IPyObject): IPyObject;
       class function  GC_Resize(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject;
       class function  GC_New(type_: PPyTypeObject): IPyObject;
       class function  GC_NewVar(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject;
@@ -133,10 +133,11 @@ type
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
 
-      property Initialized   : boolean     read GetInitialized;
-      property PyObject      : PPyObject   read GetPyObject      write SetPyObject;
-      property ObjRefOwner   : boolean     read GetObjRefOwner   write SetObjRefOwner;
-      property RefCnt        : integer     read GetRefCnt;
+      property Initialized   : boolean       read GetInitialized;
+      property PyObject      : PPyObject     read GetPyObject      write SetPyObject;
+      property ObjRefOwner   : boolean       read GetObjRefOwner   write SetObjRefOwner;
+      property RefCnt        : integer       read GetRefCnt;
+      property PyTypeObject  : PPyTypeObject read GetPyTypeObject;
   end;
 
 implementation
@@ -251,45 +252,45 @@ begin
     Result := nil;
 end;
 
-class function TPyObject.CallNoArgs(const callable: IPyObject): IPyObject;
+function TPyObject.CallNoArgs: IPyObject;
 begin
-  if assigned(PyObject_CallNoArgs) and
-     TPyObject.IsInitialized(callable) then
-    Result := TPyObject.Wrap(PyObject_CallNoArgs(callable.PyObject))
+  if Initialized and
+     assigned(PyObject_CallNoArgs) then
+    Result := TPyObject.Wrap(PyObject_CallNoArgs(PyObject))
    else
     Result := nil;
 end;
 
-class function TPyObject.Call(const callable, args, kwargs: IPyObject): IPyObject;
+function TPyObject.Call(const args, kwargs: IPyObject): IPyObject;
 begin
-  if assigned(PyObject_Call) and
-     TPyObject.IsInitialized(callable) and
+  if Initialized and
+     assigned(PyObject_Call) and
      TPyObject.IsInitialized(args) then
     begin
       if TPyObject.IsInitialized(kwargs) then
-        Result := TPyObject.Wrap(PyObject_Call(callable.PyObject, args.PyObject, kwargs.PyObject))
+        Result := TPyObject.Wrap(PyObject_Call(PyObject, args.PyObject, kwargs.PyObject))
        else
-        Result := TPyObject.Wrap(PyObject_Call(callable.PyObject, args.PyObject, nil));
+        Result := TPyObject.Wrap(PyObject_Call(PyObject, args.PyObject, nil));
     end
    else
     Result := nil;
 end;
 
-class function TPyObject.CallObject(const callable, args: IPyObject): IPyObject;
+function TPyObject.CallObject(const args: IPyObject): IPyObject;
 begin
-  if assigned(PyObject_CallObject) and
-     TPyObject.IsInitialized(callable) then
+  if Initialized and
+     assigned(PyObject_CallObject) then
     begin
       if TPyObject.IsInitialized(args) then
-        Result := TPyObject.Wrap(PyObject_CallObject(callable.PyObject, args.PyObject))
+        Result := TPyObject.Wrap(PyObject_CallObject(PyObject, args.PyObject))
        else
-        Result := TPyObject.Wrap(PyObject_CallObject(callable.PyObject, nil));
+        Result := TPyObject.Wrap(PyObject_CallObject(PyObject, nil));
     end
    else
     Result := nil;
 end;
 
-class function TPyObject.Vectorcall(const callable: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+function TPyObject.Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
 var
   TempArgs : PPyObjectArray;
   TempArgsPtr : PPPyObject;
@@ -298,8 +299,8 @@ var
 begin
   Result := nil;
 
-  if assigned(PyObject_Vectorcall) and
-     TPyObject.IsInitialized(callable) then
+  if Initialized and
+     assigned(PyObject_Vectorcall) then
     begin
       TempArgsLen := System.length(args);
       if (TempArgsLen > 0) then
@@ -319,7 +320,7 @@ begin
        else
         TempKwnames := nil;
 
-      Result := TPyObject.Wrap(PyObject_Vectorcall(callable.PyObject, TempArgsPtr, TempArgsLen, TempKwnames));
+      Result := TPyObject.Wrap(PyObject_Vectorcall(PyObject, TempArgsPtr, TempArgsLen, TempKwnames));
     end;
 end;
 
@@ -933,7 +934,7 @@ begin
     Result := -1;
 end;
 
-class function TPyObject.VectorcallDict(const callable: IPyObject; const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
+function TPyObject.VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
 var
   TempArgs : PPyObjectArray;
   TempArgsPtr : PPPyObject;
@@ -942,8 +943,8 @@ var
 begin
   Result := nil;
 
-  if assigned(PyObject_VectorcallDict) and
-     TPyObject.IsInitialized(callable) then
+  if Initialized and
+     assigned(PyObject_VectorcallDict) then
     begin
       TempArgsLen := System.length(args);
       if (TempArgsLen > 0) then
@@ -963,16 +964,16 @@ begin
        else
         TempKwargsPtr := nil;
 
-      Result := TPyObject.Wrap(PyObject_VectorcallDict(callable.PyObject, TempArgsPtr, TempArgsLen, TempKwargsPtr));
+      Result := TPyObject.Wrap(PyObject_VectorcallDict(PyObject, TempArgsPtr, TempArgsLen, TempKwargsPtr));
     end;
 end;
 
-class function TPyObject.CallOneArg(const callable, arg: IPyObject): IPyObject;
+function TPyObject.CallOneArg(const arg: IPyObject): IPyObject;
 begin
-  if assigned(PyObject_CallOneArg) and
-     TPyObject.IsInitialized(callable) and
+  if Initialized and
+     assigned(PyObject_CallOneArg) and
      TPyObject.IsInitialized(arg) then
-    Result := TPyObject.Wrap(PyObject_CallOneArg(callable.PyObject, arg.PyObject))
+    Result := TPyObject.Wrap(PyObject_CallOneArg(PyObject, arg.PyObject))
    else
     Result := nil;
 end;
