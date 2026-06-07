@@ -38,7 +38,8 @@ type
       class function Merge(const mp, other: IPyObject; override_: boolean): boolean;
       class function MergeFromSeq2(const d, seq2: IPyObject; override_: boolean): boolean;
       class function GetItemString(const dp: IPyObject; const key: string): IPyObject;
-      class function SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean;
+      class function SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean; overload;
+      class function SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean; overload;
       class function DelItemString(const dp: IPyObject; const key: string): boolean;
       class function GetItemRef(const mp, key: IPyObject; out result_: IPyObject): integer;
       class function GetItemStringRef(const mp: IPyObject; const key: string; out result_: IPyObject): integer;
@@ -230,16 +231,16 @@ begin
 end;
 
 class function TPyDict.SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean;
-var
-  TempString: AnsiString;
+begin
+  Result := SetItemString(dp, StringToPyUTF8(key), item);
+end;
+
+class function TPyDict.SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean;
 begin
   if assigned(PyDict_SetItemString) and
      TPyObject.IsInitialized(dp) and
      TPyObject.IsInitialized(item) then
-    begin
-      TempString := StringToPyUTF8(key);
-      Result     := (PyDict_SetItemString(dp.PyObject, PAnsiChar(TempString), item.PyObject) = 0)
-    end
+    Result := (PyDict_SetItemString(dp.PyObject, PAnsiChar(key), item.PyObject) = 0)
    else
     Result := False;
 end;

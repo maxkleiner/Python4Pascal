@@ -149,6 +149,7 @@ contains
   uP4P.PyExceptionClass in '..\source\uP4P.PyExceptionClass.pas',
   uP4P.PyExceptionInstance in '..\source\uP4P.PyExceptionInstance.pas',
   uP4P.PyModuleSpecHelper in '..\source\uP4P.PyModuleSpecHelper.pas',
-  uP4P.CustomPyModule in '..\source\uP4P.CustomPyModule.pas';
+  uP4P.CustomPyModule in '..\source\uP4P.CustomPyModule.pas',
+  uP4P.IOPyModule in '..\source\uP4P.IOPyModule.pas';
 
 end.

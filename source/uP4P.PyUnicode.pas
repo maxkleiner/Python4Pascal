@@ -22,7 +22,8 @@ type
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function FromStringAndSize(const str: string; size: Py_ssize_t): IPyObject;
-      class function FromString(const str: string): IPyObject;
+      class function FromString(const str: string): IPyObject; overload;
+      class function FromString(const str: AnsiString): IPyObject; overload;
       class function FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
@@ -133,14 +134,14 @@ begin
 end;
 
 class function TPyUnicode.FromString(const str: string): IPyObject;
-var
-  TempString: AnsiString;
+begin
+  Result := FromString(StringToPyUTF8(str));
+end;
+
+class function TPyUnicode.FromString(const str: AnsiString): IPyObject;
 begin
   if assigned(PyUnicode_FromString) then
-    begin
-      TempString := StringToPyUTF8(str);
-      Result     := TPyObject.Wrap(PyUnicode_FromString(PAnsiChar(TempString)))
-    end
+    Result := TPyObject.Wrap(PyUnicode_FromString(PAnsiChar(str)))
    else
     Result := nil;
 end;

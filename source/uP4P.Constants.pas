@@ -342,6 +342,18 @@ const
   METH_METHOD    = $0200;
 
   {* include/moduleobject.h *}
+  Py_mod_create                 = 1;
+  Py_mod_exec                   = 2;
+  Py_mod_multiple_interpreters  = 3;
+  Py_mod_gil                    = 4;
+
+  Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED  : Pointer = Pointer(0);
+  Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED      : Pointer = Pointer(1);
+  Py_MOD_PER_INTERPRETER_GIL_SUPPORTED        : Pointer = Pointer(2);
+
+  Py_MOD_GIL_USED                             : Pointer = Pointer(0);
+  Py_MOD_GIL_NOT_USED                         : Pointer = Pointer(1);
+
   {* include/monitoring.h *}
   PY_MONITORING_EVENT_PY_START          = 0;
   PY_MONITORING_EVENT_PY_RESUME         = 1;

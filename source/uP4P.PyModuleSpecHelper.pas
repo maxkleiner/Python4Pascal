@@ -17,7 +17,7 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
-  PyModuleSpecHelper = class
+  TPyModuleSpecHelper = class
     public
       /// <summary>
       /// Helper function to create a ModuleSpec object used by TPyModule.FromDefAndSpec
@@ -25,15 +25,16 @@ type
       /// <remarks>
       /// <para><see href="https://peps.python.org/pep-0451/">See PEP 451 – A ModuleSpec Type for the Import.</see></para>
       /// </remarks>
-      class function FromModuleName(const name_: string): IPyObject;
+      class function FromModuleName(const name_: string): IPyObject; overload;
+      class function FromModuleName(const name_: AnsiString): IPyObject; overload;
   end;
 
 implementation
 
 uses
-  uP4P.PyUnicode, uP4P.PyTuple, uP4P.PyImport, uP4P.PyNone;
+  uP4P.MiscFunctions, uP4P.PyUnicode, uP4P.PyTuple, uP4P.PyImport, uP4P.PyNone;
 
-class function PyModuleSpecHelper.FromModuleName(const name_: string): IPyObject;
+class function TPyModuleSpecHelper.FromModuleName(const name_: AnsiString): IPyObject;
 var
   TempImportLib, TempSpecFromLoaderFunc, TempName, TempArgs, TempNone : IPyObject;
 begin
@@ -64,5 +65,11 @@ begin
     TempSpecFromLoaderFunc := nil;
   end;
 end;
+
+class function TPyModuleSpecHelper.FromModuleName(const name_: string): IPyObject;
+begin
+  Result := FromModuleName(StringToPyUTF8(name_));
+end;
+
 
 end.

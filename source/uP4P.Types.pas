@@ -888,7 +888,6 @@ type
     slot  : integer;
     value : Pointer;
   end;
-  PyModuleDefSlotArray = array of PyModuleDef_Slot;
 
   PyModuleDef = record
     m_base     : PyModuleDef_Base;
