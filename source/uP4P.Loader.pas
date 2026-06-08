@@ -153,7 +153,7 @@ type
       procedure Load_frameobject;
 
     public
-      constructor Create;
+      constructor Create; virtual;
       destructor  Destroy; override;
       procedure   BeforeDestruction; override;
       function    PythonLibIsGreaterOrEqualThan(aMajor, aMinor, aMicro: integer): boolean;
@@ -164,7 +164,7 @@ type
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
-      function    Initialize: boolean;
+      function    Initialize: boolean; virtual;
 
       /// <summary>
       ///	Used to set the current directory when the libraries are loaded. This is required if the application is launched from a different application.
@@ -256,14 +256,6 @@ type
       property OnBeforeInitialization            : TOnBeforeInitializationEvent                 read FOnBeforeInitialization            write FOnBeforeInitialization;
   end;
 
-var
-  /// <summary>
-  /// Global instance of TP4PLoader used to simplify the initialization and destruction.
-  /// </summary>
-  GlobalP4PLoader : TP4PLoader = nil;
-
-procedure DestroyGlobalP4PLoader;
-
 implementation
 
 uses
@@ -274,12 +266,6 @@ uses
   {$ENDIF}
   uP4P.Constants, uP4P.MiscFunctions, uP4P.PyInitConfig, uP4P.PyConfig,
   uP4P.PyStatus, uP4P.Py;
-
-procedure DestroyGlobalP4PLoader;
-begin
-  if assigned(GlobalP4PLoader) then
-    FreeAndNil(GlobalP4PLoader);
-end;
 
 constructor TP4PLoader.Create;
 begin

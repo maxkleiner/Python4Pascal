@@ -17,17 +17,18 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
-  TCustomPyModule = class(TInterfacedObject, ICustomPyModule)
+  TCustomPyModule = class
     protected
-      FModule      : IPyObject;
-      FModuleDef   : PyModuleDef;
-      FName        : AnsiString;
-      FDocStrings  : AnsiString;
-      FSlotList    : TList;
-      FSlots       : array of Pointer;
-      FMethodList  : TList;
-      FMethods     : array of Pointer;
-      FIsExtension : boolean;
+      FModule                : IPyObject;
+      FModuleDef             : PyModuleDef;
+      FName                  : AnsiString;
+      FDocStrings            : AnsiString;
+      FSlotList              : TList;
+      FSlots                 : array of Pointer;
+      FMethodList            : TList;
+      FMethods               : array of Pointer;
+      FIsExtension           : boolean;
+      FOnAfterInitialization : TNotifyEvent;
 
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
@@ -42,17 +43,28 @@ type
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
       function  AddSentinelSlot: boolean;
       function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
+      function  AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
+      function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
+      function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
+      function  AddGILSlot(aGILUsed: boolean): boolean;
       procedure AddAllSlots; virtual;
       procedure AddAllMethods; virtual;
+
+      property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+      property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
 
     public
       constructor Create(const aName: string; const aDocStrings: string = ''; aIsExtension : boolean = False);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
+      procedure   BeforeDestruction; override;
+      function    doOnAfterInitialization: integer;
+      function    SameAs(const other: PPyObject): boolean;
       procedure   Initialize;
 
-      property HasSentinelSlot        : boolean        read GetHasSentinelSlot;
-      property HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+      property Name_                         : AnsiString     read FName;
+      property Module                        : IPyObject      read FModule;
+      property OnAfterInitialization         : TNotifyEvent   read FOnAfterInitialization    write FOnAfterInitialization;
   end;
 
   TCustomPyModuleDefSlot = class
@@ -86,11 +98,15 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Loader, uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict;
+  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict;
 
-function Exec_Module(self, args: PPyObject): PPyObject; cdecl;
+
+function Exec_Module(module: PPyObject): integer; cdecl;
 begin
-  Result := nil;
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.doOnOnAfterModuleInitialization(module)
+   else
+    Result := 0;
 end;
 
 {$REGION 'TCustomPyModuleDefSlot'}
@@ -148,6 +164,7 @@ begin
   FSlots                 := nil;
   FMethodList            := nil;
   FMethods               := nil;
+  FOnAfterInitialization := nil;
   FIsExtension           := aIsExtension;
 
   FillChar(FModuleDef, SizeOf(FModuleDef), 0);
@@ -167,14 +184,16 @@ end;
 
 destructor TCustomPyModule.Destroy;
 begin
-  FModule := nil;
+  try
+    FModule := nil;
 
-  DestroySlotList;
-  DestroySlots;
-  DestroyMethodList;
-  DestroyMethods;
-
-  inherited Destroy;
+    DestroySlotList;
+    DestroySlots;
+    DestroyMethodList;
+    DestroyMethods;
+  finally
+    inherited Destroy;
+  end;
 end;
 
 procedure TCustomPyModule.AfterConstruction;
@@ -183,6 +202,17 @@ begin
 
   FSlotList   := TList.Create;
   FMethodList := TList.Create;
+
+  if (GlobalP4PEngine <> nil) then
+    GlobalP4PEngine.AddModule(self);
+end;
+
+procedure TCustomPyModule.BeforeDestruction;
+begin
+  if (GlobalP4PEngine <> nil) then
+    GlobalP4PEngine.RemoveModule(self);
+
+  inherited BeforeDestruction;
 end;
 
 function TCustomPyModule.AddSentinelMethod: boolean;
@@ -219,6 +249,33 @@ begin
       TempSlot := TCustomPyModuleDefSlot.Create(aSlot, aValue);
       Result   := (FSlotList.Add(TempSlot) >= 0);
     end;
+end;
+
+function TCustomPyModule.AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
+begin
+  Result := AddSlot(Py_mod_create, @aCreateFunction);
+end;
+
+function TCustomPyModule.AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
+begin
+  Result := AddSlot(Py_mod_exec, @aExecFunction);
+end;
+
+function TCustomPyModule.AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
+begin
+  case aSupport of
+    miUnsupported  : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
+    piGilSupported : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
+    else             Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
+  end;
+end;
+
+function TCustomPyModule.AddGILSlot(aGILUsed: boolean): boolean;
+begin
+  if aGILUsed then
+    Result := AddSlot(Py_mod_gil, Py_MOD_GIL_USED)
+   else
+    Result := AddSlot(Py_mod_gil, Py_MOD_GIL_NOT_USED);
 end;
 
 procedure TCustomPyModule.DestroySlotList;
@@ -328,10 +385,10 @@ end;
 
 procedure TCustomPyModule.AddAllSlots;
 begin
-  AddSlot(Py_mod_exec, @Exec_Module);
+  AddExecSlot(@Exec_Module);
 
-  if assigned(GlobalP4PLoader) and GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    AddMultipleInterpretersSlot(miSupported);
 end;
 
 procedure TCustomPyModule.AddAllMethods;
@@ -339,9 +396,22 @@ begin
   //
 end;
 
+function TCustomPyModule.doOnAfterInitialization: integer;
+begin
+  Result := 0;
+
+  if assigned(FOnAfterInitialization) then
+    FOnAfterInitialization(self);
+end;
+
+function TCustomPyModule.SameAs(const other: PPyObject): boolean;
+begin
+  Result := assigned(FModule) and assigned(other) and FModule.SameAs(other);
+end;
+
 procedure TCustomPyModule.Initialize;
 var
-  TempSpec, TempModuleDict : IPyObject;
+  TempSpec : IPyObject;
 begin
   if assigned(FModule) then exit;
 
@@ -350,9 +420,6 @@ begin
 
   if not(HasSentinelSlot) then
     AddSentinelSlot;
-
-  if not(HasSentinelMethod) then
-    AddSentinelMethod;
 
   CreateSlotArray;
   CreateMethodArray;
@@ -370,12 +437,10 @@ begin
       // Execute the module (triggers Py_mod_exec slot)
       TPyModule.ExecDef(FModule, @FModuleDef);
 
-      // add the module to sys.modules
-      TempModuleDict := TPyImport.GetModuleDict;
-      TPyDict.SetItemString(TempModuleDict, FName, FModule);
+      if (GlobalP4PEngine <> nil) then
+        GlobalP4PEngine.AddModuleToSys(self);
     finally
-      TempSpec       := nil;
-      TempModuleDict := nil;
+      TempSpec := nil;
     end;
 end;
 {$ENDREGION}

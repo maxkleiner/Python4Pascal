@@ -39,7 +39,8 @@ type
       procedure DecRef;
       function  NewRef: Pointer;
       function  XNewRef: Pointer;
-      function  SameAs(const other: IPyObject): boolean;
+      function  SameAs(const other: IPyObject): boolean; overload;
+      function  SameAs(const other: PPyObject): boolean; overload;
       function  IsType(aPyTypeObject: PPyTypeObject): boolean;
       function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
       procedure InitPyObject;
@@ -109,11 +110,11 @@ type
       function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
       function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
       function  CallOneArg(const arg: IPyObject): IPyObject;
+      function  UnWrap: Pointer;
 
     public
       constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
-      function    UnWrap: Pointer;
 
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
@@ -1102,6 +1103,11 @@ end;
 function TPyObject.SameAs(const other: IPyObject): boolean;
 begin
   Result := TPy.Is_(self, other);
+end;
+
+function TPyObject.SameAs(const other: PPyObject): boolean;
+begin
+  Result := Initialized and TPy.Is_(PyObject, other);
 end;
 
 end.

@@ -33,7 +33,6 @@ type
   IPyGILState = interface;
   IPyThreadLock = interface;
   IPyThreadTSS = interface;
-  ICustomPyModule = interface;
 
   // custom IPyObject array type
   IPyObjectArray = array of IPyObject;
@@ -55,7 +54,8 @@ type
     procedure DecRef;
     function  NewRef: Pointer;
     function  XNewRef: Pointer;
-    function  SameAs(const other: IPyObject): boolean;
+    function  SameAs(const other: IPyObject): boolean; overload;
+    function  SameAs(const other: PPyObject): boolean; overload;
     function  IsType(aPyTypeObject: PPyTypeObject): boolean;
     function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
     procedure InitPyObject;
@@ -125,7 +125,6 @@ type
     function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
     function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
     function  CallOneArg(const arg: IPyObject): IPyObject;
-
     function  UnWrap: Pointer;
 
     property Initialized  : boolean         read GetInitialized;
@@ -827,11 +826,6 @@ type
     procedure End_;
 
     property PyCriticalSection : Pointer read GetPyCriticalSection;
-  end;
-
-  ICustomPyModule = interface
-    ['{C5D21FF1-0C57-4A09-85A6-7CB4037DACEA}']
-
   end;
 
 implementation

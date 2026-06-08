@@ -37,7 +37,8 @@ type
       class function Update(const mp, other: IPyObject): boolean;
       class function Merge(const mp, other: IPyObject; override_: boolean): boolean;
       class function MergeFromSeq2(const d, seq2: IPyObject; override_: boolean): boolean;
-      class function GetItemString(const dp: IPyObject; const key: string): IPyObject;
+      class function GetItemString(const dp: IPyObject; const key: string): IPyObject; overload;
+      class function GetItemString(const dp: IPyObject; const key: Ansistring): IPyObject; overload;
       class function SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean; overload;
       class function SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean; overload;
       class function DelItemString(const dp: IPyObject; const key: string): boolean;
@@ -218,14 +219,14 @@ begin
 end;
 
 class function TPyDict.GetItemString(const dp: IPyObject; const key: string): IPyObject;
-var
-  TempString: AnsiString;
+begin
+  Result := TPyDict.GetItemString(dp, StringToPyUTF8(key));
+end;
+
+class function TPyDict.GetItemString(const dp: IPyObject; const key: Ansistring): IPyObject;
 begin
   if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(dp) then
-    begin
-      TempString := StringToPyUTF8(key);
-      Result     := TPyObject.Wrap(PyDict_GetItemString(dp.PyObject, PAnsiChar(TempString)), False)
-    end
+    Result := TPyObject.Wrap(PyDict_GetItemString(dp.PyObject, PAnsiChar(key)), False)
    else
     Result := nil;
 end;

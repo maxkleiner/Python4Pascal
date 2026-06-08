@@ -368,6 +368,12 @@ type
     PYGEN_NEXT   = 1
   );
 
+  TMultIntprSupport = (
+    miSupported,
+    miUnsupported,
+    piGilSupported
+  );
+
   unaryfunc                      = function(ob1: PPyObject): PPyObject; cdecl;
   binaryfunc                     = function(ob1, ob2: PPyObject): PPyObject; cdecl;
   ternaryfunc                    = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
@@ -389,16 +395,18 @@ type
   setattrofunc                   = function(ob1, ob2, ob3: PPyObject): integer; cdecl;
   reprfunc                       = function(ob: PPyObject): PPyObject; cdecl;
   hashfunc                       = function(ob: PPyObject): Py_hash_t; cdecl;
-  richcmpfunc                    = function(ob1, ob2 : PPyObject; i : Integer) : PPyObject; cdecl;
-  getiterfunc                    = function(ob1 : PPyObject) : PPyObject; cdecl;
-  iternextfunc                   = function(ob1 : PPyObject) : PPyObject; cdecl;
-  descrgetfunc                   = function(ob1, ob2, ob3: PPyObject) : PPyObject; cdecl;
-  descrsetfunc                   = function(ob1, ob2, ob3: PPyObject) : Integer; cdecl;
-  initproc                       = function(self, args, kwds: PPyObject) : Integer; cdecl;
-  newfunc                        = function(subtype: PPyTypeObject; args, kwds: PPyObject) : PPyObject; cdecl;
-  allocfunc                      = function(self: PPyTypeObject; nitems: Py_ssize_t) : PPyObject; cdecl;
-  vectorcallfunc                 = function(callable, args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject) : PPyObject; cdecl;
+  richcmpfunc                    = function(ob1, ob2: PPyObject; i: Integer): PPyObject; cdecl;
+  getiterfunc                    = function(ob1: PPyObject) : PPyObject; cdecl;
+  iternextfunc                   = function(ob1: PPyObject): PPyObject; cdecl;
+  descrgetfunc                   = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
+  descrsetfunc                   = function(ob1, ob2, ob3: PPyObject): Integer; cdecl;
+  initproc                       = function(self, args, kwds: PPyObject): Integer; cdecl;
+  newfunc                        = function(subtype: PPyTypeObject; args, kwds: PPyObject): PPyObject; cdecl;
+  allocfunc                      = function(self: PPyTypeObject; nitems: Py_ssize_t): PPyObject; cdecl;
+  vectorcallfunc                 = function(callable, args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
   sendfunc                       = function(iter, value: PPyObject; result: PPPyObject): PySendResult; cdecl;
+  create_modulefunc              = function(spec: PPyObject; def: PPyModuleDef): PPyObject; cdecl;
+  exec_modulefunc                = function(module: PPyObject): integer; cdecl;
 
   PyType_Slot = record
     slot   : integer;
@@ -847,10 +855,10 @@ type
   {* include/setobject.h *}
   {* include/methodobject.h  include/cpython/methodobject.h *}
   PyCFunction                    = function(self, args: PPyObject): PPyObject; cdecl;
-  PyCFunctionFast                = function(ob1: PPyObject; const ob2 : PPyObject; i: Py_ssize_t): PPyObject; cdecl;
-  PyCFunctionWithKeywords        = function(self, args, keywords:PPyObject): PPyObject; cdecl;
-  PyCFunctionFastWithKeywords    = function(ob1: PPyObject; const ob2 : PPyObject; i: Py_ssize_t; ob3: PPyObject): PPyObject; cdecl;
-  PyCMethod                      = function(ob1: PPyObject; typeobj: PPyTypeObject; const ob2: PPyObject; i: Py_ssize_t; ob3: PPyObject): PPyObject; cdecl;
+  PyCFunctionFast                = function(self: PPyObject; const args: PPPyObject; nargs: Py_ssize_t): PPyObject; cdecl;
+  PyCFunctionWithKeywords        = function(self, args, kwargs: PPyObject): PPyObject; cdecl;
+  PyCFunctionFastWithKeywords    = function(self: PPyObject; const args : PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject): PPyObject; cdecl;
+  PyCMethod                      = function(self: PPyObject; defining_class: PPyTypeObject; const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject): PPyObject; cdecl;
 
   PyMethodDef = record
      ml_name  : PAnsiChar;

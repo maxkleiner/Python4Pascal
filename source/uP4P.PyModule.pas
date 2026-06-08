@@ -25,7 +25,8 @@ type
       class function New(const name_: string): IPyObject;
       class function GetDict(const module_: IPyObject): IPyObject;
       class function GetNameObject(const module_: IPyObject): IPyObject;
-      class function GetName(const module_: IPyObject): string;
+      class function GetName(const module_: IPyObject): string; overload;
+      class function GetName(const module_: PPyObject): AnsiString; overload;
       class function GetFilenameObject(const module_: IPyObject): IPyObject;
       class function GetDef(const module_: IPyObject): PPyModuleDef;
       class function GetState(const module_: IPyObject): Pointer;
@@ -103,9 +104,16 @@ end;
 
 class function TPyModule.GetName(const module_: IPyObject): string;
 begin
-  if assigned(PyModule_GetName) and
-     TPyObject.IsInitialized(module_) then
-    Result := PyUTF8ToString(PyModule_GetName(module_.PyObject))
+  if TPyObject.IsInitialized(module_) then
+    Result := PyUTF8ToString(PAnsiChar(GetName(module_.PyObject)))
+   else
+    Result := '';
+end;
+
+class function TPyModule.GetName(const module_: PPyObject): AnsiString;
+begin
+  if assigned(PyModule_GetName) and assigned(module_) then
+    Result := PyModule_GetName(module_)
    else
     Result := '';
 end;

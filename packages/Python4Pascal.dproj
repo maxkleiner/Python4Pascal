@@ -212,6 +212,7 @@
         <DCCReference Include="..\source\uP4P.PyModuleSpecHelper.pas"/>
         <DCCReference Include="..\source\uP4P.CustomPyModule.pas"/>
         <DCCReference Include="..\source\uP4P.IOPyModule.pas"/>
+        <DCCReference Include="..\source\uP4P.Engine.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

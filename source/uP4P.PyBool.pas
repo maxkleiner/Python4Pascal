@@ -28,7 +28,7 @@ type
 implementation
 
 uses
-  uP4P.Loader;
+  uP4P.Engine;
 
 class function TPyBool.FromLong(aValue: C_Long): IPyObject;
 begin
@@ -40,7 +40,7 @@ end;
 
 class function TPyBool.ReturnFalse: IPyObject;
 begin
-  if GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     Result := TPyObject.Wrap(Py_False, False)
    else
     Result := TPyObject.Wrap(Py_NewRef(PPyObject(Py_False)), True);
@@ -48,7 +48,7 @@ end;
 
 class function TPyBool.ReturnTrue: IPyObject;
 begin
-  if GlobalP4PLoader.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     Result := TPyObject.Wrap(Py_True, False)
    else
     Result := TPyObject.Wrap(Py_NewRef(PPyObject(Py_True)), True);

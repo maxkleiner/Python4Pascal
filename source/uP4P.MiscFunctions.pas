@@ -51,7 +51,7 @@ implementation
 
 uses
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
-  uP4P.Loader, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
+  uP4P.Engine, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
 
 function GetModulePath : string;
 {$IFDEF MACOSX}
@@ -115,14 +115,14 @@ function CustomExceptionHandler(const aFunctionName : string; const aException :
 begin
   OutputDebugMessage(aFunctionName + ' error : ' + aException.message);
 
-  Result := (GlobalP4PLoader <> nil) and GlobalP4PLoader.ReRaiseExceptions;
+  Result := (GlobalP4PEngine <> nil) and GlobalP4PEngine.ReRaiseExceptions;
 end;
 
 procedure ShowErrorMessageDlg(const aError : string);
 begin
   OutputDebugMessage(aError);
 
-  if (GlobalP4PLoader <> nil) and GlobalP4PLoader.ShowMessageDlg then
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.ShowMessageDlg then
     begin
       {$IFDEF MSWINDOWS}
       MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  uP4P.Interfaces, uP4P.PyObject, uP4P.Loader, uP4P.Py, uP4P.PyImport,
+  uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
   uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
 
 type
@@ -34,34 +34,34 @@ implementation
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  DestroyGlobalP4PLoader;
+  DestroyGlobalP4PEngine;
 end;
 
 procedure TMainForm.InitChkClick(Sender: TObject);
 begin
-  if not(assigned(GlobalP4PLoader)) then
-    GlobalP4PLoader := TP4PLoader.Create;
+  if not(assigned(GlobalP4PEngine)) then
+    GlobalP4PEngine := TP4PEngine.Create;
 
   if InitChk.Checked then
     begin
-      if not(GlobalP4PLoader.Initialized) then
+      if not(GlobalP4PEngine.Initialized) then
         begin
-          GlobalP4PLoader.SetCurrentDir := True;
+          GlobalP4PEngine.SetCurrentDir := True;
 
-          //if GlobalP4PLoader.Load('C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll') and
-          if GlobalP4PLoader.Load() and
-             GlobalP4PLoader.Initialize then
-            Memo1.Lines.Add('Python initialized. ' + GlobalP4PLoader.buildinfo)
+          //if GlobalP4PEngine.Load('C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll') and
+          if GlobalP4PEngine.Load() and
+             GlobalP4PEngine.Initialize then
+            Memo1.Lines.Add('Python initialized. ' + GlobalP4PEngine.buildinfo)
            else
             begin
               Memo1.Lines.Add('There was an error initializing Python!');
-              Memo1.Lines.Add(GlobalP4PLoader.LastErrorMessage);
+              Memo1.Lines.Add(GlobalP4PEngine.LastErrorMessage);
             end;
         end;
     end
    else
     begin
-      DestroyGlobalP4PLoader;
+      DestroyGlobalP4PEngine;
       Memo1.Lines.Add('Python uninitialized');
     end;
 end;

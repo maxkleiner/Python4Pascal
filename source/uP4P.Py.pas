@@ -38,7 +38,8 @@ type
       class function  NewRef(aPyObject: PPyConfig): PPyObject; overload;
       class function  XNewRef(const aPyObject: IPyObject): PPyObject; overload;
       class function  XNewRef(const aPyObject: PPyConfig): PPyObject; overload;
-      class function  Is_(const x, y: IPyObject): boolean;
+      class function  Is_(const x, y: IPyObject): boolean; overload;
+      class function  Is_(const x, y: PPyObject): boolean; overload;
       class function  GetConstant(constant_id: cardinal): IPyObject;
       class function  GetConstantBorrowed(constant_id: cardinal): IPyObject;
       class function  ReprEnter(const aPyObject: IPyObject): boolean;
@@ -231,7 +232,7 @@ end;
 
 class function TPy.NewRef(const aPyObject: IPyObject): PPyObject;
 begin
-  if TPyObject.IsInitialized(aPyObject) then
+  if assigned(aPyObject) then
     Result := NewRef(aPyObject.PyObject)
    else
     Result := nil;
@@ -239,7 +240,7 @@ end;
 
 class function TPy.XNewRef(const aPyObject: PPyConfig): PPyObject;
 begin
-  if assigned(Py_XNewRef) and assigned(aPyObject) then
+  if assigned(Py_XNewRef) then
     Result := Py_XNewRef(aPyObject)
    else
     Result := nil;
@@ -247,7 +248,7 @@ end;
 
 class function TPy.XNewRef(const aPyObject: IPyObject): PPyObject;
 begin
-  if TPyObject.IsInitialized(aPyObject) then
+  if assigned(aPyObject) then
     Result := XNewRef(aPyObject.PyObject)
    else
     Result := nil;
@@ -256,9 +257,17 @@ end;
 class function TPy.Is_(const x, y: IPyObject): boolean;
 begin
   Result := assigned(Py_Is) and
-            TPyObject.IsInitialized(x) and
-            TPyObject.IsInitialized(y) and
-            (Py_Is(x.PyObject, y.PyObject) <> 0);
+            assigned(x) and
+            assigned(y) and
+            TPy.Is_(x.PyObject, y.PyObject);
+end;
+
+class function TPy.Is_(const x, y: PPyObject): boolean;
+begin
+  Result := assigned(Py_Is) and
+            assigned(x) and
+            assigned(y) and
+            (Py_Is(x, y) <> 0);
 end;
 
 class function TPy.GetConstant(constant_id: cardinal): IPyObject;
