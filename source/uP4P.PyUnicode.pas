@@ -631,11 +631,12 @@ end;
 
 class function TPyUnicode.AsUTF8AndSize(const unicode: IPyObject; var size: Py_ssize_t): PAnsiChar;
 begin
+  size   := -1;
+  Result := nil;
+
   if assigned(PyUnicode_AsUTF8AndSize) and
      TPyObject.IsInitialized(unicode) then
-    Result := PyUnicode_AsUTF8AndSize(unicode.PyObject, @size)
-   else
-    Result := nil;
+    Result := PyUnicode_AsUTF8AndSize(unicode.PyObject, @size);
 end;
 
 class function TPyUnicode.AsUTF32String(const unicode: IPyObject): IPyObject;

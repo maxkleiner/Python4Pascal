@@ -64,7 +64,6 @@ type
       function  Version(var aMajor, aMinor, aMicro: integer): boolean;
       function  GetVersion(var aMajor, aMinor, aMicro: integer): boolean;
       function  GetFileVersion(var aFileVersion : TFileVersionInfo): boolean;
-      procedure Finalize;
       procedure doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig = nil);
       procedure SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
       function  Initialize_PEP741: boolean;
@@ -165,6 +164,10 @@ type
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; virtual;
+      /// <summary>
+      /// Finalize the Python interpreter.
+      /// </summary>
+      procedure   Finalize; virtual;
 
       /// <summary>
       ///	Used to set the current directory when the libraries are loaded. This is required if the application is launched from a different application.
@@ -317,7 +320,10 @@ procedure TP4PLoader.BeforeDestruction;
 begin
   try
     if Initialized then
-      Finalize;
+      begin
+        Finalize;
+        FStatus := plsFinalized;
+      end;
   finally
     inherited BeforeDestruction;
   end;
@@ -1215,8 +1221,6 @@ end;
 procedure TP4PLoader.Finalize;
 begin
   TPy.Finalize;
-
-  FStatus := plsFinalized;
 end;
 
 procedure TP4PLoader.doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig);

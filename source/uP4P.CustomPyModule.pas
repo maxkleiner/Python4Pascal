@@ -60,7 +60,7 @@ type
       procedure   BeforeDestruction; override;
       function    doOnAfterInitialization: integer;
       function    SameAs(const other: PPyObject): boolean;
-      procedure   Initialize;
+      function    Initialize: boolean;
 
       property Name_                         : AnsiString     read FName;
       property Module                        : IPyObject      read FModule;
@@ -102,11 +102,13 @@ uses
 
 
 function Exec_Module(module: PPyObject): integer; cdecl;
+var
+  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.doOnOnAfterModuleInitialization(module)
-   else
-    Result := 0;
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(module, TempModule) then
+    TempModule.doOnAfterInitialization;
+
+  Result := 0;
 end;
 
 {$REGION 'TCustomPyModuleDefSlot'}
@@ -409,10 +411,11 @@ begin
   Result := assigned(FModule) and assigned(other) and FModule.SameAs(other);
 end;
 
-procedure TCustomPyModule.Initialize;
+function TCustomPyModule.Initialize: boolean;
 var
   TempSpec : IPyObject;
 begin
+  Result := False;
   if assigned(FModule) then exit;
 
   AddAllSlots;
@@ -427,18 +430,21 @@ begin
   FModuleDef.m_slots   := @FSlots[0];
   FModuleDef.m_methods := @FMethods[0];
 
-  if not(FIsExtension) then
+  if FIsExtension then
+    Result := True
+   else
     try
       TempSpec := TPyModuleSpecHelper.FromModuleName(FName);
 
       // Create the module from the definition and spec
       FModule  := TPyModule.FromDefAndSpec(@FModuleDef, TempSpec);
 
-      // Execute the module (triggers Py_mod_exec slot)
-      TPyModule.ExecDef(FModule, @FModuleDef);
-
-      if (GlobalP4PEngine <> nil) then
-        GlobalP4PEngine.AddModuleToSys(self);
+      if assigned(FModule) and (GlobalP4PEngine <> nil) then
+        begin
+          // Execute the module (triggers Py_mod_exec slot)
+          Result := TPyModule.ExecDef(FModule, @FModuleDef) and
+                    GlobalP4PEngine.AddModuleToSys(self);
+        end;
     finally
       TempSpec := nil;
     end;

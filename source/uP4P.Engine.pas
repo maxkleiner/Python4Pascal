@@ -10,39 +10,49 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.SysUtils, System.SyncObjs,
+    System.Classes, System.SysUtils, System.SyncObjs, System.Types,
   {$ELSE}
-    Classes, SysUtils, SyncObjs,
+    Classes, SysUtils, SyncObjs, Types,
   {$ENDIF}
   uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject, uP4P.Loader,
   uP4P.CustomPyModule, uP4P.IOPyModule;
 
 type
+  TOnOutputMessageEvent = procedure(Sender: TObject; const message_: string) of object;
+
   TP4PEngine = class(TP4PLoader)
     protected
-      FModules  : TList;
-      FSyncObj  : TCriticalSection;
-      FIOModule : TIOPyModule;
+      FModules          : TList;
+      FSyncObj          : TCriticalSection;
+      FIOModule         : TIOPyModule;
+      FOnOutputMessage  : TOnOutputMessageEvent;
 
       function  Lock: boolean;
       procedure UnLock;
-      procedure RedirectIO;
+      function  RedirectIO: boolean;
+      function  RestoreIO: boolean;
 
     public
       constructor Create; override;
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       procedure   BeforeDestruction; override;
-      procedure   AddModuleToSys(const aModule: TCustomPyModule);
+      function    AddModuleToSys(const aModule: TCustomPyModule): boolean;
       procedure   AddModule(const aModule: TCustomPyModule);
       procedure   RemoveModule(const aModule: TCustomPyModule);
       function    SearchModule(module: PPyObject; var aResult: TCustomPyModule): boolean;
+      procedure   doOnOutputMessage(const aMessage: string);
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
+      /// <summary>
+      /// Finalize the Python interpreter.
+      /// </summary>
+      procedure   Finalize; override;
 
-      function doOnOnAfterModuleInitialization(module: PPyObject): integer;
+      property IOModule         : TIOPyModule              read FIOModule;
+      property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage   write FOnOutputMessage;
   end;
 
 var
@@ -68,9 +78,10 @@ constructor TP4PEngine.Create;
 begin
   inherited Create;
 
-  FModules  := nil;
-  FSyncObj  := nil;
-  FIOModule := nil;
+  FModules         := nil;
+  FSyncObj         := nil;
+  FIOModule        := nil;
+  FOnOutputMessage := nil;
 end;
 
 destructor TP4PEngine.Destroy;
@@ -102,16 +113,6 @@ begin
   inherited BeforeDestruction;
 end;
 
-function TP4PEngine.doOnOnAfterModuleInitialization(module: PPyObject): integer;
-var
-  TempModule : TCustomPyModule;
-begin
-  if SearchModule(module, TempModule) then
-    Result := TempModule.doOnAfterInitialization
-   else
-    Result := 0;
-end;
-
 function TP4PEngine.Lock: boolean;
 begin
   if assigned(FSyncObj) then
@@ -129,13 +130,13 @@ begin
     FSyncObj.Release;
 end;
 
-procedure TP4PEngine.AddModuleToSys(const aModule: TCustomPyModule);
+function TP4PEngine.AddModuleToSys(const aModule: TCustomPyModule): boolean;
 var
   TempModuleDict : IPyObject;
 begin
   // add the module to sys.modules
   TempModuleDict := TPyImport.GetModuleDict;
-  TPyDict.SetItemString(TempModuleDict, aModule.Name_, aModule.Module);
+  Result         := TPyDict.SetItemString(TempModuleDict, aModule.Name_, aModule.Module);
   TempModuleDict := nil;
 end;
 
@@ -187,43 +188,64 @@ begin
     end;
 end;
 
-procedure TP4PEngine.RedirectIO;
+procedure TP4PEngine.doOnOutputMessage(const aMessage: string);
+begin
+  if assigned(FOnOutputMessage) then
+    FOnOutputMessage(self, aMessage);
+end;
+
+function TP4PEngine.RedirectIO: boolean;
 const
   code = 'import sys'+LF+
          'class DebugOutput:'+LF+
          '  pyio = __import__("pyio")'+LF+
-         '  softspace=0'+LF+
-         '  encoding=None'+LF+
+     {    '  softspace=0'+LF+
+         '  encoding=None'+LF+   }
          '  def write(self,message):'+LF+
          '     self.pyio.write(message)'+LF+
-         '  def readline(self, size=None):'+LF+
+      {   '  def readline(self, size=None):'+LF+
          '     return self.pyio.read(size)'+LF+
          '  def flush(self):' + LF +
          '     pass' + LF +
          '  def isatty(self):' + LF +
          '     return False' + LF +
-         'sys.old_stdin=sys.stdin'+LF+
+         'sys.old_stdin=sys.stdin'+LF+     }
          'sys.old_stdout=sys.stdout'+LF+
-         'sys.old_stderr=sys.stderr'+LF+
-         'sys.stdin=sys.stderr=sys.stdout=DebugOutput()'+LF+#0;
+       {  'sys.old_stderr=sys.stderr'+LF+
+         'sys.stdin=sys.stderr=sys.stdout=DebugOutput()'+LF+#0;}
+         'sys.stdout=DebugOutput()'+LF+#0;
 begin
+  Result := False;
   if assigned(FIOModule) then exit;
 
   FIOModule := TIOPyModule.Create('pyio');
-  FIOModule.Initialize;
 
-  TPyRun.SimpleString(code);
+  Result := FIOModule.Initialize and
+            TPyRun.SimpleString(code);
+end;
+
+function TP4PEngine.RestoreIO: boolean;
+const
+  code = 'import sys'+LF+
+         'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout'+LF+#0;
+        // 'if hasattr(sys, "old_stdin"):  sys.stdin=sys.old_stdin'+LF+
+        // 'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout'+LF+
+        // 'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr';
+begin
+  Result := TPyRun.SimpleString(code);
 end;
 
 function TP4PEngine.Initialize: boolean;
 begin
-  if inherited Initialize then
-    begin
-      RedirectIO;
-      Result := True;
-    end
-   else
-    Result := False;
+  Result := inherited Initialize and
+            RedirectIO;
+end;
+
+procedure TP4PEngine.Finalize;
+begin
+  inherited Finalize;
+
+  RestoreIO;
 end;
 
 end.

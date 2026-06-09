@@ -14,7 +14,8 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject, uP4P.CustomPyModule;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
+  uP4P.CustomPyModule, uP4P.PyNone;
 
 type
   TIOPyModule = class(TCustomPyModule)
@@ -30,72 +31,79 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Engine;
+  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyBytes;
 
 function pyio_write(self, args: PPyObject): PPyObject; cdecl;
-var
-  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(self, TempModule) then
-    Result := TIOPyModule(TempModule).Write(args)
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.IOModule.Write(args)
    else
     Result := nil;
 end;
-
+                                             {
 function pyio_read(self, args: PPyObject): PPyObject; cdecl;
-var
-  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(self, TempModule) then
-    Result := TIOPyModule(TempModule).Read(args)
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.IOModule.Read(args)
    else
     Result := nil;
 end;
 
 function pyio_SetDelayWrites(self, args: PPyObject): PPyObject; cdecl;
-var
-  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(self, TempModule) then
-    Result := TIOPyModule(TempModule).SetDelayWrites(args)
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.IOModule.SetDelayWrites(args)
    else
     Result := nil;
 end;
 
 function pyio_SetMaxLines(self, args: PPyObject): PPyObject; cdecl;
-var
-  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(self, TempModule) then
-    Result := TIOPyModule(TempModule).SetMaxLines(args)
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.IOModule.SetMaxLines(args)
    else
     Result := nil;
 end;
 
 function pyio_GetTypesStats(self, args: PPyObject): PPyObject; cdecl;
-var
-  TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(self, TempModule) then
-    Result := TIOPyModule(TempModule).GetTypesStats(args)
+  if (GlobalP4PEngine <> nil) then
+    Result := GlobalP4PEngine.IOModule.GetTypesStats(args)
    else
     Result := nil;
-end;
+end;        }
 
 procedure TIOPyModule.AddAllMethods;
 begin
   inherited AddAllMethods;
 
   AddMethod('write', 'write(string) -> None', @pyio_write, METH_VARARGS);
+  {
   AddMethod('read', 'read() -> string', @pyio_read, METH_VARARGS);
   AddMethod('SetDelayWrites', 'SetDelayWrites(Boolean) -> None', @pyio_SetDelayWrites, METH_VARARGS);
   AddMethod('SetMaxLines', 'SetMaxLines(Integer) -> None', @pyio_SetMaxLines, METH_VARARGS);
   AddMethod('GetTypesStats', 'GetTypesStats( [type name] ) -> a list of tuple (TypeName, InstanceCount, CreateHits, DeleteHits)', @pyio_GetTypesStats, METH_VARARGS);
+  }
 end;
 
 function TIOPyModule.Write(args: PPyObject): PPyObject;
+var
+  TempArgs, TempItem : IPyObject;
 begin
-  Result := nil;
+  TempArgs := TPyObject.Wrap(args, False);
+
+  if TPyTuple.Check(TempArgs) then
+    begin
+      TempItem := TPyTuple.GetItem(TempArgs, 0);
+
+      if TPyUnicode.Check(TempItem) then
+        GlobalP4PEngine.doOnOutputMessage(PyUTF8ToString(TPyUnicode.AsUTF8(TempItem)))
+       else
+        if TPyBytes.Check(TempItem) then
+          GlobalP4PEngine.doOnOutputMessage(TPyBytes.AsString(TempItem));
+    end;
+
+  Result := TPyNone.New.PyObject;
 end;
 
 function TIOPyModule.Read(args: PPyObject): PPyObject;

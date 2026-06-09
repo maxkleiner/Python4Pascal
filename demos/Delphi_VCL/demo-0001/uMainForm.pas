@@ -21,6 +21,7 @@ type
     procedure Run2BtnClick(Sender: TObject);
   private
     { Private declarations }
+    procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
   public
     { Public declarations }
   end;
@@ -37,10 +38,18 @@ begin
   DestroyGlobalP4PEngine;
 end;
 
+procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
+begin
+  Memo1.Lines.Add(message_);
+end;
+
 procedure TMainForm.InitChkClick(Sender: TObject);
 begin
   if not(assigned(GlobalP4PEngine)) then
-    GlobalP4PEngine := TP4PEngine.Create;
+    begin
+      GlobalP4PEngine := TP4PEngine.Create;
+      GlobalP4PEngine.OnOutputMessage := GlobalP4PEngine_OnOutputMessage;
+    end;
 
   if InitChk.Checked then
     begin
