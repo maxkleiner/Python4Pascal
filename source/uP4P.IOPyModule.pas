@@ -88,7 +88,7 @@ end;
 
 function TIOPyModule.Write(args: PPyObject): PPyObject;
 var
-  TempArgs, TempItem : IPyObject;
+  TempArgs, TempItem, TempStr : IPyObject;
 begin
   TempArgs := TPyObject.Wrap(args, False);
 
@@ -100,7 +100,14 @@ begin
         GlobalP4PEngine.doOnOutputMessage(PyUTF8ToString(TPyUnicode.AsUTF8(TempItem)))
        else
         if TPyBytes.Check(TempItem) then
-          GlobalP4PEngine.doOnOutputMessage(TPyBytes.AsString(TempItem));
+          GlobalP4PEngine.doOnOutputMessage(TPyBytes.AsString(TempItem))
+         else
+          begin
+            TempStr := TempItem.Str;
+
+            if TPyUnicode.Check(TempStr) then
+              GlobalP4PEngine.doOnOutputMessage(PyUTF8ToString(TPyUnicode.AsUTF8(TempStr)));
+          end;
     end;
 
   Result := TPyNone.New.PyObject;

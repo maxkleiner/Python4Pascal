@@ -24,6 +24,10 @@ type
       class function GetXOptions: IPyObject;
       class function AuditTuple(const event: string; const args: IPyObject): boolean;
       class function AddAuditHook(hook: Py_AuditHookFunction; userData: Pointer): boolean;
+      class procedure WriteStdout(const format_: string; const args: array of const); overload;
+      class procedure WriteStdout(const format_: string); overload;
+      class procedure WriteStderr(const format_: string; const args: array of const); overload;
+      class procedure WriteStderr(const format_: string); overload;
   end;
 
 implementation
@@ -87,6 +91,66 @@ class function TPySys.AddAuditHook(hook: Py_AuditHookFunction; userData: Pointer
 begin
   Result := assigned(PySys_AddAuditHook) and
             (PySys_AddAuditHook(hook, userData) = 0);
+end;
+
+class procedure TPySys.WriteStdout(const format_: string; const args: array of const);
+var
+  TempMsg : AnsiString;
+begin
+  if assigned(PySys_WriteStdout) then
+    begin
+      TempMsg := StringToPyUTF8(format_);
+      //TODO: Find a better way to call PySys_WriteStdout with a variable number of arguments.
+      case length(args) of
+        05 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3], args[4]);
+        04 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3]);
+        03 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1], args[2]);
+        02 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1]);
+        01 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0]);
+        else PySys_WriteStdout(PAnsiChar(TempMsg));
+      end;
+    end;
+end;
+
+class procedure TPySys.WriteStdout(const format_: string);
+var
+  TempMsg : AnsiString;
+begin
+  if assigned(PySys_WriteStdout) then
+    begin
+      TempMsg := StringToPyUTF8(format_);
+      PySys_WriteStdout(PAnsiChar(TempMsg));
+    end;
+end;
+
+class procedure TPySys.WriteStderr(const format_: string; const args: array of const);
+var
+  TempMsg : AnsiString;
+begin
+  if assigned(PySys_WriteStderr) then
+    begin
+      TempMsg := StringToPyUTF8(format_);
+      //TODO: Find a better way to call PySys_WriteStderr with a variable number of arguments.
+      case length(args) of
+        05 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3], args[4]);
+        04 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3]);
+        03 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1], args[2]);
+        02 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1]);
+        01 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0]);
+        else PySys_WriteStderr(PAnsiChar(TempMsg));
+      end;
+    end;
+end;
+
+class procedure TPySys.WriteStderr(const format_: string);
+var
+  TempMsg : AnsiString;
+begin
+  if assigned(PySys_WriteStderr) then
+    begin
+      TempMsg := StringToPyUTF8(format_);
+      PySys_WriteStderr(PAnsiChar(TempMsg));
+    end;
 end;
 
 end.

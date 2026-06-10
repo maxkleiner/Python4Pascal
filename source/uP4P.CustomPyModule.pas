@@ -24,9 +24,9 @@ type
       FName                  : AnsiString;
       FDocStrings            : AnsiString;
       FSlotList              : TList;
-      FSlots                 : array of Pointer;
+      FSlots                 : array of PyModuleDef_Slot;
       FMethodList            : TList;
-      FMethods               : array of Pointer;
+      FMethods               : array of PyMethodDef;
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
 
@@ -345,7 +345,7 @@ begin
       i := 0;
       while (i < FSlotList.Count) do
         begin
-          FSlots[i] := @TCustomPyModuleDefSlot(FSlotList[i]).Slot;
+          FSlots[i] := TCustomPyModuleDefSlot(FSlotList[i]).Slot;
           inc(i);
         end;
     end;
@@ -364,7 +364,7 @@ begin
       i := 0;
       while (i < FMethodList.Count) do
         begin
-          FMethods[i] := @TCustomPyMethodDef(FMethodList[i]).Method;
+          FMethods[i] := TCustomPyMethodDef(FMethodList[i]).Method;
           inc(i);
         end;
     end;
@@ -416,7 +416,7 @@ var
   TempSpec : IPyObject;
 begin
   Result := False;
-  if assigned(FModule) then exit;
+  if assigned(FModule) or (GlobalP4PEngine = nil) then exit;
 
   AddAllSlots;
   AddAllMethods;
@@ -439,12 +439,14 @@ begin
       // Create the module from the definition and spec
       FModule  := TPyModule.FromDefAndSpec(@FModuleDef, TempSpec);
 
-      if assigned(FModule) and (GlobalP4PEngine <> nil) then
+      if assigned(FModule) then
         begin
           // Execute the module (triggers Py_mod_exec slot)
           Result := TPyModule.ExecDef(FModule, @FModuleDef) and
                     GlobalP4PEngine.AddModuleToSys(self);
-        end;
+        end
+       else
+        GlobalP4PEngine.GetRaisedException;
     finally
       TempSpec := nil;
     end;

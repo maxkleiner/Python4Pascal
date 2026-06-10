@@ -50,7 +50,7 @@ begin
   Result := nil;
   if not(assigned(PyTuple_Pack)) then exit;
 
-  //TODO: Find a way to call PyTuple_Pack with a varable number of arguments using an open array with an arbitrary length.
+  //TODO: Find a way to call PyTuple_Pack with a variable number of arguments using an open array with an arbitrary length.
 
   n := length(objects);
   case n of

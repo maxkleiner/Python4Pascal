@@ -143,17 +143,17 @@ begin
   if assigned(PyErr_Restore) then
     begin
       if TPyObject.IsInitialized(type_) then
-        TempType := type_.PyObject
+        TempType := type_.UnWrap
        else
         TempType := nil;
 
       if TPyObject.IsInitialized(value) then
-        TempValue := value.PyObject
+        TempValue := value.UnWrap
        else
         TempValue := nil;
 
       if TPyObject.IsInitialized(traceback) then
-        TempTraceback := traceback.PyObject
+        TempTraceback := traceback.UnWrap
        else
         TempTraceback := nil;
 

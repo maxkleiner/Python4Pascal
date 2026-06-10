@@ -51,6 +51,9 @@ type
       /// </summary>
       procedure   Finalize; override;
 
+      function    GetRaisedException: boolean;
+
+
       property IOModule         : TIOPyModule              read FIOModule;
       property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage   write FOnOutputMessage;
   end;
@@ -66,7 +69,8 @@ procedure DestroyGlobalP4PEngine;
 implementation
 
 uses
-  uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun;
+  uP4P.MiscFunctions, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun,
+  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -246,6 +250,48 @@ begin
   inherited Finalize;
 
   RestoreIO;
+end;
+
+function TP4PEngine.GetRaisedException: boolean;
+var
+  TempType, TempValue, TempTraceback, TempStr : IPyObject;
+begin
+  Result := False;
+
+  if PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    TempValue := TPyErr.GetRaisedException()
+   else
+    TPyErr.Fetch(TempType, TempValue, TempTraceback);
+
+  if TPyUnicode.Check(TempValue) then
+    begin
+      FLastErrorMessage := PyUTF8ToString(TPyUnicode.AsUTF8(TempValue));
+      Result := True;
+    end
+   else
+    if TPyBytes.Check(TempValue) then
+      begin
+        FLastErrorMessage := TPyBytes.AsString(TempValue);
+        Result := True;
+      end
+     else
+      begin
+        TempStr := TempValue.Str;
+
+        if TPyUnicode.Check(TempStr) then
+          begin
+            FLastErrorMessage := PyUTF8ToString(TPyUnicode.AsUTF8(TempStr));
+            Result := True;
+          end;
+      end;
+
+  if TPyObject.IsInitialized(TempValue) then
+    begin
+      if PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+        TPyErr.SetRaisedException(TempValue)
+       else
+        TPyErr.Restore(TempType, TempValue, TempTraceback);
+    end;
 end;
 
 end.
