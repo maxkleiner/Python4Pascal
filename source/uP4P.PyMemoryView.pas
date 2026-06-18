@@ -22,7 +22,7 @@ type
       class function Check(const aPyObject: IPyObject): boolean;
       class function GetContiguous(const obj: IPyObject; buffertype: integer; order: TPyMemoryViewOrder): IPyObject;
       class function FromObject(const obj: IPyObject): IPyObject;
-      class function FromMemory(mem: Pointer; size: Py_ssize_t; flags: integer): IPyObject;
+      class function FromMemory(mem: Pointer; size_: Py_ssize_t; flags: integer): IPyObject;
       class function FromBuffer(const view: PPy_buffer): IPyObject;
   end;
 
@@ -42,10 +42,10 @@ begin
     Result := nil;
 end;
 
-class function TPyMemoryView.FromMemory(mem: Pointer; size: Py_ssize_t; flags: integer): IPyObject;
+class function TPyMemoryView.FromMemory(mem: Pointer; size_: Py_ssize_t; flags: integer): IPyObject;
 begin
   if assigned(PyMemoryView_FromMemory) then
-    Result := TPyObject.Wrap(PyMemoryView_FromMemory(mem, size, flags))
+    Result := TPyObject.Wrap(PyMemoryView_FromMemory(mem, size_, flags))
    else
     Result := nil;
 end;

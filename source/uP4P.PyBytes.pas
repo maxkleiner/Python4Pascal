@@ -28,8 +28,8 @@ type
       class function AsStringAndSize(const ob: IPyObject; var buffer: string; var length: Py_ssize_t): boolean;
       class function AsBufferAndSize(const ob: IPyObject; var buffer: PByte; var length: Py_ssize_t): boolean;
       class function Join(const sep, iterable: IPyObject): IPyObject;
-      class function FromStringAndSize(const str: string; size: Py_ssize_t): IPyObject;
-      class function FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+      class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
+      class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       class function FromString(const str: string): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
       class function FromObject(const ob: IPyObject): IPyObject;
@@ -44,23 +44,23 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject;
 
-class function TPyBytes.FromStringAndSize(const str: string; size: Py_ssize_t): IPyObject;
+class function TPyBytes.FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
 var
   TempString: AnsiString;
 begin
   if assigned(PyBytes_FromStringAndSize) then
     begin
       TempString := StringToPyUTF8(str);
-      Result     := TPyObject.Wrap(PyBytes_FromStringAndSize(PAnsiChar(TempString), size))
+      Result     := TPyObject.Wrap(PyBytes_FromStringAndSize(PAnsiChar(TempString), size_))
     end
    else
     Result := nil;
 end;
 
-class function TPyBytes.FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+class function TPyBytes.FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyBytes_FromStringAndSize) then
-    Result := TPyObject.Wrap(PyBytes_FromStringAndSize(PAnsiChar(buffer), size))
+    Result := TPyObject.Wrap(PyBytes_FromStringAndSize(PAnsiChar(buffer), size_))
    else
     Result := nil;
 end;

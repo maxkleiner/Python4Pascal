@@ -25,10 +25,10 @@ type
       procedure Discard;
       function  Finish: IPyObject;
       function  WriteChar(ch: Py_UCS4): boolean;
-      function  WriteUTF8(const str: PAnsiChar; size: Py_ssize_t): boolean;
-      function  WriteASCII(const str: PAnsiChar; size: Py_ssize_t): boolean;
-      function  WriteWideChar(const str: PWCharT; size: Py_ssize_t): boolean;
-      function  WriteUCS4(str: PPy_UCS4; size: Py_ssize_t): boolean;
+      function  WriteUTF8(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+      function  WriteASCII(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+      function  WriteWideChar(const str: PWCharT; size_: Py_ssize_t): boolean;
+      function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
       function  WriteStr(const obj: IPyObject): boolean;
       function  WriteRepr(const obj: IPyObject): boolean;
       function  WriteSubstring(str: PPyObject; start, end_: Py_ssize_t): boolean;
@@ -97,32 +97,32 @@ begin
             (PyUnicodeWriter_WriteChar(FWriter, ch) = 0);
 end;
 
-function TPyUnicodeWriter.WriteUTF8(const str: PAnsiChar; size: Py_ssize_t): boolean;
+function TPyUnicodeWriter.WriteUTF8(const str: PAnsiChar; size_: Py_ssize_t): boolean;
 begin
   Result := Initialized and
             assigned(PyUnicodeWriter_WriteUTF8) and
-            (PyUnicodeWriter_WriteUTF8(FWriter, str, size) = 0);
+            (PyUnicodeWriter_WriteUTF8(FWriter, str, size_) = 0);
 end;
 
-function TPyUnicodeWriter.WriteASCII(const str: PAnsiChar; size: Py_ssize_t): boolean;
+function TPyUnicodeWriter.WriteASCII(const str: PAnsiChar; size_: Py_ssize_t): boolean;
 begin
   Result := Initialized and
             assigned(PyUnicodeWriter_WriteASCII) and
-            (PyUnicodeWriter_WriteASCII(FWriter, str, size) = 0);
+            (PyUnicodeWriter_WriteASCII(FWriter, str, size_) = 0);
 end;
 
-function TPyUnicodeWriter.WriteWideChar(const str: PWCharT; size: Py_ssize_t): boolean;
+function TPyUnicodeWriter.WriteWideChar(const str: PWCharT; size_: Py_ssize_t): boolean;
 begin
   Result := Initialized and
             assigned(PyUnicodeWriter_WriteWideChar) and
-            (PyUnicodeWriter_WriteWideChar(FWriter, str, size) = 0);
+            (PyUnicodeWriter_WriteWideChar(FWriter, str, size_) = 0);
 end;
 
-function TPyUnicodeWriter.WriteUCS4(str: PPy_UCS4; size: Py_ssize_t): boolean;
+function TPyUnicodeWriter.WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
 begin
   Result := Initialized and
             assigned(PyUnicodeWriter_WriteUCS4) and
-            (PyUnicodeWriter_WriteUCS4(FWriter, str, size) = 0);
+            (PyUnicodeWriter_WriteUCS4(FWriter, str, size_) = 0);
 end;
 
 function TPyUnicodeWriter.WriteStr(const obj: IPyObject): boolean;

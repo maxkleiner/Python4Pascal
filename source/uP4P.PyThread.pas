@@ -24,7 +24,7 @@ type
       class function  get_thread_ident: C_ULong;
       class function  get_thread_native_id: C_ULong;
       class function  get_stacksize: NativeUInt;
-      class function  set_stacksize(size: NativeUInt): integer;
+      class function  set_stacksize(size_: NativeUInt): integer;
       class function  GetInfo: IPyObject;
   end;
 
@@ -68,10 +68,10 @@ begin
     Result := 0;
 end;
 
-class function TPyThread.set_stacksize(size: NativeUInt): integer;
+class function TPyThread.set_stacksize(size_: NativeUInt): integer;
 begin
   if assigned(PyThread_set_stacksize) then
-    Result := PyThread_set_stacksize(size)
+    Result := PyThread_set_stacksize(size_)
    else
     Result := -2;
 end;

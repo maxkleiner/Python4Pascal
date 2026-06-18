@@ -21,10 +21,12 @@ type
     public
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
-      class function FromStringAndSize(const str: string; size: Py_ssize_t): IPyObject;
+      class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
       class function FromString(const str: string): IPyObject; overload;
+      {$IFNDEF FPC}
       class function FromString(const str: AnsiString): IPyObject; overload;
-      class function FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+      {$ENDIF}
+      class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
       class function AsUCS4(const unicode: IPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: boolean): PPy_UCS4;
@@ -37,12 +39,12 @@ type
       class function FromObject(const obj: IPyObject): IPyObject;
       class procedure InternInPlace(const unicode: IPyObject);
       class function InternFromString(const str: string): IPyObject;
-      class function FromWideChar(const w: PWCharT; size: Py_ssize_t): IPyObject;
-      class function AsWideChar(const unicode: IPyObject; w: PWCharT; size: Py_ssize_t): Py_ssize_t;
-      class function AsWideCharString(const unicode: IPyObject; size: Py_ssize_t): PWCharT;
+      class function FromWideChar(const w: PWCharT; size_: Py_ssize_t): IPyObject;
+      class function AsWideChar(const unicode: IPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t;
+      class function AsWideCharString(const unicode: IPyObject; size_: Py_ssize_t): PWCharT;
       class function FromOrdinal(ordinal: integer): IPyObject;
       class function GetDefaultEncoding(): string;
-      class function Decode(const s: PAnsiChar; size: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject; 
+      class function Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject; 
       class function AsEncodedString(const unicode: IPyObject; const encoding: string; errors: TPyCodecErrors): IPyObject;
       class function BuildEncodingMap(const string_: IPyObject): IPyObject;           
       class function DecodeUTF7(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
@@ -50,7 +52,7 @@ type
       class function DecodeUTF8(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       class function DecodeUTF8Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       class function AsUTF8String(const unicode: IPyObject): IPyObject;
-      class function AsUTF8AndSize(const unicode: IPyObject; var size: Py_ssize_t): PAnsiChar;     
+      class function AsUTF8AndSize(const unicode: IPyObject; var size_: Py_ssize_t): PAnsiChar;     
       class function DecodeUTF32(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder): IPyObject;
       class function DecodeUTF32Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder; var consumed: Py_ssize_t): IPyObject;
       class function AsUTF32String(const unicode: IPyObject): IPyObject; 
@@ -79,8 +81,8 @@ type
       class function FSDecoder(const obj: IPyObject; result_: Pointer): boolean;   
       class function DecodeFSDefault(const str: PAnsiChar): IPyObject; overload;
       class function DecodeFSDefault(const str: string): IPyObject; overload;
-      class function DecodeFSDefaultAndSize(const str: PAnsiChar; size: Py_ssize_t): IPyObject; overload;
-      class function DecodeFSDefaultAndSize(const str: string; size: Py_ssize_t): IPyObject; overload;
+      class function DecodeFSDefaultAndSize(const str: PAnsiChar; size_: Py_ssize_t): IPyObject; overload;
+      class function DecodeFSDefaultAndSize(const str: string; size_: Py_ssize_t): IPyObject; overload;
       class function EncodeFSDefault(const unicode: IPyObject): IPyObject;        
       class function Concat(const left, right: IPyObject): IPyObject;
       class procedure Append(const left, right: IPyObject);
@@ -100,18 +102,18 @@ type
       class function Compare(const left, right: IPyObject): integer;
       class function CompareWithASCIIString(const left: IPyObject; const right: PAnsiChar): integer;
       class function EqualToUTF8(const unicode: IPyObject; const string_: PAnsiChar): boolean;
-      class function EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size: Py_ssize_t): boolean;
+      class function EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size_: Py_ssize_t): boolean;
       class function Equal(const a, b: IPyObject): integer;
       class function RichCompare(const left, right: IPyObject; op: integer): IPyObject;
-      class function Format(const format, args: IPyObject): IPyObject;
+      class function Format(const format_, args: IPyObject): IPyObject;
       class function Contains(const unicode, substr: IPyObject): integer;
       class function IsIdentifier(const unicode: IPyObject): boolean;
       class function KIND(const unicode: IPyObject): PyUnicode_Kind_Result;
       class function DATA(const unicode: IPyObject): Pointer;
-      class function New(size: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
+      class function New(size_: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
       class function CopyCharacters(const to_: IPyObject; to_start: Py_ssize_t; const from: IPyObject; from_start, how_many: Py_ssize_t): Py_ssize_t;
       class function Fill(const unicode: IPyObject; start, length: Py_ssize_t; fill_char: Py_UCS4): Py_ssize_t;
-      class function FromKindAndData(kind: integer; buffer: Pointer; size: Py_ssize_t): IPyObject;
+      class function FromKindAndData(kind_: integer; buffer: Pointer; size_: Py_ssize_t): IPyObject;
       class function AsUTF8(const unicode: IPyObject): PAnsiChar;
   end;
 
@@ -120,24 +122,33 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject;
 
-class function TPyUnicode.FromStringAndSize(const str: string; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
 var
   TempString: AnsiString;
 begin
   if assigned(PyUnicode_FromStringAndSize) then
     begin
       TempString := StringToPyUTF8(str);
-      Result     := TPyObject.Wrap(PyUnicode_FromStringAndSize(PAnsiChar(TempString), size))
+      Result     := TPyObject.Wrap(PyUnicode_FromStringAndSize(PAnsiChar(TempString), size_))
     end
    else
     Result := nil;
 end;
 
 class function TPyUnicode.FromString(const str: string): IPyObject;
+var
+  TempStr : AnsiString;
 begin
-  Result := FromString(StringToPyUTF8(str));
+  if assigned(PyUnicode_FromString) then
+    begin
+      TempStr := StringToPyUTF8(str);
+      Result  := TPyObject.Wrap(PyUnicode_FromString(PAnsiChar(TempStr)));
+    end
+   else
+    Result := nil;
 end;
 
+{$IFNDEF FPC}
 class function TPyUnicode.FromString(const str: AnsiString): IPyObject;
 begin
   if assigned(PyUnicode_FromString) then
@@ -145,11 +156,12 @@ begin
    else
     Result := nil;
 end;
+{$ENDIF}
 
-class function TPyUnicode.FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyUnicode_FromStringAndSize) then
-    Result := TPyObject.Wrap(PyUnicode_FromStringAndSize(PAnsiChar(buffer), size))
+    Result := TPyObject.Wrap(PyUnicode_FromStringAndSize(PAnsiChar(buffer), size_))
    else
     Result := nil;
 end;
@@ -264,10 +276,10 @@ begin
     Result := nil;
 end;
 
-class function TPyUnicode.FromWideChar(const w: PWCharT; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.FromWideChar(const w: PWCharT; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyUnicode_FromWideChar) then
-    Result := TPyObject.Wrap(PyUnicode_FromWideChar(w, size))
+    Result := TPyObject.Wrap(PyUnicode_FromWideChar(w, size_))
    else
     Result := nil;
 end;
@@ -280,7 +292,7 @@ begin
     Result := nil;
 end;
 
-class function TPyUnicode.Decode(const s: PAnsiChar; size: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject;
+class function TPyUnicode.Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject;
 var
   TempEncoding, TempErrors : AnsiString;
 begin
@@ -288,7 +300,7 @@ begin
     begin                 
       TempEncoding := StringToPyUTF8(encoding);             
       TempErrors   := ErrorToAnsiString(errors);
-      Result       := TPyObject.Wrap(PyUnicode_Decode(s, size, PAnsiChar(TempEncoding), PAnsiChar(TempErrors)));
+      Result       := TPyObject.Wrap(PyUnicode_Decode(s, size_, PAnsiChar(TempEncoding), PAnsiChar(TempErrors)));
     end
    else
     Result := nil;
@@ -578,20 +590,20 @@ begin
     end;
 end;
 
-class function TPyUnicode.AsWideChar(const unicode: IPyObject; w: PWCharT; size: Py_ssize_t): Py_ssize_t;
+class function TPyUnicode.AsWideChar(const unicode: IPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t;
 begin
   if assigned(PyUnicode_AsWideChar) and
      TPyObject.IsInitialized(unicode) then
-    Result := PyUnicode_AsWideChar(unicode.PyObject, w, size)
+    Result := PyUnicode_AsWideChar(unicode.PyObject, w, size_)
    else
     Result := -1;
 end;
 
-class function TPyUnicode.AsWideCharString(const unicode: IPyObject; size: Py_ssize_t): PWCharT;
+class function TPyUnicode.AsWideCharString(const unicode: IPyObject; size_: Py_ssize_t): PWCharT;
 begin
   if assigned(PyUnicode_AsWideCharString) and
      TPyObject.IsInitialized(unicode) then
-    Result := PyUnicode_AsWideCharString(unicode.PyObject, size)
+    Result := PyUnicode_AsWideCharString(unicode.PyObject, size_)
    else
     Result := nil;
 end;
@@ -629,14 +641,14 @@ begin
     Result := nil;
 end;
 
-class function TPyUnicode.AsUTF8AndSize(const unicode: IPyObject; var size: Py_ssize_t): PAnsiChar;
+class function TPyUnicode.AsUTF8AndSize(const unicode: IPyObject; var size_: Py_ssize_t): PAnsiChar;
 begin
-  size   := -1;
+  size_   := -1;
   Result := nil;
 
   if assigned(PyUnicode_AsUTF8AndSize) and
      TPyObject.IsInitialized(unicode) then
-    Result := PyUnicode_AsUTF8AndSize(unicode.PyObject, @size);
+    Result := PyUnicode_AsUTF8AndSize(unicode.PyObject, @size_);
 end;
 
 class function TPyUnicode.AsUTF32String(const unicode: IPyObject): IPyObject;
@@ -782,20 +794,20 @@ begin
   Result     := DecodeFSDefault(PAnsiChar(TempString));
 end;
 
-class function TPyUnicode.DecodeFSDefaultAndSize(const str: PAnsiChar; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.DecodeFSDefaultAndSize(const str: PAnsiChar; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyUnicode_DecodeFSDefaultAndSize) then
-    Result := TPyObject.Wrap(PyUnicode_DecodeFSDefaultAndSize(str, size))
+    Result := TPyObject.Wrap(PyUnicode_DecodeFSDefaultAndSize(str, size_))
    else
     Result := nil; 
 end;
 
-class function TPyUnicode.DecodeFSDefaultAndSize(const str: string; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.DecodeFSDefaultAndSize(const str: string; size_: Py_ssize_t): IPyObject;
 var
   TempString : AnsiString;
 begin
   TempString := StringToPyUTF8(str);  
-  Result     := DecodeFSDefaultAndSize(PAnsiChar(TempString), size);
+  Result     := DecodeFSDefaultAndSize(PAnsiChar(TempString), size_);
 end;
 
 class function TPyUnicode.EncodeFSDefault(const unicode: IPyObject): IPyObject;    
@@ -1002,11 +1014,11 @@ begin
             (PyUnicode_EqualToUTF8(unicode.PyObject, string_) <> 0);
 end;
 
-class function TPyUnicode.EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size: Py_ssize_t): boolean;
+class function TPyUnicode.EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size_: Py_ssize_t): boolean;
 begin
   Result := assigned(PyUnicode_EqualToUTF8AndSize) and
             TPyObject.IsInitialized(unicode) and
-            (PyUnicode_EqualToUTF8AndSize(unicode.PyObject, string_, size) <> 0);
+            (PyUnicode_EqualToUTF8AndSize(unicode.PyObject, string_, size_) <> 0);
 end;
 
 class function TPyUnicode.Equal(const a, b: IPyObject): integer;
@@ -1030,12 +1042,12 @@ begin
     Result := nil;
 end;
 
-class function TPyUnicode.Format(const format, args: IPyObject): IPyObject;
+class function TPyUnicode.Format(const format_, args: IPyObject): IPyObject;
 begin
   if assigned(PyUnicode_Format) and
-     TPyObject.IsInitialized(format) and
+     TPyObject.IsInitialized(format_) and
      TPyObject.IsInitialized(args) then
-    Result := TPyObject.Wrap(PyUnicode_Format(format.PyObject, args.PyObject))
+    Result := TPyObject.Wrap(PyUnicode_Format(format_.PyObject, args.PyObject))
    else
     Result := nil;
 end;
@@ -1075,10 +1087,10 @@ begin
     Result := nil;
 end;
 
-class function TPyUnicode.New(size: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
+class function TPyUnicode.New(size_: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
 begin
   if assigned(PyUnicode_New) then
-    Result := TPyObject.Wrap(PyUnicode_New(size, maxchar))
+    Result := TPyObject.Wrap(PyUnicode_New(size_, maxchar))
    else
     Result := nil;
 end;
@@ -1102,10 +1114,10 @@ begin
     Result := -1;
 end;
 
-class function TPyUnicode.FromKindAndData(kind: integer; buffer: Pointer; size: Py_ssize_t): IPyObject;
+class function TPyUnicode.FromKindAndData(kind_: integer; buffer: Pointer; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyUnicode_FromKindAndData) then
-    Result := TPyObject.Wrap(PyUnicode_FromKindAndData(kind, buffer, size))
+    Result := TPyObject.Wrap(PyUnicode_FromKindAndData(kind_, buffer, size_))
    else
     Result := nil;
 end;

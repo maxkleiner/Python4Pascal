@@ -218,8 +218,8 @@ const
          '  encoding=None'+LF+
          '  def write(self,message):'+LF+
          '     self.pyio.write(message)'+LF+
-         '  def readline(self, size=None):'+LF+
-         '     return self.pyio.read(size)'+LF+
+         '  def readline(self, size_=None):'+LF+
+         '     return self.pyio.read(size_)'+LF+
          '  def flush(self):' + LF +
          '     pass' + LF +
          '  def isatty(self):' + LF +

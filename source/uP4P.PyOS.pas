@@ -29,8 +29,8 @@ type
       class function InterruptOccurred: boolean;
       class function string_to_double(const str: string; const overflow_exception: IPyObject): double;
       class function double_to_string(val: double; format_code: TPyDoubleToStringFormatCode; flags: integer; out type_: integer): string;
-      class function mystrnicmp(const str1, str2: PAnsiChar; size: Py_ssize_t): integer; overload;
-      class function mystrnicmp(const str1, str2: string; size: Py_ssize_t): integer; overload;
+      class function mystrnicmp(const str1, str2: PAnsiChar; size_: Py_ssize_t): integer; overload;
+      class function mystrnicmp(const str1, str2: string; size_: Py_ssize_t): integer; overload;
       class function mystricmp(const str1, str2: PAnsiChar): integer; overload;
       class function mystricmp(const str1, str2: string): integer; overload;
   end;
@@ -158,21 +158,21 @@ begin
     end;
 end;
 
-class function TPyOS.mystrnicmp(const str1, str2: PAnsiChar; size: Py_ssize_t): integer;
+class function TPyOS.mystrnicmp(const str1, str2: PAnsiChar; size_: Py_ssize_t): integer;
 begin
   if assigned(PyOS_mystrnicmp) then
-    Result := PyOS_mystrnicmp(str1, str2, size)
+    Result := PyOS_mystrnicmp(str1, str2, size_)
    else
     Result := 0;
 end;
 
-class function TPyOS.mystrnicmp(const str1, str2: string; size: Py_ssize_t): integer;
+class function TPyOS.mystrnicmp(const str1, str2: string; size_: Py_ssize_t): integer;
 var
   TempStr1, TempStr2 : AnsiString;
 begin
   TempStr1 := StringToPyUTF8(str1);
   TempStr2 := StringToPyUTF8(str2);
-  Result   := mystrnicmp(PAnsiChar(TempStr1), PAnsiChar(TempStr2), size);
+  Result   := mystrnicmp(PAnsiChar(TempStr1), PAnsiChar(TempStr2), size_);
 end;
 
 class function TPyOS.mystricmp(const str1, str2: PAnsiChar): integer;

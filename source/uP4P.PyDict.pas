@@ -38,9 +38,13 @@ type
       class function Merge(const mp, other: IPyObject; override_: boolean): boolean;
       class function MergeFromSeq2(const d, seq2: IPyObject; override_: boolean): boolean;
       class function GetItemString(const dp: IPyObject; const key: string): IPyObject; overload;
-      class function GetItemString(const dp: IPyObject; const key: Ansistring): IPyObject; overload;
+      {$IFNDEF FPC}
+      class function GetItemString(const dp: IPyObject; const key: AnsiString): IPyObject; overload;
+      {$ENDIF}
       class function SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean; overload;
+      {$IFNDEF FPC}
       class function SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean; overload;
+      {$ENDIF}
       class function DelItemString(const dp: IPyObject; const key: string): boolean;
       class function GetItemRef(const mp, key: IPyObject; out result_: IPyObject): integer;
       class function GetItemStringRef(const mp: IPyObject; const key: string; out result_: IPyObject): integer;
@@ -219,23 +223,44 @@ begin
 end;
 
 class function TPyDict.GetItemString(const dp: IPyObject; const key: string): IPyObject;
+var
+  TempKey : AnsiString;
 begin
-  Result := TPyDict.GetItemString(dp, StringToPyUTF8(key));
+  if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(dp) then
+    begin
+      TempKey := StringToPyUTF8(key);
+      Result  := TPyObject.Wrap(PyDict_GetItemString(dp.PyObject, PAnsiChar(TempKey)), False);
+    end
+   else
+    Result := nil;
 end;
 
-class function TPyDict.GetItemString(const dp: IPyObject; const key: Ansistring): IPyObject;
+{$IFNDEF FPC}
+class function TPyDict.GetItemString(const dp: IPyObject; const key: AnsiString): IPyObject;
 begin
   if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(dp) then
     Result := TPyObject.Wrap(PyDict_GetItemString(dp.PyObject, PAnsiChar(key)), False)
    else
     Result := nil;
 end;
+{$ENDIF}
 
-class function TPyDict.SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean;
+class function TPyDict.SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean;   
+var
+  TempKey : AnsiString;
 begin
-  Result := SetItemString(dp, StringToPyUTF8(key), item);
+  if assigned(PyDict_SetItemString) and
+     TPyObject.IsInitialized(dp) and
+     TPyObject.IsInitialized(item) then
+    begin           
+      TempKey := StringToPyUTF8(key);
+      Result  := (PyDict_SetItemString(dp.PyObject, PAnsiChar(TempKey), item.PyObject) = 0);
+    end
+   else
+    Result := False;
 end;
 
+{$IFNDEF FPC}
 class function TPyDict.SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean;
 begin
   if assigned(PyDict_SetItemString) and
@@ -244,7 +269,8 @@ begin
     Result := (PyDict_SetItemString(dp.PyObject, PAnsiChar(key), item.PyObject) = 0)
    else
     Result := False;
-end;
+end;  
+{$ENDIF}
 
 class function TPyDict.DelItemString(const dp: IPyObject; const key: string): boolean;
 var

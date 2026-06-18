@@ -19,11 +19,11 @@ uses
 type
   TPyMem = class
     public
-      class function  Malloc(size: NativeUInt): Pointer;
+      class function  Malloc(size_: NativeUInt): Pointer;
       class function  Calloc(nelem, elsize: NativeUInt): Pointer;
       class function  Realloc(ptr: Pointer; new_size: NativeUInt): Pointer;
       class procedure Free(ptr: Pointer);
-      class function  RawMalloc(size: NativeUInt): Pointer;
+      class function  RawMalloc(size_: NativeUInt): Pointer;
       class function  RawCalloc(nelem, elsize: NativeUInt): Pointer;
       class function  RawRealloc(ptr: Pointer; new_size: NativeUInt): Pointer;
       class procedure RawFree(ptr: Pointer);
@@ -34,10 +34,10 @@ type
 
 implementation
 
-class function TPyMem.Malloc(size: NativeUInt): Pointer;
+class function TPyMem.Malloc(size_: NativeUInt): Pointer;
 begin
   if assigned(PyMem_Malloc) then
-    Result := PyMem_Malloc(size)
+    Result := PyMem_Malloc(size_)
    else
     Result := nil;
 end;
@@ -64,10 +64,10 @@ begin
     PyMem_Free(ptr);
 end;
 
-class function TPyMem.RawMalloc(size: NativeUInt): Pointer;
+class function TPyMem.RawMalloc(size_: NativeUInt): Pointer;
 begin
   if assigned(PyMem_RawMalloc) then
-    Result := PyMem_RawMalloc(size)
+    Result := PyMem_RawMalloc(size_)
    else
     Result := nil;
 end;

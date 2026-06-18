@@ -180,8 +180,8 @@ type
       destructor  Destroy; override;
 
       class function  CreateInitConfig: PPyInitConfig;
-      class procedure FreeInitConfig(var config: PPyInitConfig);
-      class function  IsInitialized(const config: IPyInitConfig): boolean; inline;
+      class procedure FreeInitConfig(var config_: PPyInitConfig);
+      class function  IsInitialized(const config_: IPyInitConfig): boolean; inline;
   end;
 
 implementation
@@ -211,19 +211,19 @@ begin
     Result := nil;
 end;
 
-class procedure TPyInitConfig.FreeInitConfig(var config: PPyInitConfig);
+class procedure TPyInitConfig.FreeInitConfig(var config_: PPyInitConfig);
 begin
   if assigned(PyInitConfig_Free) and
-     assigned(config) then
+     assigned(config_) then
     begin
-      PyInitConfig_Free(config);
-      config := nil;
+      PyInitConfig_Free(config_);
+      config_ := nil;
     end;
 end;
 
-class function TPyInitConfig.IsInitialized(const config: IPyInitConfig): boolean;
+class function TPyInitConfig.IsInitialized(const config_: IPyInitConfig): boolean;
 begin
-  Result := assigned(config) and config.Initialized;
+  Result := assigned(config_) and config_.Initialized;
 end;
 
 function TPyInitConfig.GetConfig: Pointer;

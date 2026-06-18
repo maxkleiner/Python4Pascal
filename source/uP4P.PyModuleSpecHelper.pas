@@ -26,7 +26,9 @@ type
       /// <para><see href="https://peps.python.org/pep-0451/">See PEP 451 – A ModuleSpec Type for the Import.</see></para>
       /// </remarks>
       class function FromModuleName(const name_: string): IPyObject; overload;
+      {$IFNDEF FPC}
       class function FromModuleName(const name_: AnsiString): IPyObject; overload;
+      {$ENDIF}
   end;
 
 implementation
@@ -66,10 +68,39 @@ begin
   end;
 end;
 
+{$IFNDEF FPC}
 class function TPyModuleSpecHelper.FromModuleName(const name_: string): IPyObject;
+var
+  TempImportLib, TempSpecFromLoaderFunc, TempName, TempArgs, TempNone : IPyObject;
 begin
-  Result := FromModuleName(StringToPyUTF8(name_));
+  Result := nil;
+
+  try
+    TempImportLib := TPyImport.ImportModule('importlib.util');
+
+    if TPyObject.IsInitialized(TempImportLib) then
+      begin
+        TempSpecFromLoaderFunc := TempImportLib.GetAttrString('spec_from_loader');
+        TempName               := TPyUnicode.FromString(name_);
+        TempNone               := TPyNone.New;
+
+        if TPyObject.IsInitialized(TempSpecFromLoaderFunc) and
+           TPyObject.IsInitialized(TempName) and
+           TPyObject.IsInitialized(TempNone) then
+          begin
+            TempArgs := TPyTuple.Pack([TempName, TempNone]);
+            Result   := TempSpecFromLoaderFunc.CallObject(TempArgs);
+          end;
+      end;
+  finally
+    TempNone               := nil;
+    TempName               := nil;
+    TempImportLib          := nil;
+    TempArgs               := nil;
+    TempSpecFromLoaderFunc := nil;
+  end;
 end;
+{$ENDIF}
 
 
 end.

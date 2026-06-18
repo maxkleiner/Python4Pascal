@@ -23,11 +23,11 @@ type
       class function Size(const ob: IPyObject): Py_ssize_t;
       class function AsString(const ob: IPyObject): string;
       class function AsBuffer(const ob: IPyObject): PByte;
-      class function Resize(const ob: IPyObject; size: Py_ssize_t): boolean;
+      class function Resize(const ob: IPyObject; size_: Py_ssize_t): boolean;
       class function FromObject(const ob: IPyObject): IPyObject;
       class function FromString(const str: string): IPyObject;
-      class function FromStringAndSize(const str: AnsiString; size: Py_ssize_t): IPyObject;
-      class function FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+      class function FromStringAndSize(const str: AnsiString; size_: Py_ssize_t): IPyObject;
+      class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
   end;
@@ -56,18 +56,18 @@ begin
   Result     := TPyObject.Wrap(PyByteArray_FromStringAndSize(PAnsiChar(TempString), length(TempString)));
 end;
 
-class function TPyByteArray.FromStringAndSize(const str: AnsiString; size: Py_ssize_t): IPyObject;
+class function TPyByteArray.FromStringAndSize(const str: AnsiString; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyByteArray_FromStringAndSize) then
-    Result := TPyObject.Wrap(PyByteArray_FromStringAndSize(PAnsiChar(str), size))
+    Result := TPyObject.Wrap(PyByteArray_FromStringAndSize(PAnsiChar(str), size_))
    else
     Result := nil;
 end;
 
-class function TPyByteArray.FromBufferAndSize(const buffer: PByte; size: Py_ssize_t): IPyObject;
+class function TPyByteArray.FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyByteArray_FromStringAndSize) and assigned(buffer) then
-    Result := TPyObject.Wrap(PyByteArray_FromStringAndSize(PAnsiChar(buffer), size))
+    Result := TPyObject.Wrap(PyByteArray_FromStringAndSize(PAnsiChar(buffer), size_))
    else
     Result := nil;
 end;
@@ -118,11 +118,11 @@ begin
     Result := nil;
 end;
 
-class function TPyByteArray.Resize(const ob: IPyObject; size: Py_ssize_t): boolean;
+class function TPyByteArray.Resize(const ob: IPyObject; size_: Py_ssize_t): boolean;
 begin
   Result := TPyObject.IsInitialized(ob) and
             assigned(PyByteArray_Resize) and
-            (PyByteArray_Resize(ob.PyObject, size) <> -1);
+            (PyByteArray_Resize(ob.PyObject, size_) <> -1);
 end;
 
 end.

@@ -19,16 +19,16 @@ uses
 type
   TPyTraceMalloc = class
     public
-      class function Track(domain: cardinal; ptr: Py_uintptr_t; size: NativeUInt): integer;
+      class function Track(domain: cardinal; ptr: Py_uintptr_t; size_: NativeUInt): integer;
       class function Untrack(domain: cardinal; ptr: Py_uintptr_t): boolean;
   end;
 
 implementation
 
-class function TPyTraceMalloc.Track(domain: cardinal; ptr: Py_uintptr_t; size: NativeUInt): integer;
+class function TPyTraceMalloc.Track(domain: cardinal; ptr: Py_uintptr_t; size_: NativeUInt): integer;
 begin
   if assigned(PyTraceMalloc_Track) then
-    Result := PyTraceMalloc_Track(domain, ptr, size)
+    Result := PyTraceMalloc_Track(domain, ptr, size_)
    else
     Result := -1;
 end;

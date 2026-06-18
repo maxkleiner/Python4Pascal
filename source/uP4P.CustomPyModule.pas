@@ -289,7 +289,8 @@ begin
       i := pred(FSlotList.Count);
       while (i >= 0) do
         begin
-          FreeAndNil(FSlotList[i]);
+          TCustomPyModuleDefSlot(FSlotList[i]).Free;
+          FSlotList[i] := nil;
           dec(i);
         end;
 
@@ -315,7 +316,8 @@ begin
       i := pred(FMethodList.Count);
       while (i >= 0) do
         begin
-          FreeAndNil(FMethodList[i]);
+          TCustomPyMethodDef(FMethodList[i]).Free;
+          FMethodList[i] := nil;
           dec(i);
         end;
 

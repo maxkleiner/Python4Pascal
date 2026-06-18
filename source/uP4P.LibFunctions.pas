@@ -27,11 +27,11 @@ var
 
   {* include/pymath.h *}
   {* include/pymem.h  include/cpython/pymem.h *}
-  PyMem_Malloc                                   : function(size: NativeUInt): Pointer; cdecl;
+  PyMem_Malloc                                   : function(size_: NativeUInt): Pointer; cdecl;
   PyMem_Calloc                                   : function(nelem, elsize: NativeUInt): Pointer; cdecl;
   PyMem_Realloc                                  : function(ptr: Pointer; new_size: NativeUInt): Pointer; cdecl;
   PyMem_Free                                     : procedure(ptr: Pointer); cdecl;
-  PyMem_RawMalloc                                : function(size: NativeUInt): Pointer; cdecl;
+  PyMem_RawMalloc                                : function(size_: NativeUInt): Pointer; cdecl;
   PyMem_RawCalloc                                : function(nelem, elsize: NativeUInt): Pointer; cdecl;
   PyMem_RawRealloc                               : function(ptr: Pointer; new_size: NativeUInt): Pointer; cdecl;
   PyMem_RawFree                                  : procedure(ptr: Pointer); cdecl;
@@ -157,21 +157,21 @@ var
   Py_XNewRef                                     : function(obj: PPyObject): PPyObject; cdecl;
 
   {* include/objimpl.h  include/cpython/objimpl.h *}
-  PyObject_Malloc                                : function(size: NativeUInt): pointer; cdecl;
+  PyObject_Malloc                                : function(size_: NativeUInt): pointer; cdecl;
   PyObject_Calloc                                : function(nelem, elsize: NativeUInt): pointer; cdecl;
   PyObject_Realloc                               : function(ptr: pointer; new_size: NativeUInt): pointer; cdecl;
   PyObject_Free                                  : procedure(ptr: pointer); cdecl;
   PyObject_Init                                  : function(ob: PPyObject; type_: PPyTypeObject): PPyObject; cdecl;
-  PyObject_InitVar                               : function(ob: PPyVarObject; type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;
+  PyObject_InitVar                               : function(ob: PPyVarObject; type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;
   PyObject_New                                   : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_New
-  PyObject_NewVar                                : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_NewVar
+  PyObject_NewVar                                : function(type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_NewVar
   PyGC_Collect                                   : function(): Py_ssize_t; cdecl;
   PyGC_Enable                                    : function(): integer; cdecl;
   PyGC_Disable                                   : function(): integer; cdecl;
   PyGC_IsEnabled                                 : function(): integer; cdecl;
-  PyObject_GC_Resize                             : function(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_Resize
+  PyObject_GC_Resize                             : function(varobj: PPyVarObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_Resize
   PyObject_GC_New                                : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_GC_New
-  PyObject_GC_NewVar                             : function(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_NewVar
+  PyObject_GC_NewVar                             : function(type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_NewVar
   PyObject_GC_Track                              : procedure(ob: PPyObject); cdecl;
   PyObject_GC_UnTrack                            : procedure(ptr: pointer); cdecl;
   PyObject_GC_Del                                : procedure(ptr: pointer); cdecl;
@@ -198,15 +198,15 @@ var
   PyByteArrayIter_Type                           : PPyTypeObject;
   PyByteArray_FromObject                         : function(ob: PPyObject): PPyObject; cdecl;
   PyByteArray_Concat                             : function(ob1, ob2: PPyObject): PPyObject; cdecl;
-  PyByteArray_FromStringAndSize                  : function(const str: PAnsiChar; size: Py_ssize_t): PPyObject; cdecl;
+  PyByteArray_FromStringAndSize                  : function(const str: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
   PyByteArray_Size                               : function(ob: PPyObject): Py_ssize_t; cdecl;
   PyByteArray_AsString                           : function(ob: PPyObject): PAnsiChar; cdecl;
-  PyByteArray_Resize                             : function(ob: PPyObject; size: Py_ssize_t): integer; cdecl;
+  PyByteArray_Resize                             : function(ob: PPyObject; size_: Py_ssize_t): integer; cdecl;
 
   {* include/bytesobject.h  include/cpython/bytesobject.h *}
   PyBytes_Type                                   : PPyTypeObject;
   PyBytesIter_Type                               : PPyTypeObject;
-  PyBytes_FromStringAndSize                      : function(const str: PAnsiChar; size: Py_ssize_t): PPyObject; cdecl;
+  PyBytes_FromStringAndSize                      : function(const str: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
   PyBytes_FromString                             : function(const str: PAnsiChar): PPyObject; cdecl;
   PyBytes_FromObject                             : function(ob: PPyObject): PPyObject; cdecl;
   //PyBytes_FromFormatV not implemented  // PyAPI_FUNC(PyObject *) PyBytes_FromFormatV(const char*, va_list)
@@ -223,7 +223,7 @@ var
   {* include/unicodeobject.h  include/cpython/unicodeobject.h *}
   PyUnicode_Type                                 : PPyTypeObject;
   PyUnicodeIter_Type                             : PPyTypeObject;
-  PyUnicode_FromStringAndSize                    : function(const u: PAnsiChar; size: Py_ssize_t): PPyObject; cdecl;
+  PyUnicode_FromStringAndSize                    : function(const u: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
   PyUnicode_FromString                           : function(const u: PAnsiChar): PPyObject; cdecl;
   PyUnicode_Substring                            : function(str: PPyObject; start, end_: Py_ssize_t): PPyObject; cdecl;
   PyUnicode_AsUCS4                               : function(unicode: PPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: integer): PPy_UCS4; cdecl;
@@ -238,12 +238,12 @@ var
   PyUnicode_FromFormat                           : function(const format: PAnsiChar {; ...}): PPyObject; cdecl varargs;
   PyUnicode_InternInPlace                        : procedure(obj: PPPyObject); cdecl;
   PyUnicode_InternFromString                     : function(const str: PAnsiChar): PPyObject; cdecl;
-  PyUnicode_FromWideChar                         : function(const w: PWCharT; size: Py_ssize_t): PPyObject; cdecl;
-  PyUnicode_AsWideChar                           : function(unicode: PPyObject; w: PWCharT; size: Py_ssize_t): Py_ssize_t; cdecl;
-  PyUnicode_AsWideCharString                     : function(unicode: PPyObject; size: Py_ssize_t): PWCharT; cdecl;
+  PyUnicode_FromWideChar                         : function(const w: PWCharT; size_: Py_ssize_t): PPyObject; cdecl;
+  PyUnicode_AsWideChar                           : function(unicode: PPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t; cdecl;
+  PyUnicode_AsWideCharString                     : function(unicode: PPyObject; size_: Py_ssize_t): PWCharT; cdecl;
   PyUnicode_FromOrdinal                          : function(ordinal: integer): PPyObject; cdecl;
   PyUnicode_GetDefaultEncoding                   : function(): PAnsiChar; cdecl;
-  PyUnicode_Decode                               : function(const s: PAnsiChar; size: Py_ssize_t; const encodging, errors: PAnsiChar): PPyObject; cdecl;
+  PyUnicode_Decode                               : function(const s: PAnsiChar; size_: Py_ssize_t; const encodging, errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_AsEncodedString                      : function(unicode: PPyObject; const encoding, errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_BuildEncodingMap                     : function(string_: PPyObject): PPyObject; cdecl;
   PyUnicode_DecodeUTF7                           : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar): PPyObject; cdecl;
@@ -251,7 +251,7 @@ var
   PyUnicode_DecodeUTF8                           : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_DecodeUTF8Stateful                   : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar; consumed: PPy_ssize_t): PPyObject; cdecl;
   PyUnicode_AsUTF8String                         : function(unicode: PPyObject): PPyObject; cdecl;
-  PyUnicode_AsUTF8AndSize                        : function(unicode: PPyObject; size: PPy_ssize_t): PAnsiChar; cdecl;
+  PyUnicode_AsUTF8AndSize                        : function(unicode: PPyObject; size_: PPy_ssize_t): PAnsiChar; cdecl;
   PyUnicode_DecodeUTF32                          : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar; byteorder: PPyBiteOrder): PPyObject; cdecl;
   PyUnicode_DecodeUTF32Stateful                  : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar; byteorder: PPyBiteOrder; consumed: PPy_ssize_t): PPyObject; cdecl;
   PyUnicode_AsUTF32String                        : function(unicode: PPyObject): PPyObject; cdecl;
@@ -279,7 +279,7 @@ var
   PyUnicode_FSConverter                          : function(obj: PPyObject; result_: Pointer): integer; cdecl;
   PyUnicode_FSDecoder                            : function(obj: PPyObject; result_: Pointer): integer; cdecl;
   PyUnicode_DecodeFSDefault                      : function(const s: PAnsiChar): PPyObject; cdecl;
-  PyUnicode_DecodeFSDefaultAndSize               : function(const s: PAnsiChar; size: Py_ssize_t): PPyObject; cdecl;
+  PyUnicode_DecodeFSDefaultAndSize               : function(const s: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
   PyUnicode_EncodeFSDefault                      : function(unicode: PPyObject): PPyObject; cdecl;
   PyUnicode_Concat                               : function(left, right: PPyObject): PPyObject; cdecl;
   PyUnicode_Append                               : procedure(pleft: PPPyObject; right: PPyObject); cdecl;
@@ -299,7 +299,7 @@ var
   PyUnicode_Compare                              : function(left, right: PPyObject): integer; cdecl;
   PyUnicode_CompareWithASCIIString               : function(left: PPyObject; const right: PAnsiChar): integer; cdecl;
   PyUnicode_EqualToUTF8                          : function(unicode: PPyObject; const string_: PAnsiChar): integer; cdecl;
-  PyUnicode_EqualToUTF8AndSize                   : function(unicode: PPyObject; const string_: PAnsiChar; size: Py_ssize_t): integer; cdecl;
+  PyUnicode_EqualToUTF8AndSize                   : function(unicode: PPyObject; const string_: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
   PyUnicode_Equal                                : function(a, b: PPyObject): integer; cdecl;
   PyUnicode_RichCompare                          : function(left, right: PPyObject; op: integer): PPyObject; cdecl;
   PyUnicode_Format                               : function(format, args: PPyObject): PPyObject; cdecl;
@@ -307,18 +307,18 @@ var
   PyUnicode_IsIdentifier                         : function(unicode: PPyObject): integer; cdecl;
   PyUnicode_KIND                                 : function(unicode: PPyObject): PyUnicode_Kind_Result; cdecl;
   PyUnicode_DATA                                 : function(unicode: PPyObject): Pointer; cdecl;
-  PyUnicode_New                                  : function(size: Py_ssize_t; maxchar: Py_UCS4): PPyObject; cdecl;
+  PyUnicode_New                                  : function(size_: Py_ssize_t; maxchar: Py_UCS4): PPyObject; cdecl;
   PyUnicode_CopyCharacters                       : function(to_: PPyObject; to_start: Py_ssize_t; from: PPyObject; from_start, how_many: Py_ssize_t): Py_ssize_t; cdecl;
   PyUnicode_Fill                                 : function(unicode: PPyObject; start, length: Py_ssize_t; fill_char: Py_UCS4): Py_ssize_t; cdecl;
-  PyUnicode_FromKindAndData                      : function(kind: integer; buffer: Pointer; size: Py_ssize_t): PPyObject; cdecl;
+  PyUnicode_FromKindAndData                      : function(kind: integer; buffer: Pointer; size_: Py_ssize_t): PPyObject; cdecl;
   PyUnicodeWriter_Create                         : function(length: Py_ssize_t): PPyUnicodeWriter; cdecl;
   PyUnicodeWriter_Discard                        : procedure(writer: PPyUnicodeWriter); cdecl;
   PyUnicodeWriter_Finish                         : function(writer: PPyUnicodeWriter): PPyObject; cdecl;
   PyUnicodeWriter_WriteChar                      : function(writer: PPyUnicodeWriter; ch: Py_UCS4): integer; cdecl;
-  PyUnicodeWriter_WriteUTF8                      : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size: Py_ssize_t): integer; cdecl;
-  PyUnicodeWriter_WriteASCII                     : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size: Py_ssize_t): integer; cdecl;
-  PyUnicodeWriter_WriteWideChar                  : function(writer: PPyUnicodeWriter; const str: PWCharT; size: Py_ssize_t): integer; cdecl;
-  PyUnicodeWriter_WriteUCS4                      : function(writer: PPyUnicodeWriter; str: PPy_UCS4; size: Py_ssize_t): integer; cdecl;
+  PyUnicodeWriter_WriteUTF8                      : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
+  PyUnicodeWriter_WriteASCII                     : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
+  PyUnicodeWriter_WriteWideChar                  : function(writer: PPyUnicodeWriter; const str: PWCharT; size_: Py_ssize_t): integer; cdecl;
+  PyUnicodeWriter_WriteUCS4                      : function(writer: PPyUnicodeWriter; str: PPy_UCS4; size_: Py_ssize_t): integer; cdecl;
   PyUnicodeWriter_WriteStr                       : function(writer: PPyUnicodeWriter; obj: PPyObject): integer; cdecl;
   PyUnicodeWriter_WriteRepr                      : function(writer: PPyUnicodeWriter; obj: PPyObject): integer; cdecl;
   PyUnicodeWriter_WriteSubstring                 : function(writer: PPyUnicodeWriter; str: PPyObject; start, end_: Py_ssize_t): integer; cdecl;
@@ -474,8 +474,8 @@ var
   PyUnicodeEncodeError_SetReason                 : function(exc: PPyObject; const reason: PAnsiChar): integer; cdecl;
   PyUnicodeDecodeError_SetReason                 : function(exc: PPyObject; const reason: PAnsiChar): integer; cdecl;
   PyUnicodeTranslateError_SetReason              : function(exc: PPyObject; const reason: PAnsiChar): integer; cdecl;
-  PyOS_snprintf                                  : function(str: PAnsiChar; size: NativeUInt; const format: PAnsiChar {; ...}): integer; cdecl varargs;
-  //PyOS_vsnprintf not implemented  // PyAPI_FUNC(int) PyOS_vsnprintf(char *str, size_t size, const char  *format, va_list va)
+  PyOS_snprintf                                  : function(str: PAnsiChar; size_: NativeUInt; const format: PAnsiChar {; ...}): integer; cdecl varargs;
+  //PyOS_vsnprintf not implemented  // PyAPI_FUNC(int) PyOS_vsnprintf(char *str, size_t size_, const char  *format, va_list va)
   PySignal_SetWakeupFd                           : function(fd: integer): integer; cdecl;
   PyErr_SyntaxLocationObject                     : procedure(filename: PPyObject; lineno, col_offset: integer); cdecl;
   PyErr_RangedSyntaxLocationObject               : procedure(filename: PPyObject; lineno, col_offset, end_lineno, end_col_offset: integer); cdecl;
@@ -572,14 +572,14 @@ var
   {* include/memoryobject.h *}
   PyMemoryView_Type                              : PPyTypeObject;
   PyMemoryView_FromObject                        : function(base: PPyObject): PPyObject; cdecl;
-  PyMemoryView_FromMemory                        : function(mem: Pointer; size: Py_ssize_t; flags: integer): PPyObject; cdecl;
+  PyMemoryView_FromMemory                        : function(mem: Pointer; size_: Py_ssize_t; flags: integer): PPyObject; cdecl;
   PyMemoryView_FromBuffer                        : function(const info: PPy_buffer): PPyObject; cdecl;
   PyMemoryView_GetContiguous                     : function(base: PPyObject; buffertype: integer; order: AnsiChar): PPyObject; cdecl;
 
   {* include/tupleobject.h *}
   PyTuple_Type                                   : PPyTypeObject;
   PyTupleIter_Type                               : PPyTypeObject;
-  PyTuple_New                                    : function(size: Py_ssize_t): PPyObject; cdecl;
+  PyTuple_New                                    : function(size_: Py_ssize_t): PPyObject; cdecl;
   PyTuple_Size                                   : function(p: PPyObject): Py_ssize_t; cdecl;
   PyTuple_GetItem                                : function(p: PPyObject; pos: Py_ssize_t): PPyObject; cdecl;
   PyTuple_SetItem                                : function(p: PPyObject; pos: Py_ssize_t; o: PPyObject): integer; cdecl;
@@ -995,7 +995,7 @@ var
   PyThread_acquire_lock_timed                    : function(lock: PyThread_type_lock; microseconds: PY_TIMEOUT_T; intr_flag: integer): PyLockStatus; cdecl;
   PyThread_release_lock                          : procedure(lock: PyThread_type_lock); cdecl;
   PyThread_get_stacksize                         : function(): NativeUInt; cdecl;
-  PyThread_set_stacksize                         : function(size: NativeUInt): integer; cdecl;
+  PyThread_set_stacksize                         : function(size_: NativeUInt): integer; cdecl;
   PyThread_GetInfo                               : function(): PPyObject; cdecl;
   PyThread_tss_alloc                             : function(): PPy_tss_t; cdecl;
   PyThread_tss_free                              : procedure(key: PPy_tss_t); cdecl;
@@ -1310,18 +1310,18 @@ var
   PyOS_double_to_string                          : function(val: double; format_code: AnsiChar; precision, flags: integer; out type_: integer): PAnsiChar; cdecl;
 
   {* include/pystrcmp.h *}
-  PyOS_mystrnicmp                                : function(const str1, str2: PAnsiChar; size: Py_ssize_t): integer; cdecl;
+  PyOS_mystrnicmp                                : function(const str1, str2: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
   PyOS_mystricmp                                 : function(const str1, str2: PAnsiChar): integer; cdecl;
 
   {* include/fileutils.h  include/cpython/fileutils.h *}
-  Py_DecodeLocale                                : function(const arg: PAnsiChar; size: NativeUInt): PWCharT; cdecl;
+  Py_DecodeLocale                                : function(const arg: PAnsiChar; size_: NativeUInt): PWCharT; cdecl;
   Py_EncodeLocale                                : function(const text: PWCharT; error_pos: NativeUInt): PAnsiChar; cdecl;
   Py_fopen                                       : function(path: PPyObject; const mode: PAnsiChar): PFILE; cdecl;
   Py_fclose                                      : function(file_: PFILE): integer; cdecl;
 
   {* include/cpython/pyfpe.h *}
   {* include/cpython/tracemalloc.h *}
-  PyTraceMalloc_Track                            : function(domain: cardinal; ptr: Py_uintptr_t; size: NativeUInt): integer; cdecl;
+  PyTraceMalloc_Track                            : function(domain: cardinal; ptr: Py_uintptr_t; size_: NativeUInt): integer; cdecl;
   PyTraceMalloc_Untrack                          : function(domain: cardinal; ptr: Py_uintptr_t): integer; cdecl;
 
   {* include/frameobject.h  include/cpython/frameobject.h *}

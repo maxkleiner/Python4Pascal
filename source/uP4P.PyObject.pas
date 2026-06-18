@@ -118,18 +118,18 @@ type
 
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
-      class function  Malloc(size: NativeUInt): pointer;
+      class function  Malloc(size_: NativeUInt): pointer;
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
       class procedure Free_(ptr: pointer);
-      class function  Init(const ob: IPyObject; type_: PPyTypeObject): IPyObject;
-      class function  InitVar(const ob: IPyObject; type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
-      class function  New(type_: PPyTypeObject): IPyObject;
-      class function  NewVar(type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+      class function  Init(const ob: IPyObject; typeobj: PPyTypeObject): IPyObject;
+      class function  InitVar(const ob: IPyObject; typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
+      class function  New(typeobj: PPyTypeObject): IPyObject;
+      class function  NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
       class function  VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
-      class function  GC_Resize(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject;
-      class function  GC_New(type_: PPyTypeObject): IPyObject;
-      class function  GC_NewVar(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject;
+      class function  GC_Resize(varobj: PPyVarObject; size_: Py_ssize_t): PPyVarObject;
+      class function  GC_New(typeobj: PPyTypeObject): IPyObject;
+      class function  GC_NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): PPyVarObject;
       class procedure GC_Del(ptr: pointer);
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
@@ -185,10 +185,10 @@ begin
   Result := (aPyObject <> nil) and aPyObject.Initialized;
 end;
 
-class function TPyObject.Malloc(size: NativeUInt): pointer;
+class function TPyObject.Malloc(size_: NativeUInt): pointer;
 begin
   if assigned(PyObject_Malloc) then
-    Result := PyObject_Malloc(size)
+    Result := PyObject_Malloc(size_)
    else
     Result := nil;
 end;
@@ -215,40 +215,40 @@ begin
     PyObject_Free(ptr);
 end;
 
-class function TPyObject.Init(const ob: IPyObject; type_: PPyTypeObject): IPyObject;
+class function TPyObject.Init(const ob: IPyObject; typeobj: PPyTypeObject): IPyObject;
 begin
   if assigned(PyObject_Init) and
      TPyObject.IsInitialized(ob) and
-     assigned(type_) then
-    Result := TPyObject.Wrap(PyObject_Init(ob.PyObject, type_), False)
+     assigned(typeobj) then
+    Result := TPyObject.Wrap(PyObject_Init(ob.PyObject, typeobj), False)
    else
     Result := nil;
 end;
 
-class function TPyObject.InitVar(const ob: IPyObject; type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+class function TPyObject.InitVar(const ob: IPyObject; typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyObject_InitVar) and
      TPyObject.IsInitialized(ob) and
-     assigned(type_) then
-    Result := TPyObject.Wrap(PyObject_InitVar(PPyVarObject(ob.PyObject), type_, size), False)
+     assigned(typeobj) then
+    Result := TPyObject.Wrap(PyObject_InitVar(PPyVarObject(ob.PyObject), typeobj, size_), False)
    else
     Result := nil;
 end;
 
-class function TPyObject.New(type_: PPyTypeObject): IPyObject;
+class function TPyObject.New(typeobj: PPyTypeObject): IPyObject;
 begin
   if assigned(PyObject_New) and
-     assigned(type_) then
-    Result := TPyObject.Wrap(PyObject_New(type_))
+     assigned(typeobj) then
+    Result := TPyObject.Wrap(PyObject_New(typeobj))
    else
     Result := nil;
 end;
 
-class function TPyObject.NewVar(type_: PPyTypeObject; size: Py_ssize_t): IPyObject;
+class function TPyObject.NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
 begin
   if assigned(PyObject_NewVar) and
-     assigned(type_) then
-    Result := TPyObject.Wrap(PyObject_NewVar(type_, size))
+     assigned(typeobj) then
+    Result := TPyObject.Wrap(PyObject_NewVar(typeobj, size_))
    else
     Result := nil;
 end;
@@ -980,26 +980,26 @@ begin
 end;
 
 
-class function TPyObject.GC_Resize(varobj: PPyVarObject; size: Py_ssize_t): PPyVarObject;
+class function TPyObject.GC_Resize(varobj: PPyVarObject; size_: Py_ssize_t): PPyVarObject;
 begin
   if assigned(PyObject_GC_Resize) then
-    Result := PyObject_GC_Resize(varobj, size)
+    Result := PyObject_GC_Resize(varobj, size_)
    else
     Result := nil;
 end;
 
-class function TPyObject.GC_New(type_: PPyTypeObject): IPyObject;
+class function TPyObject.GC_New(typeobj: PPyTypeObject): IPyObject;
 begin
   if assigned(PyObject_GC_New) then
-    Result := TPyObject.Wrap(PyObject_GC_New(type_))
+    Result := TPyObject.Wrap(PyObject_GC_New(typeobj))
    else
     Result := nil;
 end;
 
-class function TPyObject.GC_NewVar(type_: PPyTypeObject; size: Py_ssize_t): PPyVarObject;
+class function TPyObject.GC_NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): PPyVarObject;
 begin
   if assigned(PyObject_GC_NewVar) then
-    Result := PyObject_GC_NewVar(type_, size)
+    Result := PyObject_GC_NewVar(typeobj, size_)
    else
     Result := nil;
 end;
@@ -1092,12 +1092,12 @@ end;
 
 function TPyObject.NewRef: Pointer;
 begin
-  Result := TPy.NewRef(self);
+  Result := TPy.NewRef(IPyObject(self));
 end;
 
 function TPyObject.XNewRef: Pointer;
 begin
-  Result := TPy.XNewRef(self);
+  Result := TPy.XNewRef(IPyObject(self));
 end;
 
 function TPyObject.SameAs(const other: IPyObject): boolean;

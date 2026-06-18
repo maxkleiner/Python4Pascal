@@ -163,10 +163,10 @@ type
     procedure Discard;
     function  Finish: IPyObject;
     function  WriteChar(ch: Py_UCS4): boolean;
-    function  WriteUTF8(const str: PAnsiChar; size: Py_ssize_t): boolean;
-    function  WriteASCII(const str: PAnsiChar; size: Py_ssize_t): boolean;
-    function  WriteWideChar(const str: PWCharT; size: Py_ssize_t): boolean;
-    function  WriteUCS4(str: PPy_UCS4; size: Py_ssize_t): boolean;
+    function  WriteUTF8(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+    function  WriteASCII(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+    function  WriteWideChar(const str: PWCharT; size_: Py_ssize_t): boolean;
+    function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
     function  WriteStr(const obj: IPyObject): boolean;
     function  WriteRepr(const obj: IPyObject): boolean;
     function  WriteSubstring(str: PPyObject; start, end_: Py_ssize_t): boolean;

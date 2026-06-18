@@ -300,7 +300,7 @@ type
     PYMEM_ALLOCATOR_MIMALLOC_DEBUG = 8
   );
 
-  PyMemAllocatorEx_malloc  = function(ctx: Pointer; size: NativeUInt): Pointer; cdecl;
+  PyMemAllocatorEx_malloc  = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;
   PyMemAllocatorEx_calloc  = function(ctx: Pointer; nelem, elsize: NativeUInt): Pointer; cdecl;
   PyMemAllocatorEx_realloc = function(ctx, ptr: Pointer; new_size: NativeUInt): Pointer; cdecl;
   PyMemAllocatorEx_free    = procedure(ctx, ptr: Pointer); cdecl;
@@ -579,8 +579,8 @@ type
 
   {* include/refcount.h *}
   {* include/objimpl.h *}
-  PyObjectArenaAllocator_alloc   = function(ctx: Pointer; size: NativeUInt): Pointer; cdecl;
-  PyObjectArenaAllocator_free    = procedure(ctx, ptr: Pointer; size: NativeUInt); cdecl;
+  PyObjectArenaAllocator_alloc   = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;
+  PyObjectArenaAllocator_free    = procedure(ctx, ptr: Pointer; size_: NativeUInt); cdecl;
 
   PyObjectArenaAllocator = record
     ctx    : Pointer;
@@ -590,7 +590,7 @@ type
 
   {* include/typeslots.h *}
   {* include/pyhash.h *}
-  PyHash_FuncDef_hash = function(ptr: Pointer; size: Py_ssize_t): Py_hash_t; cdecl;
+  PyHash_FuncDef_hash = function(ptr: Pointer; size_: Py_ssize_t): Py_hash_t; cdecl;
 
   PyHash_FuncDef = record
     hash                : PyHash_FuncDef_hash;
@@ -1240,7 +1240,7 @@ type
   _frozen = record
     name_      : PAnsiChar;
     code       : PAnsiChar;
-    size       : integer;
+    size_       : integer;
     is_package : integer;
   end;
 

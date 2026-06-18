@@ -37,7 +37,7 @@ type
       class function  NewRef(const aPyObject: IPyObject): PPyObject; overload;
       class function  NewRef(aPyObject: PPyConfig): PPyObject; overload;
       class function  XNewRef(const aPyObject: IPyObject): PPyObject; overload;
-      class function  XNewRef(const aPyObject: PPyConfig): PPyObject; overload;
+      class function  XNewRef(aPyObject: PPyConfig): PPyObject; overload;
       class function  Is_(const x, y: IPyObject): boolean; overload;
       class function  Is_(const x, y: PPyObject): boolean; overload;
       class function  GetConstant(constant_id: cardinal): IPyObject;
@@ -87,7 +87,7 @@ type
       class function  GetRecursionLimit: integer;
       class function  EnterRecursiveCall(const where_: string): boolean;
       class procedure LeaveRecursiveCall;
-      class function  DecodeLocale(const arg: PAnsiChar; size: NativeUInt): PWCharT;
+      class function  DecodeLocale(const arg: PAnsiChar; size_: NativeUInt): PWCharT;
       class function  EncodeLocale(const text: PWCharT; error_pos: NativeUInt): PAnsiChar;
       class function  fopen(const path: IPyObject; const mode: string): PFILE;
       class function  fclose(file_: PFILE): integer;
@@ -238,7 +238,7 @@ begin
     Result := nil;
 end;
 
-class function TPy.XNewRef(const aPyObject: PPyConfig): PPyObject;
+class function TPy.XNewRef(aPyObject: PPyConfig): PPyObject;
 begin
   if assigned(Py_XNewRef) then
     Result := Py_XNewRef(aPyObject)
@@ -659,10 +659,10 @@ begin
     Py_LeaveRecursiveCall();
 end;
 
-class function TPy.DecodeLocale(const arg: PAnsiChar; size: NativeUInt): PWCharT;
+class function TPy.DecodeLocale(const arg: PAnsiChar; size_: NativeUInt): PWCharT;
 begin
   if assigned(Py_DecodeLocale) then
-    Result := Py_DecodeLocale(arg, size)
+    Result := Py_DecodeLocale(arg, size_)
    else
     Result := nil;
 end;
