@@ -424,6 +424,9 @@ begin
   if not(HasSentinelSlot) then
     AddSentinelSlot;
 
+  if not(HasSentinelMethod) then
+    AddSentinelMethod;
+
   CreateSlotArray;
   CreateMethodArray;
 

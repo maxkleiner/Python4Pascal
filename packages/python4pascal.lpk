@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <PathDelim Value="\"/>
+    <Name Value="python4pascal"/>
+    <Type Value="RunAndDesignTime"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\source"/>
+        <OtherUnitFiles Value="..\source"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Version Major="1"/>
+    <Files>
+      <Item>
+        <Filename Value="..\source\p4p.inc"/>
+        <Type Value="Include"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Constants.pas"/>
+        <UnitName Value="uP4P.Constants"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.CustomPyModule.pas"/>
+        <UnitName Value="uP4P.CustomPyModule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Engine.pas"/>
+        <UnitName Value="uP4P.Engine"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Interfaces.pas"/>
+        <UnitName Value="uP4P.Interfaces"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.IOPyModule.pas"/>
+        <UnitName Value="uP4P.IOPyModule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.LibFunctions.pas"/>
+        <UnitName Value="uP4P.LibFunctions"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Loader.pas"/>
+        <UnitName Value="uP4P.Loader"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.MiscFunctions.pas"/>
+        <UnitName Value="uP4P.MiscFunctions"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Py.pas"/>
+        <UnitName Value="uP4P.Py"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyAIter.pas"/>
+        <UnitName Value="uP4P.PyAIter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyAnySet.pas"/>
+        <UnitName Value="uP4P.PyAnySet"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyArg.pas"/>
+        <UnitName Value="uP4P.PyArg"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyAsyncGen.pas"/>
+        <UnitName Value="uP4P.PyAsyncGen"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyBool.pas"/>
+        <UnitName Value="uP4P.PyBool"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyBuffer.pas"/>
+        <UnitName Value="uP4P.PyBuffer"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyByteArray.pas"/>
+        <UnitName Value="uP4P.PyByteArray"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyBytes.pas"/>
+        <UnitName Value="uP4P.PyBytes"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCallable.pas"/>
+        <UnitName Value="uP4P.PyCallable"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCallIter.pas"/>
+        <UnitName Value="uP4P.PyCallIter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCapsule.pas"/>
+        <UnitName Value="uP4P.PyCapsule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCell.pas"/>
+        <UnitName Value="uP4P.PyCell"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCFunction.pas"/>
+        <UnitName Value="uP4P.PyCFunction"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyClassMethod.pas"/>
+        <UnitName Value="uP4P.PyClassMethod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCMethod.pas"/>
+        <UnitName Value="uP4P.PyCMethod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCode.pas"/>
+        <UnitName Value="uP4P.PyCode"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCodec.pas"/>
+        <UnitName Value="uP4P.PyCodec"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCompile.pas"/>
+        <UnitName Value="uP4P.PyCompile"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyComplex.pas"/>
+        <UnitName Value="uP4P.PyComplex"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyConfig.pas"/>
+        <UnitName Value="uP4P.PyConfig"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyContext.pas"/>
+        <UnitName Value="uP4P.PyContext"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyContextToken.pas"/>
+        <UnitName Value="uP4P.PyContextToken"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyContextVar.pas"/>
+        <UnitName Value="uP4P.PyContextVar"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCoro.pas"/>
+        <UnitName Value="uP4P.PyCoro"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCriticalSection.pas"/>
+        <UnitName Value="uP4P.PyCriticalSection"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDebug.pas"/>
+        <UnitName Value="uP4P.PyDebug"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDescr.pas"/>
+        <UnitName Value="uP4P.PyDescr"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDict.pas"/>
+        <UnitName Value="uP4P.PyDict"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDictItems.pas"/>
+        <UnitName Value="uP4P.PyDictItems"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDictKeys.pas"/>
+        <UnitName Value="uP4P.PyDictKeys"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDictProxy.pas"/>
+        <UnitName Value="uP4P.PyDictProxy"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDictValues.pas"/>
+        <UnitName Value="uP4P.PyDictValues"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDictViewSet.pas"/>
+        <UnitName Value="uP4P.PyDictViewSet"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyEllipsis.pas"/>
+        <UnitName Value="uP4P.PyEllipsis"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyErr.pas"/>
+        <UnitName Value="uP4P.PyErr"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyEval.pas"/>
+        <UnitName Value="uP4P.PyEval"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyException.pas"/>
+        <UnitName Value="uP4P.PyException"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyExceptionClass.pas"/>
+        <UnitName Value="uP4P.PyExceptionClass"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyExceptionInstance.pas"/>
+        <UnitName Value="uP4P.PyExceptionInstance"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyExceptionName.pas"/>
+        <UnitName Value="uP4P.PyExceptionName"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFile.pas"/>
+        <UnitName Value="uP4P.PyFile"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFloat.pas"/>
+        <UnitName Value="uP4P.PyFloat"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFrame.pas"/>
+        <UnitName Value="uP4P.PyFrame"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFrameLocalsProxy.pas"/>
+        <UnitName Value="uP4P.PyFrameLocalsProxy"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFrozenSet.pas"/>
+        <UnitName Value="uP4P.PyFrozenSet"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFunction.pas"/>
+        <UnitName Value="uP4P.PyFunction"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyGC.pas"/>
+        <UnitName Value="uP4P.PyGC"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyGen.pas"/>
+        <UnitName Value="uP4P.PyGen"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyGILState.pas"/>
+        <UnitName Value="uP4P.PyGILState"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyHash.pas"/>
+        <UnitName Value="uP4P.PyHash"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyImport.pas"/>
+        <UnitName Value="uP4P.PyImport"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyIndex.pas"/>
+        <UnitName Value="uP4P.PyIndex"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInitConfig.pas"/>
+        <UnitName Value="uP4P.PyInitConfig"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInstanceMethod.pas"/>
+        <UnitName Value="uP4P.PyInstanceMethod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInterpreterConfig.pas"/>
+        <UnitName Value="uP4P.PyInterpreterConfig"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInterpreterState.pas"/>
+        <UnitName Value="uP4P.PyInterpreterState"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyIter.pas"/>
+        <UnitName Value="uP4P.PyIter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyList.pas"/>
+        <UnitName Value="uP4P.PyList"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyLong.pas"/>
+        <UnitName Value="uP4P.PyLong"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyLongExport.pas"/>
+        <UnitName Value="uP4P.PyLongExport"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyLongWriter.pas"/>
+        <UnitName Value="uP4P.PyLongWriter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMapping.pas"/>
+        <UnitName Value="uP4P.PyMapping"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMath.pas"/>
+        <UnitName Value="uP4P.PyMath"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMem.pas"/>
+        <UnitName Value="uP4P.PyMem"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMember.pas"/>
+        <UnitName Value="uP4P.PyMember"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMemoryView.pas"/>
+        <UnitName Value="uP4P.PyMemoryView"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMethod.pas"/>
+        <UnitName Value="uP4P.PyMethod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyModule.pas"/>
+        <UnitName Value="uP4P.PyModule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyModuleDef.pas"/>
+        <UnitName Value="uP4P.PyModuleDef"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyModuleSpecHelper.pas"/>
+        <UnitName Value="uP4P.PyModuleSpecHelper"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMonitoring.pas"/>
+        <UnitName Value="uP4P.PyMonitoring"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMutex.pas"/>
+        <UnitName Value="uP4P.PyMutex"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyNone.pas"/>
+        <UnitName Value="uP4P.PyNone"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyNotImplemented.pas"/>
+        <UnitName Value="uP4P.PyNotImplemented"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyNumber.pas"/>
+        <UnitName Value="uP4P.PyNumber"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyObject.pas"/>
+        <UnitName Value="uP4P.PyObject"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyODict.pas"/>
+        <UnitName Value="uP4P.PyODict"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyOS.pas"/>
+        <UnitName Value="uP4P.PyOS"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyPickleBuffer.pas"/>
+        <UnitName Value="uP4P.PyPickleBuffer"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyPreConfig.pas"/>
+        <UnitName Value="uP4P.PyPreConfig"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyRange.pas"/>
+        <UnitName Value="uP4P.PyRange"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyRefTracer.pas"/>
+        <UnitName Value="uP4P.PyRefTracer"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyRun.pas"/>
+        <UnitName Value="uP4P.PyRun"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySeqIter.pas"/>
+        <UnitName Value="uP4P.PySeqIter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySequence.pas"/>
+        <UnitName Value="uP4P.PySequence"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySet.pas"/>
+        <UnitName Value="uP4P.PySet"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySignal.pas"/>
+        <UnitName Value="uP4P.PySignal"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySlice.pas"/>
+        <UnitName Value="uP4P.PySlice"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyState.pas"/>
+        <UnitName Value="uP4P.PyState"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyStaticMethod.pas"/>
+        <UnitName Value="uP4P.PyStaticMethod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyStatus.pas"/>
+        <UnitName Value="uP4P.PyStatus"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyStructSequence.pas"/>
+        <UnitName Value="uP4P.PyStructSequence"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySys.pas"/>
+        <UnitName Value="uP4P.PySys"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyThread.pas"/>
+        <UnitName Value="uP4P.PyThread"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyThreadLock.pas"/>
+        <UnitName Value="uP4P.PyThreadLock"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyThreadState.pas"/>
+        <UnitName Value="uP4P.PyThreadState"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyThreadTSS.pas"/>
+        <UnitName Value="uP4P.PyThreadTSS"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTime.pas"/>
+        <UnitName Value="uP4P.PyTime"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTraceBack.pas"/>
+        <UnitName Value="uP4P.PyTraceBack"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTraceMalloc.pas"/>
+        <UnitName Value="uP4P.PyTraceMalloc"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTuple.pas"/>
+        <UnitName Value="uP4P.PyTuple"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTypeObject.pas"/>
+        <UnitName Value="uP4P.PyTypeObject"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyUnicode.pas"/>
+        <UnitName Value="uP4P.PyUnicode"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyUnicodeDecodeError.pas"/>
+        <UnitName Value="uP4P.PyUnicodeDecodeError"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyUnicodeEncodeError.pas"/>
+        <UnitName Value="uP4P.PyUnicodeEncodeError"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyUnicodeTranslateError.pas"/>
+        <UnitName Value="uP4P.PyUnicodeTranslateError"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyUnicodeWriter.pas"/>
+        <UnitName Value="uP4P.PyUnicodeWriter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyVectorcall.pas"/>
+        <UnitName Value="uP4P.PyVectorcall"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyWeakref.pas"/>
+        <UnitName Value="uP4P.PyWeakref"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyWideStringList.pas"/>
+        <UnitName Value="uP4P.PyWideStringList"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyWrapper.pas"/>
+        <UnitName Value="uP4P.PyWrapper"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Types.pas"/>
+        <UnitName Value="uP4P.Types"/>
+      </Item>
+    </Files>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

@@ -23,9 +23,6 @@ type
       procedure AddAllMethods; override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
-      function  SetDelayWrites(args: PPyObject): PPyObject;
-      function  SetMaxLines(args: PPyObject): PPyObject;
-      function  GetTypesStats(args: PPyObject): PPyObject;
   end;
 
 implementation
@@ -40,7 +37,7 @@ begin
    else
     Result := nil;
 end;
-                                             {
+
 function pyio_read(self, args: PPyObject): PPyObject; cdecl;
 begin
   if (GlobalP4PEngine <> nil) then
@@ -49,41 +46,12 @@ begin
     Result := nil;
 end;
 
-function pyio_SetDelayWrites(self, args: PPyObject): PPyObject; cdecl;
-begin
-  if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.IOModule.SetDelayWrites(args)
-   else
-    Result := nil;
-end;
-
-function pyio_SetMaxLines(self, args: PPyObject): PPyObject; cdecl;
-begin
-  if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.IOModule.SetMaxLines(args)
-   else
-    Result := nil;
-end;
-
-function pyio_GetTypesStats(self, args: PPyObject): PPyObject; cdecl;
-begin
-  if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.IOModule.GetTypesStats(args)
-   else
-    Result := nil;
-end;        }
-
 procedure TIOPyModule.AddAllMethods;
 begin
   inherited AddAllMethods;
 
   AddMethod('write', 'write(string) -> None', @pyio_write, METH_VARARGS);
-  {
-  AddMethod('read', 'read() -> string', @pyio_read, METH_VARARGS);
-  AddMethod('SetDelayWrites', 'SetDelayWrites(Boolean) -> None', @pyio_SetDelayWrites, METH_VARARGS);
-  AddMethod('SetMaxLines', 'SetMaxLines(Integer) -> None', @pyio_SetMaxLines, METH_VARARGS);
-  AddMethod('GetTypesStats', 'GetTypesStats( [type name] ) -> a list of tuple (TypeName, InstanceCount, CreateHits, DeleteHits)', @pyio_GetTypesStats, METH_VARARGS);
-  }
+  AddMethod('read',  'read() -> string',      @pyio_read,  METH_VARARGS);
 end;
 
 function TIOPyModule.Write(args: PPyObject): PPyObject;
@@ -114,23 +82,16 @@ begin
 end;
 
 function TIOPyModule.Read(args: PPyObject): PPyObject;
+var
+  TempResult : IPyObject;
 begin
-  Result := nil;
-end;
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.doOnInputMessage(TempResult) then
+    Result := TempResult.UnWrap
+   else
+    Result := TPyNone.New.PyObject;
 
-function TIOPyModule.SetDelayWrites(args: PPyObject): PPyObject;
-begin
-  Result := nil;
-end;
-
-function TIOPyModule.SetMaxLines(args: PPyObject): PPyObject;
-begin
-  Result := nil;
-end;
-
-function TIOPyModule.GetTypesStats(args: PPyObject): PPyObject;
-begin
-  Result := nil;
+  TempResult := nil;
 end;
 
 end.

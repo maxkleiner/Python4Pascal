@@ -19,6 +19,7 @@ uses
 
 type
   TOnOutputMessageEvent = procedure(Sender: TObject; const message_: string) of object;
+  TOnInputMessageEvent  = procedure(Sender: TObject; var message_: string) of object;
 
   TP4PEngine = class(TP4PLoader)
     protected
@@ -26,11 +27,11 @@ type
       FSyncObj          : TCriticalSection;
       FIOModule         : TIOPyModule;
       FOnOutputMessage  : TOnOutputMessageEvent;
+      FOnInputMessage   : TOnInputMessageEvent;
 
       function  Lock: boolean;
       procedure UnLock;
       function  RedirectIO: boolean;
-      function  RestoreIO: boolean;
 
     public
       constructor Create; override;
@@ -42,20 +43,18 @@ type
       procedure   RemoveModule(const aModule: TCustomPyModule);
       function    SearchModule(module: PPyObject; var aResult: TCustomPyModule): boolean;
       procedure   doOnOutputMessage(const aMessage: string);
+      function    doOnInputMessage(var aResultObj: IPyObject): boolean;
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
-      /// <summary>
-      /// Finalize the Python interpreter.
-      /// </summary>
-      procedure   Finalize; override;
 
       function    GetRaisedException: boolean;
 
 
       property IOModule         : TIOPyModule              read FIOModule;
       property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage   write FOnOutputMessage;
+      property OnInputMessage   : TOnInputMessageEvent     read FOnInputMessage    write FOnInputMessage;
   end;
 
 var
@@ -70,7 +69,7 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun,
-  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes;
+  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes, uP4P.PyNone;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -86,6 +85,7 @@ begin
   FSyncObj         := nil;
   FIOModule        := nil;
   FOnOutputMessage := nil;
+  FOnInputMessage  := nil;
 end;
 
 destructor TP4PEngine.Destroy;
@@ -95,9 +95,6 @@ begin
 
   if assigned(FSyncObj) then
     FreeAndNil(FSyncObj);
-
-  if assigned(FIOModule) then
-    FreeAndNil(FIOModule);
 
   inherited Destroy;
 end;
@@ -198,26 +195,40 @@ begin
     FOnOutputMessage(self, aMessage);
 end;
 
+function TP4PEngine.doOnInputMessage(var aResultObj: IPyObject): boolean;
+var
+  TempMessage: string;
+begin
+  if assigned(FOnInputMessage) then
+    begin
+      FOnInputMessage(self, TempMessage);
+      aResultObj := TPyUnicode.FromString(TempMessage);
+      Result     := True;
+    end
+   else
+    Result := False;
+end;
+
 function TP4PEngine.RedirectIO: boolean;
 const
   code = 'import sys'+LF+
          'class DebugOutput:'+LF+
          '  pyio = __import__("pyio")'+LF+
-     {    '  softspace=0'+LF+
-         '  encoding=None'+LF+   }
+         '  softspace=0'+LF+
+         '  encoding=None'+LF+
          '  def write(self,message):'+LF+
          '     self.pyio.write(message)'+LF+
-      {   '  def readline(self, size=None):'+LF+
+         '  def readline(self, size=None):'+LF+
          '     return self.pyio.read(size)'+LF+
          '  def flush(self):' + LF +
          '     pass' + LF +
          '  def isatty(self):' + LF +
          '     return False' + LF +
-         'sys.old_stdin=sys.stdin'+LF+     }
+         'sys.old_stdin=sys.stdin'+LF+
          'sys.old_stdout=sys.stdout'+LF+
-       {  'sys.old_stderr=sys.stderr'+LF+
-         'sys.stdin=sys.stderr=sys.stdout=DebugOutput()'+LF+#0;}
-         'sys.stdout=DebugOutput()'+LF+#0;
+         'sys.old_stderr=sys.stderr'+LF+
+       // 'sys.stdin=sys.stderr=sys.stdout=DebugOutput()'+LF+#0;
+         'sys.stderr=sys.stdout=DebugOutput()'+LF+#0;
 begin
   Result := False;
   if assigned(FIOModule) then exit;
@@ -228,28 +239,10 @@ begin
             TPyRun.SimpleString(code);
 end;
 
-function TP4PEngine.RestoreIO: boolean;
-const
-  code = 'import sys'+LF+
-         'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout'+LF+#0;
-        // 'if hasattr(sys, "old_stdin"):  sys.stdin=sys.old_stdin'+LF+
-        // 'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout'+LF+
-        // 'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr';
-begin
-  Result := TPyRun.SimpleString(code);
-end;
-
 function TP4PEngine.Initialize: boolean;
 begin
   Result := inherited Initialize and
             RedirectIO;
-end;
-
-procedure TP4PEngine.Finalize;
-begin
-  inherited Finalize;
-
-  RestoreIO;
 end;
 
 function TP4PEngine.GetRaisedException: boolean;
