@@ -23,7 +23,7 @@ type
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
       class function FromString(const str: string): IPyObject; overload;
-      {$IFNDEF FPC}
+      {$IFDEF DELPHI12_UP}
       class function FromString(const str: AnsiString): IPyObject; overload;
       {$ENDIF}
       class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
@@ -148,7 +148,7 @@ begin
     Result := nil;
 end;
 
-{$IFNDEF FPC}
+{$IFDEF DELPHI12_UP}
 class function TPyUnicode.FromString(const str: AnsiString): IPyObject;
 begin
   if assigned(PyUnicode_FromString) then

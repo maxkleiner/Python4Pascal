@@ -510,7 +510,7 @@ begin
           while (i < TempFiles.Count) do
             begin
               {$IFDEF FPC}
-              //TODO: Call FileSize in Lazarus.
+              TempSize := FileSize(TempFiles[i]);
               {$ELSE}
               TempSize := TFile.GetSize(TempFiles[i]);
               {$ENDIF}

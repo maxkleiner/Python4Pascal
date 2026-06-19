@@ -38,11 +38,11 @@ type
       class function Merge(const mp, other: IPyObject; override_: boolean): boolean;
       class function MergeFromSeq2(const d, seq2: IPyObject; override_: boolean): boolean;
       class function GetItemString(const dp: IPyObject; const key: string): IPyObject; overload;
-      {$IFNDEF FPC}
+      {$IFDEF DELPHI12_UP}
       class function GetItemString(const dp: IPyObject; const key: AnsiString): IPyObject; overload;
       {$ENDIF}
       class function SetItemString(const dp: IPyObject; const key: string; const item: IPyObject): boolean; overload;
-      {$IFNDEF FPC}
+      {$IFDEF DELPHI12_UP}
       class function SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean; overload;
       {$ENDIF}
       class function DelItemString(const dp: IPyObject; const key: string): boolean;
@@ -235,7 +235,7 @@ begin
     Result := nil;
 end;
 
-{$IFNDEF FPC}
+{$IFDEF DELPHI12_UP}
 class function TPyDict.GetItemString(const dp: IPyObject; const key: AnsiString): IPyObject;
 begin
   if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(dp) then
@@ -260,7 +260,7 @@ begin
     Result := False;
 end;
 
-{$IFNDEF FPC}
+{$IFDEF DELPHI12_UP}
 class function TPyDict.SetItemString(const dp: IPyObject; const key: AnsiString; const item: IPyObject): boolean;
 begin
   if assigned(PyDict_SetItemString) and

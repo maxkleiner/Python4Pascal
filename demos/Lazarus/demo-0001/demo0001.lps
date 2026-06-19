@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="demo0001.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos Y="9"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uMainForm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="41"/>
+        <CursorPos X="36" Y="64"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="1104"/>
+        <CursorPos Y="1121"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyUnicode.pas"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="139"/>
+        <CursorPos X="109" Y="153"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyDict.pas"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="246"/>
+        <CursorPos X="5" Y="263"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\p4p.inc"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="64"/>
+        <CursorPos X="23" Y="78"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyModuleSpecHelper.pas"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="18"/>
+        <CursorPos X="9" Y="29"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyMath.pas"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="63"/>
+        <CursorPos X="10" Y="96"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PySequence.pas"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="209"/>
+        <CursorPos X="94" Y="220"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.Engine.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="241"/>
+        <CursorPos X="3" Y="244"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyInitConfig.pas"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="187"/>
+        <CursorPos X="34" Y="208"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.CustomPyModule.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="426"/>
+        <CursorPos Y="450"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="239" Column="16" TopLine="224"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="58" Column="16" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="513" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="510" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="513" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="518" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="526" TopLine="499"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="528" TopLine="501"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="529" TopLine="502"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="533" TopLine="506"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="510" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="513" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="518" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="526" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="528" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="529" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="533" TopLine="506"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="510" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="513" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="518" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="526" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="533" TopLine="506"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="510" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="513" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="518" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="533" TopLine="506"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="510" TopLine="509"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="978" TopLine="959"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="2196" TopLine="2180"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="1121" TopLine="1104"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

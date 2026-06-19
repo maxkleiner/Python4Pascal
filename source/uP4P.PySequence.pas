@@ -23,7 +23,7 @@ type
       class function Size(const o: IPyObject): Py_ssize_t;
       class function Length(const o: IPyObject): Py_ssize_t;
       class function Concat(const o1, o2: IPyObject): IPyObject;
-      class function Repeat_(const o: IPyObject; count: Py_ssize_t): IPyObject;
+      class function Repeat_(const o: IPyObject; count_: Py_ssize_t): IPyObject;
       class function GetItem(const o: IPyObject; i: Py_ssize_t): IPyObject;
       class function GetSlice(const o: IPyObject; i1, i2: Py_ssize_t): IPyObject;
       class function SetItem(const o: IPyObject; i: Py_ssize_t; v: IPyObject): boolean;
@@ -38,7 +38,7 @@ type
       class function In_(const o, value: IPyObject): integer;
       class function Index(const o, value: IPyObject): Py_ssize_t;
       class function InPlaceConcat(const o1, o2: IPyObject): IPyObject;
-      class function InPlaceRepeat(const o: IPyObject; count: Py_ssize_t): IPyObject;
+      class function InPlaceRepeat(const o: IPyObject; count_: Py_ssize_t): IPyObject;
   end;
 
 implementation
@@ -81,11 +81,11 @@ begin
     Result := nil;
 end;
 
-class function TPySequence.Repeat_(const o: IPyObject; count: Py_ssize_t): IPyObject;
+class function TPySequence.Repeat_(const o: IPyObject; count_: Py_ssize_t): IPyObject;
 begin
   if assigned(PySequence_Repeat) and
      TPyObject.IsInitialized(o) then
-    Result := TPyObject.Wrap(PySequence_Repeat(o.PyObject, count))
+    Result := TPyObject.Wrap(PySequence_Repeat(o.PyObject, count_))
    else
     Result := nil;
 end;
@@ -234,11 +234,11 @@ begin
     Result := nil;
 end;
 
-class function TPySequence.InPlaceRepeat(const o: IPyObject; count: Py_ssize_t): IPyObject;
+class function TPySequence.InPlaceRepeat(const o: IPyObject; count_: Py_ssize_t): IPyObject;
 begin
   if assigned(PySequence_InPlaceRepeat) and
      TPyObject.IsInitialized(o) then
-    Result := TPyObject.Wrap(PySequence_InPlaceRepeat(o.PyObject, count))
+    Result := TPyObject.Wrap(PySequence_InPlaceRepeat(o.PyObject, count_))
    else
     Result := nil;
 end;

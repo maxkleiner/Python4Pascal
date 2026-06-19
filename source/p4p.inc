@@ -65,7 +65,7 @@
   {$ENDIF}
 {$ENDIF}
 
-// Delphi 2009
+// Delphi 2009 (Unicode support)
 {$IFDEF VER200}
   {$UNDEF DELPHI_VERSION_UNKNOW}
   {$DEFINE DELPHI5_UP}
