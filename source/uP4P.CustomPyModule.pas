@@ -105,7 +105,10 @@ function Exec_Module(module: PPyObject): integer; cdecl;
 var
   TempModule : TCustomPyModule;
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.SearchModule(module, TempModule) then
+  TempModule := nil;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.SearchModule(module, TempModule) then
     TempModule.doOnAfterInitialization;
 
   Result := 0;
@@ -255,12 +258,20 @@ end;
 
 function TCustomPyModule.AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
 begin
+  {$IFDEF FPC}
+  Result := AddSlot(Py_mod_create, Pointer(aCreateFunction));
+  {$ELSE}
   Result := AddSlot(Py_mod_create, @aCreateFunction);
+  {$ENDIF}
 end;
 
 function TCustomPyModule.AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
 begin
+  {$IFDEF FPC}
+  Result := AddSlot(Py_mod_exec, Pointer(aExecFunction));
+  {$ELSE}
   Result := AddSlot(Py_mod_exec, @aExecFunction);
+  {$ENDIF}
 end;
 
 function TCustomPyModule.AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
@@ -447,8 +458,8 @@ begin
       if assigned(FModule) then
         begin
           // Execute the module (triggers Py_mod_exec slot)
-          Result := TPyModule.ExecDef(FModule, @FModuleDef) and
-                    GlobalP4PEngine.AddModuleToSys(self);
+          if TPyModule.ExecDef(FModule, @FModuleDef) then
+            Result := GlobalP4PEngine.AddModuleToSys(self);
         end
        else
         GlobalP4PEngine.GetRaisedException;

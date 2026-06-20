@@ -38,6 +38,12 @@ const
     {$ENDIF}
   {$ENDIF}
 
+  // These contants are declared in the "Windows" unit but
+  // some old Delphi versions don't have them.
+  // We have to add "P4P_" to be compatible with C++ Builder.
+  P4P_IMAGE_FILE_MACHINE_I386  = $014C;
+  P4P_IMAGE_FILE_MACHINE_AMD64 = $8664;
+
 
   PYINITCONFIGOPTION_ALLOCATOR                  = 'allocator';
   PYINITCONFIGOPTION_ARGV                       = 'argv';

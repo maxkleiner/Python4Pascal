@@ -28,13 +28,17 @@ function  GetModulePath : string;
 procedure OutputDebugMessage(const aMessage : string);
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
 procedure ShowErrorMessageDlg(const aError : string);
+function  Is32BitProcess : boolean;
 
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
 function StringToPyUTF8(const aString: string): AnsiString;
 
 {$IFDEF MSWINDOWS}
+function ProcessUnderWow64(hProcess: THandle; Wow64Process: PBOOL): BOOL; stdcall; external 'kernel32.dll' name 'IsWow64Process';
 function UnicodeStringToAnsiString(const aString: UnicodeString): AnsiString;
 function AnsiStringToUnicodeString(const aString: AnsiString): UnicodeString;
+function Is32BitProcessRunningIn64BitOS : boolean;
+function GetDLLHeaderMachine(const aDLLFile : string; var aMachine : integer) : boolean;
 {$ENDIF}
 
 function PyWCharTStringToString(const aString: WCharTString): string;
@@ -146,6 +150,23 @@ begin
     end;
 end;
 
+function Is32BitProcess : boolean;
+begin
+  {$IFDEF TARGET_32BITS}
+  Result := True;
+  {$ELSE}
+    {$IFDEF MSWINDOWS}
+    Result := Is32BitProcessRunningIn64BitOS;
+    {$ELSE}
+      {$IFDEF DELPHI17_UP}
+        Result := TOSVersion.Architecture in [arIntelX86, arARM32];
+      {$ELSE}
+        Result := False;
+      {$ENDIF}
+    {$ENDIF}
+  {$ENDIF}
+end;
+
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean): string;
 begin
   if assigned(aString) then
@@ -200,6 +221,56 @@ begin
       SetLength(Result, TempLen);
       MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, @aString[1], -1, PWideChar(Result), TempLen);
     end;
+end;
+
+function Is32BitProcessRunningIn64BitOS : boolean;
+var
+  TempResult : BOOL;
+begin
+  Result := ProcessUnderWow64(GetCurrentProcess, @TempResult) and
+            TempResult;
+end;
+
+// This function is based on the answer given by 'Alex' in StackOverflow
+// https://stackoverflow.com/questions/2748474/how-to-determine-if-dll-file-was-compiled-as-x64-or-x86-bit-using-either-delphi
+function GetDLLHeaderMachine(const aDLLFile : string; var aMachine : integer) : boolean;
+var
+  TempHeader         : TImageDosHeader;
+  TempImageNtHeaders : TImageNtHeaders;
+  TempStream         : TFileStream;
+begin
+  Result     := False;
+  aMachine   := IMAGE_FILE_MACHINE_UNKNOWN;
+  TempStream := nil;
+
+  try
+    try
+      if FileExists(aDLLFile) then
+        begin
+          TempStream := TFileStream.Create(aDLLFile, fmOpenRead or fmShareDenyWrite);
+          TempStream.seek(0, soFromBeginning);
+          TempStream.ReadBuffer(TempHeader, SizeOf(TempHeader));
+
+          if (TempHeader.e_magic = IMAGE_DOS_SIGNATURE) and
+             (TempHeader._lfanew <> 0) then
+            begin
+              TempStream.Position := TempHeader._lfanew;
+              TempStream.ReadBuffer(TempImageNtHeaders, SizeOf(TempImageNtHeaders));
+
+              if (TempImageNtHeaders.Signature = IMAGE_NT_SIGNATURE) then
+                begin
+                  aMachine := TempImageNtHeaders.FileHeader.Machine;
+                  Result   := True;
+                end;
+            end;
+        end;
+    except
+      on e : exception do
+        if CustomExceptionHandler('GetDLLHeaderMachine', e) then raise;
+    end;
+  finally
+    if (TempStream <> nil) then FreeAndNil(TempStream);
+  end;
 end;
 {$ENDIF}
 

@@ -44,10 +44,12 @@ begin
 end;
 
 procedure TMainForm.InitChkClick(Sender: TObject);
+var
+  TempLibPath : string;
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
-      GlobalP4PEngine := TP4PEngine.Create;
+      GlobalP4PEngine                 := TP4PEngine.Create;
       GlobalP4PEngine.OnOutputMessage := GlobalP4PEngine_OnOutputMessage;
     end;
 
@@ -57,8 +59,11 @@ begin
         begin
           GlobalP4PEngine.SetCurrentDir := True;
 
-          //if GlobalP4PEngine.Load('C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll') and
-          if GlobalP4PEngine.Load() and
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
+          //TempLibPath := 'C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll';
+          TempLibPath := '';
+
+          if GlobalP4PEngine.Load(TempLibPath) and
              GlobalP4PEngine.Initialize then
             Memo1.Lines.Add('Python initialized. ' + GlobalP4PEngine.buildinfo)
            else

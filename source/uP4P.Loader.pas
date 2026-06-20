@@ -76,6 +76,7 @@ type
       function  SearchPythonRegistry(const aRegPath: string; aLocalMachine: boolean; var aInstallPath: string): boolean;
       function  SearchMicrosoftStoreRegistry(var aInstallPath: string): boolean;
       function  SearchUninstallRegistry(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;
+      function  CheckDLLbitness(const aFilename : string): boolean;
       {$ENDIF}
       function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
 
@@ -945,17 +946,64 @@ begin
     if (TempKeys <> nil) then FreeAndNil(TempKeys);
   end;
 end;
+
+function TP4PLoader.CheckDLLbitness(const aFilename : string): boolean;
+var
+  TempMachine : integer;
+begin
+  Result := False;
+
+  if GetDLLHeaderMachine(aFilename, TempMachine) then
+    case TempMachine of
+      P4P_IMAGE_FILE_MACHINE_I386 :
+        if Is32BitProcess then
+          Result := True
+         else
+          begin
+            FStatus           := plsErrorDLLVersion;
+            FLastErrorMessage := 'Wrong Python binaries!' +
+                                 CRLF + CRLF +
+                                 'Use the 32 bit Python binaries with 32 bits applications only.';
+          end;
+
+      P4P_IMAGE_FILE_MACHINE_AMD64 :
+        if not(Is32BitProcess) then
+          Result := True
+         else
+          begin
+            FStatus           := plsErrorDLLVersion;
+            FLastErrorMessage := 'Wrong Python binaries!' +
+                                 CRLF + CRLF +
+                                 'Use the 64 bit Python binaries with 64 bits applications only.';
+          end;
+
+      else
+        begin
+          FStatus           := plsErrorDLLVersion;
+          FLastErrorMessage := 'Unknown Python binaries!';
+        end;
+    end
+   else
+    Result := True;
+end;
 {$ENDIF}
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
   TempPythonDLLPath, TempPythonLibPath, TempPythonPackagesPath : string;
+  TempValidLibPath : boolean;
 begin
   Result            := False;
   FLastErrorMessage := '';
+  TempValidLibPath  := (length(aLibraryPath) > 0) and FileExists(aLibraryPath);
 
   if (length(FHome) = 0) then
-    FHome := OSPythonHome;
+    begin
+      if TempValidLibPath then
+        FHome := ExtractFilePath(aLibraryPath)
+       else
+        FHome := OSPythonHome;
+    end;
 
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
@@ -967,10 +1015,14 @@ begin
         FModuleSearchPaths := TempPythonLibPath + ';' + TempPythonPackagesPath;
     end;
 
-  if (length(aLibraryPath) > 0) then
+  if TempValidLibPath then
     TempPythonDLLPath := aLibraryPath
    else
     TempPythonDLLPath := OSPythonLibPath;
+
+  {$IFDEF MSWINDOWS}
+  if not(CheckDLLbitness(TempPythonDLLPath)) then exit;
+  {$ENDIF}
 
   if ReadLibraryVersionInfo(TempPythonDLLPath) and
      LoadPythonLibrary(TempPythonDLLPath) then
