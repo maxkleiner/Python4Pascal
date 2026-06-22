@@ -31,7 +31,10 @@ type
 
       function  Lock: boolean;
       procedure UnLock;
+      procedure DestroyIOModule;
+      procedure DestroyModules;
       function  RedirectIO: boolean;
+      function  RestoreIO: boolean;
 
     public
       constructor Create; override;
@@ -48,6 +51,7 @@ type
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
+      procedure   Finalize; override;
 
       function    GetRaisedException: boolean;
 
@@ -90,13 +94,14 @@ end;
 
 destructor TP4PEngine.Destroy;
 begin
-  if assigned(FModules) then
-    FreeAndNil(FModules);
+  try
+    DestroyModules;
 
-  if assigned(FSyncObj) then
-    FreeAndNil(FSyncObj);
-
-  inherited Destroy;
+    if assigned(FSyncObj) then
+      FreeAndNil(FSyncObj);
+  finally
+    inherited Destroy;
+  end;
 end;
 
 procedure TP4PEngine.AfterConstruction;
@@ -108,10 +113,26 @@ end;
 
 procedure TP4PEngine.BeforeDestruction;
 begin
-  if assigned(FIOModule) then
-    FreeAndNil(FIOModule);
+  DestroyIOModule;
 
   inherited BeforeDestruction;
+end;
+
+procedure TP4PEngine.DestroyModules;
+begin
+  if Lock then
+    try
+      if assigned(FModules) then
+        FreeAndNil(FModules);
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TP4PEngine.DestroyIOModule;
+begin
+  if assigned(FIOModule) then
+    FreeAndNil(FIOModule);
 end;
 
 function TP4PEngine.Lock: boolean;
@@ -211,38 +232,58 @@ end;
 
 function TP4PEngine.RedirectIO: boolean;
 const
-  code = 'import sys'+LF+
-         'class DebugOutput:'+LF+
-         '  pyio = __import__("pyio")'+LF+
-         '  softspace=0'+LF+
-         '  encoding=None'+LF+
-         '  def write(self,message):'+LF+
-         '     self.pyio.write(message)'+LF+
-         '  def readline(self, size_=None):'+LF+
-         '     return self.pyio.read(size_)'+LF+
+  code = 'import sys' + LF +
+         'class DebugOutput:' + LF +
+         '  pyio = __import__("pyio")' + LF +
+         '  softspace=0' + LF +
+         '  encoding=None' + LF +
+         '  def write(self,message):' + LF +
+         '     self.pyio.write(message)' + LF +
+         '  def readline(self, size_=None):' + LF +
+         '     return self.pyio.read(size_)' + LF +
          '  def flush(self):' + LF +
          '     pass' + LF +
          '  def isatty(self):' + LF +
          '     return False' + LF +
-         'sys.old_stdin=sys.stdin'+LF+
-         'sys.old_stdout=sys.stdout'+LF+
-         'sys.old_stderr=sys.stderr'+LF+
-       // 'sys.stdin=sys.stderr=sys.stdout=DebugOutput()'+LF+#0;
-         'sys.stderr=sys.stdout=DebugOutput()'+LF+#0;
+         'sys.old_stdin=sys.stdin' + LF +
+         'sys.old_stdout=sys.stdout' + LF +
+         'sys.old_stderr=sys.stderr' + LF +
+         'sys.stdin=sys.stderr=sys.stdout=DebugOutput()' + LF + #0;
 begin
   Result := False;
-  if assigned(FIOModule) then exit;
 
-  FIOModule := TIOPyModule.Create('pyio');
+  if not(assigned(FIOModule)) then
+    begin
+      FIOModule := TIOPyModule.Create('pyio');
+      if not(FIOModule.Initialize) then exit;
+    end;
 
-  Result := FIOModule.Initialize and
-            TPyRun.SimpleString(code);
+  Result := TPyRun.SimpleString(code);
+end;
+
+function TP4PEngine.RestoreIO: boolean;
+const
+  code = 'import sys' + LF +
+         'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout' + LF +
+         'if hasattr(sys, "old_stdin"): sys.stdin=sys.old_stdin' + LF +
+         'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr' + LF + #0;
+begin
+  Result := TPyRun.SimpleString(code);
 end;
 
 function TP4PEngine.Initialize: boolean;
 begin
   Result := inherited Initialize and
             RedirectIO;
+end;
+
+procedure TP4PEngine.Finalize;
+begin
+  try
+    //RestoreIO;
+  finally
+    inherited Finalize;
+  end;
 end;
 
 function TP4PEngine.GetRaisedException: boolean;

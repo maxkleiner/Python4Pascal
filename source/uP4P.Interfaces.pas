@@ -255,6 +255,7 @@ type
     function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
     procedure EnterTracing;
     procedure LeaveTracing;
+    function  Swap: IPyThreadState;
     function  Next: IPyThreadState;
     function  UnWrap: Pointer;
 

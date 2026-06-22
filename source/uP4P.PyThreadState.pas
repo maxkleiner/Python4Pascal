@@ -35,18 +35,17 @@ type
       function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
       procedure EnterTracing;
       procedure LeaveTracing;
+      function  Swap: IPyThreadState;
       function  Next: IPyThreadState;
 
     public
       constructor Create(aPyThreadState: PPyThreadState);
-      destructor  Destroy; override;
       function    UnWrap: Pointer;
 
       class function  Wrap(aPyThreadState: PPyThreadState): IPyThreadState; inline;
       class function  New(const state: IPyInterpreterState): IPyThreadState;
       class function  Get: IPyThreadState;
       class function  GetUnchecked: IPyThreadState;
-      class function  Swap(const tstate: IPyThreadState): IPyThreadState;
       class function  IsInitialized(const tstate: IPyThreadState): boolean;
       class procedure DeleteCurrent;
 
@@ -70,15 +69,6 @@ begin
   FPyThreadState := aPyThreadState;
 end;
 
-destructor TPyThreadState.Destroy;
-begin
-  try
-    Delete;
-  finally
-    inherited Destroy;
-  end;
-end;
-
 function TPyThreadState.UnWrap: Pointer;
 begin
   Result         := FPyThreadState;
@@ -97,7 +87,7 @@ class function TPyThreadState.New(const state: IPyInterpreterState): IPyThreadSt
 begin
   if assigned(PyThreadState_New) and
      TPyInterpreterState.IsInitialized(state) then
-    Result := TPyThreadState.Wrap(PyThreadState_New(state))
+    Result := TPyThreadState.Wrap(PyThreadState_New(state.State))
    else
     Result := nil;
 end;
@@ -118,15 +108,10 @@ begin
     Result := nil;
 end;
 
-class function TPyThreadState.Swap(const tstate: IPyThreadState): IPyThreadState;
+function TPyThreadState.Swap: IPyThreadState;
 begin
-  if assigned(PyThreadState_Swap) then
-    begin
-      if TPyThreadState.IsInitialized(tstate) then
-        Result := TPyThreadState.Wrap(PyThreadState_Swap(tstate.ThreadState))
-       else
-        Result := TPyThreadState.Wrap(PyThreadState_Swap(nil));
-    end
+  if Initialized and assigned(PyThreadState_Swap) then
+    Result := TPyThreadState.Wrap(PyThreadState_Swap(FPyThreadState))
    else
     Result := nil;
 end;
