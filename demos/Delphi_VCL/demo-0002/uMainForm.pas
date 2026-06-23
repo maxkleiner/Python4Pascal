@@ -14,8 +14,10 @@ type
     Memo1: TMemo;
     RunBtn: TButton;
     CodeEdt: TEdit;
+    Run2Btn: TButton;
     procedure InitChkClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
+    procedure Run2BtnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,9 +35,46 @@ implementation
 uses
   uCustomThread;
 
+procedure TMainForm.Run2BtnClick(Sender: TObject);
+var
+  TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule : IPyObject;
+begin
+  TempMainModule := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+
+  if TPyObject.IsInitialized(TempMainModule) then
+    begin
+      try
+        Memo1.Lines.Add(MAIN_MODULE_NAME + ' module obtained correctly.');
+
+        TempLocals  := TPyModule.GetDict(TempMainModule);
+        TempGlobals := TempLocals;
+
+        TempBytecode := TPy.CompileString(CodeEdt.Text);
+
+        if TPyObject.IsInitialized(TempBytecode) then
+          begin
+            Memo1.Lines.Add('Code compiled correctly.');
+
+            TempResult  := TPyEval.EvalCode(TempBytecode, TempGlobals, TempLocals);
+
+            if TPyObject.IsInitialized(TempResult) then
+              Memo1.Lines.Add('Bytecode evaluated correctly.')
+             else
+              Memo1.Lines.Add('There was an error evaluating the bytecode.')
+          end
+         else
+          Memo1.Lines.Add('There was an error compiling the code.');
+      finally
+        TempMainModule := nil;
+      end;
+    end
+   else
+    Memo1.Lines.Add('There was an error getting the __main__ module.');
+end;
+
 procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
 begin
-  TThread.Synchronize(nil,
+  TThread.ForceQueue(nil,
     procedure
     begin
       Memo1.Lines.Add(message_);

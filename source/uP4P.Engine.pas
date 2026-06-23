@@ -26,16 +26,22 @@ type
       FModules          : TList;
       FSyncObj          : TCriticalSection;
       FIOModule         : TIOPyModule;
+      FInterpreterState : IPyInterpreterState;
+      FThreadState      : IPyThreadState;
+      FMainThreadID     : TThreadID;
       FOnOutputMessage  : TOnOutputMessageEvent;
       FOnInputMessage   : TOnInputMessageEvent;
 
+      function  GetIsMainThread: boolean;
+      function  GetSavedThreadState: boolean;
+      
       function  Lock: boolean;
       procedure UnLock;
       procedure DestroyIOModule;
       procedure DestroyModules;
       function  RedirectIO: boolean;
       function  RestoreIO: boolean;
-
+      
     public
       constructor Create; override;
       destructor  Destroy; override;
@@ -52,13 +58,18 @@ type
       /// </summary>
       function    Initialize: boolean; override;
       procedure   Finalize; override;
+      function    SaveThreadState: boolean;
+      function    RestoreThreadState: boolean;
 
       function    GetRaisedException: boolean;
 
 
       property IOModule         : TIOPyModule              read FIOModule;
-      property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage   write FOnOutputMessage;
-      property OnInputMessage   : TOnInputMessageEvent     read FOnInputMessage    write FOnInputMessage;
+      property InterpreterState : IPyInterpreterState      read FInterpreterState;
+      property IsMainThread     : boolean                  read GetIsMainThread;
+      property SavedThreadState : boolean                  read GetSavedThreadState;
+      property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage      write FOnOutputMessage;
+      property OnInputMessage   : TOnInputMessageEvent     read FOnInputMessage       write FOnInputMessage;
   end;
 
 var
@@ -73,7 +84,8 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun,
-  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes, uP4P.PyNone;
+  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes, uP4P.PyNone, uP4P.PyInterpreterState,
+  uP4P.PyEval, uP4P.PyThreadState;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -85,17 +97,23 @@ constructor TP4PEngine.Create;
 begin
   inherited Create;
 
-  FModules         := nil;
-  FSyncObj         := nil;
-  FIOModule        := nil;
-  FOnOutputMessage := nil;
-  FOnInputMessage  := nil;
+  FMainThreadID     := 0;
+  FModules          := nil;
+  FSyncObj          := nil;
+  FIOModule         := nil;
+  FInterpreterState := nil;
+  FThreadState      := nil;
+  FOnOutputMessage  := nil;
+  FOnInputMessage   := nil;
 end;
 
 destructor TP4PEngine.Destroy;
 begin
   try
     DestroyModules;
+
+    FInterpreterState := nil;
+    FThreadState      := nil;
 
     if assigned(FSyncObj) then
       FreeAndNil(FSyncObj);
@@ -107,8 +125,10 @@ end;
 procedure TP4PEngine.AfterConstruction;
 begin
   inherited AfterConstruction;
-
-  FModules := TList.Create;
+  
+  FMainThreadID := TThread.CurrentThread.ThreadID;
+  FModules      := TList.Create;
+  FSyncObj      := TCriticalSection.Create;
 end;
 
 procedure TP4PEngine.BeforeDestruction;
@@ -133,6 +153,23 @@ procedure TP4PEngine.DestroyIOModule;
 begin
   if assigned(FIOModule) then
     FreeAndNil(FIOModule);
+end;
+
+function TP4PEngine.GetIsMainThread: boolean;
+begin
+  Result := (FMainThreadID = TThread.CurrentThread.ThreadID);
+end;
+
+function TP4PEngine.GetSavedThreadState: boolean;
+begin
+  Result := False;
+
+  if Lock then
+    try
+      Result := TPyThreadState.IsInitialized(FThreadState);  
+    finally
+      Unlock;
+    end;
 end;
 
 function TP4PEngine.Lock: boolean;
@@ -273,8 +310,13 @@ end;
 
 function TP4PEngine.Initialize: boolean;
 begin
-  Result := inherited Initialize and
-            RedirectIO;
+  Result := False;
+
+  if inherited Initialize and RedirectIO then
+    begin
+      FInterpreterState := TPyInterpreterState.Get();
+      Result            := True;
+    end;
 end;
 
 procedure TP4PEngine.Finalize;
@@ -284,6 +326,39 @@ begin
   finally
     inherited Finalize;
   end;
+end;
+
+function TP4PEngine.SaveThreadState: boolean;
+begin
+  Result := False;
+
+  if IsMainThread and Lock then 
+    try
+      if not(TPyThreadState.IsInitialized(FThreadState)) then
+        begin
+          FThreadState := TPyEval.SaveThread();
+          Result       := TPyThreadState.IsInitialized(FThreadState);
+        end;
+    finally
+      Unlock;    
+    end;    
+end;                    
+
+function TP4PEngine.RestoreThreadState: boolean;
+begin
+  Result := False;
+
+  if IsMainThread and Lock then
+    try
+      if TPyThreadState.IsInitialized(FThreadState) then
+        begin
+          TPyEval.RestoreThread(FThreadState);
+          FThreadState := nil;
+          Result       := True;
+        end;
+    finally
+      Unlock;    
+    end;
 end;
 
 function TP4PEngine.GetRaisedException: boolean;

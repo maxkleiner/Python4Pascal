@@ -140,6 +140,8 @@ type
     fc_r
   );
 
+  TThreadExecMode = (emNewState, emNewInterpreter, emNewInterpreterOwnGIL);
+
   /// <summary>
   /// Custom type to avoid invalid "start" values in TPy.Compile*.
   /// These values are converted to Py_single_input, Py_file_input,

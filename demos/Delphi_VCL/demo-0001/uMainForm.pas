@@ -61,6 +61,7 @@ begin
 
           //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
           //TempLibPath := 'C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll';
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.10.11-embed-win32\python310.dll';
           TempLibPath := '';
 
           if GlobalP4PEngine.Load(TempLibPath) and

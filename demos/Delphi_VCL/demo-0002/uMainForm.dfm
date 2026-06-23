@@ -47,4 +47,13 @@ object MainForm: TMainForm
     TabOrder = 3
     Text = 'print(2+2)'
   end
+  object Run2Btn: TButton
+    Left = 160
+    Top = 120
+    Width = 75
+    Height = 25
+    Caption = 'Run 2'
+    TabOrder = 4
+    OnClick = Run2BtnClick
+  end
 end

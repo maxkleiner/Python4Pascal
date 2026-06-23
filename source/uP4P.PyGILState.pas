@@ -37,6 +37,7 @@ type
       class function Ensure: IPyGILState;
       class function GetThisThreadState: IPyThreadState;
       class function Check: boolean;
+      class function IsInitialized(const aPyGILState: IPyGILState): boolean; inline;
 
       property Initialized  : boolean           read GetInitialized   write SetInitialized;
       property State        : PyGILState_STATE  read GetState         write SetState;
@@ -84,6 +85,11 @@ class function TPyGILState.Check: boolean;
 begin
   Result := assigned(PyGILState_Check) and
             (PyGILState_Check() <> 0);
+end;
+
+class function TPyGILState.IsInitialized(const aPyGILState: IPyGILState): boolean;
+begin
+  Result := assigned(aPyGILState) and aPyGILState.Initialized;
 end;
 
 procedure TPyGILState.Release;

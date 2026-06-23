@@ -35,7 +35,7 @@ type
       function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
       procedure EnterTracing;
       procedure LeaveTracing;
-      function  Swap: IPyThreadState;
+      function  Swap: IPyThreadState; overload;
       function  Next: IPyThreadState;
 
     public
@@ -46,6 +46,7 @@ type
       class function  New(const state: IPyInterpreterState): IPyThreadState;
       class function  Get: IPyThreadState;
       class function  GetUnchecked: IPyThreadState;
+      class function  Swap(const tstate: IPyThreadState): IPyThreadState; overload;
       class function  IsInitialized(const tstate: IPyThreadState): boolean;
       class procedure DeleteCurrent;
 
@@ -112,6 +113,19 @@ function TPyThreadState.Swap: IPyThreadState;
 begin
   if Initialized and assigned(PyThreadState_Swap) then
     Result := TPyThreadState.Wrap(PyThreadState_Swap(FPyThreadState))
+   else
+    Result := nil;
+end;
+
+class function TPyThreadState.Swap(const tstate: IPyThreadState): IPyThreadState;
+begin
+  if assigned(PyThreadState_Swap) then
+    begin
+      if assigned(tstate) and tstate.Initialized then
+        Result := TPyThreadState.Wrap(PyThreadState_Swap(tstate.ThreadState))
+       else
+        Result := TPyThreadState.Wrap(PyThreadState_Swap(nil));
+    end
    else
     Result := nil;
 end;
