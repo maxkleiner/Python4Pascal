@@ -9,7 +9,7 @@ type
   TCustomThread = class(TP4PThread)
     protected
       FCode : string;
-      procedure ExecuteWithPython; override;
+      procedure doOnExecutePython; override;
 
     public
       property Code : string read FCode write FCode;
@@ -20,7 +20,7 @@ implementation
 uses
   uP4P.PyRun;
 
-procedure TCustomThread.ExecuteWithPython;
+procedure TCustomThread.doOnExecutePython;
 begin
   TPyRun.SimpleString(FCode);
 end;

@@ -17,6 +17,12 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Class containing most parameters to configure a sub-interpreter. Its values are used only in TPy.NewInterpreterFromConfig() and never modified by the runtime.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
+  /// </remarks>
   TPyInterpreterConfig = class(TInterfacedObject, IPyInterpreterConfig)
     protected
       FConfig : PyInterpreterConfig;
@@ -28,7 +34,7 @@ type
       function Get_allow_threads: boolean;
       function Get_allow_daemon_threads: boolean;
       function Get_check_multi_interp_extensions: boolean;
-      function Get_gil: Integer;
+      function Get_gil: TPyInterpreterCfgGIL;
 
       procedure Set_use_main_obmalloc(aValue: boolean);
       procedure Set_allow_fork(aValue: boolean);
@@ -36,19 +42,62 @@ type
       procedure Set_allow_threads(aValue: boolean);
       procedure Set_allow_daemon_threads(aValue: boolean);
       procedure Set_check_multi_interp_extensions(aValue: boolean);
-      procedure Set_gil(aValue: Integer);
+      procedure Set_gil(aValue: TPyInterpreterCfgGIL);
 
     public
       constructor Create;
-
-      property Config                        : Pointer     read GetConfig;
-      property use_main_obmalloc             : boolean     read Get_use_main_obmalloc              write Set_use_main_obmalloc;
-      property allow_fork                    : boolean     read Get_allow_fork                     write Set_allow_fork;
-      property allow_exec                    : boolean     read Get_allow_exec                     write Set_allow_exec;
-      property allow_threads                 : boolean     read Get_allow_threads                  write Set_allow_threads;
-      property allow_daemon_threads          : boolean     read Get_allow_daemon_threads           write Set_allow_daemon_threads;
-      property check_multi_interp_extensions : boolean     read Get_check_multi_interp_extensions  write Set_check_multi_interp_extensions;
-      property gil                           : Integer     read Get_gil                            write Set_gil;
+      /// <summary>
+      /// Initial configuration values defined by the _PyInterpreterConfig_INIT macro.
+      /// </summary>
+      procedure Init;
+      /// <summary>
+      /// Pointer to PyInterpreterConfig.
+      /// </summary>
+      property Config                        : Pointer                  read GetConfig;
+      /// <summary>
+      /// If this is False then the sub-interpreter will use its own “object” allocator state.
+      /// Otherwise it will use (share) the main interpreter's.
+      /// If this is False then check_multi_interp_extensions must be True. If this is True then gil must not be gilOwn.
+      /// </summary>
+      property use_main_obmalloc             : boolean                  read Get_use_main_obmalloc              write Set_use_main_obmalloc;
+      /// <summary>
+      /// If this is False then the runtime will not support forking the process in any thread where the sub-interpreter is currently active.
+      /// Otherwise fork is unrestricted.
+      /// Note that the subprocess module still works when fork is disallowed.
+      /// </summary>
+      property allow_fork                    : boolean                  read Get_allow_fork                     write Set_allow_fork;
+      /// <summary>
+      /// If this is False then the runtime will not support replacing the current process via exec (e.g. os.execv()) in any thread where the sub-interpreter is currently active.
+      /// Otherwise exec is unrestricted.
+      /// Note that the subprocess module still works when exec is disallowed.
+      /// </summary>
+      property allow_exec                    : boolean                  read Get_allow_exec                     write Set_allow_exec;
+      /// <summary>
+      /// If this is False then the sub-interpreter's threading module won’t create threads.
+      /// Otherwise threads are allowed.
+      /// </summary>
+      property allow_threads                 : boolean                  read Get_allow_threads                  write Set_allow_threads;
+      /// <summary>
+      /// If this is False then the sub-interpreter's threading module won’t create daemon threads.
+      /// Otherwise daemon threads are allowed (as long as allow_threads is non-zero).
+      /// </summary>
+      property allow_daemon_threads          : boolean                  read Get_allow_daemon_threads           write Set_allow_daemon_threads;
+      /// <summary>
+      /// If this is False then all extension modules may be imported, including legacy (single-phase init) modules, in any thread where the sub-interpreter is currently active.
+      /// Otherwise only multi-phase init extension modules (see PEP 489) may be imported. (Also see Py_mod_multiple_interpreters.)
+      /// This must be True if use_main_obmalloc is True.
+      /// </summary>
+      property check_multi_interp_extensions : boolean                  read Get_check_multi_interp_extensions  write Set_check_multi_interp_extensions;
+      /// <summary>
+      /// <para>This determines the operation of the GIL for the sub-interpreter. It may be one of the following:</para>
+      /// <code>
+      /// - gilDefault: Use the default selection (gilShared).
+      /// - gilShared: Use (share) the main interpreter's GIL.
+      /// - gilOwn: Use the sub-interpreter's own GIL.
+      /// </code>
+      /// <para>If this is gilOwn then use_main_obmalloc must be False.</para>
+      /// </summary>
+      property gil                           : TPyInterpreterCfgGIL     read Get_gil                            write Set_gil;
   end;
 
 implementation
@@ -58,6 +107,17 @@ begin
   inherited Create;
 
   FillChar(FConfig, SizeOf(PyInterpreterConfig), #0);
+end;
+
+procedure TPyInterpreterConfig.Init;
+begin
+  use_main_obmalloc             := False;
+  allow_fork                    := False;
+  allow_exec                    := False;
+  allow_threads                 := True;
+  allow_daemon_threads          := False;
+  check_multi_interp_extensions := True;
+  gil                           := gilOwn;
 end;
 
 function TPyInterpreterConfig.GetConfig: Pointer;
@@ -95,9 +155,13 @@ begin
   Result := FConfig.check_multi_interp_extensions <> 0;
 end;
 
-function TPyInterpreterConfig.Get_gil: Integer;
+function TPyInterpreterConfig.Get_gil: TPyInterpreterCfgGIL;
 begin
-  Result := FConfig.gil;
+  case FConfig.gil of
+    PyInterpreterConfig_SHARED_GIL  : Result := gilShared;
+    PyInterpreterConfig_OWN_GIL     : Result := gilOwn;
+    else                              Result := gilDefault;
+  end;
 end;
 
 procedure TPyInterpreterConfig.Set_use_main_obmalloc(aValue: boolean);
@@ -130,10 +194,13 @@ begin
   FConfig.check_multi_interp_extensions := ord(aValue);
 end;
 
-procedure TPyInterpreterConfig.Set_gil(aValue: Integer);
+procedure TPyInterpreterConfig.Set_gil(aValue: TPyInterpreterCfgGIL);
 begin
-  if (aValue in [PyInterpreterConfig_DEFAULT_GIL..PyInterpreterConfig_OWN_GIL]) then
-    FConfig.gil := aValue;
+  case aValue of
+    gilShared : FConfig.gil := PyInterpreterConfig_SHARED_GIL;
+    gilOwn    : FConfig.gil := PyInterpreterConfig_OWN_GIL;
+    else        FConfig.gil := PyInterpreterConfig_DEFAULT_GIL;
+  end;
 end;
 
 end.

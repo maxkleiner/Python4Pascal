@@ -140,7 +140,11 @@ type
     fc_r
   );
 
-  TThreadExecMode = (emNewState, emNewInterpreter, emNewInterpreterOwnGIL);
+  TPyInterpreterCfgGIL = (
+    gilDefault,
+    gilShared,
+    gilOwn
+  );
 
   /// <summary>
   /// Custom type to avoid invalid "start" values in TPy.Compile*.

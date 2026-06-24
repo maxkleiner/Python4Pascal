@@ -332,32 +332,24 @@ function TP4PEngine.SaveThreadState: boolean;
 begin
   Result := False;
 
-  if IsMainThread and Lock then 
-    try
-      if not(TPyThreadState.IsInitialized(FThreadState)) then
-        begin
-          FThreadState := TPyEval.SaveThread();
-          Result       := TPyThreadState.IsInitialized(FThreadState);
-        end;
-    finally
-      Unlock;    
-    end;    
-end;                    
+  if IsMainThread and
+     not(TPyThreadState.IsInitialized(FThreadState)) then
+    begin
+      FThreadState := TPyEval.SaveThread();
+      Result       := TPyThreadState.IsInitialized(FThreadState);
+    end;
+end;
 
 function TP4PEngine.RestoreThreadState: boolean;
 begin
   Result := False;
 
-  if IsMainThread and Lock then
-    try
-      if TPyThreadState.IsInitialized(FThreadState) then
-        begin
-          TPyEval.RestoreThread(FThreadState);
-          FThreadState := nil;
-          Result       := True;
-        end;
-    finally
-      Unlock;    
+  if IsMainThread and
+     TPyThreadState.IsInitialized(FThreadState) then
+    begin
+      TPyEval.RestoreThread(FThreadState);
+      FThreadState := nil;
+      Result       := True;
     end;
 end;
 

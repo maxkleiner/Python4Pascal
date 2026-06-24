@@ -126,6 +126,7 @@ begin
   TempThread                 := TCustomThread.Create(True);
   TempThread.Code            := CodeEdt.Text;
   TempThread.FreeOnTerminate := True;
+  TempThread.SharedInterpreter := False;
   TempThread.Start;
 end;
 
