@@ -23,27 +23,84 @@ type
       procedure AddAllMethods; override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
+
+    public
+      const
+        ModuleName = 'pyio';
+
+        InitCode = 'import sys' + LF +
+                   'class DebugOutput:' + LF +
+                   '  pyio = __import__("' + ModuleName + '")' + LF +
+                   '  softspace=0' + LF +
+                   '  encoding=None' + LF +
+                   '  def write(self,message):' + LF +
+                   '     self.pyio.write(message)' + LF +
+                   '  def readline(self, size_=None):' + LF +
+                   '     return self.pyio.read(size_)' + LF +
+                   '  def flush(self):' + LF +
+                   '     pass' + LF +
+                   '  def isatty(self):' + LF +
+                   '     return False' + LF +
+                   'sys.old_stdin=sys.stdin' + LF +
+                   'sys.old_stdout=sys.stdout' + LF +
+                   'sys.old_stderr=sys.stderr' + LF +
+                   'sys.stdin=sys.stderr=sys.stdout=DebugOutput()' + LF + #0;
+
+        RestoreCode = 'import sys' + LF +
+                      'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout' + LF +
+                      'if hasattr(sys, "old_stdin"): sys.stdin=sys.old_stdin' + LF +
+                      'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr' + LF + #0;
+
+      class function RunInitCode: boolean;
+      class function RunRestoreCode: boolean;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyBytes;
+  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyBytes,
+  uP4P.PyRun;
 
 function pyio_write(self, args: PPyObject): PPyObject; cdecl;
+var
+  TempModule: TCustomPyModule;
 begin
+  TempModule := nil;
+
   if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.IOModule.Write(args)
+    begin
+      if GlobalP4PEngine.IsIOModule(self) then
+        Result := GlobalP4PEngine.IOModule.Write(args)
+       else
+        if GlobalP4PEngine.SearchModule(self, TempModule) and
+           (TempModule is TIOPyModule) then
+          Result := TIOPyModule(TempModule).Write(args)
+         else
+          Result := TPyNone.New.PyObject;
+    end
    else
-    Result := nil;
+    Result := TPyNone.New.PyObject;
 end;
 
 function pyio_read(self, args: PPyObject): PPyObject; cdecl;
+var
+  TempModule: TCustomPyModule;
 begin
+  TempModule := nil;
+
   if (GlobalP4PEngine <> nil) then
-    Result := GlobalP4PEngine.IOModule.Read(args)
+    begin
+      if GlobalP4PEngine.IsIOModule(self) then
+        Result := GlobalP4PEngine.IOModule.Read(args)
+       else
+        if GlobalP4PEngine.SearchModule(self, TempModule) and
+           (TempModule is TIOPyModule) then
+          Result := TIOPyModule(TempModule).Read(args)
+         else
+          Result := TPyNone.New.PyObject;
+    end
    else
-    Result := nil;
+    Result := TPyNone.New.PyObject;
 end;
 
 procedure TIOPyModule.AddAllMethods;
@@ -93,5 +150,16 @@ begin
 
   TempResult := nil;
 end;
+
+class function TIOPyModule.RunInitCode: boolean;
+begin
+  Result := TPyRun.SimpleString(TIOPyModule.InitCode);
+end;
+
+class function TIOPyModule.RunRestoreCode: boolean;
+begin
+  Result := TPyRun.SimpleString(TIOPyModule.RestoreCode);
+end;
+
 
 end.

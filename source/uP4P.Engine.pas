@@ -40,7 +40,6 @@ type
       procedure DestroyIOModule;
       procedure DestroyModules;
       function  RedirectIO: boolean;
-      function  RestoreIO: boolean;
       
     public
       constructor Create; override;
@@ -51,13 +50,13 @@ type
       procedure   AddModule(const aModule: TCustomPyModule);
       procedure   RemoveModule(const aModule: TCustomPyModule);
       function    SearchModule(module: PPyObject; var aResult: TCustomPyModule): boolean;
+      function    IsIOModule(module: PPyObject): boolean;
       procedure   doOnOutputMessage(const aMessage: string);
       function    doOnInputMessage(var aResultObj: IPyObject): boolean;
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
-      procedure   Finalize; override;
       function    SaveThreadState: boolean;
       function    RestoreThreadState: boolean;
 
@@ -239,12 +238,20 @@ begin
             if TempModule.SameAs(module) then
               begin
                 aResult := TempModule;
+                Result  := True;
                 break;
               end;
           end;
     finally
       UnLock;
     end;
+end;
+
+function TP4PEngine.IsIOModule(module: PPyObject): boolean;
+begin
+  Result := assigned(FIOModule) and
+            TPyObject.IsInitialized(FIOModule.Module) and
+            FIOModule.Module.SameAs(module);
 end;
 
 procedure TP4PEngine.doOnOutputMessage(const aMessage: string);
@@ -268,44 +275,16 @@ begin
 end;
 
 function TP4PEngine.RedirectIO: boolean;
-const
-  code = 'import sys' + LF +
-         'class DebugOutput:' + LF +
-         '  pyio = __import__("pyio")' + LF +
-         '  softspace=0' + LF +
-         '  encoding=None' + LF +
-         '  def write(self,message):' + LF +
-         '     self.pyio.write(message)' + LF +
-         '  def readline(self, size_=None):' + LF +
-         '     return self.pyio.read(size_)' + LF +
-         '  def flush(self):' + LF +
-         '     pass' + LF +
-         '  def isatty(self):' + LF +
-         '     return False' + LF +
-         'sys.old_stdin=sys.stdin' + LF +
-         'sys.old_stdout=sys.stdout' + LF +
-         'sys.old_stderr=sys.stderr' + LF +
-         'sys.stdin=sys.stderr=sys.stdout=DebugOutput()' + LF + #0;
 begin
   Result := False;
 
   if not(assigned(FIOModule)) then
     begin
-      FIOModule := TIOPyModule.Create('pyio');
+      FIOModule := TIOPyModule.Create(TIOPyModule.ModuleName);
       if not(FIOModule.Initialize) then exit;
     end;
 
-  Result := TPyRun.SimpleString(code);
-end;
-
-function TP4PEngine.RestoreIO: boolean;
-const
-  code = 'import sys' + LF +
-         'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout' + LF +
-         'if hasattr(sys, "old_stdin"): sys.stdin=sys.old_stdin' + LF +
-         'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr' + LF + #0;
-begin
-  Result := TPyRun.SimpleString(code);
+  Result := TIOPyModule.RunInitCode;
 end;
 
 function TP4PEngine.Initialize: boolean;
@@ -317,15 +296,6 @@ begin
       FInterpreterState := TPyInterpreterState.Get();
       Result            := True;
     end;
-end;
-
-procedure TP4PEngine.Finalize;
-begin
-  try
-    //RestoreIO;
-  finally
-    inherited Finalize;
-  end;
 end;
 
 function TP4PEngine.SaveThreadState: boolean;

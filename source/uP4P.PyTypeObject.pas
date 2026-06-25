@@ -198,7 +198,8 @@ end;
 
 class function TPyTypeObject.GetFlags(aPyTypeObject: PPyTypeObject): C_ULong;
 begin
-  if assigned(PyType_GetFlags) then
+  if assigned(PyType_GetFlags) and
+     assigned(aPyTypeObject) then
     Result := PyType_GetFlags(aPyTypeObject)
    else
     Result := 0;
@@ -299,12 +300,12 @@ end;
 
 class function TPyTypeObject.HasFeature(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
 begin
-  Result := ((GetFlags(aPyTypeObject) and feature) <> 0);
+  Result := assigned(aPyTypeObject) and ((GetFlags(aPyTypeObject) and feature) <> 0);
 end;
 
 class function TPyTypeObject.FastSubclass(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
 begin
-  Result := HasFeature(aPyTypeObject, feature);
+  Result := assigned(aPyTypeObject) and HasFeature(aPyTypeObject, feature);
 end;
 
 class function TPyTypeObject.Check(const aPyObject: IPyObject): boolean;

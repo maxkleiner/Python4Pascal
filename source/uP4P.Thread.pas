@@ -38,7 +38,8 @@ type
       procedure Execute; override;
       procedure ExecuteLegacyInit;
       procedure ExecuteSharedInterpreter;
-      procedure ExecuteSubinterpreter;
+      procedure ExecuteSubinterpreterSharedGIL;
+      procedure ExecuteSubinterpreterOwnGIL;
 
       procedure SaveMainThreadState;
       procedure RestoreMainThreadState;
@@ -58,7 +59,8 @@ type
 implementation
 
 uses
-  uP4P.PyGILState, uP4P.PyThreadState, uP4P.Engine, uP4P.Py, uP4P.PyInterpreterConfig;
+  uP4P.PyGILState, uP4P.PyThreadState, uP4P.Engine, uP4P.Py,
+  uP4P.PyInterpreterConfig, uP4P.IOPyModule;
 
 procedure TP4PThread.AfterConstruction;
 begin
@@ -168,23 +170,58 @@ begin
     FErrorMsg := 'There was a problem saving the main thread state.';
 end;
 
-procedure TP4PThread.ExecuteSubinterpreter;
+procedure TP4PThread.ExecuteSubinterpreterSharedGIL;
 var
   TempThreadState : IPyThreadState;
-  TempConfig : IPyInterpreterConfig;
-  TempStatus : IPyStatus;
+  TempModule : TIOPyModule;
 begin
   Synchronize(SaveMainThreadState);
 
   if FSavedState then
     try
+      TempModule      := nil;
+      TempThreadState := TPy.NewInterpreter();
+
+      if TPyThreadState.IsInitialized(TempThreadState) then
+        try
+          TempThreadState.Swap;
+          TempModule := TIOPyModule.Create(TIOPyModule.ModuleName);
+
+          if TempModule.Initialize and TIOPyModule.RunInitCode then
+            begin
+              doOnExecutePython;
+              TIOPyModule.RunRestoreCode;
+            end;
+        finally
+          if assigned(TempModule) then
+            FreeAndNil(TempModule);
+
+          TPy.EndInterpreter(TempThreadState);
+          TempThreadState := nil;
+        end
+       else
+        FErrorMsg := 'There was a problem creating the new thread state.';
+    finally
+      Synchronize(RestoreMainThreadState);
+    end
+   else
+    FErrorMsg := 'There was a problem saving the main thread state.';
+end;
+
+procedure TP4PThread.ExecuteSubinterpreterOwnGIL;
+var
+  TempThreadState : IPyThreadState;
+  TempConfig : IPyInterpreterConfig;
+  TempStatus : IPyStatus;
+  TempModule : TIOPyModule;
+begin
+  Synchronize(SaveMainThreadState);
+
+  if FSavedState then
+    try
+      TempModule := nil;
       TempConfig := TPyInterpreterConfig.Create;
       TempConfig.Init;
-
-      if SharedGIL then
-        TempConfig.gil := gilShared
-       else
-        TempConfig.gil := gilOwn;
 
       TempStatus := TPy.NewInterpreterFromConfig(TempThreadState, TempConfig);
 
@@ -194,10 +231,20 @@ begin
        else
         try
           TempThreadState.Swap;
-          doOnExecutePython;
+
+          TempModule                  := TIOPyModule.Create(TIOPyModule.ModuleName);
+          TempModule.MultIntprSupport := piGilSupported;
+
+          if TempModule.Initialize and TIOPyModule.RunInitCode then
+            begin
+              doOnExecutePython;
+              TIOPyModule.RunRestoreCode;
+            end;
         finally
-          TempThreadState.Clear;
-          //TempThreadState.Delete;
+          if assigned(TempModule) then
+            FreeAndNil(TempModule);
+
+          TPy.EndInterpreter(TempThreadState);
           TempThreadState := nil;
         end;
     finally
@@ -220,13 +267,19 @@ end;
 
 procedure TP4PThread.Execute;
 begin
-  if UseLegacyInit then
+  if not(assigned(GlobalP4PEngine)) then exit;
+
+  if UseLegacyInit or
+     not(GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0)) then
     ExecuteLegacyInit
    else
     if SharedInterpreter then
       ExecuteSharedInterpreter
      else
-      ExecuteSubinterpreter;
+      if SharedGIL then
+        ExecuteSubinterpreterSharedGIL
+       else
+        ExecuteSubinterpreterOwnGIL;
 end;
 
 end.

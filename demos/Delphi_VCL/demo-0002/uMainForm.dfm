@@ -10,6 +10,8 @@ object MainForm: TMainForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
   TextHeight = 15
   object InitChk: TCheckBox
     Left = 16
@@ -31,29 +33,53 @@ object MainForm: TMainForm
     TabOrder = 1
   end
   object RunBtn: TButton
-    Left = 160
-    Top = 71
-    Width = 75
+    Left = 16
+    Top = 111
+    Width = 145
     Height = 25
-    Caption = 'Run'
+    Caption = 'Run in different thread'
     TabOrder = 2
     OnClick = RunBtnClick
   end
   object CodeEdt: TEdit
-    Left = 24
+    Left = 16
     Top = 72
-    Width = 121
+    Width = 129
     Height = 23
     TabOrder = 3
     Text = 'print(2+2)'
   end
   object Run2Btn: TButton
-    Left = 160
-    Top = 120
-    Width = 75
+    Left = 16
+    Top = 152
+    Width = 145
     Height = 25
-    Caption = 'Run 2'
+    Caption = 'Run in main thread'
     TabOrder = 4
     OnClick = Run2BtnClick
+  end
+  object LegacyAPIChk: TCheckBox
+    Left = 240
+    Top = 16
+    Width = 200
+    Height = 17
+    Caption = 'Legacy API'
+    TabOrder = 5
+  end
+  object SharedInterpreterChk: TCheckBox
+    Left = 240
+    Top = 48
+    Width = 200
+    Height = 17
+    Caption = 'Shared Interpreter'
+    TabOrder = 6
+  end
+  object SharedGILChk: TCheckBox
+    Left = 240
+    Top = 78
+    Width = 200
+    Height = 17
+    Caption = 'Shared GIL'
+    TabOrder = 7
   end
 end

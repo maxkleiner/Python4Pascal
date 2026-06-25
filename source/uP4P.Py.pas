@@ -192,20 +192,28 @@ end;
 
 class function TPy.Type_(const aPyObject: IPyObject): PPyTypeObject;
 begin
-  if assigned(Py_TYPE) and
-     TPyObject.IsInitialized(aPyObject) then
-    Result := Py_TYPE(aPyObject.PyObject)  // Borrowed reference.
-   else
-    Result := nil;
+  Result := nil;
+
+  if TPyObject.IsInitialized(aPyObject) then
+    begin
+      if assigned(Py_TYPE) then
+        Result := Py_TYPE(aPyObject.PyObject)
+       else
+        Result := aPyObject.PyObject^.ob_type;
+    end;
 end;
 
 class function TPy.RefCnt(const aPyObject: IPyObject): integer;
 begin
-  if assigned(Py_REFCNT) and
-     TPyObject.IsInitialized(aPyObject) then
-    Result := Py_REFCNT(aPyObject.PyObject)
-   else
-    Result := 0;
+  Result := 0;
+
+  if TPyObject.IsInitialized(aPyObject) then
+    begin
+      if assigned(Py_REFCNT) then
+        Result := Py_REFCNT(aPyObject.PyObject)
+       else
+        Result := aPyObject.PyObject^.ob_refcnt;
+    end;
 end;
 
 class procedure TPy.IncRef(const aPyObject: IPyObject);

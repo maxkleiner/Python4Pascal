@@ -29,6 +29,7 @@ type
       FMethods               : array of PyMethodDef;
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
+      FMultIntprSupport      : TMultIntprSupport;
 
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
@@ -62,9 +63,10 @@ type
       function    SameAs(const other: PPyObject): boolean;
       function    Initialize: boolean;
 
-      property Name_                         : AnsiString     read FName;
-      property Module                        : IPyObject      read FModule;
-      property OnAfterInitialization         : TNotifyEvent   read FOnAfterInitialization    write FOnAfterInitialization;
+      property Name_                         : AnsiString          read FName;
+      property Module                        : IPyObject           read FModule;
+      property MultIntprSupport              : TMultIntprSupport   read FMultIntprSupport         write FMultIntprSupport;
+      property OnAfterInitialization         : TNotifyEvent        read FOnAfterInitialization    write FOnAfterInitialization;
   end;
 
   TCustomPyModuleDefSlot = class
@@ -170,6 +172,7 @@ begin
   FMethodList            := nil;
   FMethods               := nil;
   FOnAfterInitialization := nil;
+  FMultIntprSupport      := miSupported;
   FIsExtension           := aIsExtension;
 
   FillChar(FModuleDef, SizeOf(FModuleDef), 0);
@@ -403,7 +406,7 @@ begin
   AddExecSlot(@Exec_Module);
 
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    AddMultipleInterpretersSlot(miSupported);
+    AddMultipleInterpretersSlot(FMultIntprSupport);
 end;
 
 procedure TCustomPyModule.AddAllMethods;

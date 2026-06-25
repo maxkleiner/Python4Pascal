@@ -35,7 +35,6 @@ type
 
     public
       constructor Create(aState: PPyInterpreterState);
-      destructor  Destroy; override;
 
       class function Wrap(aState: PPyInterpreterState): IPyInterpreterState; inline;
       class function New: IPyInterpreterState;
@@ -60,15 +59,6 @@ begin
   inherited Create;
 
   State := aState;
-end;
-
-destructor TPyInterpreterState.Destroy;
-begin
-  try
-    Delete;
-  finally
-    inherited Destroy;
-  end;
 end;
 
 class function TPyInterpreterState.Wrap(aState: PPyInterpreterState): IPyInterpreterState;

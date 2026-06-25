@@ -15,11 +15,17 @@ type
     RunBtn: TButton;
     CodeEdt: TEdit;
     Run2Btn: TButton;
+    LegacyAPIChk: TCheckBox;
+    SharedInterpreterChk: TCheckBox;
+    SharedGILChk: TCheckBox;
     procedure InitChkClick(Sender: TObject);
     procedure RunBtnClick(Sender: TObject);
     procedure Run2BtnClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    procedure SimpleRunCode(const code: string);
+    procedure RunCode(const code: string);
   public
     { Public declarations }
     procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
@@ -35,7 +41,12 @@ implementation
 uses
   uCustomThread;
 
-procedure TMainForm.Run2BtnClick(Sender: TObject);
+procedure TMainForm.SimpleRunCode(const code: string);
+begin
+  TPyRun.SimpleString(code);
+end;
+
+procedure TMainForm.RunCode(const code: string);
 var
   TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule : IPyObject;
 begin
@@ -72,6 +83,21 @@ begin
     Memo1.Lines.Add('There was an error getting the __main__ module.');
 end;
 
+procedure TMainForm.Run2BtnClick(Sender: TObject);
+begin
+  if not(assigned(GlobalP4PEngine)) then exit;
+
+  if GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 13, 0) then
+    RunCode(CodeEdt.Text)
+   else
+    SimpleRunCode(CodeEdt.Text);
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  DestroyGlobalP4PEngine;
+end;
+
 procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
 begin
   TThread.ForceQueue(nil,
@@ -99,6 +125,10 @@ begin
           GlobalP4PEngine.SetCurrentDir := True;
 
           //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.13.13-embed-win32\python313.dll';
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.12.10-embed-win32\python312.dll';
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.11.9-embed-win32\python311.dll';
+          //TempLibPath := 'C:\Users\usuario\Desktop\python-3.10.11-embed-win32\python310.dll';
           //TempLibPath := 'C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll';
           TempLibPath := '';
 
@@ -123,10 +153,12 @@ procedure TMainForm.RunBtnClick(Sender: TObject);
 var
   TempThread : TCustomThread;
 begin
-  TempThread                 := TCustomThread.Create(True);
-  TempThread.Code            := CodeEdt.Text;
-  TempThread.FreeOnTerminate := True;
-  TempThread.SharedInterpreter := False;
+  TempThread                   := TCustomThread.Create(True);
+  TempThread.Code              := CodeEdt.Text;
+  TempThread.FreeOnTerminate   := True;
+  TempThread.UseLegacyInit     := LegacyAPIChk.Checked;
+  TempThread.SharedInterpreter := SharedInterpreterChk.Checked;
+  TempThread.SharedGIL         := SharedGILChk.Checked;
   TempThread.Start;
 end;
 
