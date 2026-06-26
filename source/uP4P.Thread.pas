@@ -20,7 +20,6 @@ uses
 type
   TP4PThread = class(TThread)
     protected
-      FSavedState        : boolean;
       FUseLegacyInit     : boolean;
       FSharedGIL         : boolean;
       FSharedInterpreter : boolean;
@@ -40,9 +39,6 @@ type
       procedure ExecuteSharedInterpreter;
       procedure ExecuteSubinterpreterSharedGIL;
       procedure ExecuteSubinterpreterOwnGIL;
-
-      procedure SaveMainThreadState;
-      procedure RestoreMainThreadState;
 
       procedure doOnExecutePython; virtual;
 
@@ -67,7 +63,6 @@ begin
   inherited AfterConstruction;
 
   FOnExecutePython   := nil;
-  FSavedState        := False;
   FUseLegacyInit     := False;
   FSharedGIL         := False;
   FSharedInterpreter := True;
@@ -122,10 +117,8 @@ procedure TP4PThread.ExecuteLegacyInit;
 var
   TempGILState : IPyGILState;
 begin
-  Synchronize(SaveMainThreadState);
-
-  if FSavedState then
-    try
+  if GlobalP4PEngine.SavedThreadState then
+    begin
       TempGILState := TPyGILState.Ensure;
 
       if TPyGILState.IsInitialized(TempGILState) then
@@ -136,8 +129,6 @@ begin
         end
        else
         FErrorMsg := 'There was a problem getting the GIL state.';
-    finally
-      Synchronize(RestoreMainThreadState);
     end
    else
     FErrorMsg := 'There was a problem saving the main thread state.';
@@ -147,10 +138,8 @@ procedure TP4PThread.ExecuteSharedInterpreter;
 var
   TempThreadState : IPyThreadState;
 begin
-  Synchronize(SaveMainThreadState);
-
-  if FSavedState then
-    try
+  if GlobalP4PEngine.SavedThreadState then
+    begin
       TempThreadState := TPyThreadState.New(GlobalP4PEngine.InterpreterState);
 
       if TPyThreadState.IsInitialized(TempThreadState) then
@@ -163,8 +152,6 @@ begin
         end
        else
         FErrorMsg := 'There was a problem creating the new thread state.';
-    finally
-      Synchronize(RestoreMainThreadState);
     end
    else
     FErrorMsg := 'There was a problem saving the main thread state.';
@@ -175,10 +162,8 @@ var
   TempThreadState : IPyThreadState;
   TempModule : TIOPyModule;
 begin
-  Synchronize(SaveMainThreadState);
-
-  if FSavedState then
-    try
+  if GlobalP4PEngine.SavedThreadState then
+    begin
       TempModule      := nil;
       TempThreadState := TPy.NewInterpreter();
 
@@ -201,8 +186,6 @@ begin
         end
        else
         FErrorMsg := 'There was a problem creating the new thread state.';
-    finally
-      Synchronize(RestoreMainThreadState);
     end
    else
     FErrorMsg := 'There was a problem saving the main thread state.';
@@ -215,9 +198,7 @@ var
   TempStatus : IPyStatus;
   TempModule : TIOPyModule;
 begin
-  Synchronize(SaveMainThreadState);
-
-  if FSavedState then
+  if GlobalP4PEngine.SavedThreadState then
     try
       TempModule := nil;
       TempConfig := TPyInterpreterConfig.Create;
@@ -249,20 +230,9 @@ begin
         end;
     finally
       TempConfig := nil;
-      Synchronize(RestoreMainThreadState);
     end
    else
     FErrorMsg := 'There was a problem saving the main thread state.';
-end;
-
-procedure TP4PThread.SaveMainThreadState;
-begin
-  FSavedState := GlobalP4PEngine.SaveThreadState;
-end;
-
-procedure TP4PThread.RestoreMainThreadState;
-begin
-  GlobalP4PEngine.RestoreThreadState;
 end;
 
 procedure TP4PThread.Execute;

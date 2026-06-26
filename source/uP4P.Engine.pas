@@ -29,18 +29,21 @@ type
       FInterpreterState : IPyInterpreterState;
       FThreadState      : IPyThreadState;
       FMainThreadID     : TThreadID;
+      FSavedThreadState : boolean;
       FOnOutputMessage  : TOnOutputMessageEvent;
       FOnInputMessage   : TOnInputMessageEvent;
 
       function  GetIsMainThread: boolean;
       function  GetSavedThreadState: boolean;
-      
+
+      procedure SetSavedThreadState(aValue: boolean);
+
       function  Lock: boolean;
       procedure UnLock;
       procedure DestroyIOModule;
       procedure DestroyModules;
       function  RedirectIO: boolean;
-      
+
     public
       constructor Create; override;
       destructor  Destroy; override;
@@ -57,8 +60,8 @@ type
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
-      function    SaveThreadState: boolean;
-      function    RestoreThreadState: boolean;
+      procedure   SaveThreadState;
+      procedure   RestoreThreadState;
 
       function    GetRaisedException: boolean;
 
@@ -66,7 +69,7 @@ type
       property IOModule         : TIOPyModule              read FIOModule;
       property InterpreterState : IPyInterpreterState      read FInterpreterState;
       property IsMainThread     : boolean                  read GetIsMainThread;
-      property SavedThreadState : boolean                  read GetSavedThreadState;
+      property SavedThreadState : boolean                  read GetSavedThreadState   write SetSavedThreadState;
       property OnOutputMessage  : TOnOutputMessageEvent    read FOnOutputMessage      write FOnOutputMessage;
       property OnInputMessage   : TOnInputMessageEvent     read FOnInputMessage       write FOnInputMessage;
   end;
@@ -97,6 +100,7 @@ begin
   inherited Create;
 
   FMainThreadID     := 0;
+  FSavedThreadState := False;
   FModules          := nil;
   FSyncObj          := nil;
   FIOModule         := nil;
@@ -156,7 +160,7 @@ end;
 
 function TP4PEngine.GetIsMainThread: boolean;
 begin
-  Result := (FMainThreadID = TThread.CurrentThread.ThreadID);
+  Result := assigned(TThread.Current) and (FMainThreadID = TThread.Current.ThreadID);
 end;
 
 function TP4PEngine.GetSavedThreadState: boolean;
@@ -165,7 +169,17 @@ begin
 
   if Lock then
     try
-      Result := TPyThreadState.IsInitialized(FThreadState);  
+      Result := FSavedThreadState;
+    finally
+      Unlock;
+    end;
+end;
+
+procedure TP4PEngine.SetSavedThreadState(aValue: boolean);
+begin
+  if Lock then
+    try
+      FSavedThreadState := aValue;
     finally
       Unlock;
     end;
@@ -298,28 +312,23 @@ begin
     end;
 end;
 
-function TP4PEngine.SaveThreadState: boolean;
+procedure TP4PEngine.SaveThreadState;
 begin
-  Result := False;
-
   if IsMainThread and
      not(TPyThreadState.IsInitialized(FThreadState)) then
     begin
-      FThreadState := TPyEval.SaveThread();
-      Result       := TPyThreadState.IsInitialized(FThreadState);
+      FThreadState     := TPyEval.SaveThread();
+      SavedThreadState := TPyThreadState.IsInitialized(FThreadState);
     end;
 end;
 
-function TP4PEngine.RestoreThreadState: boolean;
+procedure TP4PEngine.RestoreThreadState;
 begin
-  Result := False;
-
-  if IsMainThread and
-     TPyThreadState.IsInitialized(FThreadState) then
+  if IsMainThread then
     begin
       TPyEval.RestoreThread(FThreadState);
-      FThreadState := nil;
-      Result       := True;
+      FThreadState     := nil;
+      SavedThreadState := False;
     end;
 end;
 

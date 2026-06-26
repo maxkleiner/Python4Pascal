@@ -22,12 +22,13 @@ type
     procedure RunBtnClick(Sender: TObject);
     procedure Run2BtnClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
   private
-    { Private declarations }
+    procedure Thread_OnTerminate(Sender: TObject);
     procedure SimpleRunCode(const code: string);
     procedure RunCode(const code: string);
+
   public
-    { Public declarations }
     procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
   end;
 
@@ -153,13 +154,23 @@ procedure TMainForm.RunBtnClick(Sender: TObject);
 var
   TempThread : TCustomThread;
 begin
+  if not(assigned(GlobalP4PEngine)) then exit;
+
+  GlobalP4PEngine.SaveThreadState;
+
   TempThread                   := TCustomThread.Create(True);
   TempThread.Code              := CodeEdt.Text;
   TempThread.FreeOnTerminate   := True;
   TempThread.UseLegacyInit     := LegacyAPIChk.Checked;
   TempThread.SharedInterpreter := SharedInterpreterChk.Checked;
   TempThread.SharedGIL         := SharedGILChk.Checked;
+  TempThread.OnTerminate       := Thread_OnTerminate;
   TempThread.Start;
+end;
+
+procedure TMainForm.Thread_OnTerminate(Sender: TObject);
+begin
+  GlobalP4PEngine.RestoreThreadState;
 end;
 
 end.
