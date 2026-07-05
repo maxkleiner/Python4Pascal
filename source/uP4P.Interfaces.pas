@@ -45,6 +45,7 @@ type
     function  GetObjRefOwner: boolean;
     function  GetPyTypeObject: PPyTypeObject;
     function  GetTypeData(const cls: PyTypeObject): Pointer;
+    function  GetAsString: string;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -127,11 +128,12 @@ type
     function  CallOneArg(const arg: IPyObject): IPyObject;
     function  UnWrap: Pointer;
 
-    property Initialized  : boolean         read GetInitialized;
-    property PyObject     : PPyObject       read GetPyObject      write SetPyObject;
-    property ObjRefOwner  : boolean         read GetObjRefOwner   write SetObjRefOwner;
-    property RefCnt       : integer         read GetRefCnt;
-    property PyTypeObject : PPyTypeObject   read GetPyTypeObject;
+    property Initialized   : boolean         read GetInitialized;
+    property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
+    property ObjRefOwner   : boolean         read GetObjRefOwner   write SetObjRefOwner;
+    property RefCnt        : integer         read GetRefCnt;
+    property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
+    property AsString      : string          read GetAsString;
   end;
 
   IPyLongExport = interface

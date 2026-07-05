@@ -28,6 +28,7 @@ type
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
       function  GetTypeData(const cls: PyTypeObject): Pointer;
+      function  GetAsString: string;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
@@ -139,12 +140,13 @@ type
       property ObjRefOwner   : boolean       read GetObjRefOwner   write SetObjRefOwner;
       property RefCnt        : integer       read GetRefCnt;
       property PyTypeObject  : PPyTypeObject read GetPyTypeObject;
+      property AsString      : string        read GetAsString;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -1068,6 +1070,24 @@ begin
     Result := PyObject_GetTypeData(PyObject, @cls)
    else
     Result := nil;
+end;
+
+function TPyObject.GetAsString: string;
+var
+  TempStr : IPyObject;
+begin
+  if TPyUnicode.Check(self) then
+    Result := PyUTF8ToString(TPyUnicode.AsUTF8(self))
+   else
+    if TPyBytes.Check(self) then
+      Result := TPyBytes.AsString(self)
+     else
+      begin
+        TempStr := self.Str;
+
+        if TPyUnicode.Check(TempStr) then
+          Result := PyUTF8ToString(TPyUnicode.AsUTF8(TempStr));
+      end;
 end;
 
 procedure TPyObject.SetObjRefOwner(aValue: boolean);
