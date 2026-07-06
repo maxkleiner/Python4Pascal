@@ -23,15 +23,23 @@ type
 
   TP4PEngine = class(TP4PLoader)
     protected
-      FModules          : TList;
-      FSyncObj          : TCriticalSection;
-      FIOModule         : TIOPyModule;
-      FInterpreterState : IPyInterpreterState;
-      FThreadState      : IPyThreadState;
-      FMainThreadID     : TThreadID;
-      FSavedThreadState : boolean;
-      FOnOutputMessage  : TOnOutputMessageEvent;
-      FOnInputMessage   : TOnInputMessageEvent;
+      FModules                   : TList;
+      FSyncObj                   : TCriticalSection;
+      FIOModule                  : TIOPyModule;
+      FInterpreterState          : IPyInterpreterState;
+      FThreadState               : IPyThreadState;
+      FMainThreadID              : TThreadID;
+      FSavedThreadState          : boolean;
+      FTimeStruct                : IPyObject;
+      FPyDateTime_DateType       : IPyObject;
+      FPyDateTime_DateTimeType   : IPyObject;
+      FPyDateTime_DeltaType      : IPyObject;
+      FPyDateTime_TimeType       : IPyObject;
+      FPyDateTime_TZInfoType     : IPyObject;
+      FPyDateTime_TimeTZType     : IPyObject;
+      FPyDateTime_DateTimeTZType : IPyObject;
+      FOnOutputMessage           : TOnOutputMessageEvent;
+      FOnInputMessage            : TOnInputMessageEvent;
 
       function  GetIsMainThread: boolean;
       function  GetSavedThreadState: boolean;
@@ -43,6 +51,8 @@ type
       procedure DestroyIOModule;
       procedure DestroyModules;
       function  RedirectIO: boolean;
+      procedure GetTimeStructType;
+      procedure GetDateTimeTypes;
 
     public
       constructor Create; override;
@@ -99,24 +109,29 @@ constructor TP4PEngine.Create;
 begin
   inherited Create;
 
-  FMainThreadID     := 0;
-  FSavedThreadState := False;
-  FModules          := nil;
-  FSyncObj          := nil;
-  FIOModule         := nil;
-  FInterpreterState := nil;
-  FThreadState      := nil;
-  FOnOutputMessage  := nil;
-  FOnInputMessage   := nil;
+  FMainThreadID              := 0;
+  FSavedThreadState          := False;
+  FModules                   := nil;
+  FSyncObj                   := nil;
+  FIOModule                  := nil;
+  FInterpreterState          := nil;
+  FThreadState               := nil;
+  FTimeStruct                := nil;
+  FPyDateTime_DateType       := nil;
+  FPyDateTime_DateTimeType   := nil;
+  FPyDateTime_DeltaType      := nil;
+  FPyDateTime_TimeType       := nil;
+  FPyDateTime_TZInfoType     := nil;
+  FPyDateTime_TimeTZType     := nil;
+  FPyDateTime_DateTimeTZType := nil;
+  FOnOutputMessage           := nil;
+  FOnInputMessage            := nil;
 end;
 
 destructor TP4PEngine.Destroy;
 begin
   try
     DestroyModules;
-
-    FInterpreterState := nil;
-    FThreadState      := nil;
 
     if assigned(FSyncObj) then
       FreeAndNil(FSyncObj);
@@ -136,9 +151,22 @@ end;
 
 procedure TP4PEngine.BeforeDestruction;
 begin
-  DestroyIOModule;
+  try
+    DestroyIOModule;
 
-  inherited BeforeDestruction;
+    FInterpreterState          := nil;
+    FThreadState               := nil;
+    FTimeStruct                := nil;
+    FPyDateTime_DateType       := nil;
+    FPyDateTime_DateTimeType   := nil;
+    FPyDateTime_DeltaType      := nil;
+    FPyDateTime_TimeType       := nil;
+    FPyDateTime_TZInfoType     := nil;
+    FPyDateTime_TimeTZType     := nil;
+    FPyDateTime_DateTimeTZType := nil;
+  finally
+    inherited BeforeDestruction;
+  end;
 end;
 
 procedure TP4PEngine.DestroyModules;
@@ -301,6 +329,48 @@ begin
   Result := TIOPyModule.RunInitCode;
 end;
 
+procedure TP4PEngine.GetTimeStructType;
+var
+  TempModule : IPyObject;
+begin
+  TempModule := TPyImport.ImportModule('time');
+
+  if TPyObject.IsInitialized(TempModule) and
+     TempModule.HasAttrString('struct_time') then
+    FTimeStruct := TempModule.GetAttrString('struct_time');
+end;
+
+procedure TP4PEngine.GetDateTimeTypes;
+var
+  TempModule : IPyObject;
+begin
+  TempModule := TPyImport.ImportModule('datetime');
+
+  if TPyObject.IsInitialized(TempModule) then
+    begin
+      if TempModule.HasAttrString('date') then
+        FPyDateTime_DateType := TempModule.GetAttrString('date');
+
+      if TempModule.HasAttrString('datetime') then
+        FPyDateTime_DateTimeType := TempModule.GetAttrString('datetime');
+
+      if TempModule.HasAttrString('timedelta') then
+        FPyDateTime_DeltaType := TempModule.GetAttrString('timedelta');
+
+      if TempModule.HasAttrString('time') then
+        FPyDateTime_TimeType := TempModule.GetAttrString('time');
+
+      if TempModule.HasAttrString('tzinfo') then
+        FPyDateTime_TZInfoType := TempModule.GetAttrString('tzinfo');
+
+      if TempModule.HasAttrString('timetz') then
+        FPyDateTime_TimeTZType := TempModule.GetAttrString('timetz');
+
+      if TempModule.HasAttrString('datetimetz') then
+        FPyDateTime_DateTimeTZType := TempModule.GetAttrString('datetimetz');
+    end;
+end;
+
 function TP4PEngine.Initialize: boolean;
 begin
   Result := False;
@@ -308,7 +378,11 @@ begin
   if inherited Initialize and RedirectIO then
     begin
       FInterpreterState := TPyInterpreterState.Get();
-      Result            := True;
+
+      GetTimeStructType;
+      GetDateTimeTypes;
+
+      Result := True;
     end;
 end;
 

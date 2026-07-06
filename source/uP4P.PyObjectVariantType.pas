@@ -46,6 +46,21 @@ type
       function  LeftPromotion(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;
       function  RightPromotion(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;
 
+      // Custom
+      procedure AssignResult(var Left: TVarData; const aResult: IPyObject);
+      procedure DoAddString(var Left: TVarData; const Right: TVarData);
+      procedure DoAdd(var Left: TVarData; const Right: TVarData);
+      procedure DoSubtract(var Left: TVarData; const Right: TVarData);
+      procedure DoMultiply(var Left: TVarData; const Right: TVarData);
+      procedure DoDivide(var Left: TVarData; const Right: TVarData);
+      procedure DoIntDivide(var Left: TVarData; const Right: TVarData);
+      procedure DoModulus(var Left: TVarData; const Right: TVarData);
+      procedure DoShiftLeft(var Left: TVarData; const Right: TVarData);
+      procedure DoShiftRight(var Left: TVarData; const Right: TVarData);
+      procedure DoAnd(var Left: TVarData; const Right: TVarData);
+      procedure DoOr(var Left: TVarData; const Right: TVarData);
+      procedure DoXor(var Left: TVarData; const Right: TVarData);
+
     public
       // TCustomVariantType
       procedure Clear(var V: TVarData); override;
@@ -74,13 +89,143 @@ var
 
 implementation
 
+uses
+  uP4P.PyNumber;
 
-
-procedure TPyObjectVariantType.BinaryOp(var Left: TVarData;
-  const Right: TVarData; const AOperator: TVarOp);
+procedure TPyObjectVariantType.AssignResult(var Left: TVarData; const aResult: IPyObject);
 begin
-  inherited;
+  if TPyObject.IsInitialized(aResult) then
+    begin
+      FreeAndNil(TPyObjectVarData(Left).VPyObject);
+      TPyObjectVarData(Left).VPyObject := TPyObject.Create(aResult.PyObject, True, True);
+    end;
+end;
 
+procedure TPyObjectVariantType.DoAddString(var Left: TVarData; const Right: TVarData);
+begin
+  Variant(Left) := Variant(Left) + TPyObjectVarData(Right).VPyObject.AsString;
+end;
+
+procedure TPyObjectVariantType.DoAdd(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Add(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoSubtract(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Subtract(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoMultiply(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Multiply(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoDivide(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.TrueDivide(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoIntDivide(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.FloorDivide(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoModulus(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Divmod(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoShiftLeft(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Lshift(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoShiftRight(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Rshift(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoAnd(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.And_(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoOr(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Or_(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoXor(var Left: TVarData; const Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Xor_(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
+  AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.BinaryOp(var Left: TVarData; const Right: TVarData; const AOperator: TVarOp);
+begin
+  if (Right.VType = VarType) then
+    case Left.VType of
+      varString,
+      varUString :
+        case AOperator of
+          opAdd : DoAddString(Left, Right);
+          else    RaiseInvalidOp;
+        end;
+
+      else
+        if (Left.VType = VarType) then
+          case AOperator of
+            opAdd         : DoAdd(Left, Right);
+            opSubtract    : DoSubtract(Left, Right);
+            opMultiply    : DoMultiply(Left, Right);
+            opDivide      : DoDivide(Left, Right);
+            opIntDivide   : DoIntDivide(Left, Right);
+            opModulus     : DoModulus(Left, Right);
+            opShiftLeft   : DoShiftLeft(Left, Right);
+            opShiftRight  : DoShiftRight(Left, Right);
+            opAnd         : DoAnd(Left, Right);
+            opOr          : DoOr(Left, Right);
+            opXor         : DoXor(Left, Right);
+            else            RaiseInvalidOp;
+          end
+         else
+          RaiseInvalidOp;
+    end
+   else
+    RaiseInvalidOp;
 end;
 
 procedure TPyObjectVariantType.Cast(var Dest: TVarData; const Source: TVarData);
