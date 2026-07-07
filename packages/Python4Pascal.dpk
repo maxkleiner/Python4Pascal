@@ -153,6 +153,8 @@ contains
   uP4P.IOPyModule in '..\source\uP4P.IOPyModule.pas',
   uP4P.Engine in '..\source\uP4P.Engine.pas',
   uP4P.Thread in '..\source\uP4P.Thread.pas',
-  uP4P.PyObjectVariantType in '..\source\uP4P.PyObjectVariantType.pas';
+  uP4P.PyObjectVariantType in '..\source\uP4P.PyObjectVariantType.pas',
+  uP4P.PyTimeModule in '..\source\uP4P.PyTimeModule.pas',
+  uP4P.PyDateTimeModule in '..\source\uP4P.PyDateTimeModule.pas';
 
 end.

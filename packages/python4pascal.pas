@@ -37,7 +37,8 @@ uses
   uP4P.PyTuple, uP4P.PyTypeObject, uP4P.PyUnicode, uP4P.PyUnicodeDecodeError, 
   uP4P.PyUnicodeEncodeError, uP4P.PyUnicodeTranslateError, 
   uP4P.PyUnicodeWriter, uP4P.PyVectorcall, uP4P.PyWeakref, 
-  uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, LazarusPackageIntf;
+  uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, uP4P.PyDateTimeModule, 
+  uP4P.PyObjectVariantType, uP4P.PyTimeModule, uP4P.Thread, LazarusPackageIntf;
 
 implementation
 

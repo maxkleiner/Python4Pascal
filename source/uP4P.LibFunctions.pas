@@ -163,14 +163,14 @@ var
   PyObject_Free                                  : procedure(ptr: pointer); cdecl;
   PyObject_Init                                  : function(ob: PPyObject; type_: PPyTypeObject): PPyObject; cdecl;
   PyObject_InitVar                               : function(ob: PPyVarObject; type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;
-  PyObject_New                                   : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_New
+  PyObject_New                                   : function(type_: PPyTypeObject): PPyObject; cdecl;                         // _PyObject_New
   PyObject_NewVar                                : function(type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_NewVar
   PyGC_Collect                                   : function(): Py_ssize_t; cdecl;
   PyGC_Enable                                    : function(): integer; cdecl;
   PyGC_Disable                                   : function(): integer; cdecl;
   PyGC_IsEnabled                                 : function(): integer; cdecl;
   PyObject_GC_Resize                             : function(varobj: PPyVarObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_Resize
-  PyObject_GC_New                                : function(type_: PPyTypeObject): PPyObject; cdecl;                        // _PyObject_GC_New
+  PyObject_GC_New                                : function(type_: PPyTypeObject): PPyObject; cdecl;                         // _PyObject_GC_New
   PyObject_GC_NewVar                             : function(type_: PPyTypeObject; size_: Py_ssize_t): PPyVarObject; cdecl;   // _PyObject_GC_NewVar
   PyObject_GC_Track                              : procedure(ob: PPyObject); cdecl;
   PyObject_GC_UnTrack                            : procedure(ptr: pointer); cdecl;
@@ -549,14 +549,21 @@ var
   PyFloat_FromString                             : function(str: PPyObject): PPyObject; cdecl;
   PyFloat_FromDouble                             : function(v: double): PPyObject; cdecl;
   PyFloat_AsDouble                               : function(obj: PPyObject): double; cdecl;
-  PyFloat_Pack2                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
-  PyFloat_Pack4                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
-  PyFloat_Pack8                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
-  PyFloat_Unpack2                                : function(const p: PByte; le: integer): double; cdecl;
-  PyFloat_Unpack4                                : function(const p: PByte; le: integer): double; cdecl;
-  PyFloat_Unpack8                                : function(const p: PByte; le: integer): double; cdecl;
 
-  {* include/complexobject.h  include/cpython/complexobject.h *}
+  PyFloat_Pack2                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
+
+  PyFloat_Pack4                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
+
+  PyFloat_Pack8                                  : function(x: double; p: PByte; le: integer): integer; cdecl;
+
+  PyFloat_Unpack2                                : function(const p: PByte; le: integer): double; cdecl;
+
+  PyFloat_Unpack4                                : function(const p: PByte; le: integer): double; cdecl;
+
+  PyFloat_Unpack8                                : function(const p: PByte; le: integer): double; cdecl;
+
+
+  {* include/complexobject.h  include/cpython/complexobject.h *}
   PyComplex_Type                                 : PPyTypeObject;
   PyComplex_FromDoubles                          : function(real, imag: double): PPyObject; cdecl;
   PyComplex_RealAsDouble                         : function(op: PPyObject): double; cdecl;

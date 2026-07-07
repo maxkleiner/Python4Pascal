@@ -31,6 +31,7 @@ type
       class function  IsFalse(const aPyObject: IPyObject): boolean;
       class function  IsNone(const aPyObject: IPyObject): boolean;
       class function  Type_(const aPyObject: IPyObject): PPyTypeObject;
+      class function  IsType(const aPyObject: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
       class function  RefCnt(const aPyObject: IPyObject): integer;
       class procedure IncRef(const aPyObject: IPyObject);
       class procedure DecRef(const aPyObject: IPyObject);
@@ -201,6 +202,11 @@ begin
        else
         Result := aPyObject.PyObject^.ob_type;
     end;
+end;
+
+class function TPy.IsType(const aPyObject: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+begin
+  Result := assigned(aPyTypeObject) and (Type_(aPyObject) = aPyTypeObject);
 end;
 
 class function TPy.RefCnt(const aPyObject: IPyObject): integer;

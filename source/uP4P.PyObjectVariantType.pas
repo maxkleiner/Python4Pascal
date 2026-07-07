@@ -77,7 +77,9 @@ type
       function  SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData; const AName: string; const Value: TVarData): Boolean; override;
 
       // TInvokeableVariantType
+      {$IFNDEF FPC}
       function  FixupIdent(const AText: string): string; override;
+      {$ENDIF}
       procedure DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
   end;
 
@@ -256,7 +258,6 @@ end;
 procedure TPyObjectVariantType.Copy(var Dest: TVarData; const Source: TVarData;
   const Indirect: Boolean);
 begin
-  inherited;
 
 end;
 
@@ -280,10 +281,12 @@ begin
 
 end;
 
+{$IFNDEF FPC}
 function TPyObjectVariantType.FixupIdent(const AText: string): string;
 begin
   Result := AText;
 end;
+{$ENDIF}
 
 function TPyObjectVariantType.GetInstance(const V: TVarData): TObject;
 begin
@@ -313,8 +316,7 @@ begin
 
 end;
 
-function TPyObjectVariantType.SetProperty(const V: TVarData;
-  const AName: string; const Value: TVarData): Boolean;
+function TPyObjectVariantType.SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData; const AName: string; const Value: TVarData): Boolean;
 begin
 
 end;

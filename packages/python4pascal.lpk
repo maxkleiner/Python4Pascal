@@ -503,6 +503,22 @@
         <Filename Value="..\source\uP4P.Types.pas"/>
         <UnitName Value="uP4P.Types"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyDateTimeModule.pas"/>
+        <UnitName Value="uP4P.PyDateTimeModule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyObjectVariantType.pas"/>
+        <UnitName Value="uP4P.PyObjectVariantType"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTimeModule.pas"/>
+        <UnitName Value="uP4P.PyTimeModule"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Thread.pas"/>
+        <UnitName Value="uP4P.Thread"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

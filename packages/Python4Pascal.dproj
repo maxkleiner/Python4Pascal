@@ -215,6 +215,8 @@
         <DCCReference Include="..\source\uP4P.Engine.pas"/>
         <DCCReference Include="..\source\uP4P.Thread.pas"/>
         <DCCReference Include="..\source\uP4P.PyObjectVariantType.pas"/>
+        <DCCReference Include="..\source\uP4P.PyTimeModule.pas"/>
+        <DCCReference Include="..\source\uP4P.PyDateTimeModule.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

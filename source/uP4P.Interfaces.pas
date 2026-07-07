@@ -46,6 +46,7 @@ type
     function  GetPyTypeObject: PPyTypeObject;
     function  GetTypeData(const cls: PyTypeObject): Pointer;
     function  GetAsString: string;
+    function  GetAsVariant: Variant;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -73,20 +74,27 @@ type
     function  RichCompare(const obj: IPyObject; opid: integer): IPyObject;
     function  RichCompareBool(const obj: IPyObject; opid: integer): integer;
     function  GetAttrString(const attr_name: string): IPyObject;
+    function  GetAttrString2(const attr_name: string): Pointer;
     function  SetAttrString(const attr_name: string; const value: IPyObject): boolean;
+    function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
     function  DelAttrString(const attr_name: string): boolean;
     function  HasAttrString(const attr_name: string): boolean;
     function  GetAttr(const attr_name: IPyObject): IPyObject;
     function  GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
+    function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
     function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
+    function  GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
     function  SetAttr(const attr_name, value: IPyObject): boolean;
+    function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
     function  DelAttr(const attr_name: IPyObject): boolean;
     function  HasAttr(const attr_name: IPyObject): boolean;
     function  HasAttrWithError(const attr_name: IPyObject): integer;
     function  HasAttrStringWithError(const attr_name: string): integer;
     function  SelfIter: IPyObject;
     function  GenericGetAttr(const name_: IPyObject): IPyObject;
+    function  GenericGetAttr2(const name_: IPyObject): Pointer;
     function  GenericSetAttr(const name_, value: IPyObject): boolean;
+    function  GenericSetAttr2(const name_: IPyObject; value: Pointer): boolean;
     function  GenericSetDict(const value: IPyObject; context: Pointer): boolean;
     function  Hash: Py_hash_t;
     function  HashNotImplemented: Py_hash_t;
@@ -134,6 +142,7 @@ type
     property RefCnt        : integer         read GetRefCnt;
     property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
     property AsString      : string          read GetAsString;
+    property AsVariant     : Variant         read GetAsVariant;
   end;
 
   IPyLongExport = interface

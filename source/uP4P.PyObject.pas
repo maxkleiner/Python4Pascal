@@ -29,6 +29,7 @@ type
       function  GetPyTypeObject: PPyTypeObject;
       function  GetTypeData(const cls: PyTypeObject): Pointer;
       function  GetAsString: string;
+      function  GetAsVariant: Variant;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
@@ -58,20 +59,27 @@ type
       function  RichCompare(const obj: IPyObject; opid: integer): IPyObject;
       function  RichCompareBool(const obj: IPyObject; opid: integer): integer;
       function  GetAttrString(const attr_name: string): IPyObject;
+      function  GetAttrString2(const attr_name: string): Pointer;
       function  SetAttrString(const attr_name: string; const value: IPyObject): boolean;
+      function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
       function  DelAttrString(const attr_name: string): boolean;
       function  HasAttrString(const attr_name: string): boolean;
       function  GetAttr(const attr_name: IPyObject): IPyObject;
       function  GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
+      function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
       function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
+      function  GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
       function  SetAttr(const attr_name, value: IPyObject): boolean;
+      function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
       function  DelAttr(const attr_name: IPyObject): boolean;
       function  HasAttr(const attr_name: IPyObject): boolean;
       function  HasAttrWithError(const attr_name: IPyObject): integer;
       function  HasAttrStringWithError(const attr_name: string): integer;
       function  SelfIter: IPyObject;
       function  GenericGetAttr(const name_: IPyObject): IPyObject;
+      function  GenericGetAttr2(const name_: IPyObject): Pointer;
       function  GenericSetAttr(const name_, value: IPyObject): boolean;
+      function  GenericSetAttr2(const name_: IPyObject; value: Pointer): boolean;
       function  GenericSetDict(const value: IPyObject; context: Pointer): boolean;
       function  Hash: Py_hash_t;
       function  HashNotImplemented: Py_hash_t;
@@ -135,12 +143,13 @@ type
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
 
-      property Initialized   : boolean       read GetInitialized;
-      property PyObject      : PPyObject     read GetPyObject      write SetPyObject;
-      property ObjRefOwner   : boolean       read GetObjRefOwner   write SetObjRefOwner;
-      property RefCnt        : integer       read GetRefCnt;
-      property PyTypeObject  : PPyTypeObject read GetPyTypeObject;
-      property AsString      : string        read GetAsString;
+      property Initialized   : boolean         read GetInitialized;
+      property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
+      property ObjRefOwner   : boolean         read GetObjRefOwner   write SetObjRefOwner;
+      property RefCnt        : integer         read GetRefCnt;
+      property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
+      property AsString      : string          read GetAsString;
+      property AsVariant     : Variant         read GetAsVariant;
   end;
 
 implementation
@@ -494,28 +503,39 @@ begin
 end;
 
 function TPyObject.GetAttrString(const attr_name: string): IPyObject;
+begin
+  Result := Wrap(GetAttrString2(attr_name));
+end;
+
+function TPyObject.GetAttrString2(const attr_name: string): Pointer;
 var
   TempName : AnsiString;
 begin
   if Initialized and assigned(PyObject_GetAttrString) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := Wrap(PyObject_GetAttrString(PyObject, PAnsiChar(TempName)))
+      Result   := PyObject_GetAttrString(PyObject, PAnsiChar(TempName))
     end
    else
     Result := nil;
 end;
 
 function TPyObject.SetAttrString(const attr_name: string; const value: IPyObject): boolean;
+begin
+  Result := assigned(value) and
+            SetAttrString2(attr_name, value.PyObject);
+end;
+
+function TPyObject.SetAttrString2(const attr_name: string; value: Pointer): boolean;
 var
   TempName : AnsiString;
 begin
   if Initialized and
      assigned(PyObject_SetAttrString) and
-     IsInitialized(value) then
+     assigned(value) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_SetAttrString(PyObject, PAnsiChar(TempName), value.PyObject) = 0)
+      Result   := (PyObject_SetAttrString(PyObject, PAnsiChar(TempName), value) = 0)
     end
    else
     Result := False;
@@ -559,6 +579,19 @@ end;
 
 function TPyObject.GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
 var
+  TempPointer : Pointer;
+begin
+  if GetOptionalAttr2(attr_name, TempPointer) then
+    begin
+      Result  := True;
+      result_ := Wrap(TempPointer);
+    end
+   else
+    Result := False;
+end;
+
+function TPyObject.GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
+var
   TempObj : PPyObject;
 begin
   if Initialized and
@@ -566,13 +599,26 @@ begin
      IsInitialized(attr_name) then
     begin
       Result  := (PyObject_GetOptionalAttr(PyObject, attr_name.PyObject, @TempObj) <> 0);
-      result_ := Wrap(TempObj);
+      result_ := TempObj;
     end
    else
     Result := False;
 end;
 
 function TPyObject.GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
+var
+  TempPointer : Pointer;
+begin
+  if GetOptionalAttrString2(attr_name, TempPointer) then
+    begin
+      Result  := True;
+      result_ := Wrap(TempPointer);
+    end
+   else
+    Result := False;
+end;
+
+function TPyObject.GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
 var
   TempObj  : PPyObject;
   TempName : AnsiString;
@@ -582,7 +628,7 @@ begin
     begin
       TempName := StringToPyUTF8(attr_name);
       Result   := (PyObject_GetOptionalAttrString(PyObject, PAnsiChar(TempName), @TempObj) <> 0);
-      result_  := Wrap(TempObj);
+      result_  := TempObj;
     end
    else
     Result := False;
@@ -590,11 +636,18 @@ end;
 
 function TPyObject.SetAttr(const attr_name, value: IPyObject): boolean;
 begin
+  Result := assigned(attr_name) and
+            assigned(value) and
+            SetAttr2(attr_name, value.PyObject);
+end;
+
+function TPyObject.SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
+begin
   if Initialized and
      assigned(PyObject_SetAttr) and
      IsInitialized(attr_name) and
-     IsInitialized(value) then
-    Result := (PyObject_SetAttr(PyObject, attr_name.PyObject, value.PyObject) = 0)
+     assigned(value) then
+    Result := (PyObject_SetAttr(PyObject, attr_name.PyObject, value) = 0)
    else
     Result := False;
 end;
@@ -653,21 +706,32 @@ end;
 
 function TPyObject.GenericGetAttr(const name_: IPyObject): IPyObject;
 begin
+  Result := Wrap(GenericGetAttr2(name_));
+end;
+
+function TPyObject.GenericGetAttr2(const name_: IPyObject): Pointer;
+begin
   if Initialized and
      assigned(PyObject_GenericGetAttr) and
      IsInitialized(name_) then
-    Result := Wrap(PyObject_GenericGetAttr(PyObject, name_.PyObject))
+    Result := PyObject_GenericGetAttr(PyObject, name_.PyObject)
    else
     Result := nil;
 end;
 
 function TPyObject.GenericSetAttr(const name_, value: IPyObject): boolean;
 begin
+  Result := assigned(value) and
+            GenericSetAttr2(name_, value.PyObject);
+end;
+
+function TPyObject.GenericSetAttr2(const name_: IPyObject; value: Pointer): boolean;
+begin
   if Initialized and
      assigned(PyObject_GenericSetAttr) and
      IsInitialized(name_) and
-     IsInitialized(value) then
-    Result := (PyObject_GenericSetAttr(PyObject, name_.PyObject, value.PyObject) = 0)
+     assigned(value) then
+    Result := (PyObject_GenericSetAttr(PyObject, name_.PyObject, value) = 0)
    else
     Result := False;
 end;
@@ -1088,6 +1152,11 @@ begin
         if TPyUnicode.Check(TempStr) then
           Result := PyUTF8ToString(TPyUnicode.AsUTF8(TempStr));
       end;
+end;
+
+function TPyObject.GetAsVariant: Variant;
+begin
+  //
 end;
 
 procedure TPyObject.SetObjRefOwner(aValue: boolean);
