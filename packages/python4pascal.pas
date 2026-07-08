@@ -38,7 +38,8 @@ uses
   uP4P.PyUnicodeEncodeError, uP4P.PyUnicodeTranslateError, 
   uP4P.PyUnicodeWriter, uP4P.PyVectorcall, uP4P.PyWeakref, 
   uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, uP4P.PyDateTimeModule, 
-  uP4P.PyObjectVariantType, uP4P.PyTimeModule, uP4P.Thread, LazarusPackageIntf;
+  uP4P.PyObjectVariantType, uP4P.PyTimeModule, uP4P.Thread, 
+  uP4P.ImportedPyModule, LazarusPackageIntf;
 
 implementation
 

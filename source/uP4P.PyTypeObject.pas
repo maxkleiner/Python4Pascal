@@ -32,7 +32,8 @@ type
        class function FromMetaclass(metaclass: PPyTypeObject; const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
        class function GetTypeDataSize(cls: PPyTypeObject): Py_ssize_t;
        class function GetBaseByToken(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
-       class function IsSubtype(type1, type2: PPyTypeObject): boolean;
+       class function IsSubtype(type1, type2: PPyTypeObject): boolean; overload;
+       class function IsSubtype(const aPyObject: IPyObject; type2: PPyTypeObject): boolean; overload;
        class function GetFlags(aPyTypeObject: PPyTypeObject): C_ULong;
        class function Ready(type_: PPyTypeObject): boolean;
        class function GenericAlloc(type_: PPyTypeObject; nitems: Py_ssize_t): IPyObject;
@@ -186,6 +187,12 @@ begin
     Result := PyType_GetBaseByToken(type_, token, @result_)
    else
     Result := -1;
+end;
+
+class function TPyTypeObject.IsSubtype(const aPyObject: IPyObject; type2: PPyTypeObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(aPyObject) and
+            IsSubType(aPyObject.PyTypeObject, type2);
 end;
 
 class function TPyTypeObject.IsSubtype(type1, type2: PPyTypeObject): boolean;

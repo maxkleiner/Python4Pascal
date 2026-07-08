@@ -46,6 +46,7 @@ type
     function  GetPyTypeObject: PPyTypeObject;
     function  GetTypeData(const cls: PyTypeObject): Pointer;
     function  GetAsString: string;
+    function  GetAsInteger: C_Long;
     function  GetAsVariant: Variant;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
@@ -84,6 +85,8 @@ type
     function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
     function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
     function  GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
+    function  GetAttrAsInteger(const attr_name: string; out result_: integer): boolean;
+    function  GetAttrAsString(const attr_name: string; out result_: string): boolean;
     function  SetAttr(const attr_name, value: IPyObject): boolean;
     function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
     function  DelAttr(const attr_name: IPyObject): boolean;
@@ -142,6 +145,7 @@ type
     property RefCnt        : integer         read GetRefCnt;
     property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
     property AsString      : string          read GetAsString;
+    property AsInteger     : C_Long          read GetAsInteger;
     property AsVariant     : Variant         read GetAsVariant;
   end;
 

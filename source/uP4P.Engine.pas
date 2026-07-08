@@ -68,9 +68,7 @@ type
       function    Initialize: boolean; override;
       procedure   SaveThreadState;
       procedure   RestoreThreadState;
-
       function    GetRaisedException: boolean;
-
 
       property IOModule                  : TIOPyModule              read FIOModule;
       property InterpreterState          : IPyInterpreterState      read FInterpreterState;

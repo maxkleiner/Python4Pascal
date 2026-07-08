@@ -368,9 +368,9 @@ type
     ob_size  : Py_ssize_t;
   end;
 
-  PySendResult = (
-    PYGEN_RETURN = 0,
+  PySendResult = (   
     PYGEN_ERROR  = -1,
+    PYGEN_RETURN = 0,
     PYGEN_NEXT   = 1
   );
 

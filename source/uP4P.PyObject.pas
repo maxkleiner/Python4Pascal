@@ -29,6 +29,7 @@ type
       function  GetPyTypeObject: PPyTypeObject;
       function  GetTypeData(const cls: PyTypeObject): Pointer;
       function  GetAsString: string;
+      function  GetAsInteger: C_Long;
       function  GetAsVariant: Variant;
 
       procedure SetObjRefOwner(aValue: boolean);
@@ -69,6 +70,8 @@ type
       function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
       function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
       function  GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
+      function  GetAttrAsInteger(const attr_name: string; out result_: integer): boolean;
+      function  GetAttrAsString(const attr_name: string; out result_: string): boolean;
       function  SetAttr(const attr_name, value: IPyObject): boolean;
       function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
       function  DelAttr(const attr_name: IPyObject): boolean;
@@ -149,13 +152,15 @@ type
       property RefCnt        : integer         read GetRefCnt;
       property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
       property AsString      : string          read GetAsString;
+      property AsInteger     : C_Long          read GetAsInteger;
       property AsVariant     : Variant         read GetAsVariant;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
+  uP4P.PyLong;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -632,6 +637,38 @@ begin
     end
    else
     Result := False;
+end;
+
+function TPyObject.GetAttrAsInteger(const attr_name: string; out result_: integer): boolean;
+var
+  TempObj : IPyObject;
+begin
+  if GetOptionalAttrString(attr_name, TempObj) then
+    begin
+      result_ := TempObj.AsInteger;
+      Result  := True;
+    end
+   else
+    begin
+      result_ := 0;
+      Result  := False;
+    end;
+end;
+
+function TPyObject.GetAttrAsString(const attr_name: string; out result_: string): boolean;
+var
+  TempObj : IPyObject;
+begin
+  if GetOptionalAttrString(attr_name, TempObj) then
+    begin
+      result_ := TempObj.AsString;
+      Result  := True;
+    end
+   else
+    begin
+      result_ := '';
+      Result  := False;
+    end;
 end;
 
 function TPyObject.SetAttr(const attr_name, value: IPyObject): boolean;
@@ -1150,8 +1187,18 @@ begin
         TempStr := self.Str;
 
         if TPyUnicode.Check(TempStr) then
-          Result := PyUTF8ToString(TPyUnicode.AsUTF8(TempStr));
+          Result := PyUTF8ToString(TPyUnicode.AsUTF8(TempStr))
+         else
+          Result := '';
       end;
+end;
+
+function TPyObject.GetAsInteger: C_Long;
+begin
+  if TPyLong.Check(self) then
+    Result := TPyLong.AsLong(self)
+   else
+    Result := 0;
 end;
 
 function TPyObject.GetAsVariant: Variant;

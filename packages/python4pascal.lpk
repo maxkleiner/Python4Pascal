@@ -519,6 +519,10 @@
         <Filename Value="..\source\uP4P.Thread.pas"/>
         <UnitName Value="uP4P.Thread"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.ImportedPyModule.pas"/>
+        <UnitName Value="uP4P.ImportedPyModule"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

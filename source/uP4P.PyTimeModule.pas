@@ -14,21 +14,20 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
+  uP4P.ImportedPyModule;
 
 type
-  TPyTimeModule = class
+  TPyTimeModule = class(TImportedPyModule)
     protected
       FTimeStructType : Pointer;
 
-      procedure DecRef(var aPyTypeObject : Pointer);
-      procedure Import;
+      procedure Import; override;
+      procedure Initialize; override;
+      procedure Finalize; override;
 
     public
-      constructor Create;
-      destructor  Destroy; override;
-      procedure   AfterConstruction; override;
-      function    CheckTimeStruct(const aPyObject: IPyObject): boolean;
+      function CheckTimeStruct(const aPyObject: IPyObject): boolean;
   end;
 
 implementation
@@ -36,34 +35,14 @@ implementation
 uses
   uP4P.PyImport;
 
-constructor TPyTimeModule.Create;
+procedure TPyTimeModule.Initialize;
 begin
-  inherited Create;
-
   FTimeStructType := nil;
 end;
 
-destructor TPyTimeModule.Destroy;
+procedure TPyTimeModule.Finalize;
 begin
   DecRef(FTimeStructType);
-
-  inherited Destroy;
-end;
-
-procedure TPyTimeModule.AfterConstruction;
-begin
-  inherited AfterConstruction;
-
-  Import;
-end;
-
-procedure TPyTimeModule.DecRef(var aPyTypeObject : Pointer);
-begin
-  if assigned(Py_DecRef) and assigned(aPyTypeObject) then
-    begin
-      Py_DecRef(PPyObject(aPyTypeObject));
-      aPyTypeObject := nil;
-    end;
 end;
 
 procedure TPyTimeModule.Import;
