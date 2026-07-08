@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
@@ -30,6 +30,7 @@ type
       function  GetTypeData(const cls: PyTypeObject): Pointer;
       function  GetAsString: string;
       function  GetAsInteger: C_Long;
+      function  GetAsDouble: double;
       function  GetAsVariant: Variant;
 
       procedure SetObjRefOwner(aValue: boolean);
@@ -145,6 +146,8 @@ type
       class procedure GC_Del(ptr: pointer);
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
+      class function  FromVariant(const aVariant: Variant): IPyObject;
+      class function  FromVarRec(const aVarRec: TVarRec): IPyObject;
 
       property Initialized   : boolean         read GetInitialized;
       property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
@@ -153,6 +156,7 @@ type
       property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
       property AsString      : string          read GetAsString;
       property AsInteger     : C_Long          read GetAsInteger;
+      property AsDouble      : double          read GetAsDouble;
       property AsVariant     : Variant         read GetAsVariant;
   end;
 
@@ -160,7 +164,8 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
-  uP4P.PyLong;
+  uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
+  uP4P.PySequence;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -1125,6 +1130,59 @@ begin
     PyObject_SetArenaAllocator(allocator);
 end;
 
+class function TPyObject.FromVariant(const aVariant: Variant): IPyObject;
+begin
+  //
+end;
+
+class function TPyObject.FromVarRec(const aVarRec : TVarRec): IPyObject;
+begin
+  case aVarRec.VType of
+    vtInteger  : Result := TPyLong.FromLong(aVarRec.VInteger);
+    vtBoolean  : Result := TPyLong.FromLong(integer(aVarRec.VBoolean));
+    vtChar     : Result := TPyUnicode.FromString(AnsiString(aVarRec.VChar));
+    vtExtended : Result := TPyFloat.FromDouble(aVarRec.VExtended^);
+    vtPChar    : Result := TPyUnicode.FromString(AnsiString(aVarRec.VPChar));
+    vtCurrency : Result := TPyFloat.FromDouble(aVarRec.VCurrency^);
+    vtVariant  : Result := FromVariant(aVarRec.VVariant^);
+    vtPointer  : Result := Wrap(aVarRec.VPointer);
+    vtInt64    : Result := TPyLong.FromLongLong(aVarRec.VInt64^);
+    vtWideChar : Result := TPyUnicode.FromString(UnicodeString(aVarRec.VWideChar));
+
+    vtString :
+      if assigned(aVarRec.VString) then
+        Result := TPyUnicode.FromString(AnsiString(aVarRec.VString^))
+       else
+        Result := TPyUnicode.FromString('');
+
+    vtAnsiString :
+      if Assigned(aVarRec.VAnsiString) then
+        Result := TPyUnicode.FromString(PAnsiChar(aVarRec.VAnsiString))
+       else
+        Result := TPyUnicode.FromString('');
+
+    vtPWideChar :
+      if Assigned(aVarRec.VPWideChar) then
+        Result := TPyUnicode.FromString(UnicodeString(aVarRec.VPWideChar))
+       else
+        Result := TPyUnicode.FromString('');
+
+    vtWideString :
+      if Assigned(aVarRec.VWideString) then
+        Result := TPyUnicode.FromString(WideString(aVarRec.VWideString))
+       else
+        Result := TPyUnicode.FromString('');
+
+    vtUnicodeString :
+      if Assigned(aVarRec.VUnicodeString) then
+        Result := TPyUnicode.FromString(UnicodeString(aVarRec.VUnicodeString))
+       else
+        Result := TPyUnicode.FromString('');
+
+    else Result := nil;
+  end;
+end;
+
 function TPyObject.GetInitialized: boolean;
 begin
   Result := assigned(FPyObject);
@@ -1198,12 +1256,43 @@ begin
   if TPyLong.Check(self) then
     Result := TPyLong.AsLong(self)
    else
-    Result := 0;
+    Result := -1;
+end;
+
+function TPyObject.GetAsDouble: double;
+begin
+  if TPyFloat.Check(self) then
+    Result := TPyFloat.AsDouble(self)
+   else
+    Result := -1;
 end;
 
 function TPyObject.GetAsVariant: Variant;
+var
+  TempDateTime : TDateTime;
 begin
-  //
+  if TPyFloat.Check(self) then
+    Result := TPyFloat.AsDouble(self)
+   else
+    if TPyBool.Check(self) then
+      Result := IsTrue
+     else
+      if TPyLong.Check(self) then
+        Result := TPyLong.AsLong(self)
+       else
+        if TPyUnicode.Check(self) then
+          Result := PyUTF8ToString(TPyUnicode.AsUTF8(self))
+         else
+          if TPyBytes.Check(self) then
+            Result := TPyBytes.AsString(self)
+           else
+            if TPyTimeStruct.AsDateTime(self, TempDateTime) then
+              Result := TempDateTime
+             else
+              if TPyDateTime.AsDateTime(self, TempDateTime) then
+                Result := TempDateTime
+               else
+                Result := TPySequence.AsVariant(self);
 end;
 
 procedure TPyObject.SetObjRefOwner(aValue: boolean);

@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -22,6 +22,7 @@ type
       class function AsDouble(const obj: IPyObject): double;
       class function FromDouble(v: double): IPyObject;
       class function FromString(const str: IPyObject): IPyObject;
+      class function FromVariant(const aVariant: Variant): IPyObject;
       class function ReturnNAN: IPyObject;
       class function ReturnINF(sign: boolean): IPyObject;
       class function GetMax: double;
@@ -57,6 +58,27 @@ begin
     Result := TPyObject.Wrap(PyFloat_FromString(str.PyObject))
    else
     Result := nil;
+end;
+
+class function TPyFloat.FromVariant(const aVariant: Variant): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
+begin
+  Result      := nil;
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  TempType := VarType(TempVariant) and (VarTypeMask or VarArray);
+
+  case TempType of
+    varSingle,
+    varDouble,
+    varCurrency : Result := TPyFloat.FromDouble(TempVariant);
+  end;
 end;
 
 class function TPyFloat.ReturnNAN: IPyObject;

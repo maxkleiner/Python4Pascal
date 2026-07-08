@@ -104,15 +104,15 @@ begin
       TempYearDay := TPyTuple.GetItem(aPyObject, 7);
       TempDST     := TPyTuple.GetItem(aPyObject, 8);
 
-      if TPyLong.Check(TempYear) and
-         TPyLong.Check(TempMonth) and
-         TPyLong.Check(TempDay) and
-         TPyLong.Check(TempHour) and
-         TPyLong.Check(TempMinute) and
-         TPyLong.Check(TempSecond) and
+      if TPyLong.Check(TempYear)    and
+         TPyLong.Check(TempMonth)   and
+         TPyLong.Check(TempDay)     and
+         TPyLong.Check(TempHour)    and
+         TPyLong.Check(TempMinute)  and
+         TPyLong.Check(TempSecond)  and
          TPyLong.Check(TempWeekDay) and
          TPyLong.Check(TempYearDay) and
-         TPyLong.Check(TempDST) then
+         TPyLong.Check(TempDST)     then
         begin
           year    := TempYear.AsInteger;
           month   := TempMonth.AsInteger;
@@ -130,8 +130,8 @@ begin
                     (minute  in [0..59]) and
                     (second  in [0..59]) and
                     (weekday in [0..6])  and
-                    (yearday >= 0)  and (year  <= 366) and
-                    (isdst   >= -1) and (isdst <= 1);
+                    (yearday >= 0)  and (yearday <= 366) and
+                    (isdst   >= -1) and (isdst   <= 1);
         end;
     end;
 end;

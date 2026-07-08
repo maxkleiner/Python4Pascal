@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -39,6 +39,7 @@ type
       class function Index(const o, value: IPyObject): Py_ssize_t;
       class function InPlaceConcat(const o1, o2: IPyObject): IPyObject;
       class function InPlaceRepeat(const o: IPyObject; count_: Py_ssize_t): IPyObject;
+      class function AsVariant(const o: IPyObject): Variant;
   end;
 
 implementation
@@ -241,6 +242,36 @@ begin
     Result := TPyObject.Wrap(PySequence_InPlaceRepeat(o.PyObject, count_))
    else
     Result := nil;
+end;
+
+class function TPySequence.AsVariant(const o: IPyObject): Variant;
+var
+  i, TempLen : integer;
+  TempItem : IPyObject;
+begin
+  if Check(o) then
+    begin
+      TempLen := TPySequence.Length(o);
+
+      if (TempLen > 0) then
+        begin
+          Result := VarArrayCreate([0, pred(TempLen)], varVariant);
+
+          for i := 0 to pred(TempLen) do
+            begin
+              TempItem := TPySequence.GetItem(o, i);
+
+              if TPyObject.IsInitialized(TempItem) then
+                Result[i] := TempItem.AsVariant
+               else
+                Result[i] := null;
+            end;
+        end
+       else
+        Result := null;
+    end
+   else
+    Result := null;
 end;
 
 end.
