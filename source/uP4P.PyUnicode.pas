@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.SysUtils, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, SysUtils, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -28,6 +28,8 @@ type
       {$ENDIF}
       class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
+      class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
       class function AsUCS4(const unicode: IPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: boolean): PPy_UCS4;
       class function AsUCS4Copy(const unicode: IPyObject): PPy_UCS4;
@@ -172,6 +174,30 @@ begin
     Result := TPyObject.Wrap(PyUnicode_FromString(PAnsiChar(buffer)))
    else
     Result := nil;
+end;
+
+class function TPyUnicode.FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject;
+begin
+  case aVarType of
+    varOleStr,
+    varString,
+    varUString : Result := FromString(string(aVariant))
+    else         Result := nil;
+  end;
+end;
+
+class function TPyUnicode.FromVariant(const aVariant: Variant): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
+begin
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
 class function TPyUnicode.Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;

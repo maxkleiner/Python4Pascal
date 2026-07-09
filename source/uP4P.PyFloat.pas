@@ -22,7 +22,8 @@ type
       class function AsDouble(const obj: IPyObject): double;
       class function FromDouble(v: double): IPyObject;
       class function FromString(const str: IPyObject): IPyObject;
-      class function FromVariant(const aVariant: Variant): IPyObject;
+      class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function ReturnNAN: IPyObject;
       class function ReturnINF(sign: boolean): IPyObject;
       class function GetMax: double;
@@ -60,25 +61,28 @@ begin
     Result := nil;
 end;
 
+class function TPyFloat.FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject;
+begin
+  case aVarType of
+    varSingle,
+    varDouble,
+    varCurrency : Result := TPyFloat.FromDouble(aVariant);
+    else          Result := nil;
+  end;
+end;
+
 class function TPyFloat.FromVariant(const aVariant: Variant): IPyObject;
 var
   TempType    : TVarType;
   TempVariant : Variant;
 begin
-  Result      := nil;
   TempVariant := aVariant;
   TempType    := varByRef or varVariant;
 
   while VarType(TempVariant) = TempType do
     TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
 
-  TempType := VarType(TempVariant) and (VarTypeMask or VarArray);
-
-  case TempType of
-    varSingle,
-    varDouble,
-    varCurrency : Result := TPyFloat.FromDouble(TempVariant);
-  end;
+  Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
 class function TPyFloat.ReturnNAN: IPyObject;

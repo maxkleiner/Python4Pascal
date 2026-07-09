@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -33,6 +33,8 @@ type
       class function FromString(const str: string): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
       class function FromObject(const ob: IPyObject): IPyObject;
+      class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function DecodeEscape(const s: string; errors: TPyCodecErrors): IPyObject;
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
@@ -92,6 +94,30 @@ begin
     Result := TPyObject.Wrap(PyBytes_FromObject(ob.PyObject))
    else
     Result := nil;
+end;
+
+class function TPyBytes.FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject;
+begin
+  case aVarType of
+    varOleStr,
+    varString,
+    varUString : Result := FromString(string(aVariant))
+    else         Result := nil;
+  end;
+end;
+
+class function TPyBytes.FromVariant(const aVariant: Variant): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
+begin
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
 class function TPyBytes.DecodeEscape(const s: string; errors: TPyCodecErrors): IPyObject;

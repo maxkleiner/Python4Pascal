@@ -14,8 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.Engine;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
   TPyTimeStruct = class
@@ -26,18 +25,8 @@ type
 
 implementation
 
-//    {"tm_year", "year, for example, 1993"}
-//    {"tm_mon", "month of year, range [1, 12]"}
-//    {"tm_mday", "day of month, range [1, 31]"}
-//    {"tm_hour", "hours, range [0, 23]"}
-//    {"tm_min", "minutes, range [0, 59]"}
-//    {"tm_sec", "seconds, range [0, 61])"}
-//    {"tm_wday", "day of week, range [0, 6], Monday is 0"}
-//    {"tm_yday", "day of year, range [1, 366]"}
-//    {"tm_isdst", "1 if summer time is in effect, 0 if not, and -1 if unknown"}
-//    {"tm_zone", "abbreviation of timezone name"}
-//    {"tm_gmtoff", "offset from UTC in seconds"}
-
+uses
+  uP4P.Engine;
 
 class function TPyTimeStruct.AsDateTime(const aPyObject: IPyObject; var aDateTime : TDateTime): boolean;
 var

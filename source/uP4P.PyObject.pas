@@ -146,7 +146,7 @@ type
       class procedure GC_Del(ptr: pointer);
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
-      class function  FromVariant(const aVariant: Variant): IPyObject;
+      class function  FromVariant(const aVariant: Variant; aUseDateTuple: boolean = False; aUseBytesString: boolean = False): IPyObject;
       class function  FromVarRec(const aVarRec: TVarRec): IPyObject;
 
       property Initialized   : boolean         read GetInitialized;
@@ -165,7 +165,7 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
   uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
-  uP4P.PySequence;
+  uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -1130,9 +1130,52 @@ begin
     PyObject_SetArenaAllocator(allocator);
 end;
 
-class function TPyObject.FromVariant(const aVariant: Variant): IPyObject;
+class function TPyObject.FromVariant(const aVariant: Variant; aUseDateTuple, aUseBytesString: boolean): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
 begin
-  //
+  Result      := nil;
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  TempType := VarType(TempVariant) and (VarTypeMask or VarArray);
+
+  case TempType of
+    varBoolean   : Result := TPyBool.FromVariant(TempVariant, TempType);
+    varSmallint,
+    varByte,
+    varShortInt,
+    varWord,
+    varInteger,
+    varLongWord,
+    varInt64,
+    varUInt64    : Result := TPyLong.FromVariant(TempVariant, TempType);
+    varSingle,
+    varDouble,
+    varCurrency  : Result := TPyFloat.FromVariant(TempVariant, TempType);
+    varArray     : Result := TPyList.FromVariant(TempVariant, TempType);
+
+    varOleStr,
+    varString,
+    varUString   :
+      if aUseBytesString then
+        Result := TPyBytes.FromVariant(TempVariant, TempType)
+       else
+        Result := TPyUnicode.FromVariant(TempVariant, TempType);
+
+    varDate      :
+      if aUseDateTuple then
+        Result := TPyTuple.FromVariant(TempVariant, TempType)
+       else
+        Result := TPyDateTime.FromVariant(TempVariant, TempType);
+  end;
+
+  if not(assigned(Result)) then
+    Result := TPyNone.New;
 end;
 
 class function TPyObject.FromVarRec(const aVarRec : TVarRec): IPyObject;

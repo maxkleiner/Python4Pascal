@@ -47,6 +47,8 @@ type
       function CheckTZInfo(const aPyObject: IPyObject): boolean;
       function CheckTimeTZ(const aPyObject: IPyObject): boolean;
       function CheckDateTimeTZ(const aPyObject: IPyObject): boolean;
+
+      property DateTimeType   : Pointer  read FDateTimeType;
   end;
 
 implementation

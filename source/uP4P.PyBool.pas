@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -20,6 +20,8 @@ type
   TPyBool = class
     public
       class function FromLong(aValue: C_Long): IPyObject;
+      class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function ReturnFalse: IPyObject;
       class function ReturnTrue: IPyObject;
       class function Check(const aPyObject: IPyObject): boolean;
@@ -36,6 +38,28 @@ begin
     Result := TPyObject.Wrap(PyBool_FromLong(aValue))
    else
     Result := nil;
+end;
+
+class function TPyBool.FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject;
+begin
+  if (aVarType = varBoolean) then
+    Result := TPyBool.FromLong(ord(boolean(aVariant)))
+   else
+    Result := nil;
+end;
+
+class function TPyBool.FromVariant(const aVariant: Variant): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
+begin
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
 class function TPyBool.ReturnFalse: IPyObject;

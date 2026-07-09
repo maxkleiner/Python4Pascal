@@ -24,7 +24,8 @@ type
       class function New: IPyObject;
       class function GetItem(const mp, key: IPyObject): IPyObject;
       class function GetItemWithError(const mp, key: IPyObject): IPyObject;
-      class function SetItem(const mp, key, val: IPyObject): boolean;
+      class function SetItem(const mp, key, val: IPyObject): boolean; overload;
+      class function SetItem(const mp: IPyObject; const key: string; const val: IPyObject): boolean; overload;
       class function DelItem(const mp, key: IPyObject): boolean;
       class procedure Clear(const mp: IPyObject);
       class function Next(const mp: IPyObject; var pos: Py_ssize_t; out key, val: IPyObject): boolean;
@@ -57,12 +58,13 @@ type
       class function ClearWatcher(watcher_id: integer): boolean;
       class function Watch(watcher_id: integer; const dict: IPyObject): boolean;
       class function Unwatch(watcher_id: integer; const dict: IPyObject): boolean;
+      class function FromStringsArray(const aKeys: TStringList; const aValues: array of const): IPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyList;
+  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyList, uP4P.PyUnicode;
 
 class function TPyDict.New: IPyObject;
 begin
@@ -111,6 +113,11 @@ begin
             TPyObject.IsInitialized(val) and
             TPyObject.IsInitialized(key) and
             (PyDict_SetItem(mp.PyObject, key.PyObject, val.PyObject) = 0);
+end;
+
+class function TPyDict.SetItem(const mp: IPyObject; const key: string; const val: IPyObject): boolean;
+begin
+  Result := SetItem(mp, TPyUnicode.FromString(key), val);
 end;
 
 class function TPyDict.DelItem(const mp, key: IPyObject): boolean;
@@ -432,6 +439,25 @@ begin
   Result := assigned(PyDict_Unwatch) and
             TPyObject.IsInitialized(dict) and
             (PyDict_Unwatch(watcher_id, dict.PyObject) = 0);
+end;
+
+class function TPyDict.FromStringsArray(const aKeys: TStringList; const aValues: array of const): IPyObject;
+var
+  i, TempLen : integer;
+begin
+  Result := nil;
+
+  if not(assigned(aKeys)) then exit;
+
+  TempLen := aKeys.Count;
+
+  if (TempLen > 0) and (TempLen = length(aValues)) then
+    begin
+      Result := TPyDict.New;
+
+      for i := 0 to pred(TempLen) do
+        TPyDict.SetItem(Result, aKeys[i], TPyObject.FromVarRec(aValues[i]));
+    end;
 end;
 
 end.

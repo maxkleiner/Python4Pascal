@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
   uP4P.PyNumber;
@@ -61,6 +61,8 @@ type
       class function FromNativeBytes(const aStream: TMemoryStream; flags: integer): IPyObject; overload;
       class function FromUnsignedNativeBytes(buffer: Pointer; n_bytes: NativeUInt; flags: integer): IPyObject; overload;
       class function FromUnsignedNativeBytes(const aStream: TMemoryStream; flags: integer): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function GetNativeLayout: PPyLongLayout;
       class function GetInfo: IPyObject;
       class function Check(const aPyObject: IPyObject): boolean;
@@ -219,6 +221,35 @@ begin
     Result := FromUnsignedNativeBytes(aStream.Memory, aStream.Size, flags)
    else
     Result := nil;
+end;
+
+class function TPyLong.FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject;
+begin
+  case aVarType of
+    varSmallint,
+    varByte,
+    varShortInt,
+    varWord,
+    varInteger   : Result := FromLong(integer(aVariant));
+    varLongWord  : Result := FromUnsignedLong(cardinal(aVariant));
+    varInt64     : Result := FromLongLong(aVariant);
+    varUInt64    : Result := FromUnsignedLongLong(aVariant);
+    else           Result := nil;
+  end;
+end;
+
+class function TPyLong.FromVariant(const aVariant: Variant): IPyObject;
+var
+  TempType    : TVarType;
+  TempVariant : Variant;
+begin
+  TempVariant := aVariant;
+  TempType    := varByRef or varVariant;
+
+  while VarType(TempVariant) = TempType do
+    TempVariant := Variant(PVarData(TVarData(TempVariant).VPointer)^);
+
+  Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
 class function TPyLong.GetNativeLayout: PPyLongLayout;
