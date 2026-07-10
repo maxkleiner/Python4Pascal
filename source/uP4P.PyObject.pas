@@ -148,6 +148,7 @@ type
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
       class function  FromVariant(const aVariant: Variant; aUseDateTuple: boolean = False; aUseBytesString: boolean = False): IPyObject;
       class function  FromVarRec(const aVarRec: TVarRec): IPyObject;
+      class function  FromVarData(const aVarData: TVarData): IPyObject;
 
       property Initialized   : boolean         read GetInitialized;
       property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
@@ -165,7 +166,7 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
   uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
-  uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone;
+  uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone, uP4P.PyObjectVariantType;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -1158,7 +1159,8 @@ begin
     varDouble,
     varCurrency  : Result := TPyFloat.FromVariant(TempVariant, TempType);
     varArray     : Result := TPyList.FromVariant(TempVariant, TempType);
-
+    varNull,
+    varEmpty     : Result := TPyNone.New;
     varOleStr,
     varString,
     varUString   :
@@ -1224,6 +1226,34 @@ begin
 
     else Result := nil;
   end;
+end;
+
+class function TPyObject.FromVarData(const aVarData: TVarData): IPyObject;
+var
+  TempVarDataPtr : PVarData;
+begin
+  Result := nil;
+
+  if (AVarData.VType = PyObjectVariantType.VarType) then
+    begin
+      TPyObjectVarData(AVarData).VPyObject.IncRef;
+      Result := TPyObject.Wrap(TPyObjectVarData(AVarData).VPyObject.PyObject);
+    end
+   else
+    if ((AVarData.VType and varByRef) <> 0) and
+       ((AVarData.VType and varTypeMask) = varVariant) then
+      begin
+        TempVarDataPtr := AVarData.VPointer;
+
+        if (TempVarDataPtr^.VType = PyObjectVariantType.VarType) then
+        begin
+          TPyObjectVarData(TempVarDataPtr^).VPyObject.IncRef;
+          Result := TPyObject.Wrap(TPyObjectVarData(TempVarDataPtr^).VPyObject.PyObject);
+        end;
+      end;
+
+  if not(assigned(Result)) then
+    Result := TPyObject.FromVariant(Variant(AVarData));
 end;
 
 function TPyObject.GetInitialized: boolean;

@@ -250,6 +250,8 @@ var
   TempDimCount : integer;
   TempIdxArr   : TCustomIntArray;
 begin
+  Result := nil;
+
   if (aVarType = varArray) then
     begin
       TempDimCount := VarArrayDimCount(aVariant);
@@ -259,9 +261,7 @@ begin
           SetLength(TempIdxArr, TempDimCount);
           Result := FromVariantArray(aVariant, 0, TempDimCount, TempIdxArr);
         end;
-    end
-   else
-    Result := nil;
+    end;
 end;
 
 class function TPyList.FromVariant(const aVariant: Variant): IPyObject;

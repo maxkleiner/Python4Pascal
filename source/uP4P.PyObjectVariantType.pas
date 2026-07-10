@@ -81,6 +81,9 @@ type
       function  FixupIdent(const AText: string): string; override;
       {$ENDIF}
       procedure DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
+
+      // Custom
+      procedure PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
   end;
 
 var
@@ -231,9 +234,15 @@ begin
 end;
 
 procedure TPyObjectVariantType.Cast(var Dest: TVarData; const Source: TVarData);
+var
+  TempObj : IPyObject;
 begin
-  inherited;
-
+  try
+    TempObj := TPyObject.FromVarData(Source);
+    PyObjectVarDataCreate(Dest, TempObj);
+  finally
+    TempObj := nil;
+  end;
 end;
 
 procedure TPyObjectVariantType.CastTo(var Dest: TVarData;
@@ -316,7 +325,8 @@ begin
 
 end;
 
-function TPyObjectVariantType.SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData; const AName: string; const Value: TVarData): Boolean;
+function TPyObjectVariantType.SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData;
+  const AName: string; const Value: TVarData): Boolean;
 begin
 
 end;
@@ -326,6 +336,18 @@ procedure TPyObjectVariantType.UnaryOp(var Right: TVarData;
 begin
   inherited;
 
+end;
+
+procedure TPyObjectVariantType.PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
+begin
+  VarDataClear(Dest);
+
+  if TPyObject.IsInitialized(aObject) then
+    begin
+      aObject.IncRef;
+      TPyObjectVarData(Dest).VType     := VarType;
+      TPyObjectVarData(Dest).VPyObject := TPyObject.Create(aObject.PyObject, True, False);
+    end;
 end;
 
 initialization

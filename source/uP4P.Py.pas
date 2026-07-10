@@ -33,8 +33,10 @@ type
       class function  Type_(const aPyObject: IPyObject): PPyTypeObject;
       class function  IsType(const aPyObject: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
       class function  RefCnt(const aPyObject: IPyObject): integer;
-      class procedure IncRef(const aPyObject: IPyObject);
-      class procedure DecRef(const aPyObject: IPyObject);
+      class procedure IncRef(const aPyObject: IPyObject); overload;
+      class procedure IncRef(const aPyObject: PPyObject); overload;
+      class procedure DecRef(const aPyObject: IPyObject); overload;
+      class procedure DecRef(const aPyObject: PPyObject); overload;
       class function  NewRef(const aPyObject: IPyObject): PPyObject; overload;
       class function  NewRef(aPyObject: PPyConfig): PPyObject; overload;
       class function  XNewRef(const aPyObject: IPyObject): PPyObject; overload;
@@ -224,16 +226,28 @@ end;
 
 class procedure TPy.IncRef(const aPyObject: IPyObject);
 begin
+  if assigned(aPyObject) then
+    IncRef(aPyObject.PyObject);
+end;
+
+class procedure TPy.IncRef(const aPyObject: PPyObject);
+begin
   if assigned(Py_IncRef) and
-     TPyObject.IsInitialized(aPyObject) then
-    Py_IncRef(aPyObject.PyObject);
+     assigned(aPyObject) then
+    Py_IncRef(aPyObject);
 end;
 
 class procedure TPy.DecRef(const aPyObject: IPyObject);
 begin
+  if assigned(aPyObject) then
+    DecRef(aPyObject.PyObject);
+end;
+
+class procedure TPy.DecRef(const aPyObject: PPyObject);
+begin
   if assigned(Py_DecRef) and
-     TPyObject.IsInitialized(aPyObject) then
-    Py_DecRef(aPyObject.PyObject);
+     assigned(aPyObject) then
+    Py_DecRef(aPyObject);
 end;
 
 class function TPy.NewRef(aPyObject: PPyConfig): PPyObject;
