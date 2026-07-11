@@ -240,7 +240,7 @@ var
   PyUnicode_InternFromString                     : function(const str: PAnsiChar): PPyObject; cdecl;
   PyUnicode_FromWideChar                         : function(const w: PWCharT; size_: Py_ssize_t): PPyObject; cdecl;
   PyUnicode_AsWideChar                           : function(unicode: PPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t; cdecl;
-  PyUnicode_AsWideCharString                     : function(unicode: PPyObject; size_: Py_ssize_t): PWCharT; cdecl;
+  PyUnicode_AsWideCharString                     : function(unicode: PPyObject; size_: PPy_ssize_t): PWCharT; cdecl;
   PyUnicode_FromOrdinal                          : function(ordinal: integer): PPyObject; cdecl;
   PyUnicode_GetDefaultEncoding                   : function(): PAnsiChar; cdecl;
   PyUnicode_Decode                               : function(const s: PAnsiChar; size_: Py_ssize_t; const encodging, errors: PAnsiChar): PPyObject; cdecl;

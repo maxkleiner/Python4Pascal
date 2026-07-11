@@ -20,6 +20,7 @@ type
   TPyEllipsis = class
     public
       class function New: IPyObject;
+      class function Check(const aPyObject: IPyObject): boolean;
   end;
 
 implementation
@@ -33,6 +34,12 @@ begin
     Result := TPyObject.Wrap(Py_Ellipsis, False)
    else
     Result := TPyObject.Wrap(Py_Ellipsis, True, True);
+end;
+
+class function TPyEllipsis.Check(const aPyObject: IPyObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(aPyObject) and
+            aPyObject.IsType(PyEllipsis_Type);
 end;
 
 end.

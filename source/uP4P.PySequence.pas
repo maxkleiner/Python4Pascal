@@ -24,17 +24,25 @@ type
       class function Length(const o: IPyObject): Py_ssize_t;
       class function Concat(const o1, o2: IPyObject): IPyObject;
       class function Repeat_(const o: IPyObject; count_: Py_ssize_t): IPyObject;
-      class function GetItem(const o: IPyObject; i: Py_ssize_t): IPyObject;
-      class function GetSlice(const o: IPyObject; i1, i2: Py_ssize_t): IPyObject;
-      class function SetItem(const o: IPyObject; i: Py_ssize_t; v: IPyObject): boolean;
-      class function DelItem(const o: IPyObject; i: Py_ssize_t): boolean;
-      class function SetSlice(const o: IPyObject; i1, i2: Py_ssize_t; v: IPyObject): boolean;
-      class function DelSlice(const o: IPyObject; i1, i2: Py_ssize_t): boolean;
+      class function GetSliceIndex(const i: TVarData; aEllipsisDefault: integer): integer;
+      class function GetItem(const o: IPyObject; i: Py_ssize_t): IPyObject; overload;
+      class function GetItem(const o: IPyObject; const i: TVarData): IPyObject; overload;
+      class function GetSlice(const o: IPyObject; i1, i2: Py_ssize_t): IPyObject; overload;
+      class function GetSlice(const o: IPyObject; const i1, i2: TVarData): IPyObject; overload;
+      class function SetItem(const o: IPyObject; i: Py_ssize_t; v: IPyObject): boolean; overload;
+      class function SetItem(const o: IPyObject; const i, v: TVarData): boolean; overload;
+      class function DelItem(const o: IPyObject; i: Py_ssize_t): boolean; overload;
+      class function DelItem(const o: IPyObject; const i: TVarData): boolean; overload;
+      class function SetSlice(const o: IPyObject; i1, i2: Py_ssize_t; v: IPyObject): boolean; overload;
+      class function SetSlice(const o: IPyObject; const i1, i2, v: TVarData): boolean; overload;
+      class function DelSlice(const o: IPyObject; i1, i2: Py_ssize_t): boolean; overload;
+      class function DelSlice(const o: IPyObject; const i1, i2: TVarData): boolean; overload;
       class function Tuple(const o: IPyObject): IPyObject;
       class function List(const o: IPyObject): IPyObject;
       class function Fast(const o: IPyObject; const m: string): IPyObject;
       class function Count(const o, value: IPyObject): Py_ssize_t;
-      class function Contains(const o, value: IPyObject): integer;
+      class function Contains(const o, value: IPyObject): integer; overload;
+      class function Contains(const o: IPyObject; const value: TVarData): integer; overload;
       class function In_(const o, value: IPyObject): integer;
       class function Index(const o, value: IPyObject): Py_ssize_t;
       class function InPlaceConcat(const o1, o2: IPyObject): IPyObject;
@@ -45,7 +53,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions;
+  uP4P.MiscFunctions, uP4P.PyEllipsis;
 
 class function TPySequence.Check(const o: IPyObject): boolean;
 begin
@@ -100,6 +108,14 @@ begin
     Result := nil;
 end;
 
+class function TPySequence.GetItem(const o: IPyObject; const i: TVarData): IPyObject;
+var
+  TempIndex : integer;
+begin
+  TempIndex := Variant(i);
+  Result    := GetItem(o, TempIndex);
+end;
+
 class function TPySequence.GetSlice(const o: IPyObject; i1, i2: Py_ssize_t): IPyObject;
 begin
   if assigned(PySequence_GetSlice) and
@@ -107,6 +123,23 @@ begin
     Result := TPyObject.Wrap(PySequence_GetSlice(o.PyObject, i1, i2))
    else
     Result := nil;
+end;
+
+class function TPySequence.GetSliceIndex(const i: TVarData; aEllipsisDefault: integer): integer;
+var
+  TempIndex : IPyObject;
+begin
+  TempIndex := TPyObject.FromVarData(i);
+
+  if TPyEllipsis.Check(TempIndex) then
+    Result := aEllipsisDefault
+   else
+    Result := TempIndex.AsInteger;
+end;
+
+class function TPySequence.GetSlice(const o: IPyObject; const i1, i2: TVarData): IPyObject;
+begin
+  Result := GetSlice(o, GetSliceIndex(i1, 0), GetSliceIndex(i2, o.Length));
 end;
 
 class function TPySequence.SetItem(const o: IPyObject; i: Py_ssize_t; v: IPyObject): boolean;
@@ -123,11 +156,33 @@ begin
     Result := False;
 end;
 
+class function TPySequence.SetItem(const o: IPyObject; const i, v: TVarData): boolean;
+var
+  TempIndex : integer;
+  TempValue : IPyObject;
+begin
+  try
+    TempIndex := Variant(i);
+    TempValue := TPyObject.FromVarData(v);
+    Result    := SetItem(o, TempIndex, TempValue);
+  finally
+    TempValue := nil;
+  end;
+end;
+
 class function TPySequence.DelItem(const o: IPyObject; i: Py_ssize_t): boolean;
 begin
   Result := assigned(PySequence_DelItem) and
             TPyObject.IsInitialized(o) and
             (PySequence_DelItem(o.PyObject, i) <> -1);
+end;
+
+class function TPySequence.DelItem(const o: IPyObject; const i: TVarData): boolean;
+var
+  TempIndex : integer;
+begin
+  TempIndex := Variant(i);
+  Result    := DelItem(o, TempIndex);
 end;
 
 class function TPySequence.SetSlice(const o: IPyObject; i1, i2: Py_ssize_t; v: IPyObject): boolean;
@@ -144,6 +199,18 @@ begin
     Result := False;
 end;
 
+class function TPySequence.SetSlice(const o: IPyObject; const i1, i2, v: TVarData): boolean;
+var
+  TempValue : IPyObject;
+begin
+  try
+    TempValue := TPyObject.FromVarData(v);
+    Result    := SetSlice(o, GetSliceIndex(i1, 0), GetSliceIndex(i2, o.Length), TempValue);
+  finally
+    TempValue := nil;
+  end;
+end;
+
 class function TPySequence.DelSlice(const o: IPyObject; i1, i2: Py_ssize_t): boolean;
 begin
   if assigned(PySequence_DelSlice) and
@@ -151,6 +218,11 @@ begin
     Result := (PySequence_DelSlice(o.PyObject, i1, i2) <> -1)
    else
     Result := False;
+end;
+
+class function TPySequence.DelSlice(const o: IPyObject; const i1, i2: TVarData): boolean;
+begin
+  Result := DelSlice(o, GetSliceIndex(i1, 0), GetSliceIndex(i2, o.Length));
 end;
 
 class function TPySequence.Tuple(const o: IPyObject): IPyObject;
@@ -203,6 +275,18 @@ begin
     Result := PySequence_Contains(o.PyObject, value.PyObject)
    else
     Result := -1;
+end;
+
+class function TPySequence.Contains(const o: IPyObject; const value: TVarData): integer;
+var
+  TempValue : IPyObject;
+begin
+  try
+    TempValue := TPyObject.FromVardata(value);
+    Result    := Contains(o, TempValue);
+  finally
+    TempValue := nil;
+  end;
 end;
 
 class function TPySequence.In_(const o, value: IPyObject): integer;

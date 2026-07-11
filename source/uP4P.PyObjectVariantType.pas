@@ -75,6 +75,11 @@ type
       function  DoProcedure(const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean; override;
       function  GetProperty(var Dest: TVarData; const V: TVarData; const AName: string): Boolean; override;
       function  SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData; const AName: string; const Value: TVarData): Boolean; override;
+      {$IFDEF FPC}
+      procedure VarDataClear(var Dest: TVarData);
+      procedure VarDataCopyNoInd(var Dest: TVarData; const Source: TVarData);
+      procedure VarDataCastTo(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); overload;
+      {$ENDIF}
 
       // TInvokeableVariantType
       {$IFNDEF FPC}
@@ -203,6 +208,7 @@ procedure TPyObjectVariantType.BinaryOp(var Left: TVarData; const Right: TVarDat
 begin
   if (Right.VType = VarType) then
     case Left.VType of
+      varOleStr,
       varString,
       varUString :
         case AOperator of
@@ -247,9 +253,115 @@ end;
 
 procedure TPyObjectVariantType.CastTo(var Dest: TVarData;
   const Source: TVarData; const AVarType: TVarType);
+var
+  TempVariant : Variant;
 begin
-  inherited;
+  if (Source.VType <> VarType) then
+    begin
+      inherited;
+      exit;
+    end;
 
+  case AVarType of
+    varOleStr    : VarDataFromOleStr(Dest, TPyObjectVarData(Source).VPyObject.AsWideString);
+    varUString   :
+      begin
+        {$IFDEF FPC}
+        VarDataFromOleStr(Dest, TPyObjectVarData(Source).VPyObject.AsWideString);
+        {$ELSE}
+        VarDataFromStr(Dest, TPyObjectVarData(Source).VPyObject.AsWideString);
+        {$ENDIF}
+      end;
+
+    varString    :
+      begin
+        {$IFDEF FPC}
+        Variant(Dest) := TPyObjectVarData(Source).VPyObject.AsWideString;
+        {$ELSE}
+        VarDataFromLStr(Dest, TPyObjectVarData(Source).VPyObject.AsAnsiString);
+        {$ENDIF}
+      end;
+
+    varBoolean   :
+      begin
+        Dest.VType    := AVarType;
+        Dest.VBoolean := (TPyObjectVarData(Source).VPyObject.IsTrue = 1);
+      end;
+
+    varSmallint  :
+      begin
+        Dest.VType     := AVarType;
+        Dest.VSmallInt := TPyObjectVarData(Source).VPyObject.AsInteger;
+      end;
+
+    varShortInt  :
+      begin
+        Dest.VType     := AVarType;
+        Dest.VShortInt := TPyObjectVarData(Source).VPyObject.AsInteger;
+      end;
+
+    varByte      :
+      begin
+        Dest.VType := AVarType;
+        Dest.VByte := TPyObjectVarData(Source).VPyObject.AsCardinal;
+      end;
+
+    varWord      :
+      begin
+        Dest.VType := AVarType;
+        Dest.VWord := TPyObjectVarData(Source).VPyObject.AsCardinal;
+      end;
+
+    varInteger   :
+      begin
+        Dest.VType    := AVarType;
+        Dest.VInteger := TPyObjectVarData(Source).VPyObject.AsInteger;
+      end;
+
+    varLongWord  :
+      begin
+        Dest.VType     := AVarType;
+        Dest.VLongWord := TPyObjectVarData(Source).VPyObject.AsCardinal;
+      end;
+
+    varInt64    :
+      begin
+        Dest.VType  := AVarType;
+        Dest.VInt64 := TPyObjectVarData(Source).VPyObject.AsInt64;
+      end;
+
+    {$IFNDEF FPC}
+    varUInt64   :
+      begin
+        Dest.VType   := AVarType;
+        Dest.VUInt64 := TPyObjectVarData(Source).VPyObject.AsUInt64;
+      end;
+    {$ENDIF}
+
+    varSingle   :
+      begin
+        Dest.VType   := AVarType;
+        Dest.VSingle := TPyObjectVarData(Source).VPyObject.AsDouble;
+      end;
+
+    varDouble   :
+      begin
+        Dest.VType   := AVarType;
+        Dest.VDouble := TPyObjectVarData(Source).VPyObject.AsDouble;
+      end;
+
+    varCurrency :
+      begin
+        Dest.VType     := AVarType;
+        Dest.VCurrency := TPyObjectVarData(Source).VPyObject.AsDouble;
+      end;
+
+    else
+      begin
+        TempVariant := TPyObjectVarData(Source).VPyObject.AsVariant;
+        VarDataCastTo(Dest, TVarData(TempVariant), AVarType);
+      end;
+  end;
 end;
 
 procedure TPyObjectVariantType.Clear(var V: TVarData);
@@ -258,16 +370,30 @@ begin
   FreeAndNil(TPyObjectVarData(V).VPyObject);
 end;
 
-function TPyObjectVariantType.CompareOp(const Left, Right: TVarData;
-  const AOperator: TVarOp): Boolean;
+function TPyObjectVariantType.CompareOp(const Left, Right: TVarData; const AOperator: TVarOp): Boolean;
 begin
+  Result := False;
 
+  if (Left.VType = VarType) and (Right.VType = VarType) then
+    case AOperator of
+      opCmpEQ : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_EQ) = 1);
+      opCmpNE : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_EQ) = 0);
+      opCmpLT : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_LT) = 1);
+      opCmpLE : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_LE) = 1);
+      opCmpGT : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_GT) = 1);
+      opCmpGE : Result := (TPyObjectVarData(Left).VPyObject.RichCompareBool(TPyObjectVarData(Right).VPyObject, Py_GE) = 1);
+      else      RaiseInvalidOp;
+    end
+   else
+    RaiseInvalidOp;
 end;
 
-procedure TPyObjectVariantType.Copy(var Dest: TVarData; const Source: TVarData;
-  const Indirect: Boolean);
+procedure TPyObjectVariantType.Copy(var Dest: TVarData; const Source: TVarData; const Indirect: Boolean);
 begin
-
+  if Indirect and VarDataIsByRef(Source) then
+    VarDataCopyNoInd(Dest, Source)
+   else
+    PyObjectVarDataCreate(Dest, TPyObjectVarData(Source).VPyObject);
 end;
 
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData;
@@ -290,7 +416,22 @@ begin
 
 end;
 
-{$IFNDEF FPC}
+{$IFDEF FPC}
+procedure TPyObjectVariantType.VarDataClear(var Dest: TVarData);
+begin
+  VarClear(Variant(Dest));
+end;
+
+procedure TPyObjectVariantType.VarDataCopyNoInd(var Dest: TVarData; const Source: TVarData);
+begin
+  VarCopyNoInd(Variant(Dest), Variant(Source));
+end;
+
+procedure TPyObjectVariantType.VarDataCastTo(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); overload;
+begin
+  VarCast(Variant(Dest), Variant(Source), AVarType);
+end;
+{$ELSE}
 function TPyObjectVariantType.FixupIdent(const AText: string): string;
 begin
   Result := AText;

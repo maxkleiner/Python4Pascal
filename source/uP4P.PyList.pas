@@ -26,9 +26,12 @@ type
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function New(len: Py_ssize_t): IPyObject;
       class function Size(const list: IPyObject): Py_ssize_t;
-      class function GetItem(const list: IPyObject; index: Py_ssize_t): IPyObject;
-      class function GetItemRef(const list: IPyObject; index: Py_ssize_t): IPyObject;
-      class function SetItem(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean;
+      class function GetItem(const list: IPyObject; index: Py_ssize_t): IPyObject; overload;
+      class function GetItem(const list: IPyObject; const index: TVarData): IPyObject; overload;
+      class function GetItemRef(const list: IPyObject; index: Py_ssize_t): IPyObject; overload;
+      class function GetItemRef(const list: IPyObject; const index: TVarData): IPyObject; overload;
+      class function SetItem(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean; overload;
+      class function SetItem(const list: IPyObject; const index, item: TVarData): boolean; overload;
       class function Insert(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean;
       class function Append(const list, item: IPyObject): boolean;
       class function GetSlice(const list: IPyObject; low, high: Py_ssize_t): IPyObject;
@@ -88,6 +91,14 @@ begin
     Result := nil;
 end;
 
+class function TPyList.GetItem(const list: IPyObject; const index: TVarData): IPyObject;
+var
+  TempIndex : integer;
+begin
+  TempIndex := Variant(index);
+  Result    := GetItem(list, TempIndex);
+end;
+
 class function TPyList.GetItemRef(const list: IPyObject; index: Py_ssize_t): IPyObject;
 begin
   if assigned(PyList_GetItemRef) then
@@ -96,12 +107,34 @@ begin
     Result := nil;
 end;
 
+class function TPyList.GetItemRef(const list: IPyObject; const index: TVarData): IPyObject;
+var
+  TempIndex : integer;
+begin
+  TempIndex := Variant(index);
+  Result    := GetItemRef(list, TempIndex);
+end;
+
 class function TPyList.SetItem(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean;
 begin
   Result := assigned(PyList_SetItem) and
             TPyObject.IsInitialized(list) and
             TPyObject.IsInitialized(item) and
             (PyList_SetItem(list.PyObject, index, item.UnWrap) = 0);
+end;
+
+class function TPyList.SetItem(const list: IPyObject; const index, item: TVarData): boolean;
+var
+  TempIndex : integer;
+  TempItem  : IPyObject;
+begin
+  try
+    TempIndex := Variant(index);
+    TempItem  := TPyObject.FromVarData(item);
+    Result    := SetItem(list, TempIndex, TempItem);
+  finally
+    TempItem  := nil;
+  end;
 end;
 
 class function TPyList.Insert(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean;

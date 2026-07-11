@@ -20,8 +20,10 @@ type
   TPyTuple = class
     public
       class function Size(const p: IPyObject): Py_ssize_t;
-      class function GetItem(const p: IPyObject; pos: Py_ssize_t): IPyObject;
-      class function SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean;
+      class function GetItem(const p: IPyObject; pos: Py_ssize_t): IPyObject; overload;
+      class function GetItem(const p: IPyObject; const pos: TVarData): IPyObject; overload;
+      class function SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean; overload;
+      class function SetItem(const p: IPyObject; const pos, o: TVarData): boolean; overload;
       class function GetSlice(const p: IPyObject; low, high: Py_ssize_t): IPyObject;
       class function New(len: Py_ssize_t): IPyObject;
       class function Pack(const objects: IPyObjectArray): IPyObject;
@@ -299,12 +301,34 @@ begin
     Result := nil;
 end;
 
+class function TPyTuple.GetItem(const p: IPyObject; const pos: TVarData): IPyObject;
+var
+  TempPos : integer;
+begin
+  TempPos := Variant(pos);
+  Result  := GetItem(p, TempPos);
+end;
+
 class function TPyTuple.SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean;
 begin
   Result := assigned(PyTuple_SetItem) and
             TPyObject.IsInitialized(p) and
             TPyObject.IsInitialized(o) and
             (PyTuple_SetItem(p.PyObject, pos, o.UnWrap) = 0);
+end;
+
+class function TPyTuple.SetItem(const p: IPyObject; const pos, o: TVarData): boolean;
+var
+  TempPos : integer;
+  TempObj : IPyObject;
+begin
+  try
+    TempPos := Variant(pos);
+    TempObj := TPyObject.FromVarData(o);
+    Result  := SetItem(p, TempPos, TempObj);
+  finally
+    TempObj := nil;
+  end;
 end;
 
 class function TPyTuple.GetSlice(const p: IPyObject; low, high: Py_ssize_t): IPyObject;

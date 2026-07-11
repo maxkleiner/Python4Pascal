@@ -43,7 +43,7 @@ type
       class function InternFromString(const str: string): IPyObject;
       class function FromWideChar(const w: PWCharT; size_: Py_ssize_t): IPyObject;
       class function AsWideChar(const unicode: IPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t;
-      class function AsWideCharString(const unicode: IPyObject; size_: Py_ssize_t): PWCharT;
+      class function AsWideCharString(const unicode: IPyObject; var size_: Py_ssize_t): PWCharT;
       class function FromOrdinal(ordinal: integer): IPyObject;
       class function GetDefaultEncoding(): string;
       class function Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject; 
@@ -625,11 +625,11 @@ begin
     Result := -1;
 end;
 
-class function TPyUnicode.AsWideCharString(const unicode: IPyObject; size_: Py_ssize_t): PWCharT;
+class function TPyUnicode.AsWideCharString(const unicode: IPyObject; var size_: Py_ssize_t): PWCharT;
 begin
   if assigned(PyUnicode_AsWideCharString) and
      TPyObject.IsInitialized(unicode) then
-    Result := PyUnicode_AsWideCharString(unicode.PyObject, size_)
+    Result := PyUnicode_AsWideCharString(unicode.PyObject, @size_)
    else
     Result := nil;
 end;

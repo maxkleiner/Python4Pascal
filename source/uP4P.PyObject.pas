@@ -29,12 +29,25 @@ type
       function  GetPyTypeObject: PPyTypeObject;
       function  GetTypeData(const cls: PyTypeObject): Pointer;
       function  GetAsString: string;
+      function  GetAsAnsiString: AnsiString;
+      function  GetAsWideString: WideString;
       function  GetAsInteger: C_Long;
+      function  GetAsCardinal: C_ULong;
+      function  GetAsInt64: Int64;
+      function  GetAsUInt64: uint64;
       function  GetAsDouble: double;
       function  GetAsVariant: Variant;
+      function  GetIsCallable: boolean;
+      function  GetIsTuple: boolean;
+      function  GetIsList: boolean;
+      function  GetIsSequence: boolean;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
+
+    public
+      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
+      destructor  Destroy; override;
 
       function  IsTrueSingleton: boolean;
       function  IsFalseSingleton: boolean;
@@ -109,10 +122,13 @@ type
       function  Type_: IPyObject;
       function  Size: Py_ssize_t;
       function  Length: Py_ssize_t;
-      function  GetItem(const key: IPyObject): IPyObject;
-      function  SetItem(const key, v: IPyObject): boolean;
+      function  GetItem(const key: IPyObject): IPyObject; overload;
+      function  GetItem(const key: TVarData): IPyObject; overload;
+      function  SetItem(const key, v: IPyObject): boolean; overload;
+      function  SetItem(const key, v: TVarData): boolean; overload;
       function  DelItemString(const key: string): boolean;
-      function  DelItem(const key: IPyObject): boolean;
+      function  DelItem(const key: IPyObject): boolean; overload;
+      function  DelItem(const key: TVarData): boolean; overload;
       function  Format(const format_spec: IPyObject): IPyObject;
       function  GetIter: IPyObject;
       function  GetAIter: IPyObject;
@@ -124,10 +140,6 @@ type
       function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
       function  CallOneArg(const arg: IPyObject): IPyObject;
       function  UnWrap: Pointer;
-
-    public
-      constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
-      destructor  Destroy; override;
 
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
       class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
@@ -151,14 +163,23 @@ type
       class function  FromVarData(const aVarData: TVarData): IPyObject;
 
       property Initialized   : boolean         read GetInitialized;
-      property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
-      property ObjRefOwner   : boolean         read GetObjRefOwner   write SetObjRefOwner;
+      property PyObject      : PPyObject       read GetPyObject        write SetPyObject;
+      property ObjRefOwner   : boolean         read GetObjRefOwner     write SetObjRefOwner;
       property RefCnt        : integer         read GetRefCnt;
       property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
       property AsString      : string          read GetAsString;
+      property AsAnsiString  : AnsiString      read GetAsAnsiString;
+      property AsWideString  : WideString      read GetAsWideString;
       property AsInteger     : C_Long          read GetAsInteger;
+      property AsCardinal    : C_ULong         read GetAsCardinal;
+      property AsInt64       : int64           read GetAsInt64;
+      property AsUInt64      : uint64          read GetAsUInt64;
       property AsDouble      : double          read GetAsDouble;
       property AsVariant     : Variant         read GetAsVariant;
+      property IsCallable    : boolean         read GetIsCallable;
+      property IsTuple       : boolean         read GetIsTuple;
+      property IsList        : boolean         read GetIsList;
+      property IsSequence    : boolean         read GetIsSequence;
   end;
 
 implementation
@@ -166,7 +187,8 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
   uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
-  uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone, uP4P.PyObjectVariantType;
+  uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone,
+  uP4P.PyObjectVariantType, uP4P.PyCallable;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -972,6 +994,18 @@ begin
     Result := nil;
 end;
 
+function TPyObject.GetItem(const key: TVarData): IPyObject;
+var
+  TempKey : IPyObject;
+begin
+  try
+    TempKey := FromVarData(key);
+    Result  := GetItem(TempKey);
+  finally
+    TempKey := nil;
+  end;
+end;
+
 function TPyObject.SetItem(const key, v: IPyObject): boolean;
 begin
   Result := Initialized and
@@ -979,6 +1013,20 @@ begin
             TPyObject.IsInitialized(key) and
             TPyObject.IsInitialized(v) and
             (PyObject_SetItem(FPyObject, key.PyObject, v.PyObject) = 0);
+end;
+
+function TPyObject.SetItem(const key, v: TVarData): boolean;
+var
+  TempKey, TempValue : IPyObject;
+begin
+  try
+    TempKey   := FromVarData(key);
+    TempValue := FromVarData(v);
+    Result    := SetItem(TempKey, TempValue);
+  finally
+    TempKey   := nil;
+    TempValue := nil;
+  end;
 end;
 
 function TPyObject.DelItemString(const key: string): boolean;
@@ -1001,6 +1049,18 @@ begin
             assigned(PyObject_DelItem) and
             TPyObject.IsInitialized(key) and
             (PyObject_DelItem(FPyObject, key.PyObject) <> -1);
+end;
+
+function TPyObject.DelItem(const key: TVarData): boolean;
+var
+  TempKey : IPyObject;
+begin
+  try
+    TempKey := FromVarData(key);
+    Result  := DelItem(TempKey);
+  finally
+    TempKey := nil;
+  end;
 end;
 
 function TPyObject.Format(const format_spec: IPyObject): IPyObject;
@@ -1324,12 +1384,77 @@ begin
       end;
 end;
 
+function TPyObject.GetAsAnsiString: AnsiString;
+var
+  TempStr : IPyObject;
+begin
+  if TPyUnicode.Check(self) then
+    Result := TPyUnicode.AsUTF8(self)
+   else
+    if TPyBytes.Check(self) then
+      Result := TPyBytes.AsAnsiString(self)
+     else
+      begin
+        TempStr := self.Str;
+
+        if TPyUnicode.Check(TempStr) then
+          Result := TPyUnicode.AsUTF8(TempStr)
+         else
+          Result := '';
+      end;
+end;
+
+function TPyObject.GetAsWideString: WideString;
+var
+  TempStr : IPyObject;
+  TempSize : Py_ssize_t;
+begin
+  if TPyUnicode.Check(self) then
+    Result := TPyUnicode.AsWideCharString(self, TempSize)
+   else
+    if TPyBytes.Check(self) then
+      Result := TPyBytes.AsWideString(self)
+     else
+      begin
+        TempStr := self.Str;
+
+        if TPyUnicode.Check(TempStr) then
+          Result := TPyUnicode.AsWideCharString(TempStr, TempSize)
+         else
+          Result := '';
+      end;
+end;
+
 function TPyObject.GetAsInteger: C_Long;
 begin
   if TPyLong.Check(self) then
     Result := TPyLong.AsLong(self)
    else
     Result := -1;
+end;
+
+function TPyObject.GetAsCardinal: C_ULong;
+begin
+  if TPyLong.Check(self) then
+    Result := TPyLong.AsUnsignedLong(self)
+   else
+    Result := C_ULong(-1);
+end;
+
+function TPyObject.GetAsInt64: int64;
+begin
+  if TPyLong.Check(self) then
+    Result := TPyLong.AsLongLong(self)
+   else
+    Result := -1;
+end;
+
+function TPyObject.GetAsUInt64: uint64;
+begin
+  if TPyLong.Check(self) then
+    Result := TPyLong.AsUnsignedLongLong(self)
+   else
+    Result := uint64(-1);
 end;
 
 function TPyObject.GetAsDouble: double;
@@ -1366,6 +1491,26 @@ begin
                 Result := TempDateTime
                else
                 Result := TPySequence.AsVariant(self);
+end;
+
+function TPyObject.GetIsCallable: boolean;
+begin
+  Result := TPyCallable.Check(self);
+end;
+
+function TPyObject.GetIsTuple: boolean;
+begin
+  Result := TPyTuple.Check(self);
+end;
+
+function TPyObject.GetIsList: boolean;
+begin
+  Result := TPyList.Check(self);
+end;
+
+function TPyObject.GetIsSequence: boolean;
+begin
+  Result := TPySequence.Check(self);
 end;
 
 procedure TPyObject.SetObjRefOwner(aValue: boolean);

@@ -46,8 +46,17 @@ type
     function  GetPyTypeObject: PPyTypeObject;
     function  GetTypeData(const cls: PyTypeObject): Pointer;
     function  GetAsString: string;
+    function  GetAsAnsiString: AnsiString;
+    function  GetAsWideString: WideString;
     function  GetAsInteger: C_Long;
+    function  GetAsCardinal: C_ULong;
+    function  GetAsInt64: int64;
+    function  GetAsUInt64: uint64;
     function  GetAsVariant: Variant;
+    function  GetIsCallable: boolean;
+    function  GetIsTuple: boolean;
+    function  GetIsList: boolean;
+    function  GetIsSequence: boolean;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -123,8 +132,10 @@ type
     function  Type_: IPyObject;
     function  Size: Py_ssize_t;
     function  Length: Py_ssize_t;
-    function  GetItem(const key: IPyObject): IPyObject;
-    function  SetItem(const key, v: IPyObject): boolean;
+    function  GetItem(const key: IPyObject): IPyObject; overload;
+    function  GetItem(const key: TVarData): IPyObject; overload;
+    function  SetItem(const key, v: IPyObject): boolean; overload;
+    function  SetItem(const key, v: TVarData): boolean; overload;
     function  DelItemString(const key: string): boolean;
     function  DelItem(const key: IPyObject): boolean;
     function  Format(const format_spec: IPyObject): IPyObject;
@@ -145,8 +156,16 @@ type
     property RefCnt        : integer         read GetRefCnt;
     property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
     property AsString      : string          read GetAsString;
+    property AsAnsiString  : AnsiString      read GetAsAnsiString;
     property AsInteger     : C_Long          read GetAsInteger;
+    property AsCardinal    : C_ULong         read GetAsCardinal;
+    property AsInt64       : int64           read GetAsInt64;
+    property AsUInt64      : uint64          read GetAsUInt64;
     property AsVariant     : Variant         read GetAsVariant;
+    property IsCallable    : boolean         read GetIsCallable;
+    property IsTuple       : boolean         read GetIsTuple;
+    property IsList        : boolean         read GetIsList;
+    property IsSequence    : boolean         read GetIsSequence;
   end;
 
   IPyLongExport = interface

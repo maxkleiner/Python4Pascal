@@ -21,6 +21,8 @@ type
     public
       class function Size(const ob: IPyObject): Py_ssize_t;
       class function AsString(const ob: IPyObject): string;
+      class function AsAnsiString(const ob: IPyObject): AnsiString;
+      class function AsWideString(const ob: IPyObject): WideString;
       class function AsBuffer(const ob: IPyObject): PByte;
       class function Repr(const ob: IPyObject; smartquotes: boolean): IPyObject;
       class procedure Concat(const bytes, newpart: IPyObject);
@@ -159,6 +161,22 @@ class function TPyBytes.AsString(const ob: IPyObject): string;
 begin
   if assigned(PyBytes_AsString) and TPyObject.IsInitialized(ob) then
     Result := PyUTF8ToString(PyBytes_AsString(ob.PyObject))
+   else
+    Result := '';
+end;
+
+class function TPyBytes.AsAnsiString(const ob: IPyObject): AnsiString;
+begin
+  if assigned(PyBytes_AsString) and TPyObject.IsInitialized(ob) then
+    Result := PyBytes_AsString(ob.PyObject)
+   else
+    Result := '';
+end;
+
+class function TPyBytes.AsWideString(const ob: IPyObject): WideString;
+begin
+  if assigned(PyBytes_AsString) and TPyObject.IsInitialized(ob) then
+    Result := {$IFDEF FPC}UTF8Decode{$ELSE}UTF8ToWidestring{$ENDIF}(PyBytes_AsString(ob.PyObject))
    else
     Result := '';
 end;
