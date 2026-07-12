@@ -41,6 +41,7 @@ type
       function  GetIsTuple: boolean;
       function  GetIsList: boolean;
       function  GetIsSequence: boolean;
+      function  GetIsMapping: boolean;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
@@ -80,6 +81,7 @@ type
       function  DelAttrString(const attr_name: string): boolean;
       function  HasAttrString(const attr_name: string): boolean;
       function  GetAttr(const attr_name: IPyObject): IPyObject;
+      function  GetAttr2(const attr_name: IPyObject): Pointer;
       function  GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
       function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
       function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
@@ -180,6 +182,7 @@ type
       property IsTuple       : boolean         read GetIsTuple;
       property IsList        : boolean         read GetIsList;
       property IsSequence    : boolean         read GetIsSequence;
+      property IsMapping     : boolean         read GetIsMapping;
   end;
 
 implementation
@@ -188,7 +191,7 @@ uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
   uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
   uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone,
-  uP4P.PyObjectVariantType, uP4P.PyCallable;
+  uP4P.PyObjectVariantType, uP4P.PyCallable, uP4P.PyMapping;
 
 constructor TPyObject.Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean);
 begin
@@ -602,10 +605,15 @@ end;
 
 function TPyObject.GetAttr(const attr_name: IPyObject): IPyObject;
 begin
+  Result := Wrap(GetAttr2(attr_name));
+end;
+
+function TPyObject.GetAttr2(const attr_name: IPyObject): Pointer;
+begin
   if Initialized and
      assigned(PyObject_GetAttr) and
      IsInitialized(attr_name) then
-    Result := Wrap(PyObject_GetAttr(PyObject, attr_name.PyObject))
+    Result := PyObject_GetAttr(PyObject, attr_name.PyObject)
    else
     Result := nil;
 end;
@@ -614,41 +622,52 @@ function TPyObject.GetOptionalAttr(const attr_name: IPyObject; out result_: IPyO
 var
   TempPointer : Pointer;
 begin
+  Result  := False;
+  result_ := nil;
+
   if GetOptionalAttr2(attr_name, TempPointer) then
     begin
       Result  := True;
       result_ := Wrap(TempPointer);
-    end
-   else
-    Result := False;
+    end;
 end;
 
 function TPyObject.GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
 var
   TempObj : PPyObject;
 begin
-  if Initialized and
-     assigned(PyObject_GetOptionalAttr) and
-     IsInitialized(attr_name) then
+  Result  := False;
+  result_ := nil;
+
+  if assigned(PyObject_GetOptionalAttr) then
     begin
-      Result  := (PyObject_GetOptionalAttr(PyObject, attr_name.PyObject, @TempObj) <> 0);
-      result_ := TempObj;
+      if Initialized and
+         IsInitialized(attr_name) then
+        begin
+          Result  := (PyObject_GetOptionalAttr(PyObject, attr_name.PyObject, @TempObj) <> 0);
+          result_ := TempObj;
+        end;
     end
    else
-    Result := False;
+    if HasAttr(attr_name) then
+      begin
+        Result  := True;
+        result_ := GetAttr2(attr_name);
+      end;
 end;
 
 function TPyObject.GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
 var
   TempPointer : Pointer;
 begin
+  Result  := False;
+  result_ := nil;
+
   if GetOptionalAttrString2(attr_name, TempPointer) then
     begin
       Result  := True;
       result_ := Wrap(TempPointer);
-    end
-   else
-    Result := False;
+    end;
 end;
 
 function TPyObject.GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
@@ -656,15 +675,24 @@ var
   TempObj  : PPyObject;
   TempName : AnsiString;
 begin
-  if Initialized and
-     assigned(PyObject_GetOptionalAttrString) then
+  Result  := False;
+  result_ := nil;
+
+  if assigned(PyObject_GetOptionalAttrString) then
     begin
-      TempName := StringToPyUTF8(attr_name);
-      Result   := (PyObject_GetOptionalAttrString(PyObject, PAnsiChar(TempName), @TempObj) <> 0);
-      result_  := TempObj;
+      if Initialized then
+        begin
+          TempName := StringToPyUTF8(attr_name);
+          Result   := (PyObject_GetOptionalAttrString(PyObject, PAnsiChar(TempName), @TempObj) <> 0);
+          result_  := TempObj;
+        end;
     end
    else
-    Result := False;
+    if HasAttrString(attr_name) then
+      begin
+        result_ := GetAttrString2(attr_name);
+        Result  := True;
+      end;
 end;
 
 function TPyObject.GetAttrAsInteger(const attr_name: string; out result_: integer): boolean;
@@ -1117,6 +1145,7 @@ begin
      assigned(PyObject_VectorcallDict) then
     begin
       TempArgsLen := System.length(args);
+
       if (TempArgsLen > 0) then
         begin
           SetLength(TempArgs, TempArgsLen);
@@ -1513,6 +1542,11 @@ begin
   Result := TPySequence.Check(self);
 end;
 
+function TPyObject.GetIsMapping: boolean;
+begin
+  Result := TPyMapping.Check(self);
+end;
+
 procedure TPyObject.SetObjRefOwner(aValue: boolean);
 begin
   FObjRefOwner := aValue;
@@ -1550,7 +1584,7 @@ end;
 
 function TPyObject.SameAs(const other: PPyObject): boolean;
 begin
-  Result := Initialized and TPy.Is_(PyObject, other);
+  Result := TPy.Is_(PyObject, other);
 end;
 
 end.

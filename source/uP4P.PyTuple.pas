@@ -35,6 +35,7 @@ type
       class function FromDateTime(aDateTime : TDateTime; DST: TPyDaylightSavingTime = dstUnknown): IPyObject; overload;
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
+      class function FromVarDataArray(const Arguments: TVarDataArray): IPyObject;
       class function AsDateTime(const aPyObject: IPyObject; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: TPyDaylightSavingTime): boolean; overload;
       class function AsDateTime(const aPyObject: IPyObject; var aDateTime : TDateTime): boolean; overload;
       class function AsStrings(const aPyObject: IPyObject; var aStringList: TStringList): boolean;
@@ -131,6 +132,26 @@ begin
     Result := FromDateTime(TDateTime(aVariant))
    else
     Result := nil;
+end;
+
+class function TPyTuple.FromVarDataArray(const Arguments: TVarDataArray): IPyObject;
+var
+  i, TempLen : integer;
+begin
+  Result := nil;
+
+  if (Length(Arguments) = 1) and VarIsEmptyParam(Variant(Arguments[0])) then
+    TempLen := 0
+   else
+    TempLen := Length(Arguments);
+
+  if (TempLen > 0) then
+    begin
+      Result := TPyTuple.New(TempLen);
+
+      for i := 0 to pred(TempLen) do
+        TPyTuple.SetItem(Result, i, TPyObject.FromVarData(Arguments[i]));
+    end;
 end;
 
 class function TPyTuple.FromVariant(const aVariant: Variant): IPyObject;

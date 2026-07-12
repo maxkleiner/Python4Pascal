@@ -50,13 +50,15 @@ type
     function  GetAsWideString: WideString;
     function  GetAsInteger: C_Long;
     function  GetAsCardinal: C_ULong;
-    function  GetAsInt64: int64;
+    function  GetAsInt64: Int64;
     function  GetAsUInt64: uint64;
+    function  GetAsDouble: double;
     function  GetAsVariant: Variant;
     function  GetIsCallable: boolean;
     function  GetIsTuple: boolean;
     function  GetIsList: boolean;
     function  GetIsSequence: boolean;
+    function  GetIsMapping: boolean;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -90,6 +92,7 @@ type
     function  DelAttrString(const attr_name: string): boolean;
     function  HasAttrString(const attr_name: string): boolean;
     function  GetAttr(const attr_name: IPyObject): IPyObject;
+    function  GetAttr2(const attr_name: IPyObject): Pointer;
     function  GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
     function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
     function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
@@ -137,7 +140,8 @@ type
     function  SetItem(const key, v: IPyObject): boolean; overload;
     function  SetItem(const key, v: TVarData): boolean; overload;
     function  DelItemString(const key: string): boolean;
-    function  DelItem(const key: IPyObject): boolean;
+    function  DelItem(const key: IPyObject): boolean; overload;
+    function  DelItem(const key: TVarData): boolean; overload;
     function  Format(const format_spec: IPyObject): IPyObject;
     function  GetIter: IPyObject;
     function  GetAIter: IPyObject;
@@ -151,21 +155,24 @@ type
     function  UnWrap: Pointer;
 
     property Initialized   : boolean         read GetInitialized;
-    property PyObject      : PPyObject       read GetPyObject      write SetPyObject;
-    property ObjRefOwner   : boolean         read GetObjRefOwner   write SetObjRefOwner;
+    property PyObject      : PPyObject       read GetPyObject        write SetPyObject;
+    property ObjRefOwner   : boolean         read GetObjRefOwner     write SetObjRefOwner;
     property RefCnt        : integer         read GetRefCnt;
     property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
     property AsString      : string          read GetAsString;
     property AsAnsiString  : AnsiString      read GetAsAnsiString;
+    property AsWideString  : WideString      read GetAsWideString;
     property AsInteger     : C_Long          read GetAsInteger;
     property AsCardinal    : C_ULong         read GetAsCardinal;
     property AsInt64       : int64           read GetAsInt64;
     property AsUInt64      : uint64          read GetAsUInt64;
+    property AsDouble      : double          read GetAsDouble;
     property AsVariant     : Variant         read GetAsVariant;
     property IsCallable    : boolean         read GetIsCallable;
     property IsTuple       : boolean         read GetIsTuple;
     property IsList        : boolean         read GetIsList;
     property IsSequence    : boolean         read GetIsSequence;
+    property IsMapping     : boolean         read GetIsMapping;
   end;
 
   IPyLongExport = interface

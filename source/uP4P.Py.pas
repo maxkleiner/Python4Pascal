@@ -301,7 +301,7 @@ end;
 class function TPy.GetConstant(constant_id: cardinal): IPyObject;
 begin
   if assigned(Py_GetConstant) and
-     (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
+     (constant_id in [Py_CONSTANT_FIRST..Py_CONSTANT_LAST]) then
     Result := TPyObject.Wrap(Py_GetConstant(constant_id))
    else
     Result := nil;
@@ -310,7 +310,7 @@ end;
 class function TPy.GetConstantBorrowed(constant_id: cardinal): IPyObject;
 begin
   if assigned(Py_GetConstantBorrowed) and
-     (constant_id in [Py_CONSTANT_NONE..Py_CONSTANT_EMPTY_TUPLE]) then
+     (constant_id in [Py_CONSTANT_FIRST..Py_CONSTANT_LAST]) then
     Result := TPyObject.Wrap(Py_GetConstantBorrowed(constant_id), False)
    else
     Result := nil;

@@ -214,6 +214,8 @@ const
   Py_CONSTANT_EMPTY_STR        = 7;
   Py_CONSTANT_EMPTY_BYTES      = 8;
   Py_CONSTANT_EMPTY_TUPLE      = 9;
+  Py_CONSTANT_FIRST            = Py_CONSTANT_NONE;
+  Py_CONSTANT_LAST             = Py_CONSTANT_EMPTY_TUPLE;
 
   Py_LT = 0;
   Py_LE = 1;

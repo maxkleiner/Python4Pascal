@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.Variants, System.SysUtils,
+    System.Classes, System.Variants, System.SysUtils, System.StrUtils,
   {$ELSE}
-    Classes, Variants, SysUtils,
+    Classes, Variants, SysUtils, StrUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -47,6 +47,7 @@ type
       function  RightPromotion(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;
 
       // Custom
+      function  CallObject(const V: TVarData; const AName: string; const Arguments: TVarDataArray): IPyObject;
       procedure AssignResult(var Left: TVarData; const aResult: IPyObject);
       procedure DoAddString(var Left: TVarData; const Right: TVarData);
       procedure DoAdd(var Left: TVarData; const Right: TVarData);
@@ -60,6 +61,8 @@ type
       procedure DoAnd(var Left: TVarData; const Right: TVarData);
       procedure DoOr(var Left: TVarData; const Right: TVarData);
       procedure DoXor(var Left: TVarData; const Right: TVarData);
+      procedure DoNegate(var Right: TVarData);
+      procedure DoNot(var Right: TVarData);
 
     public
       // TCustomVariantType
@@ -100,7 +103,8 @@ var
 implementation
 
 uses
-  uP4P.PyNumber;
+  uP4P.PyNumber, uP4P.PyTuple, uP4P.PyNone, uP4P.PyLong, uP4P.PyList,
+  uP4P.PySequence;
 
 procedure TPyObjectVariantType.AssignResult(var Left: TVarData; const aResult: IPyObject);
 begin
@@ -202,6 +206,22 @@ var
 begin
   TempResult := TPyNumber.Xor_(TPyObjectVarData(Left).VPyObject, TPyObjectVarData(Right).VPyObject);
   AssignResult(Left, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoNegate(var Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Negative(TPyObjectVarData(Right).VPyObject);
+  AssignResult(Right, TempResult);
+end;
+
+procedure TPyObjectVariantType.DoNot(var Right: TVarData);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyNumber.Invert(TPyObjectVarData(Right).VPyObject);
+  AssignResult(Right, TempResult);
 end;
 
 procedure TPyObjectVariantType.BinaryOp(var Left: TVarData; const Right: TVarData; const AOperator: TVarOp);
@@ -404,16 +424,99 @@ begin
 
 end;
 
-function TPyObjectVariantType.DoFunction(var Dest: TVarData; const V: TVarData;
-  const AName: string; const Arguments: TVarDataArray): Boolean;
+function TPyObjectVariantType.CallObject(const V: TVarData; const AName: string; const Arguments: TVarDataArray): IPyObject;
+var
+  TempContainer : TPyObject;
+  TempAttrib, TempArgs, TempKWs : IPyObject;
 begin
+  Result        := nil;
+  TempContainer := TPyObjectVarData(V).VPyObject;
 
+  if TempContainer.GetOptionalAttrString(AName, TempAttrib) then
+    begin
+      if TempAttrib.IsCallable then
+        begin
+          TempKWs  := nil; // fNamedParams
+          TempArgs := TPyTuple.FromVarDataArray(Arguments);
+
+          if TPyObject.IsInitialized(TempArgs) then
+            Result := TempAttrib.Call(TempArgs, TempKWs)
+           else
+            Result := TempAttrib.CallNoArgs;
+        end
+       else
+        if (Length(Arguments) = 1) and
+           (TempAttrib.IsSequence or TempAttrib.IsMapping) then
+          Result := TempAttrib.GetItem(Arguments[0]);
+    end
+   else
+    case AnsiIndexStr(AName, ['GetItem', 'SetItem', 'DeleteItem', 'GetSlice', 'SetSlice', 'DelSlice', 'Contains', 'Length']) of
+      0 : // GetItem
+        if (Length(Arguments) = 1) then
+          Result := TempAttrib.GetItem(Arguments[0]);
+
+      1 : // SetItem
+        if (Length(Arguments) = 2) then
+          begin
+            if TempAttrib.IsList then
+              TPyLong.FromLong(ord(TPyList.SetItem(TempAttrib, Arguments[0], Arguments[1])) - 1)
+             else
+              if TempAttrib.IsTuple then
+                TPyLong.FromLong(ord(TPyTuple.SetItem(TempAttrib, Arguments[0], Arguments[1])) - 1)
+               else
+                if TempAttrib.IsSequence then
+                  TPyLong.FromLong(ord(TPySequence.SetItem(TempAttrib, Arguments[0], Arguments[1])) - 1)
+                 else
+                  TPyLong.FromLong(ord(TempAttrib.SetItem(Arguments[0], Arguments[1])) - 1);
+          end;
+
+      2 : // DeleteItem
+        if (Length(Arguments) = 1) then
+          begin
+            TempAttrib.DelItem(Arguments[0]);
+            Result := TPyNone.New;
+          end;
+
+      3 : // GetSlice
+        if TempAttrib.IsSequence and (Length(Arguments) = 2) then
+          Result := TPySequence.GetSlice(TempAttrib, Arguments[0], Arguments[1]);
+
+      4 : // SetSlice
+        if TempAttrib.IsSequence and (Length(Arguments) = 3) then
+          Result := TPyLong.FromLong(ord(TPySequence.SetSlice(TempAttrib, Arguments[0], Arguments[1], Arguments[2])) - 1);
+
+      5 : // DelSlice
+        if TempAttrib.IsSequence and (Length(Arguments) = 2) then
+          Result := TPyLong.FromLong(ord(TPySequence.DelSlice(TempAttrib, Arguments[0], Arguments[1])) - 1);
+
+      6 : // Contains
+        if TempAttrib.IsSequence and (Length(Arguments) = 1) then
+          Result := TPyLong.FromLong(TPySequence.Contains(TempAttrib, Arguments[0]));
+
+      7 : Result := TPyLong.FromLong(TempAttrib.Length); // Length
+    end;
 end;
 
-function TPyObjectVariantType.DoProcedure(const V: TVarData;
-  const AName: string; const Arguments: TVarDataArray): Boolean;
+function TPyObjectVariantType.DoFunction(var Dest: TVarData; const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean;
+var
+  TempObjResult : IPyObject;
 begin
+  Result        := False;
+  TempObjResult := CallObject(V, AName, Arguments);
 
+  if TPyObject.IsInitialized(TempObjResult) then
+    begin
+      PyObjectVarDataCreate(Dest, TempObjResult);
+      Result := True;
+    end;
+end;
+
+function TPyObjectVariantType.DoProcedure(const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean;
+var
+  TempObjResult : IPyObject;
+begin
+  TempObjResult := CallObject(V, AName, Arguments);
+  Result        := TPyObject.IsInitialized(TempObjResult);
 end;
 
 {$IFDEF FPC}
@@ -443,40 +546,72 @@ begin
   Result := TPyObjectVarData(V).VPyObject;
 end;
 
-function TPyObjectVariantType.GetProperty(var Dest: TVarData; const V: TVarData;
-  const AName: string): Boolean;
+function TPyObjectVariantType.GetProperty(var Dest: TVarData; const V: TVarData; const AName: string): Boolean;
+var
+  TempContainer : TPyObject;
+  TempAttrib    : IPyObject;
 begin
+  Result        := False;
+  TempContainer := TPyObjectVarData(V).VPyObject;
 
+  if TempContainer.GetOptionalAttrString(AName, TempAttrib) then
+    begin
+      PyObjectVarDataCreate(Dest, TempAttrib);
+      Result := True;
+    end
+   else
+    if SameText(AName, 'Length') and (TempAttrib.IsSequence or TempAttrib.IsMapping) then
+      begin
+        PyObjectVarDataCreate(Dest, TPyLong.FromLong(TempAttrib.Length));
+        Result := True;
+      end;
 end;
 
 function TPyObjectVariantType.IsClear(const V: TVarData): Boolean;
 begin
-
+  Result := not(assigned(TPyObjectVarData(V).VPyObject)) or
+            TPyObjectVarData(V).VPyObject.IsNoneSingleton;
 end;
 
-function TPyObjectVariantType.LeftPromotion(const V: TVarData;
-  const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean;
+function TPyObjectVariantType.LeftPromotion(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean;
 begin
+  if (AOperator = opAdd) and VarDataIsStr(V) then
+    RequiredVarType := varUString
+   else
+    RequiredVarType := VarType;
 
+  Result := True;
 end;
 
 function TPyObjectVariantType.RightPromotion(const V: TVarData;
   const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean;
 begin
-
+  if (V.VType <> varInt64) then
+    begin
+      RequiredVarType := VarType;
+      Result          := True;
+    end
+   else
+    Result := False;
 end;
 
 function TPyObjectVariantType.SetProperty({$IFDEF FPC}var{$ELSE}const{$ENDIF} V: TVarData;
   const AName: string; const Value: TVarData): Boolean;
 begin
-
+  TPyObjectVarData(V).VPyObject.SetAttrString(AName, TPyObject.FromVarData(Value));
+  Result := True;
 end;
 
-procedure TPyObjectVariantType.UnaryOp(var Right: TVarData;
-  const AOperator: TVarOp);
+procedure TPyObjectVariantType.UnaryOp(var Right: TVarData; const AOperator: TVarOp);
 begin
-  inherited;
-
+  if (Right.VType = VarType) then
+    case AOperator of
+      opNegate : DoNegate(Right);
+      opNot    : DoNot(Right);
+      else       RaiseInvalidOp;
+    end
+   else
+    RaiseInvalidOp;
 end;
 
 procedure TPyObjectVariantType.PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
