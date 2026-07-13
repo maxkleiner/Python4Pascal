@@ -39,6 +39,8 @@ type
   ///</summary>
   TPyObjectVariantType = class(TInvokeableVariantType, IVarInstanceReference)
     protected
+      fNamedParams : TNamedParamArray;
+
       // IVarInstanceReference
       function  GetInstance(const V: TVarData): TObject;
 
@@ -104,7 +106,7 @@ implementation
 
 uses
   uP4P.PyNumber, uP4P.PyTuple, uP4P.PyNone, uP4P.PyLong, uP4P.PyList,
-  uP4P.PySequence;
+  uP4P.PySequence, uP4P.PyDict;
 
 procedure TPyObjectVariantType.AssignResult(var Left: TVarData; const aResult: IPyObject);
 begin
@@ -416,19 +418,64 @@ begin
     PyObjectVarDataCreate(Dest, TPyObjectVarData(Source).VPyObject);
 end;
 
-procedure TPyObjectVariantType.DispInvoke(Dest: PVarData;
-  {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData;
-  CallDesc: PCallDesc; Params: Pointer);
+procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
+const
+  CDoMethod    = $01;
+  CPropertyGet = $02;
+  CPropertySet = $04;
+Var
+  TempCallDesc : TCallDesc;
+  LNamePtr : PAnsiChar;
+  LNamedArgStart : Integer;
+  I : integer;
 begin
-  inherited;
+  if (CallDesc^.CallType = CPropertyGet) and (CallDesc^.ArgCount = 1) then
+    begin
+      SetLength(fNamedParams, 0);
 
+      TempCallDesc          := CallDesc^;
+      TempCallDesc.CallType := CDoMethod;
+
+      inherited DispInvoke(Dest, Source, @TempCallDesc, Params);
+    end
+   else
+    begin
+      if (CallDesc^.CallType = CDoMethod) then
+        begin
+          SetLength(fNamedParams, CallDesc^.NamedArgCount);
+
+          if (CallDesc^.NamedArgCount > 0) then
+            begin
+              LNamePtr       := PAnsiChar(@CallDesc^.ArgTypes[CallDesc^.ArgCount]);
+              LNamedArgStart := CallDesc^.ArgCount - CallDesc^.NamedArgCount;
+
+              // Skip function Name
+              for I := 0 to CallDesc^.NamedArgCount - 1 do
+                begin
+                  LNamePtr := LNamePtr + Succ(Length(LNamePtr));
+
+                  fNamedParams[I].Index := I + LNamedArgStart;
+                  fNamedParams[I].Name  := LNamePtr;
+                end;
+            end;
+        end
+       else
+        SetLength(fNamedParams, 0);
+
+      inherited DispInvoke(Dest, Source, CallDesc, Params);
+    end;
 end;
 
 function TPyObjectVariantType.CallObject(const V: TVarData; const AName: string; const Arguments: TVarDataArray): IPyObject;
 var
   TempContainer : TPyObject;
   TempAttrib, TempArgs, TempKWs : IPyObject;
+  TempNamedParams : TNamedParamArray;
+  TempMaxLength : integer;
 begin
+  TempNamedParams := System.Copy(fNamedParams);
+  SetLength(fNamedParams, 0);
+
   Result        := nil;
   TempContainer := TPyObjectVarData(V).VPyObject;
 
@@ -436,8 +483,16 @@ begin
     begin
       if TempAttrib.IsCallable then
         begin
-          TempKWs  := nil; // fNamedParams
-          TempArgs := TPyTuple.FromVarDataArray(Arguments);
+          if (Length(Arguments) = 1) and VarIsEmptyParam(Variant(Arguments[0])) then
+            TempMaxLength := 0
+           else
+            TempMaxLength := Length(Arguments);
+
+          if (length(TempNamedParams) > 0) then
+            TempMaxLength := TempNamedParams[0].Index;
+
+          TempKWs  := TPyDict.FromNamedParamArray(TempNamedParams, Arguments);
+          TempArgs := TPyTuple.FromVarDataArray(Arguments, TempMaxLength);
 
           if TPyObject.IsInitialized(TempArgs) then
             Result := TempAttrib.Call(TempArgs, TempKWs)

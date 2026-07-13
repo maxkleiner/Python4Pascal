@@ -35,7 +35,7 @@ type
       class function FromDateTime(aDateTime : TDateTime; DST: TPyDaylightSavingTime = dstUnknown): IPyObject; overload;
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
-      class function FromVarDataArray(const Arguments: TVarDataArray): IPyObject;
+      class function FromVarDataArray(const Arguments: TVarDataArray; aMaxLength: integer): IPyObject;
       class function AsDateTime(const aPyObject: IPyObject; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: TPyDaylightSavingTime): boolean; overload;
       class function AsDateTime(const aPyObject: IPyObject; var aDateTime : TDateTime): boolean; overload;
       class function AsStrings(const aPyObject: IPyObject; var aStringList: TStringList): boolean;
@@ -44,6 +44,11 @@ type
 implementation
 
 uses
+  {$IFDEF DELPHI16_UP}
+    System.Math,
+  {$ELSE}
+    Math,
+  {$ENDIF}
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyUnicode, uP4P.PyLong;
 
 class function TPyTuple.New(len: Py_ssize_t): IPyObject;
@@ -134,16 +139,12 @@ begin
     Result := nil;
 end;
 
-class function TPyTuple.FromVarDataArray(const Arguments: TVarDataArray): IPyObject;
+class function TPyTuple.FromVarDataArray(const Arguments: TVarDataArray; aMaxLength: integer): IPyObject;
 var
   i, TempLen : integer;
 begin
-  Result := nil;
-
-  if (Length(Arguments) = 1) and VarIsEmptyParam(Variant(Arguments[0])) then
-    TempLen := 0
-   else
-    TempLen := Length(Arguments);
+  Result  := nil;
+  TempLen := min(Length(Arguments), aMaxLength);
 
   if (TempLen > 0) then
     begin

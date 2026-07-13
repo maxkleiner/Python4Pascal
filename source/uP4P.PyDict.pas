@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Variants,
   {$ELSE}
-    Classes,
+    Classes, Variants,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -59,6 +59,7 @@ type
       class function Watch(watcher_id: integer; const dict: IPyObject): boolean;
       class function Unwatch(watcher_id: integer; const dict: IPyObject): boolean;
       class function FromStringsArray(const aKeys: TStringList; const aValues: array of const): IPyObject;
+      class function FromNamedParamArray(const NamedParamArray: TNamedParamArray; const Arguments: TVarDataArray): IPyObject;
   end;
 
 implementation
@@ -457,6 +458,24 @@ begin
 
       for i := 0 to pred(TempLen) do
         TPyDict.SetItem(Result, aKeys[i], TPyObject.FromVarRec(aValues[i]));
+    end;
+end;
+
+class function TPyDict.FromNamedParamArray(const NamedParamArray: TNamedParamArray; const Arguments: TVarDataArray): IPyObject;
+var
+  i, TempLen, TempArgLen : integer;
+begin
+  Result     := nil;
+  TempLen    := length(NamedParamArray);
+  TempArgLen := length(Arguments);
+
+  if (TempLen > 0) then
+    begin
+      Result := TPyDict.New;
+
+      for i := 0 to pred(TempLen) do
+        if (NamedParamArray[i].Index >= 0) and (NamedParamArray[i].Index < TempArgLen) then
+          TPyDict.SetItemString(Result, NamedParamArray[i].Name, TPyObject.FromVarData(Arguments[NamedParamArray[i].Index]));
     end;
 end;
 
