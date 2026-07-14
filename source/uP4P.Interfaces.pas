@@ -59,6 +59,11 @@ type
     function  GetIsList: boolean;
     function  GetIsSequence: boolean;
     function  GetIsMapping: boolean;
+    function  GetIsFloat: boolean;
+    function  GetIsLong: boolean;
+    function  GetIsBool: boolean;
+    function  GetIsUnicode: boolean;
+    function  GetIsBytes: boolean;
     procedure SetObjRefOwner(aValue: boolean);
     procedure SetPyObject(aValue: PPyObject);
     function  IsTrueSingleton: boolean;
@@ -152,6 +157,7 @@ type
     function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
     function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
     function  CallOneArg(const arg: IPyObject): IPyObject;
+    function  CastValueAsVariant: Variant;
     function  UnWrap: Pointer;
 
     property Initialized   : boolean         read GetInitialized;
@@ -173,6 +179,11 @@ type
     property IsList        : boolean         read GetIsList;
     property IsSequence    : boolean         read GetIsSequence;
     property IsMapping     : boolean         read GetIsMapping;
+    property IsFloat       : boolean         read GetIsFloat;
+    property IsLong        : boolean         read GetIsLong;
+    property IsBool        : boolean         read GetIsBool;
+    property IsUnicode     : boolean         read GetIsUnicode;
+    property IsBytes       : boolean         read GetIsBytes;
   end;
 
   IPyLongExport = interface

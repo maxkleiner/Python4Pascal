@@ -41,12 +41,13 @@ type
       class procedure SetTrace(func: Py_tracefunc; const obj: IPyObject);
       class procedure SetTraceAllThreads(func: Py_tracefunc; const obj: IPyObject);
       class function MergeCompilerFlags(const cf: PyCompilerFlags): boolean;
+      class function EvalString(const code: string): IPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyThreadState;
+  uP4P.MiscFunctions, uP4P.PyThreadState, uP4P.PyImport, uP4P.PyModule, uP4P.Py;
 
 class function TPyEval.EvalCode(const co, globals, locals: IPyObject): IPyObject;
 var
@@ -295,6 +296,28 @@ class function TPyEval.MergeCompilerFlags(const cf: PyCompilerFlags): boolean;
 begin
   Result := assigned(PyEval_MergeCompilerFlags) and
             (PyEval_MergeCompilerFlags(@cf) = 0);
+end;
+
+class function TPyEval.EvalString(const code: string): IPyObject;
+var
+  TempBytecode, TempGlobals, TempLocals, TempMainModule : IPyObject;
+begin
+  Result         := nil;
+  TempMainModule := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+
+  if TPyObject.IsInitialized(TempMainModule) then
+    try
+      TempLocals   := TPyModule.GetDict(TempMainModule);
+      TempGlobals  := TempLocals;
+      TempBytecode := TPy.CompileString(code);
+
+      if TPyObject.IsInitialized(TempBytecode) then
+        Result := TPyEval.EvalCode(TempBytecode, TempGlobals, TempLocals);
+    finally
+      TempMainModule := nil;
+      TempLocals     := nil;
+      TempGlobals    := nil;
+    end;
 end;
 
 end.

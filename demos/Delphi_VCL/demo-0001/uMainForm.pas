@@ -6,19 +6,23 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
-  uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
+  uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants, Vcl.ExtCtrls;
 
 type
   TMainForm = class(TForm)
     InitChk: TCheckBox;
     Memo1: TMemo;
-    RunBtn: TButton;
-    CodeEdt: TEdit;
+    EvaluateBtn: TButton;
     Run2Btn: TButton;
+    Splitter1: TSplitter;
+    CodeMem: TMemo;
+    Panel1: TPanel;
+    Button1: TButton;
     procedure InitChkClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure RunBtnClick(Sender: TObject);
     procedure Run2BtnClick(Sender: TObject);
+    procedure EvaluateBtnClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
@@ -83,47 +87,33 @@ end;
 
 procedure TMainForm.Run2BtnClick(Sender: TObject);
 begin
-  if TPyRun.SimpleString(CodeEdt.Text) then
+  if TPyRun.SimpleString(CodeMem.Text) then
     Memo1.Lines.Add('Code run correctly.')
    else
     Memo1.Lines.Add('There was an error running the code.');
 end;
 
-procedure TMainForm.RunBtnClick(Sender: TObject);
+procedure TMainForm.Button1Click(Sender: TObject);
 var
-  TempBytecode, TempGlobals, TempLocals, TempResult, TempMainModule : IPyObject;
+  TempMainModObj : IPyObject;
+  TempClass, TempMainModVar : Variant;
 begin
-  TempMainModule := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+  TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+  TempMainModVar := TempMainModObj.AsVariant;
+  TempClass      := TempMainModVar.MyClass();
+  Memo1.Lines.Add(inttostr(TempClass.x));
+end;
 
-  if TPyObject.IsInitialized(TempMainModule) then
-    begin
-      try
-        Memo1.Lines.Add(MAIN_MODULE_NAME + ' module obtained correctly.');
+procedure TMainForm.EvaluateBtnClick(Sender: TObject);
+var
+  TempResult : IPyObject;
+begin
+  TempResult := TPyEval.EvalString(CodeMem.Text);
 
-        TempLocals  := TPyModule.GetDict(TempMainModule);
-        TempGlobals := TempLocals;
-
-        TempBytecode := TPy.CompileString(CodeEdt.Text);
-
-        if TPyObject.IsInitialized(TempBytecode) then
-          begin
-            Memo1.Lines.Add('Code compiled correctly.');
-
-            TempResult  := TPyEval.EvalCode(TempBytecode, TempGlobals, TempLocals);
-
-            if TPyObject.IsInitialized(TempResult) then
-              Memo1.Lines.Add('Bytecode evaluated correctly.')
-             else
-              Memo1.Lines.Add('There was an error evaluating the bytecode.')
-          end
-         else
-          Memo1.Lines.Add('There was an error compiling the code.');
-      finally
-        TempMainModule := nil;
-      end;
-    end
+  if TPyObject.IsInitialized(TempResult) then
+    Memo1.Lines.Add('Code evaluated correctly. Result: ' + quotedstr(TempResult.AsString))
    else
-    Memo1.Lines.Add('There was an error getting the __main__ module.');
+    Memo1.Lines.Add('There was an error evaluating the code.')
 end;
 
 end.

@@ -18,9 +18,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="52"/>
+        <TopLine Value="55"/>
         <CursorPos X="11" Y="66"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -112,9 +111,10 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.Types.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="317"/>
-        <CursorPos X="3" Y="409"/>
+        <TopLine Value="356"/>
+        <CursorPos X="27" Y="372"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -246,7 +246,7 @@
       </Position>
       <Position>
         <Filename Value="uMainForm.pas"/>
-        <Caret Line="66" Column="11" TopLine="41"/>
+        <Caret Line="66" Column="11" TopLine="55"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -94,6 +94,7 @@ type
 
       // Custom
       procedure PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
+      procedure PyObjectVariantCreate(var Dest: Variant; const aObject: IPyObject);
   end;
 
 var
@@ -380,7 +381,7 @@ begin
 
     else
       begin
-        TempVariant := TPyObjectVarData(Source).VPyObject.AsVariant;
+        TempVariant := TPyObjectVarData(Source).VPyObject.CastValueAsVariant;
         VarDataCastTo(Dest, TVarData(TempVariant), AVarType);
       end;
   end;
@@ -422,7 +423,6 @@ procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[R
 const
   CDoMethod    = $01;
   CPropertyGet = $02;
-  CPropertySet = $04;
 Var
   TempCallDesc : TCallDesc;
   LNamePtr : PAnsiChar;
@@ -679,6 +679,14 @@ begin
       TPyObjectVarData(Dest).VType     := VarType;
       TPyObjectVarData(Dest).VPyObject := TPyObject.Create(aObject.PyObject, True, False);
     end;
+end;
+
+procedure TPyObjectVariantType.PyObjectVariantCreate(var Dest: Variant; const aObject: IPyObject);
+var
+  TempDest : TVarData;
+begin
+  PyObjectVarDataCreate(TempDest, aObject);
+  Dest := Variant(TempDest);
 end;
 
 initialization

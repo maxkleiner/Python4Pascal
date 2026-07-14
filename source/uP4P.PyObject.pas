@@ -42,6 +42,11 @@ type
       function  GetIsList: boolean;
       function  GetIsSequence: boolean;
       function  GetIsMapping: boolean;
+      function  GetIsFloat: boolean;
+      function  GetIsLong: boolean;
+      function  GetIsBool: boolean;
+      function  GetIsUnicode: boolean;
+      function  GetIsBytes: boolean;
 
       procedure SetObjRefOwner(aValue: boolean);
       procedure SetPyObject(aValue: PPyObject); virtual;
@@ -141,6 +146,7 @@ type
       function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
       function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
       function  CallOneArg(const arg: IPyObject): IPyObject;
+      function  CastValueAsVariant: Variant;
       function  UnWrap: Pointer;
 
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
@@ -183,6 +189,11 @@ type
       property IsList        : boolean         read GetIsList;
       property IsSequence    : boolean         read GetIsSequence;
       property IsMapping     : boolean         read GetIsMapping;
+      property IsFloat       : boolean         read GetIsFloat;
+      property IsLong        : boolean         read GetIsLong;
+      property IsBool        : boolean         read GetIsBool;
+      property IsUnicode     : boolean         read GetIsUnicode;
+      property IsBytes       : boolean         read GetIsBytes;
   end;
 
 implementation
@@ -1495,22 +1506,27 @@ begin
 end;
 
 function TPyObject.GetAsVariant: Variant;
+begin
+  PyObjectVariantType.PyObjectVariantCreate(Result, self);
+end;
+
+function TPyObject.CastValueAsVariant: Variant;
 var
   TempDateTime : TDateTime;
 begin
-  if TPyFloat.Check(self) then
+  if IsFloat then
     Result := TPyFloat.AsDouble(self)
    else
-    if TPyBool.Check(self) then
+    if IsBool then
       Result := IsTrue
      else
-      if TPyLong.Check(self) then
+      if IsLong then
         Result := TPyLong.AsLong(self)
        else
-        if TPyUnicode.Check(self) then
+        if IsUnicode then
           Result := PyUTF8ToString(TPyUnicode.AsUTF8(self))
          else
-          if TPyBytes.Check(self) then
+          if IsBytes then
             Result := TPyBytes.AsString(self)
            else
             if TPyTimeStruct.AsDateTime(self, TempDateTime) then
@@ -1545,6 +1561,31 @@ end;
 function TPyObject.GetIsMapping: boolean;
 begin
   Result := TPyMapping.Check(self);
+end;
+
+function TPyObject.GetIsFloat: boolean;
+begin
+  Result := TPyFloat.Check(self);
+end;
+
+function TPyObject.GetIsLong: boolean;
+begin
+  Result := TPyLong.Check(self);
+end;
+
+function TPyObject.GetIsBool: boolean;
+begin
+  Result := TPyBool.Check(self);
+end;
+
+function TPyObject.GetIsUnicode: boolean;
+begin
+  Result := TPyUnicode.Check(self);
+end;
+
+function TPyObject.GetIsBytes: boolean;
+begin
+  Result := TPyBytes.Check(self);
 end;
 
 procedure TPyObject.SetObjRefOwner(aValue: boolean);
