@@ -1,10 +1,12 @@
-program demo0001;
+program SimplePythonCodeRunner;
 
 {$MODE Delphi}
 
 uses
   Forms, Interfaces,
   uMainForm in 'uMainForm.pas' {MainForm};
+
+{$R *.res}
 
 begin
   Application.Initialize;

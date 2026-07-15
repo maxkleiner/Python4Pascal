@@ -1535,7 +1535,7 @@ begin
               if TPyDateTime.AsDateTime(self, TempDateTime) then
                 Result := TempDateTime
                else
-                Result := TPySequence.AsVariant(self);
+                Result := TPySequence.CastValueAsVariant(self);
 end;
 
 function TPyObject.GetIsCallable: boolean;

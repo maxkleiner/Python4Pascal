@@ -1,9 +1,10 @@
-program demo0002;
+program PythonVariants;
+
+{$MODE Delphi}
 
 uses
-  Vcl.Forms,
-  uMainForm in 'uMainForm.pas' {MainForm},
-  uCustomThread in 'uCustomThread.pas';
+  Forms, Interfaces,
+  uMainForm in 'uMainForm.pas' {MainForm};
 
 {$R *.res}
 

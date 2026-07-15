@@ -47,7 +47,7 @@ type
       class function Index(const o, value: IPyObject): Py_ssize_t;
       class function InPlaceConcat(const o1, o2: IPyObject): IPyObject;
       class function InPlaceRepeat(const o: IPyObject; count_: Py_ssize_t): IPyObject;
-      class function AsVariant(const o: IPyObject): Variant;
+      class function CastValueAsVariant(const o: IPyObject): Variant;
   end;
 
 implementation
@@ -328,7 +328,7 @@ begin
     Result := nil;
 end;
 
-class function TPySequence.AsVariant(const o: IPyObject): Variant;
+class function TPySequence.CastValueAsVariant(const o: IPyObject): Variant;
 var
   i, TempLen : integer;
   TempItem : IPyObject;
@@ -346,7 +346,7 @@ begin
               TempItem := TPySequence.GetItem(o, i);
 
               if TPyObject.IsInitialized(TempItem) then
-                Result[i] := TempItem.AsVariant
+                Result[i] := TempItem.CastValueAsVariant
                else
                 Result[i] := null;
             end;

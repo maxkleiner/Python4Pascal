@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'P4P demo 0001'
+  Caption = 'Simple Python Code Runner'
   ClientHeight = 561
   ClientWidth = 624
   Color = clBtnFace
@@ -16,6 +16,7 @@ object MainForm: TMainForm
   Font.Style = []
   Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
@@ -27,7 +28,7 @@ object MainForm: TMainForm
     ExplicitTop = 0
     ExplicitWidth = 312
   end
-  object Memo1: TMemo
+  object LogMem: TMemo
     Left = 0
     Top = 432
     Width = 624
@@ -36,7 +37,6 @@ object MainForm: TMainForm
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
-    ExplicitTop = 312
   end
   object CodeMem: TMemo
     Left = 0
@@ -44,13 +44,17 @@ object MainForm: TMainForm
     Width = 624
     Height = 395
     Align = alClient
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Consolas'
+    Font.Style = []
     Lines.Strings = (
-      'class MyClass:'
-      '  x = 5')
+      'print("Hello world!")'
+      '')
+    ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitTop = 41
-    ExplicitHeight = 268
   end
   object Panel1: TPanel
     Left = 0
@@ -59,58 +63,29 @@ object MainForm: TMainForm
     Height = 34
     Align = alTop
     BevelOuter = bvNone
-    Padding.Left = 5
-    Padding.Top = 5
-    Padding.Right = 5
-    Padding.Bottom = 5
     TabOrder = 2
     DesignSize = (
       624
       34)
-    object InitChk: TCheckBox
-      Left = 5
-      Top = 5
-      Width = 145
-      Height = 24
-      Align = alLeft
-      Caption = 'Initialize Python'
-      TabOrder = 0
-      OnClick = InitChkClick
-      ExplicitLeft = 9
-      ExplicitTop = 13
-      ExplicitHeight = 17
-    end
     object EvaluateBtn: TButton
-      Left = 355
+      Left = 353
       Top = 5
       Width = 129
       Height = 24
       Anchors = [akTop, akRight]
       Caption = 'Evaluate code'
-      TabOrder = 1
+      TabOrder = 0
       OnClick = EvaluateBtnClick
     end
     object Run2Btn: TButton
-      Left = 490
+      Left = 488
       Top = 5
       Width = 129
       Height = 24
-      Align = alRight
+      Anchors = [akTop, akRight]
       Caption = 'Run code'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = Run2BtnClick
-      ExplicitLeft = 392
-      ExplicitTop = 10
-      ExplicitHeight = 25
-    end
-    object Button1: TButton
-      Left = 232
-      Top = 3
-      Width = 75
-      Height = 25
-      Caption = 'Button1'
-      TabOrder = 3
-      OnClick = Button1Click
     end
   end
 end

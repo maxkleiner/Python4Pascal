@@ -93,7 +93,7 @@ type
       procedure DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
 
       // Custom
-      procedure PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
+      function PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject): boolean;
       procedure PyObjectVariantCreate(var Dest: Variant; const aObject: IPyObject);
   end;
 
@@ -554,16 +554,10 @@ end;
 
 function TPyObjectVariantType.DoFunction(var Dest: TVarData; const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean;
 var
-  TempObjResult : IPyObject;
+  TempResult : IPyObject;
 begin
-  Result        := False;
-  TempObjResult := CallObject(V, AName, Arguments);
-
-  if TPyObject.IsInitialized(TempObjResult) then
-    begin
-      PyObjectVarDataCreate(Dest, TempObjResult);
-      Result := True;
-    end;
+  TempResult := CallObject(V, AName, Arguments);
+  Result     := PyObjectVarDataCreate(Dest, TempResult);
 end;
 
 function TPyObjectVariantType.DoProcedure(const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean;
@@ -610,16 +604,10 @@ begin
   TempContainer := TPyObjectVarData(V).VPyObject;
 
   if TempContainer.GetOptionalAttrString(AName, TempAttrib) then
-    begin
-      PyObjectVarDataCreate(Dest, TempAttrib);
-      Result := True;
-    end
+    Result := PyObjectVarDataCreate(Dest, TempAttrib)
    else
     if SameText(AName, 'Length') and (TempAttrib.IsSequence or TempAttrib.IsMapping) then
-      begin
-        PyObjectVarDataCreate(Dest, TPyLong.FromLong(TempAttrib.Length));
-        Result := True;
-      end;
+      Result := PyObjectVarDataCreate(Dest, TPyLong.FromLong(TempAttrib.Length));
 end;
 
 function TPyObjectVariantType.IsClear(const V: TVarData): Boolean;
@@ -669,8 +657,9 @@ begin
     RaiseInvalidOp;
 end;
 
-procedure TPyObjectVariantType.PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject);
+function TPyObjectVariantType.PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject): boolean;
 begin
+  Result := False;
   VarDataClear(Dest);
 
   if TPyObject.IsInitialized(aObject) then
@@ -678,6 +667,7 @@ begin
       aObject.IncRef;
       TPyObjectVarData(Dest).VType     := VarType;
       TPyObjectVarData(Dest).VPyObject := TPyObject.Create(aObject.PyObject, True, False);
+      Result := True;
     end;
 end;
 
@@ -685,8 +675,10 @@ procedure TPyObjectVariantType.PyObjectVariantCreate(var Dest: Variant; const aO
 var
   TempDest : TVarData;
 begin
-  PyObjectVarDataCreate(TempDest, aObject);
-  Dest := Variant(TempDest);
+  if PyObjectVarDataCreate(TempDest, aObject) then
+    Dest := Variant(TempDest)
+   else
+    Dest := null;
 end;
 
 initialization

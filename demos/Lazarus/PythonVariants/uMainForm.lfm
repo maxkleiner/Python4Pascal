@@ -1,0 +1,88 @@
+object MainForm: TMainForm
+  Left = 0
+  Height = 561
+  Top = 0
+  Width = 640
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Python Variants'
+  ClientHeight = 561
+  ClientWidth = 640
+  Color = clBtnFace
+  Constraints.MinHeight = 480
+  Constraints.MinWidth = 640
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 429
+    Width = 640
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object LogMem: TMemo
+    Left = 0
+    Height = 129
+    Top = 432
+    Width = 640
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssBoth
+    TabOrder = 0
+  end
+  object CodeMem: TMemo
+    Left = 0
+    Height = 395
+    Top = 34
+    Width = 640
+    Align = alClient
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Consolas'
+    Lines.Strings = (
+      'class MyClass:'
+      '    x = 5'
+      '    def boolean_test():'
+      '        return True'
+      '    def integer_test():'
+      '        return 9'
+      '    def float_test():'
+      '        return 3.7'
+      '    def string_test():'
+      '        return "test result"'
+      ''
+    )
+    ParentFont = False
+    ScrollBars = ssBoth
+    TabOrder = 1
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 34
+    ClientWidth = 640
+    ParentBackground = False
+    TabOrder = 2
+    object Run2Btn: TButton
+      Left = 408
+      Height = 24
+      Top = 5
+      Width = 227
+      Caption = 'Run code'
+      TabOrder = 0
+      OnClick = Run2BtnClick
+    end
+  end
+end

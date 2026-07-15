@@ -1,0 +1,92 @@
+object MainForm: TMainForm
+  Left = 0
+  Height = 561
+  Top = 0
+  Width = 640
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Simple Python Code Runner'
+  ClientHeight = 561
+  ClientWidth = 640
+  Color = clBtnFace
+  Constraints.MinHeight = 480
+  Constraints.MinWidth = 640
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 429
+    Width = 640
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 129
+    Top = 432
+    Width = 640
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssBoth
+    TabOrder = 0
+  end
+  object CodeMem: TMemo
+    Left = 0
+    Height = 395
+    Top = 34
+    Width = 640
+    Align = alClient
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Consolas'
+    Font.Pitch = fpFixed
+    Font.Quality = fqDraft
+    Lines.Strings = (
+      'print("Hello world!")'
+      ''
+    )
+    ParentFont = False
+    ScrollBars = ssBoth
+    TabOrder = 1
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 34
+    ClientWidth = 640
+    ParentBackground = False
+    TabOrder = 2
+    object EvaluateBtn: TButton
+      Left = 371
+      Height = 24
+      Top = 5
+      Width = 129
+      Anchors = [akTop, akRight]
+      Caption = 'Evaluate code'
+      TabOrder = 0
+      OnClick = EvaluateBtnClick
+    end
+    object Run2Btn: TButton
+      Left = 506
+      Height = 24
+      Top = 5
+      Width = 129
+      Anchors = [akTop, akRight]
+      Caption = 'Run code'
+      TabOrder = 1
+      OnClick = Run2BtnClick
+    end
+  end
+end
