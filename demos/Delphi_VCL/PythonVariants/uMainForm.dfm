@@ -20,7 +20,7 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 429
+    Top = 317
     Width = 624
     Height = 3
     Cursor = crVSplit
@@ -30,9 +30,9 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 432
+    Top = 320
     Width = 624
-    Height = 129
+    Height = 241
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
@@ -42,7 +42,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 34
     Width = 624
-    Height = 395
+    Height = 283
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -52,18 +52,19 @@ object MainForm: TMainForm
     Lines.Strings = (
       'class MyClass:'
       '    x = 5'
-      '    def boolean_test():'
+      '    def boolean_test(self):'
       '        return True'
-      '    def integer_test():'
+      '    def integer_test(self):'
       '        return 9'
-      '    def float_test():'
+      '    def float_test(self):'
       '        return 3.7'
-      '    def string_test():'
+      '    def string_test(self):'
       '        return "test result"'
       '')
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1
+    ExplicitHeight = 395
   end
   object Panel1: TPanel
     Left = 0

@@ -10,7 +10,6 @@
         <IsPartOfProject Value="True"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.pas"/>
@@ -23,7 +22,6 @@
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
@@ -39,5 +37,4 @@
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <SkipCheckLCLInterfaces Value="True"/>
 </CONFIG>

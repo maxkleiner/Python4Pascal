@@ -22,15 +22,15 @@ object MainForm: TMainForm
     Cursor = crVSplit
     Left = 0
     Height = 3
-    Top = 429
+    Top = 384
     Width = 640
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object LogMem: TMemo
     Left = 0
-    Height = 129
-    Top = 432
+    Height = 174
+    Top = 387
     Width = 640
     Align = alBottom
     ReadOnly = True
@@ -39,7 +39,7 @@ object MainForm: TMainForm
   end
   object CodeMem: TMemo
     Left = 0
-    Height = 395
+    Height = 350
     Top = 34
     Width = 640
     Align = alClient
@@ -50,13 +50,13 @@ object MainForm: TMainForm
     Lines.Strings = (
       'class MyClass:'
       '    x = 5'
-      '    def boolean_test():'
+      '    def boolean_test(self):'
       '        return True'
-      '    def integer_test():'
+      '    def integer_test(self):'
       '        return 9'
-      '    def float_test():'
+      '    def float_test(self):'
       '        return 3.7'
-      '    def string_test():'
+      '    def string_test(self):'
       '        return "test result"'
       ''
     )
