@@ -177,7 +177,7 @@ begin
    else
     Result := 0;
   {$ELSE}
-    {$IFDEF DELPHI12_UP}
+    {$IFDEF DELPHI15_UP}
     if assigned(TThread.Current) then
       Result := TThread.Current.ThreadID
      else

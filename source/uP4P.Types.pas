@@ -40,8 +40,11 @@ type
   {$ENDIF}
   PUint64       = ^uint64;
   UnicodeString = type WideString;
+{$ENDIF}
+{$IFNDEF DELPHI15_UP}
   TThreadID     = LongWord;
-{$ENDIF}{$ENDIF}
+{$ENDIF}
+{$ENDIF}
 {$IFDEF POSIX}
   PWCharT       = type PUCS4Char;
   PPWCharT      = ^PUCS4Char;

@@ -93,7 +93,7 @@ type
       {$IFDEF DELPHI21_UP}
       procedure DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
       {$ELSE}
-      {$IFDEF DELPHI8_UP}
+      {$IFDEF DELPHI15_UP}
       procedure DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
       {$ELSE}
       procedure DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
@@ -447,7 +447,7 @@ end;
 {$IFDEF DELPHI21_UP}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
 {$ELSE}
-{$IFDEF DELPHI8_UP}
+{$IFDEF DELPHI15_UP}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
 {$ELSE}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
