@@ -181,7 +181,7 @@ type
 
       class function  CreateInitConfig: PPyInitConfig;
       class procedure FreeInitConfig(var config_: PPyInitConfig);
-      class function  IsInitialized(const config_: IPyInitConfig): boolean; inline;
+      class function  IsInitialized(const config_: IPyInitConfig): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
   end;
 
 implementation

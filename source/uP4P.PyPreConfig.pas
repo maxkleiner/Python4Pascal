@@ -40,7 +40,7 @@ type
       procedure InitPythonConfig;
       procedure InitIsolatedConfig;
 
-      class function  IsInitialized(const aPyPreConfig: IPyPreConfig): boolean; inline;
+      class function  IsInitialized(const aPyPreConfig: IPyPreConfig): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
       property Config                     : Pointer            read GetConfig;
       property Initialized                : boolean            read GetInitialized;

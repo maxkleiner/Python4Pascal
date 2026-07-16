@@ -36,7 +36,7 @@ type
     public
       constructor Create(aState: PPyInterpreterState);
 
-      class function Wrap(aState: PPyInterpreterState): IPyInterpreterState; inline;
+      class function Wrap(aState: PPyInterpreterState): IPyInterpreterState; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
       class function New: IPyInterpreterState;
       class function Get: IPyInterpreterState;
       class function Main: IPyInterpreterState;

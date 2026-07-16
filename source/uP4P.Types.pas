@@ -29,6 +29,18 @@ type
   C_Long  = type NativeInt;
   C_ULong = type NativeUInt;
 {$ENDIF}
+{$IFNDEF DELPHI12_UP}
+  NativeUInt    = Cardinal;
+  PNativeUInt   = ^NativeUInt;
+  NativeInt     = Integer;
+  uint16        = Word;
+  {$IFNDEF DELPHI7_UP}
+  uint64        = type int64;
+  PPAnsiChar    = array of PChar;
+  {$ENDIF}
+  PUint64       = ^uint64;
+  UnicodeString = type WideString;
+{$ENDIF}
 {$IFDEF POSIX}
   PWCharT       = type PUCS4Char;
   PPWCharT      = ^PUCS4Char;

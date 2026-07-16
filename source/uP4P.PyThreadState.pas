@@ -42,7 +42,7 @@ type
       constructor Create(aPyThreadState: PPyThreadState);
       function    UnWrap: Pointer;
 
-      class function  Wrap(aPyThreadState: PPyThreadState): IPyThreadState; inline;
+      class function  Wrap(aPyThreadState: PPyThreadState): IPyThreadState; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
       class function  New(const state: IPyInterpreterState): IPyThreadState;
       class function  Get: IPyThreadState;
       class function  GetUnchecked: IPyThreadState;

@@ -130,9 +130,9 @@ const
   Py_MATH_El  = 2.7182818284590452353602874713526625;
   Py_MATH_E   = 2.7182818284590452354;
   Py_MATH_TAU = 6.2831853071795864769252867665590057683943;
-  Py_INFINITY = double(INFINITY);
+  Py_INFINITY = INFINITY;
   Py_HUGE_VAL = Py_INFINITY;
-  Py_NAN      = double(NAN);
+  Py_NAN      = NAN;
 
   {* include/pymem.h *}
   {* include/pytypedefs.h *}

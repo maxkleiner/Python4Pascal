@@ -37,7 +37,7 @@ type
       class function Ensure: IPyGILState;
       class function GetThisThreadState: IPyThreadState;
       class function Check: boolean;
-      class function IsInitialized(const aPyGILState: IPyGILState): boolean; inline;
+      class function IsInitialized(const aPyGILState: IPyGILState): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
       property Initialized  : boolean           read GetInitialized   write SetInitialized;
       property State        : PyGILState_STATE  read GetState         write SetState;

@@ -150,8 +150,8 @@ type
       function  CastValueAsVariant: Variant;
       function  UnWrap: Pointer;
 
-      class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; inline;
-      class function  IsInitialized(const aPyObject: IPyObject): boolean; inline;
+      class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      class function  IsInitialized(const aPyObject: IPyObject): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
       class function  Malloc(size_: NativeUInt): pointer;
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
