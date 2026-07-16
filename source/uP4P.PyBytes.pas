@@ -102,8 +102,10 @@ class function TPyBytes.FromVariant(const aVariant: Variant; aVarType: TVarType)
 begin
   case aVarType of
     varOleStr,
-    varString,
-    varUString : Result := FromString(string(aVariant))
+    {$IFDEF SUPPORTS_VARUSTRING}
+    varUString,
+    {$ENDIF}
+    varString  : Result := FromString(string(aVariant))
     else         Result := nil;
   end;
 end;
@@ -176,7 +178,7 @@ end;
 class function TPyBytes.AsWideString(const ob: IPyObject): WideString;
 begin
   if assigned(PyBytes_AsString) and TPyObject.IsInitialized(ob) then
-    Result := {$IFDEF FPC}UTF8Decode{$ELSE}UTF8ToWidestring{$ENDIF}(PyBytes_AsString(ob.PyObject))
+    Result := PyUTF8ToWideString(PyBytes_AsString(ob.PyObject))
    else
     Result := '';
 end;

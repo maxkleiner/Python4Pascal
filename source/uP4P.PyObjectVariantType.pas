@@ -90,7 +90,15 @@ type
       {$IFNDEF FPC}
       function  FixupIdent(const AText: string): string; override;
       {$ENDIF}
-      procedure DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
+      {$IFDEF DELPHI21_UP}
+      procedure DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
+      {$ELSE}
+      {$IFDEF DELPHI8_UP}
+      procedure DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
+      {$ELSE}
+      procedure DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
+      {$ENDIF}
+      {$ENDIF}
 
       // Custom
       function PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject): boolean;
@@ -232,8 +240,10 @@ begin
   if (Right.VType = VarType) then
     case Left.VType of
       varOleStr,
-      varString,
-      varUString :
+      {$IFDEF SUPPORTS_VARUSTRING}
+      varUString,
+      {$ENDIF}
+      varString :
         case AOperator of
           opAdd : DoAddString(Left, Right);
           else    RaiseInvalidOp;
@@ -287,6 +297,8 @@ begin
 
   case AVarType of
     varOleStr    : VarDataFromOleStr(Dest, TPyObjectVarData(Source).VPyObject.AsWideString);
+
+    {$IFDEF SUPPORTS_VARUSTRING}
     varUString   :
       begin
         {$IFDEF FPC}
@@ -295,13 +307,18 @@ begin
         VarDataFromStr(Dest, TPyObjectVarData(Source).VPyObject.AsWideString);
         {$ENDIF}
       end;
+    {$ENDIF}
 
     varString    :
       begin
         {$IFDEF FPC}
         Variant(Dest) := TPyObjectVarData(Source).VPyObject.AsWideString;
         {$ELSE}
-        VarDataFromLStr(Dest, TPyObjectVarData(Source).VPyObject.AsAnsiString);
+          {$IFDEF DELPHI12_UP}
+          VarDataFromLStr(Dest, TPyObjectVarData(Source).VPyObject.AsAnsiString);
+          {$ELSE}
+          VarDataFromStr(Dest, TPyObjectVarData(Source).VPyObject.AsAnsiString);
+          {$ENDIF}
         {$ENDIF}
       end;
 
@@ -353,11 +370,15 @@ begin
         Dest.VInt64 := TPyObjectVarData(Source).VPyObject.AsInt64;
       end;
 
-    {$IFNDEF FPC}
+    {$IFDEF SUPPORTS_VARUINT64}
     varUInt64   :
       begin
         Dest.VType   := AVarType;
+        {$IFDEF FPC}
+        Dest.vqword  := TPyObjectVarData(Source).VPyObject.AsUInt64;
+        {$ELSE}
         Dest.VUInt64 := TPyObjectVarData(Source).VPyObject.AsUInt64;
+        {$ENDIF}
       end;
     {$ENDIF}
 
@@ -423,7 +444,15 @@ begin
     PyObjectVarDataCreate(Dest, TPyObjectVarData(Source).VPyObject);
 end;
 
-procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; {$IFDEF DELPHI21_UP}[Ref] const{$ELSE}var{$ENDIF} Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
+{$IFDEF DELPHI21_UP}
+procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
+{$ELSE}
+{$IFDEF DELPHI8_UP}
+procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
+{$ELSE}
+procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
+{$ENDIF}
+{$ENDIF}
 const
   CDoMethod    = $01;
   CPropertyGet = $02;
@@ -623,7 +652,7 @@ end;
 function TPyObjectVariantType.LeftPromotion(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean;
 begin
   if (AOperator = opAdd) and VarDataIsStr(V) then
-    RequiredVarType := varUString
+    RequiredVarType := {$IFDEF SUPPORTS_VARUSTRING}varUString{$ELSE}varString{$ENDIF}
    else
     RequiredVarType := VarType;
 

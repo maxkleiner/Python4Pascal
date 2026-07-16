@@ -180,8 +180,10 @@ class function TPyUnicode.FromVariant(const aVariant: Variant; aVarType: TVarTyp
 begin
   case aVarType of
     varOleStr,
-    varString,
-    varUString : Result := FromString(string(aVariant))
+    {$IFDEF SUPPORTS_VARUSTRING}
+    varUString,
+    {$ENDIF}
+    varString  : Result := FromString(string(aVariant))
     else         Result := nil;
   end;
 end;

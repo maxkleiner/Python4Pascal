@@ -1255,8 +1255,10 @@ begin
     varWord,
     varInteger,
     varLongWord,
-    varInt64,
-    varUInt64    : Result := TPyLong.FromVariant(TempVariant, TempType);
+    {$IFDEF SUPPORTS_VARUINT64}
+    varUInt64,
+    {$ENDIF}
+    varInt64     : Result := TPyLong.FromVariant(TempVariant, TempType);
     varSingle,
     varDouble,
     varCurrency  : Result := TPyFloat.FromVariant(TempVariant, TempType);
@@ -1264,8 +1266,10 @@ begin
     varNull,
     varEmpty     : Result := TPyNone.New;
     varOleStr,
-    varString,
-    varUString   :
+    {$IFDEF SUPPORTS_VARUSTRING}
+    varUString,
+    {$ENDIF}
+    varString    :
       if aUseBytesString then
         Result := TPyBytes.FromVariant(TempVariant, TempType)
        else
@@ -1320,11 +1324,13 @@ begin
        else
         Result := TPyUnicode.FromString('');
 
+    {$IFDEF SUPPORTS_VARUSTRING}
     vtUnicodeString :
       if Assigned(aVarRec.VUnicodeString) then
         Result := TPyUnicode.FromString(UnicodeString(aVarRec.VUnicodeString))
        else
         Result := TPyUnicode.FromString('');
+    {$ENDIF}
 
     else Result := nil;
   end;

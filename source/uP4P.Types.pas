@@ -29,7 +29,7 @@ type
   C_Long  = type NativeInt;
   C_ULong = type NativeUInt;
 {$ENDIF}
-{$IFNDEF DELPHI12_UP}
+{$IFNDEF FPC}{$IFNDEF DELPHI12_UP}
   NativeUInt    = Cardinal;
   PNativeUInt   = ^NativeUInt;
   NativeInt     = Integer;
@@ -40,7 +40,8 @@ type
   {$ENDIF}
   PUint64       = ^uint64;
   UnicodeString = type WideString;
-{$ENDIF}
+  TThreadID     = LongWord;
+{$ENDIF}{$ENDIF}
 {$IFDEF POSIX}
   PWCharT       = type PUCS4Char;
   PPWCharT      = ^PUCS4Char;

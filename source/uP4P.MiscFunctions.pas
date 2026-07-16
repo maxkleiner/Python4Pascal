@@ -29,7 +29,9 @@ procedure OutputDebugMessage(const aMessage : string);
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
 procedure ShowErrorMessageDlg(const aError : string);
 function  Is32BitProcess : boolean;
+function  CustomGetCurrentThreadId: TThreadID;
 
+function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
 function StringToPyUTF8(const aString: string): AnsiString;
 
@@ -167,6 +169,45 @@ begin
   {$ENDIF}
 end;
 
+function CustomGetCurrentThreadId: TThreadID;
+begin
+  {$IFDEF FPC}
+  if assigned(TThread.CurrentThread) then
+    Result := TThread.CurrentThread.ThreadID
+   else
+    Result := 0;
+  {$ELSE}
+    {$IFDEF DELPHI12_UP}
+    if assigned(TThread.Current) then
+      Result := TThread.Current.ThreadID
+     else
+      Result := GetCurrentThreadId();
+    {$ELSE}
+      Result := GetCurrentThreadId();
+    {$ENDIF}
+  {$ENDIF}
+end;
+
+function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean): WideString;
+begin
+  if assigned(aString) then
+    begin
+      {$IFDEF FPC}
+      Result := UTF8Decode(AnsiString(aString));
+      {$ELSE}
+        {$IFDEF DELPHI12_UP}
+        Result := UTF8ToString(RawByteString(aString));
+        {$ELSE}
+        Result := UTF8Decode(UTF8String(aString));
+        {$ENDIF}
+      {$ENDIF}
+      if aFreeMem then
+        TPyMem.Free(aString);
+    end
+   else
+    Result := '';
+end;
+
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean): string;
 begin
   if assigned(aString) then
@@ -198,6 +239,8 @@ end;
 
 {$IFDEF MSWINDOWS}
 function UnicodeStringToAnsiString(const aString: UnicodeString): AnsiString;
+const
+  WC_NO_BEST_FIT_CHARS = $400;
 var
   TempLen : integer;
 begin

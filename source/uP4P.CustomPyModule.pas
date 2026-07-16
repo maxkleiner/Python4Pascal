@@ -116,7 +116,6 @@ begin
   Result := 0;
 end;
 
-{$REGION 'TCustomPyModuleDefSlot'}
 constructor TCustomPyModuleDefSlot.Create(aSlot: integer; aValue: Pointer);
 begin
   inherited Create;
@@ -129,9 +128,7 @@ function TCustomPyModuleDefSlot.GetIsSentinel: boolean;
 begin
   Result := (FSlot.slot = 0) and (FSlot.value = nil);
 end;
-{$ENDREGION}
 
-{$REGION 'TCustomPyMethodDef'}
 constructor TCustomPyMethodDef.Create(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer);
 begin
   inherited Create;
@@ -157,9 +154,7 @@ function TCustomPyMethodDef.GetIsSentinel: boolean;
 begin
   Result := (FMethod.ml_name = nil) and not(assigned(FMethod.ml_meth)) and (FMethod.ml_flags = 0) and (FMethod.ml_doc = nil);
 end;
-{$ENDREGION}
 
-{$REGION 'TCustomPyModule'}
 constructor TCustomPyModule.Create(const aName, aDocStrings: string; aIsExtension : boolean);
 begin
   inherited Create;
@@ -470,6 +465,5 @@ begin
       TempSpec := nil;
     end;
 end;
-{$ENDREGION}
 
 end.

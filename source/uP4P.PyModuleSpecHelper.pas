@@ -73,6 +73,7 @@ end;
 class function TPyModuleSpecHelper.FromModuleName(const name_: string): IPyObject;
 var
   TempImportLib, TempSpecFromLoaderFunc, TempName, TempArgs, TempNone : IPyObject;
+  TempArray : IPyObjectArray;
 begin
   Result := nil;
 
@@ -89,8 +90,11 @@ begin
            TPyObject.IsInitialized(TempName) and
            TPyObject.IsInitialized(TempNone) then
           begin
-            TempArgs := TPyTuple.Pack([TempName, TempNone]);
-            Result   := TempSpecFromLoaderFunc.CallObject(TempArgs);
+            SetLength(TempArray, 2);
+            TempArray[0] := TempName;
+            TempArray[1] := TempNone;
+            TempArgs     := TPyTuple.Pack(TempArray);
+            Result       := TempSpecFromLoaderFunc.CallObject(TempArgs);
           end;
       end;
   finally

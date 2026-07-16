@@ -170,7 +170,7 @@ begin
       if TPyThreadState.IsInitialized(TempThreadState) then
         try
           TempThreadState.Swap;
-          TempModule := TIOPyModule.Create(TIOPyModule.ModuleName);
+          TempModule := TIOPyModule.Create(ModuleName);
 
           if TempModule.Initialize and TIOPyModule.RunInitCode then
             begin
@@ -213,7 +213,7 @@ begin
         try
           TempThreadState.Swap;
 
-          TempModule                  := TIOPyModule.Create(TIOPyModule.ModuleName);
+          TempModule                  := TIOPyModule.Create(ModuleName);
           TempModule.MultIntprSupport := piGilSupported;
 
           if TempModule.Initialize and TIOPyModule.RunInitCode then

@@ -233,7 +233,9 @@ begin
     varInteger   : Result := FromLong(integer(aVariant));
     varLongWord  : Result := FromUnsignedLong(cardinal(aVariant));
     varInt64     : Result := FromLongLong(aVariant);
+    {$IFDEF SUPPORTS_VARUINT64}
     varUInt64    : Result := FromUnsignedLongLong(aVariant);
+    {$ENDIF}
     else           Result := nil;
   end;
 end;

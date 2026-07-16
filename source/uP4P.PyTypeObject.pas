@@ -76,7 +76,7 @@ end;
 class function TPyTypeObject.GetSlot(type_: PPyTypeObject; i: integer): Pointer;
 begin
   if assigned(PyType_GetSlot) then
-    Result := TPyObject.Wrap(PyType_GetSlot(type_, i))
+    Result := PyType_GetSlot(type_, i)
    else
     Result := nil;
 end;

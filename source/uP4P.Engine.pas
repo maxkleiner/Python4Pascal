@@ -133,8 +133,8 @@ end;
 procedure TP4PEngine.AfterConstruction;
 begin
   inherited AfterConstruction;
-  
-  FMainThreadID := TThread.CurrentThread.ThreadID;
+
+  FMainThreadID := CustomGetCurrentThreadId;
   FModules      := TList.Create;
   FSyncObj      := TCriticalSection.Create;
 end;
@@ -196,11 +196,7 @@ end;
 
 function TP4PEngine.GetIsMainThread: boolean;
 begin
-  {$IFDEF FPC}
-  Result := assigned(TThread.CurrentThread) and (FMainThreadID = TThread.CurrentThread.ThreadID);
-  {$ELSE}
-  Result := assigned(TThread.Current) and (FMainThreadID = TThread.Current.ThreadID);
-  {$ENDIF}
+  Result := (FMainThreadID = CustomGetCurrentThreadId);
 end;
 
 function TP4PEngine.GetSavedThreadState: boolean;
@@ -334,7 +330,7 @@ begin
 
   if not(assigned(FIOModule)) then
     begin
-      FIOModule := TIOPyModule.Create(TIOPyModule.ModuleName);
+      FIOModule := TIOPyModule.Create(ModuleName);
       if not(FIOModule.Initialize) then exit;
     end;
 
