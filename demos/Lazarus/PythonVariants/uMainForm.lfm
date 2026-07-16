@@ -48,6 +48,8 @@ object MainForm: TMainForm
     Font.Height = -12
     Font.Name = 'Consolas'
     Lines.Strings = (
+      'import datetime'
+      ''
       'class MyClass:'
       '    x = 5'
       '    def boolean_test(self):'
@@ -58,6 +60,12 @@ object MainForm: TMainForm
       '        return 3.7'
       '    def string_test(self):'
       '        return "test result"'
+      '    def tuple_test(self):'
+      '        return (1, 2, 3)'
+      '    def list_test(self):'
+      '        return [1, 2, 3, 4, 5]'
+      '    def datetime_test(self):'
+      '        return datetime.datetime.now()'
       ''
     )
     ParentFont = False

@@ -8,8 +8,8 @@
       <Unit>
         <Filename Value="PythonVariants.lpr"/>
         <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.pas"/>
@@ -18,23 +18,170 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <TopLine Value="87"/>
+        <CursorPos X="111" Y="108"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="591"/>
+        <CursorPos Y="603"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="604" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="606" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="609" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="602" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="611" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="602" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="611" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="92" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="465" TopLine="433"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="604" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="606" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="607" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="92" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="432"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="443" TopLine="433"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="445" TopLine="433"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="447" TopLine="433"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="465" TopLine="454"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="94" Column="71" TopLine="79"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="432" TopLine="420"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Caret Line="603" TopLine="591"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Line Value="432"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
+        <Line Value="603"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

@@ -1272,7 +1272,12 @@ end;
 
 procedure TP4PLoader.Finalize;
 begin
-  TPy.Finalize;
+  try
+    TPy.Finalize;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TP4PLoader.Finalize', e) then raise;
+  end;
 end;
 
 procedure TP4PLoader.doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig);

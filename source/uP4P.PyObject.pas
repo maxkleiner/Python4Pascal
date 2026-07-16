@@ -36,6 +36,7 @@ type
       function  GetAsInt64: Int64;
       function  GetAsUInt64: uint64;
       function  GetAsDouble: double;
+      function  GetAsDateTime: TDateTime;
       function  GetAsVariant: Variant;
       function  GetIsCallable: boolean;
       function  GetIsTuple: boolean;
@@ -183,6 +184,7 @@ type
       property AsInt64       : int64           read GetAsInt64;
       property AsUInt64      : uint64          read GetAsUInt64;
       property AsDouble      : double          read GetAsDouble;
+      property AsDateTime    : TDateTime       read GetAsDateTime;
       property AsVariant     : Variant         read GetAsVariant;
       property IsCallable    : boolean         read GetIsCallable;
       property IsTuple       : boolean         read GetIsTuple;
@@ -1501,6 +1503,17 @@ function TPyObject.GetAsDouble: double;
 begin
   if TPyFloat.Check(self) then
     Result := TPyFloat.AsDouble(self)
+   else
+    Result := -1;
+end;
+
+function TPyObject.GetAsDateTime: TDateTime;
+var
+  TempDateTime : TDateTime;
+begin
+  if TPyTimeStruct.AsDateTime(self, TempDateTime) or
+     TPyDateTime.AsDateTime(self, TempDateTime) then
+    Result := TempDateTime
    else
     Result := -1;
 end;

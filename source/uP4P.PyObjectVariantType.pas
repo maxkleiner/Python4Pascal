@@ -369,8 +369,12 @@ begin
 
     varDouble   :
       begin
-        Dest.VType   := AVarType;
-        Dest.VDouble := TPyObjectVarData(Source).VPyObject.AsDouble;
+        Dest.VType := AVarType;
+
+        if TPyObjectVarData(Source).VPyObject.IsFloat then
+          Dest.VDouble := TPyObjectVarData(Source).VPyObject.AsDouble
+         else
+          Dest.VDouble := TPyObjectVarData(Source).VPyObject.AsDateTime;
       end;
 
     varCurrency :
@@ -666,7 +670,7 @@ begin
     begin
       aObject.IncRef;
       TPyObjectVarData(Dest).VType     := VarType;
-      TPyObjectVarData(Dest).VPyObject := TPyObject.Create(aObject.PyObject, True, False);
+      TPyObjectVarData(Dest).VPyObject := TPyObject.Create(aObject.PyObject, True, True);
       Result := True;
     end;
 end;

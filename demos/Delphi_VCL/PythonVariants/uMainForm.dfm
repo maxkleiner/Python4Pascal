@@ -4,8 +4,8 @@ object MainForm: TMainForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Python Variants'
-  ClientHeight = 561
-  ClientWidth = 624
+  ClientHeight = 601
+  ClientWidth = 632
   Color = clBtnFace
   Constraints.MinHeight = 480
   Constraints.MinWidth = 640
@@ -20,8 +20,8 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 317
-    Width = 624
+    Top = 357
+    Width = 632
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -30,19 +30,21 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 320
-    Width = 624
+    Top = 360
+    Width = 632
     Height = 241
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
+    ExplicitTop = 320
+    ExplicitWidth = 624
   end
   object CodeMem: TMemo
     Left = 0
     Top = 34
-    Width = 624
-    Height = 283
+    Width = 632
+    Height = 323
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -50,6 +52,8 @@ object MainForm: TMainForm
     Font.Name = 'Consolas'
     Font.Style = []
     Lines.Strings = (
+      'import datetime'
+      ''
       'class MyClass:'
       '    x = 5'
       '    def boolean_test(self):'
@@ -60,16 +64,22 @@ object MainForm: TMainForm
       '        return 3.7'
       '    def string_test(self):'
       '        return "test result"'
-      '')
+      '    def tuple_test(self):'
+      '        return (1, 2, 3)'
+      '    def list_test(self):'
+      '        return [1, 2, 3, 4, 5]'
+      '    def datetime_test(self):'
+      '        return datetime.datetime.now()')
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitHeight = 395
+    ExplicitWidth = 624
+    ExplicitHeight = 283
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 624
+    Width = 632
     Height = 34
     Align = alTop
     BevelOuter = bvNone
@@ -78,6 +88,7 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 2
+    ExplicitWidth = 624
     object Run2Btn: TButton
       Left = 390
       Top = 5

@@ -82,20 +82,30 @@ end;
 procedure TMainForm.Run2BtnClick(Sender: TObject);
 var
   TempMainModObj : IPyObject;
-  TempClass, TempMainModVar : Variant;
+  TempClass, TempMainModVar, TempTuple, TempList, TempDate : Variant;
 begin
   if TPyRun.SimpleString(CodeMem.Text) then
     begin
       TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
       TempMainModVar := TempMainModObj.AsVariant;
       TempClass      := TempMainModVar.MyClass();
+      // TODO: Crash in Lazarus. Explicit and Implicit conversion of Custom Variants to simple types fails.
+      // See demo 25 in P4D. See FPC tickets #39815 and #20849 :
+      // https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
+      // https://gitlab.com/freepascal.org/fpc/source/-/work_items/20849
       LogMem.Lines.Add('MyClass.x = ' + inttostr(TempClass.x));
-      TempClass.x := TempClass.x + 7;
-      LogMem.Lines.Add('MyClass.x = ' + inttostr(TempClass.x));
-      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempClass.boolean_test()));
+      TempClass.x := TempClass.x * TempClass.x;
+      LogMem.Lines.Add('MyClass.x * TempClass.x = ' + inttostr(TempClass.x));
+      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempClass.boolean_test(), True));
       LogMem.Lines.Add('MyClass.integer_test() = ' + inttostr(TempClass.integer_test()));
       LogMem.Lines.Add('MyClass.float_test() = ' + floattostr(TempClass.float_test()));
       LogMem.Lines.Add('MyClass.string_test() = ' + TempClass.string_test());
+      TempTuple := TempClass.tuple_test();
+      LogMem.Lines.Add('MyClass.tuple_test() = ' + TempTuple);
+      TempList :=  TempClass.list_test();
+      LogMem.Lines.Add('MyClass.list_test() = ' + TempList);
+      TempDate := TempClass.datetime_test();
+      LogMem.Lines.Add('MyClass.datetime_test() = ' + TempDate + ' -> ' + DateTimeToStr(TDateTime(TempDate)));
     end;
 end;
 
