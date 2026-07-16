@@ -4,7 +4,7 @@ object MainForm: TMainForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Python Variants'
-  ClientHeight = 601
+  ClientHeight = 643
   ClientWidth = 632
   Color = clBtnFace
   Constraints.MinHeight = 480
@@ -20,7 +20,7 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 357
+    Top = 399
     Width = 632
     Height = 3
     Cursor = crVSplit
@@ -30,21 +30,20 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 360
+    Top = 402
     Width = 632
     Height = 241
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
-    ExplicitTop = 320
-    ExplicitWidth = 624
+    ExplicitTop = 360
   end
   object CodeMem: TMemo
     Left = 0
     Top = 34
     Width = 632
-    Height = 323
+    Height = 365
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -69,12 +68,15 @@ object MainForm: TMainForm
       '    def list_test(self):'
       '        return [1, 2, 3, 4, 5]'
       '    def datetime_test(self):'
-      '        return datetime.datetime.now()')
+      '        return datetime.datetime.now()'
+      '    def square_test(self, number):'
+      '        return number**2'
+      '    def uppercase_test(self, mystring):'
+      '        return mystring.upper()')
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitWidth = 624
-    ExplicitHeight = 283
+    ExplicitHeight = 323
   end
   object Panel1: TPanel
     Left = 0
@@ -88,7 +90,6 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 2
-    ExplicitWidth = 624
     object Run2Btn: TButton
       Left = 390
       Top = 5

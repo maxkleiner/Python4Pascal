@@ -109,6 +109,8 @@ begin
       LogMem.Lines.Add('MyClass.list_test() = ' + TempList);
       TempDate := TempClass.datetime_test();
       LogMem.Lines.Add('MyClass.datetime_test() = ' + TempDate + ' -> ' + DateTimeToStr(TDateTime(TempDate)));
+      LogMem.Lines.Add('MyClass.square_test(5) = ' + inttostr(TempClass.square_test(5)));
+      LogMem.Lines.Add('MyClass.uppercase_test("test") = ' + TempClass.uppercase_test('test'));
     end;
 end;
 

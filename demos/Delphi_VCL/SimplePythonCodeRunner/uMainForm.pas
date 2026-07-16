@@ -61,7 +61,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
+      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.6-embed-win32\python314.dll';
       //TempLibPath := 'C:\Users\usuario\Desktop\python-3.13.13-embed-win32\python313.dll';
       //TempLibPath := 'C:\Users\usuario\Desktop\python-3.12.10-embed-win32\python312.dll';
       //TempLibPath := 'C:\Users\usuario\Desktop\python-3.11.9-embed-win32\python311.dll';
@@ -84,6 +84,7 @@ procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const messa
 var
   TempMsg : string;
 begin
+  // We ignore empty messages in this demo.
   TempMsg := trim(message_);
 
   if (length(TempMsg) > 0) then

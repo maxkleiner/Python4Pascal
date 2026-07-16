@@ -66,7 +66,10 @@ object MainForm: TMainForm
       '        return [1, 2, 3, 4, 5]'
       '    def datetime_test(self):'
       '        return datetime.datetime.now()'
-      ''
+      '    def square_test(self, number):'
+      '        return number**2'
+      '    def uppercase_test(self, mystring):'
+      '        return mystring.upper()'
     )
     ParentFont = False
     ScrollBars = ssBoth

@@ -135,8 +135,6 @@ begin
     Result := TempResult.UnWrap
    else
     Result := TPyNone.New.PyObject;
-
-  TempResult := nil;
 end;
 
 class function TIOPyModule.RunInitCode: boolean;
