@@ -14,7 +14,11 @@ uses
     System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
-    {$IFDEF FPC}dynlibs, FileUtil,{$ENDIF}
+    {$IFDEF FPC}
+      dynlibs, FileUtil,
+    {$ELSE}
+      IOUtils, Types,
+    {$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
