@@ -11,10 +11,9 @@ interface
 uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Classes,{$ENDIF}
-    {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF} System.SysUtils,
+    {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF} System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Classes,{$ENDIF} SysUtils,
-    {$IFDEF LINUXFPC}Types,{$ENDIF}
+    {$IFDEF MSWINDOWS}Windows, Classes,{$ENDIF} SysUtils, Types,
   {$ENDIF}
   uP4P.Types;
 
@@ -31,6 +30,10 @@ procedure ShowErrorMessageDlg(const aError : string);
 function  Is32BitProcess : boolean;
 function  CustomGetCurrentThreadId: TThreadID;
 function  GetFileSize(const aFilename: string): int64;
+function  CustomFindAllFiles(const aPath, aFilename: string): TStringList;
+{$IFNDEF DELPHI14_UP}{$IFNDEF FPC}
+function  CharInSet(const aChar: char; const aCharSet: TSysCharSet) : boolean;
+{$ENDIF}{$ENDIF}
 
 function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
@@ -349,6 +352,57 @@ begin
       if CustomExceptionHandler('GetFileSize', e) then raise;
   end;
 end;
+
+function CustomFindAllFiles(const aPath, aFilename: string): TStringList;
+var
+  i : integer;
+  {$IFDEF DELPHI14_UP}
+  TempFiles : TStringDynArray;
+  {$ELSE}
+  TempRec : TSearchRec;
+  TempStart, TempEnd : string;
+  {$ENDIF}
+begin
+  Result := nil;
+  try
+    if (length(aPath) > 0) and DirectoryExists(aPath) then
+      begin
+        Result := TStringList.Create;
+
+        {$IFDEF DELPHI14_UP}
+        TempFiles := TDirectory.GetFiles(aPath, aFilename, TSearchOption.soTopDirectoryOnly);
+        for i := 0 to pred(length(TempFiles)) do
+          Result.Add(TempFiles[i]);
+        {$ELSE}
+        if (FindFirst(aPath + '\*', faAnyFile, TempRec) = 0) then
+          try
+            i         := pos('*', aFilename);
+            TempStart := copy(aFilename, 1, pred(i));
+            TempEnd   := copy(aFilename, succ(i), length(aFilename));
+            
+            repeat
+              if ((TempRec.Attr and faDirectory) = 0) and
+                 (CompareText(TempStart, copy(TempRec.Name, 1, length(TempStart))) = 0) and
+                 (CompareText(TempEnd, copy(TempRec.Name, length(TempRec.Name) - length(TempEnd), length(TempRec.Name))) = 0) then
+                Result.Add(TempRec.Name);
+            until (FindNext(TempRec) <> 0);
+          finally
+            FindClose(TempRec);
+          end;
+        {$ENDIF}
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('CustomFindAllFiles', e) then raise;
+  end;
+end;
+
+{$IFNDEF DELPHI14_UP}{$IFNDEF FPC}
+function CharInSet(const aChar: char; const aCharSet: TSysCharSet) : boolean;
+begin
+  Result := aChar in aCharSet;
+end;
+{$ENDIF}{$ENDIF}
 
 function PyWCharTStringToString(const aString: WCharTString): string;
 begin

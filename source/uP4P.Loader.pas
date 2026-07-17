@@ -17,7 +17,7 @@ uses
     {$IFDEF FPC}
       dynlibs, FileUtil,
     {$ELSE}
-      IOUtils, Types,
+      {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF} Types,
     {$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
@@ -428,46 +428,17 @@ end;
 
 function TP4PLoader.PythonLibExists(const aPath: string): boolean;
 var
-  {$IFDEF FPC}
   TempFiles : TStringList;
-  {$ELSE}
-  TempFiles : TStringDynArray;
-  {$ENDIF}
 begin
-  Result := False;
-  {$IFDEF FPC}
   TempFiles := nil;
-  {$ENDIF}
-
   try
-    try
-      if (length(aPath) > 0) and DirectoryExists(aPath) then
-        begin
-          {$IFDEF FPC}
-          TempFiles := FindAllFiles(aPath, 'python*.' + PYTHON_LIB_EXT, False);
-          Result    := (TempFiles.Count > 0);
-          {$ELSE}
-          TempFiles := TDirectory.GetFiles(aPath, 'python*.' + PYTHON_LIB_EXT, TSearchOption.soTopDirectoryOnly);
-          Result    := (length(TempFiles) > 0);
-          {$ENDIF}
-        end;
-    except
-      on e : exception do
-        if CustomExceptionHandler('TP4PLoader.PythonLibExists', e) then raise;
-    end;
+    Result := FindPythonLib(aPath, TempFiles);
   finally
-    {$IFDEF FPC}
     if assigned(TempFiles) then FreeAndNil(TempFiles);
-    {$ENDIF}
   end;
 end;
 
 function TP4PLoader.FindPythonLib(const aPath: string; var aFiles: TStringList): boolean;
-{$IFNDEF FPC}
-var
-  TempFiles : TStringDynArray;
-  i : integer;
-{$ENDIF}
 begin
   Result := False;
 
@@ -477,13 +448,8 @@ begin
         {$IFDEF FPC}
         aFiles := FindAllFiles(aPath, 'python*.' + PYTHON_LIB_EXT, False);
         {$ELSE}
-        TempFiles := TDirectory.GetFiles(aPath, 'python*.' + PYTHON_LIB_EXT, TSearchOption.soTopDirectoryOnly);
-        aFiles    := TStringList.Create;
-
-        for i := 0 to pred(length(TempFiles)) do
-          aFiles.Add(TempFiles[i]);
+        aFiles := CustomFindAllFiles(aPath, 'python*.' + PYTHON_LIB_EXT);
         {$ENDIF}
-
         Result := assigned(aFiles) and (aFiles.Count > 0);
       end;
   except
@@ -716,13 +682,13 @@ begin
 
   try
     try
-      TempSize := GetFileVersionInfoSizeW(PWideChar(aFileName), TempHandle);
+      TempSize := GetFileVersionInfoSize({$IFNDEF DELPHI12_UP}PAnsiChar{$ELSE}PWideChar{$ENDIF}(aFileName), TempHandle);
 
       if (TempSize > 0) then
         begin
           GetMem(TempBuffer, TempSize);
 
-          if GetFileVersionInfoW(PWideChar(aFileName), TempHandle, TempSize, TempBuffer) and
+          if GetFileVersionInfo({$IFNDEF DELPHI12_UP}PAnsiChar{$ELSE}PWideChar{$ENDIF}(aFileName), TempHandle, TempSize, TempBuffer) and
              VerQueryValue(TempBuffer, '\', Pointer(TempInfo), TempLen) then
             begin
               Result := TempInfo^.dwFileVersionMS;

@@ -93,11 +93,11 @@ type
       {$IFDEF DELPHI21_UP}
       procedure DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
       {$ELSE}
-      {$IFDEF DELPHI15_UP}
+      {$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
       procedure DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
       {$ELSE}
       procedure DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
-      {$ENDIF}
+      {$IFEND}
       {$ENDIF}
 
       // Custom
@@ -447,11 +447,11 @@ end;
 {$IFDEF DELPHI21_UP}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
 {$ELSE}
-{$IFDEF DELPHI15_UP}
+{$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
 {$ELSE}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
-{$ENDIF}
+{$IFEND}
 {$ENDIF}
 const
   CDoMethod    = $01;
