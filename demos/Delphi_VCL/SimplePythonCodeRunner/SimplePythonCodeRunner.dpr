@@ -15,7 +15,9 @@ uses
 
 begin
   Application.Initialize;
+  {$IFDEF DELPHI11_UP}
   Application.MainFormOnTaskbar := True;
+  {$ENDIF}
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.

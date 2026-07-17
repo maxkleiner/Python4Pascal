@@ -6,6 +6,11 @@ unit uP4P.PyConfig;
 
 {$I p4p.inc}
 
+{$IFNDEF FPC}{$IFNDEF DELPHI12_UP}
+  // Workaround for "Internal error" in old Delphi versions caused by uint64 handling
+  {$R-}
+{$ENDIF}{$ENDIF}
+
 interface
 
 uses
@@ -191,83 +196,8 @@ type
   end;
 
   TPyConfig314 = class(TPyConfigBase)
-    private
-      type PyConfig = record
-        _config_init             : integer;
-        isolated                 : integer;
-        use_environment          : integer;
-        dev_mode                 : integer;
-        install_signal_handlers  : integer;
-        use_hash_seed            : integer;
-        hash_seed                : C_ULong;
-        faulthandler             : integer;
-        tracemalloc              : integer;
-        perf_profiling           : integer;
-        remote_debug             : integer;
-        import_time              : integer;
-        code_debug_ranges        : integer;
-        show_ref_count           : integer;
-        dump_refs                : integer;
-        dump_refs_file           : PWCharT;
-        malloc_stats             : integer;
-        filesystem_encoding      : PWCharT;
-        filesystem_errors        : PWCharT;
-        pycache_prefix           : PWCharT;
-        parse_argv               : integer;
-        orig_argv                : PyWideStringList;
-        argv                     : PyWideStringList;
-        xoptions                 : PyWideStringList;
-        warnoptions              : PyWideStringList;
-        site_import              : integer;
-        bytes_warning            : integer;
-        warn_default_encoding    : integer;
-        inspect                  : integer;
-        interactive              : integer;
-        optimization_level       : integer;
-        parser_debug             : integer;
-        write_bytecode           : integer;
-        verbose                  : integer;
-        quiet                    : integer;
-        user_site_directory      : integer;
-        configure_c_stdio        : integer;
-        buffered_stdio           : integer;
-        stdio_encoding           : PWCharT;
-        stdio_errors             : PWCharT;
-        {$IFDEF MSWINDOWS}
-        legacy_windows_stdio     : integer;
-        {$ENDIF}
-        check_hash_pycs_mode     : PWCharT;
-        use_frozen_modules       : integer;
-        safe_path                : integer;
-        int_max_str_digits       : integer;
-        thread_inherit_context   : integer;
-        context_aware_warnings   : integer;
-        cpu_count                : integer;
-        pathconfig_warnings      : integer;
-        program_name             : PWCharT;
-        pythonpath_env           : PWCharT;
-        home                     : PWCharT;
-        platlibdir               : PWCharT;
-        module_search_paths_set  : integer;
-        module_search_paths      : PyWideStringList;
-        stdlib_dir               : PWCharT;
-        executable               : PWCharT;
-        base_executable          : PWCharT;
-        prefix                   : PWCharT;
-        base_prefix              : PWCharT;
-        exec_prefix              : PWCharT;
-        base_exec_prefix         : PWCharT;
-        skip_source_first_line   : integer;
-        run_command              : PWCharT;
-        run_module               : PWCharT;
-        run_filename             : PWCharT;
-        sys_path_0               : PWCharT;
-        _install_importlib       : integer;
-        _init_main               : integer;
-        _is_python_build         : integer;
-      end;
     protected
-      FConfig : PyConfig;
+      FConfig : PyConfig314;
       function GetConfig: Pointer; override;
       function Get_argv: string; override;
       function Get_base_exec_prefix: string; override;
@@ -405,80 +335,8 @@ type
   end;
 
   TPyConfig313 = class(TPyConfigBase)
-    private
-      type PyConfig = record
-        _config_init             : integer;
-        isolated                 : integer;
-        use_environment          : integer;
-        dev_mode                 : integer;
-        install_signal_handlers  : integer;
-        use_hash_seed            : integer;
-        hash_seed                : C_ULong;
-        faulthandler             : integer;
-        tracemalloc              : integer;
-        perf_profiling           : integer;
-        import_time              : integer;
-        code_debug_ranges        : integer;
-        show_ref_count           : integer;
-        dump_refs                : integer;
-        dump_refs_file           : PWCharT;
-        malloc_stats             : integer;
-        filesystem_encoding      : PWCharT;
-        filesystem_errors        : PWCharT;
-        pycache_prefix           : PWCharT;
-        parse_argv               : integer;
-        orig_argv                : PyWideStringList;
-        argv                     : PyWideStringList;
-        xoptions                 : PyWideStringList;
-        warnoptions              : PyWideStringList;
-        site_import              : integer;
-        bytes_warning            : integer;
-        warn_default_encoding    : integer;
-        inspect                  : integer;
-        interactive              : integer;
-        optimization_level       : integer;
-        parser_debug             : integer;
-        write_bytecode           : integer;
-        verbose                  : integer;
-        quiet                    : integer;
-        user_site_directory      : integer;
-        configure_c_stdio        : integer;
-        buffered_stdio           : integer;
-        stdio_encoding           : PWCharT;
-        stdio_errors             : PWCharT;
-        {$IFDEF MSWINDOWS}
-        legacy_windows_stdio     : integer;
-        {$ENDIF}
-        check_hash_pycs_mode     : PWCharT;
-        use_frozen_modules       : integer;
-        safe_path                : integer;
-        int_max_str_digits       : integer;
-        cpu_count                : integer;
-        pathconfig_warnings      : integer;
-        program_name             : PWCharT;
-        pythonpath_env           : PWCharT;
-        home                     : PWCharT;
-        platlibdir               : PWCharT;
-        module_search_paths_set  : integer;
-        module_search_paths      : PyWideStringList;
-        stdlib_dir               : PWCharT;
-        executable               : PWCharT;
-        base_executable          : PWCharT;
-        prefix                   : PWCharT;
-        base_prefix              : PWCharT;
-        exec_prefix              : PWCharT;
-        base_exec_prefix         : PWCharT;
-        skip_source_first_line   : integer;
-        run_command              : PWCharT;
-        run_module               : PWCharT;
-        run_filename             : PWCharT;
-        sys_path_0               : PWCharT;
-        _install_importlib       : integer;
-        _init_main               : integer;
-        _is_python_build         : integer;
-      end;
     protected
-      FConfig : PyConfig;
+      FConfig : PyConfig313;
       function GetConfig: Pointer; override;
       function Get_argv: string; override;
       function Get_base_exec_prefix: string; override;
@@ -610,78 +468,8 @@ type
   end;
 
   TPyConfig312 = class(TPyConfigBase)
-    private
-      type PyConfig = record
-        _config_init             : integer;
-        isolated                 : integer;
-        use_environment          : integer;
-        dev_mode                 : integer;
-        install_signal_handlers  : integer;
-        use_hash_seed            : integer;
-        hash_seed                : C_ULong;
-        faulthandler             : integer;
-        tracemalloc              : integer;
-        perf_profiling           : integer;
-        import_time              : integer;
-        code_debug_ranges        : integer;
-        show_ref_count           : integer;
-        dump_refs                : integer;
-        dump_refs_file           : PWCharT;
-        malloc_stats             : integer;
-        filesystem_encoding      : PWCharT;
-        filesystem_errors        : PWCharT;
-        pycache_prefix           : PWCharT;
-        parse_argv               : integer;
-        orig_argv                : PyWideStringList;
-        argv                     : PyWideStringList;
-        xoptions                 : PyWideStringList;
-        warnoptions              : PyWideStringList;
-        site_import              : integer;
-        bytes_warning            : integer;
-        warn_default_encoding    : integer;
-        inspect                  : integer;
-        interactive              : integer;
-        optimization_level       : integer;
-        parser_debug             : integer;
-        write_bytecode           : integer;
-        verbose                  : integer;
-        quiet                    : integer;
-        user_site_directory      : integer;
-        configure_c_stdio        : integer;
-        buffered_stdio           : integer;
-        stdio_encoding           : PWCharT;
-        stdio_errors             : PWCharT;
-        {$IFDEF MSWINDOWS}
-        legacy_windows_stdio     : integer;
-        {$ENDIF}
-        check_hash_pycs_mode     : PWCharT;
-        use_frozen_modules       : integer;
-        safe_path                : integer;
-        int_max_str_digits       : integer;
-        pathconfig_warnings      : integer;
-        program_name             : PWCharT;
-        pythonpath_env           : PWCharT;
-        home                     : PWCharT;
-        platlibdir               : PWCharT;
-        module_search_paths_set  : integer;
-        module_search_paths      : PyWideStringList;
-        stdlib_dir               : PWCharT;
-        executable               : PWCharT;
-        base_executable          : PWCharT;
-        prefix                   : PWCharT;
-        base_prefix              : PWCharT;
-        exec_prefix              : PWCharT;
-        base_exec_prefix         : PWCharT;
-        skip_source_first_line   : integer;
-        run_command              : PWCharT;
-        run_module               : PWCharT;
-        run_filename             : PWCharT;
-        _install_importlib       : integer;
-        _init_main               : integer;
-        _is_python_build         : integer;
-      end;
     protected
-      FConfig : PyConfig;
+      FConfig : PyConfig312;
       function GetConfig: Pointer; override;
       function Get_argv: string; override;
       function Get_base_exec_prefix: string; override;
@@ -809,77 +597,8 @@ type
   end;
 
   TPyConfig311 = class(TPyConfigBase)
-    private
-      type PyConfig = record
-        _config_init             : integer;
-        isolated                 : integer;
-        use_environment          : integer;
-        dev_mode                 : integer;
-        install_signal_handlers  : integer;
-        use_hash_seed            : integer;
-        hash_seed                : C_ULong;
-        faulthandler             : integer;
-        tracemalloc              : integer;
-        import_time              : integer;
-        code_debug_ranges        : integer;
-        show_ref_count           : integer;
-        dump_refs                : integer;
-        dump_refs_file           : PWCharT;
-        malloc_stats             : integer;
-        filesystem_encoding      : PWCharT;
-        filesystem_errors        : PWCharT;
-        pycache_prefix           : PWCharT;
-        parse_argv               : integer;
-        orig_argv                : PyWideStringList;
-        argv                     : PyWideStringList;
-        xoptions                 : PyWideStringList;
-        warnoptions              : PyWideStringList;
-        site_import              : integer;
-        bytes_warning            : integer;
-        warn_default_encoding    : integer;
-        inspect                  : integer;
-        interactive              : integer;
-        optimization_level       : integer;
-        parser_debug             : integer;
-        write_bytecode           : integer;
-        verbose                  : integer;
-        quiet                    : integer;
-        user_site_directory      : integer;
-        configure_c_stdio        : integer;
-        buffered_stdio           : integer;
-        stdio_encoding           : PWCharT;
-        stdio_errors             : PWCharT;
-        {$IFDEF MSWINDOWS}
-        legacy_windows_stdio     : integer;
-        {$ENDIF}
-        check_hash_pycs_mode     : PWCharT;
-        use_frozen_modules       : integer;
-        safe_path                : integer;
-        pathconfig_warnings      : integer;
-        program_name             : PWCharT;
-        pythonpath_env           : PWCharT;
-        home                     : PWCharT;
-        platlibdir               : PWCharT;
-        module_search_paths_set  : integer;
-        module_search_paths      : PyWideStringList;
-        stdlib_dir               : PWCharT;
-        executable               : PWCharT;
-        base_executable          : PWCharT;
-        prefix                   : PWCharT;
-        base_prefix              : PWCharT;
-        exec_prefix              : PWCharT;
-        base_exec_prefix         : PWCharT;
-        skip_source_first_line   : integer;
-        run_command              : PWCharT;
-        run_module               : PWCharT;
-        run_filename             : PWCharT;
-        _install_importlib       : integer;
-        _init_main               : integer;
-        _isolated_interpreter    : integer;
-        _is_python_build         : integer;
-      end;
     protected
-      FConfig : PyConfig;
+      FConfig : PyConfig311;
       function GetConfig: Pointer; override;
       function Get_argv: string; override;
       function Get_base_exec_prefix: string; override;
@@ -1003,71 +722,8 @@ type
   end;
 
   TPyConfig310 = class(TPyConfigBase)
-    private
-      type PyConfig = record
-        _config_init             : integer;
-        isolated                 : integer;
-        use_environment          : integer;
-        dev_mode                 : integer;
-        install_signal_handlers  : integer;
-        use_hash_seed            : integer;
-        hash_seed                : C_ULong;
-        faulthandler             : integer;
-        tracemalloc              : integer;
-        import_time              : integer;
-        show_ref_count           : integer;
-        dump_refs                : integer;
-        malloc_stats             : integer;
-        filesystem_encoding      : PWCharT;
-        filesystem_errors        : PWCharT;
-        pycache_prefix           : PWCharT;
-        parse_argv               : integer;
-        orig_argv                : PyWideStringList;
-        argv                     : PyWideStringList;
-        xoptions                 : PyWideStringList;
-        warnoptions              : PyWideStringList;
-        site_import              : integer;
-        bytes_warning            : integer;
-        warn_default_encoding    : integer;
-        inspect                  : integer;
-        interactive              : integer;
-        optimization_level       : integer;
-        parser_debug             : integer;
-        write_bytecode           : integer;
-        verbose                  : integer;
-        quiet                    : integer;
-        user_site_directory      : integer;
-        configure_c_stdio        : integer;
-        buffered_stdio           : integer;
-        stdio_encoding           : PWCharT;
-        stdio_errors             : PWCharT;
-        {$IFDEF MSWINDOWS}
-        legacy_windows_stdio     : integer;
-        {$ENDIF}
-        check_hash_pycs_mode     : PWCharT;
-        pathconfig_warnings      : integer;
-        program_name             : PWCharT;
-        pythonpath_env           : PWCharT;
-        home                     : PWCharT;
-        platlibdir               : PWCharT;
-        module_search_paths_set  : integer;
-        module_search_paths      : PyWideStringList;
-        executable               : PWCharT;
-        base_executable          : PWCharT;
-        prefix                   : PWCharT;
-        base_prefix              : PWCharT;
-        exec_prefix              : PWCharT;
-        base_exec_prefix         : PWCharT;
-        skip_source_first_line   : integer;
-        run_command              : PWCharT;
-        run_module               : PWCharT;
-        run_filename             : PWCharT;
-        _install_importlib       : integer;
-        _init_main               : integer;
-        _isolated_interpreter    : integer;
-      end;
     protected
-      FConfig : PyConfig;
+      FConfig : PyConfig310;
       function GetConfig: Pointer; override;
       function Get_argv: string; override;
       function Get_base_exec_prefix: string; override;
@@ -1190,7 +846,6 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyObject, uP4P.PyStatus;
 
-{$REGION 'TPyConfig'}
 class function TPyConfig.Names: IPyObject;
 begin
   if assigned(PyConfig_Names) then
@@ -1252,9 +907,7 @@ begin
    else
     Result := False;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfigBase'}
 destructor TPyConfigBase.Destroy;
 begin
   if assigned(PyConfig_Clear) then
@@ -2067,9 +1720,7 @@ procedure TPyConfigBase.Set_xoptions(const aValue: string);
 begin
   //
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfig314'}
 function TPyConfig314.GetConfig: Pointer;
 begin
   Result := @FConfig;
@@ -2816,9 +2467,7 @@ begin
   SetWideStringList(FConfig.xoptions, TempSL);
   TempSL.Free;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfig313'}
 function TPyConfig313.GetConfig: Pointer;
 begin
   Result := @FConfig;
@@ -3535,9 +3184,7 @@ begin
   SetWideStringList(FConfig.xoptions, TempSL);
   TempSL.Free;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfig312'}
 function TPyConfig312.GetConfig: Pointer;
 begin
   Result := @FConfig;
@@ -4234,9 +3881,7 @@ begin
   SetWideStringList(FConfig.xoptions, TempSL);
   TempSL.Free;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfig311'}
 function TPyConfig311.GetConfig: Pointer;
 begin
   Result := @FConfig;
@@ -4913,9 +4558,7 @@ begin
   SetWideStringList(FConfig.xoptions, TempSL);
   TempSL.Free;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfig310'}
 function TPyConfig310.GetConfig: Pointer;
 begin
   Result := @FConfig;
@@ -5542,9 +5185,7 @@ begin
   SetWideStringList(FConfig.xoptions, TempSL);
   TempSL.Free;
 end;
-{$ENDREGION}
 
-{$REGION 'TPyConfigBuilder'}
 class function TPyConfigBuilder.New(aMajor, aMinor: integer): IPyConfig;
 begin
   Result := nil;
@@ -5559,7 +5200,5 @@ begin
       end;
   end;
 end;
-{$ENDREGION}
-
 
 end.
