@@ -30,6 +30,7 @@ function  CustomExceptionHandler(const aFunctionName : string; const aException 
 procedure ShowErrorMessageDlg(const aError : string);
 function  Is32BitProcess : boolean;
 function  CustomGetCurrentThreadId: TThreadID;
+function  GetFileSize(const aFilename: string): int64;
 
 function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
@@ -316,6 +317,38 @@ begin
   end;
 end;
 {$ENDIF}
+
+function GetFileSize(const aFilename: string): int64;
+var
+  {$IFDEF MSWINDOWS}
+  TempInfo : TWin32FileAttributeData;
+  {$ELSE}
+  TempFile : file of Byte;
+  {$ENDIF}
+begin
+  Result := -1;
+  try
+    if FileExists(aFileName) then
+      begin
+        {$IFDEF MSWINDOWS}
+        if FileExists(aFileName) and
+           GetFileAttributesEx(PChar(aFileName), GetFileExInfoStandard, @TempInfo) then
+          Result := int64(TempInfo.nFileSizeLow) or int64(TempInfo.nFileSizeHigh shl 32);
+        {$ELSE}
+        AssignFile(TempFile, aFileName);
+        try
+          Reset(TempFile);
+          Result := FileSize(TempFile);
+        finally
+          CloseFile(TempFile);
+        end;
+        {$ENDIF}
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('GetFileSize', e) then raise;
+  end;
+end;
 
 function PyWCharTStringToString(const aString: WCharTString): string;
 begin

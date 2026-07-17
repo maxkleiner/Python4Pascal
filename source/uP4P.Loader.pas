@@ -517,7 +517,11 @@ begin
               {$IFDEF FPC}
               TempSize := FileSize(TempFiles[i]);
               {$ELSE}
-              TempSize := TFile.GetSize(TempFiles[i]);
+                {$IFDEF DELPHI28_UP}
+                TempSize := TFile.GetSize(TempFiles[i]);
+                {$ELSE}
+                TempSize := GetFileSize(TempFiles[i]);
+                {$ENDIF}
               {$ENDIF}
 
               if (TempMaxSize < TempSize) then
