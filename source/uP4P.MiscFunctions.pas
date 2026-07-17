@@ -175,21 +175,14 @@ end;
 
 function CustomGetCurrentThreadId: TThreadID;
 begin
-  {$IFDEF FPC}
+  {$IF DEFINED(DELPHI16_UP) OR DEFINED(FPC)}
   if assigned(TThread.CurrentThread) then
     Result := TThread.CurrentThread.ThreadID
    else
     Result := 0;
   {$ELSE}
-    {$IFDEF DELPHI15_UP}
-    if assigned(TThread.Current) then
-      Result := TThread.Current.ThreadID
-     else
-      Result := GetCurrentThreadId();
-    {$ELSE}
-      Result := GetCurrentThreadId();
-    {$ENDIF}
-  {$ENDIF}
+  Result := GetCurrentThreadId();
+  {$IFEND}
 end;
 
 function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean): WideString;
@@ -356,7 +349,7 @@ end;
 function CustomFindAllFiles(const aPath, aFilename: string): TStringList;
 var
   i : integer;
-  {$IFDEF DELPHI14_UP}
+  {$IFDEF DELPHI16_UP}
   TempFiles : TStringDynArray;
   {$ELSE}
   TempRec : TSearchRec;
@@ -369,7 +362,7 @@ begin
       begin
         Result := TStringList.Create;
 
-        {$IFDEF DELPHI14_UP}
+        {$IFDEF DELPHI16_UP}
         TempFiles := TDirectory.GetFiles(aPath, aFilename, TSearchOption.soTopDirectoryOnly);
         for i := 0 to pred(length(TempFiles)) do
           Result.Add(TempFiles[i]);
@@ -379,7 +372,7 @@ begin
             i         := pos('*', aFilename);
             TempStart := copy(aFilename, 1, pred(i));
             TempEnd   := copy(aFilename, succ(i), length(aFilename));
-            
+
             repeat
               if ((TempRec.Attr and faDirectory) = 0) and
                  (CompareText(TempStart, copy(TempRec.Name, 1, length(TempStart))) = 0) and

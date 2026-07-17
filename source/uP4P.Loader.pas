@@ -616,13 +616,22 @@ begin
   FFileVersion.Minor := 0;
   FFileVersion.Micro := 0;
 
-  Result := {$IFDEF MSWINDOWS}GetDLLVersion(aLibraryPath) or{$ENDIF}
-            ReadVersionFromFilename(aLibraryPath);
-
-  if not(Result) then
+  if (length(aLibraryPath) = 0) or not(FileExists(aLibraryPath)) then
     begin
-      FLastErrorMessage := FLastErrorMessage + CRLF + 'Unknown Python library version.';
+      Result            := False;
+      FLastErrorMessage := FLastErrorMessage + CRLF + 'It' + #39 + 's not possible to find the Python library.';
       FStatus           := plsErrorDLLVersion;
+    end
+   else
+    begin
+      Result := {$IFDEF MSWINDOWS}GetDLLVersion(aLibraryPath) or{$ENDIF}
+                ReadVersionFromFilename(aLibraryPath);
+
+      if not(Result) then
+        begin
+          FLastErrorMessage := FLastErrorMessage + CRLF + 'Unknown Python library version.';
+          FStatus           := plsErrorDLLVersion;
+        end;
     end;
 end;
 

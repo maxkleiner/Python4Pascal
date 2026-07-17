@@ -90,7 +90,7 @@ type
       {$IFNDEF FPC}
       function  FixupIdent(const AText: string): string; override;
       {$ENDIF}
-      {$IFDEF DELPHI21_UP}
+      {$IFDEF DELPHI19_UP}
       procedure DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;
       {$ELSE}
       {$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
@@ -444,7 +444,7 @@ begin
     PyObjectVarDataCreate(Dest, TPyObjectVarData(Source).VPyObject);
 end;
 
-{$IFDEF DELPHI21_UP}
+{$IFDEF DELPHI19_UP}
 procedure TPyObjectVariantType.DispInvoke(Dest: PVarData; [Ref] const Source: TVarData; CallDesc: PCallDesc; Params: Pointer);
 {$ELSE}
 {$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
