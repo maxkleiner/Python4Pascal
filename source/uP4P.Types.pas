@@ -1167,6 +1167,9 @@ type
     int_max_str_digits       : integer;
     thread_inherit_context   : integer;
     context_aware_warnings   : integer;
+    {$IFDEF APPLE}
+    use_system_logger        : integer;
+    {$ENDIF}
     cpu_count                : integer;
     pathconfig_warnings      : integer;
     program_name             : PWCharT;

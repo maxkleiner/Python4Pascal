@@ -698,6 +698,9 @@ type
     function Get_code_debug_ranges: boolean;
     function Get_configure_c_stdio: boolean;
     function Get_context_aware_warnings: boolean;
+    {$IFDEF APPLE}
+    function Get_use_system_logger: boolean;
+    {$ENDIF}
     function Get_cpu_count: integer;
     function Get_dev_mode: boolean;
     function Get_dump_refs: boolean;
@@ -767,6 +770,9 @@ type
     procedure Set_code_debug_ranges(aValue: boolean);
     procedure Set_configure_c_stdio(aValue: boolean);
     procedure Set_context_aware_warnings(aValue: boolean);
+    {$IFDEF APPLE}
+    procedure Set_use_system_logger(aValue: boolean);
+    {$ENDIF}
     procedure Set_cpu_count(aValue: integer);
     procedure Set_dev_mode(aValue: boolean);
     procedure Set_dump_refs(aValue: boolean);
@@ -859,6 +865,9 @@ type
     property code_debug_ranges         : boolean              read Get_code_debug_ranges            write Set_code_debug_ranges;
     property configure_c_stdio         : boolean              read Get_configure_c_stdio            write Set_configure_c_stdio;
     property context_aware_warnings    : boolean              read Get_context_aware_warnings       write Set_context_aware_warnings;
+    {$IFDEF APPLE}
+    property use_system_logger         : boolean              read Get_use_system_logger            write Set_use_system_logger;
+    {$ENDIF}
     property cpu_count                 : integer              read Get_cpu_count                    write Set_cpu_count;
     property dev_mode                  : boolean              read Get_dev_mode                     write Set_dev_mode;
     property dump_refs                 : boolean              read Get_dump_refs                    write Set_dump_refs;

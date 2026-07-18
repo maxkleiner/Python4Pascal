@@ -44,6 +44,9 @@ type
       function Get_code_debug_ranges: boolean; virtual;
       function Get_configure_c_stdio: boolean; virtual;
       function Get_context_aware_warnings: boolean; virtual;
+      {$IFDEF APPLE}
+      function Get_use_system_logger: boolean; virtual;
+      {$ENDIF}
       function Get_cpu_count: integer; virtual;
       function Get_dev_mode: boolean; virtual;
       function Get_dump_refs: boolean; virtual;
@@ -113,6 +116,9 @@ type
       procedure Set_code_debug_ranges(aValue: boolean); virtual;
       procedure Set_configure_c_stdio(aValue: boolean); virtual;
       procedure Set_context_aware_warnings(aValue: boolean); virtual;
+      {$IFDEF APPLE}
+      procedure Set_use_system_logger(aValue: boolean); virtual;
+      {$ENDIF}
       procedure Set_cpu_count(aValue: integer); virtual;
       procedure Set_dev_mode(aValue: boolean); virtual;
       procedure Set_dump_refs(aValue: boolean); virtual;
@@ -213,6 +219,9 @@ type
       function Get_code_debug_ranges: boolean; override;
       function Get_configure_c_stdio: boolean; override;
       function Get_context_aware_warnings: boolean; override;
+      {$IFDEF APPLE}
+      function Get_use_system_logger: boolean; override;
+      {$ENDIF}
       function Get_cpu_count: integer; override;
       function Get_dev_mode: boolean; override;
       function Get_dump_refs: boolean; override;
@@ -282,6 +291,9 @@ type
       procedure Set_code_debug_ranges(aValue: boolean); override;
       procedure Set_configure_c_stdio(aValue: boolean); override;
       procedure Set_context_aware_warnings(aValue: boolean); override;
+      {$IFDEF APPLE}
+      procedure Set_use_system_logger(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_cpu_count(aValue: integer); override;
       procedure Set_dev_mode(aValue: boolean); override;
       procedure Set_dump_refs(aValue: boolean); override;
@@ -1015,6 +1027,13 @@ begin
   Result := False;
 end;
 
+{$IFDEF APPLE}
+function TPyConfigBase.Get_use_system_logger: boolean;
+begin
+  Result := False;
+end;
+{$ENDIF}
+
 function TPyConfigBase.Get_cpu_count: integer;
 begin
   Result := 0;
@@ -1467,6 +1486,13 @@ begin
   //
 end;
 
+{$IFDEF APPLE}
+procedure TPyConfigBase.Set_use_system_logger(aValue: boolean);
+begin
+  //
+end;
+{$ENDIF}
+
 procedure TPyConfigBase.Set_cpu_count(aValue: integer);
 begin
   //
@@ -1812,6 +1838,13 @@ function TPyConfig314.Get_context_aware_warnings: boolean;
 begin
   Result := (FConfig.context_aware_warnings <> 0);
 end;
+
+{$IFDEF APPLE}
+function TPyConfig314.Get_use_system_logger: boolean;
+begin
+  Result := (FConfig.use_system_logger <> 0);
+end;
+{$ENDIF}
 
 function TPyConfig314.Get_cpu_count: integer;
 begin
@@ -2185,6 +2218,13 @@ procedure TPyConfig314.Set_context_aware_warnings(aValue: boolean);
 begin
   FConfig.context_aware_warnings := ord(aValue);
 end;
+
+{$IFDEF APPLE}
+procedure TPyConfig314.Set_use_system_logger(aValue: boolean);
+begin
+  FConfig.use_system_logger := ord(aValue);
+end;
+{$ENDIF}
 
 procedure TPyConfig314.Set_cpu_count(aValue: integer);
 begin
