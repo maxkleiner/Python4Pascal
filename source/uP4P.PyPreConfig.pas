@@ -30,7 +30,9 @@ type
       function Get_configure_locale: boolean;
       function Get_coerce_c_locale: integer;
       function Get_coerce_c_locale_warn: boolean;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_fs_encoding: boolean;
+      {$ENDIF}
       function Get_utf8_mode: integer;
       function Get_dev_mode: boolean;
       function Get_allocator: PyMemAllocatorName;
@@ -50,7 +52,9 @@ type
       property configure_locale           : boolean            read Get_configure_locale;
       property coerce_c_locale            : integer            read Get_coerce_c_locale;
       property coerce_c_locale_warn       : boolean            read Get_coerce_c_locale_warn;
+      {$IFDEF MSWINDOWS}
       property legacy_windows_fs_encoding : boolean            read Get_legacy_windows_fs_encoding;
+      {$ENDIF}
       property utf8_mode                  : integer            read Get_utf8_mode;
       property dev_mode                   : boolean            read Get_dev_mode;
       property allocator                  : PyMemAllocatorName read Get_allocator;
@@ -128,14 +132,12 @@ begin
   Result := FConfig.coerce_c_locale_warn <> 0;
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyPreConfig.Get_legacy_windows_fs_encoding: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := FConfig.legacy_windows_fs_encoding <> 0;
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyPreConfig.Get_utf8_mode: integer;
 begin

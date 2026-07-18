@@ -41,12 +41,14 @@ type
       class function SetFromErrnoWithFilenameObject(const type_, filenameObject: IPyObject): IPyObject;
       class function SetFromErrnoWithFilenameObjects(const type_, filenameObject, filenameObject2: IPyObject): IPyObject;
       class function SetFromErrnoWithFilename(const type_: IPyObject; const filename: string): IPyObject;
+      {$IFDEF MSWINDOWS}
       class function SetFromWindowsErrWithFilename(ierr: integer; const filename: string): IPyObject;
       class function SetFromWindowsErr(ierr: integer): IPyObject;
       class function SetExcFromWindowsErrWithFilenameObject(const type_: IPyObject; ierr: integer; const filename: IPyObject): IPyObject;
       class function SetExcFromWindowsErrWithFilenameObjects(const type_: IPyObject; ierr: integer; const filename, filename2: IPyObject): IPyObject;
       class function SetExcFromWindowsErrWithFilename(const type_: IPyObject; ierr: integer; const filename: string): IPyObject;
       class function SetExcFromWindowsErr(const type_: IPyObject; ierr: integer): IPyObject;
+      {$ENDIF}
       class function SetImportErrorSubclass(const exception, msg, name_, path: IPyObject): IPyObject;
       class function SetImportError(const msg, name_, path: IPyObject): IPyObject;
       class procedure BadInternalCall;
@@ -333,6 +335,7 @@ begin
     Result := nil;
 end;
 
+{$IFDEF MSWINDOWS}
 class function TPyErr.SetFromWindowsErrWithFilename(ierr: integer; const filename: string): IPyObject;
 var
   TempFilename : AnsiString;
@@ -397,6 +400,7 @@ begin
    else
     Result := nil;
 end;
+{$ENDIF}
 
 class function TPyErr.SetImportErrorSubclass(const exception, msg, name_, path: IPyObject): IPyObject;
 var

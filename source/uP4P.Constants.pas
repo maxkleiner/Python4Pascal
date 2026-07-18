@@ -82,8 +82,10 @@ const
   PYINITCONFIGOPTION_INT_MAX_STR_DIGITS         = 'int_max_str_digits';
   PYINITCONFIGOPTION_INTERACTIVE                = 'interactive';
   PYINITCONFIGOPTION_ISOLATED                   = 'isolated';
+  {$IFDEF MSWINDOWS}
   PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING = 'legacy_windows_fs_encoding';
   PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO       = 'legacy_windows_stdio';
+  {$ENDIF}
   PYINITCONFIGOPTION_MALLOC_STATS               = 'malloc_stats';
   PYINITCONFIGOPTION_MODULE_SEARCH_PATHS        = 'module_search_paths';
   PYINITCONFIGOPTION_OPTIMIZATION_LEVEL         = 'optimization_level';
@@ -322,7 +324,7 @@ const
   {* include/bytearrayobject.h *}
   {* include/bytesobject.h *}
   {* include/unicodeobject.h *}
-  {* include/pyerrors.h *}
+  {* include/pyerrors.h  include/cpython/pyerrors.h *}
   {* include/longobject.h *}
   Py_ASNATIVEBYTES_DEFAULTS        = -1;
   Py_ASNATIVEBYTES_BIG_ENDIAN      = 0;

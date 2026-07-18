@@ -70,12 +70,14 @@ type
       class function DecodeASCII(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       class function AsASCIIString(const unicode: IPyObject): IPyObject;                
       class function DecodeCharmap(const str: PAnsiChar; length: Py_ssize_t; const mapping: IPyObject; errors: TPyCodecErrors): IPyObject;
-      class function AsCharmapString(const unicode, mapping: IPyObject): IPyObject;            
+      class function AsCharmapString(const unicode, mapping: IPyObject): IPyObject;
+      {$IFDEF MSWINDOWS}
       class function DecodeMBCS(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
-      class function DecodeMBCSStateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;   
+      class function DecodeMBCSStateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       class function DecodeCodePageStateful(codepage: integer; const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       class function AsMBCSString(const unicode: IPyObject): IPyObject;
-      class function EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;  
+      class function EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
+      {$ENDIF}
       class function DecodeLocaleAndSize(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       class function DecodeLocale(const str: PAnsiChar; errors: TPyCodecErrors): IPyObject;
       class function EncodeLocale(const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
@@ -507,6 +509,7 @@ begin
     Result := nil;
 end;
 
+{$IFDEF MSWINDOWS}
 class function TPyUnicode.DecodeMBCS(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
 var
   TempErrors : AnsiString;
@@ -538,13 +541,37 @@ var
   TempErrors : AnsiString;
 begin
   if assigned(PyUnicode_DecodeCodePageStateful) then
-    begin                 
+    begin
       TempErrors := ErrorToAnsiString(errors);
       Result     := TPyObject.Wrap(PyUnicode_DecodeCodePageStateful(codepage, str, length, PAnsiChar(TempErrors), @consumed));
     end
    else
     Result := nil;
 end;
+
+class function TPyUnicode.AsMBCSString(const unicode: IPyObject): IPyObject;
+begin
+  if assigned(PyUnicode_AsMBCSString) and
+     TPyObject.IsInitialized(unicode) then
+    Result := TPyObject.Wrap(PyUnicode_AsMBCSString(unicode.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPyUnicode.EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
+var
+  TempErrors : AnsiString;
+begin
+  if assigned(PyUnicode_EncodeCodePage) and
+     TPyObject.IsInitialized(unicode) then
+    begin
+      TempErrors := ErrorToAnsiString(errors);
+      Result     := TPyObject.Wrap(PyUnicode_EncodeCodePage(codepage, unicode.PyObject, PAnsiChar(TempErrors)));
+    end
+   else
+    Result := nil;
+end;
+{$ENDIF}
 
 class function TPyUnicode.DecodeLocaleAndSize(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
 var
@@ -739,29 +766,6 @@ begin
      TPyObject.IsInitialized(unicode) and
      TPyObject.IsInitialized(mapping) then
     Result := TPyObject.Wrap(PyUnicode_AsCharmapString(unicode.PyObject, mapping.PyObject))
-   else
-    Result := nil;
-end;
-
-class function TPyUnicode.AsMBCSString(const unicode: IPyObject): IPyObject;
-begin
-  if assigned(PyUnicode_AsMBCSString) and
-     TPyObject.IsInitialized(unicode) then
-    Result := TPyObject.Wrap(PyUnicode_AsMBCSString(unicode.PyObject))
-   else
-    Result := nil;
-end;
-
-class function TPyUnicode.EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
-var
-  TempErrors : AnsiString;
-begin
-  if assigned(PyUnicode_EncodeCodePage) and
-     TPyObject.IsInitialized(unicode) then
-    begin 
-      TempErrors := ErrorToAnsiString(errors);
-      Result     := TPyObject.Wrap(PyUnicode_EncodeCodePage(codepage, unicode.PyObject, PAnsiChar(TempErrors)));
-    end
    else
     Result := nil;
 end;

@@ -61,7 +61,9 @@ type
       function Get_int_max_str_digits: integer; virtual;
       function Get_interactive: boolean; virtual;
       function Get_isolated: boolean; virtual;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; virtual;
+      {$ENDIF}
       function Get_malloc_stats: boolean; virtual;
       function Get_module_search_paths: string; virtual;
       function Get_module_search_paths_set: boolean; virtual;
@@ -128,7 +130,9 @@ type
       procedure Set_int_max_str_digits(aValue: integer); virtual;
       procedure Set_interactive(aValue: boolean); virtual;
       procedure Set_isolated(aValue: boolean); virtual;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); virtual;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); virtual;
       procedure Set_module_search_paths(const aValue: string); virtual;
       procedure Set_module_search_paths_set(aValue: boolean); virtual;
@@ -226,7 +230,9 @@ type
       function Get_int_max_str_digits: integer; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
       function Get_malloc_stats: boolean; override;
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
@@ -293,7 +299,9 @@ type
       procedure Set_int_max_str_digits(aValue: integer); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); override;
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
@@ -364,7 +372,9 @@ type
       function Get_int_max_str_digits: integer; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
       function Get_malloc_stats: boolean; override;
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
@@ -428,7 +438,9 @@ type
       procedure Set_int_max_str_digits(aValue: integer); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); override;
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
@@ -496,7 +508,9 @@ type
       function Get_int_max_str_digits: integer; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
       function Get_malloc_stats: boolean; override;
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
@@ -558,7 +572,9 @@ type
       procedure Set_int_max_str_digits(aValue: integer); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); override;
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
@@ -624,7 +640,9 @@ type
       function Get_install_signal_handlers: boolean; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
       function Get_malloc_stats: boolean; override;
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
@@ -684,7 +702,9 @@ type
       procedure Set_install_signal_handlers(aValue: boolean); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); override;
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
@@ -747,7 +767,9 @@ type
       function Get_install_signal_handlers: boolean; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
       function Get_malloc_stats: boolean; override;
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
@@ -802,7 +824,9 @@ type
       procedure Set_install_signal_handlers(aValue: boolean); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean); override;
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
@@ -1076,10 +1100,12 @@ begin
   Result := False;
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfigBase.Get_legacy_windows_stdio: boolean;
 begin
   Result := False;
 end;
+{$ENDIF}
 
 function TPyConfigBase.Get_malloc_stats: boolean;
 begin
@@ -1526,10 +1552,12 @@ begin
   //
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfigBase.Set_legacy_windows_stdio(aValue: boolean);
 begin
   //
 end;
+{$ENDIF}
 
 procedure TPyConfigBase.Set_malloc_stats(aValue: boolean);
 begin
@@ -1870,14 +1898,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfig314.Get_legacy_windows_stdio: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := (FConfig.legacy_windows_stdio <> 0);
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyConfig314.Get_malloc_stats: boolean;
 begin
@@ -2248,12 +2274,12 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfig314.Set_legacy_windows_stdio(aValue: boolean);
 begin
-  {$IFDEF MSWINDOWS}
   FConfig.legacy_windows_stdio := ord(aValue);
-  {$ENDIF}
 end;
+{$ENDIF}
 
 procedure TPyConfig314.Set_malloc_stats(aValue: boolean);
 begin
@@ -2612,14 +2638,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfig313.Get_legacy_windows_stdio: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := (FConfig.legacy_windows_stdio <> 0);
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyConfig313.Get_malloc_stats: boolean;
 begin
@@ -2975,12 +2999,12 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfig313.Set_legacy_windows_stdio(aValue: boolean);
 begin
-  {$IFDEF MSWINDOWS}
   FConfig.legacy_windows_stdio := ord(aValue);
-  {$ENDIF}
 end;
+{$ENDIF}
 
 procedure TPyConfig313.Set_malloc_stats(aValue: boolean);
 begin
@@ -3324,14 +3348,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfig312.Get_legacy_windows_stdio: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := (FConfig.legacy_windows_stdio <> 0);
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyConfig312.Get_malloc_stats: boolean;
 begin
@@ -3677,12 +3699,12 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfig312.Set_legacy_windows_stdio(aValue: boolean);
 begin
-  {$IFDEF MSWINDOWS}
   FConfig.legacy_windows_stdio := ord(aValue);
-  {$ENDIF}
 end;
+{$ENDIF}
 
 procedure TPyConfig312.Set_malloc_stats(aValue: boolean);
 begin
@@ -4016,14 +4038,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfig311.Get_legacy_windows_stdio: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := (FConfig.legacy_windows_stdio <> 0);
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyConfig311.Get_malloc_stats: boolean;
 begin
@@ -4359,12 +4379,12 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfig311.Set_legacy_windows_stdio(aValue: boolean);
 begin
-  {$IFDEF MSWINDOWS}
   FConfig.legacy_windows_stdio := ord(aValue);
-  {$ENDIF}
 end;
+{$ENDIF}
 
 procedure TPyConfig311.Set_malloc_stats(aValue: boolean);
 begin
@@ -4683,14 +4703,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyConfig310.Get_legacy_windows_stdio: boolean;
 begin
-  {$IFDEF MSWINDOWS}
   Result := (FConfig.legacy_windows_stdio <> 0);
-  {$ELSE}
-  Result := False;
-  {$ENDIF}
 end;
+{$ENDIF}
 
 function TPyConfig310.Get_malloc_stats: boolean;
 begin
@@ -5001,12 +5019,12 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyConfig310.Set_legacy_windows_stdio(aValue: boolean);
 begin
-  {$IFDEF MSWINDOWS}
   FConfig.legacy_windows_stdio := ord(aValue);
-  {$ENDIF}
 end;
+{$ENDIF}
 
 procedure TPyConfig310.Set_malloc_stats(aValue: boolean);
 begin

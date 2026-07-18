@@ -55,8 +55,10 @@ type
       function Get_int_max_str_digits: int64;
       function Get_interactive: boolean;
       function Get_isolated: boolean;
+      {$IFDEF MSWINDOWS}
       function Get_legacy_windows_fs_encoding: boolean;
       function Get_legacy_windows_stdio: boolean;
+      {$ENDIF}
       function Get_malloc_stats: boolean;
       function Get_module_search_paths: string;
       function Get_optimization_level: TPyOptimizationLevel;
@@ -124,8 +126,10 @@ type
       procedure Set_int_max_str_digits(aValue: int64);
       procedure Set_interactive(aValue: boolean);
       procedure Set_isolated(aValue: boolean);
+      {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_fs_encoding(aValue: boolean);
       procedure Set_legacy_windows_stdio(aValue: boolean);
+      {$ENDIF}
       procedure Set_malloc_stats(aValue: boolean);
       procedure Set_module_search_paths(const aValue: string);
       procedure Set_optimization_level(aValue: TPyOptimizationLevel);
@@ -720,6 +724,7 @@ begin
             (TempResult <> 0);
 end;
 
+{$IFDEF MSWINDOWS}
 function TPyInitConfig.Get_legacy_windows_fs_encoding: boolean;
 var
   TempResult : int64;
@@ -735,6 +740,7 @@ begin
   Result := GetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO, TempResult) and
             (TempResult <> 0);
 end;
+{$ENDIF}
 
 function TPyInitConfig.Get_malloc_stats: boolean;
 var
@@ -1235,6 +1241,7 @@ begin
   SetInt(PYINITCONFIGOPTION_ISOLATED, ord(aValue));
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TPyInitConfig.Set_legacy_windows_fs_encoding(aValue: boolean);
 begin
   SetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING, ord(aValue));
@@ -1244,6 +1251,7 @@ procedure TPyInitConfig.Set_legacy_windows_stdio(aValue: boolean);
 begin
   SetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO, ord(aValue));
 end;
+{$ENDIF}
 
 procedure TPyInitConfig.Set_malloc_stats(aValue: boolean);
 begin

@@ -451,8 +451,10 @@ type
     function Get_int_max_str_digits: int64;
     function Get_interactive: boolean;
     function Get_isolated: boolean;
+    {$IFDEF MSWINDOWS}
     function Get_legacy_windows_fs_encoding: boolean;
     function Get_legacy_windows_stdio: boolean;
+    {$ENDIF}
     function Get_malloc_stats: boolean;
     function Get_module_search_paths: string;
     function Get_optimization_level: TPyOptimizationLevel;
@@ -520,8 +522,10 @@ type
     procedure Set_int_max_str_digits(aValue: int64);
     procedure Set_interactive(aValue: boolean);
     procedure Set_isolated(aValue: boolean);
+    {$IFDEF MSWINDOWS}
     procedure Set_legacy_windows_fs_encoding(aValue: boolean);
     procedure Set_legacy_windows_stdio(aValue: boolean);
+    {$ENDIF}
     procedure Set_malloc_stats(aValue: boolean);
     procedure Set_module_search_paths(const aValue: string);
     procedure Set_optimization_level(aValue: TPyOptimizationLevel);
@@ -603,8 +607,10 @@ type
     property int_max_str_digits         : int64                  read Get_int_max_str_digits             write Set_int_max_str_digits;
     property interactive                : boolean                read Get_interactive                    write Set_interactive;
     property isolated                   : boolean                read Get_isolated                       write Set_isolated;
+    {$IFDEF MSWINDOWS}
     property legacy_windows_fs_encoding : boolean                read Get_legacy_windows_fs_encoding     write Set_legacy_windows_fs_encoding;
     property legacy_windows_stdio       : boolean                read Get_legacy_windows_stdio           write Set_legacy_windows_stdio;
+    {$ENDIF}
     property malloc_stats               : boolean                read Get_malloc_stats                   write Set_malloc_stats;
     property module_search_paths        : string                 read Get_module_search_paths            write Set_module_search_paths;
     property optimization_level         : TPyOptimizationLevel   read Get_optimization_level             write Set_optimization_level;
@@ -653,7 +659,9 @@ type
     function Get_configure_locale: boolean;
     function Get_coerce_c_locale: integer;
     function Get_coerce_c_locale_warn: boolean;
+    {$IFDEF MSWINDOWS}
     function Get_legacy_windows_fs_encoding: boolean;
+    {$ENDIF}
     function Get_utf8_mode: integer;
     function Get_dev_mode: boolean;
     function Get_allocator: PyMemAllocatorName;
@@ -669,7 +677,9 @@ type
     property configure_locale           : boolean            read Get_configure_locale;
     property coerce_c_locale            : integer            read Get_coerce_c_locale;
     property coerce_c_locale_warn       : boolean            read Get_coerce_c_locale_warn;
+    {$IFDEF MSWINDOWS}
     property legacy_windows_fs_encoding : boolean            read Get_legacy_windows_fs_encoding;
+    {$ENDIF}
     property utf8_mode                  : integer            read Get_utf8_mode;
     property dev_mode                   : boolean            read Get_dev_mode;
     property allocator                  : PyMemAllocatorName read Get_allocator;
@@ -705,7 +715,9 @@ type
     function Get_int_max_str_digits: integer;
     function Get_interactive: boolean;
     function Get_isolated: boolean;
+    {$IFDEF MSWINDOWS}
     function Get_legacy_windows_stdio: boolean;
+    {$ENDIF}
     function Get_malloc_stats: boolean;
     function Get_module_search_paths: string;
     function Get_module_search_paths_set: boolean;
@@ -772,7 +784,9 @@ type
     procedure Set_int_max_str_digits(aValue: integer);
     procedure Set_interactive(aValue: boolean);
     procedure Set_isolated(aValue: boolean);
+    {$IFDEF MSWINDOWS}
     procedure Set_legacy_windows_stdio(aValue: boolean);
+    {$ENDIF}
     procedure Set_malloc_stats(aValue: boolean);
     procedure Set_module_search_paths(const aValue: string);
     procedure Set_module_search_paths_set(aValue: boolean);
@@ -862,7 +876,9 @@ type
     property int_max_str_digits        : integer              read Get_int_max_str_digits           write Set_int_max_str_digits;
     property interactive               : boolean              read Get_interactive                  write Set_interactive;
     property isolated                  : boolean              read Get_isolated                     write Set_isolated;
+    {$IFDEF MSWINDOWS}
     property legacy_windows_stdio      : boolean              read Get_legacy_windows_stdio         write Set_legacy_windows_stdio;
+    {$ENDIF}
     property malloc_stats              : boolean              read Get_malloc_stats                 write Set_malloc_stats;
     property module_search_paths       : string               read Get_module_search_paths          write Set_module_search_paths;
     property module_search_paths_set   : boolean              read Get_module_search_paths_set      write Set_module_search_paths_set;

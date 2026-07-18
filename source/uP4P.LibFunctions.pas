@@ -268,11 +268,13 @@ var
   PyUnicode_AsASCIIString                        : function(unicode: PPyObject): PPyObject; cdecl;
   PyUnicode_DecodeCharmap                        : function(const string_: PAnsiChar; length: Py_ssize_t; mapping: PPyObject; const errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_AsCharmapString                      : function(unicode, mapping: PPyObject): PPyObject; cdecl;
+  {$IFDEF MSWINDOWS}
   PyUnicode_DecodeMBCS                           : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_DecodeMBCSStateful                   : function(const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar; consumed: PPy_ssize_t): PPyObject; cdecl;
   PyUnicode_DecodeCodePageStateful               : function(codepage: integer; const string_: PAnsiChar; length: Py_ssize_t; const errors: PAnsiChar; consumed: PPy_ssize_t): PPyObject; cdecl;
   PyUnicode_AsMBCSString                         : function(unicode: PPyObject): PPyObject; cdecl;
   PyUnicode_EncodeCodePage                       : function(codepage: integer; unicode: PPyObject; const errors: PAnsiChar): PPyObject; cdecl;
+  {$ENDIF}
   PyUnicode_DecodeLocaleAndSize                  : function(const str: PAnsiChar; len: Py_ssize_t; const errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_DecodeLocale                         : function(const str: PAnsiChar; const errors: PAnsiChar): PPyObject; cdecl;
   PyUnicode_EncodeLocale                         : function(unicode: PPyObject; const errors: PAnsiChar): PPyObject; cdecl;
@@ -432,12 +434,14 @@ var
   PyErr_SetFromErrnoWithFilename                 : function(type_: PPyObject; const filename: PAnsiChar): PPyObject; cdecl;
   PyErr_Format                                   : function(exception: PPyObject; const format: PAnsiChar {; ...}): PPyObject; cdecl varargs;
   //PyErr_FormatV not implemented.  // PyAPI_FUNC(PyObject *) PyErr_FormatV(PyObject *exception, const char *format, va_list vargs);
+  {$IFDEF MSWINDOWS}
   PyErr_SetFromWindowsErrWithFilename            : function(ierr: integer; const filename: PAnsiChar): PPyObject; cdecl;
   PyErr_SetFromWindowsErr                        : function(ierr: integer): PPyObject; cdecl;
   PyErr_SetExcFromWindowsErrWithFilenameObject   : function(type_: PPyObject; ierr: integer; filename: PPyObject): PPyObject; cdecl;
   PyErr_SetExcFromWindowsErrWithFilenameObjects  : function(type_: PPyObject; ierr: integer; filename, filename2: PPyObject): PPyObject; cdecl;
   PyErr_SetExcFromWindowsErrWithFilename         : function(type_: PPyObject; ierr: integer; const filename: PAnsiChar): PPyObject; cdecl;
   PyErr_SetExcFromWindowsErr                     : function(type_: PPyObject; ierr: integer): PPyObject; cdecl;
+  {$ENDIF}
   PyErr_SetImportErrorSubclass                   : function(exception, msg, name_, path: PPyObject): PPyObject; cdecl;
   PyErr_SetImportError                           : function(msg, name_, path: PPyObject): PPyObject; cdecl;
   PyErr_BadInternalCall                          : procedure(); cdecl;

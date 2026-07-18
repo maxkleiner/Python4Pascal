@@ -29,22 +29,25 @@ type
   C_Long  = type NativeInt;
   C_ULong = type NativeUInt;
 {$ENDIF}
-{$IFNDEF FPC}{$IFNDEF DELPHI12_UP}
-  NativeUInt    = Cardinal;
-  PNativeUInt   = ^NativeUInt;
-  NativeInt     = Integer;
-  uint16        = Word;
-  {$IFNDEF DELPHI7_UP}
-  uint64        = type int64;
-  PPAnsiChar    = array of PChar;
+
+{$IFNDEF FPC}
+  {$IFNDEF DELPHI12_UP}
+    NativeUInt    = Cardinal;
+    PNativeUInt   = ^NativeUInt;
+    NativeInt     = Integer;
+    uint16        = Word;
+    {$IFNDEF DELPHI7_UP}
+    uint64        = type int64;
+    PPAnsiChar    = array of PChar;
+    {$ENDIF}
+    PUint64       = ^uint64;
+    UnicodeString = type WideString;
   {$ENDIF}
-  PUint64       = ^uint64;
-  UnicodeString = type WideString;
+  {$IFNDEF DELPHI15_UP}
+    TThreadID     = LongWord;
+  {$ENDIF}
 {$ENDIF}
-{$IFNDEF DELPHI15_UP}
-  TThreadID     = LongWord;
-{$ENDIF}
-{$ENDIF}
+
 {$IFDEF POSIX}
   PWCharT       = type PUCS4Char;
   PPWCharT      = ^PUCS4Char;
@@ -663,7 +666,7 @@ type
     PyUnicode_4BYTE_KIND = 4
   );
 
-  {* include/pyerrors.h *}
+  {* include/pyerrors.h  include/cpython/pyerrors.h *}
   PyBaseExceptionObject = record
     ob_base           : PyObject; // PyObject_HEAD  // PyException_HEAD
     dict              : PPyObject;                  // PyException_HEAD

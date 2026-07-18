@@ -1613,11 +1613,13 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_AsASCIIString{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyUnicode_AsASCIIString');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeCharmap{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyUnicode_DecodeCharmap');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_AsCharmapString{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyUnicode_AsCharmapString');
+  {$IFDEF MSWINDOWS}
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeMBCS{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyUnicode_DecodeMBCS');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeMBCSStateful{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyUnicode_DecodeMBCSStateful');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeCodePageStateful{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyUnicode_DecodeCodePageStateful');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_AsMBCSString{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyUnicode_AsMBCSString');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_EncodeCodePage{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyUnicode_EncodeCodePage');
+  {$ENDIF}
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeLocaleAndSize{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyUnicode_DecodeLocaleAndSize');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_DecodeLocale{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyUnicode_DecodeLocale');
   {$IFDEF FPC}Pointer({$ENDIF}PyUnicode_EncodeLocale{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyUnicode_EncodeLocale');
@@ -1756,7 +1758,9 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_TimeoutError{$IFDEF FPC}){$ENDIF}                            := GetProcAddress(FLibHandle, 'PyExc_TimeoutError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_EnvironmentError{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyExc_EnvironmentError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_IOError{$IFDEF FPC}){$ENDIF}                                 := GetProcAddress(FLibHandle, 'PyExc_IOError');
+  {$IFDEF MSWINDOWS}
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_WindowsError{$IFDEF FPC}){$ENDIF}                            := GetProcAddress(FLibHandle, 'PyExc_WindowsError');
+  {$ENDIF}
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_Warning{$IFDEF FPC}){$ENDIF}                                 := GetProcAddress(FLibHandle, 'PyExc_Warning');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_UserWarning{$IFDEF FPC}){$ENDIF}                             := GetProcAddress(FLibHandle, 'PyExc_UserWarning');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_DeprecationWarning{$IFDEF FPC}){$ENDIF}                      := GetProcAddress(FLibHandle, 'PyExc_DeprecationWarning');
@@ -1776,12 +1780,14 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetFromErrnoWithFilenameObjects{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyErr_SetFromErrnoWithFilenameObjects');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetFromErrnoWithFilename{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyErr_SetFromErrnoWithFilename');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_Format{$IFDEF FPC}){$ENDIF}                                  := GetProcAddress(FLibHandle, 'PyErr_Format');
+  {$IFDEF MSWINDOWS}
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetFromWindowsErrWithFilename{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyErr_SetFromWindowsErrWithFilename');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetFromWindowsErr{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'PyErr_SetFromWindowsErr');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetExcFromWindowsErrWithFilenameObject{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyErr_SetExcFromWindowsErrWithFilenameObject');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetExcFromWindowsErrWithFilenameObjects{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyErr_SetExcFromWindowsErrWithFilenameObjects');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetExcFromWindowsErrWithFilename{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyErr_SetExcFromWindowsErrWithFilename');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetExcFromWindowsErr{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'PyErr_SetExcFromWindowsErr');
+  {$ENDIF}
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetImportErrorSubclass{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyErr_SetImportErrorSubclass');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_SetImportError{$IFDEF FPC}){$ENDIF}                          := GetProcAddress(FLibHandle, 'PyErr_SetImportError');
   {$IFDEF FPC}Pointer({$ENDIF}PyErr_BadInternalCall{$IFDEF FPC}){$ENDIF}                         := GetProcAddress(FLibHandle, 'PyErr_BadInternalCall');
