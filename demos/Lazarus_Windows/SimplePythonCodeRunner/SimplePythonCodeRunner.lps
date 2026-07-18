@@ -17,9 +17,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="53"/>
+        <TopLine Value="54"/>
         <CursorPos X="99" Y="63"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
@@ -27,10 +26,18 @@
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.MiscFunctions.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="62" Y="13"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="-1"/>

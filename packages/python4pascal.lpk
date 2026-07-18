@@ -13,7 +13,7 @@
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
-    <Version Major="1"/>
+    <Version Major="3" Minor="14"/>
     <Files>
       <Item>
         <Filename Value="..\source\p4p.inc"/>
@@ -525,6 +525,12 @@
       </Item>
     </Files>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="LCLBase"/>
+      </Item>
+      <Item>
+        <PackageName Value="LCL"/>
+      </Item>
       <Item>
         <PackageName Value="LazUtils"/>
       </Item>

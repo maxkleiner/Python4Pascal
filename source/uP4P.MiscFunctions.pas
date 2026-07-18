@@ -10,10 +10,10 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows, System.Classes,{$ENDIF}
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes,
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF} System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Classes,{$ENDIF} SysUtils, Types,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Types,
   {$ENDIF}
   uP4P.Types;
 
@@ -59,7 +59,7 @@ function PyStartSymbolToInt(start: TPyStartSymbols): integer;
 
 implementation
 
-uses
+uses        
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
   uP4P.Engine, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
 
