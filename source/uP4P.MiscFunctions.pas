@@ -10,10 +10,10 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes,
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.StrUtils,
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF} System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Types,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Types, StrUtils,
   {$ENDIF}
   uP4P.Types;
 
@@ -57,8 +57,9 @@ function WCharTArrayToStringDynArray(aItems: PPWCharT; aLength: NativeInt; var a
 function PyWideStringListToStringDynArray(const aList: PyWideStringList; var aResult: TStringDynArray): boolean;
 
 function ErrorToAnsiString(error: TPyCodecErrors): AnsiString;
-
 function PyStartSymbolToInt(start: TPyStartSymbols): integer;
+function CustomSplitString(const S, Delimiters: string): TStringDynArray;
+
 
 implementation
 
@@ -504,5 +505,30 @@ begin
     else         Result := Py_file_input;
   end;
 end;
+
+{$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
+function CustomSplitString(const S, Delimiters: string): TStringDynArray;
+begin
+  Result := SplitString(S, Delimiters);
+end;
+{$ELSE}
+function CustomSplitString(const S, Delimiters: string): TStringDynArray;
+var
+  TempList : TStrings;
+  i : integer;
+begin
+  if (length(Delimiters) = 0) or (length(S) = 0) then exit;
+
+  TempList := TStringList.Create;
+  try
+    ExtractStrings([Delimiters[1]], [], PChar(S), TempList);
+    SetLength(Result, TempList.Count);
+    for i := 0 to pred(TempList.Count) do
+      Result[i] := TempList[i];
+  finally
+    TempList.Free;
+  end;
+end;
+{$IFEND}
 
 end.
