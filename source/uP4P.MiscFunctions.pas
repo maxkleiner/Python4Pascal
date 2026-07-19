@@ -53,6 +53,9 @@ function StringToPyWCharTString(const aString: string): WCharTString;
 function WCharTArrayToStringList(aItems: PPWCharT; aLength: NativeInt; var aResultSL: TStringList): boolean;
 function PyWideStringListToStringList(const aList: PyWideStringList; var aResultSL: TStringList): boolean;
 
+function WCharTArrayToStringDynArray(aItems: PPWCharT; aLength: NativeInt; var aResult: TStringDynArray): boolean;
+function PyWideStringListToStringDynArray(const aList: PyWideStringList; var aResult: TStringDynArray): boolean;
+
 function ErrorToAnsiString(error: TPyCodecErrors): AnsiString;
 
 function PyStartSymbolToInt(start: TPyStartSymbols): integer;
@@ -454,6 +457,31 @@ end;
 function PyWideStringListToStringList(const aList: PyWideStringList; var aResultSL: TStringList): boolean;
 begin
   Result := WCharTArrayToStringList(aList.items, aList.length, aResultSL);
+end;
+
+function WCharTArrayToStringDynArray(aItems: PPWCharT; aLength: NativeInt; var aResult: TStringDynArray): boolean;
+var
+  TempItem : PWCharT;
+  i        : NativeInt;
+begin
+  Result := False;
+  if (aLength <= 0) then exit;
+
+  SetLength(aResult, aLength);
+
+  for i := 0 to pred(aLength) do
+    begin
+      TempItem   := PWCharT(aItems^);
+      aResult[i] := PyWCharTStringToString(WCharTString(TempItem));
+      inc(aItems);
+    end;
+
+  Result := True;
+end;
+
+function PyWideStringListToStringDynArray(const aList: PyWideStringList; var aResult: TStringDynArray): boolean;
+begin
+  Result := WCharTArrayToStringDynArray(aList.items, aList.length, aResult);
 end;
 
 function ErrorToAnsiString(error: TPyCodecErrors): AnsiString;

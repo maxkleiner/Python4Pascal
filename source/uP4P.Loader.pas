@@ -18,11 +18,11 @@ uses
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ENDIF}
     System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
+    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs, Types,
     {$IFDEF FPC}
       dynlibs, FileUtil,
     {$ELSE}
-      {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF} Types,
+      {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
     {$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
@@ -75,6 +75,7 @@ type
       function  GetFileVersion(var aFileVersion : TFileVersionInfo): boolean;
       procedure doOnBeforeInitialization(const aInitConfig: IPyInitConfig; const aConfig: IPyConfig = nil);
       procedure SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
+      procedure SetProgramArgs_PEP587(const aConfig : IPyConfig);
       function  Initialize_PEP741: boolean;
       function  Initialize_PEP587: boolean;
       function  FindPythonLib(const aPath: string; var aFiles: TStringList): boolean;
@@ -1000,7 +1001,7 @@ begin
 
       if DirectoryExists(TempPythonLibPath) and
          DirectoryExists(TempPythonPackagesPath) then
-        FModuleSearchPaths := TempPythonLibPath + ';' + TempPythonPackagesPath;
+        FModuleSearchPaths := TempPythonLibPath + PathSep + TempPythonPackagesPath;
     end;
 
   if TempValidLibPath then
@@ -1026,21 +1027,39 @@ end;
 
 procedure TP4PLoader.SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
 var
-  I: Integer;
-  TempSL: TStringList;
+  i      : integer;
+  TempSL : TStringList;
 begin
   aConfig.parse_argv := False;
 
   TempSL := TStringList.Create;
 
-  for I := 0 to ParamCount do
-    if I = 0 then
+  for i := 0 to ParamCount do
+    if i = 0 then
       TempSL.Add('')
      else
-      TempSL.Add(ParamStr(I));
+      TempSL.Add(ParamStr(i));
 
   aConfig.SetStrList(PYINITCONFIGOPTION_ARGV, TempSL);
   TempSL.Free;
+end;
+
+procedure TP4PLoader.SetProgramArgs_PEP587(const aConfig : IPyConfig);
+var
+  i          : integer;
+  TempParams : TStringDynArray;
+begin
+  aConfig.parse_argv := False;
+
+  SetLength(TempParams, succ(ParamCount));
+
+  for i := 0 to ParamCount do
+    if i = 0 then
+      TempParams[i] := ''
+     else
+      TempParams[i] := ParamStr(i);
+
+  aConfig.argv := TempParams;
 end;
 
 function TP4PLoader.Initialize_PEP741: boolean;
@@ -1126,6 +1145,8 @@ begin
     TempConfig.executable          := FExecutable;
     TempConfig.program_name        := FProgramName;
     TempConfig.module_search_paths := FModuleSearchPaths;
+
+    SetProgramArgs_PEP587(TempConfig);
 
     doOnBeforeInitialization(nil, TempConfig);
     TempStatus := TPy.InitializeFromConfig(TempConfig.Config);

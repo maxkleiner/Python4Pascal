@@ -15,9 +15,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.StrUtils, System.Types, System.SysUtils,
   {$ELSE}
-    Classes,
+    Classes, StrUtils, Types, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
@@ -34,7 +34,7 @@ type
   TPyConfigBase = class(TInterfacedObject, IPyConfig)
     protected
       function GetConfig: Pointer; virtual;
-      function Get_argv: string; virtual;
+      function Get_argv: TStringDynArray; virtual;
       function Get_base_exec_prefix: string; virtual;
       function Get_base_executable: string; virtual;
       function Get_base_prefix: string; virtual;
@@ -106,7 +106,7 @@ type
       function Get_write_bytecode: boolean; virtual;
       function Get_xoptions: string; virtual;
 
-      procedure Set_argv(const aValue: string); virtual;
+      procedure Set_argv(const aValue: TStringDynArray); virtual;
       procedure Set_base_exec_prefix(const aValue: string); virtual;
       procedure Set_base_executable(const aValue: string); virtual;
       procedure Set_base_prefix(const aValue: string); virtual;
@@ -183,9 +183,11 @@ type
       function SetBytesString(var DstString: PWCharT; SrcString: AnsiString): IPyStatus;
       function SetArgv(argc: integer; const argv: array of PWCharT): IPyStatus; overload;
       function SetArgv(const items: TStringList): boolean; overload;
+      function SetArgv(const items: TStringDynArray): boolean; overload;
       function SetBytesArgv(argc: integer; const argv: array of PAnsiChar): IPyStatus;
       function SetWideStringList(var list: PyWideStringList; length: integer; items: array of PWCharT): IPyStatus; overload;
       function SetWideStringList(var list: PyWideStringList; const items: TStringList): boolean; overload;
+      function SetWideStringList(var list: PyWideStringList; const items: TStringDynArray): boolean; overload;
 
       property Config     : Pointer    read GetConfig;
 
@@ -209,7 +211,7 @@ type
     protected
       FConfig : PyConfig314;
       function GetConfig: Pointer; override;
-      function Get_argv: string; override;
+      function Get_argv: TStringDynArray; override;
       function Get_base_exec_prefix: string; override;
       function Get_base_executable: string; override;
       function Get_base_prefix: string; override;
@@ -281,7 +283,7 @@ type
       function Get_write_bytecode: boolean; override;
       function Get_xoptions: string; override;
 
-      procedure Set_argv(const aValue: string); override;
+      procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
       procedure Set_base_executable(const aValue: string); override;
       procedure Set_base_prefix(const aValue: string); override;
@@ -358,7 +360,7 @@ type
     protected
       FConfig : PyConfig313;
       function GetConfig: Pointer; override;
-      function Get_argv: string; override;
+      function Get_argv: TStringDynArray; override;
       function Get_base_exec_prefix: string; override;
       function Get_base_executable: string; override;
       function Get_base_prefix: string; override;
@@ -424,7 +426,7 @@ type
       function Get_write_bytecode: boolean; override;
       function Get_xoptions: string; override;
 
-      procedure Set_argv(const aValue: string); override;
+      procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
       procedure Set_base_executable(const aValue: string); override;
       procedure Set_base_prefix(const aValue: string); override;
@@ -495,7 +497,7 @@ type
     protected
       FConfig : PyConfig312;
       function GetConfig: Pointer; override;
-      function Get_argv: string; override;
+      function Get_argv: TStringDynArray; override;
       function Get_base_exec_prefix: string; override;
       function Get_base_executable: string; override;
       function Get_base_prefix: string; override;
@@ -559,7 +561,7 @@ type
       function Get_write_bytecode: boolean; override;
       function Get_xoptions: string; override;
 
-      procedure Set_argv(const aValue: string); override;
+      procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
       procedure Set_base_executable(const aValue: string); override;
       procedure Set_base_prefix(const aValue: string); override;
@@ -628,7 +630,7 @@ type
     protected
       FConfig : PyConfig311;
       function GetConfig: Pointer; override;
-      function Get_argv: string; override;
+      function Get_argv: TStringDynArray; override;
       function Get_base_exec_prefix: string; override;
       function Get_base_executable: string; override;
       function Get_base_prefix: string; override;
@@ -690,7 +692,7 @@ type
       function Get_write_bytecode: boolean; override;
       function Get_xoptions: string; override;
 
-      procedure Set_argv(const aValue: string); override;
+      procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
       procedure Set_base_executable(const aValue: string); override;
       procedure Set_base_prefix(const aValue: string); override;
@@ -757,7 +759,7 @@ type
     protected
       FConfig : PyConfig310;
       function GetConfig: Pointer; override;
-      function Get_argv: string; override;
+      function Get_argv: TStringDynArray; override;
       function Get_base_exec_prefix: string; override;
       function Get_base_executable: string; override;
       function Get_base_prefix: string; override;
@@ -814,7 +816,7 @@ type
       function Get_write_bytecode: boolean; override;
       function Get_xoptions: string; override;
 
-      procedure Set_argv(const aValue: string); override;
+      procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
       procedure Set_base_executable(const aValue: string); override;
       procedure Set_base_prefix(const aValue: string); override;
@@ -977,9 +979,9 @@ begin
   Result := nil;
 end;
 
-function TPyConfigBase.Get_argv: string;
+function TPyConfigBase.Get_argv: TStringDynArray;
 begin
-  Result := '';
+  SetLength(Result, 0);
 end;
 
 function TPyConfigBase.Get_base_exec_prefix: string;
@@ -1379,6 +1381,34 @@ begin
   Result     := assigned(TempStatus) and not(TempStatus.IsException);
 end;
 
+function TPyConfigBase.SetArgv(const items: TStringDynArray): boolean;
+var
+  TempStatus : IPyStatus;
+  TempItems : array of WCharTString;
+  TempItemsPtr : array of PWCharT;
+  i, TempLen : integer;
+begin
+  Result := False;
+  if not(assigned(items)) then exit;
+
+  TempLen := length(items);
+
+  if (TempLen > 0) then
+    begin
+      SetLength(TempItems,    TempLen);
+      SetLength(TempItemsPtr, TempLen);
+
+      for i := 0 to pred(TempLen) do
+        begin
+          TempItems[i]    := StringToPyWCharTString(items[i]);
+          TempItemsPtr[i] := PWCharT(TempItems[i]);
+        end;
+    end;
+
+  TempStatus := SetArgv(TempLen, TempItemsPtr);
+  Result     := assigned(TempStatus) and not(TempStatus.IsException);
+end;
+
 function TPyConfigBase.SetBytesArgv(argc: integer; const argv: array of PAnsiChar): IPyStatus;
 begin
   if assigned(PyConfig_SetBytesArgv) then
@@ -1431,14 +1461,37 @@ begin
   Result     := assigned(TempStatus) and not(TempStatus.IsException);
 end;
 
-procedure TPyConfigBase.Set_argv(const aValue: string);
+function TPyConfigBase.SetWideStringList(var list: PyWideStringList; const items: TStringDynArray): boolean;
 var
-  TempSL: TStringList;
+  TempStatus : IPyStatus;
+  TempItems : array of WCharTString;
+  TempItemsPtr : array of PWCharT;
+  i, TempLen : integer;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  Result := False;
+  if not(assigned(items)) then exit;
+
+  TempLen := length(items);
+
+  if (TempLen > 0) then
+    begin
+      SetLength(TempItems,    TempLen);
+      SetLength(TempItemsPtr, TempLen);
+
+      for i := 0 to pred(TempLen) do
+        begin
+          TempItems[i]    := StringToPyWCharTString(items[i]);
+          TempItemsPtr[i] := PWCharT(TempItems[i]);
+        end;
+    end;
+
+  TempStatus := SetWideStringList(list, TempLen, TempItemsPtr);
+  Result     := assigned(TempStatus) and not(TempStatus.IsException);
+end;
+
+procedure TPyConfigBase.Set_argv(const aValue: TStringDynArray);
+begin
+  SetArgv(aValue);
 end;
 
 procedure TPyConfigBase.Set_base_exec_prefix(const aValue: string);
@@ -1780,18 +1833,9 @@ begin
   Result := @FConfig;
 end;
 
-function TPyConfig314.Get_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig314.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
 function TPyConfig314.Get_base_exec_prefix: string;
@@ -2164,14 +2208,9 @@ begin
   TempSL.Free;
 end;
 
-procedure TPyConfig314.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig314.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  SetArgv(aValue);
 end;
 
 procedure TPyConfig314.Set_base_exec_prefix(const aValue: string);
@@ -2328,12 +2367,10 @@ end;
 
 procedure TPyConfig314.Set_module_search_paths(const aValue: string);
 var
-  TempSL: TStringList;
+  TempPaths : TStringDynArray;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.module_search_paths, TempSL);
-  TempSL.Free;
+  TempPaths := SplitString(aValue, PathSep);
+  SetWideStringList(FConfig.module_search_paths, TempPaths);
 end;
 
 procedure TPyConfig314.Set_module_search_paths_set(aValue: boolean);
@@ -2539,18 +2576,9 @@ begin
   Result := @FConfig;
 end;
 
-function TPyConfig313.Get_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig313.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
 function TPyConfig313.Get_base_exec_prefix: string;
@@ -2901,14 +2929,9 @@ begin
   TempSL.Free;
 end;
 
-procedure TPyConfig313.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig313.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  SetArgv(aValue);
 end;
 
 procedure TPyConfig313.Set_base_exec_prefix(const aValue: string);
@@ -3053,12 +3076,10 @@ end;
 
 procedure TPyConfig313.Set_module_search_paths(const aValue: string);
 var
-  TempSL: TStringList;
+  TempPaths : TStringDynArray;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.module_search_paths, TempSL);
-  TempSL.Free;
+  TempPaths := SplitString(aValue, PathSep);
+  SetWideStringList(FConfig.module_search_paths, TempPaths);
 end;
 
 procedure TPyConfig313.Set_module_search_paths_set(aValue: boolean);
@@ -3254,18 +3275,9 @@ begin
   Result := @FConfig;
 end;
 
-function TPyConfig312.Get_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig312.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
 function TPyConfig312.Get_base_exec_prefix: string;
@@ -3606,14 +3618,9 @@ begin
   TempSL.Free;
 end;
 
-procedure TPyConfig312.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig312.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  SetArgv(aValue);
 end;
 
 procedure TPyConfig312.Set_base_exec_prefix(const aValue: string);
@@ -3753,12 +3760,10 @@ end;
 
 procedure TPyConfig312.Set_module_search_paths(const aValue: string);
 var
-  TempSL: TStringList;
+  TempPaths : TStringDynArray;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.module_search_paths, TempSL);
-  TempSL.Free;
+  TempPaths := SplitString(aValue, PathSep);
+  SetWideStringList(FConfig.module_search_paths, TempPaths);
 end;
 
 procedure TPyConfig312.Set_module_search_paths_set(aValue: boolean);
@@ -3949,18 +3954,9 @@ begin
   Result := @FConfig;
 end;
 
-function TPyConfig311.Get_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig311.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
 function TPyConfig311.Get_base_exec_prefix: string;
@@ -4291,14 +4287,9 @@ begin
   TempSL.Free;
 end;
 
-procedure TPyConfig311.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig311.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  SetArgv(aValue);
 end;
 
 procedure TPyConfig311.Set_base_exec_prefix(const aValue: string);
@@ -4433,12 +4424,10 @@ end;
 
 procedure TPyConfig311.Set_module_search_paths(const aValue: string);
 var
-  TempSL: TStringList;
+  TempPaths : TStringDynArray;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.module_search_paths, TempSL);
-  TempSL.Free;
+  TempPaths := SplitString(aValue, PathSep);
+  SetWideStringList(FConfig.module_search_paths, TempPaths);
 end;
 
 procedure TPyConfig311.Set_module_search_paths_set(aValue: boolean);
@@ -4624,18 +4613,9 @@ begin
   Result := @FConfig;
 end;
 
-function TPyConfig310.Get_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig310.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
 function TPyConfig310.Get_base_exec_prefix: string;
@@ -4941,14 +4921,9 @@ begin
   TempSL.Free;
 end;
 
-procedure TPyConfig310.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig310.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetArgv(TempSL);
-  TempSL.Free;
+  SetArgv(aValue);
 end;
 
 procedure TPyConfig310.Set_base_exec_prefix(const aValue: string);
@@ -5073,12 +5048,10 @@ end;
 
 procedure TPyConfig310.Set_module_search_paths(const aValue: string);
 var
-  TempSL: TStringList;
+  TempPaths : TStringDynArray;
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.module_search_paths, TempSL);
-  TempSL.Free;
+  TempPaths := SplitString(aValue, PathSep);
+  SetWideStringList(FConfig.module_search_paths, TempPaths);
 end;
 
 procedure TPyConfig310.Set_module_search_paths_set(aValue: boolean);

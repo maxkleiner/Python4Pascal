@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.Types,
   {$ELSE}
-    Classes,
+    Classes, Types,
   {$ENDIF}
   uP4P.Types;
 
@@ -688,7 +688,7 @@ type
   IPyConfig = interface
     ['{1BA914A8-FFF7-4F49-AA5A-95808CCF8AFB}']
     function GetConfig: Pointer;
-    function Get_argv: string;
+    function Get_argv: TStringDynArray;
     function Get_base_exec_prefix: string;
     function Get_base_executable: string;
     function Get_base_prefix: string;
@@ -760,7 +760,7 @@ type
     function Get_write_bytecode: boolean;
     function Get_xoptions: string;
 
-    procedure Set_argv(const aValue: string);
+    procedure Set_argv(const aValue: TStringDynArray);
     procedure Set_base_exec_prefix(const aValue: string);
     procedure Set_base_executable(const aValue: string);
     procedure Set_base_prefix(const aValue: string);
@@ -855,7 +855,7 @@ type
     function  Read: IPyStatus;
 
     property Config                    : Pointer              read GetConfig;
-    property argv                      : string               read Get_argv                         write Set_argv;
+    property argv                      : TStringDynArray      read Get_argv                         write Set_argv;
     property base_exec_prefix          : string               read Get_base_exec_prefix             write Set_base_exec_prefix;
     property base_executable           : string               read Get_base_executable              write Set_base_executable;
     property base_prefix               : string               read Get_base_prefix                  write Set_base_prefix;
