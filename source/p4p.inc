@@ -492,11 +492,11 @@
 
 {$IF DEFINED(DELPHI12_UP) OR DEFINED(FPC)}
   {$DEFINE SUPPORTS_VARUSTRING}
-{$ENDIF}
+{$IFEND}
 
 {$IF DEFINED(DELPHI16_UP) OR DEFINED(FPC)}
   {$DEFINE SUPPORTS_VARUINT64}
-{$ENDIF}
+{$IFEND}
 
 {$IF DEFINED(CPUX32) OR
      DEFINED(CPU32) OR
@@ -521,8 +521,8 @@
        DEFINED(POSIX64) OR
        DEFINED(ANDROID64)}
     {$DEFINE TARGET_64BITS}
-  {$ENDIF}
-{$ENDIF}
+  {$IFEND}
+{$IFEND}
 
 // Delphi uses MACOS for the new MacOSX and DARWIN is not defined
 // FPC uses DARWIN for the new MacOSX and MACOS is defined for the classic Macintosh OS (System 7)

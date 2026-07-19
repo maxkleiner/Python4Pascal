@@ -80,7 +80,7 @@ begin
 
   {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
-  {$ENDIF}
+  {$IFEND}
 
   {$IFDEF APPLE}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
@@ -114,7 +114,7 @@ begin
       {$ELSE}
         FMX.Types.Log.d(aMessage);
       {$ENDIF}
-    {$ENDIF}
+    {$IFEND}
 
     {$IFDEF MACOSX}
       {$IFDEF FPC}
@@ -149,7 +149,7 @@ begin
         {$ELSE}
         // TO-DO: Find a way to show message boxes in FMXLinux
         {$ENDIF}
-      {$ENDIF}
+      {$IFEND}
 
       {$IFDEF MACOSX}
         {$IFDEF FPC}
