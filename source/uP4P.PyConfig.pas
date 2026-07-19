@@ -21,6 +21,10 @@ uses
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
+// Update the SUPPORTED_MAJOR_VERSION, MAX_SUPPORTED_MINOR_VERSION and
+// MIN_SUPPORTED_MINOR_VERSION constant values and also the TPyConfigBuilder.New
+// function after creating a new TPyConfigXY class.
+
 type
   TPyConfig = class
     public
@@ -5221,7 +5225,7 @@ class function TPyConfigBuilder.New(aMajor, aMinor: integer): IPyConfig;
 begin
   Result := nil;
   case aMajor of
-    3:
+    SUPPORTED_MAJOR_VERSION:
       case aMinor of
         14: Result := TPyConfig314.Create;
         13: Result := TPyConfig313.Create;

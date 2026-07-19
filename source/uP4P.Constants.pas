@@ -25,6 +25,10 @@ const
   TAB             = #09;
   CRLF            = CR+LF;
 
+  SUPPORTED_MAJOR_VERSION     = 3;
+  MAX_SUPPORTED_MINOR_VERSION = 14;
+  MIN_SUPPORTED_MINOR_VERSION = 10;
+
   HOURS_IN_A_DAY        = 24;
   MINUTES_IN_AN_HOUR    = 60;
   SECONDS_IN_A_MINUTE   = 60;

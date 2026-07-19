@@ -463,8 +463,9 @@ begin
       if CustomExceptionHandler('TP4PLoader.FindPythonLib', e) then raise;
   end;
 end;
-
+                           
 function TP4PLoader.GetOSPythonLibPath: string;
+{$IFDEF MSWINDOWS}
 const
   CAN_USE_DEBUG_LIB = {$IFDEF DEBUG}True;{$ELSE}False;{$ENDIF}
 var
@@ -524,6 +525,35 @@ begin
     if assigned(TempFiles) then FreeAndNil(TempFiles);
   end;
 end;
+{$ELSE}
+{$IFDEF LINUX}
+var
+  i : integer;
+  TempLib : string;
+begin
+  Result := '';
+
+  try
+    for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
+      begin
+        TempLib := '/usr/lib/x86_64-linux-gnu/libpython' + inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i) + '.' + PYTHON_LIB_EXT;
+        if FileExists(TempLib) then
+          begin
+            Result := TempLib;
+            break;
+          end;
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TP4PLoader.GetOSPythonLibPath', e) then raise;
+  end;
+end;
+{$ELSE}
+begin
+  Result := '';
+end;
+{$ENDIF}
+{$ENDIF}
 
 function TP4PLoader.SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
 var
