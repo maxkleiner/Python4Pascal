@@ -42,7 +42,7 @@ const
   {$IFDEF MSWINDOWS}
   PYTHON_LIB_EXT = 'dll';
   {$ELSE}
-    {$IFDEF MACOSX}
+    {$IFDEF APPLE}
     PYTHON_LIB_EXT = 'dylib';
     {$ELSE}
     PYTHON_LIB_EXT = 'so';

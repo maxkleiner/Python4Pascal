@@ -529,14 +529,41 @@ end;
 {$IFDEF LINUX}
 var
   i : integer;
-  TempLib : string;
+  TempVersion, TempLib : string;
 begin
   Result := '';
 
   try
     for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
       begin
-        TempLib := '/usr/lib/x86_64-linux-gnu/libpython' + inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i) + '.' + PYTHON_LIB_EXT;
+        TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
+        TempLib     := '/usr/lib/x86_64-linux-gnu/libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
+
+        if FileExists(TempLib) then
+          begin
+            Result := TempLib;
+            break;
+          end;
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TP4PLoader.GetOSPythonLibPath', e) then raise;
+  end;
+end;
+{$ELSE}
+{$IFDEF APPLE}
+var
+  i : integer;
+  TempVersion, TempLib : string;
+begin
+  Result := '';
+
+  try
+    for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
+      begin
+        TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
+        TempLib     := '/Library/Frameworks/Python.framework/Versions/' + TempVersion + '/libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
+
         if FileExists(TempLib) then
           begin
             Result := TempLib;
@@ -552,6 +579,7 @@ end;
 begin
   Result := '';
 end;
+{$ENDIF}
 {$ENDIF}
 {$ENDIF}
 
