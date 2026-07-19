@@ -1458,7 +1458,7 @@ var
   TempSize : Py_ssize_t;
 begin
   if TPyUnicode.Check(self) then
-    Result := TPyUnicode.AsWideCharString(self, TempSize)
+    Result := WideString(TPyUnicode.AsWideCharString(self, TempSize))
    else
     if TPyBytes.Check(self) then
       Result := TPyBytes.AsWideString(self)
@@ -1467,7 +1467,7 @@ begin
         TempStr := self.Str;
 
         if TPyUnicode.Check(TempStr) then
-          Result := TPyUnicode.AsWideCharString(TempStr, TempSize)
+          Result := WideString(TPyUnicode.AsWideCharString(TempStr, TempSize))
          else
           Result := '';
       end;

@@ -3,7 +3,7 @@ unit uMainForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUTils,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, FMX.Controls.Presentation, FMX.Layouts,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
@@ -53,8 +53,6 @@ begin
 
   if not(GlobalP4PEngine.Initialized) then
     begin
-      GlobalP4PEngine.SetCurrentDir := True;
-
       {$IFDEF TARGET_32BITS}
       //TempBit := 'win32';
       {$ELSE}
@@ -67,7 +65,7 @@ begin
       //TempLibPath := 'R:\python-3.11.9-embed-' + TempBit + '\python311.dll';
       //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
 
-      TempLibPath := '';
+      TempLibPath := TPath.Combine(TPath.GetDocumentsPath, 'libpython3.14.so');
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then

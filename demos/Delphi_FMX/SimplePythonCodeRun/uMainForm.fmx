@@ -24,9 +24,9 @@ object MainForm: TMainForm
     object RunBtn: TButton
       Align = Right
       Margins.Left = 5.000000000000000000
-      Position.X = 538.000000000000000000
+      Position.X = 515.000000000000000000
       Position.Y = 5.000000000000000000
-      Size.Width = 97.000000000000000000
+      Size.Width = 120.000000000000000000
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -35,9 +35,9 @@ object MainForm: TMainForm
     end
     object EvaluateBtn: TButton
       Align = Right
-      Position.X = 436.000000000000000000
+      Position.X = 390.000000000000000000
       Position.Y = 5.000000000000000000
-      Size.Width = 97.000000000000000000
+      Size.Width = 120.000000000000000000
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1

@@ -405,7 +405,7 @@ end;
 function PyWCharTStringToString(const aString: WCharTString): string;
 begin
   {$IFDEF POSIX}
-  Result := UCS4StringToUnicodeString(aString);
+  Result := UCS4StringToUnicodeString(UCS4String(aString));
   {$ELSE}
     {$IFDEF FPC}
       Result := UTF8Encode(aString);
@@ -422,7 +422,7 @@ end;
 function StringToPyWCharTString(const aString: string): WCharTString;
 begin
   {$IFDEF POSIX}
-  Result := UnicodeStringToUCS4String(aString);
+  Result := WCharTString(UnicodeStringToUCS4String(UnicodeString(aString)));
   {$ELSE}
     {$IFDEF FPC}
       Result := UTF8Decode(aString);

@@ -1,0 +1,3104 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <PropertyGroup>
+        <DeviceId Condition="'$(Platform)'=='Android'">b29f2ad17d75</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'">b29f2ad17d75</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
+        <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Platform)'=='WinARM64EC'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSX64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Win32\Debug\SimplePythonCodeRun.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\</RemoteDir>
+            <RemoteName>SimplePythonCodeRun.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Android64'">
+        <DeployFile Include="lib\python3.14\encodings\rot_13.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>rot_13.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_farsi.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_farsi.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\ptcp154.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>ptcp154.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp864.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp864.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp866.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp866.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_72x72.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-hdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon72</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\symtable.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>symtable.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\undefined.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>undefined.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\python3-embed.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>python3-embed.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\__hello__.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>__hello__.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\styles-v31.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values-v31\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStylesV31</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\doctest.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>doctest.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\gettext.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>gettext.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\kz1048.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>kz1048.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\latin_1.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>latin_1.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\library\lib\mips\</RemoteDir>
+            <RemoteName>libSimplePythonCodeRun.so</RemoteName>
+            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\warnings.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>warnings.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\idna.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>idna.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pickletools.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pickletools.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\raw_unicode_escape.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>raw_unicode_escape.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_VectorizedSplash.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable\</RemoteDir>
+            <RemoteName>splash_vector.xml</RemoteName>
+            <DeployClass>Android_VectorizedSplash</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_roman.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_roman.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp874.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp874.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\runpy.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>runpy.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\styles.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStyles</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_strptime.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_strptime.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_8_sig.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_8_sig.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\gb2312.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>gb2312.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_markupbase.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_markupbase.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\LICENSE.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>LICENSE.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp424.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp424.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_latin2.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_latin2.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\imaplib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>imaplib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\zipapp.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>zipapp.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\platform.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>platform.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_16.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_16.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libssl.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libssl.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_sysconfigdata__android_aarch64-linux-android.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_sysconfigdata__android_aarch64-linux-android.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\uu_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>uu_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_sitebuiltins.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_sitebuiltins.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\nturl2path.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>nturl2path.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\quopri_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>quopri_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp500.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp500.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_VectorizedSplashDark.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-night-anydpi-v21\</RemoteDir>
+            <RemoteName>splash_vector.xml</RemoteName>
+            <DeployClass>Android_VectorizedSplashDark</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\statistics.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>statistics.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\</RemoteDir>
+            <RemoteName>AndroidManifest.xml</RemoteName>
+            <DeployClass>ProjectAndroidManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libpython3.14.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libpython3.14.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon192</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_pyio.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_pyio.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\ntpath.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>ntpath.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\shift_jis.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>shift_jis.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\colors-night-v21.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values-night-v21\</RemoteDir>
+            <RemoteName>colors.xml</RemoteName>
+            <DeployClass>Android_ColorsDark</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_48x48.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xhdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon48</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\poplib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>poplib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp720.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp720.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\bz2_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>bz2_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\__init__.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>__init__.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\getopt.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>getopt.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tarfile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tarfile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp437.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp437.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\hex_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>hex_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\ascii.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>ascii.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tracemalloc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tracemalloc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_32_be.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_32_be.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp_2004.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp_2004.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\zipimport.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>zipimport.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp_3.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp_3.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_compat_pickle.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_compat_pickle.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_osx_support.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_osx_support.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\bz2.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>bz2.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\rlcompleter.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>rlcompleter.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mbcs.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mbcs.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\weakref.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>weakref.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\locale.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>locale.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\dis.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>dis.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\selectors.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>selectors.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\fileinput.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>fileinput.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_threading_local.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_threading_local.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\traceback.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>traceback.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_cyrillic.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_cyrillic.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libsqlite3.so.0" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libsqlite3.so.0</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\numbers.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>numbers.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_collections_abc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_collections_abc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\codecs.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>codecs.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pyclbr.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pyclbr.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\hashlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>hashlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\struct.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>struct.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\subprocess.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>subprocess.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_2.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_2.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_16_be.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_16_be.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\python3.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>python3.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_144x144.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon144</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\openssl.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>openssl.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libcrypto_python.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libcrypto_python.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libsqlite3_python.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libsqlite3_python.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\shutil.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>shutil.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pty.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pty.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_romanian.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_romanian.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\io.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>io.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\reprlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>reprlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\optparse.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>optparse.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_arabic.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_arabic.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\dataclasses.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>dataclasses.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1252.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1252.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\zlib_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>zlib_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1254.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1254.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\annotationlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>annotationlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp860.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp860.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp_ext.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp_ext.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\difflib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>difflib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\_win_cp_codecs.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>_win_cp_codecs.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_kr.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_kr.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_6.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_6.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_4.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_4.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_VectorizedSplashV31Dark.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-night-anydpi-v31\</RemoteDir>
+            <RemoteName>splash_vector.xml</RemoteName>
+            <DeployClass>Android_VectorizedSplashV31Dark</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\compileall.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>compileall.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp857.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp857.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp855.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp855.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\fnmatch.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>fnmatch.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\big5hkscs.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>big5hkscs.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp949.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp949.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\sre_compile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>sre_compile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\posixpath.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>posixpath.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\libssl.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>libssl.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_pydecimal.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_pydecimal.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\engines-3\padlock.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\engines-3\</RemoteDir>
+            <RemoteName>padlock.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libsqlite3.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libsqlite3.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\getpass.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>getpass.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_AdaptiveIcon_Foreground.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable\</RemoteDir>
+            <RemoteName>ic_launcher_foreground.xml</RemoteName>
+            <DeployClass>Android_AdaptiveIconForeground</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\argparse.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>argparse.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp_2.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp_2.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\codeop.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>codeop.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_8.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_8.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\hz.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>hz.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_croatian.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_croatian.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_7.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_7.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\lzma.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>lzma.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_16.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_16.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\build-details.json" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>build-details.json</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_5.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_5.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libcrypto.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libcrypto.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\contextlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>contextlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\big5.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>big5.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\splash_image_def-v21.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-anydpi-v21\</RemoteDir>
+            <RemoteName>splash_image_def.xml</RemoteName>
+            <DeployClass>AndroidSplashImageDefV21</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\euc_jis_2004.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>euc_jis_2004.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_py_warnings.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_py_warnings.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1255.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1255.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1257.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1257.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\cProfile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>cProfile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\genericpath.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>genericpath.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_36x36.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-hdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon36</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\fractions.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>fractions.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\glob.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>glob.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp273.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp273.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\secrets.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>secrets.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_greek.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_greek.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libpython3.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libpython3.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp932.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp932.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\types.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>types.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\socket.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>socket.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_32.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_32.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\palmos.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>palmos.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\engines-3\loader_attic.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\engines-3\</RemoteDir>
+            <RemoteName>loader_attic.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\python-3.14-embed.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>python-3.14-embed.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\python-3.14.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>python-3.14.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp852.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp852.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp850.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp850.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_15.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_15.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\textwrap.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>textwrap.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp775.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp775.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\uuid.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>uuid.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\styles-v21.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values-v21\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStylesV21</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp037.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp037.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\abc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>abc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\plistlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>plistlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\bdb.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>bdb.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\gbk.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>gbk.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\hmac.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>hmac.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pydoc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pydoc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\queue.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>queue.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso2022_jp_1.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso2022_jp_1.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\euc_jp.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>euc_jp.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_16_le.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_16_le.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\py_compile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>py_compile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_48x48.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-mdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon48</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\bisect.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>bisect.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\copy.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>copy.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\typing.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>typing.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_pydatetime.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_pydatetime.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\shelve.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>shelve.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pickle.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pickle.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_13.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_13.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-large\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage640</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_AdaptiveIcon_Monochrome.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable\</RemoteDir>
+            <RemoteName>ic_launcher_monochrome.xml</RemoteName>
+            <DeployClass>Android_AdaptiveIconMonochrome</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\os.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>os.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_9.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_9.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\timeit.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>timeit.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\ftplib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>ftplib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_colorize.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_colorize.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\base64.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>base64.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\base64_codec.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>base64_codec.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\libssl_python.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\</RemoteDir>
+            <RemoteName>libssl_python.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\profile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>profile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp862.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp862.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libSimplePythonCodeRun.so</RemoteName>
+            <DeployClass>AndroidLibnativeArmeabiv7aFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\libcrypto.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>libcrypto.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\copyreg.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>copyreg.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\functools.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>functools.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp737.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp737.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\enum.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>enum.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\shift_jisx0213.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>shift_jisx0213.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\socketserver.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>socketserver.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\token.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>token.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_ios_support.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_ios_support.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_opcode_metadata.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_opcode_metadata.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1006.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1006.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\cmd.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>cmd.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\gzip.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>gzip.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp858.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp858.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\wave.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>wave.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\euc_jisx0213.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>euc_jisx0213.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1250.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1250.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\ic_launcher-v33.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-anydpi-v33\</RemoteDir>
+            <RemoteName>ic_launcher.xml</RemoteName>
+            <DeployClass>Android_AdaptiveIconV33</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\csv.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>csv.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pprint.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pprint.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\quopri.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>quopri.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\styles-v35.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values-v35\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStylesV35</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_VectorizedSplashV31.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-anydpi-v31\</RemoteDir>
+            <RemoteName>splash_vector.xml</RemoteName>
+            <DeployClass>Android_VectorizedSplashV31</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\contextvars.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>contextvars.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1258.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1258.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\koi8_t.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>koi8_t.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\configparser.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>configparser.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\koi8_r.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>koi8_r.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_14.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_14.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\libSimplePythonCodeRun.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\library\lib\arm64-v8a\</RemoteDir>
+            <RemoteName>libSimplePythonCodeRun.so</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1140.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1140.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\stat.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>stat.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\sre_parse.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>sre_parse.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\library\lib\armeabi\</RemoteDir>
+            <RemoteName>libSimplePythonCodeRun.so</RemoteName>
+            <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_py_abc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_py_abc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp950.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp950.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\colors.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values\</RemoteDir>
+            <RemoteName>colors.xml</RemoteName>
+            <DeployClass>Android_Colors</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\mimetypes.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>mimetypes.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp863.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp863.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\pkgconfig\sqlite3.pc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\pkgconfig\</RemoteDir>
+            <RemoteName>sqlite3.pc</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\hp_roman8.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>hp_roman8.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\engines-3\afalg.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\engines-3\</RemoteDir>
+            <RemoteName>afalg.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\filecmp.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>filecmp.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\site.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>site.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_1.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_1.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\ast.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>ast.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tabnanny.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tabnanny.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1251.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1251.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\strings.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\values\</RemoteDir>
+            <RemoteName>strings.xml</RemoteName>
+            <DeployClass>Android_Strings</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\smtplib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>smtplib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\operator.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>operator.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\random.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>random.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\stringprep.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>stringprep.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\code.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>code.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\webbrowser.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>webbrowser.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp869.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp869.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\unicode_escape.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>unicode_escape.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\keyword.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>keyword.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\ossl-modules\legacy.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\ossl-modules\</RemoteDir>
+            <RemoteName>legacy.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_pylong.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_pylong.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_470x320.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-normal\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage470</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1125.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1125.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\signal.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>signal.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\datetime.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>datetime.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\euc_kr.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>euc_kr.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\ic_launcher.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-anydpi-v26\</RemoteDir>
+            <RemoteName>ic_launcher.xml</RemoteName>
+            <DeployClass>Android_AdaptiveIcon</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_weakrefset.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_weakrefset.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_ast_unparse.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_ast_unparse.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\ssl.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>ssl.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\sched.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>sched.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\shift_jis_2004.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>shift_jis_2004.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\turtle.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>turtle.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_11.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_11.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tokenize.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tokenize.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_turkish.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_turkish.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_96x96.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon96</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\mailbox.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>mailbox.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\this.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>this.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pkgutil.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pkgutil.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\koi8_u.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>koi8_u.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_sysconfig_vars__android_aarch64-linux-android.json" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_sysconfig_vars__android_aarch64-linux-android.json</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-ldpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon36</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_10.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_10.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\trace.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>trace.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\antigravity.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>antigravity.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_aix_support.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_aix_support.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\tis_620.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>tis_620.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\gb18030.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>gb18030.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_VectorizedNotificationIcon.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-anydpi-v24\</RemoteDir>
+            <RemoteName>ic_notification.xml</RemoteName>
+            <DeployClass>Android_VectorizedNotificationIcon</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_android_support.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_android_support.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\modulefinder.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>modulefinder.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\calendar.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>calendar.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\__future__.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>__future__.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pdb.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pdb.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp861.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp861.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_AdaptiveIcon_Background.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable\</RemoteDir>
+            <RemoteName>ic_launcher_background.xml</RemoteName>
+            <DeployClass>Android_AdaptiveIconBackground</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1256.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1256.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tempfile.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tempfile.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\heapq.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>heapq.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\threading.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>threading.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\aliases.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>aliases.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_3.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_3.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\charmap.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>charmap.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\_apple_support.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>_apple_support.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp856.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp856.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\tty.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>tty.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_8.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_8.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\decimal.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>decimal.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\colorsys.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>colorsys.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\splash_image_def.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable\</RemoteDir>
+            <RemoteName>splash_image_def.xml</RemoteName>
+            <DeployClass>AndroidSplashImageDef</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\linecache.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>linecache.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\johab.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>johab.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp865.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp865.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\inspect.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>inspect.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_96x96.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon96</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\engines-3\capi.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\engines-3\</RemoteDir>
+            <RemoteName>capi.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\opcode.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>opcode.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\sre_constants.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>sre_constants.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\oem.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>oem.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_24x24.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-mdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon24</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xlarge\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage960</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1026.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1026.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\netrc.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>netrc.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\iso8859_7.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>iso8859_7.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-small\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage426</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\shlex.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>shlex.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\mac_iceland.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>mac_iceland.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp1253.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp1253.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\graphlib.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>graphlib.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\punycode.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>punycode.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\utf_32_le.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>utf_32_le.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\ipaddress.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>ipaddress.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\res\drawable-xxhdpi\</RemoteDir>
+            <RemoteName>ic_notification.png</RemoteName>
+            <DeployClass>Android_NotificationIcon72</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\pstats.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\</RemoteDir>
+            <RemoteName>pstats.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="lib\python3.14\encodings\cp875.py" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun\assets\internal\python3.14\encodings\</RemoteDir>
+            <RemoteName>cp875.py</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Android'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSXARM64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSSimARM64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64x'"/>
+</Project>
