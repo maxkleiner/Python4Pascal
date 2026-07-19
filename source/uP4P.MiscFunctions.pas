@@ -68,7 +68,7 @@ uses
   uP4P.Engine, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
 
 function GetModulePath : string;
-{$IFDEF MACOSX}
+{$IFDEF APPLE}
 const
   MAC_APP_POSTFIX = '.app/';
   MAC_APP_SUBPATH = 'Contents/MacOS/';
@@ -82,7 +82,7 @@ begin
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
   {$ENDIF}
 
-  {$IFDEF MACOSX}
+  {$IFDEF APPLE}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
 
   {$IFDEF FPC}
@@ -115,6 +115,7 @@ begin
         FMX.Types.Log.d(aMessage);
       {$ENDIF}
     {$ENDIF}
+
     {$IFDEF MACOSX}
       {$IFDEF FPC}
         // TO-DO: Find a way to write in the error console using Lazarus in MacOS
