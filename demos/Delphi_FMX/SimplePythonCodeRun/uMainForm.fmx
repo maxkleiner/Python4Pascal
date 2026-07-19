@@ -1,0 +1,83 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  Caption = 'Simple Python Code Runner'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Top
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object RunBtn: TButton
+      Align = Right
+      Margins.Left = 5.000000000000000000
+      Position.X = 538.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Run code'
+      OnClick = RunBtnClick
+    end
+    object EvaluateBtn: TButton
+      Align = Right
+      Position.X = 436.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Evaluate code'
+      OnClick = EvaluateBtnClick
+    end
+  end
+  object CodeMem: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Lines.Strings = (
+      'print("Hello world!")')
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 338.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 334.000000000000000000
+  end
+  object LogMem: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Align = Bottom
+    Position.Y = 376.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 104.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 100.000000000000000000
+  end
+  object Splitter1: TSplitter
+    Align = Bottom
+    Cursor = crVSplit
+    MinSize = 20.000000000000000000
+    Position.Y = 371.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 5.000000000000000000
+    Size.PlatformDefault = False
+  end
+end
