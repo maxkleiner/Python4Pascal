@@ -506,13 +506,12 @@ begin
   end;
 end;
 
-{$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
 function CustomSplitString(const S, Delimiters: string): TStringDynArray;
+{$IF DEFINED(DELPHI15_UP) OR DEFINED(FPC)}
 begin
   Result := SplitString(S, Delimiters);
 end;
 {$ELSE}
-function CustomSplitString(const S, Delimiters: string): TStringDynArray;
 var
   TempList : TStrings;
   i : integer;
