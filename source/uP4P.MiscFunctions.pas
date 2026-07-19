@@ -78,7 +78,7 @@ begin
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE{$IFDEF FPC}(){$ENDIF})));
   {$ENDIF}
 
-  {$IFDEF LINUX}
+  {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
   {$ENDIF}
 
@@ -108,7 +108,7 @@ begin
       {$ENDIF}
     {$ENDIF}
 
-    {$IFDEF LINUX}
+    {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
       {$IFDEF FPC}
         // TO-DO: Find a way to write in the error console using Lazarus in Linux
       {$ELSE}
@@ -143,7 +143,7 @@ begin
       MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
       {$ENDIF}
 
-      {$IFDEF LINUX}
+      {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
         {$IFDEF FPC}
         Application.MessageBox(PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK)
         {$ELSE}
