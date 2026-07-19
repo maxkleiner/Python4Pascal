@@ -1134,11 +1134,9 @@ begin
       begin
         if TempStatus.IsException then
           begin
-            FStatus := plsErrorInitializingLibrary;
-
-            if TempStatus.IsExit then
-              FLastErrorMessage := TempStatus.ErrMsg + CRLF +
-                                   'Exit code: ' + inttostr(TempStatus.ExitCode);
+            FStatus           := plsErrorInitializingLibrary;
+            FLastErrorMessage := TempStatus.ErrMsg + CRLF +
+                                 'Exit code: ' + inttostr(TempStatus.ExitCode);
           end
          else
           if TPy.IsIntialized then
