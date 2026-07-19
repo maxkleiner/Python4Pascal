@@ -8,8 +8,11 @@
       <Unit>
         <Filename Value="SimplePythonThread.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos Y="20"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.pas"/>
@@ -17,13 +20,12 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="27"/>
-        <CursorPos Y="35"/>
+        <CursorPos X="3" Y="8"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uCustomThread.pas"/>
@@ -31,6 +33,7 @@
         <EditorIndex Value="2"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
@@ -48,7 +51,7 @@
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="12">
+    <JumpHistory HistoryIndex="14">
       <Position>
         <Filename Value="uMainForm.pas"/>
         <Caret Line="31" Column="5" TopLine="14"/>
@@ -99,6 +102,14 @@
       <Position>
         <Filename Value="uMainForm.pas"/>
         <Caret Line="113" Column="74" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="73" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="8" Column="3"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -20,7 +20,7 @@ uses
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs, Types,
     {$IFDEF FPC}
-      dynlibs, FileUtil,
+      dynlibs, FileUtil, dl,
     {$ELSE}
       {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
     {$ENDIF}
@@ -577,7 +577,7 @@ begin
         {$ENDIF}
       {$ELSE}
         {$IFDEF FPC}
-        FLibHandle := LoadLibrary(aLibraryPath);
+        FLibHandle := TLibHandle(dlopen(PAnsiChar(aLibraryPath), RTLD_LAZY + RTLD_GLOBAL));
         {$ELSE}
         FLibHandle := LoadLibrary(PChar(aLibraryPath));
         {$ENDIF}
@@ -979,42 +979,44 @@ end;
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
-  TempPythonDLLPath, TempPythonLibPath, TempPythonPackagesPath : string;
-  TempValidLibPath : boolean;
+  TempPath, TempLibPath, TempPackagesPath : string;
+  TempValidPath : boolean;
 begin
   Result            := False;
   FLastErrorMessage := '';
-  TempValidLibPath  := (length(aLibraryPath) > 0) and FileExists(aLibraryPath);
+  TempValidPath     := (length(aLibraryPath) > 0) and FileExists(aLibraryPath);
 
+  {$IFDEF MSWINDOWS}
   if (length(FHome) = 0) then
     begin
-      if TempValidLibPath then
+      if TempValidPath then
         FHome := ExtractFilePath(aLibraryPath)
        else
         FHome := OSPythonHome;
     end;
+  {$ENDIF}
 
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
-      TempPythonLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
-      TempPythonPackagesPath := IncludeTrailingPathDelimiter(TempPythonLibPath) + 'site-packages';
+      TempLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
+      TempPackagesPath := IncludeTrailingPathDelimiter(TempLibPath) + 'site-packages';
 
-      if DirectoryExists(TempPythonLibPath) and
-         DirectoryExists(TempPythonPackagesPath) then
-        FModuleSearchPaths := TempPythonLibPath + PathSep + TempPythonPackagesPath;
+      if DirectoryExists(TempLibPath) and
+         DirectoryExists(TempPackagesPath) then
+        FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath;
     end;
 
-  if TempValidLibPath then
-    TempPythonDLLPath := aLibraryPath
+  if TempValidPath then
+    TempPath := aLibraryPath
    else
-    TempPythonDLLPath := OSPythonLibPath;
+    TempPath := OSPythonLibPath;
 
   {$IFDEF MSWINDOWS}
-  if not(CheckDLLbitness(TempPythonDLLPath)) then exit;
+  if not(CheckDLLbitness(TempPath)) then exit;
   {$ENDIF}
 
-  if ReadLibraryVersionInfo(TempPythonDLLPath) and
-     LoadPythonLibrary(TempPythonDLLPath) then
+  if ReadLibraryVersionInfo(TempPath) and
+     LoadPythonLibrary(TempPath) then
     begin
       LoadAllFunctions;
       GetFileVersion(FFileVersion);
@@ -1131,20 +1133,21 @@ begin
      else
       TempConfig.InitPythonConfig;
 
-    TempConfig.isolated            := FIsolated;
-    TempConfig.parser_debug        := FParserDebug;
-    TempConfig.verbose             := FVerbose;
-    TempConfig.interactive         := FInteractive;
-    TempConfig.optimization_level  := FOptimizationLevel;
-    TempConfig.site_import         := FSiteImport;
-    TempConfig.pathconfig_warnings := FPathconfigWarnings;
-    TempConfig.use_environment     := FUseEnvironment;
-    TempConfig.user_site_directory := FUserSiteDirectory;
-    TempConfig.write_bytecode      := FWriteBytecode;
-    TempConfig.home                := FHome;
-    TempConfig.executable          := FExecutable;
-    TempConfig.program_name        := FProgramName;
-    TempConfig.module_search_paths := FModuleSearchPaths;
+    TempConfig.isolated                := FIsolated;
+    TempConfig.parser_debug            := FParserDebug;
+    TempConfig.verbose                 := FVerbose;
+    TempConfig.interactive             := FInteractive;
+    TempConfig.optimization_level      := FOptimizationLevel;
+    TempConfig.site_import             := FSiteImport;
+    TempConfig.pathconfig_warnings     := FPathconfigWarnings;
+    TempConfig.use_environment         := FUseEnvironment;
+    TempConfig.user_site_directory     := FUserSiteDirectory;
+    TempConfig.write_bytecode          := FWriteBytecode;
+    TempConfig.home                    := FHome;
+    TempConfig.executable              := FExecutable;
+    TempConfig.program_name            := FProgramName;
+    TempConfig.module_search_paths     := FModuleSearchPaths;
+    TempConfig.module_search_paths_set := (length(FModuleSearchPaths) > 0);
 
     SetProgramArgs_PEP587(TempConfig);
 

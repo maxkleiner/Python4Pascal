@@ -5,7 +5,7 @@ unit uMainForm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, Dialogs, StdCtrls, ExtCtrls, SyncObjs,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
   uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
@@ -71,13 +71,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.13.13-embed-win32\python313.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.12.10-embed-win32\python312.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.11.9-embed-win32\python311.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.10.11-embed-win32\python310.dll';
-      //TempLibPath := 'C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll';
-      TempLibPath := '';
+      TempLibPath := '/usr/lib/x86_64-linux-gnu/libpython3.12.so';
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then

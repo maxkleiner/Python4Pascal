@@ -303,7 +303,7 @@ var
   TempBytecode, TempGlobals, TempLocals, TempMainModule : IPyObject;
 begin
   Result         := nil;
-  TempMainModule := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+  TempMainModule := TPyImport.AddModule(MAIN_MODULE_NAME);
 
   if TPyObject.IsInitialized(TempMainModule) then
     try

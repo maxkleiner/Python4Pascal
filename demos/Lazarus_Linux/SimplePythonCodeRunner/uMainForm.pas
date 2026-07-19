@@ -55,16 +55,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.14.5-embed-win32\python314.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.13.13-embed-win32\python313.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.12.10-embed-win32\python312.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.11.9-embed-win32\python311.dll';
-      //TempLibPath := 'C:\Users\usuario\Desktop\python-3.10.11-embed-win32\python310.dll';
-      //TempLibPath := 'C:\Users\usuario\AppData\Local\Programs\Python\Python314\python314_d.dll';
       TempLibPath := '/usr/lib/x86_64-linux-gnu/libpython3.12.so';
-
-      GlobalP4PEngine.ModuleSearchPaths := '/usr/lib/python3.12';
-      GlobalP4PEngine.Home := '/usr/lib/python3.12';
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then

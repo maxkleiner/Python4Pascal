@@ -68,8 +68,8 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 85
-      ClientWidth = 147
+      ClientHeight = 88
+      ClientWidth = 149
       ItemIndex = 1
       Items.Strings = (
         'Legacy API'

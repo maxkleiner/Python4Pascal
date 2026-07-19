@@ -37,7 +37,6 @@ object MainForm: TMainForm
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
-    ExplicitTop = 360
   end
   object CodeMem: TMemo
     Left = 0
@@ -76,7 +75,6 @@ object MainForm: TMainForm
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitHeight = 323
   end
   object Panel1: TPanel
     Left = 0
