@@ -544,6 +544,14 @@ begin
             Result := TempLib;
             break;
           end;
+
+        TempLib := TempLib + '.1';
+
+        if FileExists(TempLib) then
+          begin
+            Result := TempLib;
+            break;
+          end;
       end;
   except
     on e : exception do
@@ -659,7 +667,9 @@ begin
                                  'Error code : 0x' + inttohex(TempError, 8) + CRLF +
                                  GetLoadErrorStr;
             {$ELSE}
-            FLastErrorMessage := 'Error loading ' + aLibraryPath;
+            TempError         := GetLastError;
+            FLastErrorMessage := 'Error loading ' + aLibraryPath + CRLF + CRLF +
+                                 'Error code : 0x' + inttohex(TempError, 8);
             {$ENDIF}
           {$ENDIF}
         end;

@@ -9,6 +9,11 @@ uses
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
   uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
 
+// All FMX applications using Python4Pascal must add the $(FrameworkType) conditional define
+// in the project options to avoid duplicated resources.
+// This demo has that define in the menu option :
+// Project -> Options -> Building -> Delphi compiler -> Conditional defines (All configurations)
+
 type
   TMainForm = class(TForm)
     Layout1: TLayout;
@@ -43,7 +48,9 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 var
   TempLibPath : string;
+  {$IFDEF MSWINDOWS}
   //TempBit : string;
+  {$ENDIF}
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
@@ -53,6 +60,8 @@ begin
 
   if not(GlobalP4PEngine.Initialized) then
     begin
+      TempLibPath := '';
+      {$IFDEF MSWINDOWS}
       {$IFDEF TARGET_32BITS}
       //TempBit := 'win32';
       {$ELSE}
@@ -64,8 +73,10 @@ begin
       //TempLibPath := 'R:\python-3.12.10-embed-' + TempBit + '\python312.dll';
       //TempLibPath := 'R:\python-3.11.9-embed-' + TempBit + '\python311.dll';
       //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
-
+      {$ENDIF}
+      {$IFDEF ANDROID}
       TempLibPath := TPath.Combine(TPath.GetDocumentsPath, 'libpython3.14.so');
+      {$ENDIF}
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then
