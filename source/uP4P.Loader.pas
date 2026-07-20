@@ -20,7 +20,7 @@ uses
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs, Types,
     {$IFDEF FPC}
-      dynlibs, FileUtil, dl,
+      dynlibs, FileUtil, {$IFDEF LINUX}dl,{$ENDIF}
     {$ELSE}
       {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
     {$ENDIF}
