@@ -6,10 +6,6 @@ unit uP4P.MiscFunctions;
 
 {$I p4p.inc}
 
-{$IFDEF DELPHI18_UP}
-  {$LEGACYIFEND ON}
-{$ENDIF}
-
 interface
 
 uses
@@ -67,7 +63,7 @@ function CustomSplitString(const S, Delimiters: string): TStringDynArray;
 
 implementation
 
-uses        
+uses
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
   uP4P.Engine, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
 
@@ -82,9 +78,13 @@ begin
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE{$IFDEF FPC}(){$ENDIF})));
   {$ENDIF}
 
-  {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
+  {$IFDEF LINUX}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
-  {$IFEND}
+  {$ENDIF}
+
+  {$IFDEF ANDROID}
+  Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
+  {$ENDIF}
 
   {$IFDEF APPLE}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
@@ -112,15 +112,23 @@ begin
       {$ENDIF}
     {$ENDIF}
 
-    {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
+    {$IFDEF LINUX}
       {$IFDEF FPC}
         // TO-DO: Find a way to write in the error console using Lazarus in Linux
       {$ELSE}
         FMX.Types.Log.d(aMessage);
       {$ENDIF}
-    {$IFEND}
+    {$ENDIF}
 
-    {$IFDEF MACOSX}
+    {$IFDEF ANDROID}
+      {$IFDEF FPC}
+        // TO-DO: Find a way to write in the error console using Lazarus in Android
+      {$ELSE}
+        FMX.Types.Log.d(aMessage);
+      {$ENDIF}
+    {$ENDIF}
+
+    {$IFDEF APPLE}
       {$IFDEF FPC}
         // TO-DO: Find a way to write in the error console using Lazarus in MacOS
       {$ELSE}

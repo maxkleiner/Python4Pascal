@@ -3,7 +3,8 @@ unit uMainForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUTils,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.IOUTils, System.Zip,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, FMX.Controls.Presentation, FMX.Layouts,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
@@ -39,6 +40,9 @@ implementation
 
 {$R *.fmx}
 
+uses
+  uP4P.MiscFunctions;
+
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   DestroyGlobalP4PEngine;
@@ -50,6 +54,9 @@ var
   {$IFDEF MSWINDOWS}
   //TempBit : string;
   {$ENDIF}
+  {$IFDEF ANDROID}
+  TempZipPath : string;
+  {$ENDIF}
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
@@ -60,6 +67,7 @@ begin
   if not(GlobalP4PEngine.Initialized) then
     begin
       TempLibPath := '';
+
       {$IFDEF MSWINDOWS}
       {$IFDEF TARGET_32BITS}
       //TempBit := 'win32';
@@ -74,7 +82,19 @@ begin
       //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
       {$ENDIF}
       {$IFDEF ANDROID}
-      TempLibPath := TPath.Combine(TPath.GetDocumentsPath, 'libpython3.14.so');
+      try
+        TempLibPath := TPath.Combine(TPath.GetDocumentsPath, 'python');
+        TempZipPath := TPath.Combine(TPath.GetDocumentsPath, 'python.zip');
+
+        TZipFile.ExtractZipFile(TempZipPath, TempLibPath);
+      except
+        on e : exception do
+          if CustomExceptionHandler('TMainForm.FormShow', e) then raise;
+      end;
+
+      GlobalP4PEngine.Home := TempLibPath;
+
+      TempLibPath := TPath.Combine(TempLibPath, 'libpython3.14.so');
       {$ENDIF}
 
       if GlobalP4PEngine.Load(TempLibPath) and
