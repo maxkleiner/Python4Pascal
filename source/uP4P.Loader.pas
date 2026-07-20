@@ -401,6 +401,10 @@ const
 {$ENDIF}
 var
   TempPath : string;
+  {$IFDEF APPLE}
+  i : integer;
+  TempVersion : string;
+  {$ENDIF}
 begin
   Result := '';
 
@@ -424,6 +428,19 @@ begin
       begin
         Result := TempPath;
         exit;
+      end;
+    {$ENDIF}
+    {$IFDEF APPLE}
+    for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
+      begin
+        TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
+        TempPath    := '/Library/Frameworks/Python.framework/Versions/' + TempVersion;
+
+        if FileExists(TPath.Combine(TempPath, 'Python')) then
+          begin
+            Result := TempPath;
+            break;
+          end;
       end;
     {$ENDIF}
   except
@@ -570,7 +587,7 @@ begin
     for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
       begin
         TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
-        TempLib     := '/Library/Frameworks/Python.framework/Versions/' + TempVersion + '/libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
+        TempLib     := '/Library/Frameworks/Python.framework/Versions/' + TempVersion + '/lib/libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
 
         if FileExists(TempLib) then
           begin
@@ -1063,15 +1080,24 @@ begin
         FHome := OSPythonHome;
     end;
   {$ENDIF}
+  {$IFDEF APPLE}
+  if (length(FHome) = 0) then
+    FHome := OSPythonHome;
+  {$ENDIF}
 
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
+      {$IFDEF MSWINDOWS}
       TempLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
       TempPackagesPath := IncludeTrailingPathDelimiter(TempLibPath) + 'site-packages';
 
       if DirectoryExists(TempLibPath) and
          DirectoryExists(TempPackagesPath) then
         FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath;
+      {$ENDIF}
+      {$IFDEF APPLE}
+
+      {$ENDIF}
     end;
 
   if TempValidPath then

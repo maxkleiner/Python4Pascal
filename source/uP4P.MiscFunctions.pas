@@ -12,6 +12,9 @@ uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.StrUtils,
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF} System.SysUtils, System.IOUtils, System.Types,
+    {$IFDEF MACOS}
+    System.UITypes, FMX.Helpers.Mac, System.Messaging, Macapi.CoreFoundation, Macapi.Foundation,
+    {$ENDIF}
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Types, StrUtils,
   {$ENDIF}
@@ -144,6 +147,24 @@ begin
 
   Result := (GlobalP4PEngine <> nil) and GlobalP4PEngine.ReRaiseExceptions;
 end;
+
+{$IFDEF MACOS}
+procedure ShowMessageCF(const aHeading, aMessage : string; const aTimeoutInSecs : double = 0);
+var
+  TempHeading, TempMessage : CFStringRef;
+  TempResponse : CFOptionFlags;
+begin
+  TempHeading := CFStringCreateWithCharactersNoCopy(nil, PChar(aHeading), Length(AHeading), kCFAllocatorNull);
+  TempMessage := CFStringCreateWithCharactersNoCopy(nil, PChar(aMessage), Length(AMessage), kCFAllocatorNull);
+
+  try
+    CFUserNotificationDisplayAlert(aTimeoutInSecs, kCFUserNotificationNoteAlertLevel, nil, nil, nil, TempHeading, TempMessage, nil, nil, nil, TempResponse);
+  finally
+    CFRelease(TempHeading);
+    CFRelease(TempMessage);
+  end;
+end;
+{$ENDIF}
 
 procedure ShowErrorMessageDlg(const aError : string);
 begin

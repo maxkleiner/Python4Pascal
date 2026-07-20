@@ -4,13 +4,60 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'">b29f2ad17d75</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='Android64'">b29f2ad17d75</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android'"/>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='WinARM64EC'"/>
-    <ItemGroup Condition="'$(Platform)'=='OSX64'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSX64'">
+        <DeployFile Include="OSX64\Debug\SimplePythonCodeRun.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectOSXInfoPList</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\SimplePythonCodeRun.dSYM" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>SimplePythonCodeRun</RemoteName>
+            <DeployClass>ProjectOSXDebug</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\delphi_PROJECTICNS.icns" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun.app\Contents\Resources\</RemoteDir>
+            <RemoteName>SimplePythonCodeRun.icns</RemoteName>
+            <DeployClass>ProjectOSXResource</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\SimplePythonCodeRun.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun.app\..\</RemoteDir>
+            <RemoteName>SimplePythonCodeRun.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\SimplePythonCodeRun" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimplePythonCodeRun.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>SimplePythonCodeRun</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
         <DeployFile Include="Win32\Debug\SimplePythonCodeRun.exe" Condition="'$(Config)'=='Debug'">
             <RemoteDir>SimplePythonCodeRun\</RemoteDir>

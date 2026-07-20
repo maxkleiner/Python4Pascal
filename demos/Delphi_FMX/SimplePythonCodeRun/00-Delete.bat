@@ -12,4 +12,6 @@ rmdir /S /Q backup
 rmdir /S /Q lib
 rmdir /S /Q __history
 rmdir /S /Q __recovery
+rmdir /S /Q Android32
 rmdir /S /Q Android64
+rmdir /S /Q OSX64

@@ -1,5 +1,7 @@
 unit uMainForm;
 
+{$I p4p.inc}
+
 interface
 
 uses
@@ -95,6 +97,12 @@ begin
       GlobalP4PEngine.Home := TempLibPath;
 
       TempLibPath := TPath.Combine(TempLibPath, 'libpython3.14.so');
+      {$ENDIF}
+      {$IFDEF APPLE}
+      TempLibPath := '/Library/Frameworks/Python.framework/Versions/3.14/lib/libpython3.14.dylib';
+      GlobalP4PEngine.Home := '/Library/Frameworks/Python.framework/Versions/3.14/';
+      GlobalP4PEngine.ModuleSearchPaths := '/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/' + PathSep +
+        '/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/';
       {$ENDIF}
 
       if GlobalP4PEngine.Load(TempLibPath) and
