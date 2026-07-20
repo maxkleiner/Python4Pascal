@@ -63,6 +63,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Android64)'!=''">
+        <Cfg_1_Android64>true</Cfg_1_Android64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
         <Cfg_1_Win32>true</Cfg_1_Win32>
         <CfgParent>Cfg_1</CfgParent>
@@ -125,6 +131,7 @@
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <SanitizedProjectName>SimplePythonCodeRun</SanitizedProjectName>
         <DCC_UnitSearchPath>$(P4P)\source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_Define>$(FrameworkType);$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>fmx;DbxCommonDriver;bindengine;IndyIPCommon;FireDACCommonDriver;IndyProtocols;IndyIPClient;dbxcds;FmxTeeUI;bindcompfmx;ibmonitor;FireDACSqliteDriver;DbxClientDriver;soapmidas;fmxFireDAC;dbexpress;Python;TMSMQTTPkgDXE16;inet;fmxase;dbrtl;CustomIPTransport;DBXInterBaseDriver;IndySystem;ibxbindings;bindcomp;FireDACCommon;inetstn;IndyCore;RESTBackendComponents;bindcompdbx;rtl;RESTComponents;DBXSqliteDriver;IndyIPServer;dsnapxml;FireDAC;xmlrtl;tethering;ibxpress;dsnap;CloudService;FMXTee;PythonFmx;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -306,6 +313,16 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_RangeChecking>true</DCC_RangeChecking>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Android64)'!=''">
+        <VerInfo_Build>1</VerInfo_Build>
+        <IncludeAndroid_AdaptiveIcon>true</IncludeAndroid_AdaptiveIcon>
+        <IncludeAndroid_VectorizedSplash>true</IncludeAndroid_VectorizedSplash>
+        <Android_BackgroundColor>#FFFFFF</Android_BackgroundColor>
+        <Android_DarkBackgroundColor>#000000</Android_DarkBackgroundColor>
+        <IncludeAndroid_NotificationAccentColor>false</IncludeAndroid_NotificationAccentColor>
+        <Android_NotificationAccentColor>#000000</Android_NotificationAccentColor>
+        <IncludeAndroid_VectorizedNotificationIcon>true</IncludeAndroid_VectorizedNotificationIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>

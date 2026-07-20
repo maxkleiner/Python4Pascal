@@ -9,8 +9,7 @@ uses
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
   uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants;
 
-// All FMX applications using Python4Pascal must add the $(FrameworkType) conditional define
-// in the project options to avoid duplicated resources.
+// All FMX applications using Python4Pascal must add the $(FrameworkType) conditional define.
 // This demo has that define in the menu option :
 // Project -> Options -> Building -> Delphi compiler -> Conditional defines (All configurations)
 

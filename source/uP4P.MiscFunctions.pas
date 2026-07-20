@@ -6,6 +6,10 @@ unit uP4P.MiscFunctions;
 
 {$I p4p.inc}
 
+{$IFDEF DELPHI18_UP}
+  {$LEGACYIFEND ON}
+{$ENDIF}
+
 interface
 
 uses
