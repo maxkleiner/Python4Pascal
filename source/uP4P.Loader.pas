@@ -18,12 +18,9 @@ uses
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ENDIF}
     System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs, Types,
-    {$IFDEF FPC}
-      dynlibs, FileUtil, {$IFDEF LINUX}dl,{$ENDIF}
-    {$ELSE}
-      {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
-    {$ENDIF}
+    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
+    Types, {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
+    {$IFDEF FPC}dynlibs, FileUtil, {$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
