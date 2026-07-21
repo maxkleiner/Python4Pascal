@@ -401,12 +401,9 @@ const
 {$ENDIF}
 var
   TempPath : string;
-  {$IFDEF APPLE}
-  i : integer;
-  TempVersion : string;
-  {$ENDIF}
 begin
-  Result := '';
+  Result   := '';
+  TempPath := '';
 
   try
     if SearchPythonHomeEnvironmentVariable(TempPath) then
@@ -428,19 +425,6 @@ begin
       begin
         Result := TempPath;
         exit;
-      end;
-    {$ENDIF}
-    {$IFDEF APPLE}
-    for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
-      begin
-        TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
-        TempPath    := '/Library/Frameworks/Python.framework/Versions/' + TempVersion;
-
-        if FileExists(TPath.Combine(TempPath, 'Python')) then
-          begin
-            Result := TempPath;
-            break;
-          end;
       end;
     {$ENDIF}
   except
@@ -1080,25 +1064,17 @@ begin
        else
         FHome := OSPythonHome;
     end;
-  {$ENDIF}
-  {$IFDEF APPLE}
-  //if (length(FHome) = 0) then FHome := OSPythonHome;
-  {$ENDIF}
 
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
-      {$IFDEF MSWINDOWS}
       TempLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
       TempPackagesPath := IncludeTrailingPathDelimiter(TempLibPath) + 'site-packages';
 
       if DirectoryExists(TempLibPath) and
          DirectoryExists(TempPackagesPath) then
         FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath;
-      {$ENDIF}
-      {$IFDEF APPLE}
-
-      {$ENDIF}
-    end;
+    end;   
+  {$ENDIF}
 
   if TempValidPath then
     TempPath := aLibraryPath
@@ -1364,7 +1340,10 @@ function TP4PLoader.GetFileVersion(var aFileVersion : TFileVersionInfo): boolean
 var
   TempMajor, TempMinor, TempMicro : integer;
 begin
-  Result := False;
+  Result    := False;
+  TempMajor := 0;
+  TempMinor := 0;
+  TempMicro := 0;
 
   if Version(TempMajor, TempMinor, TempMicro) or
      GetVersion(TempMajor, TempMinor, TempMicro) then
