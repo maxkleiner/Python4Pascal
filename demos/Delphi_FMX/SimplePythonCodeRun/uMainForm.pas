@@ -53,11 +53,8 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 var
   TempLibPath : string;
-  {$IFDEF MSWINDOWS}
-  //TempBit : string;
-  {$ENDIF}
   {$IFDEF ANDROID}
-  TempZipPath : string;
+  TempZipPath, TempLib, TempSitePckgs : string;
   {$ENDIF}
 begin
   if not(assigned(GlobalP4PEngine)) then
@@ -70,21 +67,18 @@ begin
     begin
       TempLibPath := '';
 
-      {$IFDEF MSWINDOWS}
-      {$IFDEF TARGET_32BITS}
-      //TempBit := 'win32';
-      {$ELSE}
-      //TempBit := 'win64';
-      {$ENDIF}
-
-      //TempLibPath := 'R:\python-3.14.6-embed-' + TempBit + '\python314.dll';
-      //TempLibPath := 'R:\python-3.13.13-embed-' + TempBit + '\python313.dll';
-      //TempLibPath := 'R:\python-3.12.10-embed-' + TempBit + '\python312.dll';
-      //TempLibPath := 'R:\python-3.11.9-embed-' + TempBit + '\python311.dll';
-      //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
-      {$ENDIF}
       {$IFDEF ANDROID}
       try
+        // python.zip is part of the official Python Release Package for Android
+        // available at www.python.org, for example "python-3.14.6-aarch64-linux-android.tar.gz",
+        // but it only includes the *contents* of the "prefix/lib" directory,
+        // including the subdirectories.
+
+        // "python.zip" is deployed to "assets\internal\" and the unit
+        // "System.StartUpCopy" will copy that file to the documents directory
+        // at startup.
+
+        // Here we decompress "python.zip".
         TempLibPath := TPath.Combine(TPath.GetDocumentsPath, 'python');
         TempZipPath := TPath.Combine(TPath.GetDocumentsPath, 'python.zip');
 
@@ -94,9 +88,18 @@ begin
           if CustomExceptionHandler('TMainForm.FormShow', e) then raise;
       end;
 
-      GlobalP4PEngine.Home := TempLibPath;
+      // Set GlobalP4PEngine.ModuleSearchPaths with the "Lib" and
+      // "Lib/site-packages" directories. Python will find the modules in those
+      // directories.
+      TempLib       := TPath.Combine(TempLibPath, 'Lib');
+      TempSitePckgs := TPath.Combine(TempLib, 'site-packages');
 
+      GlobalP4PEngine.ModuleSearchPaths := TempLib + PathSep + TempSitePckgs;
+
+      // TempLibPath is the path to the Python library.
       TempLibPath := TPath.Combine(TempLibPath, 'libpython3.14.so');
+
+      // GlobalP4PEngine is automatically configured to use the isolated settings in Android.
       {$ENDIF}
 
       if GlobalP4PEngine.Load(TempLibPath) and
