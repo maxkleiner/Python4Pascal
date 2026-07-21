@@ -15,12 +15,12 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ENDIF}
+    {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
     System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
-    Types, {$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
-    {$IFDEF FPC}dynlibs, FileUtil, {$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
+    Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
+    {$IFDEF FPC}dynlibs, FileUtil,{$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
@@ -659,7 +659,7 @@ begin
         {$IFDEF FPC}
         FLibHandle := TLibHandle(dlopen(PAnsiChar(aLibraryPath), RTLD_LAZY + RTLD_GLOBAL));
         {$ELSE}
-        FLibHandle := LoadLibrary(PChar(aLibraryPath));
+        FLibHandle := THandle(dlopen(PAnsiChar(AnsiString(aLibraryPath)), RTLD_LAZY + RTLD_GLOBAL));
         {$ENDIF}
       {$ENDIF}
 
@@ -1061,7 +1061,8 @@ end;
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
-  TempPath, TempLibPath, TempPackagesPath : string;
+  TempPath : string;
+  {$IFDEF MSWINDOWS}TempLibPath, TempPackagesPath : string;{$ENDIF}
   TempValidPath : boolean;
 begin
   Result            := False;
@@ -1078,8 +1079,7 @@ begin
     end;
   {$ENDIF}
   {$IFDEF APPLE}
-  if (length(FHome) = 0) then
-    FHome := OSPythonHome;
+  //if (length(FHome) = 0) then FHome := OSPythonHome;
   {$ENDIF}
 
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
