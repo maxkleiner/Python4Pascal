@@ -291,21 +291,36 @@ begin
   FStatus                 := plsUnloaded;
   FLastErrorMessage       := '';
   FMustFreeLibrary        := True;
-  FIsolated               := False;
   FParserDebug            := False;
   FVerbose                := pvmDisabled;
   FInteractive            := False;
   FOptimizationLevel      := polDebug;
-  FSiteImport             := False;
   FPathConfigWarnings     := False;
-  FUseEnvironment         := False;
-  FUserSiteDirectory      := False;
   FWriteBytecode          := False;
   FDevMode                := False;
   FHome                   := '';
   FExecutable             := '';
   FProgramName            := '';
   FModuleSearchPaths      := '';
+
+  {$IFDEF ANDROID}
+  FIsolated               := True;
+  FUserSiteDirectory      := True;
+  FUseEnvironment         := False;
+  FSiteImport             := False;
+  {$ELSE}
+  {$IFDEF IOS}
+  FIsolated               := True;
+  FUserSiteDirectory      := True;
+  FUseEnvironment         := False;
+  FSiteImport             := False;
+  {$ELSE}
+  FIsolated               := False;
+  FUserSiteDirectory      := False;
+  FUseEnvironment         := False;
+  FSiteImport             := False;
+  {$ENDIF}
+  {$ENDIF}
 
   FOnBeforeInitialization := nil;
 
@@ -1048,8 +1063,7 @@ end;
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
-  TempPath : string;
-  {$IFDEF MSWINDOWS}TempLibPath, TempPackagesPath : string;{$ENDIF}
+  {$IFDEF MSWINDOWS}TempLibPath, TempPackagesPath,{$ENDIF} TempPath : string;
   TempValidPath : boolean;
 begin
   Result            := False;
