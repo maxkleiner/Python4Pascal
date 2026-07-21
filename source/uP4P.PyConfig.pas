@@ -2373,8 +2373,11 @@ procedure TPyConfig314.Set_module_search_paths(const aValue: string);
 var
   TempPaths : TStringDynArray;
 begin
-  TempPaths := CustomSplitString(aValue, PathSep);
-  SetWideStringList(FConfig.module_search_paths, TempPaths);
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
 end;
 
 procedure TPyConfig314.Set_module_search_paths_set(aValue: boolean);
@@ -3082,8 +3085,11 @@ procedure TPyConfig313.Set_module_search_paths(const aValue: string);
 var
   TempPaths : TStringDynArray;
 begin
-  TempPaths := CustomSplitString(aValue, PathSep);
-  SetWideStringList(FConfig.module_search_paths, TempPaths);
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
 end;
 
 procedure TPyConfig313.Set_module_search_paths_set(aValue: boolean);
@@ -3766,8 +3772,11 @@ procedure TPyConfig312.Set_module_search_paths(const aValue: string);
 var
   TempPaths : TStringDynArray;
 begin
-  TempPaths := CustomSplitString(aValue, PathSep);
-  SetWideStringList(FConfig.module_search_paths, TempPaths);
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
 end;
 
 procedure TPyConfig312.Set_module_search_paths_set(aValue: boolean);
@@ -4430,8 +4439,11 @@ procedure TPyConfig311.Set_module_search_paths(const aValue: string);
 var
   TempPaths : TStringDynArray;
 begin
-  TempPaths := CustomSplitString(aValue, PathSep);
-  SetWideStringList(FConfig.module_search_paths, TempPaths);
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
 end;
 
 procedure TPyConfig311.Set_module_search_paths_set(aValue: boolean);
@@ -5054,8 +5066,11 @@ procedure TPyConfig310.Set_module_search_paths(const aValue: string);
 var
   TempPaths : TStringDynArray;
 begin
-  TempPaths := CustomSplitString(aValue, PathSep);
-  SetWideStringList(FConfig.module_search_paths, TempPaths);
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
 end;
 
 procedure TPyConfig310.Set_module_search_paths_set(aValue: boolean);

@@ -386,7 +386,8 @@ begin
 
   if Initialized and
      assigned(PyInitConfig_SetStr) and
-     (length(aName) > 0) then
+     (length(aName)  > 0) and
+     (length(aValue) > 0) then
     begin
       TempName  := StringToPyUTF8(aName);
       TempValue := StringToPyUTF8(aValue);
@@ -405,25 +406,22 @@ begin
 
   if Initialized and
      assigned(PyInitConfig_SetStrList) and
-     (length(aName) > 0) then
+     (length(aName) > 0) and
+     assigned(aItems) and
+     (aItems.Count > 0) then
     begin
       TempName := StringToPyUTF8(aName);
 
-      if assigned(aItems) and (aItems.Count > 0) then
+      SetLength(TempItems,    aItems.Count);
+      SetLength(TempItemsPtr, aItems.Count);
+
+      for i := 0 to pred(aItems.Count) do
         begin
-          SetLength(TempItems,    aItems.Count);
-          SetLength(TempItemsPtr, aItems.Count);
+          TempItems[i]    := StringToPyUTF8(aItems[i]);
+          TempItemsPtr[i] := PAnsiString(TempItems[i]);
+        end;
 
-          for i := 0 to pred(aItems.Count) do
-            begin
-              TempItems[i]    := StringToPyUTF8(aItems[i]);
-              TempItemsPtr[i] := PAnsiString(TempItems[i]);
-            end;
-
-           Result := (PyInitConfig_SetStrList(FConfig, PAnsiChar(TempName), aItems.Count, @TempItemsPtr[0]) = 0);
-        end
-       else
-        Result := (PyInitConfig_SetStrList(FConfig, PAnsiChar(TempName), 0, nil) = 0);
+       Result := (PyInitConfig_SetStrList(FConfig, PAnsiChar(TempName), aItems.Count, @TempItemsPtr[0]) = 0);
     end;
 end;
 
@@ -1263,7 +1261,7 @@ var
   TempSL: TStringList;
 begin
   TempSL      := TStringList.Create;
-  TempSL.Text := StringReplace(aValue, ';', #13, [rfReplaceAll]);
+  TempSL.Text := StringReplace(aValue, PathSep, #13, [rfReplaceAll]);
   SetStrList(PYINITCONFIGOPTION_MODULE_SEARCH_PATHS, TempSL);
   TempSL.Free;
 end;

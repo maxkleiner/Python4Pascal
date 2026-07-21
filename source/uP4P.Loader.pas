@@ -1178,7 +1178,7 @@ begin
         TempConfig.pathconfig_warnings := FPathconfigWarnings;
         TempConfig.use_environment     := FUseEnvironment;
         TempConfig.user_site_directory := FUserSiteDirectory;
-        TempConfig.write_bytecode      := FWriteBytecode;   
+        TempConfig.write_bytecode      := FWriteBytecode;
         TempConfig.dev_mode            := FDevMode;
         TempConfig.home                := FHome;
         TempConfig.executable          := FExecutable;
