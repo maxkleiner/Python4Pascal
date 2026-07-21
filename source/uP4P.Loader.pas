@@ -47,6 +47,7 @@ type
       FUseEnvironment                    : boolean;
       FUserSiteDirectory                 : boolean;
       FWriteBytecode                     : boolean;
+      FDevMode                           : boolean;
       FHome                              : string;
       FExecutable                        : string;
       FProgramName                       : string;
@@ -256,6 +257,7 @@ type
       property UseEnvironment                    : boolean                                      read FUseEnvironment                    write FUseEnvironment;
       property UserSiteDirectory                 : boolean                                      read FUserSiteDirectory                 write FUserSiteDirectory;
       property WriteBytecode                     : boolean                                      read FWriteBytecode                     write FWriteBytecode;
+      property DevMode                           : boolean                                      read FDevMode                           write FDevMode;
       property Home                              : string                                       read FHome                              write FHome;
       property Executable                        : string                                       read FExecutable                        write FExecutable;
       property ProgramName                       : string                                       read FProgramName                       write FProgramName;
@@ -299,6 +301,7 @@ begin
   FUseEnvironment         := False;
   FUserSiteDirectory      := False;
   FWriteBytecode          := False;
+  FDevMode                := False;
   FHome                   := '';
   FExecutable             := '';
   FProgramName            := '';
@@ -1175,7 +1178,8 @@ begin
         TempConfig.pathconfig_warnings := FPathconfigWarnings;
         TempConfig.use_environment     := FUseEnvironment;
         TempConfig.user_site_directory := FUserSiteDirectory;
-        TempConfig.write_bytecode      := FWriteBytecode;
+        TempConfig.write_bytecode      := FWriteBytecode;   
+        TempConfig.dev_mode            := FDevMode;
         TempConfig.home                := FHome;
         TempConfig.executable          := FExecutable;
         TempConfig.program_name        := FProgramName;
@@ -1233,7 +1237,8 @@ begin
     TempConfig.pathconfig_warnings     := FPathconfigWarnings;
     TempConfig.use_environment         := FUseEnvironment;
     TempConfig.user_site_directory     := FUserSiteDirectory;
-    TempConfig.write_bytecode          := FWriteBytecode;
+    TempConfig.write_bytecode          := FWriteBytecode;       
+    TempConfig.dev_mode                := FDevMode;
     TempConfig.home                    := FHome;
     TempConfig.executable              := FExecutable;
     TempConfig.program_name            := FProgramName;
