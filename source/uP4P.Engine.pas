@@ -105,7 +105,7 @@ constructor TP4PEngine.Create;
 begin
   inherited Create;
 
-  FMainThreadID              := 0;
+  FMainThreadID              := TThreadID(0);
   FSavedThreadState          := False;
   FModules                   := nil;
   FSyncObj                   := nil;
@@ -316,9 +316,10 @@ var
 begin
   if assigned(FOnInputMessage) then
     begin
+      TempMessage := '';
       FOnInputMessage(self, TempMessage);
-      aResultObj := TPyUnicode.FromString(TempMessage);
-      Result     := True;
+      aResultObj  := TPyUnicode.FromString(TempMessage);
+      Result      := True;
     end
    else
     Result := False;

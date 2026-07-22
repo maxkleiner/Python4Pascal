@@ -17,6 +17,7 @@ uses
     {$ENDIF}
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Types, StrUtils,
+    {$IFDEF FPC}LazFileUtils,{$ENDIF}
   {$ENDIF}
   uP4P.Types;
 
@@ -217,7 +218,7 @@ begin
   if assigned(TThread.CurrentThread) then
     Result := TThread.CurrentThread.ThreadID
    else
-    Result := 0;
+    Result := TThreadID(0);
   {$ELSE}
   Result := GetCurrentThreadId();
   {$IFEND}
