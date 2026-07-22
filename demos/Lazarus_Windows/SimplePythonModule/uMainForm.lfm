@@ -1,0 +1,74 @@
+object MainForm: TMainForm
+  Left = 0
+  Height = 441
+  Top = 0
+  Width = 624
+  Caption = 'Simple Python Module'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnClose = FormClose
+  OnShow = FormShow
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 237
+    Width = 624
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 35
+    Top = 0
+    Width = 624
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 35
+    ClientWidth = 624
+    ParentBackground = False
+    TabOrder = 0
+    object RunBtn: TButton
+      Left = 5
+      Height = 25
+      Top = 5
+      Width = 75
+      Caption = 'Run'
+      TabOrder = 0
+      OnClick = RunBtnClick
+    end
+  end
+  object LogMem: TMemo
+    Left = 0
+    Height = 201
+    Top = 240
+    Width = 624
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssBoth
+    TabOrder = 1
+  end
+  object CodeMem: TMemo
+    Left = 0
+    Height = 202
+    Top = 35
+    Width = 624
+    Align = alClient
+    Lines.Strings = (
+      'import mytest'
+      ''
+      'print("Saving the sample string in the Delphi form...")'
+      'mytest.write("sample")'
+      ''
+      'print("Reading the previously saved value from the Delphi form...")'
+      'print(mytest.read())'
+    )
+    TabOrder = 2
+  end
+end

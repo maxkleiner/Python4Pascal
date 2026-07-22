@@ -1,7 +1,14 @@
 program SimplePythonModule;
 
+{$I ..\..\..\source\p4p.inc}
+
 uses
+  //FastMM4,
+  {$IFDEF DELPHI16_UP}
   Vcl.Forms,
+  {$ELSE}
+  Forms,
+  {$ENDIF}
   uMainForm in 'uMainForm.pas' {MainForm},
   uTestModule in 'uTestModule.pas';
 
@@ -9,7 +16,9 @@ uses
 
 begin
   Application.Initialize;
+  {$IFDEF DELPHI11_UP}
   Application.MainFormOnTaskbar := True;
+  {$ENDIF}
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
