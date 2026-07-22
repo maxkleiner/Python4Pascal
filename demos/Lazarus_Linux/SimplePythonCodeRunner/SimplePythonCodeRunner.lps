@@ -8,9 +8,11 @@
       <Unit>
         <Filename Value="SimplePythonCodeRunner.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="10" Y="12"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="55" Y="20"/>
         <UsageCount Value="27"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.pas"/>
@@ -20,10 +22,11 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
         <TopLine Value="77"/>
-        <CursorPos Y="102"/>
+        <CursorPos Y="101"/>
         <UsageCount Value="27"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
@@ -35,16 +38,15 @@
         <Filename Value="..\..\..\source\uP4P.Engine.pas"/>
         <EditorIndex Value="4"/>
         <TopLine Value="326"/>
-        <CursorPos X="33" Y="349"/>
+        <CursorPos X="24" Y="349"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="558"/>
-        <CursorPos X="62" Y="573"/>
+        <CursorPos X="24" Y="573"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
@@ -129,7 +131,7 @@
         <Filename Value="..\..\..\source\uP4P.PyEval.pas"/>
         <EditorIndex Value="2"/>
         <TopLine Value="286"/>
-        <CursorPos X="60" Y="311"/>
+        <CursorPos X="34" Y="311"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -137,7 +139,7 @@
         <Filename Value="..\..\..\source\uP4P.PyImport.pas"/>
         <EditorIndex Value="3"/>
         <TopLine Value="182"/>
-        <CursorPos X="52" Y="198"/>
+        <CursorPos X="42" Y="198"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>

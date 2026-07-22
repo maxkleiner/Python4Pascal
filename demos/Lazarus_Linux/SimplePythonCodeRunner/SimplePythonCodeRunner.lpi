@@ -51,7 +51,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\..\bin64\SimplePythonCodeRunner.exe"/>
+      <Filename Value="..\..\..\bin64\SimplePythonCodeRunner"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
