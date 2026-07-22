@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.SysUtils,
+    System.Classes, System.SysUtils, System.Types,
   {$ELSE}
-    Classes, SysUtils,
+    Classes, SysUtils, Types,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
@@ -26,7 +26,7 @@ type
       function GetError: string;
       function GetExitCode: integer;
       function Get_allocator: PyMemAllocatorName;
-      function Get_argv: string;
+      function Get_argv: TStringDynArray;
       function Get_base_exec_prefix: string;
       function Get_base_executable: string;
       function Get_base_prefix: string;
@@ -62,7 +62,7 @@ type
       function Get_malloc_stats: boolean;
       function Get_module_search_paths: string;
       function Get_optimization_level: TPyOptimizationLevel;
-      function Get_orig_argv: string;
+      function Get_orig_argv: TStringDynArray;
       function Get_parse_argv: boolean;
       function Get_parser_debug: boolean;
       function Get_pathconfig_warnings: boolean;
@@ -92,12 +92,12 @@ type
       function Get_utf8_mode: integer;
       function Get_verbose: TPyVerboseMode;
       function Get_warn_default_encoding: boolean;
-      function Get_warnoptions: string;
+      function Get_warnoptions: TStringDynArray;
       function Get_write_bytecode: boolean;
-      function Get_xoptions: string;
+      function Get_xoptions: TStringDynArray;
 
       procedure Set_allocator(aValue: PyMemAllocatorName);
-      procedure Set_argv(const aValue: string);
+      procedure Set_argv(const aValue: TStringDynArray);
       procedure Set_base_exec_prefix(const aValue: string);
       procedure Set_base_executable(const aValue: string);
       procedure Set_base_prefix(const aValue: string);
@@ -133,7 +133,7 @@ type
       procedure Set_malloc_stats(aValue: boolean);
       procedure Set_module_search_paths(const aValue: string);
       procedure Set_optimization_level(aValue: TPyOptimizationLevel);
-      procedure Set_orig_argv(const aValue: string);
+      procedure Set_orig_argv(const aValue: TStringDynArray);
       procedure Set_parse_argv(aValue: boolean);
       procedure Set_parser_debug(aValue: boolean);
       procedure Set_pathconfig_warnings(aValue: boolean);
@@ -163,17 +163,19 @@ type
       procedure Set_utf8_mode(aValue: integer);
       procedure Set_verbose(aValue: TPyVerboseMode);
       procedure Set_warn_default_encoding(aValue: boolean);
-      procedure Set_warnoptions(const aValue: string);
+      procedure Set_warnoptions(const aValue: TStringDynArray);
       procedure Set_write_bytecode(aValue: boolean);
-      procedure Set_xoptions(const aValue: string);
+      procedure Set_xoptions(const aValue: TStringDynArray);
 
       function HasOption(const aOption: string): boolean;
       function GetInt(const aName: string; var aValue: int64): boolean;
       function GetStr(const aName: string; var aValue: string): boolean;
-      function GetStrList(const aName: string; var aItems: TStringList): boolean;
+      function GetStrList(const aName: string; var aItems: TStringList): boolean; overload;
+      function GetStrList(const aName: string; var aItems: TStringDynArray): boolean; overload;
       function SetInt(const aName: string; aValue: int64): boolean;
       function SetStr(const aName, aValue: string): boolean;
-      function SetStrList(const aName: string; const aItems: TStringList): boolean;
+      function SetStrList(const aName: string; const aItems: TStringList): boolean; overload;
+      function SetStrList(const aName: string; const aItems: TStringDynArray): boolean; overload;
       function AddModule(const aName: string; initfunc_: initfunc): boolean;
 
       property Initialized     : boolean      read GetInitialized;
@@ -363,6 +365,49 @@ begin
     end;
 end;
 
+function TPyInitConfig.GetStrList(const aName: string; var aItems: TStringDynArray): boolean;
+var
+  TempName : AnsiString;
+  TempItems : PPAnsiChar;
+  TempItem : PAnsiChar;
+  TempLen, i : NativeUInt;
+begin
+  Result := False;
+
+  if Initialized and
+     assigned(PyInitConfig_GetStrList) and
+     assigned(PyInitConfig_FreeStrList) and
+     assigned(aItems) and
+     (length(aName) > 0) then
+    begin
+      TempName  := StringToPyUTF8(aName);
+      TempLen   := 0;
+      TempItems := nil;
+
+      if (PyInitConfig_GetStrList(FConfig, PAnsiChar(TempName), TempLen, TempItems) = 0) then
+        begin
+          Result := True;
+
+          if assigned(TempItems) then
+            begin
+              SetLength(aItems, TempLen);
+
+              i := 0;
+              while (i < TempLen) do
+                begin
+                  TempItem  := TempItems^;
+                  aItems[i] := PyUTF8ToString(TempItem);
+                  inc(TempItems);
+                  inc(i);
+                end;
+
+              Dec(TempItems, TempLen);
+              PyInitConfig_FreeStrList(TempLen, TempItems);
+            end;
+        end;
+    end;
+end;
+
 function TPyInitConfig.SetInt(const aName: string; aValue: int64): boolean;
 var
   TempString : AnsiString;
@@ -425,6 +470,37 @@ begin
     end;
 end;
 
+function TPyInitConfig.SetStrList(const aName: string; const aItems: TStringDynArray): boolean;
+var
+  TempName : AnsiString;
+  TempItems : array of AnsiString;
+  TempItemsPtr : array of PAnsiString;
+  i, TempLen : NativeUInt;
+begin
+  Result := False;
+
+  if Initialized and
+     assigned(PyInitConfig_SetStrList) and
+     (length(aName) > 0) and
+     assigned(aItems) and
+     (length(aItems) > 0) then
+    begin
+      TempLen  := length(aItems);
+      TempName := StringToPyUTF8(aName);
+
+      SetLength(TempItems,    TempLen);
+      SetLength(TempItemsPtr, TempLen);
+
+      for i := 0 to pred(TempLen) do
+        begin
+          TempItems[i]    := StringToPyUTF8(aItems[i]);
+          TempItemsPtr[i] := PAnsiString(TempItems[i]);
+        end;
+
+       Result := (PyInitConfig_SetStrList(FConfig, PAnsiChar(TempName), TempLen, @TempItemsPtr[0]) = 0);
+    end;
+end;
+
 function TPyInitConfig.AddModule(const aName: string; initfunc_: initfunc): boolean;
 var
   TempString : AnsiString;
@@ -450,18 +526,9 @@ begin
     Result := PYMEM_ALLOCATOR_NOT_SET;
 end;
 
-function TPyInitConfig.Get_argv: string;
-var
-  TempSL: TStringList;
+function TPyInitConfig.Get_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if GetStrList(PYINITCONFIGOPTION_ARGV, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  GetStrList(PYINITCONFIGOPTION_ARGV, Result);
 end;
 
 function TPyInitConfig.Get_base_exec_prefix: string;
@@ -750,12 +817,24 @@ end;
 
 function TPyInitConfig.Get_module_search_paths: string;
 var
-  TempSL: TStringList;
+  TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if GetStrList(PYINITCONFIGOPTION_MODULE_SEARCH_PATHS, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -772,18 +851,9 @@ begin
     Result := polDebug;
 end;
 
-function TPyInitConfig.Get_orig_argv: string;
-var
-  TempSL: TStringList;
+function TPyInitConfig.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if GetStrList(PYINITCONFIGOPTION_ORIG_ARGV, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  GetStrList(PYINITCONFIGOPTION_ORIG_ARGV, Result);
 end;
 
 function TPyInitConfig.Get_parse_argv: boolean;
@@ -1048,18 +1118,9 @@ begin
             (TempResult <> 0);
 end;
 
-function TPyInitConfig.Get_warnoptions: string;
-var
-  TempSL: TStringList;
+function TPyInitConfig.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if GetStrList(PYINITCONFIGOPTION_WARNOPTIONS, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  GetStrList(PYINITCONFIGOPTION_WARNOPTIONS, Result);
 end;
 
 function TPyInitConfig.Get_write_bytecode: boolean;
@@ -1070,18 +1131,9 @@ begin
             (TempResult <> 0);
 end;
 
-function TPyInitConfig.Get_xoptions: string;
-var
-  TempSL: TStringList;
+function TPyInitConfig.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if GetStrList(PYINITCONFIGOPTION_XOPTIONS, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  GetStrList(PYINITCONFIGOPTION_XOPTIONS, Result);
 end;
 
 procedure TPyInitConfig.Set_allocator(aValue: PyMemAllocatorName);
@@ -1089,14 +1141,9 @@ begin
   SetInt(PYINITCONFIGOPTION_ALLOCATOR, int64(aValue));
 end;
 
-procedure TPyInitConfig.Set_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyInitConfig.Set_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetStrList(PYINITCONFIGOPTION_ARGV, TempSL);
-  TempSL.Free;
+  SetStrList(PYINITCONFIGOPTION_ARGV, aValue);
 end;
 
 procedure TPyInitConfig.Set_base_exec_prefix(const aValue: string);
@@ -1271,14 +1318,9 @@ begin
   SetInt(PYINITCONFIGOPTION_OPTIMIZATION_LEVEL, int64(aValue));
 end;
 
-procedure TPyInitConfig.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyInitConfig.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetStrList(PYINITCONFIGOPTION_ORIG_ARGV, TempSL);
-  TempSL.Free;
+  SetStrList(PYINITCONFIGOPTION_ORIG_ARGV, aValue);
 end;
 
 procedure TPyInitConfig.Set_parse_argv(aValue: boolean);
@@ -1426,14 +1468,9 @@ begin
   SetInt(PYINITCONFIGOPTION_WARN_DEFAULT_ENCODING, ord(aValue));
 end;
 
-procedure TPyInitConfig.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyInitConfig.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetStrList(PYINITCONFIGOPTION_WARNOPTIONS, TempSL);
-  TempSL.Free;
+  SetStrList(PYINITCONFIGOPTION_WARNOPTIONS, aValue);
 end;
 
 procedure TPyInitConfig.Set_write_bytecode(aValue: boolean);
@@ -1441,14 +1478,9 @@ begin
   SetInt(PYINITCONFIGOPTION_WRITE_BYTECODE, ord(aValue));
 end;
 
-procedure TPyInitConfig.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyInitConfig.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetStrList(PYINITCONFIGOPTION_XOPTIONS, TempSL);
-  TempSL.Free;
+  SetStrList(PYINITCONFIGOPTION_XOPTIONS, aValue);
 end;
 
 end.

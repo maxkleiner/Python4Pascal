@@ -75,7 +75,7 @@ type
       function Get_module_search_paths: string; virtual;
       function Get_module_search_paths_set: boolean; virtual;
       function Get_optimization_level: TPyOptimizationLevel; virtual;
-      function Get_orig_argv: string; virtual;
+      function Get_orig_argv: TStringDynArray; virtual;
       function Get_parse_argv: boolean; virtual;
       function Get_parser_debug: boolean; virtual;
       function Get_pathconfig_warnings: boolean; virtual;
@@ -106,9 +106,9 @@ type
       function Get_user_site_directory: boolean; virtual;
       function Get_verbose: TPyVerboseMode; virtual;
       function Get_warn_default_encoding: boolean; virtual;
-      function Get_warnoptions: string; virtual;
+      function Get_warnoptions: TStringDynArray; virtual;
       function Get_write_bytecode: boolean; virtual;
-      function Get_xoptions: string; virtual;
+      function Get_xoptions: TStringDynArray; virtual;
 
       procedure Set_argv(const aValue: TStringDynArray); virtual;
       procedure Set_base_exec_prefix(const aValue: string); virtual;
@@ -147,7 +147,7 @@ type
       procedure Set_module_search_paths(const aValue: string); virtual;
       procedure Set_module_search_paths_set(aValue: boolean); virtual;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); virtual;
-      procedure Set_orig_argv(const aValue: string); virtual;
+      procedure Set_orig_argv(const aValue: TStringDynArray); virtual;
       procedure Set_parse_argv(aValue: boolean); virtual;
       procedure Set_parser_debug(aValue: boolean); virtual;
       procedure Set_pathconfig_warnings(aValue: boolean); virtual;
@@ -178,9 +178,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); virtual;
       procedure Set_verbose(aValue: TPyVerboseMode); virtual;
       procedure Set_warn_default_encoding(aValue: boolean); virtual;
-      procedure Set_warnoptions(const aValue: string); virtual;
+      procedure Set_warnoptions(const aValue: TStringDynArray); virtual;
       procedure Set_write_bytecode(aValue: boolean); virtual;
-      procedure Set_xoptions(const aValue: string); virtual;
+      procedure Set_xoptions(const aValue: TStringDynArray); virtual;
 
       function SetWCharT(var DstString: PWCharT; const SrcString: string): boolean;
       function SetString(var DstString: PWCharT; SrcString: WCharTString): IPyStatus;
@@ -252,7 +252,7 @@ type
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
       function Get_optimization_level: TPyOptimizationLevel; override;
-      function Get_orig_argv: string; override;
+      function Get_orig_argv: TStringDynArray; override;
       function Get_parse_argv: boolean; override;
       function Get_parser_debug: boolean; override;
       function Get_pathconfig_warnings: boolean; override;
@@ -283,9 +283,9 @@ type
       function Get_user_site_directory: boolean; override;
       function Get_verbose: TPyVerboseMode; override;
       function Get_warn_default_encoding: boolean; override;
-      function Get_warnoptions: string; override;
+      function Get_warnoptions: TStringDynArray; override;
       function Get_write_bytecode: boolean; override;
-      function Get_xoptions: string; override;
+      function Get_xoptions: TStringDynArray; override;
 
       procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
@@ -324,7 +324,7 @@ type
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
-      procedure Set_orig_argv(const aValue: string); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
       procedure Set_parse_argv(aValue: boolean); override;
       procedure Set_parser_debug(aValue: boolean); override;
       procedure Set_pathconfig_warnings(aValue: boolean); override;
@@ -355,9 +355,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); override;
       procedure Set_verbose(aValue: TPyVerboseMode); override;
       procedure Set_warn_default_encoding(aValue: boolean); override;
-      procedure Set_warnoptions(const aValue: string); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
       procedure Set_write_bytecode(aValue: boolean); override;
-      procedure Set_xoptions(const aValue: string); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfig313 = class(TPyConfigBase)
@@ -397,7 +397,7 @@ type
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
       function Get_optimization_level: TPyOptimizationLevel; override;
-      function Get_orig_argv: string; override;
+      function Get_orig_argv: TStringDynArray; override;
       function Get_parse_argv: boolean; override;
       function Get_parser_debug: boolean; override;
       function Get_pathconfig_warnings: boolean; override;
@@ -426,9 +426,9 @@ type
       function Get_user_site_directory: boolean; override;
       function Get_verbose: TPyVerboseMode; override;
       function Get_warn_default_encoding: boolean; override;
-      function Get_warnoptions: string; override;
+      function Get_warnoptions: TStringDynArray; override;
       function Get_write_bytecode: boolean; override;
-      function Get_xoptions: string; override;
+      function Get_xoptions: TStringDynArray; override;
 
       procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
@@ -463,7 +463,7 @@ type
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
-      procedure Set_orig_argv(const aValue: string); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
       procedure Set_parse_argv(aValue: boolean); override;
       procedure Set_parser_debug(aValue: boolean); override;
       procedure Set_pathconfig_warnings(aValue: boolean); override;
@@ -492,9 +492,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); override;
       procedure Set_verbose(aValue: TPyVerboseMode); override;
       procedure Set_warn_default_encoding(aValue: boolean); override;
-      procedure Set_warnoptions(const aValue: string); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
       procedure Set_write_bytecode(aValue: boolean); override;
-      procedure Set_xoptions(const aValue: string); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfig312 = class(TPyConfigBase)
@@ -533,7 +533,7 @@ type
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
       function Get_optimization_level: TPyOptimizationLevel; override;
-      function Get_orig_argv: string; override;
+      function Get_orig_argv: TStringDynArray; override;
       function Get_parse_argv: boolean; override;
       function Get_parser_debug: boolean; override;
       function Get_pathconfig_warnings: boolean; override;
@@ -561,9 +561,9 @@ type
       function Get_user_site_directory: boolean; override;
       function Get_verbose: TPyVerboseMode; override;
       function Get_warn_default_encoding: boolean; override;
-      function Get_warnoptions: string; override;
+      function Get_warnoptions: TStringDynArray; override;
       function Get_write_bytecode: boolean; override;
-      function Get_xoptions: string; override;
+      function Get_xoptions: TStringDynArray; override;
 
       procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
@@ -597,7 +597,7 @@ type
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
-      procedure Set_orig_argv(const aValue: string); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
       procedure Set_parse_argv(aValue: boolean); override;
       procedure Set_parser_debug(aValue: boolean); override;
       procedure Set_pathconfig_warnings(aValue: boolean); override;
@@ -625,9 +625,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); override;
       procedure Set_verbose(aValue: TPyVerboseMode); override;
       procedure Set_warn_default_encoding(aValue: boolean); override;
-      procedure Set_warnoptions(const aValue: string); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
       procedure Set_write_bytecode(aValue: boolean); override;
-      procedure Set_xoptions(const aValue: string); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfig311 = class(TPyConfigBase)
@@ -665,7 +665,7 @@ type
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
       function Get_optimization_level: TPyOptimizationLevel; override;
-      function Get_orig_argv: string; override;
+      function Get_orig_argv: TStringDynArray; override;
       function Get_parse_argv: boolean; override;
       function Get_parser_debug: boolean; override;
       function Get_pathconfig_warnings: boolean; override;
@@ -692,9 +692,9 @@ type
       function Get_user_site_directory: boolean; override;
       function Get_verbose: TPyVerboseMode; override;
       function Get_warn_default_encoding: boolean; override;
-      function Get_warnoptions: string; override;
+      function Get_warnoptions: TStringDynArray; override;
       function Get_write_bytecode: boolean; override;
-      function Get_xoptions: string; override;
+      function Get_xoptions: TStringDynArray; override;
 
       procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
@@ -727,7 +727,7 @@ type
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
-      procedure Set_orig_argv(const aValue: string); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
       procedure Set_parse_argv(aValue: boolean); override;
       procedure Set_parser_debug(aValue: boolean); override;
       procedure Set_pathconfig_warnings(aValue: boolean); override;
@@ -754,9 +754,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); override;
       procedure Set_verbose(aValue: TPyVerboseMode); override;
       procedure Set_warn_default_encoding(aValue: boolean); override;
-      procedure Set_warnoptions(const aValue: string); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
       procedure Set_write_bytecode(aValue: boolean); override;
-      procedure Set_xoptions(const aValue: string); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfig310 = class(TPyConfigBase)
@@ -792,7 +792,7 @@ type
       function Get_module_search_paths: string; override;
       function Get_module_search_paths_set: boolean; override;
       function Get_optimization_level: TPyOptimizationLevel; override;
-      function Get_orig_argv: string; override;
+      function Get_orig_argv: TStringDynArray; override;
       function Get_parse_argv: boolean; override;
       function Get_parser_debug: boolean; override;
       function Get_pathconfig_warnings: boolean; override;
@@ -816,9 +816,9 @@ type
       function Get_user_site_directory: boolean; override;
       function Get_verbose: TPyVerboseMode; override;
       function Get_warn_default_encoding: boolean; override;
-      function Get_warnoptions: string; override;
+      function Get_warnoptions: TStringDynArray; override;
       function Get_write_bytecode: boolean; override;
-      function Get_xoptions: string; override;
+      function Get_xoptions: TStringDynArray; override;
 
       procedure Set_argv(const aValue: TStringDynArray); override;
       procedure Set_base_exec_prefix(const aValue: string); override;
@@ -849,7 +849,7 @@ type
       procedure Set_module_search_paths(const aValue: string); override;
       procedure Set_module_search_paths_set(aValue: boolean); override;
       procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
-      procedure Set_orig_argv(const aValue: string); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
       procedure Set_parse_argv(aValue: boolean); override;
       procedure Set_parser_debug(aValue: boolean); override;
       procedure Set_pathconfig_warnings(aValue: boolean); override;
@@ -873,9 +873,9 @@ type
       procedure Set_user_site_directory(aValue: boolean); override;
       procedure Set_verbose(aValue: TPyVerboseMode); override;
       procedure Set_warn_default_encoding(aValue: boolean); override;
-      procedure Set_warnoptions(const aValue: string); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
       procedure Set_write_bytecode(aValue: boolean); override;
-      procedure Set_xoptions(const aValue: string); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfigBuilder = class
@@ -1152,9 +1152,9 @@ begin
   Result := polDebug;
 end;
 
-function TPyConfigBase.Get_orig_argv: string;
+function TPyConfigBase.Get_orig_argv: TStringDynArray;
 begin
-  Result := '';
+  SetLength(Result, 0);
 end;
 
 function TPyConfigBase.Get_parse_argv: boolean;
@@ -1307,9 +1307,9 @@ begin
   Result := False;
 end;
 
-function TPyConfigBase.Get_warnoptions: string;
+function TPyConfigBase.Get_warnoptions: TStringDynArray;
 begin
-  Result := '';
+  SetLength(Result, 0);
 end;
 
 function TPyConfigBase.Get_write_bytecode: boolean;
@@ -1317,9 +1317,9 @@ begin
   Result := False;
 end;
 
-function TPyConfigBase.Get_xoptions: string;
+function TPyConfigBase.Get_xoptions: TStringDynArray;
 begin
-  Result := '';
+  SetLength(Result, 0);
 end;
 
 function TPyConfigBase.SetWCharT(var DstString: PWCharT; const SrcString: string): boolean;
@@ -1662,7 +1662,7 @@ begin
   //
 end;
 
-procedure TPyConfigBase.Set_orig_argv(const aValue: string);
+procedure TPyConfigBase.Set_orig_argv(const aValue: TStringDynArray);
 begin
   //
 end;
@@ -1817,7 +1817,7 @@ begin
   //
 end;
 
-procedure TPyConfigBase.Set_warnoptions(const aValue: string);
+procedure TPyConfigBase.Set_warnoptions(const aValue: TStringDynArray);
 begin
   //
 end;
@@ -1827,7 +1827,7 @@ begin
   //
 end;
 
-procedure TPyConfigBase.Set_xoptions(const aValue: string);
+procedure TPyConfigBase.Set_xoptions(const aValue: TStringDynArray);
 begin
   //
 end;
@@ -1994,11 +1994,23 @@ end;
 function TPyConfig314.Get_module_search_paths: string;
 var
   TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -2015,18 +2027,9 @@ begin
   Result := TPyOptimizationLevel(FConfig.optimization_level);
 end;
 
-function TPyConfig314.Get_orig_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig314.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.orig_argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
 function TPyConfig314.Get_parse_argv: boolean;
@@ -2179,18 +2182,9 @@ begin
   Result := (FConfig.warn_default_encoding <> 0);
 end;
 
-function TPyConfig314.Get_warnoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig314.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.warnoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
 function TPyConfig314.Get_write_bytecode: boolean;
@@ -2198,18 +2192,9 @@ begin
   Result := (FConfig.write_bytecode <> 0);
 end;
 
-function TPyConfig314.Get_xoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig314.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.xoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
 procedure TPyConfig314.Set_argv(const aValue: TStringDynArray);
@@ -2390,14 +2375,9 @@ begin
   FConfig.optimization_level := integer(aValue);
 end;
 
-procedure TPyConfig314.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig314.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.orig_argv, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.orig_argv, aValue);
 end;
 
 procedure TPyConfig314.Set_parse_argv(aValue: boolean);
@@ -2553,14 +2533,9 @@ begin
   FConfig.warn_default_encoding := ord(aValue);
 end;
 
-procedure TPyConfig314.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig314.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.warnoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.warnoptions, aValue);
 end;
 
 procedure TPyConfig314.Set_write_bytecode(aValue: boolean);
@@ -2568,14 +2543,9 @@ begin
   FConfig.write_bytecode := ord(aValue);
 end;
 
-procedure TPyConfig314.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig314.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.xoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 function TPyConfig313.GetConfig: Pointer;
@@ -2728,11 +2698,23 @@ end;
 function TPyConfig313.Get_module_search_paths: string;
 var
   TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -2749,18 +2731,9 @@ begin
   Result := TPyOptimizationLevel(FConfig.optimization_level);
 end;
 
-function TPyConfig313.Get_orig_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig313.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.orig_argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
 function TPyConfig313.Get_parse_argv: boolean;
@@ -2903,18 +2876,9 @@ begin
   Result := (FConfig.warn_default_encoding <> 0);
 end;
 
-function TPyConfig313.Get_warnoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig313.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.warnoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
 function TPyConfig313.Get_write_bytecode: boolean;
@@ -2922,18 +2886,9 @@ begin
   Result := (FConfig.write_bytecode <> 0);
 end;
 
-function TPyConfig313.Get_xoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig313.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.xoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
 procedure TPyConfig313.Set_argv(const aValue: TStringDynArray);
@@ -3102,14 +3057,9 @@ begin
   FConfig.optimization_level := integer(aValue);
 end;
 
-procedure TPyConfig313.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig313.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.orig_argv, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.orig_argv, aValue);
 end;
 
 procedure TPyConfig313.Set_parse_argv(aValue: boolean);
@@ -3255,14 +3205,9 @@ begin
   FConfig.warn_default_encoding := ord(aValue);
 end;
 
-procedure TPyConfig313.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig313.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.warnoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.warnoptions, aValue);
 end;
 
 procedure TPyConfig313.Set_write_bytecode(aValue: boolean);
@@ -3270,14 +3215,9 @@ begin
   FConfig.write_bytecode := ord(aValue);
 end;
 
-procedure TPyConfig313.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig313.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.xoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 function TPyConfig312.GetConfig: Pointer;
@@ -3425,11 +3365,23 @@ end;
 function TPyConfig312.Get_module_search_paths: string;
 var
   TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -3446,18 +3398,9 @@ begin
   Result := TPyOptimizationLevel(FConfig.optimization_level);
 end;
 
-function TPyConfig312.Get_orig_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig312.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.orig_argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
 function TPyConfig312.Get_parse_argv: boolean;
@@ -3595,18 +3538,9 @@ begin
   Result := (FConfig.warn_default_encoding <> 0);
 end;
 
-function TPyConfig312.Get_warnoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig312.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.warnoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
 function TPyConfig312.Get_write_bytecode: boolean;
@@ -3614,18 +3548,9 @@ begin
   Result := (FConfig.write_bytecode <> 0);
 end;
 
-function TPyConfig312.Get_xoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig312.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.xoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
 procedure TPyConfig312.Set_argv(const aValue: TStringDynArray);
@@ -3789,14 +3714,9 @@ begin
   FConfig.optimization_level := integer(aValue);
 end;
 
-procedure TPyConfig312.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig312.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.orig_argv, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.orig_argv, aValue);
 end;
 
 procedure TPyConfig312.Set_parse_argv(aValue: boolean);
@@ -3937,14 +3857,9 @@ begin
   FConfig.warn_default_encoding := ord(aValue);
 end;
 
-procedure TPyConfig312.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig312.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.warnoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.warnoptions, aValue);
 end;
 
 procedure TPyConfig312.Set_write_bytecode(aValue: boolean);
@@ -3952,14 +3867,9 @@ begin
   FConfig.write_bytecode := ord(aValue);
 end;
 
-procedure TPyConfig312.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig312.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.xoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 function TPyConfig311.GetConfig: Pointer;
@@ -4102,11 +4012,23 @@ end;
 function TPyConfig311.Get_module_search_paths: string;
 var
   TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -4123,18 +4045,9 @@ begin
   Result := TPyOptimizationLevel(FConfig.optimization_level);
 end;
 
-function TPyConfig311.Get_orig_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig311.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.orig_argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
 function TPyConfig311.Get_parse_argv: boolean;
@@ -4267,18 +4180,9 @@ begin
   Result := (FConfig.warn_default_encoding <> 0);
 end;
 
-function TPyConfig311.Get_warnoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig311.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.warnoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
 function TPyConfig311.Get_write_bytecode: boolean;
@@ -4286,18 +4190,9 @@ begin
   Result := (FConfig.write_bytecode <> 0);
 end;
 
-function TPyConfig311.Get_xoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig311.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.xoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
 procedure TPyConfig311.Set_argv(const aValue: TStringDynArray);
@@ -4456,14 +4351,9 @@ begin
   FConfig.optimization_level := integer(aValue);
 end;
 
-procedure TPyConfig311.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig311.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.orig_argv, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.orig_argv, aValue);
 end;
 
 procedure TPyConfig311.Set_parse_argv(aValue: boolean);
@@ -4599,14 +4489,9 @@ begin
   FConfig.warn_default_encoding := ord(aValue);
 end;
 
-procedure TPyConfig311.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig311.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.warnoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.warnoptions, aValue);
 end;
 
 procedure TPyConfig311.Set_write_bytecode(aValue: boolean);
@@ -4614,14 +4499,9 @@ begin
   FConfig.write_bytecode := ord(aValue);
 end;
 
-procedure TPyConfig311.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig311.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.xoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 function TPyConfig310.GetConfig: Pointer;
@@ -4754,11 +4634,23 @@ end;
 function TPyConfig310.Get_module_search_paths: string;
 var
   TempSL : TStringList;
+  i      : integer;
 begin
   TempSL := TStringList.Create;
 
   if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
-    Result := TempSL.CommaText
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
    else
     Result := '';
 
@@ -4775,18 +4667,9 @@ begin
   Result := TPyOptimizationLevel(FConfig.optimization_level);
 end;
 
-function TPyConfig310.Get_orig_argv: string;
-var
-  TempSL : TStringList;
+function TPyConfig310.Get_orig_argv: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.orig_argv, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
 function TPyConfig310.Get_parse_argv: boolean;
@@ -4904,18 +4787,9 @@ begin
   Result := (FConfig.warn_default_encoding <> 0);
 end;
 
-function TPyConfig310.Get_warnoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig310.Get_warnoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.warnoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
 function TPyConfig310.Get_write_bytecode: boolean;
@@ -4923,18 +4797,9 @@ begin
   Result := (FConfig.write_bytecode <> 0);
 end;
 
-function TPyConfig310.Get_xoptions: string;
-var
-  TempSL : TStringList;
+function TPyConfig310.Get_xoptions: TStringDynArray;
 begin
-  TempSL := TStringList.Create;
-
-  if PyWideStringListToStringList(FConfig.xoptions, TempSL) then
-    Result := TempSL.CommaText
-   else
-    Result := '';
-
-  TempSL.Free;
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
 procedure TPyConfig310.Set_argv(const aValue: TStringDynArray);
@@ -5083,14 +4948,9 @@ begin
   FConfig.optimization_level := integer(aValue);
 end;
 
-procedure TPyConfig310.Set_orig_argv(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig310.Set_orig_argv(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.orig_argv, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.orig_argv, aValue);
 end;
 
 procedure TPyConfig310.Set_parse_argv(aValue: boolean);
@@ -5211,14 +5071,9 @@ begin
   FConfig.warn_default_encoding := ord(aValue);
 end;
 
-procedure TPyConfig310.Set_warnoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig310.Set_warnoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.warnoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.warnoptions, aValue);
 end;
 
 procedure TPyConfig310.Set_write_bytecode(aValue: boolean);
@@ -5226,14 +5081,9 @@ begin
   FConfig.write_bytecode := ord(aValue);
 end;
 
-procedure TPyConfig310.Set_xoptions(const aValue: string);
-var
-  TempSL: TStringList;
+procedure TPyConfig310.Set_xoptions(const aValue: TStringDynArray);
 begin
-  TempSL           := TStringList.Create;
-  TempSL.CommaText := aValue;
-  SetWideStringList(FConfig.xoptions, TempSL);
-  TempSL.Free;
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 class function TPyConfigBuilder.New(aMajor, aMinor: integer): IPyConfig;

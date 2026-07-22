@@ -1113,21 +1113,20 @@ end;
 
 procedure TP4PLoader.SetProgramArgs_PEP741(const aConfig : IPyInitConfig);
 var
-  i      : integer;
-  TempSL : TStringList;
+  i          : integer;
+  TempParams : TStringDynArray;
 begin
   aConfig.parse_argv := False;
 
-  TempSL := TStringList.Create;
+  SetLength(TempParams, succ(ParamCount));
 
   for i := 0 to ParamCount do
     if i = 0 then
-      TempSL.Add('')
+      TempParams[i] := ''
      else
-      TempSL.Add(ParamStr(i));
+      TempParams[i] := ParamStr(i);
 
-  aConfig.SetStrList(PYINITCONFIGOPTION_ARGV, TempSL);
-  TempSL.Free;
+  aConfig.argv := TempParams;
 end;
 
 procedure TP4PLoader.SetProgramArgs_PEP587(const aConfig : IPyConfig);

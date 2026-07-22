@@ -422,7 +422,7 @@ type
     function GetError: string;
     function GetExitCode: integer;
     function Get_allocator: PyMemAllocatorName;
-    function Get_argv: string;
+    function Get_argv: TStringDynArray;
     function Get_base_exec_prefix: string;
     function Get_base_executable: string;
     function Get_base_prefix: string;
@@ -458,7 +458,7 @@ type
     function Get_malloc_stats: boolean;
     function Get_module_search_paths: string;
     function Get_optimization_level: TPyOptimizationLevel;
-    function Get_orig_argv: string;
+    function Get_orig_argv: TStringDynArray;
     function Get_parse_argv: boolean;
     function Get_parser_debug: boolean;
     function Get_pathconfig_warnings: boolean;
@@ -488,12 +488,12 @@ type
     function Get_utf8_mode: integer;
     function Get_verbose: TPyVerboseMode;
     function Get_warn_default_encoding: boolean;
-    function Get_warnoptions: string;
+    function Get_warnoptions: TStringDynArray;
     function Get_write_bytecode: boolean;
-    function Get_xoptions: string;
+    function Get_xoptions: TStringDynArray;
 
     procedure Set_allocator(aValue: PyMemAllocatorName);
-    procedure Set_argv(const aValue: string);
+    procedure Set_argv(const aValue: TStringDynArray);
     procedure Set_base_exec_prefix(const aValue: string);
     procedure Set_base_executable(const aValue: string);
     procedure Set_base_prefix(const aValue: string);
@@ -529,7 +529,7 @@ type
     procedure Set_malloc_stats(aValue: boolean);
     procedure Set_module_search_paths(const aValue: string);
     procedure Set_optimization_level(aValue: TPyOptimizationLevel);
-    procedure Set_orig_argv(const aValue: string);
+    procedure Set_orig_argv(const aValue: TStringDynArray);
     procedure Set_parse_argv(aValue: boolean);
     procedure Set_parser_debug(aValue: boolean);
     procedure Set_pathconfig_warnings(aValue: boolean);
@@ -559,17 +559,19 @@ type
     procedure Set_utf8_mode(aValue: integer);
     procedure Set_verbose(aValue: TPyVerboseMode);
     procedure Set_warn_default_encoding(aValue: boolean);
-    procedure Set_warnoptions(const aValue: string);
+    procedure Set_warnoptions(const aValue: TStringDynArray);
     procedure Set_write_bytecode(aValue: boolean);
-    procedure Set_xoptions(const aValue: string);
+    procedure Set_xoptions(const aValue: TStringDynArray);
 
     function HasOption(const aOption: string): boolean;
     function GetInt(const aName: string; var aValue: int64): boolean;
     function GetStr(const aName: string; var aValue: string): boolean;
-    function GetStrList(const aName: string; var aItems: TStringList): boolean;
+    function GetStrList(const aName: string; var aItems: TStringList): boolean; overload;
+    function GetStrList(const aName: string; var aItems: TStringDynArray): boolean; overload;
     function SetInt(const aName: string; aValue: int64): boolean;
     function SetStr(const aName, aValue: string): boolean;
-    function SetStrList(const aName: string; const aItems: TStringList): boolean;
+    function SetStrList(const aName: string; const aItems: TStringList): boolean; overload;
+    function SetStrList(const aName: string; const aItems: TStringDynArray): boolean; overload;
     function AddModule(const aName: string; initfunc_: initfunc): boolean;
 
     property Initialized                : boolean                read GetInitialized;
@@ -578,7 +580,7 @@ type
     property ExitCode                   : integer                read GetExitCode;
 
     property allocator                  : PyMemAllocatorName     read Get_allocator                      write Set_allocator;
-    property argv                       : string                 read Get_argv                           write Set_argv;
+    property argv                       : TStringDynArray        read Get_argv                           write Set_argv;
     property base_exec_prefix           : string                 read Get_base_exec_prefix               write Set_base_exec_prefix;
     property base_executable            : string                 read Get_base_executable                write Set_base_executable;
     property base_prefix                : string                 read Get_base_prefix                    write Set_base_prefix;
@@ -614,7 +616,7 @@ type
     property malloc_stats               : boolean                read Get_malloc_stats                   write Set_malloc_stats;
     property module_search_paths        : string                 read Get_module_search_paths            write Set_module_search_paths;
     property optimization_level         : TPyOptimizationLevel   read Get_optimization_level             write Set_optimization_level;
-    property orig_argv                  : string                 read Get_orig_argv                      write Set_orig_argv;
+    property orig_argv                  : TStringDynArray        read Get_orig_argv                      write Set_orig_argv;
     property parse_argv                 : boolean                read Get_parse_argv                     write Set_parse_argv;
     property parser_debug               : boolean                read Get_parser_debug                   write Set_parser_debug;
     property pathconfig_warnings        : boolean                read Get_pathconfig_warnings            write Set_pathconfig_warnings;
@@ -644,9 +646,9 @@ type
     property utf8_mode                  : integer                read Get_utf8_mode                      write Set_utf8_mode;
     property verbose                    : TPyVerboseMode         read Get_verbose                        write Set_verbose;
     property warn_default_encoding      : boolean                read Get_warn_default_encoding          write Set_warn_default_encoding;
-    property warnoptions                : string                 read Get_warnoptions                    write Set_warnoptions;
+    property warnoptions                : TStringDynArray        read Get_warnoptions                    write Set_warnoptions;
     property write_bytecode             : boolean                read Get_write_bytecode                 write Set_write_bytecode;
-    property xoptions                   : string                 read Get_xoptions                       write Set_xoptions;
+    property xoptions                   : TStringDynArray        read Get_xoptions                       write Set_xoptions;
   end;
 
   IPyPreConfig = interface
@@ -725,7 +727,7 @@ type
     function Get_module_search_paths: string;
     function Get_module_search_paths_set: boolean;
     function Get_optimization_level: TPyOptimizationLevel;
-    function Get_orig_argv: string;
+    function Get_orig_argv: TStringDynArray;
     function Get_parse_argv: boolean;
     function Get_parser_debug: boolean;
     function Get_pathconfig_warnings: boolean;
@@ -756,9 +758,9 @@ type
     function Get_user_site_directory: boolean;
     function Get_verbose: TPyVerboseMode;
     function Get_warn_default_encoding: boolean;
-    function Get_warnoptions: string;
+    function Get_warnoptions: TStringDynArray;
     function Get_write_bytecode: boolean;
-    function Get_xoptions: string;
+    function Get_xoptions: TStringDynArray;
 
     procedure Set_argv(const aValue: TStringDynArray);
     procedure Set_base_exec_prefix(const aValue: string);
@@ -797,7 +799,7 @@ type
     procedure Set_module_search_paths(const aValue: string);
     procedure Set_module_search_paths_set(aValue: boolean);
     procedure Set_optimization_level(aValue: TPyOptimizationLevel);
-    procedure Set_orig_argv(const aValue: string);
+    procedure Set_orig_argv(const aValue: TStringDynArray);
     procedure Set_parse_argv(aValue: boolean);
     procedure Set_parser_debug(aValue: boolean);
     procedure Set_pathconfig_warnings(aValue: boolean);
@@ -828,9 +830,9 @@ type
     procedure Set_user_site_directory(aValue: boolean);
     procedure Set_verbose(aValue: TPyVerboseMode);
     procedure Set_warn_default_encoding(aValue: boolean);
-    procedure Set_warnoptions(const aValue: string);
+    procedure Set_warnoptions(const aValue: TStringDynArray);
     procedure Set_write_bytecode(aValue: boolean);
-    procedure Set_xoptions(const aValue: string);
+    procedure Set_xoptions(const aValue: TStringDynArray);
 
     function SetWCharT(var DstString: PWCharT; const SrcString: string): boolean;
     function SetString(var DstString: PWCharT; SrcString: WCharTString): IPyStatus;
@@ -892,7 +894,7 @@ type
     property module_search_paths       : string               read Get_module_search_paths          write Set_module_search_paths;
     property module_search_paths_set   : boolean              read Get_module_search_paths_set      write Set_module_search_paths_set;
     property optimization_level        : TPyOptimizationLevel read Get_optimization_level           write Set_optimization_level;
-    property orig_argv                 : string               read Get_orig_argv                    write Set_orig_argv;
+    property orig_argv                 : TStringDynArray      read Get_orig_argv                    write Set_orig_argv;
     property parse_argv                : boolean              read Get_parse_argv                   write Set_parse_argv;
     property parser_debug              : boolean              read Get_parser_debug                 write Set_parser_debug;
     property pathconfig_warnings       : boolean              read Get_pathconfig_warnings          write Set_pathconfig_warnings;
@@ -923,9 +925,9 @@ type
     property user_site_directory       : boolean              read Get_user_site_directory          write Set_user_site_directory;
     property verbose                   : TPyVerboseMode       read Get_verbose                      write Set_verbose;
     property warn_default_encoding     : boolean              read Get_warn_default_encoding        write Set_warn_default_encoding;
-    property warnoptions               : string               read Get_warnoptions                  write Set_warnoptions;
+    property warnoptions               : TStringDynArray      read Get_warnoptions                  write Set_warnoptions;
     property write_bytecode            : boolean              read Get_write_bytecode               write Set_write_bytecode;
-    property xoptions                  : string               read Get_xoptions                     write Set_xoptions;
+    property xoptions                  : TStringDynArray      read Get_xoptions                     write Set_xoptions;
   end;
 
   IPyMutex = interface
