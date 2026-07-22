@@ -73,7 +73,6 @@ begin
       //TempLibPath := 'R:\python-3.12.10-embed-' + TempBit + '\python312.dll';
       //TempLibPath := 'R:\python-3.11.9-embed-' + TempBit + '\python311.dll';
       //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
-
       TempLibPath := '';
 
       if GlobalP4PEngine.Load(TempLibPath) and
