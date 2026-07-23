@@ -55,7 +55,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      TempLibPath := '/usr/lib/x86_64-linux-gnu/libpython3.12.so';
+      TempLibPath := '';
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then

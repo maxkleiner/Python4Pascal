@@ -545,15 +545,29 @@ end;
 {$IFDEF LINUX}
 var
   i : integer;
-  TempVersion, TempLib : string;
+  TempVersion, TempLib, TempPath : string;
 begin
   Result := '';
+  {$IFDEF TARGET_32BITS}
+    {$IF DEFINED(CPUARM32) OR DEFINED(CPUARM)} 
+    TempPath := '/usr/lib/arm-linux-gnueabihf/';
+    {$ELSE}
+    TempPath := '/usr/lib/i386-linux-gnu/';
+    {$IFEND}
+  {$ENDIF}
+  {$IFDEF TARGET_64BITS}
+    {$IF DEFINED(CPUARM64) OR DEFINED(CPUAARCH64)}
+    TempPath := '/usr/lib/aarch64-linux-gnu/';
+    {$ELSE}
+    TempPath := '/usr/lib/x86_64-linux-gnu/';
+    {$IFEND}
+  {$ENDIF}
 
   try
     for i := MAX_SUPPORTED_MINOR_VERSION downto MIN_SUPPORTED_MINOR_VERSION do
       begin
         TempVersion := inttostr(SUPPORTED_MAJOR_VERSION) + '.' + inttostr(i);
-        TempLib     := '/usr/lib/x86_64-linux-gnu/libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
+        TempLib     := TempPath + 'libpython' + TempVersion + '.' + PYTHON_LIB_EXT;
 
         if FileExists(TempLib) then
           begin
