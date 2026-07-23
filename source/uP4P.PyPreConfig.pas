@@ -37,6 +37,19 @@ type
       function Get_dev_mode: boolean;
       function Get_allocator: PyMemAllocatorName;
 
+      procedure Set_parse_argv(aValue: boolean);
+      procedure Set_isolated(aValue: boolean);
+      procedure Set_use_environment(aValue: boolean);
+      procedure Set_configure_locale(aValue: boolean);
+      procedure Set_coerce_c_locale(aValue: integer);
+      procedure Set_coerce_c_locale_warn(aValue: boolean);
+      {$IFDEF MSWINDOWS}
+      procedure Set_legacy_windows_fs_encoding(aValue: boolean);
+      {$ENDIF}
+      procedure Set_utf8_mode(aValue: integer);
+      procedure Set_dev_mode(aValue: boolean);
+      procedure Set_allocator(aValue: PyMemAllocatorName);
+
     public
       constructor Create;
       procedure InitPythonConfig;
@@ -44,20 +57,20 @@ type
 
       class function  IsInitialized(const aPyPreConfig: IPyPreConfig): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
-      property Config                     : Pointer            read GetConfig;
-      property Initialized                : boolean            read GetInitialized;
-      property parse_argv                 : boolean            read Get_parse_argv;
-      property isolated                   : boolean            read Get_isolated;
-      property use_environment            : boolean            read Get_use_environment;
-      property configure_locale           : boolean            read Get_configure_locale;
-      property coerce_c_locale            : integer            read Get_coerce_c_locale;
-      property coerce_c_locale_warn       : boolean            read Get_coerce_c_locale_warn;
+      property Config                      : Pointer            read GetConfig;
+      property Initialized                 : boolean            read GetInitialized;
+      property parse_argv                  : boolean            read Get_parse_argv                           write Set_parse_argv;
+      property isolated                    : boolean            read Get_isolated                             write Set_isolated;
+      property use_environment             : boolean            read Get_use_environment                      write Set_use_environment;
+      property configure_locale            : boolean            read Get_configure_locale                     write Set_configure_locale;
+      property coerce_c_locale             : integer            read Get_coerce_c_locale                      write Set_coerce_c_locale;
+      property coerce_c_locale_warn        : boolean            read Get_coerce_c_locale_warn                 write Set_coerce_c_locale_warn;
       {$IFDEF MSWINDOWS}
-      property legacy_windows_fs_encoding : boolean            read Get_legacy_windows_fs_encoding;
+      property legacy_windows_fs_encoding  : boolean            read Get_legacy_windows_fs_encoding           write Set_legacy_windows_fs_encoding;
       {$ENDIF}
-      property utf8_mode                  : integer            read Get_utf8_mode;
-      property dev_mode                   : boolean            read Get_dev_mode;
-      property allocator                  : PyMemAllocatorName read Get_allocator;
+      property utf8_mode                   : integer            read Get_utf8_mode                            write Set_utf8_mode;
+      property dev_mode                    : boolean            read Get_dev_mode                             write Set_dev_mode;
+      property allocator                   : PyMemAllocatorName read Get_allocator                            write Set_allocator;
   end;
 
 implementation
@@ -152,6 +165,67 @@ end;
 function TPyPreConfig.Get_allocator: PyMemAllocatorName;
 begin
   Result := PyMemAllocatorName(FConfig.allocator);
+end;
+
+procedure TPyPreConfig.Set_parse_argv(aValue: boolean);
+begin
+  FConfig.parse_argv := ord(aValue);
+end;
+
+procedure TPyPreConfig.Set_isolated(aValue: boolean);
+begin
+  FConfig.isolated := ord(aValue);
+end;
+
+procedure TPyPreConfig.Set_use_environment(aValue: boolean);
+begin
+  FConfig.use_environment := ord(aValue);
+end;
+
+procedure TPyPreConfig.Set_configure_locale(aValue: boolean);
+begin
+  FConfig.configure_locale := ord(aValue);
+end;
+
+procedure TPyPreConfig.Set_coerce_c_locale(aValue: integer);
+begin
+  FConfig.coerce_c_locale := aValue;
+end;
+
+procedure TPyPreConfig.Set_coerce_c_locale_warn(aValue: boolean);
+begin
+  if aValue then
+    FConfig.coerce_c_locale_warn := -1
+   else
+    FConfig.coerce_c_locale_warn := 0;
+end;
+
+{$IFDEF MSWINDOWS}
+procedure TPyPreConfig.Set_legacy_windows_fs_encoding(aValue: boolean);
+begin
+  if aValue then
+    FConfig.legacy_windows_fs_encoding := -1
+   else
+    FConfig.legacy_windows_fs_encoding := 0;
+end;
+{$ENDIF}
+
+procedure TPyPreConfig.Set_utf8_mode(aValue: integer);
+begin
+  FConfig.utf8_mode := aValue;
+end;
+
+procedure TPyPreConfig.Set_dev_mode(aValue: boolean);
+begin
+  if aValue then
+    FConfig.dev_mode := -1
+   else
+    FConfig.dev_mode := 0;
+end;
+
+procedure TPyPreConfig.Set_allocator(aValue: PyMemAllocatorName);
+begin
+  FConfig.allocator := integer(aValue);
 end;
 
 end.
