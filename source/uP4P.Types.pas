@@ -120,35 +120,81 @@ type
     polReleaseNoDocStrings = 2
   );
 
+  /// <summary>
+  /// Codec error handling.
+  /// </summary>
   TPyCodecErrors = (
+    /// <summary>
+    /// Equivalent to "strict" error handling.
+    /// </summary>
     pceStrict,
+    /// <summary>
+    /// Equivalent to "replace" error handling.
+    /// </summary>
     pceReplace,
+    /// <summary>
+    /// Equivalent to "ignore" error handling.
+    /// </summary>
     pceIgnore,
+    /// <summary>
+    /// Equivalent to "surrogateescape" error handling.
+    /// </summary>
     pceSurrogateEscape
   );
 
+  /// <summary>
+  /// Byte order used by decoders.
+  /// </summary>
   TPyBiteOrder = (
+    /// <summary>
+    /// Little endian.
+    /// </summary>
     pboLittleEndian = -1,
+    /// <summary>
+    /// Native order.
+    /// </summary>
     pboNativeOrder  = 0,
+    /// <summary>
+    /// Big endian.
+    /// </summary>
     pboBigEndian    = 1
   );
 
+  /// <summary>
+  /// Order of the memory chuck.
+  /// </summary>
   TPyMemoryViewOrder = (
+    /// <summary>
+    /// "C" order.
+    /// </summary>
     pmvoC,
+    /// <summary>
+    /// "Fortran" order.
+    /// </summary>
     pmvoFortran
   );
 
+  /// <summary>
+  /// Order of the buffer.
+  /// </summary>
   TPyBufferOrder = (
+    /// <summary>
+    /// "C" style.
+    /// </summary>
     pboC,
+    /// <summary>
+    /// "Fortran" style.
+    /// </summary>
     pboFortran,
+    /// <summary>
+    /// Either one.
+    /// </summary>
     pboEitherOne
   );
 
-  TPyBufferFort = (
-    pbfC,
-    pbfFortran
-  );
-
+  /// <summary>
+  /// Format code used to convert a double to a string.
+  /// </summary>
   TPyDoubleToStringFormatCode = (
     fc_lowercase_e,
     fc_E,
@@ -159,24 +205,39 @@ type
     fc_r
   );
 
+  /// <summary>
+  /// GIL mode used by the interpreter.
+  /// </summary>
   TPyInterpreterCfgGIL = (
     gilDefault,
     gilShared,
     gilOwn
   );
 
+  /// <summary>
+  /// Daylight Saving Time (DST).
+  /// </summary>
   TPyDaylightSavingTime = (
     dstUnknown = -1,
     dstWinter  = 0,
     dstSummer  = 1
   );
 
+  /// <summary>
+  /// Custom integer open array.
+  /// </summary>
   TCustomIntArray = array of integer;
 
+  /// <summary>
+  /// Named parameter description.
+  /// </summary>
   TNamedParamDesc = record
     Index : Integer;
     Name  : PAnsiChar;
   end;
+  /// <summary>
+  /// Named parameter description array.
+  /// </summary>
   TNamedParamArray = array of TNamedParamDesc;
 
   /// <summary>
@@ -303,7 +364,9 @@ type
   PPyTracebackObject              = ^PyTracebackObject;
 
 
-  // custom PPyObject array type
+  /// <summary>
+  /// Custom PPyObject open array.
+  /// </summary>
   PPyObjectArray = array of PPyObject;
 
 
@@ -315,27 +378,69 @@ type
   Py_uhash_t         = type NativeUInt;
   Py_ssize_clean_t   = type Py_ssize_t;
 
-  // custom Py_ssize_t array type
+  /// <summary>
+  /// Custom Py_ssize_t open array.
+  /// </summary>
   Py_ssize_t_array   = array of Py_ssize_t;
 
   {* include/pymacro.h *}
   {* include/pymath.h *}
   {* include/pymem.h  Include/cpython/pymem.h *}
+
+  /// <summary>
+  /// Enum used to identify an allocator domain.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/memory.html#c.PyMemAllocatorDomain">See the article about PyMemAllocatorDomain.</see></para>
+  /// </remarks>
   PyMemAllocatorDomain = (
     PYMEM_DOMAIN_RAW,
     PYMEM_DOMAIN_MEM,
     PYMEM_DOMAIN_OBJ
   );
 
+  /// <summary>
+  /// Python memory allocators.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyPreConfig.allocator">See the article about PyPreConfig.</see></para>
+  /// </remarks>
   PyMemAllocatorName = (
+    /// <summary>
+    /// don’t change memory allocators (use defaults).
+    /// </summary>
     PYMEM_ALLOCATOR_NOT_SET        = 0,
+    /// <summary>
+    /// default memory allocators.
+    /// </summary>
     PYMEM_ALLOCATOR_DEFAULT        = 1,
+    /// <summary>
+    /// default memory allocators with debug hooks.
+    /// </summary>
     PYMEM_ALLOCATOR_DEBUG          = 2,
+    /// <summary>
+    /// use malloc() of the C library.
+    /// </summary>
     PYMEM_ALLOCATOR_MALLOC         = 3,
+    /// <summary>
+    /// force usage of malloc() with debug hooks.
+    /// </summary>
     PYMEM_ALLOCATOR_MALLOC_DEBUG   = 4,
+    /// <summary>
+    /// Python pymalloc memory allocator.
+    /// </summary>
     PYMEM_ALLOCATOR_PYMALLOC       = 5,
+    /// <summary>
+    /// Python pymalloc memory allocator with debug hooks.
+    /// </summary>
     PYMEM_ALLOCATOR_PYMALLOC_DEBUG = 6,
+    /// <summary>
+    /// use mimalloc, a fast malloc replacement.
+    /// </summary>
     PYMEM_ALLOCATOR_MIMALLOC       = 7,
+    /// <summary>
+    /// use mimalloc, a fast malloc replacement with debug hooks.
+    /// </summary>
     PYMEM_ALLOCATOR_MIMALLOC_DEBUG = 8
   );
 
@@ -344,16 +449,44 @@ type
   PyMemAllocatorEx_realloc = function(ctx, ptr: Pointer; new_size: NativeUInt): Pointer; cdecl;
   PyMemAllocatorEx_free    = procedure(ctx, ptr: Pointer); cdecl;
 
+  /// <summary>
+  /// Structure used to describe a memory block allocator.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/memory.html#c.PyMemAllocatorEx">See the article about PyMemAllocatorEx.</see></para>
+  /// </remarks>
   PyMemAllocatorEx = record
+    /// <summary>
+    /// user context passed as first argument
+    /// </summary>
     ctx     : Pointer;
+    /// <summary>
+    /// allocate a memory block
+    /// </summary>
     malloc  : PyMemAllocatorEx_malloc;
+    /// <summary>
+    /// allocate a memory block initialized with zeros
+    /// </summary>
     calloc  : PyMemAllocatorEx_calloc;
+    /// <summary>
+    /// allocate or resize a memory block
+    /// </summary>
     realloc : PyMemAllocatorEx_realloc;
+    /// <summary>
+    /// free a memory block
+    /// </summary>
     free    : PyMemAllocatorEx_free;
   end;
 
   {* include/pytypedefs.h *}
   {* include/pybuffer.h *}
+
+  /// <summary>
+  /// Buffer information
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/buffer.html#c.Py_buffer">See the article about Py_buffer.</see></para>
+  /// </remarks>
   Py_buffer = record
     buf        : Pointer;
     obj        : PPyObject;
@@ -374,42 +507,105 @@ type
   {* include/pystats.h *}
   {* include/pyatomic.h *}
   {* include/lock.h *}
+
+  /// <summary>
+  /// A mutual exclusion lock. The PyMutex should be initialized to zero to represent the unlocked state.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#c.PyMutex">See the article about PyMutex.</see></para>
+  /// </remarks>
   PyMutex = record
     _bits : byte;
   end;
 
-  {* include/critical_section.h *}
+  {* include/critical_section.h   include/cpython/critical_section.h *}
+
+  /// <summary>
+  /// Python critical section
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the article about the Python critical section API.</see></para>
+  /// </remarks>
   PyCriticalSection = record
     _cs_prev  : Py_uintptr_t;
     _cs_mutex : PPyMutex;
   end;
 
+  /// <summary>
+  /// Python critical section
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the article about the Python critical section API.</see></para>
+  /// </remarks>
   PyCriticalSection2 = record
     _cs_base   : PyCriticalSection;
     _cs_mutex2 : PPyMutex;
   end;
 
   {* include/object.h *}
+  /// <summary>
+  /// Internal PyObject record.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
+  /// </remarks>
   _object = record
     ob_refcnt : Py_ssize_t;
     ob_type   : PPyTypeObject;
   end;
+
+  /// <summary>
+  /// All object types are extensions of this type. This is a type which
+  /// contains the information Python needs to treat a pointer to an object as
+  /// an object. In a normal “release” build, it contains only the object’s
+  /// reference count and a pointer to the corresponding type object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
+  /// </remarks>
   PyObject = type _object;
 
+  /// <summary>
+  /// An extension of PyObject that adds the ob_size field. This is intended for objects that have some notion of length.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyVarObject">See the article about PyVarObject.</see></para>
+  /// </remarks>
   PyVarObject = record
     ob_base  : PyObject;
     ob_size  : Py_ssize_t;
   end;
 
+  /// <summary>
+  /// The enum value used to represent different results of PyIter_Send().
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/iter.html#c.PySendResult">See the article about PySendResult.</see></para>
+  /// </remarks>
   PySendResult = (   
     PYGEN_ERROR  = -1,
     PYGEN_RETURN = 0,
     PYGEN_NEXT   = 1
   );
 
+  /// <summary>
+  /// Multiple interpreter support in a module slot.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#c.Py_mod_multiple_interpreters">See the article about Py_mod_multiple_interpreters.</see></para>
+  /// </remarks>
   TMultIntprSupport = (
+    /// <summary>
+    /// The module supports being imported in subinterpreters, but only when they share the main interpreter’s GIL. (See Isolating Extension Modules.)
+    /// </summary>
     miSupported,
+    /// <summary>
+    /// The module does not support being imported in subinterpreters.
+    /// </summary>
     miUnsupported,
+    /// <summary>
+    /// The module supports being imported in subinterpreters, even when they have their own GIL. (See Isolating Extension Modules.)
+    /// </summary>
     piGilSupported
   );
 
@@ -447,19 +643,61 @@ type
   create_modulefunc              = function(spec: PPyObject; def: PPyModuleDef): PPyObject; cdecl;
   exec_modulefunc                = function(module: PPyObject): integer; cdecl;
 
+  /// <summary>
+  /// Structure defining optional functionality of a type, containing a slot ID and a value pointer.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyType_Slot">See the article about PyType_Slot.</see></para>
+  /// </remarks>
   PyType_Slot = record
+    /// <summary>
+    /// A slot ID. Slot IDs are named like the field names of the structures PyTypeObject, PyNumberMethods, PySequenceMethods, PyMappingMethods and PyAsyncMethods with an added Py_ prefix.
+    /// </summary>
     slot   : integer;
+    /// <summary>
+    /// The desired value of the slot. In most cases, this is a pointer to a function.
+    /// </summary>
     pfunc  : Pointer;
   end;
 
+  /// <summary>
+  /// Structure defining a type's behavior.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyType_Spec">See the article about PyType_Spec.</see></para>
+  /// </remarks>
   PyType_Spec = record
+    /// <summary>
+    /// Name of the type, used to set PyTypeObject.tp_name.
+    /// </summary>
     name      : PAnsiChar;
+    /// <summary>
+    /// If positive, specifies the size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize.
+    /// If zero, specifies that tp_basicsize should be inherited.
+    /// If negative, the absolute value specifies how much space instances of the class need in addition to the superclass. Use PyObject_GetTypeData() to get a pointer to subclass-specific memory reserved this way. For negative basicsize, Python will insert padding when needed to meet tp_basicsize’s alignment requirements.
+    /// </summary>
     basicsize : integer;
+    /// <summary>
+    /// Size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
+    /// </summary>
     itemsize  : integer;
+    /// <summary>
+    /// Type flags, used to set PyTypeObject.tp_flags.
+    /// </summary>
     flags     : cardinal;
+    /// <summary>
+    /// Array of PyType_Slot structures. Terminated by the special slot value {0, NULL}.
+    /// </summary>
     slots     : PPyType_Slot;
   end;
 
+  /// <summary>
+  /// This structure holds pointers to the functions which an object uses to implement the number protocol.
+  /// Each function is used by the function of similar name documented in the Number Protocol section.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyNumberMethods">See the article about PyNumberMethods.</see></para>
+  /// </remarks>
   PyNumberMethods = record
     nb_add                     : binaryfunc;
     nb_subtract                : binaryfunc;
@@ -499,6 +737,12 @@ type
     nb_inplace_matrix_multiply : binaryfunc;
   end;
 
+  /// <summary>
+  /// This structure holds pointers to the functions which an object uses to implement the sequence protocol.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PySequenceMethods">See the article about PySequenceMethods.</see></para>
+  /// </remarks>
   PySequenceMethods = record
     sq_length         : lenfunc;
     sq_concat         : binaryfunc;
@@ -512,12 +756,24 @@ type
     sq_inplace_repeat : ssizeargfunc;
   end;
 
+  /// <summary>
+  /// This structure holds pointers to the functions which an object uses to implement the mapping protocol.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyMappingMethods">See the article about PyMappingMethods.</see></para>
+  /// </remarks>
   PyMappingMethods = record
     mp_length	       : lenfunc;
     mp_subscript     : binaryfunc;
     mp_ass_subscript : objobjargproc;
   end;
 
+  /// <summary>
+  /// This structure holds pointers to the functions required to implement awaitable and asynchronous iterator objects.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyAsyncMethods">See the article about PyAsyncMethods.</see></para>
+  /// </remarks>
   PyAsyncMethods = record
     am_await : unaryfunc;
     am_aiter : unaryfunc;
@@ -525,11 +781,24 @@ type
     am_send  : sendfunc;
   end;
 
+  /// <summary>
+  /// This structure holds pointers to the functions required by the Buffer protocol.
+  /// The protocol defines how an exporter object can expose its internal data to consumer objects.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyBufferProcs">See the article about PyBufferProcs.</see></para>
+  /// </remarks>
   PyBufferProcs = record
     bf_getbuffer     : getbufferproc;
     bf_releasebuffer : releasebufferproc;
   end;
 
+  /// <summary>
+  /// Internal record that represents a PyTypeObject.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject">See the article about PyTypeObject.</see></para>
+  /// </remarks>
   _typeobject = record
     ob_base              : PyVarObject; // PyObject_VAR_HEAD
     tp_name              : PAnsiChar;
@@ -583,14 +852,27 @@ type
     tp_watched           : byte;
     tp_versions_used     : word;
   end;
+
+  /// <summary>
+  /// The structure of the objects used to describe built-in types.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject">See the article about PyTypeObject.</see></para>
+  /// </remarks>
   PyTypeObject = type _typeobject;
 
+  /// <summary>
+  /// This struct is used by the specializer. It should be treated as an opaque blob by code other than the specializer and interpreter.
+  /// </summary>
   _specialization_cache = record
     getitem         : PPyObject;
     getitem_version : cardinal;
     init            : PPyObject;
   end;
 
+  /// <summary>
+  /// Layout of a type object when allocated on the heap.
+  /// </summary>
   PyHeapTypeObject = record
     ht_type           : PyTypeObject;
     as_async          : PyAsyncMethods;
@@ -621,9 +903,24 @@ type
   PyObjectArenaAllocator_alloc   = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;
   PyObjectArenaAllocator_free    = procedure(ctx, ptr: Pointer; size_: NativeUInt); cdecl;
 
+  /// <summary>
+  /// Structure used to describe an arena allocator.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/memory.html#c.PyObjectArenaAllocator">See the article about PyObjectArenaAllocator.</see></para>
+  /// </remarks>
   PyObjectArenaAllocator = record
+    /// <summary>
+    /// user context passed as first argument
+    /// </summary>
     ctx    : Pointer;
+    /// <summary>
+    /// allocate an arena of size bytes
+    /// </summary>
     alloc_ : PyObjectArenaAllocator_alloc;
+    /// <summary>
+    /// free an arena
+    /// </summary>
     free_  : PyObjectArenaAllocator_free;
   end;
 
@@ -631,15 +928,40 @@ type
   {* include/pyhash.h *}
   PyHash_FuncDef_hash = function(ptr: Pointer; size_: Py_ssize_t): Py_hash_t; cdecl;
 
+  /// <summary>
+  /// Hash function definition used by PyHash_GetFuncDef().
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/hash.html#c.PyHash_FuncDef">See the article about PyHash_FuncDef.</see></para>
+  /// </remarks>
   PyHash_FuncDef = record
+    /// <summary>
+    /// Hash function.
+    /// </summary>
     hash                : PyHash_FuncDef_hash;
+    /// <summary>
+    /// Hash function name (UTF-8 encoded string). This corresponds to the sys.hash_info.algorithm constant.
+    /// </summary>
     name_               : PAnsiChar;
+    /// <summary>
+    /// Internal size of the hash value in bits. This corresponds to the sys.hash_info.hash_bits constant.
+    /// </summary>
     hash_bits           : integer;
+    /// <summary>
+    /// Size of seed input in bits. This corresponds to the sys.hash_info.seed_bits constant.
+    /// </summary>
     seed_bits           : integer;
   end;
 
   {* include/cpython/pydebug.h *}
   {* include/bytearrayobject.h *}
+
+  /// <summary>
+  /// This subtype of PyObject represents a Python bytearray object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/bytearray.html#c.PyByteArrayObject">See the article about PyByteArrayObject.</see></para>
+  /// </remarks>
   PyByteArrayObject = record
     ob_base              : PyVarObject; // PyObject_VAR_HEAD
     ob_alloc             : Py_ssize_t;
@@ -649,17 +971,37 @@ type
   end;
 
   {* include/bytesobject.h *}
+
+  /// <summary>
+  /// This subtype of PyObject represents a Python bytes object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/bytes.html#c.PyBytesObject">See the article about PyBytesObject.</see></para>
+  /// </remarks>
   PyBytesObject = record
     ob_base              : PyVarObject; // PyObject_VAR_HEAD
     ob_sval              : array[0..0] of AnsiChar;
   end;
 
   {* include/unicodeobject.h *}
+
+  /// <summary>
+  /// This type is a typedef for unsigned integer types wide enough to contain characters of 32 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// </summary>
   Py_UCS4            = type cardinal;
+  /// <summary>
+  /// This type is a typedef for unsigned integer types wide enough to contain characters of 16 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// </summary>
   Py_UCS2            = type word;
+  /// <summary>
+  /// This type is a typedef for unsigned integer types wide enough to contain characters of 8 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// </summary>
   Py_UCS1            = type byte;
 
-  // "PyUnicode_Kind_Result" is a renamed type for "PyUnicode_Kind"
+  /// <summary>
+  /// Return values of PyUnicode_KIND().
+  /// "PyUnicode_Kind_Result" is a renamed type for "PyUnicode_Kind"
+  /// </summary>
   PyUnicode_Kind_Result = (
     PyUnicode_1BYTE_KIND = 1,
     PyUnicode_2BYTE_KIND = 2,
@@ -832,34 +1174,93 @@ type
   end;
   PyLongObject = type _longobject;
 
+  /// <summary>
+  /// Layout of an array of “digits” (“limbs” in the GMP terminology), used to represent absolute value for arbitrary precision integers.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongLayout">See the article about PyLongLayout.</see></para>
+  /// </remarks>
   PyLongLayout = record
+    /// <summary>
+    /// Bits per digit. For example, a 15 bit digit means that bits 0-14 contain meaningful information.
+    /// </summary>
     bits_per_digit   : byte;
+    /// <summary>
+    /// Digit size in bytes. For example, a 15 bit digit will require at least 2 bytes.
+    /// </summary>
     digit_size       : byte;
+    /// <summary>
+    /// Digits order: 1 for most significant digit first. -1 for least significant digit first.
+    /// </summary>
     digits_order     : shortint;
+    /// <summary>
+    /// Digit endianness: 1 for most significant byte first (big endian). -1 for least significant byte first (little endian).
+    /// </summary>
     digit_endianness : shortint;
   end;
 
+  /// <summary>
+  /// Export of a Python int object. There are two cases: If digits is NULL, only use the value member. If digits is not NULL, use negative, ndigits and digits members.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongExport">See the article about PyLongExport.</see></para>
+  /// </remarks>
   PyLongExport = record
+    /// <summary>
+    /// The native integer value of the exported int object. Only valid if digits is NULL.
+    /// </summary>
     value     : int64;
+    /// <summary>
+    /// 1 if the number is negative, 0 otherwise. Only valid if digits is not NULL.
+    /// </summary>
     negative  : byte;
+    /// <summary>
+    /// Number of digits in digits array. Only valid if digits is not NULL.
+    /// </summary>
     ndigits   : Py_ssize_t;
+    /// <summary>
+    /// Read-only array of unsigned digits. Can be NULL.
+    /// </summary>
     digits    : Pointer;
+    /// <summary>
+    /// Reserved
+    /// </summary>
     _reserved : Py_uintptr_t;
   end;
 
   {* include/boolobject.h *}
   {* include/floatobject.h *}
+
+  /// <summary>
+  /// This subtype of PyObject represents a Python floating-point object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/float.html#c.PyFloatObject">See the article about PyFloatObject.</see></para>
+  /// </remarks>
   PyFloatObject = record
     ob_base    : PyObject; // PyObject_HEAD
     ob_fval    : double;
   end;
 
   {* include/complexobject.h *}
+
+  /// <summary>
+  /// The structure which corresponds to the value portion of a Python complex number object. Most of the functions for dealing with complex number objects use structures of this type as input or output values, as appropriate.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/complex.html#c.Py_complex">See the article about Py_complex.</see></para>
+  /// </remarks>
   Py_complex = record
     real : double;
     imag : double;
   end;
 
+  /// <summary>
+  /// This subtype of PyObject represents a Python complex number object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/complex.html#c.PyComplexObject">See the article about PyComplexObject.</see></para>
+  /// </remarks>
   PyComplexObject = record
     ob_base    : PyObject; // PyObject_HEAD
     cval       : Py_complex;
@@ -870,14 +1271,44 @@ type
   {* include/tupleobject.h *}
   {* include/listobject.h *}
   {* include/dictobject.h *}
+
+  /// <summary>
+  /// This subtype of PyObject represents a Python dictionary object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#c.PyDictObject">See the article about PyDictObject.</see></para>
+  /// </remarks>
   PyDictObject = record
     ob_base                : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// Number of items in the dictionary
+    /// </summary>
     ma_used                : Py_ssize_t;
+    /// <summary>
+    /// This is a private field for CPython's internal use.
+    /// * Bits 0-7 are for dict watchers.
+    /// * Bits 8-11 are for the watched mutation counter (used by tier2 optimization)
+    /// * Bits 12-31 are currently unused
+    /// * Bits 32-63 are a unique id in the free threading build (used for per-thread refcounting)
+    /// </summary>
     _ma_watcher_tag        : uint64;
+    /// <summary>
+    ///
+    /// </summary>
     ma_keys                : PPyDictKeysObject;
+    /// <summary>
+    /// If ma_values is NULL, the table is "combined": keys and values are stored in ma_keys.
+    /// If ma_values is not NULL, the table is split: keys are stored in ma_keys and values are stored in ma_values
+    /// </summary>
     ma_values              : PPyDictValues;
   end;
 
+  /// <summary>
+  /// Enumeration of possible dictionary watcher events.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#c.PyDict_WatchEvent">See the article about PyDict_WatchEvent.</see></para>
+  /// </remarks>
   PyDict_WatchEvent = (
     PyDict_EVENT_ADDED,
     PyDict_EVENT_MODIFIED,
@@ -899,25 +1330,58 @@ type
   PyCFunctionFastWithKeywords    = function(self: PPyObject; const args : PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject): PPyObject; cdecl;
   PyCMethod                      = function(self: PPyObject; defining_class: PPyTypeObject; const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject): PPyObject; cdecl;
 
+  /// <summary>
+  /// Structure used to describe a method of an extension type.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// </remarks>
   PyMethodDef = record
+    /// <summary>
+    /// Name of the method.
+    /// </summary>
      ml_name  : PAnsiChar;
+    /// <summary>
+    /// Pointer to the C implementation.
+    /// </summary>
      ml_meth  : PyCFunction;
+    /// <summary>
+    /// Flags bits indicating how the call should be constructed.
+    /// </summary>
      ml_flags : Integer;
+    /// <summary>
+    /// Points to the contents of the docstring.
+    /// </summary>
      ml_doc   : PAnsiChar;
   end;
   PyMethodDefArray = array of PPyMethodDef;
 
   PyCFunctionObject = record
     ob_base       : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// Description of the C function to call
+    /// </summary>
     m_ml          : PPyMethodDef;
+    /// <summary>
+    /// Passed as 'self' arg to the C func, can be NULL
+    /// </summary>
     m_self        : PPyObject;
+    /// <summary>
+    /// The __module__ attribute, can be anything
+    /// </summary>
     m_module      : PPyObject;
+    /// <summary>
+    /// List of weak references
+    /// </summary>
     m_weakreflist : PPyObject;
     vectorcall    : vectorcallfunc;
   end;
 
   PyCMethodObject = record
     func     : PyCFunctionObject;
+    /// <summary>
+    /// Class that defines this method
+    /// </summary>
     mm_class : PPyTypeObject;
   end;
 
@@ -926,35 +1390,157 @@ type
 
   PyModuleDef_Base = record
     ob_base    : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// The function used to re-initialize the module.
+    /// This is only set for legacy (single-phase init) extension modules
+    /// and only used for those that support multiple initializations
+    /// (m_size >= 0).
+    /// It is set by _PyImport_LoadDynamicModuleWithSpec()
+    /// and _imp.create_builtin().
+    /// </summary>
     m_init     : PyModuleDef_Base_m_init;
+    /// <summary>
+    /// The module's index into its interpreter's modules_by_index cache.
+    /// This is set for all extension modules but only used for legacy ones.
+    /// (See PyInterpreterState.modules_by_index for more info.)
+    /// It is set by PyModuleDef_Init().
+    /// </summary>
     m_index    : Py_ssize_t;
+    /// <summary>
+    /// A copy of the module's __dict__ after the first time it was loaded.
+    /// This is only set/used for legacy modules that do not support
+    /// multiple initializations.
+    /// It is set by fix_up_extension() in import.c.
+    /// </summary>
     m_copy     : PPyObject;
   end;
 
+  /// <summary>
+  /// Slot definition.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef_Slot">See the article about PyModuleDef_Slot.</see></para>
+  /// </remarks>
   PyModuleDef_Slot = record
+    /// <summary>
+    /// A slot ID. The possible values are: Py_mod_create, Py_mod_exec, Py_mod_multiple_interpreters and Py_mod_gil.
+    /// </summary>
     slot  : integer;
+    /// <summary>
+    /// Value of the slot, whose meaning depends on the slot ID.
+    /// </summary>
     value : Pointer;
   end;
 
+  /// <summary>
+  /// The module definition struct, which holds all information needed to create
+  /// a module object. This structure must be statically allocated (or be
+  /// otherwise guaranteed to be valid while any modules created from it exist).
+  /// Usually, there is only one variable of this type for each extension module.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+  /// </remarks>
   PyModuleDef = record
+    /// <summary>
+    /// Always initialize this member to PyModuleDef_HEAD_INIT.
+    /// </summary>
     m_base     : PyModuleDef_Base;
+    /// <summary>
+    /// Name for the new module.
+    /// </summary>
     m_name     : PAnsiChar;
+    /// <summary>
+    /// Docstring for the module; usually a docstring variable created with PyDoc_STRVAR is used.
+    /// </summary>
     m_doc      : PAnsiChar;
+    /// <summary>
+    /// Module state may be kept in a per-module memory area that can be
+    /// retrieved with PyModule_GetState(), rather than in static globals.
+    /// This makes modules safe for use in multiple sub-interpreters.
+    /// This memory area is allocated based on m_size on module creation, and
+    /// freed when the module object is deallocated, after the m_free function
+    /// has been called, if present.
+    /// Setting it to a non-negative value means that the module can be
+    /// re-initialized and specifies the additional amount of memory it requires
+    /// for its state.
+    /// Setting m_size to -1 means that the module does not support
+    /// sub-interpreters, because it has global state. Negative m_size is only
+    /// allowed when using legacy single-phase initialization or when creating
+    /// modules dynamically.
+    /// See PEP 3121 for more details.
+    /// </summary>
     m_size     : Py_ssize_t;
+    /// <summary>
+    /// A pointer to a table of module-level functions, described by PyMethodDef values. Can be NULL if no functions are present.
+    /// </summary>
     m_methods  : PPyMethodDef;
+    /// <summary>
+    /// An array of slot definitions for multi-phase initialization, terminated by a {0, NULL} entry. When using legacy single-phase initialization, m_slots must be NULL.
+    /// </summary>
     m_slots    : PPyModuleDef_Slot;
+    /// <summary>
+    /// A traversal function to call during GC traversal of the module object,
+    /// or NULL if not needed.
+    /// This function is not called if the module state was requested but is not
+    /// allocated yet. This is the case immediately after the module is created
+    /// and before the module is executed (Py_mod_exec function). More precisely,
+    /// this function is not called if m_size is greater than 0 and the module
+    /// state (as returned by PyModule_GetState()) is NULL.
+    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// </summary>
     m_traverse : traverseproc;
+    /// <summary>
+    /// A clear function to call during GC clearing of the module object, or
+    /// NULL if not needed.
+    /// This function is not called if the module state was requested but is not
+    /// allocated yet. This is the case immediately after the module is created
+    /// and before the module is executed (Py_mod_exec function). More precisely,
+    /// this function is not called if m_size is greater than 0 and the module
+    /// state (as returned by PyModule_GetState()) is NULL.
+    /// Like PyTypeObject.tp_clear, this function is not always called before a
+    /// module is deallocated. For example, when reference counting is enough to
+    /// determine that an object is no longer used, the cyclic garbage collector
+    /// is not involved and m_free is called directly.
+    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// </summary>
     m_clear    : inquiry;
+    /// <summary>
+    /// A function to call during deallocation of the module object, or NULL if
+    /// not needed.
+    /// This function is not called if the module state was requested but is not
+    /// allocated yet. This is the case immediately after the module is created
+    /// and before the module is executed (Py_mod_exec function). More precisely,
+    /// this function is not called if m_size is greater than 0 and the module
+    /// state (as returned by PyModule_GetState()) is NULL.
+    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// </summary>
     m_free     : inquiry;
   end;
 
   {* include/monitoring.h *}
+
+  /// <summary>
+  /// Representation of the state of an event type. It is allocated by the user
+  /// while its contents are maintained by the monitoring API functions described
+  /// below.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/monitoring.html#c.PyMonitoringState">See the article about PyMonitoringState.</see></para>
+  /// </remarks>
   PyMonitoringState = record
     active : byte;
     opaque : byte;
   end;
 
   {* include/cpython/funcobject.h *}
+
+  /// <summary>
+  /// The structure used for functions.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/function.html#c.PyFunctionObject">See the article about PyFunctionObject.</see></para>
+  /// </remarks>
   PyFunctionObject = record
     ob_base          : PyObject;  // PyObject_HEAD
     func_globals     : PPyObject; //_Py_COMMON_FIELDS(func_)
@@ -965,17 +1551,60 @@ type
     func_defaults    : PPyObject; //_Py_COMMON_FIELDS(func_)
     func_kwdefaults  : PPyObject; //_Py_COMMON_FIELDS(func_)
     func_closure     : PPyObject; //_Py_COMMON_FIELDS(func_)
+    /// <summary>
+    /// The __doc__ attribute, can be anything
+    /// </summary>
     func_doc         : PPyObject;
+    /// <summary>
+    /// The __dict__ attribute, a dict or NULL
+    /// </summary>
     func_dict        : PPyObject;
+    /// <summary>
+    /// List of weak references
+    /// </summary>
     func_weakreflist : PPyObject;
+    /// <summary>
+    /// The __module__ attribute, can be anything
+    /// </summary>
     func_module      : PPyObject;
+    /// <summary>
+    /// Annotations, a dict or NULL
+    /// </summary>
     func_annotations : PPyObject;
+    /// <summary>
+    /// Callable to fill the annotations dictionary
+    /// </summary>
     func_annotate    : PPyObject;
+    /// <summary>
+    /// Tuple of active type variables or NULL
+    /// </summary>
     func_typeparams  : PPyObject;
+    /// <summary>
+    /// Version number for use by specializer.
+    /// Can set to non-zero when we want to specialize.
+    /// Will be set to zero if any of these change:
+    ///     defaults
+    ///     kwdefaults (only if the object changes, not the contents of the dict)
+    ///     code
+    ///     annotations
+    ///     vectorcall function pointer
+    /// </summary>
     vectorcall       : vectorcallfunc;
+    /// <summary>
+    /// Invariant:
+    /// func_closure contains the bindings for func_code->co_freevars, so
+    /// PyTuple_Size(func_closure) == PyCode_GetNumFree(func_code)
+    /// (func_closure may be NULL if PyCode_GetNumFree(func_code) == 0).
+    /// </summary>
     func_version     : cardinal;
   end;
 
+  /// <summary>
+  /// Enumeration of possible function watcher events
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/function.html#c.PyFunction_WatchEvent">See the article about PyFunction_WatchEvent.</see></para>
+  /// </remarks>
   PyFunction_WatchEvent = (
     PyFunction_EVENT_CREATE,
     PyFunction_EVENT_DESTROY,
@@ -989,8 +1618,17 @@ type
   {* include/cpython/classobject.h *}
   PyMethodObject = record
     ob_base          : PyObject;  // PyObject_HEAD
+    /// <summary>
+    /// The callable object implementing the method
+    /// </summary>
     im_func          : PPyObject;
+    /// <summary>
+    /// The instance it is bound to
+    /// </summary>
     im_self          : PPyObject;
+    /// <summary>
+    /// List of weak references
+    /// </summary>
     im_weakreflist   : PPyObject;
     vectorcall       : vectorcallfunc;
   end;
@@ -1020,6 +1658,12 @@ type
     executors : Pointer; // not implemented
   end;
 
+  /// <summary>
+  /// The structure of the objects used to describe code objects. The fields of this type are subject to change at any time.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/code.html#c.PyCodeObject">See the article about PyCodeObject.</see></para>
+  /// </remarks>
   PyCodeObject = record
     ob_base                     : PyVarObject; // PyObject_VAR_HEAD
     co_consts                   : PPyObject;
@@ -1054,6 +1698,12 @@ type
     co_code_adaptive            : array[0..0] of AnsiChar;
   end;
 
+  /// <summary>
+  /// Enumeration of possible code object watcher events: - PY_CODE_EVENT_CREATE - PY_CODE_EVENT_DESTROY
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/code.html#c.PyCodeEvent">See the article about PyCodeEvent.</see></para>
+  /// </remarks>
   PyCodeEvent = (
     PY_CODE_EVENT_CREATE,
     PY_CODE_EVENT_DESTROY
@@ -1073,6 +1723,10 @@ type
   PyTracebackObject = type _traceback;
 
   {* include/sliceobject.h *}
+  /// <summary>
+  /// A slice object containing start, stop, and step data members (the
+  /// names are from range). Py_None stands for omitted values.
+  /// </summary>
   PySliceObject = record
     ob_base     : PyObject;           // PyObject_HEAD
     start       : PPyObject;
@@ -1083,115 +1737,663 @@ type
   {* include/cpython/cellobject.h *}
   {* include/iterobject.h *}
   {* include/cpython/initconfig.h *}
+
+  /// <summary>
+  /// _type field values in PyStatus.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyStatus">See the article about PyStatus.</see></para>
+  /// </remarks>
   TPyStatus_Type = (
     _PyStatus_TYPE_OK     = 0,
     _PyStatus_TYPE_ERROR  = 1,
     _PyStatus_TYPE_EXIT   = 2
   );
 
+  /// <summary>
+  /// Structure to store an initialization function status: success, error or exit. For an error, it can store the function name which created the error.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyStatus">See the article about PyStatus.</see></para>
+  /// </remarks>
   PyStatus = record
+    /// <summary>
+    /// PyStatus type
+    /// </summary>
     _type     : TPyStatus_Type;
+    /// <summary>
+    /// Name of the function which created an error, can be NULL.
+    /// </summary>
     func      : PAnsiChar;
+    /// <summary>
+    /// Error message.
+    /// </summary>
     err_msg   : PAnsiChar;
+    /// <summary>
+    /// Exit code. Argument passed to exit().
+    /// </summary>
     exitcode  : Integer;
   end;
 
+  /// <summary>
+  /// List of wchar_t* strings. If length is non-zero, items must be non-NULL and all strings must be non-NULL.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyWideStringList">See the article about PyWideStringList.</see></para>
+  /// </remarks>
   PyWideStringList = record
+    /// <summary>
+    /// List length.
+    /// </summary>
     length : Py_ssize_t;
+    /// <summary>
+    /// List items.
+    /// </summary>
     items  : PPWCharT;
   end;
 
+  /// <summary>
+  /// Structure used to preinitialize Python.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pypreconfig">See the article about PyPreConfig.</see></para>
+  /// </remarks>
   PyPreConfig = record
+    /// <summary>
+    /// _PyConfigInitEnum value
+    /// </summary>
     _config_init               : integer;
+    /// <summary>
+    /// If non-zero, Py_PreInitializeFromArgs() and Py_PreInitializeFromBytesArgs()
+    /// parse their argv argument the same way the regular Python parses command
+    /// line arguments: see Command Line Arguments.
+    /// Default: 1 in Python config, 0 in isolated config.
+    /// </summary>
     parse_argv                 : integer;
+    /// <summary>
+    /// Isolated mode: see PyConfig.isolated.
+    /// Default: 0 in Python mode, 1 in isolated mode.
+    /// </summary>
     isolated                   : integer;
+    /// <summary>
+    /// Use environment variables? See PyConfig.use_environment.
+    /// Default: 1 in Python config and 0 in isolated config.
+    /// </summary>
     use_environment            : integer;
+    /// <summary>
+    /// Set the LC_CTYPE locale to the user preferred locale.
+    /// If equals to 0, set coerce_c_locale and coerce_c_locale_warn members to 0.
+    /// See the locale encoding.
+    /// Default: 1 in Python config, 0 in isolated config.
+    /// </summary>
     configure_locale           : integer;
+    /// <summary>
+    /// If equals to 2, coerce the C locale.
+    /// If equals to 1, read the LC_CTYPE locale to decide if it should be coerced.
+    /// See the locale encoding.
+    /// Default: -1 in Python config, 0 in isolated config.
+    /// </summary>
     coerce_c_locale            : integer;
+    /// <summary>
+    /// If non-zero, emit a warning if the C locale is coerced.
+    /// Default: -1 in Python config, 0 in isolated config.
+    /// </summary>
     coerce_c_locale_warn       : integer;
     {$IFDEF MSWINDOWS}
+    /// <summary>
+    /// If non-zero:
+    /// Set PyPreConfig.utf8_mode to 0,
+    /// Set PyConfig.filesystem_encoding to "mbcs",
+    /// Set PyConfig.filesystem_errors to "replace".
+    /// Initialized from the PYTHONLEGACYWINDOWSFSENCODING environment variable value.
+    /// Only available on Windows. #ifdef MS_WINDOWS macro can be used for Windows specific code.
+    /// Default: 0.
+    /// </summary>
     legacy_windows_fs_encoding : integer;
     {$ENDIF}
+    /// <summary>
+    /// If non-zero, enable the Python UTF-8 Mode.
+    /// Set to 0 or 1 by the -X utf8 command line option and the PYTHONUTF8 environment variable.
+    /// Also set to 1 if the LC_CTYPE locale is C or POSIX.
+    /// Default: -1 in Python config and 0 in isolated config.
+    /// </summary>
     utf8_mode                  : integer;
+    /// <summary>
+    /// Python Development Mode: see PyConfig.dev_mode.
+    /// Default: -1 in Python mode, 0 in isolated mode.
+    /// </summary>
     dev_mode                   : integer;
+    /// <summary>
+    /// Name of the Python memory allocator. See PyMemAllocatorName.
+    /// </summary>
     allocator                  : integer;
   end;
 
+  /// <summary>
+  /// Structure containing most parameters to configure Python.
+  /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pyconfig">See the article about PyConfig.</see></para>
+  /// </remarks>
   PyConfig314 = record
+    /// <summary>
+    /// _PyConfigInitEnum value
+    /// </summary>
     _config_init             : integer;
+    /// <summary>
+    /// If greater than 0, enable isolated mode:
+    /// - Set safe_path to 1: don’t prepend a potentially unsafe path to sys.path at Python startup, such as the current directory, the script’s directory or an empty string.
+    /// - Set use_environment to 0: ignore PYTHON environment variables.
+    /// - Set user_site_directory to 0: don’t add the user site directory to sys.path.
+    /// - Python REPL doesn’t import readline nor enable default readline configuration on interactive prompts.
+    /// Set to 1 by the -I command line option.
+    /// Default: 0 in Python mode, 1 in isolated mode.
+    /// See also the Isolated Configuration and PyPreConfig.isolated.
+    /// </summary>
     isolated                 : integer;
+    /// <summary>
+    /// Use environment variables?
+    /// If equals to zero, ignore the environment variables.
+    /// Set to 0 by the -E environment variable.
+    /// Default: 1 in Python config and 0 in isolated config.
+    /// </summary>
     use_environment          : integer;
+    /// <summary>
+    /// If non-zero, enable the Python Development Mode.
+    /// Set to 1 by the -X dev option and the PYTHONDEVMODE environment variable.
+    /// Default: -1 in Python mode, 0 in isolated mode.
+    /// </summary>
     dev_mode                 : integer;
+    /// <summary>
+    /// Install Python signal handlers?
+    /// Default: 1 in Python mode, 0 in isolated mode.
+    /// </summary>
     install_signal_handlers  : integer;
+    /// <summary>
+    /// Randomized hash function seed.
+    /// If use_hash_seed is zero, a seed is chosen randomly at Python startup, and hash_seed is ignored.
+    /// Set by the PYTHONHASHSEED environment variable.
+    /// Default use_hash_seed value: -1 in Python mode, 0 in isolated mode.
+    /// </summary>
     use_hash_seed            : integer;
+    /// <summary>
+    /// Hash seed
+    /// </summary>
     hash_seed                : C_ULong;
+    /// <summary>
+    /// Enable faulthandler?
+    /// If non-zero, call faulthandler.enable() at startup.
+    /// Set to 1 by -X faulthandler and the PYTHONFAULTHANDLER environment variable.
+    /// Default: -1 in Python mode, 0 in isolated mode.
+    /// </summary>
     faulthandler             : integer;
+    /// <summary>
+    /// Enable tracemalloc?
+    /// If non-zero, call tracemalloc.start() at startup.
+    /// Set by -X tracemalloc=N command line option and by the PYTHONTRACEMALLOC environment variable.
+    /// Default: -1 in Python mode, 0 in isolated mode.
+    /// </summary>
     tracemalloc              : integer;
+    /// <summary>
+    /// Enable the Linux perf profiler support?
+    /// If equals to 1, enable support for the Linux perf profiler.
+    /// If equals to 2, enable support for the Linux perf profiler with DWARF JIT support.
+    /// Set to 1 by -X perf command-line option and the PYTHONPERFSUPPORT environment variable.
+    /// Set to 2 by the -X perf_jit command-line option and the PYTHON_PERF_JIT_SUPPORT environment variable.
+    /// Default: -1.
+    /// See also See Python support for the Linux perf profiler for more information.
+    /// Added in version 3.12.
+    /// </summary>
     perf_profiling           : integer;
+    /// <summary>
+    /// Remote debug
+    /// </summary>
     remote_debug             : integer;
+    /// <summary>
+    /// If 1, profile import time. If 2, include additional output that indicates when an imported module has already been loaded.
+    /// Set by the -X importtime option and the PYTHONPROFILEIMPORTTIME environment variable.
+    /// Default: 0.
+    /// Changed in version 3.14: Added support for import_time = 2
+    /// </summary>
     import_time              : integer;
+    /// <summary>
+    /// If equals to 0, disables the inclusion of the end line and column mappings in code objects. Also disables traceback printing carets to specific error locations.
+    /// Set to 0 by the PYTHONNODEBUGRANGES environment variable and by the -X no_debug_ranges command line option.
+    /// Default: 1.
+    /// Added in version 3.11.
+    /// </summary>
     code_debug_ranges        : integer;
+    /// <summary>
+    /// Show total reference count at exit (excluding immortal objects)?
+    /// Set to 1 by -X showrefcount command line option.
+    /// Needs a debug build of Python (the Py_REF_DEBUG macro must be defined).
+    /// Default: 0.
+    /// </summary>
     show_ref_count           : integer;
+    /// <summary>
+    /// Dump Python references?
+    /// If non-zero, dump all objects which are still alive at exit.
+    /// Set to 1 by the PYTHONDUMPREFS environment variable.
+    /// Needs a special build of Python with the Py_TRACE_REFS macro defined: see the configure --with-trace-refs option.
+    /// Default: 0.
+    /// </summary>
     dump_refs                : integer;
+    /// <summary>
+    /// Filename where to dump Python references.
+    /// Set by the PYTHONDUMPREFSFILE environment variable.
+    /// Default: NULL.
+    /// Added in version 3.11.
+    /// </summary>
     dump_refs_file           : PWCharT;
+    /// <summary>
+    /// If non-zero, dump statistics on Python pymalloc memory allocator at exit.
+    /// Set to 1 by the PYTHONMALLOCSTATS environment variable.
+    /// The option is ignored if Python is configured using the --without-pymalloc option.
+    /// Default: 0.
+    /// </summary>
     malloc_stats             : integer;
+    /// <summary>
+    /// Filesystem encoding: sys.getfilesystemencoding().
+    /// On macOS, Android and VxWorks: use "utf-8" by default.
+    /// On Windows: use "utf-8" by default, or "mbcs" if legacy_windows_fs_encoding of PyPreConfig is non-zero.
+    /// Default encoding on other platforms:
+    /// - "utf-8" if PyPreConfig.utf8_mode is non-zero.
+    /// - "ascii" if Python detects that nl_langinfo(CODESET) announces the ASCII encoding, whereas the mbstowcs() function decodes from a different encoding (usually Latin1).
+    /// - "utf-8" if nl_langinfo(CODESET) returns an empty string.
+    /// Otherwise, use the locale encoding: nl_langinfo(CODESET) result.
+    /// At Python startup, the encoding name is normalized to the Python codec name. For example, "ANSI_X3.4-1968" is replaced with "ascii".
+    /// See also the filesystem_errors member.
+    /// </summary>
     filesystem_encoding      : PWCharT;
+    /// <summary>
+    /// Filesystem error handler: sys.getfilesystemencodeerrors().
+    /// On Windows: use "surrogatepass" by default, or "replace" if legacy_windows_fs_encoding of PyPreConfig is non-zero.
+    /// On other platforms: use "surrogateescape" by default.
+    /// Supported error handlers:
+    /// - "strict"
+    /// - "surrogateescape"
+    /// - "surrogatepass" (only supported with the UTF-8 encoding)
+    /// See also the filesystem_encoding member.
+    /// </summary>
     filesystem_errors        : PWCharT;
+    /// <summary>
+    /// Directory where cached .pyc files are written: sys.pycache_prefix.
+    /// Set by the -X pycache_prefix=PATH command line option and the PYTHONPYCACHEPREFIX environment variable. The command-line option takes precedence.
+    /// If NULL, sys.pycache_prefix is set to None.
+    /// Default: NULL.
+    /// </summary>
     pycache_prefix           : PWCharT;
+    /// <summary>
+    /// Parse command line arguments?
+    /// If equals to 1, parse argv the same way the regular Python parses command line arguments, and strip Python arguments from argv.
+    /// The PyConfig_Read() function only parses PyConfig.argv arguments once: PyConfig.parse_argv is set to 2 after arguments are parsed. Since Python arguments are stripped from PyConfig.argv, parsing arguments twice would parse the application options as Python options.
+    /// Default: 1 in Python mode, 0 in isolated mode.
+    /// Changed in version 3.10: The PyConfig.argv arguments are now only parsed if PyConfig.parse_argv equals to 1.
+    /// </summary>
     parse_argv               : integer;
+    /// <summary>
+    /// The list of the original command line arguments passed to the Python executable: sys.orig_argv.
+    /// If orig_argv list is empty and argv is not a list only containing an empty string, PyConfig_Read() copies argv into orig_argv before modifying argv (if parse_argv is non-zero).
+    /// See also the argv member and the Py_GetArgcArgv() function.
+    /// Default: empty list.
+    /// Added in version 3.10.
+    /// </summary>
     orig_argv                : PyWideStringList;
+    /// <summary>
+    /// Set sys.argv command line arguments based on argv. These parameters are similar to those passed to the program’s main() function with the difference that the first entry should refer to the script file to be executed rather than the executable hosting the Python interpreter. If there isn’t a script that will be run, the first entry in argv can be an empty string.
+    /// Set parse_argv to 1 to parse argv the same way the regular Python parses Python command line arguments and then to strip Python arguments from argv.
+    /// If argv is empty, an empty string is added to ensure that sys.argv always exists and is never empty.
+    /// Default: NULL.
+    /// See also the orig_argv member.
+    /// </summary>
     argv                     : PyWideStringList;
+    /// <summary>
+    /// Values of the -X command line options: sys._xoptions.
+    /// Default: empty list.
+    /// </summary>
     xoptions                 : PyWideStringList;
+    /// <summary>
+    /// Options of the warnings module to build warnings filters, lowest to highest priority: sys.warnoptions.
+    /// The warnings module adds sys.warnoptions in the reverse order: the last PyConfig.warnoptions item becomes the first item of warnings.filters which is checked first (highest priority).
+    /// The -W command line options adds its value to warnoptions, it can be used multiple times.
+    /// The PYTHONWARNINGS environment variable can also be used to add warning options. Multiple options can be specified, separated by commas (,).
+    /// Default: empty list.
+    /// </summary>
     warnoptions              : PyWideStringList;
+    /// <summary>
+    /// Import the site module at startup?
+    /// If equal to zero, disable the import of the module site and the site-dependent manipulations of sys.path that it entails.
+    /// Also disable these manipulations if the site module is explicitly imported later (call site.main() if you want them to be triggered).
+    /// Set to 0 by the -S command line option.
+    /// sys.flags.no_site is set to the inverted value of site_import.
+    /// Default: 1.
+    /// </summary>
     site_import              : integer;
+    /// <summary>
+    /// If equals to 1, issue a warning when comparing bytes or bytearray with str, or comparing bytes with int.
+    /// If equal or greater to 2, raise a BytesWarning exception in these cases.
+    /// Incremented by the -b command line option.
+    /// Default: 0.
+    /// </summary>
     bytes_warning            : integer;
+    /// <summary>
+    /// If non-zero, emit a EncodingWarning warning when io.TextIOWrapper uses its default encoding. See Opt-in EncodingWarning for details.
+    /// Default: 0.
+    /// Added in version 3.10.
+    /// </summary>
     warn_default_encoding    : integer;
+    /// <summary>
+    /// Enter interactive mode after executing a script or a command.
+    /// If greater than 0, enable inspect: when a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command, even when sys.stdin does not appear to be a terminal.
+    /// Incremented by the -i command line option. Set to 1 if the PYTHONINSPECT environment variable is non-empty.
+    /// Default: 0.
+    /// </summary>
     inspect                  : integer;
+    /// <summary>
+    /// If greater than 0, enable the interactive mode (REPL).
+    /// Incremented by the -i command line option.
+    /// Default: 0.
+    /// </summary>
     interactive              : integer;
+    /// <summary>
+    /// Compilation optimization level:
+    /// 0: Peephole optimizer, set __debug__ to True.
+    /// 1: Level 0, remove assertions, set __debug__ to False.
+    /// 2: Level 1, strip docstrings.
+    /// Incremented by the -O command line option. Set to the PYTHONOPTIMIZE environment variable value.
+    /// Default: 0.
+    /// See TPyOptimizationLevel
+    /// </summary>
     optimization_level       : integer;
+    /// <summary>
+    /// Parser debug mode. If greater than 0, turn on parser debugging output (for expert only, depending on compilation options).
+    /// Incremented by the -d command line option. Set to the PYTHONDEBUG environment variable value.
+    /// Needs a debug build of Python (the Py_DEBUG macro must be defined).
+    /// Default: 0.
+    /// </summary>
     parser_debug             : integer;
+    /// <summary>
+    /// If equal to 0, Python won’t try to write .pyc files on the import of source modules.
+    /// Set to 0 by the -B command line option and the PYTHONDONTWRITEBYTECODE environment variable.
+    /// sys.dont_write_bytecode is initialized to the inverted value of write_bytecode.
+    /// Default: 1.
+    /// </summary>
     write_bytecode           : integer;
+    /// <summary>
+    /// Verbose mode. If greater than 0, print a message each time a module is imported, showing the place (filename or built-in module) from which it is loaded.
+    /// If greater than or equal to 2, print a message for each file that is checked for when searching for a module. Also provides information on module cleanup at exit.
+    /// Incremented by the -v command line option.
+    /// Set by the PYTHONVERBOSE environment variable value.
+    /// Default: 0.
+    /// </summary>
     verbose                  : integer;
+    /// <summary>
+    /// Quiet mode. If greater than 0, don’t display the copyright and version at Python startup in interactive mode.
+    /// Incremented by the -q command line option.
+    /// Default: 0.
+    /// </summary>
     quiet                    : integer;
+    /// <summary>
+    /// If non-zero, add the user site directory to sys.path.
+    /// Set to 0 by the -s and -I command line options.
+    /// Set to 0 by the PYTHONNOUSERSITE environment variable.
+    /// Default: 1 in Python mode, 0 in isolated mode.
+    /// </summary>
     user_site_directory      : integer;
+    /// <summary>
+    /// If non-zero, configure C standard streams:
+    /// On Windows, set the binary mode (O_BINARY) on stdin, stdout and stderr.
+    /// If buffered_stdio equals zero, disable buffering of stdin, stdout and stderr streams.
+    /// If interactive is non-zero, enable stream buffering on stdin and stdout (only stdout on Windows).
+    /// Default: 1 in Python config, 0 in isolated config.
+    /// </summary>
     configure_c_stdio        : integer;
+    /// <summary>
+    /// If equals to 0 and configure_c_stdio is non-zero, disable buffering on the C streams stdout and stderr.
+    /// Set to 0 by the -u command line option and the PYTHONUNBUFFERED environment variable.
+    /// stdin is always opened in buffered mode.
+    /// Default: 1.
+    /// </summary>
     buffered_stdio           : integer;
+    /// <summary>
+    /// Encoding of sys.stdin, sys.stdout and sys.stderr (but sys.stderr always uses "backslashreplace" error handler).
+    /// Use the PYTHONIOENCODING environment variable if it is non-empty.
+    /// Default encoding:
+    /// - "UTF-8" if PyPreConfig.utf8_mode is non-zero.
+    /// - Otherwise, use the locale encoding.
+    /// See also PyConfig.legacy_windows_stdio.
+    /// </summary>
     stdio_encoding           : PWCharT;
+    /// <summary>
+    /// Encoding errors of sys.stdin, sys.stdout and sys.stderr (but sys.stderr always uses "backslashreplace" error handler).
+    /// Use the PYTHONIOENCODING environment variable if it is non-empty.
+    /// Default error handler:
+    /// - On Windows: use "surrogateescape".
+    /// - "surrogateescape" if PyPreConfig.utf8_mode is non-zero, or if the LC_CTYPE locale is “C” or “POSIX”.
+    /// - "strict" otherwise.
+    /// See also PyConfig.legacy_windows_stdio.
+    /// </summary>
     stdio_errors             : PWCharT;
     {$IFDEF MSWINDOWS}
+    /// <summary>
+    /// If non-zero, use io.FileIO instead of io._WindowsConsoleIO for sys.stdin, sys.stdout and sys.stderr.
+    /// Set to 1 if the PYTHONLEGACYWINDOWSSTDIO environment variable is set to a non-empty string.
+    /// Only available on Windows. #ifdef MS_WINDOWS macro can be used for Windows specific code.
+    /// Default: 0.
+    /// See also the PEP 528 (Change Windows console encoding to UTF-8).
+    /// </summary>
     legacy_windows_stdio     : integer;
     {$ENDIF}
+    /// <summary>
+    /// Control the validation behavior of hash-based .pyc files: value of the --check-hash-based-pycs command line option.
+    /// Valid values:
+    /// "always": Hash the source file for invalidation regardless of value of the ‘check_source’ flag.
+    /// "never": Assume that hash-based pycs always are valid.
+    /// "default": The ‘check_source’ flag in hash-based pycs determines invalidation.
+    /// Default: "default".
+    /// See also PEP 552 “Deterministic pycs”.
+    /// </summary>
     check_hash_pycs_mode     : PWCharT;
+    /// <summary>
+    /// If non-zero, use frozen modules.
+    /// Set by the PYTHON_FROZEN_MODULES environment variable.
+    /// Default: 1 in a release build, or 0 in a debug build.
+    /// </summary>
     use_frozen_modules       : integer;
+    /// <summary>
+    /// If equals to zero, Py_RunMain() prepends a potentially unsafe path to sys.path at startup:
+    /// If argv[0] is equal to L"-m" (python -m module), prepend the current working directory.
+    /// If running a script (python script.py), prepend the script’s directory. If it’s a symbolic link, resolve symbolic links.
+    /// Otherwise (python -c code and python), prepend an empty string, which means the current working directory.
+    /// Set to 1 by the -P command line option and the PYTHONSAFEPATH environment variable.
+    /// Default: 0 in Python config, 1 in isolated config.
+    /// Added in version 3.11.
+    /// </summary>
     safe_path                : integer;
+    /// <summary>
+    /// Configures the integer string conversion length limitation. An initial value of -1 means the value will be taken from the command line or environment or otherwise default to 4300 (sys.int_info.default_max_str_digits). A value of 0 disables the limitation. Values greater than zero but less than 640 (sys.int_info.str_digits_check_threshold) are unsupported and will produce an error.
+    /// Configured by the -X int_max_str_digits command line flag or the PYTHONINTMAXSTRDIGITS environment variable.
+    /// Default: -1 in Python mode. 4300 (sys.int_info.default_max_str_digits) in isolated mode.
+    /// Added in version 3.12.
+    /// </summary>
     int_max_str_digits       : integer;
+    /// <summary>
+    /// Whether the new thread should inherit the current “execution context” from the thread that created it.
+    /// If thread_inherit_context is true, the new thread starts with that same context (so things like trace IDs, user IDs, request-scoped metadata, etc. propagate).
+    /// If it’s false, the new thread runs with a fresh/default context (so context doesn’t automatically carry over).
+    /// </summary>
     thread_inherit_context   : integer;
+    /// <summary>
+    /// The `context_aware_warnings` field exists to control whether the `warnings.catch_warnings()` context manager behaves *concurrently safely*.
+    /// - When `context_aware_warnings` is **true**, `catch_warnings` uses a `ContextVar` to store the temporarily-established warning filter state, so using it is safe across **threads and asyncio tasks**.
+    /// - When `context_aware_warnings` is **false**, `catch_warnings` falls back to modifying **global state** in the `warnings` module, which is **not safe** in concurrent programs (thread/async behavior can become undefined).
+    /// It can also be set via the `-X context_aware_warnings` command-line option or the `PYTHON_CONTEXT_AWARE_WARNINGS` environment variable. `<citation src="1"></citation>`
+    /// </summary>
     context_aware_warnings   : integer;
     {$IFDEF APPLE}
+    /// <summary>
+    /// If non-zero, stdout and stderr will be redirected to the system log.
+    /// Only available on macOS 10.12 and later, and on iOS.
+    /// Default: 0 (don’t use the system log) on macOS; 1 on iOS (use the system log).
+    /// Added in version 3.14.
+    /// </summary>
     use_system_logger        : integer;
     {$ENDIF}
+    /// <summary>
+    /// If the value of cpu_count is not -1 then it will override the return values of os.cpu_count(), os.process_cpu_count(), and multiprocessing.cpu_count().
+    /// Configured by the -X cpu_count=n|default command line flag or the PYTHON_CPU_COUNT environment variable.
+    /// Default: -1.
+    /// Added in version 3.13.
+    /// </summary>
     cpu_count                : integer;
+    /// <summary>
+    /// If non-zero, calculation of path configuration is allowed to log warnings into stderr. If equals to 0, suppress these warnings.
+    /// Default: 1 in Python mode, 0 in isolated mode.
+    /// Part of the Python Path Configuration input.
+    /// Changed in version 3.11: Now also applies on Windows.
+    /// </summary>
     pathconfig_warnings      : integer;
+    /// <summary>
+    /// Program name used to initialize executable and in early error messages during Python initialization.
+    /// On macOS, use PYTHONEXECUTABLE environment variable if set.
+    /// If the WITH_NEXT_FRAMEWORK macro is defined, use __PYVENV_LAUNCHER__ environment variable if set.
+    /// Use argv[0] of argv if available and non-empty.
+    /// Otherwise, use L"python" on Windows, or L"python3" on other platforms.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration input.
+    /// </summary>
     program_name             : PWCharT;
+    /// <summary>
+    /// Set by the PYTHONPATH environment variable.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration input.
+    /// </summary>
     pythonpath_env           : PWCharT;
+    /// <summary>
+    /// Set the default Python “home” directory, that is, the location of the standard Python libraries (see PYTHONHOME).
+    /// Set by the PYTHONHOME environment variable.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration input.
+    /// </summary>
     home                     : PWCharT;
+    /// <summary>
+    /// Platform library directory name: sys.platlibdir.
+    /// Set by the PYTHONPLATLIBDIR environment variable.
+    /// Default: value of the PLATLIBDIR macro which is set by the configure --with-platlibdir option (default: "lib", or "DLLs" on Windows).
+    /// Part of the Python Path Configuration input.
+    /// Added in version 3.9.
+    /// Changed in version 3.11: This macro is now used on Windows to locate the standard library extension modules, typically under DLLs. However, for compatibility, note that this value is ignored for any non-standard layouts, including in-tree builds and virtual environments.
+    /// </summary>
     platlibdir               : PWCharT;
+    /// <summary>
+    /// Module search paths: sys.path.
+    /// If module_search_paths_set is equal to 0, Py_InitializeFromConfig() will replace module_search_paths and sets module_search_paths_set to 1.
+    /// Default: empty list (module_search_paths) and 0 (module_search_paths_set).
+    /// Part of the Python Path Configuration output.
+    /// </summary>
     module_search_paths_set  : integer;
+    /// <summary>
+    /// Module search paths (sys.path) as a string separated by DELIM (os.pathsep).
+    /// </summary>
     module_search_paths      : PyWideStringList;
+    /// <summary>
+    /// Directory of the Python standard library.
+    /// Default: NULL.
+    /// Added in version 3.11.
+    /// </summary>
     stdlib_dir               : PWCharT;
+    /// <summary>
+    /// The absolute path of the executable binary for the Python interpreter: sys.executable.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.base_executable.
+    /// </summary>
     executable               : PWCharT;
+    /// <summary>
+    /// Python base executable: sys._base_executable.
+    /// Set by the __PYVENV_LAUNCHER__ environment variable.
+    /// Set from PyConfig.executable if NULL.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.executable.
+    /// </summary>
     base_executable          : PWCharT;
+    /// <summary>
+    /// The site-specific directory prefix where the platform independent Python files are installed: sys.prefix.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.base_prefix.
+    /// </summary>
     prefix                   : PWCharT;
+    /// <summary>
+    /// sys.base_exec_prefix.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.exec_prefix.
+    /// </summary>
     base_prefix              : PWCharT;
+    /// <summary>
+    /// The site-specific directory prefix where the platform-dependent Python files are installed: sys.exec_prefix.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.base_exec_prefix.
+    /// </summary>
     exec_prefix              : PWCharT;
+    /// <summary>
+    /// sys.base_exec_prefix.
+    /// Default: NULL.
+    /// Part of the Python Path Configuration output.
+    /// See also PyConfig.exec_prefix.
+    /// </summary>
     base_exec_prefix         : PWCharT;
+    /// <summary>
+    /// If non-zero, skip the first line of the PyConfig.run_filename source.
+    /// It allows the usage of non-Unix forms of #!cmd. This is intended for a DOS specific hack only.
+    /// Set to 1 by the -x command line option.
+    /// Default: 0.
+    /// </summary>
     skip_source_first_line   : integer;
+    /// <summary>
+    /// Value of the -c command line option.
+    /// Used by Py_RunMain().
+    /// Default: NULL.
+    /// </summary>
     run_command              : PWCharT;
+    /// <summary>
+    /// Value of the -m command line option.
+    /// Used by Py_RunMain().
+    /// Default: NULL.
+    /// </summary>
     run_module               : PWCharT;
+    /// <summary>
+    /// Filename passed on the command line: trailing command line argument without -c or -m. It is used by the Py_RunMain() function.
+    /// For example, it is set to script.py by the python3 script.py arg command line.
+    /// See also the PyConfig.skip_source_first_line option.
+    /// Default: NULL.
+    /// </summary>
     run_filename             : PWCharT;
+    /// <summary>
+    /// PyConfig.sys_path_0 is the value that Python uses as the first entry in sys.path (sys.path[0]) when the interpreter runs.
+    /// In particular, it determines what sys.path[0] becomes for different invocation styles, for example:
+    /// - for python -m module, sys.path[0] is set to include the current working directory,
+    /// - for python script.py, it’s set to the script’s directory,
+    /// - for python -c code / plain python, it’s set to an “empty string” meaning the current working directory.
+    /// So, when embedding Python via the C-API, setting PyConfig.sys_path_0 lets you control that first sys.path entry explicitly (instead of letting Python compute it).
+    /// </summary>
     sys_path_0               : PWCharT;
+    /// <summary>
+    /// Install importlib? If equals to 0, importlib is not initialized at all. Needed by freeze_importlib.
+    /// This is needed for some embedding/bootstrapping setups (e.g., “freeze_importlib”), where the embedding application wants to take control of how/when importlib gets installed.
+    /// </summary>
     _install_importlib       : integer;
+    /// <summary>
+    /// If equal to 0, stop Python initialization before the "main" phase.
+    /// </summary>
     _init_main               : integer;
+    /// <summary>
+    /// If non-zero, we believe we're running from a source tree.
+    /// </summary>
     _is_python_build         : integer;
   end;
 

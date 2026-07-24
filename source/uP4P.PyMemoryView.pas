@@ -67,7 +67,9 @@ begin
     else          TempOrder := 'C';   // pmvoC
   end;
 
-  if assigned(PyMemoryView_GetContiguous) then
+  if assigned(PyMemoryView_GetContiguous) and
+     TPyObject.IsInitialized(obj) and
+     ((buffertype = PyBUF_READ) or (buffertype = PyBUF_WRITE)) then
     Result := TPyObject.Wrap(PyMemoryView_GetContiguous(obj.PyObject, buffertype, TempOrder))
    else
     Result := nil;

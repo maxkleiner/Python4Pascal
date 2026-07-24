@@ -39,7 +39,7 @@ type
   ///</summary>
   TPyObjectVariantType = class(TInvokeableVariantType, IVarInstanceReference)
     protected
-      fNamedParams : TNamedParamArray;
+      FNamedParams : TNamedParamArray;
 
       // IVarInstanceReference
       function  GetInstance(const V: TVarData): TObject;
@@ -456,7 +456,7 @@ Var
 begin
   if (CallDesc^.CallType = CPropertyGet) and (CallDesc^.ArgCount = 1) then
     begin
-      SetLength(fNamedParams, 0);
+      SetLength(FNamedParams, 0);
 
       TempCallDesc          := CallDesc^;
       TempCallDesc.CallType := CDoMethod;
@@ -467,7 +467,7 @@ begin
     begin
       if (CallDesc^.CallType = CDoMethod) then
         begin
-          SetLength(fNamedParams, CallDesc^.NamedArgCount);
+          SetLength(FNamedParams, CallDesc^.NamedArgCount);
 
           if (CallDesc^.NamedArgCount > 0) then
             begin
@@ -479,13 +479,13 @@ begin
                 begin
                   LNamePtr := LNamePtr + Succ(Length(LNamePtr));
 
-                  fNamedParams[I].Index := I + LNamedArgStart;
-                  fNamedParams[I].Name  := LNamePtr;
+                  FNamedParams[I].Index := I + LNamedArgStart;
+                  FNamedParams[I].Name  := LNamePtr;
                 end;
             end;
         end
        else
-        SetLength(fNamedParams, 0);
+        SetLength(FNamedParams, 0);
 
       inherited DispInvoke(Dest, Source, CallDesc, Params);
     end;
@@ -498,8 +498,8 @@ var
   TempNamedParams : TNamedParamArray;
   TempMaxLength : integer;
 begin
-  TempNamedParams := System.Copy(fNamedParams);
-  SetLength(fNamedParams, 0);
+  TempNamedParams := System.Copy(FNamedParams);
+  SetLength(FNamedParams, 0);
 
   Result        := nil;
   TempContainer := TPyObjectVarData(V).VPyObject;

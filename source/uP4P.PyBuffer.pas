@@ -22,9 +22,9 @@ type
       class function GetPointer(var view: Py_buffer; const indices: Py_ssize_t_array): Pointer;
       class function SizeFromFormat(const format: PAnsiChar): Py_ssize_t;
       class function ToContiguous(buf: Pointer; var src: Py_buffer; len: Py_ssize_t; order: TPyBufferOrder): boolean;
-      class function FromContiguous(var view: Py_buffer; const buf: Pointer; len: Py_ssize_t; fort: TPyBufferFort): boolean;
+      class function FromContiguous(var view: Py_buffer; const buf: Pointer; len: Py_ssize_t; fort: TPyBufferOrder): boolean;
       class function IsContiguous(var view: Py_buffer; order: TPyBufferOrder): boolean;
-      class procedure FillContiguousStrides(ndims: Integer; shape, strides: PPy_ssize_t; itemsize: Integer; order: TPyBufferFort);
+      class procedure FillContiguousStrides(ndims: Integer; shape, strides: PPy_ssize_t; itemsize: Integer; order: TPyBufferOrder);
       class function FillInfo(var view: Py_buffer; const exporter: IPyObject; buf: Pointer; len: Py_ssize_t; readonly, flags: Integer): boolean;
       class procedure Release(var view: Py_buffer);
   end;
@@ -61,13 +61,16 @@ begin
             (PyBuffer_ToContiguous(buf, @src, len, TempOrder) = 0);
 end;
 
-class function TPyBuffer.FromContiguous(var view: Py_buffer; const buf: Pointer; len: Py_ssize_t; fort: TPyBufferFort): boolean;
+class function TPyBuffer.FromContiguous(var view: Py_buffer; const buf: Pointer; len: Py_ssize_t; fort: TPyBufferOrder): boolean;
 var
   TempFort : AnsiChar;
 begin
+  Result := False;
+
   case fort of
-    pbfC : TempFort := 'C';
-    else   TempFort := 'F'; // pbfFortran
+    pboC       : TempFort := 'C';
+    pboFortran : TempFort := 'F';
+    else         exit;            // pboEitherOne
   end;
 
   Result := assigned(PyBuffer_FromContiguous) and
@@ -88,15 +91,16 @@ begin
             (PyBuffer_IsContiguous(@view, TempOrder) = 0);
 end;
 
-class procedure TPyBuffer.FillContiguousStrides(ndims: Integer; shape, strides: PPy_ssize_t; itemsize: Integer; order: TPyBufferFort);
+class procedure TPyBuffer.FillContiguousStrides(ndims: Integer; shape, strides: PPy_ssize_t; itemsize: Integer; order: TPyBufferOrder);
 var
   TempOrder : AnsiChar;
 begin
   if assigned(PyBuffer_FillContiguousStrides) then
     begin
       case order of
-        pbfC : TempOrder := 'C';
-        else   TempOrder := 'F'; // pbfFortran
+        pboC       : TempOrder := 'C';
+        pboFortran : TempOrder := 'F';
+        else         exit;            // pboEitherOne
       end;
 
       PyBuffer_FillContiguousStrides(ndims, shape, strides, itemsize, TempOrder);
