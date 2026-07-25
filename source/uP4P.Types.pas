@@ -488,16 +488,103 @@ type
   /// <para><see href="https://docs.python.org/3/c-api/buffer.html#c.Py_buffer">See the article about Py_buffer.</see></para>
   /// </remarks>
   Py_buffer = record
+    /// <summary>
+    /// A pointer to the start of the logical structure described by the buffer
+    /// fields. This can be any location within the underlying physical memory
+    /// block of the exporter. For example, with negative strides the value may
+    /// point to the end of the memory block. For contiguous arrays, the value
+    /// points to the beginning of the memory block.
+    /// </summary>
     buf        : Pointer;
+    /// <summary>
+    /// A new reference to the exporting object. The reference is owned by the
+    /// consumer and automatically released (i.e. reference count decremented)
+    /// and set to NULL by PyBuffer_Release(). The field is the equivalent of
+    /// the return value of any standard C-API function. As a special case, for
+    /// temporary buffers that are wrapped by PyMemoryView_FromBuffer() or
+    /// PyBuffer_FillInfo() this field is NULL. In general, exporting objects
+    /// MUST NOT use this scheme.
+    /// </summary>
     obj        : PPyObject;
+    /// <summary>
+    /// product(shape) * itemsize. For contiguous arrays, this is the length of
+    /// the underlying memory block. For non-contiguous arrays, it is the length
+    /// that the logical structure would have if it were copied to a contiguous
+    /// representation. Accessing ((char *)buf)[0] up to ((char *)buf)[len-1]
+    /// is only valid if the buffer has been obtained by a request that
+    /// guarantees contiguity. In most cases such a request will be
+    /// PyBUF_SIMPLE or PyBUF_WRITABLE.
+    /// </summary>
     len        : Py_ssize_t;
+    /// <summary>
+    /// Item size in bytes of a single element. Same as the value of
+    /// struct.calcsize() called on non-NULL format values.
+    /// Important exception: If a consumer requests a buffer without the
+    /// PyBUF_FORMAT flag, format will be set to NULL, but itemsize still has
+    /// the value for the original format.
+    /// If shape is present, the equality product(shape) * itemsize == len
+    /// still holds and the consumer can use itemsize to navigate the buffer.
+    /// If shape is NULL as a result of a PyBUF_SIMPLE or a PyBUF_WRITABLE
+    /// request, the consumer must disregard itemsize and assume itemsize == 1.
+    /// </summary>
     itemsize   : Py_ssize_t;
+    /// <summary>
+    /// An indicator of whether the buffer is read-only. This field is
+    /// controlled by the PyBUF_WRITABLE flag.
+    /// </summary>
     readonly   : Integer;
+    /// <summary>
+    /// The number of dimensions the memory represents as an n-dimensional
+    /// array. If it is 0, buf points to a single item representing a scalar.
+    /// In this case, shape, strides and suboffsets MUST be NULL. The maximum
+    /// number of dimensions is given by PyBUF_MAX_NDIM.
+    /// </summary>
     ndim       : Integer;
+    /// <summary>
+    /// A NULL terminated string in struct module style syntax describing the
+    /// contents of a single item. If this is NULL, "B" (unsigned bytes) is
+    /// assumed. This field is controlled by the PyBUF_FORMAT flag.
+    /// </summary>
     format     : PAnsiChar;
+    /// <summary>
+    /// An array of Py_ssize_t of length ndim indicating the shape of the
+    /// memory as an n-dimensional array. Note that
+    /// shape[0] * ... * shape[ndim-1] * itemsize MUST be equal to len.
+    /// Shape values are restricted to shape[n] >= 0. The case shape[n] == 0
+    /// requires special attention. See complex arrays for further information.
+    /// The shape array is read-only for the consumer.
+    /// </summary>
     shape      : PPy_ssize_t;
+    /// <summary>
+    /// An array of Py_ssize_t of length ndim giving the number of bytes to
+    /// skip to get to a new element in each dimension.
+    /// Stride values can be any integer. For regular arrays, strides are
+    /// usually positive, but a consumer MUST be able to handle the case
+    /// strides[n] <= 0. See complex arrays for further information.
+    /// The strides array is read-only for the consumer.
+    /// </summary>
     strides    : PPy_ssize_t;
+    /// <summary>
+    /// An array of Py_ssize_t of length ndim. If suboffsets[n] >= 0, the
+    /// values stored along the nth dimension are pointers and the suboffset
+    /// value dictates how many bytes to add to each pointer after
+    /// de-referencing. A suboffset value that is negative indicates that no
+    /// de-referencing should occur (striding in a contiguous memory block).
+    /// If all suboffsets are negative (i.e. no de-referencing is needed), then
+    /// this field must be NULL (the default value).
+    /// This type of array representation is used by the Python Imaging
+    /// Library (PIL). See complex arrays for further information how to access
+    /// elements of such an array.
+    /// The suboffsets array is read-only for the consumer.
+    /// </summary>
     suboffsets : PPy_ssize_t;
+    /// <summary>
+    /// This is for use internally by the exporting object. For example, this
+    /// might be re-cast as an integer by the exporter and used to store flags
+    /// about whether or not the shape, strides, and suboffsets arrays must be
+    /// freed when the buffer is released. The consumer MUST NOT alter this
+    /// value.
+    /// </summary>
     internal   : Pointer;
   end;
 
@@ -509,7 +596,8 @@ type
   {* include/lock.h *}
 
   /// <summary>
-  /// A mutual exclusion lock. The PyMutex should be initialized to zero to represent the unlocked state.
+  /// A mutual exclusion lock. The PyMutex should be initialized to zero to
+  /// represent the unlocked state.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#c.PyMutex">See the article about PyMutex.</see></para>
@@ -566,7 +654,8 @@ type
   PyObject = type _object;
 
   /// <summary>
-  /// An extension of PyObject that adds the ob_size field. This is intended for objects that have some notion of length.
+  /// An extension of PyObject that adds the ob_size field. This is intended
+  /// for objects that have some notion of length.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyVarObject">See the article about PyVarObject.</see></para>
@@ -582,9 +671,18 @@ type
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/iter.html#c.PySendResult">See the article about PySendResult.</see></para>
   /// </remarks>
-  PySendResult = (   
+  PySendResult = (
+    /// <summary>
+    /// if iterator has raised and exception. presult is set to NULL.
+    /// </summary>
     PYGEN_ERROR  = -1,
+    /// <summary>
+    /// if iterator returns. Return value is returned via presult.
+    /// </summary>
     PYGEN_RETURN = 0,
+    /// <summary>
+    /// if iterator yields. Yielded value is returned via presult.
+    /// </summary>
     PYGEN_NEXT   = 1
   );
 
@@ -1659,7 +1757,8 @@ type
   end;
 
   /// <summary>
-  /// The structure of the objects used to describe code objects. The fields of this type are subject to change at any time.
+  /// The structure of the objects used to describe code objects. The fields of
+  /// this type are subject to change at any time.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/code.html#c.PyCodeObject">See the article about PyCodeObject.</see></para>
@@ -1699,7 +1798,9 @@ type
   end;
 
   /// <summary>
-  /// Enumeration of possible code object watcher events: - PY_CODE_EVENT_CREATE - PY_CODE_EVENT_DESTROY
+  /// Enumeration of possible code object watcher events:
+  /// - PY_CODE_EVENT_CREATE
+  /// - PY_CODE_EVENT_DESTROY
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/code.html#c.PyCodeEvent">See the article about PyCodeEvent.</see></para>
@@ -2673,8 +2774,21 @@ type
 
 
   {* include/pystate.h *}
+
+  /// <summary>
+  /// The type of the value returned by PyGILState_Ensure() and passed to PyGILState_Release().
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
+  /// </remarks>
   PyGILState_STATE = (
+    /// <summary>
+    /// The GIL was already held when PyGILState_Ensure() was called.
+    /// </summary>
     PyGILState_LOCKED,
+    /// <summary>
+    /// The GIL was not held when PyGILState_Ensure() was called.
+    /// </summary>
     PyGILState_UNLOCKED
   );
 
@@ -2687,22 +2801,73 @@ type
   wrapperfunc      = function(self, args: PPyObject; wrapped: Pointer): PPyObject; cdecl;
   wrapperfunc_kwds = function(self, args: PPyObject; wrapped: Pointer; kwds: PPyObject): PPyObject; cdecl;
 
+  /// <summary>
+  /// Structure to define property-like access for a type. See also description of the PyTypeObject.tp_getset slot.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyGetSetDef">See the article about PyGetSetDef.</see></para>
+  /// </remarks>
   PyGetSetDef = record
+    /// <summary>
+    /// attribute name
+    /// </summary>
     name    : PAnsiChar;
+    /// <summary>
+    /// function to get the attribute.
+    /// </summary>
     get     : getter;
+    /// <summary>
+    /// Optional function to set or delete the attribute. If NULL, the attribute is read-only.
+    /// </summary>
     set_    : setter;
+    /// <summary>
+    /// optional docstring
+    /// </summary>
     doc     : PAnsiChar;
+    /// <summary>
+    /// Optional user data pointer, providing additional data for getter and setter.
+    /// </summary>
     closure : Pointer;
   end;
 
+  /// <summary>
+  /// Structure which describes an attribute of a type which corresponds to a C struct member. When defining a class, put a NULL-terminated array of these structures in the tp_members slot.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMemberDef">See the article about PyMemberDef.</see></para>
+  /// </remarks>
   PyMemberDef = record
+    /// <summary>
+    /// Name of the member. A NULL value marks the end of a PyMemberDef[] array. The string should be static, no copy is made of it.
+    /// </summary>
     name   : PAnsiChar;
+    /// <summary>
+    /// The type of the member in the C struct. See Member types for the possible values.
+    /// </summary>
     type_  : integer;
+    /// <summary>
+    /// The offset in bytes that the member is located on the type’s object struct.
+    /// </summary>
     offset : Py_ssize_t;
+    /// <summary>
+    /// Zero or more of the Member flags, combined using bitwise OR.
+    /// </summary>
     flags  : Integer;
+    /// <summary>
+    /// The docstring, or NULL. The string should be static, no copy is made of it. Typically, it is defined using PyDoc_STR.
+    /// </summary>
     doc    : PAnsiChar;
   end;
 
+  /// <summary>
+  /// Describes a slot wrapper used by PyDescr_NewWrapper().
+  /// Each wrapperbase record stores the Python-visible name and metadata for a
+  /// special method implemented by a type slot, together with the wrapper
+  /// function used to adapt that slot to Python’s calling convention.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/descriptor.html#c.wrapperbase">See the article about wrapperbase.</see></para>
+  /// </remarks>
   wrapperbase = record
     name_       : PAnsiChar;
     offset      : integer;
@@ -2713,6 +2878,9 @@ type
     name_strobj : PPyObject;
   end;
 
+  /// <summary>
+  /// Common record used in other descriptor object records.
+  /// </summary>
   PyDescrObject = record
     ob_base    : PyObject; // PyObject_HEAD
     d_type     : PPyTypeObject;
@@ -2720,73 +2888,195 @@ type
     d_qualname : PPyObject;
   end;
 
+  /// <summary>
+  /// Method descriptor object.
+  /// </summary>
   PyMethodDescrObject = record
     d_common   : PyDescrObject; // PyDescr_COMMON;
     d_method   : PPyMethodDef;
     vectorcall : vectorcallfunc;
   end;
 
+  /// <summary>
+  /// Member descriptor object.
+  /// </summary>
   PyMemberDescrObject = record
     d_common   : PyDescrObject; // PyDescr_COMMON;
     d_member   : PPyMemberDef;
   end;
 
+  /// <summary>
+  /// GetSet descriptor object.
+  /// </summary>
   PyGetSetDescrObject = record
     d_common   : PyDescrObject; // PyDescr_COMMON;
     d_getset   : PPyGetSetDef;
   end;
 
+  /// <summary>
+  /// Wrapper descriptor object.
+  /// </summary>
   PyWrapperDescrObject = record
     d_common   : PyDescrObject; // PyDescr_COMMON;
     d_base     : Pwrapperbase;
+    /// <summary>
+    /// This can be any function pointer
+    /// </summary>
     d_wrapped  : Pointer;
   end;
 
   {* include/genericaliasobject.h *}
   {* include/warnings.h *}
   {* include/weakrefobject.h *}
+
+  /// <summary>
+  /// PyWeakReference is the base struct for the Python ReferenceType, ProxyType, and CallableProxyType.
+  /// </summary>
   _PyWeakReference = record
     ob_base                : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// The object to which this is a weak reference, or Py_None if none.
+    /// Note that this is a stealth reference:  wr_object's refcount is not incremented to reflect this pointer.
+    /// </summary>
     wr_object              : PPyObject;
+    /// <summary>
+    /// A callable to invoke when wr_object dies, or NULL if none.
+    /// </summary>
     wr_callback            : PPyObject;
+    /// <summary>
+    /// A cache for wr_object's hash code.  As usual for hashes, this is -1 if the hash code isn't known yet.
+    /// </summary>
     hash                   : Py_hash_t;
+    /// <summary>
+    /// If wr_object is weakly referenced, wr_object has a doubly-linked NULL-
+    /// terminated list of weak references to it.  These are the list pointers.
+    /// If wr_object goes away, wr_object is set to Py_None, and these pointers
+    /// have no meaning then.
+    /// </summary>
     wr_prev                : PPyWeakReference;
+    /// <summary>
+    /// If wr_object is weakly referenced, wr_object has a doubly-linked NULL-
+    /// terminated list of weak references to it.  These are the list pointers.
+    /// If wr_object goes away, wr_object is set to Py_None, and these pointers
+    /// have no meaning then.
+    /// </summary>
     wr_next                : PPyWeakReference;
+    /// <summary>
+    ///
+    /// </summary>
     vectorcall             : vectorcallfunc;
   end;
+  /// <summary>
+  /// PyWeakReference is the base struct for the Python ReferenceType, ProxyType, and CallableProxyType.
+  /// </summary>
   PyWeakReference = type _PyWeakReference;
 
   {* include/structseq.h *}
+  /// <summary>
+  /// Describes a field of a struct sequence. As a struct sequence is modeled as
+  /// a tuple, all fields are typed as PyObject*. The index in the fields array
+  /// of the PyStructSequence_Desc determines which field of the struct sequence
+  /// is described.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/tuple.html#c.PyStructSequence_Field">See the article about PyStructSequence_Field.</see></para>
+  /// </remarks>
   PyStructSequence_Field = record
+    /// <summary>
+    /// Name for the field or NULL to end the list of named fields, set to PyStructSequence_UnnamedField to leave unnamed.
+    /// </summary>
     name_     : PAnsiChar;
+    /// <summary>
+    /// Field docstring or NULL to omit.
+    /// </summary>
     doc       : PAnsiChar;
   end;
 
+  /// <summary>
+  /// Contains the meta information of a struct sequence type to create.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/tuple.html#c.PyStructSequence_Desc">See the article about PyStructSequence_Desc.</see></para>
+  /// </remarks>
   PyStructSequence_Desc = record
+    /// <summary>
+    /// Fully qualified name of the type; null-terminated UTF-8 encoded. The name must contain the module name.
+    /// </summary>
     name_         : PAnsiChar;
+    /// <summary>
+    /// Pointer to docstring for the type or NULL to omit.
+    /// </summary>
     doc           : PAnsiChar;
+    /// <summary>
+    /// Pointer to NULL-terminated array with field names of the new type.
+    /// </summary>
     fields        : PPyStructSequence_Field;
+    /// <summary>
+    /// Number of fields visible to the Python side (if used as tuple).
+    /// </summary>
     n_in_sequence : integer;
   end;
 
   {* include/cpython/picklebufobject.h *}
   {* include/cpython/pytime.h *}
+
+  /// <summary>
+  /// A timestamp or duration in nanoseconds, represented as a signed 64-bit integer.
+  /// The reference point for timestamps depends on the clock used. For example,
+  /// PyTime_Time() returns timestamps relative to the UNIX epoch.
+  /// The supported range is around [-292.3 years; +292.3 years]. Using the Unix
+  /// epoch (January 1st, 1970) as reference, the supported date range is around
+  /// [1677-09-21; 2262-04-11].
+  /// </summary>
   PyTime_t           = type int64;
 
   {* include/codecs.h *}
   {* include/pythread.h *}
   PyThread_start_new_thread_func = procedure(arg: Pointer); cdecl;
 
+  /// <summary>
+  /// PY_TIMEOUT_T is the integral type used to specify timeouts when waiting
+  /// on a lock (see PyThread_acquire_lock_timed()).
+  /// </summary>
   PY_TIMEOUT_T       = type int64;
 
+  /// <summary>
+  /// The result of acquiring a lock with a timeout.
+  /// Return status codes for Python lock acquisition.
+  /// Chosen for maximum backwards compatibility, ie failure -> 0, success -> 1.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#c.PyLockStatus">See the article about PyLockStatus.</see></para>
+  /// </remarks>
   PyLockStatus = (
+    /// <summary>
+    /// Failed to acquire the lock.
+    /// </summary>
     PY_LOCK_FAILURE  = 0,
+    /// <summary>
+    /// The lock was successfully acquired.
+    /// </summary>
     PY_LOCK_ACQUIRED = 1,
+    /// <summary>
+    /// The lock was interrupted by a signal.
+    /// </summary>
     PY_LOCK_INTR
   );
 
   {* include/cpython/context.h *}
+
+  /// <summary>
+  /// Enumeration of possible context object watcher events
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/contextvars.html#c.PyContextEvent">See the article about PyContextEvent.</see></para>
+  /// </remarks>
   PyContextEvent = (
+    /// <summary>
+    /// The current context has switched to a different context. The object
+    /// passed to the watch callback is the now-current contextvars. Context
+    /// object, or None if no context is current.
+    /// </summary>
     Py_CONTEXT_SWITCHED = 1
   );
 
@@ -2794,8 +3084,28 @@ type
 
   {* include/modsupport.h *}
   {* include/compile.h *}
+
+  /// <summary>
+  /// This is the structure used to hold compiler flags. In cases where code is
+  /// only being compiled, it is passed as int flags, and in cases where code is
+  /// being executed, it is passed as PyCompilerFlags *flags. In this case,
+  /// from __future__ import can modify flags.
+  /// Whenever PyCompilerFlags *flags is NULL, cf_flags is treated as equal
+  /// to 0, and any modification due to from __future__ import is discarded.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/veryhigh.html#c.PyCompilerFlags">See the article about PyCompilerFlags.</see></para>
+  /// </remarks>
   PyCompilerFlags = record
+    /// <summary>
+    /// Compiler flags.
+    /// </summary>
     cf_flags           : integer;
+    /// <summary>
+    /// cf_feature_version is the minor Python version. It should be initialized
+    /// to PY_MINOR_VERSION. The field is ignored by default, it is used if and
+    /// only if PyCF_ONLY_AST flag is set in cf_flags.
+    /// </summary>
     cf_feature_version : integer;
   end;
 
@@ -2804,13 +3114,64 @@ type
   AtExitProc         = procedure(); cdecl;
   PyOS_sighandler_t  = procedure(i: Integer); cdecl;
 
+  /// <summary>
+  /// Structure containing most parameters to configure a sub-interpreter.
+  /// Its values are used only in Py_NewInterpreterFromConfig() and never
+  /// modified by the runtime.
+  /// Added in version 3.12.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html#c.PyInterpreterConfig">See the article about PyInterpreterConfig.</see></para>
+  /// </remarks>
   PyInterpreterConfig = record
+    /// <summary>
+    /// If this is 0 then the sub-interpreter will use its own “object”
+    /// allocator state. Otherwise it will use (share) the main interpreter’s.
+    /// If this is 0 then check_multi_interp_extensions must be 1 (non-zero).
+    /// If this is 1 then gil must not be PyInterpreterConfig_OWN_GIL.
+    /// </summary>
     use_main_obmalloc             : Integer;
+    /// <summary>
+    /// If this is 0 then the runtime will not support forking the process in
+    /// any thread where the sub-interpreter is currently active. Otherwise
+    /// fork is unrestricted.
+    /// Note that the subprocess module still works when fork is disallowed.
+    /// </summary>
     allow_fork                    : Integer;
+    /// <summary>
+    /// If this is 0 then the runtime will not support replacing the current
+    /// process via exec (e.g. os.execv()) in any thread where the
+    /// sub-interpreter is currently active. Otherwise exec is unrestricted.
+    /// Note that the subprocess module still works when exec is disallowed.
+    /// </summary>
     allow_exec                    : Integer;
+    /// <summary>
+    /// If this is 0 then the sub-interpreter’s threading module won’t create
+    /// threads. Otherwise threads are allowed.
+    /// </summary>
     allow_threads                 : Integer;
+    /// <summary>
+    /// If this is 0 then the sub-interpreter’s threading module won’t create
+    /// daemon threads. Otherwise daemon threads are allowed (as long as
+    /// allow_threads is non-zero).
+    /// </summary>
     allow_daemon_threads          : Integer;
+    /// <summary>
+    /// If this is 0 then all extension modules may be imported, including
+    /// legacy (single-phase init) modules, in any thread where the
+    /// sub-interpreter is currently active. Otherwise only multi-phase init
+    /// extension modules (see PEP 489) may be imported.
+    /// (Also see Py_mod_multiple_interpreters.)
+    /// This must be 1 (non-zero) if use_main_obmalloc is 0.
+    /// </summary>
     check_multi_interp_extensions : Integer;
+    /// <summary>
+    /// This determines the operation of the GIL for the sub-interpreter.
+    /// It may be one of the following: PyInterpreterConfig_DEFAULT_GIL,
+    /// PyInterpreterConfig_SHARED_GIL or PyInterpreterConfig_OWN_GIL.
+    /// If this is PyInterpreterConfig_OWN_GIL then
+    /// PyInterpreterConfig.use_main_obmalloc must be 0.
+    /// </summary>
     gil                           : Integer;
   end;
 
@@ -2826,15 +3187,41 @@ type
   {* include/import.h *}
   initfunc = function(): PPyObject; cdecl;
 
+  /// <summary>
+  /// Structure describing a single entry in the list of built-in modules.
+  /// Programs which embed Python may use an array of these structures in
+  /// conjunction with PyImport_ExtendInittab() to provide additional built-in
+  /// modules.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/import.html#c._inittab">See the article about _inittab.</see></para>
+  /// </remarks>
   _inittab = record
+    /// <summary>
+    /// The module name, as an ASCII encoded string.
+    /// </summary>
     name_      : PAnsiChar;
+    /// <summary>
+    /// Initialization function for a module built into the interpreter.
+    /// </summary>
     initfunc_  : initfunc;
   end;
 
+  /// <summary>
+  /// This is the structure type definition for frozen module descriptors, as
+  /// generated by the freeze utility (see Tools/freeze/ in the Python source
+  /// distribution).
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/import.html#c._frozen">See the article about _frozen.</see></para>
+  /// </remarks>
   _frozen = record
+    /// <summary>
+    /// This is an ASCII encoded string.
+    /// </summary>
     name_      : PAnsiChar;
     code       : PAnsiChar;
-    size_       : integer;
+    size_      : integer;
     is_package : integer;
   end;
 
@@ -2847,24 +3234,52 @@ type
   {* include/cpython/pyfpe.h *}
   {* include/cpython/tracemalloc.h *}
   {* include/frameobject.h  include/cpython/frameobject.h *}
+
   PyFrameLocalsProxyObject = record
     ob_base    : PyObject; // PyObject_HEAD
     frame      : PPyFrameObject;
   end;
 
   {* include/datetime.h *}
+
+  /// <summary>
+  /// This subtype of PyObject represents the difference between two datetime values.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_Delta">See the article about PyDateTime_Delta.</see></para>
+  /// </remarks>
   PyDateTime_Delta = record
     ob_base     : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// -1 when unknown
+    /// </summary>
     hashcode    : Py_hash_t;
+    /// <summary>
+    /// -MAX_DELTA_DAYS <= days <= MAX_DELTA_DAYS
+    /// </summary>
     days        : Integer;
+    /// <summary>
+    /// 0 <= seconds < 24*3600 is invariant
+    /// </summary>
     seconds     : Integer;
+    /// <summary>
+    /// 0 <= microseconds < 1000000 is invariant
+    /// </summary>
     microseconds: Integer;
   end;
 
+  /// <summary>
+  /// PyDateTime_TZInfo is a pure abstract base class.
+  /// </summary>
   PyDateTime_TZInfo = record
     ob_base     : PyObject; // PyObject_HEAD
   end;
 
+  /// <summary>
+  /// No _PyDateTime_BaseTZInfo is allocated; it's just to have something
+  /// convenient to cast to, when getting at the hastzinfo member of objects
+  /// starting with _PyTZINFO_HEAD.
+  /// </summary>
   _PyDateTime_BaseTZInfo = record
     ob_base     : PyObject; // PyObject_HEAD  // _PyTZINFO_HEAD
     hashcode    : Py_hash_t;                  // _PyTZINFO_HEAD
@@ -2878,6 +3293,12 @@ type
     data        : array [0..pred(_PyDateTime_TIME_DATASIZE)] of AnsiChar;   // _PyDateTime_TIMEHEAD
   end;
 
+  /// <summary>
+  /// This subtype of PyObject represents a Python time object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_Time">See the article about PyDateTime_Time.</see></para>
+  /// </remarks>
   PyDateTime_Time = record
     ob_base     : PyObject;            // PyObject_HEAD  // _PyTZINFO_HEAD  // _PyDateTime_TIMEHEAD
     hashcode    : Py_hash_t;                             // _PyTZINFO_HEAD  // _PyDateTime_TIMEHEAD
@@ -2887,6 +3308,12 @@ type
     tzinfo      : PPyObject;
   end;
 
+  /// <summary>
+  /// This subtype of PyObject represents a Python date object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_Date">See the article about PyDateTime_Date.</see></para>
+  /// </remarks>
   PyDateTime_Date = record
     ob_base     : PyObject; // PyObject_HEAD  // _PyTZINFO_HEAD
     hashcode    : Py_hash_t;                  // _PyTZINFO_HEAD
@@ -2901,6 +3328,12 @@ type
     data        : array [0..pred(_PyDateTime_DATE_DATASIZE)] of AnsiChar;  // _PyDateTime_DATETIMEHEAD
   end;
 
+  /// <summary>
+  /// This subtype of PyObject represents a Python datetime object.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_DateTime">See the article about PyDateTime_DateTime.</see></para>
+  /// </remarks>
   PyDateTime_DateTime = record
     ob_base     : PyObject;           // PyObject_HEAD  // _PyTZINFO_HEAD  // _PyDateTime_DATETIMEHEAD
     hashcode    : Py_hash_t;                            // _PyTZINFO_HEAD  // _PyDateTime_DATETIMEHEAD
@@ -2920,6 +3353,14 @@ type
   PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func = function(i1, i2, i3, i4, i5, i6, i7: integer; obj: PPyObject; i8: integer; type_: PPyTypeObject): PPyObject; cdecl;
   PyDateTime_CAPI_Time_FromTimeAndFold_func            = function(i1, i2, i3, i4: integer; obj: PPyObject; i5: integer; type_: PPyTypeObject): PPyObject; cdecl;
 
+  /// <summary>
+  /// Structure containing the fields for the datetime C API.
+  /// The fields of this structure are private and subject to change.
+  /// Do not use this directly; prefer PyDateTime_* APIs instead.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_CAPI">See the article about PyDateTime_CAPI.</see></para>
+  /// </remarks>
   PyDateTime_CAPI = record
     DateType                        : PPyTypeObject;
     DateTimeType                    : PPyTypeObject;
@@ -2953,6 +3394,16 @@ type
     f_overwritten_fast_locals   : PPyObject;
     _f_frame_data               : array[0..0] of PPyObject;
   end;
+  /// <summary>
+  /// Part of the Limited API (as an opaque struct).
+  /// The structure of the objects used to describe frame objects.
+  /// There are no public members in this structure.
+  /// Changed in version 3.11: The members of this structure were removed from
+  /// the public C API. Refer to the What’s New entry for details.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/frame.html#c.PyFrameObject">See the article about PyFrameObject.</see></para>
+  /// </remarks>
   PyFrameObject = type _frame;
 
 implementation

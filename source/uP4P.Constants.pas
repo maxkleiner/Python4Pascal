@@ -49,13 +49,17 @@ const
     {$ENDIF}
   {$ENDIF}
 
-  // These contants are declared in the "Windows" unit but
-  // some old Delphi versions don't have them.
-  // We have to add "P4P_" to be compatible with C++ Builder.
+  /// <summary>
+  /// These contants are declared in the "Windows" unit but
+  /// some old Delphi versions don't have them.
+  /// We have to add "P4P_" to be compatible with C++ Builder.
+  /// </summary>
   P4P_IMAGE_FILE_MACHINE_I386  = $014C;
   P4P_IMAGE_FILE_MACHINE_AMD64 = $8664;
 
-
+  /// <summary>
+  /// Names of configuration options used by TPyInitConfig
+  /// </summary>
   PYINITCONFIGOPTION_ALLOCATOR                  = 'allocator';
   PYINITCONFIGOPTION_ARGV                       = 'argv';
   PYINITCONFIGOPTION_BASE_EXEC_PREFIX           = 'base_exec_prefix';
@@ -131,21 +135,63 @@ const
   {* include/pyport.h *}
   {* include/pymacro.h *}
   {* include/pymath.h *}
+
+  /// <summary>
+  /// High precision (long double) definition of pi constant.
+  /// </summary>
   Py_MATH_PIl = 3.1415926535897932384626433832795029;
+  /// <summary>
+  /// The definition (accurate for a double type) of the math.pi constant.
+  /// </summary>
   Py_MATH_PI  = 3.14159265358979323846;
+  /// <summary>
+  /// High precision (long double) definition of e constant.
+  /// </summary>
   Py_MATH_El  = 2.7182818284590452353602874713526625;
+  /// <summary>
+  /// The definition (accurate for a double type) of the math.e constant.
+  /// </summary>
   Py_MATH_E   = 2.7182818284590452354;
+  /// <summary>
+  /// The definition (accurate for a double type) of the math.tau constant.
+  /// </summary>
   Py_MATH_TAU = 6.2831853071795864769252867665590057683943;
+  /// <summary>
+  /// This macro expands to a constant expression of type double, that
+  /// represents the positive infinity. On most platforms, this is equivalent
+  /// to the INFINITY macro from the C11 standard <math.h> header.
+  /// </summary>
   Py_INFINITY = INFINITY;
+  /// <summary>
+  /// Equivalent to INFINITY. Deprecated since version 3.14: The macro is soft
+  /// deprecated.
+  /// </summary>
   Py_HUGE_VAL = Py_INFINITY;
+  /// <summary>
+  /// This macro expands to a constant expression of type double, that
+  /// represents a quiet not-a-number (qNaN) value. On most platforms, this is
+  /// equivalent to the NAN macro from the C11 standard <math.h> header.
+  /// </summary>
   Py_NAN      = NAN;
 
   {* include/pymem.h *}
   {* include/pytypedefs.h *}
   {* include/pybuffer.h *}
+
+  /// <summary>
+  /// The maximum number of dimensions the memory represents. Exporters MUST
+  /// respect this limit, consumers of multi-dimensional buffers SHOULD be able
+  /// to handle up to PyBUF_MAX_NDIM dimensions. Currently set to 64.
+  /// </summary>
   PyBUF_MAX_NDIM = 64;
 
+  /// <summary>
+  /// Flags for getting buffers.
+  /// </summary>
   PyBUF_SIMPLE   = 0;
+  /// <summary>
+  /// Flags for getting buffers.
+  /// </summary>
   PyBUF_WRITABLE = 1;
 
   PyBUF_FORMAT         = $0004;
@@ -474,6 +520,10 @@ const
   _Py_WRITE_RESTRICTED  = 4; // Deprecated, no-op. Do not reuse the value.
   Py_RELATIVE_OFFSET    = 8;
 
+  /// <summary>
+  /// Flag for wrapperbase.
+  /// The wrapper function takes keyword args.
+  /// </summary>
   PyWrapperFlag_KEYWORDS = 1;
 
   {* include/genericaliasobject.h *}
@@ -482,6 +532,16 @@ const
   {* include/structseq.h *}
   {* include/cpython/picklebufobject.h *}
   {* include/cpython/pytime.h *}
+
+  /// <summary>
+  /// Minimum value of PyTime_t.
+  /// </summary>
+  PyTime_MIN = low(int64);
+  /// <summary>
+  /// Maximum value of PyTime_t.
+  /// </summary>
+  PyTime_MAX = high(int64);
+
   {* include/codecs.h *}
   {* include/pythread.h *}
   WAIT_LOCK             = 1;
@@ -560,8 +620,21 @@ const
 
   {* include/pythonrun.h *}
   {* include/pylifecycle.h *}
+
+  /// <summary>
+  /// Use the default selection (PyInterpreterConfig_SHARED_GIL).
+  /// Used in PyInterpreterConfig.gil
+  /// </summary>
   PyInterpreterConfig_DEFAULT_GIL = 0;
+  /// <summary>
+  /// Use (share) the main interpreter’s GIL.
+  /// Used in PyInterpreterConfig.gil
+  /// </summary>
   PyInterpreterConfig_SHARED_GIL  = 1;
+  /// <summary>
+  /// Use the sub-interpreter’s own GIL.
+  /// Used in PyInterpreterConfig.gil
+  /// </summary>
   PyInterpreterConfig_OWN_GIL     = 2;
 
   {* include/ceval.h *}
@@ -597,8 +670,18 @@ const
   {* include/cpython/tracemalloc.h *}
   {* include/frameobject.h  include/cpython/frameobject.h *}
   {* include/datetime.h *}
+
+  /// <summary>
+  /// # of bytes for year, month, and day.
+  /// </summary>
   _PyDateTime_DATE_DATASIZE      = 4;
+  /// <summary>
+  ///  of bytes for hour, minute, second, and usecond.
+  /// </summary>
   _PyDateTime_TIME_DATASIZE      = 6;
+  /// <summary>
+  /// # of bytes for year, month, day, hour, minute, second, and usecond.
+  /// </summary>
   _PyDateTime_DATETIME_DATASIZE  = 10;
 
 implementation
