@@ -373,8 +373,20 @@ type
   {* include/pyport.h *}
   Py_uintptr_t       = type NativeUInt;
   Py_intptr_t        = type NativeInt;
+  /// <summary>
+  /// A signed integral type such that sizeof(Py_ssize_t) == sizeof(size_t).
+  /// C99 doesn't define such a thing directly (size_t is an unsigned integral
+  /// type). See PEP 353 for details. PY_SSIZE_T_MAX is the largest positive
+  /// value of type Py_ssize_t.
+  /// </summary>
   Py_ssize_t         = type Py_intptr_t;
+  /// <summary>
+  /// Hash value type: signed integer.
+  /// </summary>
   Py_hash_t          = type Py_ssize_t;
+  /// <summary>
+  /// Hash value type: unsigned integer.
+  /// </summary>
   Py_uhash_t         = type NativeUInt;
   Py_ssize_clean_t   = type Py_ssize_t;
 
@@ -407,7 +419,7 @@ type
   /// </remarks>
   PyMemAllocatorName = (
     /// <summary>
-    /// don’t change memory allocators (use defaults).
+    /// don't change memory allocators (use defaults).
     /// </summary>
     PYMEM_ALLOCATOR_NOT_SET        = 0,
     /// <summary>
@@ -638,14 +650,20 @@ type
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
   /// </remarks>
   _object = record
+    /// <summary>
+    /// Reference count.
+    /// </summary>
     ob_refcnt : Py_ssize_t;
+    /// <summary>
+    /// Object type.
+    /// </summary>
     ob_type   : PPyTypeObject;
   end;
 
   /// <summary>
   /// All object types are extensions of this type. This is a type which
   /// contains the information Python needs to treat a pointer to an object as
-  /// an object. In a normal “release” build, it contains only the object’s
+  /// an object. In a normal "release" build, it contains only the object's
   /// reference count and a pointer to the corresponding type object.
   /// </summary>
   /// <remarks>
@@ -662,6 +680,9 @@ type
   /// </remarks>
   PyVarObject = record
     ob_base  : PyObject;
+    /// <summary>
+    /// Number of items in variable part
+    /// </summary>
     ob_size  : Py_ssize_t;
   end;
 
@@ -694,7 +715,7 @@ type
   /// </remarks>
   TMultIntprSupport = (
     /// <summary>
-    /// The module supports being imported in subinterpreters, but only when they share the main interpreter’s GIL. (See Isolating Extension Modules.)
+    /// The module supports being imported in subinterpreters, but only when they share the main interpreter's GIL. (See Isolating Extension Modules.)
     /// </summary>
     miSupported,
     /// <summary>
@@ -742,18 +763,22 @@ type
   exec_modulefunc                = function(module: PPyObject): integer; cdecl;
 
   /// <summary>
-  /// Structure defining optional functionality of a type, containing a slot ID and a value pointer.
+  /// Structure defining optional functionality of a type, containing a slot ID
+  /// and a value pointer.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyType_Slot">See the article about PyType_Slot.</see></para>
   /// </remarks>
   PyType_Slot = record
     /// <summary>
-    /// A slot ID. Slot IDs are named like the field names of the structures PyTypeObject, PyNumberMethods, PySequenceMethods, PyMappingMethods and PyAsyncMethods with an added Py_ prefix.
+    /// A slot ID. Slot IDs are named like the field names of the structures
+    /// PyTypeObject, PyNumberMethods, PySequenceMethods, PyMappingMethods and
+    /// PyAsyncMethods with an added Py_ prefix.
     /// </summary>
     slot   : integer;
     /// <summary>
-    /// The desired value of the slot. In most cases, this is a pointer to a function.
+    /// The desired value of the slot. In most cases, this is a pointer to a
+    /// function.
     /// </summary>
     pfunc  : Pointer;
   end;
@@ -770,13 +795,19 @@ type
     /// </summary>
     name      : PAnsiChar;
     /// <summary>
-    /// If positive, specifies the size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize.
+    /// If positive, specifies the size of the instance in bytes. It is used to
+    /// set PyTypeObject.tp_basicsize.
     /// If zero, specifies that tp_basicsize should be inherited.
-    /// If negative, the absolute value specifies how much space instances of the class need in addition to the superclass. Use PyObject_GetTypeData() to get a pointer to subclass-specific memory reserved this way. For negative basicsize, Python will insert padding when needed to meet tp_basicsize’s alignment requirements.
+    /// If negative, the absolute value specifies how much space instances of
+    /// the class need in addition to the superclass. Use PyObject_GetTypeData()
+    /// to get a pointer to subclass-specific memory reserved this way.
+    /// For negative basicsize, Python will insert padding when needed to meet
+    /// tp_basicsize's alignment requirements.
     /// </summary>
     basicsize : integer;
     /// <summary>
-    /// Size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
+    /// Size of one element of a variable-size type, in bytes. Used to set
+    /// PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
     /// </summary>
     itemsize  : integer;
     /// <summary>
@@ -784,14 +815,17 @@ type
     /// </summary>
     flags     : cardinal;
     /// <summary>
-    /// Array of PyType_Slot structures. Terminated by the special slot value {0, NULL}.
+    /// Array of PyType_Slot structures. Terminated by the special slot
+    /// value {0, NULL}.
     /// </summary>
     slots     : PPyType_Slot;
   end;
 
   /// <summary>
-  /// This structure holds pointers to the functions which an object uses to implement the number protocol.
-  /// Each function is used by the function of similar name documented in the Number Protocol section.
+  /// This structure holds pointers to the functions which an object uses to
+  /// implement the number protocol.
+  /// Each function is used by the function of similar name documented in the
+  /// Number Protocol section.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyNumberMethods">See the article about PyNumberMethods.</see></para>
@@ -836,7 +870,8 @@ type
   end;
 
   /// <summary>
-  /// This structure holds pointers to the functions which an object uses to implement the sequence protocol.
+  /// This structure holds pointers to the functions which an object uses to
+  /// implement the sequence protocol.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PySequenceMethods">See the article about PySequenceMethods.</see></para>
@@ -855,7 +890,8 @@ type
   end;
 
   /// <summary>
-  /// This structure holds pointers to the functions which an object uses to implement the mapping protocol.
+  /// This structure holds pointers to the functions which an object uses to
+  /// implement the mapping protocol.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyMappingMethods">See the article about PyMappingMethods.</see></para>
@@ -867,7 +903,8 @@ type
   end;
 
   /// <summary>
-  /// This structure holds pointers to the functions required to implement awaitable and asynchronous iterator objects.
+  /// This structure holds pointers to the functions required to implement
+  /// awaitable and asynchronous iterator objects.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyAsyncMethods">See the article about PyAsyncMethods.</see></para>
@@ -880,8 +917,10 @@ type
   end;
 
   /// <summary>
-  /// This structure holds pointers to the functions required by the Buffer protocol.
-  /// The protocol defines how an exporter object can expose its internal data to consumer objects.
+  /// This structure holds pointers to the functions required by the Buffer
+  /// protocol.
+  /// The protocol defines how an exporter object can expose its internal data
+  /// to consumer objects.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyBufferProcs">See the article about PyBufferProcs.</see></para>
@@ -1084,15 +1123,21 @@ type
   {* include/unicodeobject.h *}
 
   /// <summary>
-  /// This type is a typedef for unsigned integer types wide enough to contain characters of 32 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// This type is a typedef for unsigned integer types wide enough to contain
+  /// characters of 32 bits. When dealing with single Unicode characters,
+  /// use Py_UCS4.
   /// </summary>
   Py_UCS4            = type cardinal;
   /// <summary>
-  /// This type is a typedef for unsigned integer types wide enough to contain characters of 16 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// This type is a typedef for unsigned integer types wide enough to contain
+  /// characters of 16 bits. When dealing with single Unicode characters,
+  /// use Py_UCS4.
   /// </summary>
   Py_UCS2            = type word;
   /// <summary>
-  /// This type is a typedef for unsigned integer types wide enough to contain characters of 8 bits. When dealing with single Unicode characters, use Py_UCS4.
+  /// This type is a typedef for unsigned integer types wide enough to contain
+  /// characters of 8 bits. When dealing with single Unicode characters,
+  /// use Py_UCS4.
   /// </summary>
   Py_UCS1            = type byte;
 
@@ -1273,32 +1318,39 @@ type
   PyLongObject = type _longobject;
 
   /// <summary>
-  /// Layout of an array of “digits” (“limbs” in the GMP terminology), used to represent absolute value for arbitrary precision integers.
+  /// Layout of an array of "digits" ("limbs" in the GMP terminology), used to
+  /// represent absolute value for arbitrary precision integers.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongLayout">See the article about PyLongLayout.</see></para>
   /// </remarks>
   PyLongLayout = record
     /// <summary>
-    /// Bits per digit. For example, a 15 bit digit means that bits 0-14 contain meaningful information.
+    /// Bits per digit. For example, a 15 bit digit means that bits 0-14
+    /// contain meaningful information.
     /// </summary>
     bits_per_digit   : byte;
     /// <summary>
-    /// Digit size in bytes. For example, a 15 bit digit will require at least 2 bytes.
+    /// Digit size in bytes. For example, a 15 bit digit will require at least
+    /// 2 bytes.
     /// </summary>
     digit_size       : byte;
     /// <summary>
-    /// Digits order: 1 for most significant digit first. -1 for least significant digit first.
+    /// Digits order: 1 for most significant digit first. -1 for least
+    /// significant digit first.
     /// </summary>
     digits_order     : shortint;
     /// <summary>
-    /// Digit endianness: 1 for most significant byte first (big endian). -1 for least significant byte first (little endian).
+    /// Digit endianness: 1 for most significant byte first (big endian). -1 for
+    /// least significant byte first (little endian).
     /// </summary>
     digit_endianness : shortint;
   end;
 
   /// <summary>
-  /// Export of a Python int object. There are two cases: If digits is NULL, only use the value member. If digits is not NULL, use negative, ndigits and digits members.
+  /// Export of a Python int object. There are two cases: If digits is NULL,
+  /// only use the value member. If digits is not NULL, use negative, ndigits
+  /// and digits members.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongExport">See the article about PyLongExport.</see></para>
@@ -1343,7 +1395,10 @@ type
   {* include/complexobject.h *}
 
   /// <summary>
-  /// The structure which corresponds to the value portion of a Python complex number object. Most of the functions for dealing with complex number objects use structures of this type as input or output values, as appropriate.
+  /// The structure which corresponds to the value portion of a Python complex
+  /// number object. Most of the functions for dealing with complex number
+  /// objects use structures of this type as input or output values, as
+  /// appropriate.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/complex.html#c.Py_complex">See the article about Py_complex.</see></para>
@@ -1395,8 +1450,10 @@ type
     /// </summary>
     ma_keys                : PPyDictKeysObject;
     /// <summary>
-    /// If ma_values is NULL, the table is "combined": keys and values are stored in ma_keys.
-    /// If ma_values is not NULL, the table is split: keys are stored in ma_keys and values are stored in ma_values
+    /// If ma_values is NULL, the table is "combined": keys and values are
+    /// stored in ma_keys.
+    /// If ma_values is not NULL, the table is split: keys are stored in ma_keys
+    /// and values are stored in ma_values
     /// </summary>
     ma_values              : PPyDictValues;
   end;
@@ -1521,7 +1578,8 @@ type
   /// </remarks>
   PyModuleDef_Slot = record
     /// <summary>
-    /// A slot ID. The possible values are: Py_mod_create, Py_mod_exec, Py_mod_multiple_interpreters and Py_mod_gil.
+    /// A slot ID. The possible values are: Py_mod_create, Py_mod_exec,
+    /// Py_mod_multiple_interpreters and Py_mod_gil.
     /// </summary>
     slot  : integer;
     /// <summary>
@@ -1549,7 +1607,8 @@ type
     /// </summary>
     m_name     : PAnsiChar;
     /// <summary>
-    /// Docstring for the module; usually a docstring variable created with PyDoc_STRVAR is used.
+    /// Docstring for the module; usually a docstring variable created with
+    /// PyDoc_STRVAR is used.
     /// </summary>
     m_doc      : PAnsiChar;
     /// <summary>
@@ -1570,7 +1629,8 @@ type
     /// </summary>
     m_size     : Py_ssize_t;
     /// <summary>
-    /// A pointer to a table of module-level functions, described by PyMethodDef values. Can be NULL if no functions are present.
+    /// A pointer to a table of module-level functions, described by PyMethodDef
+    /// values. Can be NULL if no functions are present.
     /// </summary>
     m_methods  : PPyMethodDef;
     /// <summary>
@@ -1585,7 +1645,8 @@ type
     /// and before the module is executed (Py_mod_exec function). More precisely,
     /// this function is not called if m_size is greater than 0 and the module
     /// state (as returned by PyModule_GetState()) is NULL.
-    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// Changed in version 3.9: No longer called before the module state is
+    /// allocated.
     /// </summary>
     m_traverse : traverseproc;
     /// <summary>
@@ -1824,6 +1885,7 @@ type
   PyTracebackObject = type _traceback;
 
   {* include/sliceobject.h *}
+
   /// <summary>
   /// A slice object containing start, stop, and step data members (the
   /// names are from range). Py_None stands for omitted values.
@@ -1943,9 +2005,9 @@ type
     {$IFDEF MSWINDOWS}
     /// <summary>
     /// If non-zero:
-    /// Set PyPreConfig.utf8_mode to 0,
-    /// Set PyConfig.filesystem_encoding to "mbcs",
-    /// Set PyConfig.filesystem_errors to "replace".
+    /// - Set PyPreConfig.utf8_mode to 0,
+    /// - Set PyConfig.filesystem_encoding to "mbcs",
+    /// - Set PyConfig.filesystem_errors to "replace".
     /// Initialized from the PYTHONLEGACYWINDOWSFSENCODING environment variable value.
     /// Only available on Windows. #ifdef MS_WINDOWS macro can be used for Windows specific code.
     /// Default: 0.
@@ -1984,10 +2046,10 @@ type
     _config_init             : integer;
     /// <summary>
     /// If greater than 0, enable isolated mode:
-    /// - Set safe_path to 1: don’t prepend a potentially unsafe path to sys.path at Python startup, such as the current directory, the script’s directory or an empty string.
+    /// - Set safe_path to 1: don't prepend a potentially unsafe path to sys.path at Python startup, such as the current directory, the script's directory or an empty string.
     /// - Set use_environment to 0: ignore PYTHON environment variables.
-    /// - Set user_site_directory to 0: don’t add the user site directory to sys.path.
-    /// - Python REPL doesn’t import readline nor enable default readline configuration on interactive prompts.
+    /// - Set user_site_directory to 0: don't add the user site directory to sys.path.
+    /// - Python REPL doesn't import readline nor enable default readline configuration on interactive prompts.
     /// Set to 1 by the -I command line option.
     /// Default: 0 in Python mode, 1 in isolated mode.
     /// See also the Isolated Configuration and PyPreConfig.isolated.
@@ -2142,7 +2204,7 @@ type
     /// </summary>
     orig_argv                : PyWideStringList;
     /// <summary>
-    /// Set sys.argv command line arguments based on argv. These parameters are similar to those passed to the program’s main() function with the difference that the first entry should refer to the script file to be executed rather than the executable hosting the Python interpreter. If there isn’t a script that will be run, the first entry in argv can be an empty string.
+    /// Set sys.argv command line arguments based on argv. These parameters are similar to those passed to the program's main() function with the difference that the first entry should refer to the script file to be executed rather than the executable hosting the Python interpreter. If there isn't a script that will be run, the first entry in argv can be an empty string.
     /// Set parse_argv to 1 to parse argv the same way the regular Python parses Python command line arguments and then to strip Python arguments from argv.
     /// If argv is empty, an empty string is added to ensure that sys.argv always exists and is never empty.
     /// Default: NULL.
@@ -2215,7 +2277,7 @@ type
     /// </summary>
     parser_debug             : integer;
     /// <summary>
-    /// If equal to 0, Python won’t try to write .pyc files on the import of source modules.
+    /// If equal to 0, Python won't try to write .pyc files on the import of source modules.
     /// Set to 0 by the -B command line option and the PYTHONDONTWRITEBYTECODE environment variable.
     /// sys.dont_write_bytecode is initialized to the inverted value of write_bytecode.
     /// Default: 1.
@@ -2230,7 +2292,7 @@ type
     /// </summary>
     verbose                  : integer;
     /// <summary>
-    /// Quiet mode. If greater than 0, don’t display the copyright and version at Python startup in interactive mode.
+    /// Quiet mode. If greater than 0, don't display the copyright and version at Python startup in interactive mode.
     /// Incremented by the -q command line option.
     /// Default: 0.
     /// </summary>
@@ -2271,7 +2333,7 @@ type
     /// Use the PYTHONIOENCODING environment variable if it is non-empty.
     /// Default error handler:
     /// - On Windows: use "surrogateescape".
-    /// - "surrogateescape" if PyPreConfig.utf8_mode is non-zero, or if the LC_CTYPE locale is “C” or “POSIX”.
+    /// - "surrogateescape" if PyPreConfig.utf8_mode is non-zero, or if the LC_CTYPE locale is "C" or "POSIX".
     /// - "strict" otherwise.
     /// See also PyConfig.legacy_windows_stdio.
     /// </summary>
@@ -2289,11 +2351,11 @@ type
     /// <summary>
     /// Control the validation behavior of hash-based .pyc files: value of the --check-hash-based-pycs command line option.
     /// Valid values:
-    /// "always": Hash the source file for invalidation regardless of value of the ‘check_source’ flag.
+    /// "always": Hash the source file for invalidation regardless of value of the ‘check_source' flag.
     /// "never": Assume that hash-based pycs always are valid.
-    /// "default": The ‘check_source’ flag in hash-based pycs determines invalidation.
+    /// "default": The ‘check_source' flag in hash-based pycs determines invalidation.
     /// Default: "default".
-    /// See also PEP 552 “Deterministic pycs”.
+    /// See also PEP 552 "Deterministic pycs".
     /// </summary>
     check_hash_pycs_mode     : PWCharT;
     /// <summary>
@@ -2305,7 +2367,7 @@ type
     /// <summary>
     /// If equals to zero, Py_RunMain() prepends a potentially unsafe path to sys.path at startup:
     /// If argv[0] is equal to L"-m" (python -m module), prepend the current working directory.
-    /// If running a script (python script.py), prepend the script’s directory. If it’s a symbolic link, resolve symbolic links.
+    /// If running a script (python script.py), prepend the script's directory. If it's a symbolic link, resolve symbolic links.
     /// Otherwise (python -c code and python), prepend an empty string, which means the current working directory.
     /// Set to 1 by the -P command line option and the PYTHONSAFEPATH environment variable.
     /// Default: 0 in Python config, 1 in isolated config.
@@ -2320,9 +2382,9 @@ type
     /// </summary>
     int_max_str_digits       : integer;
     /// <summary>
-    /// Whether the new thread should inherit the current “execution context” from the thread that created it.
+    /// Whether the new thread should inherit the current "execution context" from the thread that created it.
     /// If thread_inherit_context is true, the new thread starts with that same context (so things like trace IDs, user IDs, request-scoped metadata, etc. propagate).
-    /// If it’s false, the new thread runs with a fresh/default context (so context doesn’t automatically carry over).
+    /// If it's false, the new thread runs with a fresh/default context (so context doesn't automatically carry over).
     /// </summary>
     thread_inherit_context   : integer;
     /// <summary>
@@ -2336,7 +2398,7 @@ type
     /// <summary>
     /// If non-zero, stdout and stderr will be redirected to the system log.
     /// Only available on macOS 10.12 and later, and on iOS.
-    /// Default: 0 (don’t use the system log) on macOS; 1 on iOS (use the system log).
+    /// Default: 0 (don't use the system log) on macOS; 1 on iOS (use the system log).
     /// Added in version 3.14.
     /// </summary>
     use_system_logger        : integer;
@@ -2372,7 +2434,7 @@ type
     /// </summary>
     pythonpath_env           : PWCharT;
     /// <summary>
-    /// Set the default Python “home” directory, that is, the location of the standard Python libraries (see PYTHONHOME).
+    /// Set the default Python "home" directory, that is, the location of the standard Python libraries (see PYTHONHOME).
     /// Set by the PYTHONHOME environment variable.
     /// Default: NULL.
     /// Part of the Python Path Configuration input.
@@ -2478,14 +2540,14 @@ type
     /// PyConfig.sys_path_0 is the value that Python uses as the first entry in sys.path (sys.path[0]) when the interpreter runs.
     /// In particular, it determines what sys.path[0] becomes for different invocation styles, for example:
     /// - for python -m module, sys.path[0] is set to include the current working directory,
-    /// - for python script.py, it’s set to the script’s directory,
-    /// - for python -c code / plain python, it’s set to an “empty string” meaning the current working directory.
+    /// - for python script.py, it's set to the script's directory,
+    /// - for python -c code / plain python, it's set to an "empty string" meaning the current working directory.
     /// So, when embedding Python via the C-API, setting PyConfig.sys_path_0 lets you control that first sys.path entry explicitly (instead of letting Python compute it).
     /// </summary>
     sys_path_0               : PWCharT;
     /// <summary>
     /// Install importlib? If equals to 0, importlib is not initialized at all. Needed by freeze_importlib.
-    /// This is needed for some embedding/bootstrapping setups (e.g., “freeze_importlib”), where the embedding application wants to take control of how/when importlib gets installed.
+    /// This is needed for some embedding/bootstrapping setups (e.g., "freeze_importlib"), where the embedding application wants to take control of how/when importlib gets installed.
     /// </summary>
     _install_importlib       : integer;
     /// <summary>
@@ -2776,7 +2838,8 @@ type
   {* include/pystate.h *}
 
   /// <summary>
-  /// The type of the value returned by PyGILState_Ensure() and passed to PyGILState_Release().
+  /// The type of the value returned by PyGILState_Ensure() and passed to
+  /// PyGILState_Release().
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
@@ -2802,7 +2865,8 @@ type
   wrapperfunc_kwds = function(self, args: PPyObject; wrapped: Pointer; kwds: PPyObject): PPyObject; cdecl;
 
   /// <summary>
-  /// Structure to define property-like access for a type. See also description of the PyTypeObject.tp_getset slot.
+  /// Structure to define property-like access for a type. See also description
+  /// of the PyTypeObject.tp_getset slot.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyGetSetDef">See the article about PyGetSetDef.</see></para>
@@ -2817,7 +2881,8 @@ type
     /// </summary>
     get     : getter;
     /// <summary>
-    /// Optional function to set or delete the attribute. If NULL, the attribute is read-only.
+    /// Optional function to set or delete the attribute. If NULL, the attribute
+    /// is read-only.
     /// </summary>
     set_    : setter;
     /// <summary>
@@ -2825,28 +2890,34 @@ type
     /// </summary>
     doc     : PAnsiChar;
     /// <summary>
-    /// Optional user data pointer, providing additional data for getter and setter.
+    /// Optional user data pointer, providing additional data for getter and
+    /// setter.
     /// </summary>
     closure : Pointer;
   end;
 
   /// <summary>
-  /// Structure which describes an attribute of a type which corresponds to a C struct member. When defining a class, put a NULL-terminated array of these structures in the tp_members slot.
+  /// Structure which describes an attribute of a type which corresponds to a C
+  /// struct member. When defining a class, put a NULL-terminated array of these
+  /// structures in the tp_members slot.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMemberDef">See the article about PyMemberDef.</see></para>
   /// </remarks>
   PyMemberDef = record
     /// <summary>
-    /// Name of the member. A NULL value marks the end of a PyMemberDef[] array. The string should be static, no copy is made of it.
+    /// Name of the member. A NULL value marks the end of a PyMemberDef[] array.
+    /// The string should be static, no copy is made of it.
     /// </summary>
     name   : PAnsiChar;
     /// <summary>
-    /// The type of the member in the C struct. See Member types for the possible values.
+    /// The type of the member in the C struct. See Member types for the
+    /// possible values.
     /// </summary>
     type_  : integer;
     /// <summary>
-    /// The offset in bytes that the member is located on the type’s object struct.
+    /// The offset in bytes that the member is located on the type's object
+    /// struct.
     /// </summary>
     offset : Py_ssize_t;
     /// <summary>
@@ -2854,7 +2925,8 @@ type
     /// </summary>
     flags  : Integer;
     /// <summary>
-    /// The docstring, or NULL. The string should be static, no copy is made of it. Typically, it is defined using PyDoc_STR.
+    /// The docstring, or NULL. The string should be static, no copy is made of
+    /// it. Typically, it is defined using PyDoc_STR.
     /// </summary>
     doc    : PAnsiChar;
   end;
@@ -2863,7 +2935,7 @@ type
   /// Describes a slot wrapper used by PyDescr_NewWrapper().
   /// Each wrapperbase record stores the Python-visible name and metadata for a
   /// special method implemented by a type slot, together with the wrapper
-  /// function used to adapt that slot to Python’s calling convention.
+  /// function used to adapt that slot to Python's calling convention.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/descriptor.html#c.wrapperbase">See the article about wrapperbase.</see></para>
@@ -2930,13 +3002,15 @@ type
   {* include/weakrefobject.h *}
 
   /// <summary>
-  /// PyWeakReference is the base struct for the Python ReferenceType, ProxyType, and CallableProxyType.
+  /// PyWeakReference is the base struct for the Python ReferenceType,
+  /// ProxyType, and CallableProxyType.
   /// </summary>
   _PyWeakReference = record
     ob_base                : PyObject; // PyObject_HEAD
     /// <summary>
     /// The object to which this is a weak reference, or Py_None if none.
-    /// Note that this is a stealth reference:  wr_object's refcount is not incremented to reflect this pointer.
+    /// Note that this is a stealth reference:  wr_object's refcount is not
+    /// incremented to reflect this pointer.
     /// </summary>
     wr_object              : PPyObject;
     /// <summary>
@@ -2944,7 +3018,8 @@ type
     /// </summary>
     wr_callback            : PPyObject;
     /// <summary>
-    /// A cache for wr_object's hash code.  As usual for hashes, this is -1 if the hash code isn't known yet.
+    /// A cache for wr_object's hash code.  As usual for hashes, this is -1 if
+    /// the hash code isn't known yet.
     /// </summary>
     hash                   : Py_hash_t;
     /// <summary>
@@ -2967,7 +3042,8 @@ type
     vectorcall             : vectorcallfunc;
   end;
   /// <summary>
-  /// PyWeakReference is the base struct for the Python ReferenceType, ProxyType, and CallableProxyType.
+  /// PyWeakReference is the base struct for the Python ReferenceType,
+  /// ProxyType, and CallableProxyType.
   /// </summary>
   PyWeakReference = type _PyWeakReference;
 
@@ -2983,7 +3059,8 @@ type
   /// </remarks>
   PyStructSequence_Field = record
     /// <summary>
-    /// Name for the field or NULL to end the list of named fields, set to PyStructSequence_UnnamedField to leave unnamed.
+    /// Name for the field or NULL to end the list of named fields, set to
+    /// PyStructSequence_UnnamedField to leave unnamed.
     /// </summary>
     name_     : PAnsiChar;
     /// <summary>
@@ -3000,7 +3077,8 @@ type
   /// </remarks>
   PyStructSequence_Desc = record
     /// <summary>
-    /// Fully qualified name of the type; null-terminated UTF-8 encoded. The name must contain the module name.
+    /// Fully qualified name of the type; null-terminated UTF-8 encoded. The
+    /// name must contain the module name.
     /// </summary>
     name_         : PAnsiChar;
     /// <summary>
@@ -3125,8 +3203,8 @@ type
   /// </remarks>
   PyInterpreterConfig = record
     /// <summary>
-    /// If this is 0 then the sub-interpreter will use its own “object”
-    /// allocator state. Otherwise it will use (share) the main interpreter’s.
+    /// If this is 0 then the sub-interpreter will use its own "object"
+    /// allocator state. Otherwise it will use (share) the main interpreter's.
     /// If this is 0 then check_multi_interp_extensions must be 1 (non-zero).
     /// If this is 1 then gil must not be PyInterpreterConfig_OWN_GIL.
     /// </summary>
@@ -3146,12 +3224,12 @@ type
     /// </summary>
     allow_exec                    : Integer;
     /// <summary>
-    /// If this is 0 then the sub-interpreter’s threading module won’t create
+    /// If this is 0 then the sub-interpreter's threading module won't create
     /// threads. Otherwise threads are allowed.
     /// </summary>
     allow_threads                 : Integer;
     /// <summary>
-    /// If this is 0 then the sub-interpreter’s threading module won’t create
+    /// If this is 0 then the sub-interpreter's threading module won't create
     /// daemon threads. Otherwise daemon threads are allowed (as long as
     /// allow_threads is non-zero).
     /// </summary>
@@ -3383,15 +3461,51 @@ type
   {* Include/internal/pycore_frame.h *}
   _frame  = record
     ob_base                     : PyObject; // PyObject_HEAD
+    /// <summary>
+    /// previous frame, or NULL
+    /// </summary>
     f_back                      : PPyFrameObject;
-    f_frame                     : Pointer; // not implemented. pointer to _PyInterpreterFrame; /Include/internal/pycore_interpframe_structs.h
+    /// <summary>
+    /// Points to the frame data.
+    /// Not implemented. pointer to _PyInterpreterFrame; /Include/internal/pycore_interpframe_structs.h
+    /// </summary>
+    f_frame                     : Pointer;
+    /// <summary>
+    /// Trace function
+    /// </summary>
     f_trace                     : PPyObject;
+    /// <summary>
+    /// Current line number. Only valid if non-zero
+    /// </summary>
     f_lineno                    : integer;
+    /// <summary>
+    /// Emit per-line trace events?
+    /// </summary>
     f_trace_lines               : AnsiChar;
+    /// <summary>
+    /// Emit per-opcode trace events?
+    /// </summary>
     f_trace_opcodes             : AnsiChar;
+    /// <summary>
+    /// Dict for locals set by users using f_locals, could be NULL
+    /// </summary>
     f_extra_locals              : PPyObject;
+    /// <summary>
+    /// This is purely for backwards compatibility for PyEval_GetLocals.
+    /// PyEval_GetLocals requires a borrowed reference so the actual reference
+    /// is stored here
+    /// </summary>
     f_locals_cache              : PPyObject;
+    /// <summary>
+    /// A tuple containing strong references to fast locals that were overwritten
+    /// via f_locals. Borrowed references to these locals may exist in frames
+    /// closer to the top of the stack. The references in this tuple act as
+    /// "support" for the borrowed references, ensuring that they remain valid.
+    /// </summary>
     f_overwritten_fast_locals   : PPyObject;
+    /// <summary>
+    /// The frame data, if this frame object owns the frame
+    /// </summary>
     _f_frame_data               : array[0..0] of PPyObject;
   end;
   /// <summary>
@@ -3399,7 +3513,7 @@ type
   /// The structure of the objects used to describe frame objects.
   /// There are no public members in this structure.
   /// Changed in version 3.11: The members of this structure were removed from
-  /// the public C API. Refer to the What’s New entry for details.
+  /// the public C API. Refer to the What's New entry for details.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/frame.html#c.PyFrameObject">See the article about PyFrameObject.</see></para>
