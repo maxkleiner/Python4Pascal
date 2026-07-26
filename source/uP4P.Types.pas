@@ -414,9 +414,6 @@ type
   /// <summary>
   /// Python memory allocators.
   /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyPreConfig.allocator">See the article about PyPreConfig.</see></para>
-  /// </remarks>
   PyMemAllocatorName = (
     /// <summary>
     /// don't change memory allocators (use defaults).
@@ -462,7 +459,7 @@ type
   PyMemAllocatorEx_free    = procedure(ctx, ptr: Pointer); cdecl;
 
   /// <summary>
-  /// Structure used to describe a memory block allocator.
+  /// Record used to describe a memory block allocator.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/memory.html#c.PyMemAllocatorEx">See the article about PyMemAllocatorEx.</see></para>
@@ -763,7 +760,7 @@ type
   exec_modulefunc                = function(module: PPyObject): integer; cdecl;
 
   /// <summary>
-  /// Structure defining optional functionality of a type, containing a slot ID
+  /// Record defining optional functionality of a type, containing a slot ID
   /// and a value pointer.
   /// </summary>
   /// <remarks>
@@ -784,7 +781,7 @@ type
   end;
 
   /// <summary>
-  /// Structure defining a type's behavior.
+  /// Record defining a type's behavior.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyType_Spec">See the article about PyType_Spec.</see></para>
@@ -1041,7 +1038,7 @@ type
   PyObjectArenaAllocator_free    = procedure(ctx, ptr: Pointer; size_: NativeUInt); cdecl;
 
   /// <summary>
-  /// Structure used to describe an arena allocator.
+  /// Record used to describe an arena allocator.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/memory.html#c.PyObjectArenaAllocator">See the article about PyObjectArenaAllocator.</see></para>
@@ -1486,7 +1483,7 @@ type
   PyCMethod                      = function(self: PPyObject; defining_class: PPyTypeObject; const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject): PPyObject; cdecl;
 
   /// <summary>
-  /// Structure used to describe a method of an extension type.
+  /// Record used to describe a method of an extension type.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
@@ -1914,7 +1911,7 @@ type
   );
 
   /// <summary>
-  /// Structure to store an initialization function status: success, error or exit. For an error, it can store the function name which created the error.
+  /// Record to store an initialization function status: success, error or exit. For an error, it can store the function name which created the error.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyStatus">See the article about PyStatus.</see></para>
@@ -1956,7 +1953,7 @@ type
   end;
 
   /// <summary>
-  /// Structure used to preinitialize Python.
+  /// Record used to preinitialize Python.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pypreconfig">See the article about PyPreConfig.</see></para>
@@ -2009,7 +2006,7 @@ type
     /// - Set PyConfig.filesystem_encoding to "mbcs",
     /// - Set PyConfig.filesystem_errors to "replace".
     /// Initialized from the PYTHONLEGACYWINDOWSFSENCODING environment variable value.
-    /// Only available on Windows. #ifdef MS_WINDOWS macro can be used for Windows specific code.
+    /// Only available on Windows.
     /// Default: 0.
     /// </summary>
     legacy_windows_fs_encoding : integer;
@@ -2033,7 +2030,7 @@ type
   end;
 
   /// <summary>
-  /// Structure containing most parameters to configure Python.
+  /// Record containing most parameters to configure Python.
   /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
   /// </summary>
   /// <remarks>
@@ -2865,7 +2862,7 @@ type
   wrapperfunc_kwds = function(self, args: PPyObject; wrapped: Pointer; kwds: PPyObject): PPyObject; cdecl;
 
   /// <summary>
-  /// Structure to define property-like access for a type. See also description
+  /// Record to define property-like access for a type. See also description
   /// of the PyTypeObject.tp_getset slot.
   /// </summary>
   /// <remarks>
@@ -2897,7 +2894,7 @@ type
   end;
 
   /// <summary>
-  /// Structure which describes an attribute of a type which corresponds to a C
+  /// Record which describes an attribute of a type which corresponds to a C
   /// struct member. When defining a class, put a NULL-terminated array of these
   /// structures in the tp_members slot.
   /// </summary>
@@ -3193,7 +3190,7 @@ type
   PyOS_sighandler_t  = procedure(i: Integer); cdecl;
 
   /// <summary>
-  /// Structure containing most parameters to configure a sub-interpreter.
+  /// Record containing most parameters to configure a sub-interpreter.
   /// Its values are used only in Py_NewInterpreterFromConfig() and never
   /// modified by the runtime.
   /// Added in version 3.12.
@@ -3266,7 +3263,7 @@ type
   initfunc = function(): PPyObject; cdecl;
 
   /// <summary>
-  /// Structure describing a single entry in the list of built-in modules.
+  /// Record describing a single entry in the list of built-in modules.
   /// Programs which embed Python may use an array of these structures in
   /// conjunction with PyImport_ExtendInittab() to provide additional built-in
   /// modules.
@@ -3432,7 +3429,7 @@ type
   PyDateTime_CAPI_Time_FromTimeAndFold_func            = function(i1, i2, i3, i4: integer; obj: PPyObject; i5: integer; type_: PPyTypeObject): PPyObject; cdecl;
 
   /// <summary>
-  /// Structure containing the fields for the datetime C API.
+  /// Record containing the fields for the datetime C API.
   /// The fields of this structure are private and subject to change.
   /// Do not use this directly; prefer PyDateTime_* APIs instead.
   /// </summary>
