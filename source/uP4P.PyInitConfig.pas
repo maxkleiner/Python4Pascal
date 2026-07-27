@@ -648,6 +648,7 @@ type
       /// <remarks>
       /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration output.</see></para>
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys.path">See the article about sys.path.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">See the article about PYTHONPATH.</see></para>
       /// </remarks>
       property module_search_paths        : string                 read Get_module_search_paths            write Set_module_search_paths;
       /// <summary>

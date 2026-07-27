@@ -2107,7 +2107,7 @@ type
     /// </summary>
     perf_profiling           : integer;
     /// <summary>
-    /// Remote debug
+    /// Safe external debugger interface for CPython. Default: True.
     /// </summary>
     remote_debug             : integer;
     /// <summary>
@@ -2385,10 +2385,10 @@ type
     /// </summary>
     thread_inherit_context   : integer;
     /// <summary>
-    /// The `context_aware_warnings` field exists to control whether the `warnings.catch_warnings()` context manager behaves *concurrently safely*.
-    /// - When `context_aware_warnings` is **true**, `catch_warnings` uses a `ContextVar` to store the temporarily-established warning filter state, so using it is safe across **threads and asyncio tasks**.
-    /// - When `context_aware_warnings` is **false**, `catch_warnings` falls back to modifying **global state** in the `warnings` module, which is **not safe** in concurrent programs (thread/async behavior can become undefined).
-    /// It can also be set via the `-X context_aware_warnings` command-line option or the `PYTHON_CONTEXT_AWARE_WARNINGS` environment variable. `<citation src="1"></citation>`
+    /// The 'context_aware_warnings' field exists to control whether the 'warnings.catch_warnings()' context manager behaves *concurrently safely*.
+    /// - When 'context_aware_warnings' is **true**, 'catch_warnings' uses a 'ContextVar' to store the temporarily-established warning filter state, so using it is safe across **threads and asyncio tasks**.
+    /// - When 'context_aware_warnings' is **false**, 'catch_warnings' falls back to modifying **global state** in the 'warnings' module, which is **not safe** in concurrent programs (thread/async behavior can become undefined).
+    /// It can also be set via the '-X context_aware_warnings' command-line option or the 'PYTHON_CONTEXT_AWARE_WARNINGS' environment variable. '<citation src="1"></citation>'
     /// </summary>
     context_aware_warnings   : integer;
     {$IFDEF APPLE}
