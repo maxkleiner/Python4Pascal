@@ -193,8 +193,6 @@ type
       function SetWideStringList(var list: PyWideStringList; const items: TStringList): boolean; overload;
       function SetWideStringList(var list: PyWideStringList; const items: TStringDynArray): boolean; overload;
 
-      property Config     : Pointer    read GetConfig;
-
     public
       destructor  Destroy; override;
       /// <summary>
@@ -209,6 +207,79 @@ type
       /// Read all Python configuration.
       /// </summary>
       function    Read: IPyStatus;
+
+      property Config                    : Pointer              read GetConfig;
+      property argv                      : TStringDynArray      read Get_argv                         write Set_argv;
+      property base_exec_prefix          : string               read Get_base_exec_prefix             write Set_base_exec_prefix;
+      property base_executable           : string               read Get_base_executable              write Set_base_executable;
+      property base_prefix               : string               read Get_base_prefix                  write Set_base_prefix;
+      property buffered_stdio            : boolean              read Get_buffered_stdio               write Set_buffered_stdio;
+      property bytes_warning             : integer              read Get_bytes_warning                write Set_bytes_warning;
+      property check_hash_pycs_mode      : string               read Get_check_hash_pycs_mode         write Set_check_hash_pycs_mode;
+      property code_debug_ranges         : boolean              read Get_code_debug_ranges            write Set_code_debug_ranges;
+      property configure_c_stdio         : boolean              read Get_configure_c_stdio            write Set_configure_c_stdio;
+      property context_aware_warnings    : boolean              read Get_context_aware_warnings       write Set_context_aware_warnings;
+      {$IFDEF APPLE}
+      property use_system_logger         : boolean              read Get_use_system_logger            write Set_use_system_logger;
+      {$ENDIF}
+      property cpu_count                 : integer              read Get_cpu_count                    write Set_cpu_count;
+      property dev_mode                  : boolean              read Get_dev_mode                     write Set_dev_mode;
+      property dump_refs                 : boolean              read Get_dump_refs                    write Set_dump_refs;
+      property dump_refs_file            : string               read Get_dump_refs_file               write Set_dump_refs_file;
+      property exec_prefix               : string               read Get_exec_prefix                  write Set_exec_prefix;
+      property executable                : string               read Get_executable                   write Set_executable;
+      property faulthandler              : integer              read Get_faulthandler                 write Set_faulthandler;
+      property filesystem_encoding       : string               read Get_filesystem_encoding          write Set_filesystem_encoding;
+      property filesystem_errors         : string               read Get_filesystem_errors            write Set_filesystem_errors;
+      property hash_seed                 : uint64               read Get_hash_seed                    write Set_hash_seed;
+      property home                      : string               read Get_home                         write Set_home;
+      property import_time               : integer              read Get_import_time                  write Set_import_time;
+      property inspect                   : boolean              read Get_inspect                      write Set_inspect;
+      property install_signal_handlers   : boolean              read Get_install_signal_handlers      write Set_install_signal_handlers;
+      property int_max_str_digits        : integer              read Get_int_max_str_digits           write Set_int_max_str_digits;
+      property interactive               : boolean              read Get_interactive                  write Set_interactive;
+      property isolated                  : boolean              read Get_isolated                     write Set_isolated;
+      {$IFDEF MSWINDOWS}
+      property legacy_windows_stdio      : boolean              read Get_legacy_windows_stdio         write Set_legacy_windows_stdio;
+      {$ENDIF}
+      property malloc_stats              : boolean              read Get_malloc_stats                 write Set_malloc_stats;
+      property module_search_paths       : string               read Get_module_search_paths          write Set_module_search_paths;
+      property module_search_paths_set   : boolean              read Get_module_search_paths_set      write Set_module_search_paths_set;
+      property optimization_level        : TPyOptimizationLevel read Get_optimization_level           write Set_optimization_level;
+      property orig_argv                 : TStringDynArray      read Get_orig_argv                    write Set_orig_argv;
+      property parse_argv                : boolean              read Get_parse_argv                   write Set_parse_argv;
+      property parser_debug              : boolean              read Get_parser_debug                 write Set_parser_debug;
+      property pathconfig_warnings       : boolean              read Get_pathconfig_warnings          write Set_pathconfig_warnings;
+      property perf_profiling            : integer              read Get_perf_profiling               write Set_perf_profiling;
+      property platlibdir                : string               read Get_platlibdir                   write Set_platlibdir;
+      property prefix                    : string               read Get_prefix                       write Set_prefix;
+      property program_name              : string               read Get_program_name                 write Set_program_name;
+      property pycache_prefix            : string               read Get_pycache_prefix               write Set_pycache_prefix;
+      property pythonpath_env            : string               read Get_pythonpath_env               write Set_pythonpath_env;
+      property quiet                     : boolean              read Get_quiet                        write Set_quiet;
+      property remote_debug              : integer              read Get_remote_debug                 write Set_remote_debug;
+      property run_command               : string               read Get_run_command                  write Set_run_command;
+      property run_filename              : string               read Get_run_filename                 write Set_run_filename;
+      property run_module                : string               read Get_run_module                   write Set_run_module;
+      property safe_path                 : boolean              read Get_safe_path                    write Set_safe_path;
+      property show_ref_count            : boolean              read Get_show_ref_count               write Set_show_ref_count;
+      property site_import               : boolean              read Get_site_import                  write Set_site_import;
+      property skip_source_first_line    : boolean              read Get_skip_source_first_line       write Set_skip_source_first_line;
+      property stdio_encoding            : string               read Get_stdio_encoding               write Set_stdio_encoding;
+      property stdio_errors              : string               read Get_stdio_errors                 write Set_stdio_errors;
+      property stdlib_dir                : string               read Get_stdlib_dir                   write Set_stdlib_dir;
+      property sys_path_0                : string               read Get_sys_path_0                   write Set_sys_path_0;
+      property thread_inherit_context    : boolean              read Get_thread_inherit_context       write Set_thread_inherit_context;
+      property tracemalloc               : boolean              read Get_tracemalloc                  write Set_tracemalloc;
+      property use_environment           : boolean              read Get_use_environment              write Set_use_environment;
+      property use_frozen_modules        : boolean              read Get_use_frozen_modules           write Set_use_frozen_modules;
+      property use_hash_seed             : boolean              read Get_use_hash_seed                write Set_use_hash_seed;
+      property user_site_directory       : boolean              read Get_user_site_directory          write Set_user_site_directory;
+      property verbose                   : TPyVerboseMode       read Get_verbose                      write Set_verbose;
+      property warn_default_encoding     : boolean              read Get_warn_default_encoding        write Set_warn_default_encoding;
+      property warnoptions               : TStringDynArray      read Get_warnoptions                  write Set_warnoptions;
+      property write_bytecode            : boolean              read Get_write_bytecode               write Set_write_bytecode;
+      property xoptions                  : TStringDynArray      read Get_xoptions                     write Set_xoptions;
   end;
 
   TPyConfig314 = class(TPyConfigBase)
@@ -2515,7 +2586,10 @@ end;
 
 procedure TPyConfig314.Set_use_hash_seed(aValue: boolean);
 begin
-  FConfig.use_hash_seed := ord(aValue);
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
 end;
 
 procedure TPyConfig314.Set_user_site_directory(aValue: boolean);
@@ -3187,7 +3261,10 @@ end;
 
 procedure TPyConfig313.Set_use_hash_seed(aValue: boolean);
 begin
-  FConfig.use_hash_seed := ord(aValue);
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
 end;
 
 procedure TPyConfig313.Set_user_site_directory(aValue: boolean);
@@ -3839,7 +3916,10 @@ end;
 
 procedure TPyConfig312.Set_use_hash_seed(aValue: boolean);
 begin
-  FConfig.use_hash_seed := ord(aValue);
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
 end;
 
 procedure TPyConfig312.Set_user_site_directory(aValue: boolean);
@@ -4471,7 +4551,10 @@ end;
 
 procedure TPyConfig311.Set_use_hash_seed(aValue: boolean);
 begin
-  FConfig.use_hash_seed := ord(aValue);
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
 end;
 
 procedure TPyConfig311.Set_user_site_directory(aValue: boolean);
@@ -5053,7 +5136,10 @@ end;
 
 procedure TPyConfig310.Set_use_hash_seed(aValue: boolean);
 begin
-  FConfig.use_hash_seed := ord(aValue);
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
 end;
 
 procedure TPyConfig310.Set_user_site_directory(aValue: boolean);

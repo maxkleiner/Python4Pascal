@@ -121,6 +121,9 @@ type
       /// <para>Default: True in Python config and False in isolated
       /// config.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#using-on-envvars">See the article about environment variables.</see></para>
+      /// </remarks>
       property use_environment             : boolean            read Get_use_environment                      write Set_use_environment;
       /// <summary>
       /// <para>Set the LC_CTYPE locale to the user preferred locale.</para>
@@ -165,6 +168,10 @@ type
       /// <para>Default: True in Python config and False in isolated
       /// config.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8">See the article about PYTHONUTF8.</see></para>
+      /// <para><see href="https://docs.python.org/3/library/os.html#utf8-mode">See the article about Python UTF-8 Mode.</see></para>
+      /// </remarks>
       property utf8_mode                   : integer            read Get_utf8_mode                            write Set_utf8_mode;
       /// <summary>
       /// <para>If True, enable the Python Development Mode.</para>

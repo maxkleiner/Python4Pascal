@@ -273,7 +273,7 @@ type
       /// <para>If config has an exit code, format the exit code as an error
       /// message.</para>
       /// <para>The error message remains valid until another PyInitConfig
-      /// function is called with config. The caller doesn’t have to free the
+      /// function is called with config. The caller doesn't have to free the
       /// error message.</para>
       /// </summary>
       property Error                      : string                 read GetError;
@@ -298,10 +298,10 @@ type
       property allocator                  : PyMemAllocatorName     read Get_allocator                      write Set_allocator;
       /// <summary>
       /// <para>Set sys.argv command line arguments based on argv. These
-      /// parameters are similar to those passed to the program’s main()
+      /// parameters are similar to those passed to the program's main()
       /// function with the difference that the first entry should refer to the
       /// script file to be executed rather than the executable hosting the
-      /// Python interpreter. If there isn’t a script that will be run, the
+      /// Python interpreter. If there isn't a script that will be run, the
       /// first entry in argv can be an empty string.</para>
       /// <para>Set parse_argv to True to parse argv the same way the regular
       /// Python parses Python command line arguments and then to strip Python
@@ -582,13 +582,13 @@ type
       /// <summary>
       /// <para>If True, enable isolated mode:</para>
       /// <code>
-      /// - Set safe_path to True: don’t prepend a potentially unsafe path to
+      /// - Set safe_path to True: don't prepend a potentially unsafe path to
       ///   sys.path at Python startup, such as the current directory, the
-      ///   script’s directory or an empty string.
+      ///   script's directory or an empty string.
       /// - Set use_environment to False: ignore PYTHON environment variables.
-      /// - Set user_site_directory to False: don’t add the user site directory
+      /// - Set user_site_directory to False: don't add the user site directory
       ///   to sys.path.
-      /// - Python REPL doesn’t import readline nor enable default readline
+      /// - Python REPL doesn't import readline nor enable default readline
       ///   configuration on interactive prompts.
       /// </code>
       /// <para>Set to True by the -I command line option.</para>
@@ -715,120 +715,361 @@ type
       /// </remarks>
       property pathconfig_warnings        : boolean                read Get_pathconfig_warnings            write Set_pathconfig_warnings;
       /// <summary>
-      /// <para></para>
+      /// <para>Enable the Linux perf profiler support?</para>
+      /// <para>If equals to 1, enable support for the Linux perf
+      /// profiler.</para>
+      /// <para>If equals to 2, enable support for the Linux perf profiler with
+      /// DWARF JIT support.</para>
+      /// <para>Set to 1 by -X perf command-line option and the
+      /// PYTHONPERFSUPPORT environment variable.</para>
+      /// <para>Set to 2 by the -X perf_jit command-line option and the
+      /// PYTHON_PERF_JIT_SUPPORT environment variable.</para>
+      /// <para>Default: -1.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/howto/perf_profiling.html#perf-profiling">See Python support for the Linux perf profiler for more information.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPERFSUPPORT">See the article about PYTHONPERFSUPPORT.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHON_PERF_JIT_SUPPORT">See the article about PYTHON_PERF_JIT_SUPPORT.</see></para>
+      /// </remarks>
       property perf_profiling             : int64                  read Get_perf_profiling                 write Set_perf_profiling;
       /// <summary>
-      /// <para></para>
+      /// <para>Platform library directory name: sys.platlibdir.</para>
+      /// <para>Name of the platform-specific library directory. It is used to
+      /// build the path of standard library and the paths of installed
+      /// extension modules.</para>
+      /// <para>Set by the PYTHONPLATLIBDIR environment variable.</para>
+      /// <para>Default: value of the PLATLIBDIR macro which is set by the
+      /// configure --with-platlibdir option (default: "lib", or "DLLs" on
+      /// Windows).</para>
+      /// <para>Added in version 3.9.</para>
+      /// <para>Changed in version 3.11: This macro is now used on Windows to
+      /// locate the standard library extension modules, typically under DLLs.
+      /// However, for compatibility, note that this value is ignored for any
+      /// non-standard layouts, including in-tree builds and virtual
+      /// environments.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration input.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPLATLIBDIR">See the article about PYTHONPLATLIBDIR.</see></para>
+      /// </remarks>
       property platlibdir                 : string                 read Get_platlibdir                     write Set_platlibdir;
       /// <summary>
-      /// <para></para>
+      /// <para>The site-specific directory prefix where the platform
+      /// independent Python files are installed: sys.prefix.</para>
+      /// <para>A string giving the site-specific directory prefix where the
+      /// platform independent Python files are installed; on Unix, the default
+      /// is /usr/local. This can be set at build time with the --prefix
+      /// argument to the configure script.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration output.</see></para>
+      /// <para>See also PyConfig.base_prefix.</para>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.prefix">See the article about sys.prefix.</see></para>
+      /// <para><see href="https://docs.python.org/3/library/sysconfig.html#installation-paths">See Installation paths for derived paths.</see></para>
+      /// </remarks>
       property prefix                     : string                 read Get_prefix                         write Set_prefix;
       /// <summary>
-      /// <para></para>
+      /// <para>Program name used to initialize executable and in early error
+      /// messages during Python initialization.</para>
+      /// <para>On macOS, use PYTHONEXECUTABLE environment variable if
+      /// set.</para>
+      /// <para>If the WITH_NEXT_FRAMEWORK macro is defined, use
+      /// __PYVENV_LAUNCHER__ environment variable if set.</para>
+      /// <para>Use argv[0] of argv if available and non-empty.</para>
+      /// <para>Otherwise, use "python" on Windows, or "python3" on other
+      /// platforms.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration input.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONEXECUTABLE">See the article about PYTHONEXECUTABLE.</see></para>
+      /// <para>See PyConfig.executable and PyConfig.base_executable.</para>
+      /// </remarks>
       property program_name               : string                 read Get_program_name                   write Set_program_name;
       /// <summary>
-      /// <para></para>
+      /// <para>Directory where cached .pyc files are written:
+      /// sys.pycache_prefix.</para>
+      /// <para>Set by the -X pycache_prefix=PATH command line option and the
+      /// PYTHONPYCACHEPREFIX environment variable. The command-line option
+      /// takes precedence.</para>
+      /// <para>If empty, sys.pycache_prefix is set to None.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPYCACHEPREFIX">See the article about PYTHONPYCACHEPREFIX.</see></para>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.pycache_prefix">See the article about sys.pycache_prefix.</see></para>
+      /// </remarks>
       property pycache_prefix             : string                 read Get_pycache_prefix                 write Set_pycache_prefix;
       /// <summary>
-      /// <para></para>
+      /// <para>Quiet mode. If True, don't display the copyright and version at
+      /// Python startup in interactive mode.</para>
+      /// <para>Enabled by the -q command line option.</para>
+      /// <para>Default: False.</para>
       /// </summary>
       property quiet                      : boolean                read Get_quiet                          write Set_quiet;
       /// <summary>
-      /// <para></para>
+      /// <para>Value of the -c command line option.</para>
+      /// <para>Used by Py_RunMain().</para>
+      /// <para>Default: Empty.</para>
       /// </summary>
       property run_command                : string                 read Get_run_command                    write Set_run_command;
       /// <summary>
-      /// <para></para>
+      /// <para>Filename passed on the command line: trailing command line
+      /// argument without -c or -m. It is used by the Py_RunMain()
+      /// function.</para>
+      /// <para>For example, it is set to script.py by the python3 script.py
+      /// arg command line.</para>
+      /// <para>Default: Empty.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyConfig.skip_source_first_line">See also the PyConfig.skip_source_first_line option.</see></para>
+      /// </remarks>
       property run_filename               : string                 read Get_run_filename                   write Set_run_filename;
       /// <summary>
-      /// <para></para>
+      /// <para>Value of the -m command line option.</para>
+      /// <para>Used by Py_RunMain().</para>
+      /// <para>Default: Empty.</para>
       /// </summary>
       property run_module                 : string                 read Get_run_module                     write Set_run_module;
       /// <summary>
-      /// <para></para>
+      /// <para>package.module path to module that should be imported before
+      /// site.py is run.</para>
+      /// <para>Set by the -X presite=package.module command-line option and the
+      /// PYTHON_PRESITE environment variable. The command-line option takes
+      /// precedence.</para>
+      /// <para>Needs a debug build of Python (the Py_DEBUG macro must be
+      /// defined).</para>
+      /// <para>Default: Empty.</para>
       /// </summary>
       property run_presite                : string                 read Get_run_presite                    write Set_run_presite;
       /// <summary>
-      /// <para></para>
+      /// <para>If equals to zero, Py_RunMain() prepends a potentially unsafe
+      /// path to sys.path at startup:</para>
+      /// <code>
+      /// - If argv[0] is equal to "-m" (python -m module), prepend the current
+      ///   working directory.
+      /// - If running a script (python script.py), prepend the script's
+      ///   directory. If it's a symbolic link, resolve symbolic links.
+      /// - Otherwise (python -c code and python), prepend an empty string,
+      ///   which means the current working directory.
+      /// </code>
+      /// <para>Set to 1 by the -P command line option and the PYTHONSAFEPATH
+      /// environment variable.</para>
+      /// <para>Default: False in Python config, True in isolated config.</para>
+      /// <para>Added in version 3.11.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONSAFEPATH">See the article about PYTHONSAFEPATH.</see></para>
+      /// </remarks>
       property safe_path                  : boolean                read Get_safe_path                      write Set_safe_path;
       /// <summary>
-      /// <para></para>
+      /// <para>Show total reference count at exit (excluding immortal
+      /// objects)?</para>
+      /// <para>Set to True by -X showrefcount command line option.</para>
+      /// <para>Needs a debug build of Python (the Py_REF_DEBUG macro must be
+      /// defined).</para>
+      /// <para>Default: False.</para>
       /// </summary>
       property show_ref_count             : boolean                read Get_show_ref_count                 write Set_show_ref_count;
       /// <summary>
-      /// <para></para>
+      /// <para>Import the site module at startup?</para>
+      /// <para>If equal to zero, disable the import of the module site and the
+      /// site-dependent manipulations of sys.path that it entails.</para>
+      /// <para>Also disable these manipulations if the site module is
+      /// explicitly imported later (call site.main() if you want them to be
+      /// triggered).</para>
+      /// <para>Set to False by the -S command line option.</para>
+      /// <para>sys.flags.no_site is set to the inverted value of
+      /// site_import.</para>
+      /// <para>Default: True.</para>
       /// </summary>
       property site_import                : boolean                read Get_site_import                    write Set_site_import;
       /// <summary>
-      /// <para></para>
+      /// <para>If non-zero, skip the first line of the PyConfig.run_filename
+      /// source.</para>
+      /// <para>It allows the usage of non-Unix forms of #!cmd. This is intended
+      /// for a DOS specific hack only.</para>
+      /// <para>Set to True by the -x command line option.</para>
+      /// <para>Default: False.</para>
       /// </summary>
       property skip_source_first_line     : boolean                read Get_skip_source_first_line         write Set_skip_source_first_line;
       /// <summary>
-      /// <para></para>
+      /// <para>Encoding of sys.stdin, sys.stdout and sys.stderr (but sys.stderr
+      /// always uses "backslashreplace" error handler).</para>
+      /// <para>Use the PYTHONIOENCODING environment variable if it is
+      /// non-empty.</para>
+      /// <para>Default encoding:</para>
+      /// <code>
+      /// - "UTF-8" if PyPreConfig.utf8_mode is non-zero.
+      /// - Otherwise, use the locale encoding.
+      /// </code>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONIOENCODING">See the article about PYTHONIOENCODING.</see></para>
+      /// <para>See also PyConfig.legacy_windows_stdio.</para>
+      /// </remarks>
       property stdio_encoding             : string                 read Get_stdio_encoding                 write Set_stdio_encoding;
       /// <summary>
-      /// <para></para>
+      /// <para>Encoding errors of sys.stdin, sys.stdout and sys.stderr (but
+      /// sys.stderr always uses "backslashreplace" error handler).</para>
+      /// <para>Use the PYTHONIOENCODING environment variable if it is
+      /// non-empty.</para>
+      /// <para>Default error handler:</para>
+      /// <code>
+      /// - On Windows: use "surrogateescape".
+      /// - "surrogateescape" if PyPreConfig.utf8_mode is non-zero, or if the
+      ///   LC_CTYPE locale is "C" or "POSIX".
+      /// - "strict" otherwise.
+      /// </code>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONIOENCODING">See the article about PYTHONIOENCODING.</see></para>
+      /// <para>See also PyConfig.legacy_windows_stdio.</para>
+      /// </remarks>
       property stdio_errors               : string                 read Get_stdio_errors                   write Set_stdio_errors;
       /// <summary>
-      /// <para></para>
+      /// <para>Directory of the Python standard library.</para>
+      /// <para>Default: Empty.</para>
+      /// <para>Added in version 3.11.</para>
       /// </summary>
       property stdlib_dir                 : string                 read Get_stdlib_dir                     write Set_stdlib_dir;
       /// <summary>
-      /// <para></para>
+      /// <para>Enable tracemalloc?</para>
+      /// <para>If True, call tracemalloc.start() at startup.</para>
+      /// <para>Set by -X tracemalloc=N command line option and by the
+      /// PYTHONTRACEMALLOC environment variable.</para>
+      /// <para>Default: True in Python mode, False in isolated mode.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONTRACEMALLOC">See the article about PYTHONTRACEMALLOC.</see></para>
+      /// <para>See also PyConfig.legacy_windows_stdio.</para>
+      /// </remarks>
       property tracemalloc                : int64                  read Get_tracemalloc                    write Set_tracemalloc;
       /// <summary>
-      /// <para></para>
+      /// <para>Use environment variables?</para>
+      /// <para>If False, ignore the environment variables.</para>
+      /// <para>Set to False by the -E environment variable.</para>
+      /// <para>Default: True in Python config and False in isolated
+      /// config.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#using-on-envvars">See the article about environment variables.</see></para>
+      /// </remarks>
       property use_environment            : boolean                read Get_use_environment                write Set_use_environment;
       /// <summary>
-      /// <para></para>
+      /// <para>If True, use frozen modules.</para>
+      /// <para>Set by the PYTHON_FROZEN_MODULES environment variable.</para>
+      /// <para>Default: True in a release build, or False in a debug
+      /// build.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHON_FROZEN_MODULES">See the article about PYTHON_FROZEN_MODULES.</see></para>
+      /// </remarks>
       property use_frozen_modules         : boolean                read Get_use_frozen_modules             write Set_use_frozen_modules;
       /// <summary>
-      /// <para></para>
+      /// <para>Randomized hash function seed.</para>
+      /// <para>If use_hash_seed is zero, a seed is chosen randomly at Python
+      /// startup, and hash_seed is ignored.</para>
+      /// <para>Set by the PYTHONHASHSEED environment variable.</para>
+      /// <para>Default use_hash_seed value: True in Python mode, False in
+      /// isolated mode.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHASHSEED">See the article about PYTHONHASHSEED.</see></para>
+      /// </remarks>
       property use_hash_seed              : boolean                read Get_use_hash_seed                  write Set_use_hash_seed;
       /// <summary>
-      /// <para></para>
+      /// <para>If non-zero, stdout and stderr will be redirected to the system
+      /// log.</para>
+      /// <para>Only available on macOS 10.12 and later, and on iOS.</para>
+      /// <para>Default: False (don't use the system log) on macOS; True on iOS
+      /// (use the system log).</para>
+      /// <para>Added in version 3.14.</para>
       /// </summary>
       property use_system_logger          : boolean                read Get_use_system_logger              write Set_use_system_logger;
       /// <summary>
-      /// <para></para>
+      /// <para>If True, add the user site directory to sys.path.</para>
+      /// <para>Set to False by the -s and -I command line options.</para>
+      /// <para>Set to False by the PYTHONNOUSERSITE environment variable.</para>
+      /// <para>Default: True in Python mode, False in isolated mode.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONNOUSERSITE">See the article about PYTHONNOUSERSITE.</see></para>
+      /// </remarks>
       property user_site_directory        : boolean                read Get_user_site_directory            write Set_user_site_directory;
       /// <summary>
-      /// <para></para>
+      /// <para>If True, enable the Python UTF-8 Mode.</para>
+      /// <para>Set to False or True by the -X utf8 command line option and the
+      /// PYTHONUTF8 environment variable.</para>
+      /// <para>Also set to True if the LC_CTYPE locale is C or POSIX.</para>
+      /// <para>Default: True in Python config and False in isolated
+      /// config.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8">See the article about PYTHONUTF8.</see></para>
+      /// <para><see href="https://docs.python.org/3/library/os.html#utf8-mode">See the article about Python UTF-8 Mode.</see></para>
+      /// </remarks>
       property utf8_mode                  : integer                read Get_utf8_mode                      write Set_utf8_mode;
       /// <summary>
-      /// <para></para>
+      /// <para>Verbose mode. If pvmModule or pvmFull, print a message each time
+      /// a module is imported, showing the place (filename or built-in module)
+      /// from which it is loaded.</para>
+      /// <para>If pvmFull, print a message for each file
+      /// that is checked for when searching for a module. Also provides
+      /// information on module cleanup at exit.</para>
+      /// <para>Enabled by the -v command line option.</para>
+      /// <para>Set by the PYTHONVERBOSE environment variable value.</para>
+      /// <para>Default: pvmDisabled.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONVERBOSE">See the article about PYTHONVERBOSE.</see></para>
+      /// </remarks>
       property verbose                    : TPyVerboseMode         read Get_verbose                        write Set_verbose;
       /// <summary>
-      /// <para></para>
+      /// <para>If non-zero, emit a EncodingWarning warning when
+      /// io.TextIOWrapper uses its default encoding.</para>
+      /// <para>Default: False.</para>
+      /// <para>Added in version 3.10.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/io.html#io-encoding-warning">See Opt-in EncodingWarning for details.</see></para>
+      /// </remarks>
       property warn_default_encoding      : boolean                read Get_warn_default_encoding          write Set_warn_default_encoding;
       /// <summary>
-      /// <para></para>
+      /// <para>Options of the warnings module to build warnings filters, lowest
+      /// to highest priority: sys.warnoptions.</para>
+      /// <para>The warnings module adds sys.warnoptions in the reverse order:
+      /// the last PyConfig.warnoptions item becomes the first item of
+      /// warnings.filters which is checked first (highest priority).</para>
+      /// <para>The -W command line options adds its value to warnoptions, it
+      /// can be used multiple times.</para>
+      /// <para>The PYTHONWARNINGS environment variable can also be used to add
+      /// warning options. Multiple options can be specified, separated by
+      /// commas (,).</para>
+      /// <para>Default: empty list.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONWARNINGS">See the article about PYTHONWARNINGS.</see></para>
+      /// </remarks>
       property warnoptions                : TStringDynArray        read Get_warnoptions                    write Set_warnoptions;
       /// <summary>
-      /// <para></para>
+      /// <para>If False, Python won't try to write .pyc files on the import of
+      /// source modules.</para>
+      /// <para>Set to False by the -B command line option and the
+      /// PYTHONDONTWRITEBYTECODE environment variable.</para>
+      /// <para>sys.dont_write_bytecode is initialized to the inverted value of
+      /// write_bytecode.</para>
+      /// <para>Default: True.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE">See the article about PYTHONDONTWRITEBYTECODE.</see></para>
+      /// </remarks>
       property write_bytecode             : boolean                read Get_write_bytecode                 write Set_write_bytecode;
       /// <summary>
-      /// <para></para>
+      /// <para>Values of the -X command line options: sys._xoptions.</para>
+      /// <para>Default: empty list.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys._xoptions">See the article about sys._xoptions.</see></para>
+      /// </remarks>
       property xoptions                   : TStringDynArray        read Get_xoptions                       write Set_xoptions;
   end;
 
@@ -2094,7 +2335,10 @@ end;
 
 procedure TPyInitConfig.Set_use_hash_seed(aValue: boolean);
 begin
-  SetInt(PYINITCONFIGOPTION_USE_HASH_SEED, ord(aValue));
+  if aValue then
+    SetInt(PYINITCONFIGOPTION_USE_HASH_SEED, -1)
+   else
+    SetInt(PYINITCONFIGOPTION_USE_HASH_SEED, 0);
 end;
 
 procedure TPyInitConfig.Set_use_system_logger(aValue: boolean);
