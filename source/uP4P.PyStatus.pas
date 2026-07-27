@@ -17,6 +17,15 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>Class to store an initialization function status: success, error or
+  /// exit.</para>
+  /// <para>For an error, it can store the function name which created the
+  /// error.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyStatus">See the article about PyStatus.</see></para>
+  /// </remarks>
   TPyStatus = class(TInterfacedObject, IPyStatus)
     protected
       FStatus : PyStatus;
@@ -31,19 +40,59 @@ type
 
     public
       constructor Create(const aStatus: PyStatus);
+      /// <summary>
+      /// <para>Call exit(exitcode) if status is an exit. Print the error
+      /// message and exit with a non-zero exit code if status is an error.
+      /// Must only be called if PyStatus_Exception(status) is non-zero.</para>
+      /// </summary>
       procedure   ExitStatusException;
 
+      /// <summary>
+      /// Create a success status.
+      /// </summary>
       class function Ok: IPyStatus;
+      /// <summary>
+      /// <para>Initialization error with a message.</para>
+      /// <para>err_msg must not be nil.</para>
+      /// </summary>
       class function Error(const err_msg: string): IPyStatus;
+      /// <summary>
+      /// Memory allocation failure (out of memory).
+      /// </summary>
       class function NoMemory: IPyStatus;
+      /// <summary>
+      /// Exit Python with the specified exit code.
+      /// </summary>
       class function Exit_(exitcode: integer): IPyStatus;
 
+      /// <summary>
+      /// Name of the function which created an error, can be nil.
+      /// </summary>
       property func        : string    read GetFunc;
+      /// <summary>
+      /// Error message.
+      /// </summary>
       property ErrMsg      : string    read GetErrMsg;
+      /// <summary>
+      /// Exit code. Argument passed to exit().
+      /// </summary>
       property ExitCode    : integer   read GetExitCode;
+      /// <summary>
+      /// <para>Is the status an error or an exit? If true, the exception must
+      /// be handled; by calling Py_ExitStatusException() for example.</para>
+      /// </summary>
       property IsException : boolean   read GetIsException;
+      /// <summary>
+      /// <para>Is the result an error?</para>
+      /// </summary>
       property IsError     : boolean   read GetIsError;
+      /// <summary>
+      /// <para>Is the result an exit?</para>
+      /// </summary>
       property IsExit      : boolean   read GetIsExit;
+      /// <summary>
+      /// <para>Pointer to the PyStatus record.</para>
+      /// </summary>
       property Status      : PyStatus  read GetStatus;
   end;
 

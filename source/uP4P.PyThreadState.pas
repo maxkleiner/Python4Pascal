@@ -17,6 +17,12 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// This class represents the state of a single thread.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="hhttps://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
+  /// </remarks>
   TPyThreadState = class(TInterfacedObject, IPyThreadState)
     protected
       FPyThreadState : PPyThreadState;
@@ -36,6 +42,11 @@ type
       procedure EnterTracing;
       procedure LeaveTracing;
       function  Swap: IPyThreadState; overload;
+      /// <summary>
+      /// <para>Return the next thread state object after tstate from the list
+      /// of all such objects belonging to the same PyInterpreterState
+      /// object.</para>
+      /// </summary>
       function  Next: IPyThreadState;
 
     public

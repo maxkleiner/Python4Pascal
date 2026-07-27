@@ -17,6 +17,21 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>This class represents the state shared by a number of
+  /// cooperating threads. Threads belonging to the same interpreter share
+  /// their module administration and a few other internal items. There are no
+  /// public members in this structure.</para>
+  /// <para>Threads belonging to different interpreters initially share nothing,
+  /// except process state like available memory, open file descriptors and
+  /// such. The global interpreter lock is also shared by all threads,
+  /// regardless of to which interpreter they belong.</para>
+  /// <para>Changed in version 3.12: PEP 684 introduced the possibility of a
+  /// per-interpreter GIL. See Py_NewInterpreterFromConfig().</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
+  /// </remarks>
   TPyInterpreterState = class(TInterfacedObject, IPyInterpreterState)
     protected
       FPyInterpreterState : PPyInterpreterState;
@@ -28,24 +43,94 @@ type
 
       procedure SetState(aState: PPyInterpreterState);
 
+      /// <summary>
+      /// <para>Reset all information in an interpreter state object. There must
+      /// be an attached thread state for the interpreter.</para>
+      /// <para>Raises an auditing event cpython.PyInterpreterState_Clear with
+      /// no arguments.</para>
+      /// </summary>
       procedure Clear;
+      /// <summary>
+      /// <para>Destroy an interpreter state object. There should not be an
+      /// attached thread state for the target interpreter. The interpreter
+      /// state must have been reset with a previous call to Clear().</para>
+      /// </summary>
       procedure Delete;
+      /// <summary>
+      /// <para>Return the next interpreter state object after interp from the
+      /// list of all such objects.</para>
+      /// </summary>
       function  Next: IPyInterpreterState;
+      /// <summary>
+      /// <para>Return the pointer to the first PyThreadState object in the list
+      /// of threads associated with the interpreter interp.</para>
+      /// </summary>
       function  ThreadHead: IPyThreadState;
 
     public
       constructor Create(aState: PPyInterpreterState);
 
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Wrap(aState: PPyInterpreterState): IPyInterpreterState; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      /// <summary>
+      /// <para>Create a new interpreter state object. An attached thread state
+      /// is not needed, but may optionally exist if it is necessary to
+      /// serialize calls to this function.</para>
+      /// <para>Raises an auditing event cpython.PyInterpreterState_New with no
+      /// arguments.</para>
+      /// </summary>
       class function New: IPyInterpreterState;
+      /// <summary>
+      /// <para>Get the current interpreter.</para>
+      /// <para>Issue a fatal error if there is no attached thread state. It
+      /// cannot return nil.</para>
+      /// <para>Added in version 3.9.</para>
+      /// </summary>
       class function Get: IPyInterpreterState;
+      /// <summary>
+      /// <para>Return the main interpreter state object.</para>
+      /// </summary>
       class function Main: IPyInterpreterState;
+      /// <summary>
+      /// <para>Return the interpreter state object at the head of the list of
+      /// all such objects.</para>
+      /// </summary>
       class function Head: IPyInterpreterState;
+      /// <summary>
+      /// <para>Helper function to check if an IPyInterpreterState instance is
+      /// fully initialized.</para>
+      /// </summary>
       class function IsInitialized(const aPyInterpreterState: IPyInterpreterState): boolean;
 
+      /// <summary>
+      /// <para>Returns true if the class is fully initialized.</para>
+      /// </summary>
       property Initialized  : boolean               read GetInitialized;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property State        : PPyInterpreterState   read GetState         write SetState;
+      /// <summary>
+      /// <para>Return the interpreter’s unique ID. If there was any error in
+      /// doing so then -1 is returned and an error is set.</para>
+      /// <para>The caller must have an attached thread state.</para>
+      /// <para>Added in version 3.7.</para>
+      /// </summary>
       property ID           : int64                 read GetID;
+      /// <summary>
+      /// <para>Return a dictionary in which interpreter-specific data may be
+      /// stored. If this function returns NULL then no exception has been
+      /// raised and the caller should assume no interpreter-specific dict is
+      /// available.</para>
+      /// <para>This is not a replacement for PyModule_GetState(), which
+      /// extensions should use to store interpreter-specific state
+      /// information.</para>
+      /// <para>The returned dictionary is borrowed from the interpreter and is
+      /// valid until interpreter shutdown.</para>
+      /// <para>Added in version 3.8.</para>
+      /// </summary>
       property Dict         : IPyObject             read GetDict;
   end;
 

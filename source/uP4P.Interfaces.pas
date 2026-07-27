@@ -188,6 +188,14 @@ type
     property IsBytes       : boolean         read GetIsBytes;
   end;
 
+  /// <summary>
+  /// Export of a Python int object. There are two cases: If digits is nil,
+  /// only use the value member. If digits is not nil, use negative, ndigits
+  /// and digits members.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongExport">See the article about PyLongExport.</see></para>
+  /// </remarks>
   IPyLongExport = interface
     ['{D4A8D7E9-4297-4363-A17B-A60F892E6DB8}']
     function GetLongExport: PPyLongExport;
@@ -196,39 +204,185 @@ type
     function GetNdigits: Py_ssize_t;
     function GetDigits: Pointer;
 
+    /// <summary>
+    /// Pointer to the PyLongExport record.
+    /// </summary>
     property LongExport : PPyLongExport read GetLongExport;
+    /// <summary>
+    /// The native integer value of the exported int object. Only valid if digits is nil.
+    /// </summary>
     property Value      : int64         read GetValue;
+    /// <summary>
+    /// 1 if the number is negative, 0 otherwise. Only valid if digits is not nil.
+    /// </summary>
     property Negative   : byte          read GetNegative;
+    /// <summary>
+    ///  Number of digits in digits array. Only valid if digits is not nil.
+    /// </summary>
     property Ndigits    : Py_ssize_t    read GetNdigits;
+    /// <summary>
+    /// Read-only array of unsigned digits. Can be nil.
+    /// </summary>
     property Digits     : Pointer       read GetDigits;
   end;
 
+  /// <summary>
+  /// A Python int writer instance.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/long.html#c.PyLongWriter">See the article about PyLongWriter.</see></para>
+  /// </remarks>
   IPyLongWriter = interface
     ['{AB597432-E9BD-44E7-A8ED-9ECAAC43C811}']
     function GetInitialized: boolean;
+    /// <summary>
+    /// <para>Finish a PyLongWriter created by PyLongWriter_Create().</para>
+    /// <para>On success, return a Python int object. On error, set an
+    /// exception and return nil.</para>
+    /// <para>The function takes care of normalizing the digits and converts
+    /// the object to a compact integer if needed.</para>
+    /// <para>The writer instance and the digits array are invalid after the
+    /// call.</para>
+    /// </summary>
     function Finish: IPyObject;
+    /// <summary>
+    /// <para>Discard a PyLongWriter created by PyLongWriter_Create().</para>
+    /// <para>If writer is nil, no operation is performed.</para>
+    /// <para>The writer instance and the digits array are invalid after the
+    /// call.</para>
+    /// </summary>
     procedure Discard;
+    /// <summary>
+    /// Returns true if this class is fully initialized.
+    /// </summary>
     property Initialized : boolean read GetInitialized;
   end;
 
+  /// <summary>
+  /// A Unicode writer instance.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/unicode.html#c.PyUnicodeWriter">See the article about PyUnicodeWriter.</see></para>
+  /// </remarks>
   IPyUnicodeWriter = interface
     ['{BA3439F6-DE14-4561-AAE8-A638BCBEA809}']
+    function  GetWriter: PPyUnicodeWriter;
     function  GetInitialized: boolean;
+    /// <summary>
+    /// <para>Discard the internal Unicode buffer and destroy the writer
+    /// instance.</para>
+    /// <para>The writer instance is invalid after this call.</para>
+    /// </summary>
     procedure Discard;
+    /// <summary>
+    /// <para>Return the final Python str object and destroy the writer
+    /// instance.</para>
+    /// <para>Set an exception and return nil on error.</para>
+    /// <para>The writer instance is invalid after this call.</para>
+    /// </summary>
     function  Finish: IPyObject;
+    /// <summary>
+    /// <para>Write the single Unicode character ch into writer.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// </summary>
     function  WriteChar(ch: Py_UCS4): boolean;
+    /// <summary>
+    /// <para>Decode the string str from UTF-8 in strict mode and write the
+    /// output into writer.</para>
+    /// <para>size_ is the string length in bytes. If size is equal to -1,
+    /// call strlen(str) to get the string length.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// <para>See also DecodeUTF8Stateful().</para>
+    /// </summary>
     function  WriteUTF8(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+    /// <summary>
+    /// <para>Write the ASCII string str into writer.</para>
+    /// <para>size_ is the string length in bytes. If size_ is equal to -1,
+    /// call strlen(str) to get the string length.</para>
+    /// <para>str must only contain ASCII characters. The behavior is
+    /// undefined if str contains non-ASCII characters.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// </summary>
     function  WriteASCII(const str: PAnsiChar; size_: Py_ssize_t): boolean;
+    /// <summary>
+    /// <para>Write the wide string str into writer.</para>
+    /// <para>size_ is a number of wide characters. If size_ is equal to -1,
+    /// call wcslen(str) to get the string length.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// </summary>
     function  WriteWideChar(const str: PWCharT; size_: Py_ssize_t): boolean;
+    /// <summary>
+    /// <para>Writer the UCS4 string str into writer.</para>
+    /// <para>size_ is a number of UCS4 characters.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// </summary>
     function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
+    /// <summary>
+    /// <para>Call PyObject_Str() on obj and write the output into
+    /// writer.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// <para>To write a str subclass which overrides the __str__() method,
+    /// PyUnicode_FromObject() can be used to get the original string.</para>
+    /// </summary>
     function  WriteStr(const obj: IPyObject): boolean;
+    /// <summary>
+    /// <para>Call PyObject_Repr() on obj and write the output into
+    /// writer.</para>
+    /// <para>If obj is nil, write the string "<NULL>" into writer.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// <para>Changed in version 3.14.4: Added support for nil.</para>
+    /// </summary>
     function  WriteRepr(const obj: IPyObject): boolean;
+    /// <summary>
+    /// <para>Write the substring str[start:end] into writer.</para>
+    /// <para>str must be Python str object. start must be greater than or
+    /// equal to 0, and less than or equal to end. end must be less than or
+    /// equal to str length.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// </summary>
     function  WriteSubstring(str: PPyObject; start, end_: Py_ssize_t): boolean;
+    /// <summary>
+    /// <para>Decode the string str from UTF-8 with errors error handler and
+    /// write the output into writer.</para>
+    /// <para>size_ is the string length in bytes. If size_ is equal to -1,
+    /// call strlen(str) to get the string length.</para>
+    /// <para>errors is an error handler name, such as "replace". If errors is
+    /// nil, use the strict error handler.</para>
+    /// <para>If consumed is not nil, set *consumed to the number of decoded
+    /// bytes on success. If consumed is NULL, treat trailing incomplete UTF-8
+    /// byte sequences as an error.</para>
+    /// <para>On success, return True. On error, set an exception, leave the
+    /// writer unchanged, and return False.</para>
+    /// <para>See also WriteUTF8().</para>
+    /// </summary>
     function  DecodeUTF8Stateful(const string_: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): boolean;
-
+    /// <summary>
+    /// Returns true if this class is fully initialized.
+    /// </summary>
     property Initialized  : boolean           read GetInitialized;
+    /// <summary>
+    /// Pointer to the PyUnicodeWriter record.
+    /// </summary>
+    property Writer       : PPyUnicodeWriter  read GetWriter;
   end;
 
+  /// <summary>
+  /// <para>Interface to store an initialization function status: success, error
+  /// or exit.</para>
+  /// <para>For an error, it can store the function name which created the
+  /// error.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyStatus">See the article about PyStatus.</see></para>
+  /// </remarks>
   IPyStatus = interface
     ['{C7582FA6-89AA-49E9-84E3-B100E272D872}']
     function  GetStatus: PyStatus;
@@ -238,23 +392,52 @@ type
     function  GetIsException: boolean;
     function  GetIsError: boolean;
     function  GetIsExit: boolean;
+    /// <summary>
+    /// <para>Call exit(exitcode) if status is an exit. Print the error
+    /// message and exit with a non-zero exit code if status is an error.
+    /// Must only be called if PyStatus_Exception(status) is non-zero.</para>
+    /// </summary>
     procedure ExitStatusException;
 
+    /// <summary>
+    /// Name of the function which created an error, can be nil.
+    /// </summary>
     property func        : string    read GetFunc;
+    /// <summary>
+    /// Error message.
+    /// </summary>
     property ErrMsg      : string    read GetErrMsg;
+    /// <summary>
+    /// Exit code. Argument passed to exit().
+    /// </summary>
     property ExitCode    : integer   read GetExitCode;
+    /// <summary>
+    /// <para>Is the status an error or an exit? If true, the exception must
+    /// be handled; by calling Py_ExitStatusException() for example.</para>
+    /// </summary>
     property IsException : boolean   read GetIsException;
+    /// <summary>
+    /// <para>Is the result an error?</para>
+    /// </summary>
     property IsError     : boolean   read GetIsError;
+    /// <summary>
+    /// <para>Is the result an exit?</para>
+    /// </summary>
     property IsExit      : boolean   read GetIsExit;
+    /// <summary>
+    /// <para>Pointer to the PyStatus record.</para>
+    /// </summary>
     property Status      : PyStatus  read GetStatus;
   end;
 
   /// <summary>
-  /// Interface containing most parameters to configure a sub-interpreter. Its values are used only in TPy.NewInterpreterFromConfig() and never modified by the runtime.
+  /// <para>Interface containing most parameters to configure a
+  /// sub-interpreter.</para>
+  /// <para>Its values are used only in TPy.NewInterpreterFromConfig() and never
+  /// modified by the runtime.</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
-  /// <para>Implemented by TPyInterpreterConfig</para>
   /// </remarks>
   IPyInterpreterConfig = interface
     ['{E188197E-2A57-4466-9018-DF0534D96BD1}']
@@ -274,49 +457,65 @@ type
     procedure Set_check_multi_interp_extensions(aValue: boolean);
     procedure Set_gil(aValue: TPyInterpreterCfgGIL);
     /// <summary>
-    /// Initial configuration values defined by the _PyInterpreterConfig_INIT macro.
+    /// <para>Initial configuration values defined by the
+    /// _PyInterpreterConfig_INIT macro.</para>
     /// </summary>
     procedure Init;
     /// <summary>
-    /// Pointer to PyInterpreterConfig.
+    /// <para>Pointer to PyInterpreterConfig.</para>
     /// </summary>
     property Config                        : Pointer                  read GetConfig;
     /// <summary>
-    /// If this is False then the sub-interpreter will use its own “object” allocator state.
-    /// Otherwise it will use (share) the main interpreter's.
-    /// If this is False then check_multi_interp_extensions must be True. If this is True then gil must not be gilOwn.
+    /// <para>If this is False then the sub-interpreter will use its own
+    /// “object” allocator state.</para>
+    /// <para>Otherwise it will use (share) the main interpreter's.</para>
+    /// <para>If this is False then check_multi_interp_extensions must be True.
+    /// If this is True then gil must not be gilOwn.</para>
     /// </summary>
     property use_main_obmalloc             : boolean                  read Get_use_main_obmalloc              write Set_use_main_obmalloc;
     /// <summary>
-    /// If this is False then the runtime will not support forking the process in any thread where the sub-interpreter is currently active.
-    /// Otherwise fork is unrestricted.
-    /// Note that the subprocess module still works when fork is disallowed.
+    /// <para>If this is False then the runtime will not support forking the
+    /// process in any thread where the sub-interpreter is currently
+    /// active.</para>
+    /// <para>Otherwise fork is unrestricted.</para>
+    /// <para>Note that the subprocess module still works when fork is
+    /// disallowed.</para>
     /// </summary>
     property allow_fork                    : boolean                  read Get_allow_fork                     write Set_allow_fork;
     /// <summary>
-    /// If this is False then the runtime will not support replacing the current process via exec (e.g. os.execv()) in any thread where the sub-interpreter is currently active.
-    /// Otherwise exec is unrestricted.
-    /// Note that the subprocess module still works when exec is disallowed.
+    /// <para>If this is False then the runtime will not support replacing the
+    /// current process via exec (e.g. os.execv()) in any thread where the
+    /// sub-interpreter is currently active.</para>
+    /// <para>Otherwise exec is unrestricted.</para>
+    /// <para>Note that the subprocess module still works when exec is
+    /// disallowed.</para>
     /// </summary>
     property allow_exec                    : boolean                  read Get_allow_exec                     write Set_allow_exec;
     /// <summary>
-    /// If this is False then the sub-interpreter's threading module won't create threads.
-    /// Otherwise threads are allowed.
+    /// <para>If this is False then the sub-interpreter's threading module won't
+    /// create threads.</para>
+    /// <para>Otherwise threads are allowed.</para>
     /// </summary>
     property allow_threads                 : boolean                  read Get_allow_threads                  write Set_allow_threads;
     /// <summary>
-    /// If this is False then the sub-interpreter's threading module won't create daemon threads.
-    /// Otherwise daemon threads are allowed (as long as allow_threads is non-zero).
+    /// <para>If this is False then the sub-interpreter's threading module won't
+    /// create daemon threads.</para>
+    /// <para>Otherwise daemon threads are allowed (as long as allow_threads is
+    /// non-zero).</para>
     /// </summary>
     property allow_daemon_threads          : boolean                  read Get_allow_daemon_threads           write Set_allow_daemon_threads;
     /// <summary>
-    /// If this is False then all extension modules may be imported, including legacy (single-phase init) modules, in any thread where the sub-interpreter is currently active.
-    /// Otherwise only multi-phase init extension modules (see PEP 489) may be imported. (Also see Py_mod_multiple_interpreters.)
-    /// This must be True if use_main_obmalloc is True.
+    /// <para>If this is False then all extension modules may be imported,
+    /// including legacy (single-phase init) modules, in any thread where the
+    /// sub-interpreter is currently active.</para>
+    /// <para>Otherwise only multi-phase init extension modules (see PEP 489)
+    /// may be imported. (Also see Py_mod_multiple_interpreters.)</para>
+    /// <para>This must be True if use_main_obmalloc is True.</para>
     /// </summary>
     property check_multi_interp_extensions : boolean                  read Get_check_multi_interp_extensions  write Set_check_multi_interp_extensions;
     /// <summary>
-    /// <para>This determines the operation of the GIL for the sub-interpreter. It may be one of the following:</para>
+    /// <para>This determines the operation of the GIL for the sub-interpreter.
+    /// It may be one of the following:</para>
     /// <code>
     /// - gilDefault: Use the default selection (gilShared).
     /// - gilShared: Use (share) the main interpreter's GIL.
@@ -327,6 +526,21 @@ type
     property gil                           : TPyInterpreterCfgGIL     read Get_gil                            write Set_gil;
   end;
 
+  /// <summary>
+  /// <para>This interface represents the state shared by a number of
+  /// cooperating threads. Threads belonging to the same interpreter share
+  /// their module administration and a few other internal items. There are no
+  /// public members in this structure.</para>
+  /// <para>Threads belonging to different interpreters initially share nothing,
+  /// except process state like available memory, open file descriptors and
+  /// such. The global interpreter lock is also shared by all threads,
+  /// regardless of to which interpreter they belong.</para>
+  /// <para>Changed in version 3.12: PEP 684 introduced the possibility of a
+  /// per-interpreter GIL. See Py_NewInterpreterFromConfig().</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
+  /// </remarks>
   IPyInterpreterState = interface
     ['{26733A3F-135C-4889-BBA0-84B78764EA94}']
     function  GetInitialized: boolean;
@@ -334,17 +548,66 @@ type
     function  GetID: int64;
     function  GetDict: IPyObject;
     procedure SetState(aState: PPyInterpreterState);
+    /// <summary>
+    /// <para>Reset all information in an interpreter state object. There must
+    /// be an attached thread state for the interpreter.</para>
+    /// <para>Raises an auditing event cpython.PyInterpreterState_Clear with
+    /// no arguments.</para>
+    /// </summary>
     procedure Clear;
+    /// <summary>
+    /// <para>Destroy an interpreter state object. There should not be an
+    /// attached thread state for the target interpreter. The interpreter
+    /// state must have been reset with a previous call to Clear().</para>
+    /// </summary>
     procedure Delete;
+    /// <summary>
+    /// <para>Return the next interpreter state object after interp from the
+    /// list of all such objects.</para>
+    /// </summary>
     function  Next: IPyInterpreterState;
+    /// <summary>
+    /// <para>Return the pointer to the first PyThreadState object in the list
+    /// of threads associated with the interpreter interp.</para>
+    /// </summary>
     function  ThreadHead: IPyThreadState;
 
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
     property Initialized  : boolean               read GetInitialized;
+    /// <summary>
+    /// <para></para>
+    /// </summary>
     property State        : PPyInterpreterState   read GetState         write SetState;
+    /// <summary>
+    /// <para>Return the interpreter’s unique ID. If there was any error in
+    /// doing so then -1 is returned and an error is set.</para>
+    /// <para>The caller must have an attached thread state.</para>
+    /// <para>Added in version 3.7.</para>
+    /// </summary>
     property ID           : int64                 read GetID;
+    /// <summary>
+    /// <para>Return a dictionary in which interpreter-specific data may be
+    /// stored. If this function returns NULL then no exception has been
+    /// raised and the caller should assume no interpreter-specific dict is
+    /// available.</para>
+    /// <para>This is not a replacement for PyModule_GetState(), which
+    /// extensions should use to store interpreter-specific state
+    /// information.</para>
+    /// <para>The returned dictionary is borrowed from the interpreter and is
+    /// valid until interpreter shutdown.</para>
+    /// <para>Added in version 3.8.</para>
+    /// </summary>
     property Dict         : IPyObject             read GetDict;
   end;
 
+  /// <summary>
+  /// This interface represents the state of a single thread.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="hhttps://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
+  /// </remarks>
   IPyThreadState = interface
     ['{0C8502D8-C0EF-4F8E-A7B3-42AB050BA121}']
     function  GetInitialized: boolean;

@@ -1345,8 +1345,8 @@ type
   end;
 
   /// <summary>
-  /// Export of a Python int object. There are two cases: If digits is NULL,
-  /// only use the value member. If digits is not NULL, use negative, ndigits
+  /// Export of a Python int object. There are two cases: If digits is nil,
+  /// only use the value member. If digits is not nil, use negative, ndigits
   /// and digits members.
   /// </summary>
   /// <remarks>
@@ -1354,19 +1354,19 @@ type
   /// </remarks>
   PyLongExport = record
     /// <summary>
-    /// The native integer value of the exported int object. Only valid if digits is NULL.
+    /// The native integer value of the exported int object. Only valid if digits is nil.
     /// </summary>
     value     : int64;
     /// <summary>
-    /// 1 if the number is negative, 0 otherwise. Only valid if digits is not NULL.
+    /// 1 if the number is negative, 0 otherwise. Only valid if digits is not nil.
     /// </summary>
     negative  : byte;
     /// <summary>
-    /// Number of digits in digits array. Only valid if digits is not NULL.
+    /// Number of digits in digits array. Only valid if digits is not nil.
     /// </summary>
     ndigits   : Py_ssize_t;
     /// <summary>
-    /// Read-only array of unsigned digits. Can be NULL.
+    /// Read-only array of unsigned digits. Can be nil.
     /// </summary>
     digits    : Pointer;
     /// <summary>

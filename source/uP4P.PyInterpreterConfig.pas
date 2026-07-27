@@ -18,7 +18,10 @@ uses
 
 type
   /// <summary>
-  /// Class containing most parameters to configure a sub-interpreter. Its values are used only in TPy.NewInterpreterFromConfig() and never modified by the runtime.
+  /// <para>Interface containing most parameters to configure a
+  /// sub-interpreter.</para>
+  /// <para>Its values are used only in TPy.NewInterpreterFromConfig() and never
+  /// modified by the runtime.</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
@@ -47,49 +50,65 @@ type
     public
       constructor Create;
       /// <summary>
-      /// Initial configuration values defined by the _PyInterpreterConfig_INIT macro.
+      /// <para>Initial configuration values defined by the
+      /// _PyInterpreterConfig_INIT macro.</para>
       /// </summary>
       procedure Init;
       /// <summary>
-      /// Pointer to PyInterpreterConfig.
+      /// <para>Pointer to PyInterpreterConfig.</para>
       /// </summary>
       property Config                        : Pointer                  read GetConfig;
       /// <summary>
-      /// If this is False then the sub-interpreter will use its own “object” allocator state.
-      /// Otherwise it will use (share) the main interpreter's.
-      /// If this is False then check_multi_interp_extensions must be True. If this is True then gil must not be gilOwn.
+      /// <para>If this is False then the sub-interpreter will use its own
+      /// “object” allocator state.</para>
+      /// <para>Otherwise it will use (share) the main interpreter's.</para>
+      /// <para>If this is False then check_multi_interp_extensions must be True.
+      /// If this is True then gil must not be gilOwn.</para>
       /// </summary>
       property use_main_obmalloc             : boolean                  read Get_use_main_obmalloc              write Set_use_main_obmalloc;
       /// <summary>
-      /// If this is False then the runtime will not support forking the process in any thread where the sub-interpreter is currently active.
-      /// Otherwise fork is unrestricted.
-      /// Note that the subprocess module still works when fork is disallowed.
+      /// <para>If this is False then the runtime will not support forking the
+      /// process in any thread where the sub-interpreter is currently
+      /// active.</para>
+      /// <para>Otherwise fork is unrestricted.</para>
+      /// <para>Note that the subprocess module still works when fork is
+      /// disallowed.</para>
       /// </summary>
       property allow_fork                    : boolean                  read Get_allow_fork                     write Set_allow_fork;
       /// <summary>
-      /// If this is False then the runtime will not support replacing the current process via exec (e.g. os.execv()) in any thread where the sub-interpreter is currently active.
-      /// Otherwise exec is unrestricted.
-      /// Note that the subprocess module still works when exec is disallowed.
+      /// <para>If this is False then the runtime will not support replacing the
+      /// current process via exec (e.g. os.execv()) in any thread where the
+      /// sub-interpreter is currently active.</para>
+      /// <para>Otherwise exec is unrestricted.</para>
+      /// <para>Note that the subprocess module still works when exec is
+      /// disallowed.</para>
       /// </summary>
       property allow_exec                    : boolean                  read Get_allow_exec                     write Set_allow_exec;
       /// <summary>
-      /// If this is False then the sub-interpreter's threading module won’t create threads.
-      /// Otherwise threads are allowed.
+      /// <para>If this is False then the sub-interpreter's threading module won't
+      /// create threads.</para>
+      /// <para>Otherwise threads are allowed.</para>
       /// </summary>
       property allow_threads                 : boolean                  read Get_allow_threads                  write Set_allow_threads;
       /// <summary>
-      /// If this is False then the sub-interpreter's threading module won’t create daemon threads.
-      /// Otherwise daemon threads are allowed (as long as allow_threads is non-zero).
+      /// <para>If this is False then the sub-interpreter's threading module won't
+      /// create daemon threads.</para>
+      /// <para>Otherwise daemon threads are allowed (as long as allow_threads is
+      /// non-zero).</para>
       /// </summary>
       property allow_daemon_threads          : boolean                  read Get_allow_daemon_threads           write Set_allow_daemon_threads;
       /// <summary>
-      /// If this is False then all extension modules may be imported, including legacy (single-phase init) modules, in any thread where the sub-interpreter is currently active.
-      /// Otherwise only multi-phase init extension modules (see PEP 489) may be imported. (Also see Py_mod_multiple_interpreters.)
-      /// This must be True if use_main_obmalloc is True.
+      /// <para>If this is False then all extension modules may be imported,
+      /// including legacy (single-phase init) modules, in any thread where the
+      /// sub-interpreter is currently active.</para>
+      /// <para>Otherwise only multi-phase init extension modules (see PEP 489)
+      /// may be imported. (Also see Py_mod_multiple_interpreters.)</para>
+      /// <para>This must be True if use_main_obmalloc is True.</para>
       /// </summary>
       property check_multi_interp_extensions : boolean                  read Get_check_multi_interp_extensions  write Set_check_multi_interp_extensions;
       /// <summary>
-      /// <para>This determines the operation of the GIL for the sub-interpreter. It may be one of the following:</para>
+      /// <para>This determines the operation of the GIL for the sub-interpreter.
+      /// It may be one of the following:</para>
       /// <code>
       /// - gilDefault: Use the default selection (gilShared).
       /// - gilShared: Use (share) the main interpreter's GIL.

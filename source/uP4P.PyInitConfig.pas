@@ -253,7 +253,8 @@ type
       destructor  Destroy; override;
 
       /// <summary>
-      /// <para>Create a new initialization configuration using Isolated Configuration default values.</para>
+      /// <para>Create a new initialization configuration using Isolated
+      /// Configuration default values.</para>
       /// <para>It must be freed by PyInitConfig_Free().</para>
       /// <para>Return nil on memory allocation failure.</para>
       /// </summary>
@@ -264,7 +265,8 @@ type
       /// </summary>
       class procedure FreeInitConfig(var config_: PPyInitConfig);
       /// <summary>
-      /// Helper function to check if an IPyInitConfig instance is fully initialized.
+      /// Helper function to check if an IPyInitConfig instance is fully
+      /// initialized.
       /// </summary>
       class function  IsInitialized(const config_: IPyInitConfig): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
