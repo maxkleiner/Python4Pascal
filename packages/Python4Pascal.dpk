@@ -158,6 +158,7 @@ contains
   uP4P.PyDateTimeModule in '..\source\uP4P.PyDateTimeModule.pas',
   uP4P.ImportedPyModule in '..\source\uP4P.ImportedPyModule.pas',
   uP4P.PyTimeStruct in '..\source\uP4P.PyTimeStruct.pas',
-  uP4P.PyDateTime in '..\source\uP4P.PyDateTime.pas';
+  uP4P.PyDateTime in '..\source\uP4P.PyDateTime.pas',
+  uP4P.PyGenericAlias in '..\source\uP4P.PyGenericAlias.pas';
 
 end.

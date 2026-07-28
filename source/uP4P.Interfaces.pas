@@ -34,9 +34,22 @@ type
   IPyThreadLock = interface;
   IPyThreadTSS = interface;
 
-  // custom IPyObject array type
+  /// <summary>
+  /// Custom IPyObject open array type.
+  /// </summary>
   IPyObjectArray = array of IPyObject;
 
+  /// <summary>
+  /// <para>All object types are extensions of this type. This is a type which
+  /// contains the information Python needs to treat a pointer to an object as
+  /// an object. In a normal "release" build, it contains only the object's
+  /// reference count and a pointer to the corresponding type object. Nothing
+  /// is actually declared to be a PyObject, but every pointer to a Python
+  /// object can be cast to a PyObject*.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
+  /// </remarks>
   IPyObject = interface
     ['{22FC7944-7F88-4638-ADD4-F029A356D81B}']
     function  GetPyObject: PPyObject;
@@ -123,7 +136,7 @@ type
     function  Not_: integer;
     procedure ClearWeakRefs;
     function  Dir: IPyObject;
-    function  ReprEnter: boolean;
+    function  ReprEnter: integer;
     procedure ReprLeave;
     function  Print(file_: PFILE; flags: integer): boolean;
     procedure CallFinalizer;
@@ -2092,6 +2105,13 @@ type
     property allocator                   : PyMemAllocatorName read Get_allocator                            write Set_allocator;
   end;
 
+  /// <summary>
+  /// Record containing most parameters to configure Python.
+  /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pyconfig">See the article about PyConfig.</see></para>
+  /// </remarks>
   IPyConfig = interface
     ['{1BA914A8-FFF7-4F49-AA5A-95808CCF8AFB}']
     function GetConfig: Pointer;
@@ -3109,33 +3129,115 @@ type
     property xoptions                  : TStringDynArray      read Get_xoptions                     write Set_xoptions;
   end;
 
+  /// <summary>
+  /// <para>A mutual exclusion lock. The PyMutex should be initialized to zero
+  /// to represent the unlocked state. For example:</para>
+  /// <code>PyMutex mutex = {0};</code>
+  /// <para>Instances of PyMutex should not be copied or moved. Both the
+  /// contents and address of a PyMutex are meaningful, and it must remain at a
+  /// fixed, writable location in memory.</para>
+  /// <para>Note A PyMutex currently occupies one byte, but the size should be
+  /// considered unstable. The size may change in future Python releases without
+  /// a deprecation period.</para>
+  /// <para>Added in version 3.13.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#c.PyMutex">See the article about PyMutex.</see></para>
+  /// </remarks>
   IPyMutex = interface
     ['{FFDECD81-E7B4-4952-97C2-49DA65AB65A6}']
     function GetPyMutex: Pointer;
+    /// <summary>
+    /// <para>Lock mutex. If another thread has already locked it, the
+    /// calling thread will block until the mutex is unlocked. While blocked,
+    /// the thread will temporarily detach the thread state if one
+    /// exists.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure Lock;
+    /// <summary>
+    /// <para>Unlock mutex. The mutex must be locked — otherwise, the
+    /// function will issue a fatal error.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure Unlock;
+    /// <summary>
+    /// <para>Returns True if the mutex is currently locked, False
+    /// otherwise.</para>
+    /// <para>Note This function is intended for use in assertions and
+    /// debugging only and should not be used to make concurrency control
+    /// decisions, as the lock state may change immediately after the
+    /// check.</para>
+    /// </summary>
     function  IsLocked: boolean;
-
+    /// <summary>
+    /// <para>Pointer to the PyMutex record.</para>
+    /// </summary>
     property PyMutex : Pointer read GetPyMutex;
   end;
 
+  /// <summary>
+  /// <para>A critical section protected by one mutex. You *CANNOT* use nested
+  /// critical sections to lock more than one object at once.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the Python critical section API article.</see></para>
+  /// </remarks>
   IPyCriticalSection = interface
     ['{5BDB099E-F443-4A46-BDCD-DBF10BC34811}']
     function GetPyCriticalSection: Pointer;
+    /// <summary>
+    /// <para>Acquires the per-object lock for the object op and begins a
+    /// critical section.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure Begin_(const op: IPyObject);
+    /// <summary>
+    /// <para>Locks the mutex m and begins a critical section.</para>
+    /// <para>Added in version 3.14.</para>
+    /// </summary>
     procedure BeginMutex(const m: IPyMutex);
+    /// <summary>
+    /// <para>Ends the critical section and releases the per-object lock.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure End_;
-
+    /// <summary>
+    /// <para>Pointer to the PyCriticalSection record.</para>
+    /// </summary>
     property PyCriticalSection : Pointer read GetPyCriticalSection;
   end;
 
+  /// <summary>
+  /// <para>A critical section protected by two mutexes. You *CANNOT* use nested
+  /// critical sections to lock more than one object at once.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the Python critical section API article.</see></para>
+  /// </remarks>
   IPyCriticalSection2 = interface
     ['{9CE03389-AA78-438B-A1FD-08E9CB14A4DB}']
     function GetPyCriticalSection: Pointer;
+    /// <summary>
+    /// <para>Acquires the per-object locks for the objects a and b and begins
+    /// a critical section. The locks are acquired in a consistent order
+    /// (lowest address first) to avoid lock ordering deadlocks.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure Begin_(const a, b: IPyObject);
+    /// <summary>
+    /// <para>Locks the mutexes m1 and m2 and begins a critical section.</para>
+    /// <para>Added in version 3.14.</para>
+    /// </summary>
     procedure BeginMutex(const m1, m2: IPyMutex);
+    /// <summary>
+    /// <para>Ends the critical section and releases the per-object locks.</para>
+    /// <para>Added in version 3.13.</para>
+    /// </summary>
     procedure End_;
-
+    /// <summary>
+    /// <para>Pointer to the PyCriticalSection2 record.</para>
+    /// </summary>
     property PyCriticalSection : Pointer read GetPyCriticalSection;
   end;
 

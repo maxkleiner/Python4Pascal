@@ -17,13 +17,24 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
 type
+  /// <summary>
+  /// <para>All object types are extensions of this type. This is a type which
+  /// contains the information Python needs to treat a pointer to an object as
+  /// an object. In a normal "release" build, it contains only the object's
+  /// reference count and a pointer to the corresponding type object. Nothing
+  /// is actually declared to be a PyObject, but every pointer to a Python
+  /// object can be cast to a PyObject*.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
+  /// </remarks>
   TPyObject = class(TInterfacedObject, IPyObject)
     protected
       FPyObject    : PPyObject;
       FObjRefOwner : boolean;
 
-      function  GetPyObject: PPyObject; virtual;
-      function  GetInitialized: boolean; virtual;
+      function  GetPyObject: PPyObject;
+      function  GetInitialized: boolean;
       function  GetRefCnt: integer;
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
@@ -50,7 +61,7 @@ type
       function  GetIsBytes: boolean;
 
       procedure SetObjRefOwner(aValue: boolean);
-      procedure SetPyObject(aValue: PPyObject); virtual;
+      procedure SetPyObject(aValue: PPyObject);
 
     public
       constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
@@ -65,7 +76,13 @@ type
       function  XNewRef: Pointer;
       function  SameAs(const other: IPyObject): boolean; overload;
       function  SameAs(const other: PPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Return True if the PyObject is a type of aPyTypeObject.</para>
+      /// </summary>
       function  IsType(aPyTypeObject: PPyTypeObject): boolean;
+      /// <summary>
+      /// <para>Return True if the PyObject is a type or subtype of aPyTypeObject.</para>
+      /// </summary>
       function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
       procedure InitPyObject;
       function  IsInstance(const cls: IPyObject): integer;
@@ -112,7 +129,7 @@ type
       function  Not_: integer;
       procedure ClearWeakRefs;
       function  Dir: IPyObject;
-      function  ReprEnter: boolean;
+      function  ReprEnter: integer;
       procedure ReprLeave;
       function  Print(file_: PFILE; flags: integer): boolean;
       procedure CallFinalizer;
@@ -171,7 +188,13 @@ type
       class function  FromVarRec(const aVarRec: TVarRec): IPyObject;
       class function  FromVarData(const aVarData: TVarData): IPyObject;
 
+      /// <summary>
+      /// Returns true if this class is fully initialized.
+      /// </summary>
       property Initialized   : boolean         read GetInitialized;
+      /// <summary>
+      /// <para>Pointer to the PyObject record.</para>
+      /// </summary>
       property PyObject      : PPyObject       read GetPyObject        write SetPyObject;
       property ObjRefOwner   : boolean         read GetObjRefOwner     write SetObjRefOwner;
       property RefCnt        : integer         read GetRefCnt;
@@ -899,7 +922,7 @@ begin
     Result := nil;
 end;
 
-function TPyObject.ReprEnter: boolean;
+function TPyObject.ReprEnter: integer;
 begin
   Result := TPy.ReprEnter(self);
 end;

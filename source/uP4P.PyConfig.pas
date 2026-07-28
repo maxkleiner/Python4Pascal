@@ -35,6 +35,13 @@ type
       class function Set_(const name_: string; const value: IPyObject): boolean;
   end;
 
+  /// <summary>
+  /// Record containing most parameters to configure Python.
+  /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pyconfig">See the article about PyConfig.</see></para>
+  /// </remarks>
   TPyConfigBase = class(TInterfacedObject, IPyConfig)
     protected
       function GetConfig: Pointer; virtual;

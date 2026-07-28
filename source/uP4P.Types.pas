@@ -648,11 +648,16 @@ type
   /// </remarks>
   _object = record
     /// <summary>
-    /// Reference count.
+    /// <para>The object’s reference count, as returned by Py_REFCNT. Do not use
+    /// this field directly; instead use functions and macros such as Py_REFCNT,
+    /// Py_INCREF() and Py_DecRef().</para>
+    /// <para>The field type may be different from Py_ssize_t, depending on
+    /// build configuration and platform.</para>
     /// </summary>
     ob_refcnt : Py_ssize_t;
     /// <summary>
-    /// Object type.
+    /// <para>The object’s type. Do not use this field directly; use Py_TYPE
+    /// and Py_SET_TYPE() instead.</para>
     /// </summary>
     ob_type   : PPyTypeObject;
   end;

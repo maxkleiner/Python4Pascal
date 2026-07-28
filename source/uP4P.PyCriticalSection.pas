@@ -17,6 +17,13 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>A critical section protected by one mutex. You *CANNOT* use nested
+  /// critical sections to lock more than one object at once.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the Python critical section API article.</see></para>
+  /// </remarks>
   TPyCriticalSection = class(TInterfacedObject, IPyCriticalSection)
     protected
       FPyCriticalSection : PyCriticalSection;
@@ -25,15 +32,40 @@ type
 
     public
       constructor Create; overload;
+      /// <summary>
+      /// <para>Overloaded constructor using an existing PyCriticalSection.</para>
+      /// </summary>
       constructor Create(const aCriticalSection: PyCriticalSection); overload;
 
+      /// <summary>
+      /// <para>Acquires the per-object lock for the object op and begins a
+      /// critical section.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       procedure Begin_(const op: IPyObject);
+      /// <summary>
+      /// <para>Locks the mutex m and begins a critical section.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       procedure BeginMutex(const m: IPyMutex);
+      /// <summary>
+      /// <para>Ends the critical section and releases the per-object lock.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       procedure End_;
-
+      /// <summary>
+      /// <para>Pointer to the PyCriticalSection record.</para>
+      /// </summary>
       property PyCriticalSection : Pointer read GetPyCriticalSection;
   end;
 
+  /// <summary>
+  /// <para>A critical section protected by two mutexes. You *CANNOT* use nested
+  /// critical sections to lock more than one object at once.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">See the Python critical section API article.</see></para>
+  /// </remarks>
   TPyCriticalSection2 = class(TInterfacedObject, IPyCriticalSection2)
     protected
       FPyCriticalSection : PyCriticalSection2;
@@ -42,12 +74,31 @@ type
 
     public
       constructor Create; overload;
+      /// <summary>
+      /// <para>Overloaded constructor using an existing PyCriticalSection2.</para>
+      /// </summary>
       constructor Create(const aCriticalSection: PyCriticalSection2); overload;
 
+      /// <summary>
+      /// <para>Acquires the per-object locks for the objects a and b and begins
+      /// a critical section. The locks are acquired in a consistent order
+      /// (lowest address first) to avoid lock ordering deadlocks.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       procedure Begin_(const a, b: IPyObject);
+      /// <summary>
+      /// <para>Locks the mutexes m1 and m2 and begins a critical section.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       procedure BeginMutex(const m1, m2: IPyMutex);
+      /// <summary>
+      /// <para>Ends the critical section and releases the per-object locks.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       procedure End_;
-
+      /// <summary>
+      /// <para>Pointer to the PyCriticalSection2 record.</para>
+      /// </summary>
       property PyCriticalSection : Pointer read GetPyCriticalSection;
   end;
 

@@ -523,6 +523,10 @@
         <Filename Value="..\source\uP4P.ImportedPyModule.pas"/>
         <UnitName Value="uP4P.ImportedPyModule"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyGenericAlias.pas"/>
+        <UnitName Value="uP4P.PyGenericAlias"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
