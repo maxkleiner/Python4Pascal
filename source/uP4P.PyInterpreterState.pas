@@ -109,7 +109,7 @@ type
       /// </summary>
       property Initialized  : boolean               read GetInitialized;
       /// <summary>
-      /// <para></para>
+      /// <para>Pointer to PyInterpreterState</para>
       /// </summary>
       property State        : PPyInterpreterState   read GetState         write SetState;
       /// <summary>

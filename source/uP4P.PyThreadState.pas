@@ -21,7 +21,7 @@ type
   /// This class represents the state of a single thread.
   /// </summary>
   /// <remarks>
-  /// <para><see href="hhttps://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
   /// </remarks>
   TPyThreadState = class(TInterfacedObject, IPyThreadState)
     protected
@@ -36,11 +36,61 @@ type
 
       procedure SetThreadState(aThreadState: PPyThreadState);
 
+      /// <summary>
+      /// <para>Reset all information in a thread state object. tstate must be
+      /// attached</para>
+      /// <para>Changed in version 3.9: This function now calls the
+      /// PyThreadState.on_delete callback. Previously, that happened in
+      /// TPyThreadState.Delete().</para>
+      /// <para>Changed in version 3.13: The PyThreadState.on_delete callback
+      /// was removed.</para>
+      /// </summary>
       procedure Clear;
+      /// <summary>
+      /// <para>Destroy a thread state object. tstate should not be attached to
+      /// any thread. tstate must have been reset with a previous call to
+      /// TPyThreadState.Clear().</para>
+      /// </summary>
       procedure Delete;
+      /// <summary>
+      /// <para>Asynchronously raise an exception in a thread. The id argument
+      /// is the thread id of the target thread; exc is the exception object to
+      /// be raised. This function does not steal any references to exc.
+      /// To prevent naive misuse, you must write your own C extension to call
+      /// this. Must be called with an attached thread state. Returns the number
+      /// of thread states modified; this is normally one, but will be zero if
+      /// the thread id isn’t found. If exc is nil, the pending exception
+      /// (if any) for the thread is cleared. This raises no exceptions.</para>
+      /// <para>Changed in version 3.7: The type of the id parameter changed
+      /// from long to unsigned long.</para>
+      /// </summary>
       function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
+      /// <summary>
+      /// <para>Suspend tracing and profiling in the Python thread state
+      /// tstate.</para>
+      /// <para>Resume them using the TPyThreadState.LeaveTracing()
+      /// function.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       procedure EnterTracing;
+      /// <summary>
+      /// <para>Resume tracing and profiling in the Python thread state tstate
+      /// suspended by the TPyThreadState.EnterTracing() function.</para>
+      /// <para>See also TPyEval.SetTrace() and TPyEval.SetProfile()
+      /// functions.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       procedure LeaveTracing;
+      /// <summary>
+      /// <para>Set the attached thread state to tstate, and return the thread
+      /// state that was attached prior to calling.</para>
+      /// <para>This function is safe to call without an attached thread state;
+      /// it will simply return nil indicating that there was no prior thread
+      /// state.</para>
+      /// <para>See also TPyEval.ReleaseThread()</para>
+      /// <para>Note Similar to TPyGILState.Ensure(), this function will hang
+      /// the thread if the runtime is finalizing.</para>
+      /// </summary>
       function  Swap: IPyThreadState; overload;
       /// <summary>
       /// <para>Return the next thread state object after tstate from the list
@@ -51,21 +101,95 @@ type
 
     public
       constructor Create(aPyThreadState: PPyThreadState);
+      /// <summary>
+      /// <para>Return the PyThreadState pointer that was handled by this
+      /// TPyThreadState instance.</para>
+      /// <para>This function must be used when passing a PyThreadState pointer
+      /// to a function that steals the PyThreadState reference.</para>
+      /// </summary>
       function    UnWrap: Pointer;
-
+      /// <summary>
+      /// <para>Wrap an existing PyThreadState pointer in a TPyThreadState
+      /// instance.</para>
+      /// </summary>
       class function  Wrap(aPyThreadState: PPyThreadState): IPyThreadState; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      /// <summary>
+      /// <para>Create a new thread state object belonging to the given
+      /// interpreter object. An attached thread state is not needed.</para>
+      /// </summary>
       class function  New(const state: IPyInterpreterState): IPyThreadState;
+      /// <summary>
+      /// <para>Return the attached thread state. If the thread has no attached
+      /// thread state, (such as when inside of Py_BEGIN_ALLOW_THREADS block),
+      /// then this issues a fatal error (so that the caller needn’t check for
+      /// nil).</para>
+      /// <para>See also TPyThreadState.GetUnchecked().</para>
+      /// </summary>
       class function  Get: IPyThreadState;
+      /// <summary>
+      /// <para>Similar to TPyThreadState.Get(), but don’t kill the process with
+      /// a fatal error if it is nil. The caller is responsible to check if the
+      /// result is nil.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       class function  GetUnchecked: IPyThreadState;
+      /// <summary>
+      /// <para>Set the attached thread state to tstate, and return the thread
+      /// state that was attached prior to calling.</para>
+      /// <para>This function is safe to call without an attached thread state;
+      /// it will simply return nil indicating that there was no prior thread
+      /// state.</para>
+      /// <para>See also TPyEval.ReleaseThread()</para>
+      /// <para>Note Similar to TPyGILState.Ensure(), this function will hang
+      /// the thread if the runtime is finalizing.</para>
+      /// </summary>
       class function  Swap(const tstate: IPyThreadState): IPyThreadState; overload;
+      /// <summary>
+      /// Helper function to check if an IPyThreadState instance is fully
+      /// initialized.
+      /// </summary>
       class function  IsInitialized(const tstate: IPyThreadState): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure DeleteCurrent;
 
+      /// <summary>
+      /// <para>Returns true if the class is fully initialized.</para>
+      /// </summary>
       property Initialized  : boolean               read GetInitialized;
+      /// <summary>
+      /// <para>Pointer to PyThreadState</para>
+      /// </summary>
       property ThreadState  : PPyThreadState        read GetThreadState         write SetThreadState;
+      /// <summary>
+      /// <para>Get the unique thread state identifier of the Python thread
+      /// state tstate.</para>
+      /// <para>tstate must not be nil, and must be attached.</para>
+      /// <para>Added in version 3.9.</para>
+      /// </summary>
       property ID           : int64                 read GetID;
+      /// <summary>
+      /// <para>Return a dictionary in which extensions can store
+      /// thread-specific state information. Each extension should use a unique
+      /// key to use to store state in the dictionary. It is okay to call this
+      /// function when no thread state is attached. If this function returns
+      /// nil, no exception has been raised and the caller should assume no
+      /// thread state is attached.</para>
+      /// </summary>
       property Dict         : IPyObject             read GetDict;
+      /// <summary>
+      /// <para>Get the interpreter of the Python thread state tstate.</para>
+      /// <para>tstate must not be nil, and must be attached.</para>
+      /// </summary>
       property Interpreter  : IPyInterpreterState   read GetInterpreter;
+      /// <para>Get the current frame of the Python thread state tstate.</para>
+      /// <para>Return a strong reference. Return nil if no frame is currently
+      /// executing.</para>
+      /// <para>See also TPyEval.GetFrame().</para>
+      /// <para>tstate must not be nil, and must be attached.</para>
+      /// <para>Added in version 3.9.</para>
+      /// </summary>
       property Frame        : IPyObject             read GetFrame;
   end;
 

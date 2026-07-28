@@ -577,7 +577,7 @@ type
     /// </summary>
     property Initialized  : boolean               read GetInitialized;
     /// <summary>
-    /// <para></para>
+    /// <para>Pointer to PyInterpreterState</para>
     /// </summary>
     property State        : PPyInterpreterState   read GetState         write SetState;
     /// <summary>
@@ -606,7 +606,7 @@ type
   /// This interface represents the state of a single thread.
   /// </summary>
   /// <remarks>
-  /// <para><see href="hhttps://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyThreadState">See the article about PyThreadState.</see></para>
   /// </remarks>
   IPyThreadState = interface
     ['{0C8502D8-C0EF-4F8E-A7B3-42AB050BA121}']
@@ -617,49 +617,226 @@ type
     function  GetInterpreter: IPyInterpreterState;
     function  GetFrame: IPyObject;
     procedure SetThreadState(aThreadState: PPyThreadState);
+    /// <summary>
+    /// <para>Reset all information in a thread state object. tstate must be
+    /// attached</para>
+    /// <para>Changed in version 3.9: This function now calls the
+    /// PyThreadState.on_delete callback. Previously, that happened in
+    /// TPyThreadState.Delete().</para>
+    /// <para>Changed in version 3.13: The PyThreadState.on_delete callback
+    /// was removed.</para>
+    /// </summary>
     procedure Clear;
+    /// <summary>
+    /// <para>Destroy a thread state object. tstate should not be attached to
+    /// any thread. tstate must have been reset with a previous call to
+    /// TPyThreadState.Clear().</para>
+    /// </summary>
     procedure Delete;
+    /// <summary>
+    /// <para>Asynchronously raise an exception in a thread. The id argument
+    /// is the thread id of the target thread; exc is the exception object to
+    /// be raised. This function does not steal any references to exc.
+    /// To prevent naive misuse, you must write your own C extension to call
+    /// this. Must be called with an attached thread state. Returns the number
+    /// of thread states modified; this is normally one, but will be zero if
+    /// the thread id isn’t found. If exc is nil, the pending exception
+    /// (if any) for the thread is cleared. This raises no exceptions.</para>
+    /// <para>Changed in version 3.7: The type of the id parameter changed
+    /// from long to unsigned long.</para>
+    /// </summary>
     function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
+    /// <summary>
+    /// <para>Suspend tracing and profiling in the Python thread state
+    /// tstate.</para>
+    /// <para>Resume them using the TPyThreadState.LeaveTracing()
+    /// function.</para>
+    /// <para>Added in version 3.11.</para>
+    /// </summary>
     procedure EnterTracing;
+    /// <summary>
+    /// <para>Resume tracing and profiling in the Python thread state tstate
+    /// suspended by the TPyThreadState.EnterTracing() function.</para>
+    /// <para>See also TPyEval.SetTrace() and TPyEval.SetProfile()
+    /// functions.</para>
+    /// <para>Added in version 3.11.</para>
+    /// </summary>
     procedure LeaveTracing;
+    /// <summary>
+    /// <para>Set the attached thread state to tstate, and return the thread
+    /// state that was attached prior to calling.</para>
+    /// <para>This function is safe to call without an attached thread state;
+    /// it will simply return nil indicating that there was no prior thread
+    /// state.</para>
+    /// <para>See also TPyEval.ReleaseThread()</para>
+    /// <para>Note Similar to TPyGILState.Ensure(), this function will hang
+    /// the thread if the runtime is finalizing.</para>
+    /// </summary>
     function  Swap: IPyThreadState;
+    /// <summary>
+    /// <para>Return the next thread state object after tstate from the list
+    /// of all such objects belonging to the same PyInterpreterState
+    /// object.</para>
+    /// </summary>
     function  Next: IPyThreadState;
+    /// <summary>
+    /// <para>Return the PyThreadState pointer that was handled by this
+    /// TPyThreadState instance.</para>
+    /// <para>This function must be used when passing a PyThreadState pointer
+    /// to a function that steals the PyThreadState reference.</para>
+    /// </summary>
     function  UnWrap: Pointer;
 
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
     property Initialized  : boolean               read GetInitialized;
+    /// <summary>
+    /// <para>Pointer to PyThreadState</para>
+    /// </summary>
     property ThreadState  : PPyThreadState        read GetThreadState         write SetThreadState;
+    /// <summary>
+    /// <para>Get the unique thread state identifier of the Python thread
+    /// state tstate.</para>
+    /// <para>tstate must not be nil, and must be attached.</para>
+    /// <para>Added in version 3.9.</para>
+    /// </summary>
     property ID           : int64                 read GetID;
+    /// <summary>
+    /// <para>Return a dictionary in which extensions can store
+    /// thread-specific state information. Each extension should use a unique
+    /// key to use to store state in the dictionary. It is okay to call this
+    /// function when no thread state is attached. If this function returns
+    /// nil, no exception has been raised and the caller should assume no
+    /// thread state is attached.</para>
+    /// </summary>
     property Dict         : IPyObject             read GetDict;
+    /// <summary>
+    /// <para>Get the interpreter of the Python thread state tstate.</para>
+    /// <para>tstate must not be nil, and must be attached.</para>
+    /// </summary>
     property Interpreter  : IPyInterpreterState   read GetInterpreter;
+    /// <para>Get the current frame of the Python thread state tstate.</para>
+    /// <para>Return a strong reference. Return nil if no frame is currently
+    /// executing.</para>
+    /// <para>See also TPyEval.GetFrame().</para>
+    /// <para>tstate must not be nil, and must be attached.</para>
+    /// <para>Added in version 3.9.</para>
+    /// </summary>
     property Frame        : IPyObject             read GetFrame;
   end;
 
+  /// <summary>
+  /// The interface represents the GIL state.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
+  /// </remarks>
   IPyGILState = interface
     ['{FA7CC9AD-C157-4070-B577-8C08DFAB41C4}']
     function  GetInitialized: boolean;
     function  GetState: PyGILState_STATE;
     procedure SetInitialized(aValue: boolean);
     procedure SetState(aState: PyGILState_STATE);
+    /// <summary>
+    /// <para>Release any resources previously acquired. After this call,
+    /// Python’s state will be the same as it was prior to the corresponding
+    /// TPyGILState.Ensure() call (but generally this state will be unknown
+    /// to the caller, hence the use of the GILState API).</para>
+    /// <para>Every call to TPyGILState.Ensure() must be matched by a call to
+    /// TPyGILState.Release() on the same thread.</para>
+    /// </summary>
     procedure Release;
 
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
     property Initialized  : boolean           read GetInitialized   write SetInitialized;
+    /// <summary>
+    /// <para>GIL state</para>
+    /// </summary>
     property State        : PyGILState_STATE  read GetState         write SetState;
   end;
 
+  /// <summary>
+  /// A mutual exclusion lock.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/synchronization.html#c.PyThread_type_lock">See the article about PyThread_type_lock.</see></para>
+  /// </remarks>
   IPyThreadLock = interface
     ['{A39E9504-264D-4648-92D6-F6FD54F16FA5}']
     function  GetInitialized: boolean;
     function  GetLock: PyThread_type_lock;
+    /// <summary>
+    /// <para>Allocate a new lock.</para>
+    /// <para>On success, this function returns a lock; on failure, this
+    /// function returns nil without an exception set.</para>
+    /// <para>The caller does not need to hold an attached thread state.</para>
+    /// </summary>
     procedure AllocateLock;
+    /// <summary>
+    /// <para>Destroy lock. The lock should not be held by any thread when
+    /// calling this.</para>
+    /// <para>The caller does not need to hold an attached thread state.</para>
+    /// </summary>
     procedure FreeLock;
-    function  AcquireLock(waitflag: boolean): PyLockStatus;
-    function  AcquireLockTimed(microseconds: PY_TIMEOUT_T; intr_flag: boolean): PyLockStatus;
+    /// <summary>
+    /// <para>Acquire lock.</para>
+    /// <para>If waitflag is True and another thread currently holds the lock,
+    /// this function will wait until the lock can be acquired and will always
+    /// return PY_LOCK_ACQUIRED.</para>
+    /// <para>If waitflag is False and another thread holds the lock, this
+    /// function will not wait and instead return PY_LOCK_FAILURE. If the
+    /// lock is not held by any other thread, then this function will acquire
+    /// it and return PY_LOCK_ACQUIRED.</para>
+    /// <para>Unlike AcquireLockTimed(), acquiring the lock cannot
+    /// be interrupted by a signal.</para>
+    /// <para>The caller does not need to hold an attached thread state.</para>
+    /// </summary>
+    function AcquireLock(waitflag: boolean): PyLockStatus;
+    /// <summary>
+    /// <para>Acquire lock with a timeout.</para>
+    /// <para>This will wait for microseconds microseconds to acquire the
+    /// lock. If the timeout expires, this function returns PY_LOCK_FAILURE.
+    /// If microseconds is -1, this will wait indefinitely until the lock has
+    /// been released.</para>
+    /// <para>If intr_flag is True, acquiring the lock may be interrupted by a
+    /// signal, in which case this function returns PY_LOCK_INTR. Upon
+    /// interruption, it’s generally expected that the caller makes a call to
+    /// TPy.MakePendingCalls() to propagate an exception to Python code.</para>
+    /// <para>If the lock is successfully acquired, this function returns
+    /// PY_LOCK_ACQUIRED.</para>
+    /// <para>The caller does not need to hold an attached thread state.</para>
+    /// </summary>
+    function AcquireLockTimed(microseconds: PY_TIMEOUT_T; intr_flag: boolean): PyLockStatus;
+    /// <summary>
+    /// <para>Release lock. If lock is not held, then this function issues a
+    /// fatal error.</para>
+    /// <para>The caller does not need to hold an attached thread state.</para>
+    /// </summary>
     procedure ReleaseLock;
-
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
     property Initialized : boolean              read GetInitialized;
+    /// <summary>
+    /// <para>The mutual exclusion lock</para>
+    /// </summary>
     property Lock        : PyThread_type_lock   read GetLock;
   end;
 
+  /// <summary>
+  /// <para>This interface represents the state of a thread key, the
+  /// definition of which may depend on the underlying TLS implementation,
+  /// and it has an internal field representing the key’s initialization
+  /// state.</para>
+  /// <para>When Py_LIMITED_API is not defined, static allocation of this type
+  /// by Py_tss_NEEDS_INIT is allowed.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/tls.html#c.Py_tss_t">See the article about Py_tss_t.</see></para>
+  /// </remarks>
   IPyThreadTSS = interface
     ['{5F88B7E1-C685-492E-A829-35EF92288C9E}']
     function  GetInitialized: boolean;
@@ -667,17 +844,62 @@ type
     function  GetIsCreated: boolean;
     function  GetValue: pointer;
     procedure SetValue(value: pointer);
+    /// <summary>
+    /// <para>Return a value which is the same state as a value initialized
+    /// with Py_tss_NEEDS_INIT, or nil in the case of dynamic allocation
+    /// failure.</para>
+    /// </summary>
     procedure TSSAlloc;
+    /// <summary>
+    /// <para>Free the given key allocated by TSSAlloc(), after first calling
+    /// TSSDelete() to ensure any associated thread locals have been
+    /// unassigned. This is a no-op if the key argument is nil.</para>
+    /// <para>Note A freed key becomes a dangling pointer. You should reset
+    /// the key to nil.</para>
+    /// </summary>
     procedure TSSFree;
-    function  TSSCreate: boolean;
-    procedure TSSDelete;
+    /// <summary>
+    /// <para>Return True on successful initialization of a TSS key.</para>
+    /// <para>The behavior is undefined if the value pointed to by the key
+    /// argument is not initialized by Py_tss_NEEDS_INIT. This function can
+    /// be called repeatedly on the same key – calling it on an already
+    /// initialized key is a no-op and immediately returns success.</para>
+    /// </summary>
+    function    TSSCreate: boolean;
+    /// <summary>
+    /// <para>Destroy a TSS key to forget the values associated with the key
+    /// across all threads, and change the key’s initialization state to
+    /// uninitialized. A destroyed key is able to be initialized again by
+    /// TSSCreate(). This function can be called repeatedly on the same
+    /// key – calling it on an already destroyed key is a no-op.</para>
+    /// </summary>
+    procedure   TSSDelete;
 
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
     property Initialized : boolean     read GetInitialized;
+    /// <summary>
+    /// <para>The state of a thread key</para>
+    /// </summary>
     property Key         : PPy_tss_t   read GetKey;
+    /// <summary>
+    /// <para>Return True if the given Py_tss_t has been initialized by
+    /// TSSCreate().</para>
+    /// </summary>
     property IsCreated   : boolean     read GetIsCreated;
+    /// <summary>
+    /// <para></para>
+    /// </summary>
     property Value       : pointer     read GetValue        write SetValue;
   end;
 
+  /// <summary>
+  /// Interface to configure the Python initialization.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyInitConfig">See the article about PyInitConfig.</see></para>
+  /// </remarks>
   IPyInitConfig = interface
     ['{7978019A-332B-433C-9376-1C35A737B47D}']
     function GetConfig: Pointer;

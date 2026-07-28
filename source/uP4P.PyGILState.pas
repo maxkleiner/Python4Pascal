@@ -17,6 +17,12 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// The class represents the GIL state.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
+  /// </remarks>
   TPyGILState = class(TInterfacedObject, IPyGILState)
     protected
       FInitialized : boolean;
@@ -28,18 +34,86 @@ type
       procedure SetInitialized(aValue: boolean);
       procedure SetState(aState: PyGILState_STATE);
 
+      /// <summary>
+      /// <para>Release any resources previously acquired. After this call,
+      /// Python’s state will be the same as it was prior to the corresponding
+      /// TPyGILState.Ensure() call (but generally this state will be unknown
+      /// to the caller, hence the use of the GILState API).</para>
+      /// <para>Every call to TPyGILState.Ensure() must be matched by a call to
+      /// TPyGILState.Release() on the same thread.</para>
+      /// </summary>
       procedure Release;
 
     public
       constructor Create(aState: PyGILState_STATE);
       destructor  Destroy; override;
 
+      /// <summary>
+      /// <para>Ensure that the current thread is ready to call the Python C API
+      /// regardless of the current state of Python, or of the attached thread
+      /// state. This may be called as many times as desired by a thread as long
+      /// as each call is matched with a call to TPyGILState.Release().
+      /// In general, other thread-related APIs may be used between
+      /// TPyGILState.Ensure() and TPyGILState.Release() calls as long as the
+      /// thread state is restored to its previous state before the Release().
+      /// For example, normal usage of the Py_BEGIN_ALLOW_THREADS and
+      /// Py_END_ALLOW_THREADS macros is acceptable.</para>
+      /// <para>The return value is an opaque “handle” to the attached thread
+      /// state when TPyGILState.Ensure() was called, and must be passed to
+      /// TPyGILState.Release() to ensure Python is left in the same state.
+      /// Even though recursive calls are allowed, these handles cannot be
+      /// shared - each unique call to TPyGILState.Ensure() must save the
+      /// handle for its call to TPyGILState.Release().</para>
+      /// <para>When the function returns, there will be an attached thread
+      /// state and the thread will be able to call arbitrary Python code.
+      /// Failure is a fatal error.</para>
+      /// <para>Warning Calling this function when the runtime is finalizing is
+      /// unsafe. Doing so will either hang the thread until the program ends,
+      /// or fully crash the interpreter in rare cases. Refer to Cautions
+      /// regarding runtime finalization for more details.</para>
+      /// <para>Changed in version 3.14: Hangs the current thread, rather than
+      /// terminating it, if called while the interpreter is finalizing.</para>
+      /// </summary>
       class function Ensure: IPyGILState;
+      /// <summary>
+      /// <para>Get the attached thread state for this thread. May return nil
+      /// if no GILState API has been used on the current thread. Note that the
+      /// main thread always has such a thread-state, even if no
+      /// auto-thread-state call has been made on the main thread. This is
+      /// mainly a helper/diagnostic function.</para>
+      /// <para>Note This function may return non-nil even when the thread state
+      /// is detached. Prefer TPyThreadState.Get() or
+      /// TPyThreadState.GetUnchecked() for most cases.</para>
+      /// <para>See also TPyThreadState.Get()</para>
+      /// </summary>
       class function GetThisThreadState: IPyThreadState;
+      /// <summary>
+      /// <para>Return True if the current thread is holding the GIL and False
+      /// otherwise. This function can be called from any thread at any time.
+      /// Only if it has had its thread state initialized via
+      /// TPyGILState.Ensure() will it return True. This is mainly a
+      /// helper/diagnostic function. It can be useful for example in callback
+      /// contexts or memory allocation functions when knowing that the GIL is
+      /// locked can allow the caller to perform sensitive actions or otherwise
+      /// behave differently.</para>
+      /// <para>Note If the current Python process has ever created a
+      /// subinterpreter, this function will always return True. Prefer
+      /// TPyThreadState.GetUnchecked() for most cases.</para>
+      /// </summary>
       class function Check: boolean;
+      /// <summary>
+      /// Helper function to check if an IPyGILState instance is fully
+      /// initialized.
+      /// </summary>
       class function IsInitialized(const aPyGILState: IPyGILState): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
+      /// <summary>
+      /// <para>Returns true if the class is fully initialized.</para>
+      /// </summary>
       property Initialized  : boolean           read GetInitialized   write SetInitialized;
+      /// <summary>
+      /// <para>GIL state</para>
+      /// </summary>
       property State        : PyGILState_STATE  read GetState         write SetState;
   end;
 
