@@ -67,14 +67,47 @@ type
       constructor Create(aPyObject: Pointer; aObjRefOwner, aUseNewRef: boolean); overload;
       destructor  Destroy; override;
 
+      /// <summary>
+      /// <para>Test if this object is the True singleton, the same as x is True
+      /// in Python.</para>
+      /// <para>Added in version 3.10.</para>
+      /// </summary>
       function  IsTrueSingleton: boolean;
+      /// <summary>
+      /// <para>Test if this object is the False singleton, the same as x is False
+      /// in Python.</para>
+      /// <para>Added in version 3.10.</para>
+      /// </summary>
       function  IsFalseSingleton: boolean;
+      /// <summary>
+      /// <para>Test if this object is the None singleton, the same as x is None
+      /// in Python.</para>
+      /// <para>Added in version 3.10.</para>
+      /// </summary>
       function  IsNoneSingleton: boolean;
+      /// <summary>
+      /// <para>Indicate taking a new strong reference to this object,
+      /// indicating it is in use and should not be destroyed.</para>
+      /// <para>This function has no effect on immortal objects.</para>
+      /// </summary>
       procedure IncRef;
+      /// <summary>
+      /// <para>Release a strong reference to this object aPyObject, indicating
+      /// the reference is no longer used.</para>
+      /// <para>This function has no effect on immortal objects.</para>
+      /// </summary>
       procedure DecRef;
+      /// <summary>
+      /// <para>Create a new strong reference to this object.</para>
+      /// </summary>
       function  NewRef: Pointer;
-      function  XNewRef: Pointer;
+      /// <summary>
+      /// <para>Test if this object is the same as the "other" object.</para>
+      /// </summary>
       function  SameAs(const other: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Test if this object is the same as the "other" object.</para>
+      /// </summary>
       function  SameAs(const other: PPyObject): boolean; overload;
       /// <summary>
       /// <para>Return True if the PyObject is a type of aPyTypeObject.</para>
@@ -84,108 +117,683 @@ type
       /// <para>Return True if the PyObject is a type or subtype of aPyTypeObject.</para>
       /// </summary>
       function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
+      /// <summary>
+      /// <para>Set the internal PyObject to nil.</para>
+      /// </summary>
       procedure InitPyObject;
+      /// <summary>
+      /// <para>Return 1 if inst is an instance of the class cls or a subclass
+      /// of cls, or 0 if not. On error, returns -1 and sets an
+      /// exception.</para>
+      /// <para>If cls is a tuple, the check will be done against every entry in
+      /// cls. The result will be 1 when at least one of the checks returns 1,
+      /// otherwise it will be 0.</para>
+      /// <para>If cls has a __instancecheck__() method, it will be called to
+      /// determine the subclass status as described in PEP 3119. Otherwise,
+      /// inst is an instance of cls if its class is a subclass of cls.</para>
+      /// <para>An instance inst can override what is considered its class by
+      /// having a __class__ attribute.</para>
+      /// <para>An object cls can override if it is considered a class, and what
+      /// its base classes are, by having a __bases__ attribute (which must be a
+      /// tuple of base classes).</para>
+      /// </summary>
       function  IsInstance(const cls: IPyObject): integer;
+      /// <summary>
+      /// <para>Return 1 if the class derived is identical to or derived from
+      /// the class cls, otherwise return 0. In case of an error,
+      /// return -1.</para>
+      /// <para>If cls is a tuple, the check will be done against every entry
+      /// in cls. The result will be 1 when at least one of the checks
+      /// returns 1, otherwise it will be 0.</para>
+      /// <para>If cls has a __subclasscheck__() method, it will be called to
+      /// determine the subclass status as described in PEP 3119. Otherwise,
+      /// derived is a subclass of cls if it is a direct or indirect subclass,
+      /// i.e. contained in cls.__mro__.</para>
+      /// <para>Normally only class objects, i.e. instances of type or a
+      /// derived class, are considered classes. However, objects can override
+      /// this by having a __bases__ attribute (which must be a tuple of base
+      /// classes).</para>
+      /// </summary>
       function  IsSubclass(const cls: IPyObject): integer;
+      /// <summary>
+      /// <para>A generic implementation for the getter of a __dict__
+      /// descriptor. It creates the dictionary if necessary.</para>
+      /// <para>This function may also be called to get the __dict__ of this
+      /// object. Pass nil for context when calling it. Since this function may
+      /// need to allocate memory for the dictionary, it may be more efficient
+      /// to call PyObject_GetAttr() when accessing an attribute on the
+      /// object.</para>
+      /// <para>On failure, returns nil with an exception set.</para>
+      /// <para>Added in version 3.3.</para>
+      /// </summary>
       function  GenericGetDict(context: Pointer): IPyObject;
+      /// <summary>
+      /// <para>Return True if obj supports the buffer interface otherwise
+      /// False. When True is returned, it doesn’t guarantee that
+      /// TPyObject.GetBuffer() will succeed. This function always
+      /// succeeds.</para>
+      /// </summary>
       function  CheckBuffer: boolean;
+      /// <summary>
+      /// <para>Send a request to exporter to fill in view as specified by
+      /// flags. If the exporter cannot provide a buffer of the exact type, it
+      /// MUST raise BufferError, set view->obj to NULL and return False.</para>
+      /// <para>On success, fill in view, set view->obj to a new reference to
+      /// exporter and return True. In the case of chained buffer providers that
+      /// redirect requests to a single object, view->obj MAY refer to this
+      /// object instead of exporter (See Buffer Object Structures).</para>
+      /// <para>Successful calls to TPyObject.GetBuffer() must be paired with
+      /// calls to TPyBuffer.Release(), similar to malloc() and free().
+      /// Thus, after the consumer is done with the buffer, TPyBuffer.Release()
+      /// must be called exactly once.</para>
+      /// </summary>
       function  GetBuffer(var view: Py_buffer; flags: Integer): boolean;
+      /// <summary>
+      /// <para>Copy data from src to dest buffer. Can convert between C-style
+      /// and or Fortran-style buffers.</para>
+      /// <para>True is returned on success, False on error.</para>
+      /// </summary>
       function  CopyData(const src: IPyObject): boolean;
+      /// <summary>
+      /// <para>Compute a string representation of this object. Returns the
+      /// string representation on success, nil on failure. This is the
+      /// equivalent of the Python expression repr(o). Called by the repr()
+      /// built-in function.</para>
+      /// <para>Changed in version 3.4: This function now includes a debug
+      /// assertion to help ensure that it does not silently discard an active
+      /// exception.</para>
+      /// </summary>
       function  Repr: IPyObject;
+      /// <summary>
+      /// <para>Compute a string representation of this object. Returns the
+      /// string representation on success, nil on failure. This is the
+      /// equivalent of the Python expression str(o). Called by the str()
+      /// built-in function and, therefore, by the print() function.</para>
+      /// <para>Changed in version 3.4: This function now includes a debug
+      /// assertion to help ensure that it does not silently discard an active
+      /// exception.</para>
+      /// </summary>
       function  Str: IPyObject;
+      /// <summary>
+      /// <para>As TPyObject.Repr(), compute a string representation of this
+      /// object, but escape the non-ASCII characters in the string returned by
+      /// TPyObject.Repr() with \x, \u or \U escapes. This generates a string
+      /// similar to that returned by TPyObject.Repr() in Python 2.
+      /// Called by the ascii() built-in function.</para>
+      /// </summary>
       function  ASCII: IPyObject;
+      /// <summary>
+      /// <para>Compute a bytes representation of this object. nil is returned
+      /// on failure and a bytes object on success. This is equivalent to the
+      /// Python expression bytes(o), when o is not an integer. Unlike bytes(o),
+      /// a TypeError is raised when o is an integer instead of a
+      /// zero-initialized bytes object.</para>
+      /// </summary>
       function  Bytes: IPyObject;
+      /// <summary>
+      /// <para>Compare the values of this object and obj using the operation
+      /// specified by opid, which must be one of Py_LT, Py_LE, Py_EQ, Py_NE,
+      /// Py_GT, or Py_GE, corresponding to <, <=, ==, !=, >, or >=
+      /// respectively. This is the equivalent of the Python expression
+      /// o1 op o2, where op is the operator corresponding to opid. Returns the
+      /// value of the comparison on success, or nil on failure.</para>
+      /// </summary>
       function  RichCompare(const obj: IPyObject; opid: integer): IPyObject;
+      /// <summary>
+      /// <para>Compare the values of this object and obj using the operation
+      /// specified by opid, like TPyObject.RichCompare(), but returns -1 on
+      /// error, 0 if the result is false, 1 otherwise.</para>
+      /// <para>Note If o1 and o2 are the same object,
+      /// TPyObject.RichCompareBool() will always return 1 for Py_EQ and 0 for
+      /// Py_NE.</para>
+      /// </summary>
       function  RichCompareBool(const obj: IPyObject; opid: integer): integer;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>If the missing attribute should not be treated as a failure,
+      /// you can use TPyObject.GetOptionalAttrString() instead.</para>
+      /// <para>This function returns a IPyObject instance.</para>
+      /// </summary>
       function  GetAttrString(const attr_name: string): IPyObject;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>If the missing attribute should not be treated as a failure,
+      /// you can use TPyObject.GetOptionalAttrString() instead.</para>
+      /// <para>This function returns a PPyObject pointer.</para>
+      /// </summary>
       function  GetAttrString2(const attr_name: string): Pointer;
+      /// <summary>
+      /// <para>This is the same as TPyObject.SetAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>If value is nil, the attribute is deleted, but this feature is
+      /// deprecated in favour of using TPyObject.DelAttrString().</para>
+      /// <para>The number of different attribute names passed to this function
+      /// should be kept small, usually by using a statically allocated string
+      /// as attr_name. For attribute names that aren’t known at compile time,
+      /// prefer calling TPyUnicode.FromString() and TPyObject.SetAttr()
+      /// directly. For more details, see TPyUnicode.InternFromString(), which
+      /// may be used internally to create a key object.</para>
+      /// <para>This function uses a IPyObject for the value parameter.</para>
+      /// </summary>
       function  SetAttrString(const attr_name: string; const value: IPyObject): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.SetAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>If value is nil, the attribute is deleted, but this feature is
+      /// deprecated in favour of using TPyObject.DelAttrString().</para>
+      /// <para>The number of different attribute names passed to this function
+      /// should be kept small, usually by using a statically allocated string
+      /// as attr_name. For attribute names that aren’t known at compile time,
+      /// prefer calling TPyUnicode.FromString() and TPyObject.SetAttr()
+      /// directly. For more details, see TPyUnicode.InternFromString(), which
+      /// may be used internally to create a key object.</para>
+      /// <para>This function uses a PPyObject pointer for the value
+      /// parameter.</para>
+      /// </summary>
       function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
+      /// <summary>
+      /// <para>This is the same as PyObject_DelAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>The number of different attribute names passed to this function
+      /// should be kept small, usually by using a statically allocated string
+      /// as attr_name. For attribute names that areni't known at compile time,
+      /// prefer calling TPyUnicode.FromString() and TPyObject.DelAttr()
+      /// directly. For more details, see TPyUnicode.InternFromString(), which
+      /// may be used internally to create a key object for lookup.</para>
+      /// </summary>
       function  DelAttrString(const attr_name: string): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.HasAttr(), but attr_name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>Note Exceptions that occur when this calls __getattr__() and
+      /// __getattribute__() methods or while creating the temporary str object
+      /// are silently ignored. For proper error handling, use
+      /// TPyObject.HasAttrStringWithError(), TPyObject.GetOptionalAttrString()
+      /// or TPyObject.GetAttrString() instead.</para>
+      /// </summary>
       function  HasAttrString(const attr_name: string): boolean;
+      /// <summary>
+      /// <para>Retrieve an attribute named attr_name from this object. Returns
+      /// the attribute value on success, or nil on failure. This is the
+      /// equivalent of the Python expression o.attr_name.</para>
+      /// <para>If the missing attribute should not be treated as a failure, you
+      /// can use TPyObject.GetOptionalAttr() instead.</para>
+      /// <para>This function returns a IPyObject instance.</para>
+      /// </summary>
       function  GetAttr(const attr_name: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Retrieve an attribute named attr_name from this object. Returns
+      /// the attribute value on success, or nil on failure. This is the
+      /// equivalent of the Python expression o.attr_name.</para>
+      /// <para>If the missing attribute should not be treated as a failure, you
+      /// can use TPyObject.GetOptionalAttr() instead.</para>
+      /// <para>This function returns a PPyObject pointer.</para>
+      /// </summary>
       function  GetAttr2(const attr_name: IPyObject): Pointer;
+      /// <summary>
+      /// <para>Variant of TPyObject.GetAttr() which doesn’t raise
+      /// AttributeError if the attribute is not found.</para>
+      /// <para>If the attribute is found, return True and set result_ to a new
+      /// strong reference to the attribute. If the attribute is not found,
+      /// return False and set result_ to nil; the AttributeError is silenced.
+      /// If an error other than AttributeError is raised, return False and set
+      /// result_ to nil.</para>
+      /// <para>Added in version 3.13.</para>
+      /// <para>This function returns a IPyObject instance.</para>
+      /// </summary>
       function  GetOptionalAttr(const attr_name: IPyObject; out result_: IPyObject): boolean;
+      /// <summary>
+      /// <para>Variant of TPyObject.GetAttr() which doesn’t raise
+      /// AttributeError if the attribute is not found.</para>
+      /// <para>If the attribute is found, return True and set result_ to a new
+      /// strong reference to the attribute. If the attribute is not found,
+      /// return False and set result_ to nil; the AttributeError is silenced.
+      /// If an error other than AttributeError is raised, return False and set
+      /// result_ to nil.</para>
+      /// <para>Added in version 3.13.</para>
+      /// <para>This function returns a PPyObject pointer.</para>
+      /// </summary>
       function  GetOptionalAttr2(const attr_name: IPyObject; out result_: Pointer): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetOptionalAttr(), but attr_name
+      /// is specified as a string, rather than a IPyObject.</para>
+      /// <para>Added in version 3.13.</para>
+      /// <para>This function returns a IPyObject instance.</para>
+      /// </summary>
       function  GetOptionalAttrString(const attr_name: string; out result_: IPyObject): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetOptionalAttr(), but attr_name
+      /// is specified as a string, rather than a IPyObject.</para>
+      /// <para>Added in version 3.13.</para>
+      /// <para>This function returns a PPyObject pointer.</para>
+      /// </summary>
       function  GetOptionalAttrString2(const attr_name: string; out result_: Pointer): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetAttrString but result_ is
+      /// converted to integer.</para>
+      /// </summary>
       function  GetAttrAsInteger(const attr_name: string; out result_: integer): boolean;
+      /// <summary>
+      /// <para>This is the same as TPyObject.GetAttrString but result_ is
+      /// converted to string.</para>
+      /// </summary>
       function  GetAttrAsString(const attr_name: string; out result_: string): boolean;
+      /// <summary>
+      /// <para>Set the value of the attribute named attr_name, for this object,
+      /// to the value. Raise an exception and return False on failure; return
+      /// True on success. This is the equivalent of the Python statement
+      /// o.attr_name = v.</para>
+      /// <para>If value is nil, the attribute is deleted. This behaviour is
+      /// deprecated in favour of using TPyObject.DelAttr(), but there are
+      /// currently no plans to remove it.</para>
+      /// <para>This function uses a IPyObject value.</para>
+      /// </summary>
       function  SetAttr(const attr_name, value: IPyObject): boolean;
+      /// <summary>
+      /// <para>Set the value of the attribute named attr_name, for this object,
+      /// to the value. Raise an exception and return False on failure; return
+      /// True on success. This is the equivalent of the Python statement
+      /// o.attr_name = v.</para>
+      /// <para>If value is nil, the attribute is deleted. This behaviour is
+      /// deprecated in favour of using TPyObject.DelAttr(), but there are
+      /// currently no plans to remove it.</para>
+      /// <para>This function uses a PPyObject pointer in the value.</para>
+      /// </summary>
       function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;
+      /// <summary>
+      /// <para>Delete attribute named attr_name, for this object. Returns
+      /// False on failure. This is the equivalent of the Python statement
+      /// del o.attr_name.</para>
+      /// </summary>
       function  DelAttr(const attr_name: IPyObject): boolean;
+      /// <summary>
+      /// <para>Returns True if o has the attribute attr_name, and False
+      /// otherwise. This function always succeeds.</para>
+      /// <para>Note Exceptions that occur when this calls __getattr__() and
+      /// __getattribute__() methods aren't propagated, but instead given to
+      /// sys.unraisablehook(). For proper error handling, use
+      /// TPyObject.HasAttrWithError(), TPyObject.GetOptionalAttr() or
+      /// TPyObject.GetAttr() instead.</para>
+      /// </summary>
       function  HasAttr(const attr_name: IPyObject): boolean;
+      /// <summary>
+      /// <para>Returns 1 if o has the attribute attr_name, and 0 otherwise.
+      /// This is equivalent to the Python expression hasattr(o, attr_name).
+      /// On failure, return -1.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       function  HasAttrWithError(const attr_name: IPyObject): integer;
+      /// <summary>
+      /// <para>This is the same as TPyObject.HasAttrWithError(), but attr_name
+      /// is specified as a string, rather than a IPyObject.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       function  HasAttrStringWithError(const attr_name: string): integer;
+      /// <summary>
+      /// <para>This is equivalent to the Python __iter__(self): return self
+      /// method. It is intended for iterator types, to be used in the
+      /// PyTypeObject.tp_iter slot.</para>
+      /// </summary>
       function  SelfIter: IPyObject;
+      /// <summary>
+      /// <para>Generic attribute getter function that is meant to be put into
+      /// a type object's tp_getattro slot. It looks for a descriptor in the
+      /// dictionary of classes in the object’s MRO as well as an attribute in
+      /// the object's __dict__ (if present). As outlined in Implementing
+      /// Descriptors, data descriptors take preference over instance
+      /// attributes, while non-data descriptors don't. Otherwise, an
+      /// AttributeError is raised.</para>
+      /// <para>This function returns a IPyObject instance.</para>
+      /// </summary>
       function  GenericGetAttr(const name_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Generic attribute getter function that is meant to be put into
+      /// a type object's tp_getattro slot. It looks for a descriptor in the
+      /// dictionary of classes in the object’s MRO as well as an attribute in
+      /// the object's __dict__ (if present). As outlined in Implementing
+      /// Descriptors, data descriptors take preference over instance
+      /// attributes, while non-data descriptors don't. Otherwise, an
+      /// AttributeError is raised.</para>
+      /// <para>This function returns a PPyObject pointer.</para>
+      /// </summary>
       function  GenericGetAttr2(const name_: IPyObject): Pointer;
+      /// <summary>
+      /// <para>Generic attribute setter and deleter function that is meant to
+      /// be put into a type object’s tp_setattro slot. It looks for a data
+      /// descriptor in the dictionary of classes in the object’s MRO, and if
+      /// found it takes preference over setting or deleting the attribute in
+      /// the instance dictionary. Otherwise, the attribute is set or deleted
+      /// in the object’s __dict__ (if present). On success, True is returned,
+      /// otherwise an AttributeError is raised and False is returned.</para>
+      /// <para>This function uses a IPyObject value.</para>
+      /// </summary>
       function  GenericSetAttr(const name_, value: IPyObject): boolean;
+      /// <summary>
+      /// <para>Generic attribute setter and deleter function that is meant to
+      /// be put into a type object’s tp_setattro slot. It looks for a data
+      /// descriptor in the dictionary of classes in the object’s MRO, and if
+      /// found it takes preference over setting or deleting the attribute in
+      /// the instance dictionary. Otherwise, the attribute is set or deleted
+      /// in the object’s __dict__ (if present). On success, True is returned,
+      /// otherwise an AttributeError is raised and False is returned.</para>
+      /// <para>This function uses a PPyObject pointer in the value.</para>
+      /// </summary>
       function  GenericSetAttr2(const name_: IPyObject; value: Pointer): boolean;
+      /// <summary>
+      /// <para>A generic implementation for the setter of a __dict__
+      /// descriptor. This implementation does not allow the dictionary to be
+      /// deleted.</para>
+      /// <para>Added in version 3.3.</para>
+      /// </summary>
       function  GenericSetDict(const value: IPyObject; context: Pointer): boolean;
+      /// <summary>
+      /// <para>Compute and return the hash value of this object. On failure,
+      /// return False. This is the equivalent of the Python expression
+      /// hash(o).</para>
+      /// </summary>
       function  Hash: Py_hash_t;
+      /// <summary>
+      /// <para>Set a TypeError indicating that type(o) is not hashable and
+      /// return -1. This function receives special treatment when stored in a
+      /// tp_hash slot, allowing a type to explicitly indicate to the
+      /// interpreter that it is not hashable.</para>
+      /// </summary>
       function  HashNotImplemented: Py_hash_t;
+      /// <summary>
+      /// <para>Returns 1 if this object is considered to be true, and 0
+      /// otherwise. This is equivalent to the Python expression not not o.
+      /// On failure, return -1.</para>
+      /// </summary>
       function  IsTrue: integer;
+      /// <summary>
+      /// <para>Returns 0 if this object is considered to be true, and 1
+      /// otherwise. This is equivalent to the Python expression not o.
+      /// On failure, return -1.</para>
+      /// </summary>
       function  Not_: integer;
+      /// <summary>
+      /// <para>This function is called by the tp_dealloc handler to clear weak
+      /// references.</para>
+      /// <para>This iterates through the weak references for this object and
+      /// calls callbacks for those references which have one. It returns when
+      /// all callbacks have been attempted.</para>
+      /// </summary>
       procedure ClearWeakRefs;
+      /// <summary>
+      /// <para>This is equivalent to the Python expression dir(o), returning a
+      /// (possibly empty) list of strings appropriate for the object argument,
+      /// or nil if there was an error. If the argument is nil, this is like
+      /// the Python dir(), returning the names of the current locals; in this
+      /// case, if no execution frame is active then nil is returned but
+      /// TPyErr.Occurred() will return false.</para>
+      /// </summary>
       function  Dir: IPyObject;
+      /// <summary>
+      /// <para>Called at the beginning of the tp_repr implementation to detect
+      /// cycles.</para>
+      /// <para>If this object has already been processed, the function returns
+      /// a positive integer. In that case the tp_repr implementation should
+      /// return a string object indicating a cycle. As examples, dict objects
+      /// return {...} and list objects return [...].</para>
+      /// <para>The function will return a negative integer if the recursion
+      /// limit is reached. In that case the tp_repr implementation should
+      /// typically return nil.</para>
+      /// <para>Otherwise, the function returns zero and the tp_repr
+      /// implementation can continue normally.</para>
+      /// </summary>
       function  ReprEnter: integer;
+      /// <summary>
+      /// <para>Ends a ReprEnter(). Must be called once for each invocation of
+      /// ReprEnter() that returns zero.</para>
+      /// </summary>
       procedure ReprLeave;
+      /// <summary>
+      /// <para>Print this object, on file fp. Returns False on error. The flags
+      /// argument is used to enable certain printing options. The only option
+      /// currently supported is Py_PRINT_RAW; if given, the str() of this
+      /// object is written instead of the repr().</para>
+      /// </summary>
       function  Print(file_: PFILE; flags: integer): boolean;
+      /// <summary>
+      /// <para>Finalizes this object as described in tp_finalize. Call this
+      /// function (or TPyObject.CallFinalizerFromDealloc()) instead of calling
+      /// tp_finalize directly because this function may deduplicate multiple
+      /// calls to tp_finalize. Currently, calls are only deduplicated if the
+      /// type supports garbage collection (i.e., the Py_TPFLAGS_HAVE_GC flag
+      /// is set); this may change in the future.</para>
+      /// <para>Added in version 3.4.</para>
+      /// </summary>
       procedure CallFinalizer;
+      /// <summary>
+      /// <para>Same as TPyObject.CallFinalizer() but meant to be called at the
+      /// beginning of the object's destructor (tp_dealloc). There must not be
+      /// any references to the object. If the object's finalizer resurrects
+      /// the object, this function returns False; no further destruction should
+      /// happen. Otherwise, this function returns True and destruction can
+      /// continue normally.</para>
+      /// <para>Added in version 3.4.</para>
+      /// </summary>
       function  CallFinalizerFromDealloc: boolean;
+      /// <summary>
+      /// <para>Get a pointer to per-item data for a class with
+      /// Py_TPFLAGS_ITEMS_AT_END.</para>
+      /// <para>On error, set an exception and return NULL. TypeError is raised
+      /// if this object does not have Py_TPFLAGS_ITEMS_AT_END set.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
       function  GetItemData: Pointer;
+      /// <summary>
+      /// <para>Visit the managed dictionary of this object.</para>
+      /// <para>This function must only be called in a traverse function of the
+      /// type which has the Py_TPFLAGS_MANAGED_DICT flag set.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       function  VisitManagedDict(visit: visitproc; arg: Pointer): integer;
+      /// <summary>
+      /// <para>Clear the managed dictionary of this object.</para>
+      /// <para>This function must only be called in a clear function of the
+      /// type which has the Py_TPFLAGS_MANAGED_DICT flag set.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       procedure ClearManagedDict;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       procedure GC_Track;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       procedure GC_UnTrack;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GC_IsTracked: boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GC_IsFinalized: boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  IS_GC: boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GenericHash: Py_hash_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  AsFileDescriptor: integer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Type_: IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Size: Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Length: Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GetItem(const key: IPyObject): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GetItem(const key: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  SetItem(const key, v: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  SetItem(const key, v: TVarData): boolean; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  DelItemString(const key: string): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  DelItem(const key: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  DelItem(const key: TVarData): boolean; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Format(const format_spec: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GetIter: IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  GetAIter: IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  LengthHint(defaultvalue: Py_ssize_t): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  CallNoArgs: IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Call(const args, kwargs: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  CallObject(const args: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  CallOneArg(const arg: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  CastValueAsVariant: Variant;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       function  UnWrap: Pointer;
 
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  Wrap(aPyObject: Pointer; aObjRefOwner: boolean = True; aUseNewRef: boolean = False): IPyObject; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  IsInitialized(const aPyObject: IPyObject): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  Malloc(size_: NativeUInt): pointer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  Calloc(nelem, elsize: NativeUInt): pointer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure Free_(ptr: pointer);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  Init(const ob: IPyObject; typeobj: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  InitVar(const ob: IPyObject; typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  New(typeobj: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  VectorcallMethod(const name: IPyObject; const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  GC_Resize(varobj: PPyVarObject; size_: Py_ssize_t): PPyVarObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  GC_New(typeobj: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  GC_NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): PPyVarObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure GC_Del(ptr: pointer);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure GetArenaAllocator(allocator: PPyObjectArenaAllocator);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure SetArenaAllocator(allocator: PPyObjectArenaAllocator);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  FromVariant(const aVariant: Variant; aUseDateTuple: boolean = False; aUseBytesString: boolean = False): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  FromVarRec(const aVarRec: TVarRec): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function  FromVarData(const aVarData: TVarData): IPyObject;
 
       /// <summary>
@@ -196,28 +804,97 @@ type
       /// <para>Pointer to the PyObject record.</para>
       /// </summary>
       property PyObject      : PPyObject       read GetPyObject        write SetPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property ObjRefOwner   : boolean         read GetObjRefOwner     write SetObjRefOwner;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property RefCnt        : integer         read GetRefCnt;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property PyTypeObject  : PPyTypeObject   read GetPyTypeObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsString      : string          read GetAsString;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsAnsiString  : AnsiString      read GetAsAnsiString;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsWideString  : WideString      read GetAsWideString;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsInteger     : C_Long          read GetAsInteger;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsCardinal    : C_ULong         read GetAsCardinal;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsInt64       : int64           read GetAsInt64;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsUInt64      : uint64          read GetAsUInt64;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsDouble      : double          read GetAsDouble;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsDateTime    : TDateTime       read GetAsDateTime;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property AsVariant     : Variant         read GetAsVariant;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsCallable    : boolean         read GetIsCallable;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsTuple       : boolean         read GetIsTuple;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsList        : boolean         read GetIsList;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsSequence    : boolean         read GetIsSequence;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsMapping     : boolean         read GetIsMapping;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsFloat       : boolean         read GetIsFloat;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsLong        : boolean         read GetIsLong;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsBool        : boolean         read GetIsBool;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsUnicode     : boolean         read GetIsUnicode;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       property IsBytes       : boolean         read GetIsBytes;
   end;
 
@@ -804,9 +1481,9 @@ end;
 function TPyObject.HasAttrWithError(const attr_name: IPyObject): integer;
 begin
   if Initialized and
-     assigned(PyObject_HasAttr) and
+     assigned(PyObject_HasAttrWithError) and
      IsInitialized(attr_name) then
-    Result := PyObject_HasAttr(PyObject, attr_name.PyObject)
+    Result := PyObject_HasAttrWithError(PyObject, attr_name.PyObject)
    else
     Result := -1;
 end;
@@ -815,10 +1492,10 @@ function TPyObject.HasAttrStringWithError(const attr_name: string): integer;
 var
   TempName : AnsiString;
 begin
-  if Initialized and assigned(PyObject_HasAttrString) then
+  if Initialized and assigned(PyObject_HasAttrStringWithError) then
     begin
       TempName := StringToPyUTF8(attr_name);
-      Result   := PyObject_HasAttrString(PyObject, PAnsiChar(TempName))
+      Result   := PyObject_HasAttrStringWithError(PyObject, PAnsiChar(TempName))
     end
    else
     Result := -1;
@@ -1653,11 +2330,6 @@ end;
 function TPyObject.NewRef: Pointer;
 begin
   Result := TPy.NewRef(IPyObject(self));
-end;
-
-function TPyObject.XNewRef: Pointer;
-begin
-  Result := TPy.XNewRef(IPyObject(self));
 end;
 
 function TPyObject.SameAs(const other: IPyObject): boolean;
