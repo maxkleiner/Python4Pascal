@@ -43,7 +43,7 @@ type
       /// <summary>
       /// <para>Call exit(exitcode) if status is an exit. Print the error
       /// message and exit with a non-zero exit code if status is an error.
-      /// Must only be called if PyStatus_Exception(status) is non-zero.</para>
+      /// Must only be called if TPyStatus.IsException is true.</para>
       /// </summary>
       procedure   ExitStatusException;
 

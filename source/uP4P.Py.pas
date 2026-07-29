@@ -72,6 +72,9 @@ type
       /// configuration structure, and querying the returned status
       /// structure.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-config">See the Python Initialization Configuration article.</see></para>
+      /// </remarks>
       class function  InitializeFromConfig(config: PPyConfig): IPyStatus;
       /// <summary>
       /// <para>Return True when the Python interpreter has been initialized,
@@ -116,8 +119,8 @@ type
       /// <summary>
       /// <para>Get the type of the Python object aPyObject.</para>
       /// <para>The returned reference is borrowed from aPyObject.</para>
-      /// <para>Do not release it with Py_DECREF() or similar.</para>
-      /// <para>Changed in version 3.11: Py_TYPE() is changed to an inline
+      /// <para>Do not release it with TPy.DecRef() or similar.</para>
+      /// <para>Changed in version 3.11: TPy.Type_() is changed to an inline
       /// static function. The parameter type is no longer const PyObject*.</para>
       /// </summary>
       class function  Type_(const aPyObject: IPyObject): PPyTypeObject;
@@ -138,8 +141,6 @@ type
       /// sufficient to determine if it’s safe to treat o as having no access
       /// by other threads. Use PyUnstable_Object_IsUniquelyReferenced() for
       /// that instead.</para>
-      /// <para>See also the function
-      /// PyUnstable_Object_IsUniqueReferencedTemporary().</para>
       /// <para>Changed in version 3.10: Py_REFCNT() is changed to the inline
       /// static function.</para>
       /// <para>Changed in version 3.11: The parameter type is no longer const
@@ -151,11 +152,11 @@ type
       /// indicating it is in use and should not be destroyed.</para>
       /// <para>This function has no effect on immortal objects.</para>
       /// <para>This function is usually used to convert a borrowed reference
-      /// to a strong reference in-place. The Py_NewRef() function can be used
+      /// to a strong reference in-place. The TPy.NewRef() function can be used
       /// to create a new strong reference.</para>
       /// <para>When done using the object, release is by calling
-      /// Py_DECREF().</para>
-      /// <para>The object must not be NULL; if you aren’t sure that it isn’t
+      /// TPy.DecRef().</para>
+      /// <para>The object must not be nil; if you aren’t sure that it isn’t
       /// nil, use Py_XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -168,11 +169,11 @@ type
       /// indicating it is in use and should not be destroyed.</para>
       /// <para>This function has no effect on immortal objects.</para>
       /// <para>This function is usually used to convert a borrowed reference
-      /// to a strong reference in-place. The Py_NewRef() function can be used
+      /// to a strong reference in-place. The TPy.NewRef() function can be used
       /// to create a new strong reference.</para>
       /// <para>When done using the object, release is by calling
-      /// Py_DECREF().</para>
-      /// <para>The object must not be NULL; if you aren’t sure that it isn’t
+      /// TPy.DecRef().</para>
+      /// <para>The object must not be nil; if you aren’t sure that it isn’t
       /// nil, use Py_XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -189,7 +190,7 @@ type
       /// (which must not be nil) is invoked.</para>
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
-      /// <para>The object must not be NULL; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren’t sure that it isn’t
       /// nil, use Py_XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -198,10 +199,10 @@ type
       /// is deallocated). While exceptions in such code are not propagated, the
       /// executed code has free access to all Python global variables. This
       /// means that any object that is reachable from a global variable should
-      /// be in a consistent state before Py_DECREF() is invoked. For example,
+      /// be in a consistent state before TPy.DecRef() is invoked. For example,
       /// code to delete an object from a list should copy a reference to the
       /// deleted object in a temporary variable, update the list data
-      /// structure, and then call Py_DECREF() for the temporary variable.</para>
+      /// structure, and then call TPy.DecRef() for the temporary variable.</para>
       /// <para>Changed in version 3.12: Immortal objects are not modified.</para>
       /// </summary>
       class procedure DecRef(const aPyObject: IPyObject); overload;
@@ -214,7 +215,7 @@ type
       /// (which must not be nil) is invoked.</para>
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
-      /// <para>The object must not be NULL; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren’t sure that it isn’t
       /// nil, use Py_XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -223,19 +224,19 @@ type
       /// is deallocated). While exceptions in such code are not propagated, the
       /// executed code has free access to all Python global variables. This
       /// means that any object that is reachable from a global variable should
-      /// be in a consistent state before Py_DECREF() is invoked. For example,
+      /// be in a consistent state before TPy.DecRef() is invoked. For example,
       /// code to delete an object from a list should copy a reference to the
       /// deleted object in a temporary variable, update the list data
-      /// structure, and then call Py_DECREF() for the temporary variable.</para>
+      /// structure, and then call TPy.DecRef() for the temporary variable.</para>
       /// <para>Changed in version 3.12: Immortal objects are not modified.</para>
       /// </summary>
       class procedure DecRef(const aPyObject: PPyObject); overload;
       /// <summary>
       /// <para>Create a new strong reference to an object: call Py_INCREF() on
       /// aPyObject and return the object aPyObject.</para>
-      /// <para>When the strong reference is no longer needed, Py_DECREF()
+      /// <para>When the strong reference is no longer needed, TPy.DecRef()
       /// should be called on it to release the reference.</para>
-      /// <para>The object aPyObject must not be NULL; use XNewRef() if
+      /// <para>The object aPyObject must not be nil; use XNewRef() if
       /// aPyObject can be nil.</para>
       /// <para>Added in version 3.10.</para>
       /// </summary>
@@ -243,9 +244,9 @@ type
       /// <summary>
       /// <para>Create a new strong reference to an object: call Py_INCREF() on
       /// aPyObject and return the object aPyObject.</para>
-      /// <para>When the strong reference is no longer needed, Py_DECREF()
+      /// <para>When the strong reference is no longer needed, TPy.DecRef()
       /// should be called on it to release the reference.</para>
-      /// <para>The object aPyObject must not be NULL; use XNewRef() if
+      /// <para>The object aPyObject must not be nil; use XNewRef() if
       /// aPyObject can be nil.</para>
       /// <para>Added in version 3.10.</para>
       /// </summary>
@@ -369,7 +370,7 @@ type
       /// </remarks>
       class procedure Initialize;
       /// <summary>
-      /// <para>This function works like Py_Initialize() if initsigs is 1. If
+      /// <para>This function works like TPy.Initialize() if initsigs is 1. If
       /// initsigs is 0, it skips initialization registration of signal
       /// handlers, which may be useful when CPython is embedded as part of a
       /// larger application.</para>
@@ -471,135 +472,588 @@ type
       /// </summary>
       class procedure Exit(status: Integer);
       /// <summary>
-      /// <para></para>
+      /// <para>The main program for the standard interpreter, encapsulating a
+      /// full initialization/finalization cycle, as well as additional
+      /// behaviour to implement reading configurations settings from the
+      /// environment and command line, and then executing __main__ in
+      /// accordance with Command line.</para>
+      /// <para>This is made available for programs which wish to support the
+      /// full CPython command line interface, rather than just embedding a
+      /// Python runtime in a larger application.</para>
+      /// <para>The argc and argv parameters are similar to those which are
+      /// passed to a C program’s main() function, except that the argv entries
+      /// are first converted to wchar_t using TPy.DecodeLocale(). It is also
+      /// important to note that the argument list entries may be modified to
+      /// point to strings other than those passed in (however, the contents of
+      /// the strings pointed to by the argument list are not modified).</para>
+      /// <para>The return value is 2 if the argument list does not represent a
+      /// valid Python command line, and otherwise the same as
+      /// TPy.RunMain().</para>
+      /// <para>In terms of the CPython runtime configuration APIs documented
+      /// in the runtime configuration section (and without accounting for error
+      /// handling), Py_Main is approximately equivalent to:</para>
+      /// <code>
+      /// PyConfig config;
+      /// PyConfig_InitPythonConfig(&config);
+      /// PyConfig_SetArgv(&config, argc, argv);
+      /// Py_InitializeFromConfig(&config);
+      /// PyConfig_Clear(&config);
+      /// Py_RunMain();
+      /// </code>
+      /// <para>In normal usage, an embedding application will call this
+      /// function instead of calling TPy.Initialize(), TPy.InitializeEx() or
+      /// TPy.InitializeFromConfig() directly, and all settings will be applied
+      /// as described elsewhere in this documentation. If this function is
+      /// instead called after a preceding runtime initialization API call,
+      /// then exactly which environmental and command line configuration
+      /// settings will be updated is version dependent (as it depends on which
+      /// settings correctly support being modified after they have already
+      /// been set once when the runtime was first initialized).</para>
       /// </summary>
       class function  Main(argc: integer; argv: PPWCharT): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPy.Main() but argv is an array of bytes strings,
+      /// allowing the calling application to delegate the text decoding step
+      /// to the CPython runtime.</para>
+      /// <para>Added in version 3.8.</para>
       /// </summary>
       class function  BytesMain(argc: integer; argv: PPAnsiChar): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>This API is kept for backward compatibility: setting
+      /// PyConfig.program_name should be used instead, see
+      /// Python Initialization Configuration.</para>
+      /// <para>This function should be called before TPy.Initialize() is called
+      /// for the first time, if it is called at all. It tells the interpreter
+      /// the value of the argv[0] argument to the main() function of the
+      /// program (converted to wide characters). This is used by TPy.GetPath()
+      /// and some other functions below to find the Python run-time libraries
+      /// relative to the interpreter executable. The default value is 'python'.
+      /// The argument should point to a zero-terminated wide character string
+      /// in static storage whose contents will not change for the duration of
+      /// the program’s execution. No code in the Python interpreter will change
+      /// the contents of this storage.</para>
+      /// <para>Use TPy.DecodeLocale() to decode a bytes string to get a
+      /// wchar_t* string.</para>
+      /// <para>Deprecated since version 3.11, will be removed in
+      /// version 3.15.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-config">See the Python Initialization Configuration article.</see></para>
+      /// </remarks>
       class function  SetProgramName(const name_: string): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the program name set with PyConfig.program_name, or the
+      /// default. The returned string points into static storage; the caller
+      /// should not modify its value.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.executable (sys.executable) instead.</para>
       /// </summary>
       class function  GetProgramName: string;
       /// <summary>
-      /// <para></para>
+      /// <para>This API is kept for backward compatibility: setting
+      /// PyConfig.home should be used instead, see Python Initialization
+      /// Configuration.</para>
+      /// <para>Set the default "home" directory, that is, the location of the
+      /// standard Python libraries. See PYTHONHOME for the meaning of the
+      /// argument string.</para>
+      /// <para>The argument should point to a zero-terminated character string
+      /// in static storage whose contents will not change for the duration of
+      /// the program's execution. No code in the Python interpreter will change
+      /// the contents of this storage.</para>
+      /// <para>Use TPy.DecodeLocale() to decode a bytes string to get a
+      /// wchar_t* string.</para>
+      /// <para>Deprecated since version 3.11, will be removed in
+      /// version 3.15.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-config">See the Python Initialization Configuration article.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">See the article about PYTHONHOME.</see></para>
+      /// </remarks>
       class function  SetPythonHome(const home: string): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the default "home", that is, the value set by
+      /// PyConfig.home, or the value of the PYTHONHOME environment variable if
+      /// it is set.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.home or the PYTHONHOME environment variable
+      /// instead.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-config">See the Python Initialization Configuration article.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">See the article about PYTHONHOME.</see></para>
+      /// </remarks>
       class function  GetPythonHome: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the full program name of the Python executable; this is
+      /// computed as a side-effect of deriving the default module search path
+      /// from the program name (set by PyConfig.program_name). The returned
+      /// string points into static storage; the caller should not modify its
+      /// value. The value is available to Python code as sys.executable.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.executable (sys.executable) instead.</para>
       /// </summary>
       class function  GetProgramFullPath: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the prefix for installed platform-independent files. This
+      /// is derived through a number of complicated rules from the program name
+      /// set with PyConfig.program_name and some environment variables; for
+      /// example, if the program name is '/usr/local/bin/python', the prefix is
+      /// '/usr/local'. The returned string points into static storage; the
+      /// caller should not modify its value. This corresponds to the prefix
+      /// variable in the top-level Makefile and the --prefix argument to the
+      /// configure script at build time. The value is available to Python code
+      /// as sys.base_prefix. It is only useful on Unix. See also the next
+      /// function.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.base_prefix (sys.base_prefix) instead.
+      /// Use TPyConfig.prefix (sys.prefix) if virtual environments need to be
+      /// handled.</para>
       /// </summary>
       class function  GetPrefix: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the exec-prefix for installed platform-dependent files.
+      /// This is derived through a number of complicated rules from the
+      /// program name set with PyConfig.program_name and some environment
+      /// variables; for example, if the program name is
+      /// '/usr/local/bin/python', the exec-prefix is '/usr/local'.
+      /// The returned string points into static storage; the caller should not
+      /// modify its value. This corresponds to the exec_prefix variable in the
+      /// top-level Makefile and the --exec-prefix argument to the configure
+      /// script at build time. The value is available to Python code as
+      /// sys.base_exec_prefix. It is only useful on Unix.</para>
+      /// <para>Background: The exec-prefix differs from the prefix when
+      /// platform dependent files (such as executables and shared libraries)
+      /// are installed in a different directory tree. In a typical
+      /// installation, platform dependent files may be installed in the
+      /// /usr/local/plat subtree while platform independent may be installed
+      /// in /usr/local.</para>
+      /// <para>Generally speaking, a platform is a combination of hardware and
+      /// software families, e.g. Sparc machines running the Solaris 2.x
+      /// operating system are considered the same platform, but Intel machines
+      /// running Solaris 2.x are another platform, and Intel machines running
+      /// Linux are yet another platform. Different major revisions of the same
+      /// operating system generally also form different platforms. Non-Unix
+      /// operating systems are a different story; the installation strategies
+      /// on those systems are so different that the prefix and exec-prefix are
+      /// meaningless, and set to the empty string. Note that compiled Python
+      /// bytecode files are platform independent (but not independent from the
+      /// Python version by which they were compiled!).</para>
+      /// <para>System administrators will know how to configure the mount or
+      /// automount programs to share /usr/local between platforms while having
+      /// /usr/local/plat be a different filesystem for each platform.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.base_exec_prefix (sys.base_exec_prefix) instead.
+      /// Use TPyConfig.exec_prefix (sys.exec_prefix) if virtual environments
+      /// need to be handled.</para>
       /// </summary>
       class function  GetExecPrefix: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the default module search path; this is computed from
+      /// the program name (set by PyConfig.program_name) and some environment
+      /// variables. The returned string consists of a series of directory
+      /// names separated by a platform dependent delimiter character. The
+      /// delimiter character is ':' on Unix and macOS, ';' on Windows. The
+      /// returned string points into static storage; the caller should not
+      /// modify its value. The list sys.path is initialized with this value on
+      /// interpreter startup; it can be (and usually is) modified later to
+      /// change the search path for loading modules.</para>
+      /// <para>This function should not be called before TPy.Initialize(),
+      /// otherwise it returns nil.</para>
+      /// <para>Changed in version 3.10: It now returns nil if called before
+      /// TPy.Initialize().</para>
+      /// <para>Deprecated since version 3.13, will be removed in version 3.15:
+      /// Use TPyConfig.module_search_paths (sys.path) instead.</para>
       /// </summary>
       class function  GetPath: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the version of this Python interpreter. This is a string
+      /// that looks something like</para>
+      /// <code>"3.0a5+ (py3k:63103M, May 12 2008, 00:53:55) \n[GCC 4.2.3]"</code>
+      /// <para>The first word (up to the first space character) is the current
+      /// Python version; the first characters are the major and minor version
+      /// separated by a period. The returned string points into static storage;
+      /// the caller should not modify its value. The value is available to
+      /// Python code as sys.version.</para>
+      /// <para>See also the Py_Version constant.</para>
       /// </summary>
       class function  GetVersion: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the platform identifier for the current platform.
+      /// On Unix, this is formed from the “official” name of the operating
+      /// system, converted to lower case, followed by the major revision
+      /// number; e.g., for Solaris 2.x, which is also known as SunOS 5.x,
+      /// the value is 'sunos5'. On macOS, it is 'darwin'. On Windows,
+      /// it is 'win'. The returned string points into static storage; the
+      /// caller should not modify its value. The value is available to Python
+      /// code as sys.platform.</para>
       /// </summary>
       class function  GetPlatform: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the official copyright string for the current Python
+      /// version, for example</para>
+      /// <code>'Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam'</code>
+      /// <para>The returned string points into static storage; the caller
+      /// should not modify its value. The value is available to Python code as
+      /// sys.copyright.</para>
       /// </summary>
       class function  GetCopyright: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return an indication of the compiler used to build the current
+      /// Python version, in square brackets, for example:</para>
+      /// <code>"[GCC 2.7.2.2]"</code>
+      /// <para>The returned string points into static storage; the caller
+      /// should not modify its value. The value is available to Python code as
+      /// part of the variable sys.version.</para>
       /// </summary>
       class function  GetCompiler: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return information about the sequence number and build date and
+      /// time of the current Python interpreter instance, for example</para>
+      /// <code>"#67, Aug  1 1997, 22:34:28"</code>
+      /// <para>The returned string points into static storage; the caller
+      /// should not modify its value. The value is available to Python code as
+      /// part of the variable sys.version.</para>
       /// </summary>
       class function  GetBuildInfo: string;
       /// <summary>
-      /// <para></para>
+      /// <para>Return true if the main Python interpreter is shutting down.
+      /// Return false otherwise.</para>
+      /// <para>Added in version 3.13.</para>
       /// </summary>
       class function  IsFinalizing: boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Preinitialize Python from preconfig preconfiguration.</para>
+      /// <para>preconfig must not be nil.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">See the Preinitialize Python with PyPreConfig article.</see></para>
+      /// </remarks>
       class function  PreInitialize(const src_config: IPyPreConfig): IPyStatus;
       /// <summary>
-      /// <para></para>
+      /// <para>Preinitialize Python from preconfig preconfiguration.</para>
+      /// <para>Parse argv command line arguments (bytes strings) if parse_argv
+      /// of preconfig is non-zero.</para>
+      /// <para>preconfig must not be nil.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">See the Preinitialize Python with PyPreConfig article.</see></para>
+      /// </remarks>
       class function  PreInitializeFromBytesArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPAnsiChar): IPyStatus;
       /// <summary>
-      /// <para></para>
+      /// <para>Preinitialize Python from preconfig preconfiguration.</para>
+      /// <para>Parse argv command line arguments (wide strings) if parse_argv
+      /// of preconfig is non-zero.</para>
+      /// <para>preconfig must not be nil.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">See the Preinitialize Python with PyPreConfig article.</see></para>
+      /// </remarks>
       class function  PreInitializeFromArgs(const src_config: IPyPreConfig; argc: Py_ssize_t; argv: PPWCharT): IPyStatus;
       /// <summary>
-      /// <para></para>
+      /// <para>Executes the main module in a fully configured CPython
+      /// runtime.</para>
+      /// <para>Executes the command (PyConfig.run_command), the script
+      /// (PyConfig.run_filename) or the module (PyConfig.run_module) specified
+      /// on the command line or in the configuration. If none of these values
+      /// are set, runs the interactive Python prompt (REPL) using the __main__
+      /// module’s global namespace.</para>
+      /// <para>If PyConfig.inspect is not set (the default), the return value
+      /// will be 0 if the interpreter exits normally (that is, without raising
+      /// an exception), the exit status of an unhandled SystemExit, or 1 for
+      /// any other unhandled exception.</para>
+      /// <para>If PyConfig.inspect is set (such as when the -i option is used),
+      /// rather than returning when the interpreter exits, execution will
+      /// instead resume in an interactive Python prompt (REPL) using the
+      /// __main__ module's global namespace. If the interpreter exited with an
+      /// exception, it is immediately raised in the REPL session. The function
+      /// return value is then determined by the way the REPL session
+      /// terminates: 0, 1, or the status of a SystemExit, as specified
+      /// above.</para>
+      /// <para>This function always finalizes the Python interpreter before it
+      /// returns.</para>
+      /// <para>See Python Configuration for an example of a customized Python
+      /// that always runs in isolated mode using TPy.RunMain().</para>
       /// </summary>
       class function  RunMain: integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Call exit(exitcode) if status is an exit. Print the error
+      /// message and exit with a non-zero exit code if status is an error.
+      /// Must only be called if TPyStatus.IsException is true.</para>
       /// </summary>
       class procedure ExitStatusException(const status: IPyStatus);
       /// <summary>
-      /// <para></para>
+      /// <para>Return true if the standard I/O file fp with name filename is
+      /// deemed interactive. This is the case for files for which
+      /// isatty(fileno(fp)) is true. If the PyConfig.interactive is non-zero,
+      /// this function also returns true if the filename pointer is nil or if
+      /// the name is equal to one of the strings '<stdin>' or '???'.</para>
+      /// <para>This function must not be called before Python is
+      /// initialized.</para>
       /// </summary>
       class function  FdIsInteractive(file_: PFILE; const filename: string): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a new sub-interpreter. This is an (almost) totally
+      /// separate environment for the execution of Python code. In particular,
+      /// the new interpreter has separate, independent versions of all imported
+      /// modules, including the fundamental modules builtins, __main__ and sys.
+      /// The table of loaded modules (sys.modules) and the module search path
+      /// (sys.path) are also separate. The new environment has no sys.argv
+      /// variable. It has new standard I/O stream file objects sys.stdin,
+      /// sys.stdout and sys.stderr (however these refer to the same underlying
+      /// file descriptors).</para>
+      /// <para>The given config controls the options with which the interpreter
+      /// is initialized.</para>
+      /// <para>Upon success, tstate_p will be set to the first thread state
+      /// created in the new sub-interpreter. This thread state is attached.
+      /// Note that no actual thread is created; see the discussion of thread
+      /// states below. If creation of the new interpreter is unsuccessful,
+      /// tstate_p is set to nil; no exception is set since the exception state
+      /// is stored in the attached thread state, which might not exist.</para>
+      /// <para>Like all other Python/C API functions, an attached thread state
+      /// must be present before calling this function, but it might be
+      /// detached upon returning. On success, the returned thread state will
+      /// be attached. If the sub-interpreter is created with its own GIL then
+      /// the attached thread state of the calling interpreter will be detached.
+      /// When the function returns, the new interpreter’s thread state will be
+      /// attached to the current thread and the previous interpreter's
+      /// attached thread state will remain detached.</para>
+      /// <para>Added in version 3.12.</para>
+      /// <para>Sub-interpreters are most effective when isolated from each
+      /// other, with certain functionality restricted:</para>
+      /// <code>
+      /// PyInterpreterConfig config = {
+      ///     .use_main_obmalloc = 0,
+      ///     .allow_fork = 0,
+      ///     .allow_exec = 0,
+      ///     .allow_threads = 1,
+      ///     .allow_daemon_threads = 0,
+      ///     .check_multi_interp_extensions = 1,
+      ///     .gil = PyInterpreterConfig_OWN_GIL,
+      /// };
+      /// PyThreadState *tstate = NULL;
+      /// PyStatus status = Py_NewInterpreterFromConfig(&tstate, &config);
+      /// if (PyStatus_Exception(status)) {
+      ///     Py_ExitStatusException(status);
+      /// }
+      /// </code>
+      /// <para>Note that the config is used only briefly and does not get
+      /// modified. During initialization the config’s values are converted
+      /// into various PyInterpreterState values. A read-only copy of the
+      /// config may be stored internally on the PyInterpreterState.</para>
+      /// <para>Extension modules are shared between (sub-)interpreters as
+      /// follows:</para>
+      /// <para>- For modules using multi-phase initialization,
+      /// e.g. TPyModule.FromDefAndSpec(), a separate module object is created
+      /// and initialized for each interpreter. Only C-level static and global
+      /// variables are shared between these module objects.</para>
+      /// <para>- For modules using legacy single-phase initialization,
+      /// e.g. TPyModule.Create(), the first time a particular extension is
+      /// imported, it is initialized normally, and a (shallow) copy of its
+      /// module’s dictionary is squirreled away. When the same extension is
+      /// imported by another (sub-)interpreter, a new module is initialized
+      /// and filled with the contents of this copy; the extension’s init
+      /// function is not called. Objects in the module’s dictionary thus end up
+      /// shared across (sub-)interpreters, which might cause unwanted behavior
+      /// (see Bugs and caveats below).</para>
+      /// <para>Note that this is different from what happens when an extension
+      /// is imported after the interpreter has been completely re-initialized
+      /// by calling TPy.FinalizeEx() and TPy.Initialize(); in that case,
+      /// the extension’s initmodule function is called again. As with
+      /// multi-phase initialization, this means that only C-level static and
+      /// global variables are shared between these modules.</para>
       /// </summary>
       class function  NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
       /// <summary>
-      /// <para></para>
+      /// <para>Schedule a function to be called from the main interpreter
+      /// thread. On success, True is returned and func is queued for being
+      /// called in the main thread. On failure, False is returned without
+      /// setting any exception.</para>
+      /// <para>When successfully queued, func will be eventually called from
+      /// the main interpreter thread with the argument arg. It will be called
+      /// asynchronously with respect to normally running Python code, but with
+      /// both these conditions met:</para>
+      /// <code>
+      /// - on a bytecode boundary;
+      /// - with the main thread holding an attached thread state (func can
+      ///   therefore use the full C API).
+      /// </code>
+      /// <para>func must return 0 on success, or -1 on failure with an
+      /// exception set. func won't be interrupted to perform another
+      /// asynchronous notification recursively, but it can still be interrupted
+      /// to switch threads if the thread state is detached.</para>
+      /// <para>This function doesn't need an attached thread state. However,
+      /// to call this function in a subinterpreter, the caller must have an
+      /// attached thread state. Otherwise, the function func can be scheduled
+      /// to be called from the wrong interpreter.</para>
+      /// <para>Warning This is a low-level function, only useful for very
+      /// special cases. There is no guarantee that func will be called as
+      /// quick as possible. If the main thread is busy executing a system call,
+      /// func won't be called before the system call returns. This function is
+      /// generally not suitable for calling Python code from arbitrary C
+      /// threads. Instead, use the PyGILState API.</para>
+      /// <para>Added in version 3.1.</para>
+      /// <para>Changed in version 3.9: If this function is called in a
+      /// subinterpreter, the function func is now scheduled to be called from
+      /// the subinterpreter, rather than being called from the main
+      /// interpreter. Each subinterpreter now has its own list of scheduled
+      /// calls.</para>
+      /// <para>Changed in version 3.12: This function now always schedules
+      /// func to be run in the main interpreter.</para>
       /// </summary>
       class function  AddPendingCall(func: Py_AddPendingCall_func; arg: pointer): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Execute all pending calls. This is usually executed
+      /// automatically by the interpreter.</para>
+      /// <para>This function returns True on success, and returns False with
+      /// an exception set on failure.</para>
+      /// <para>If this is not called in the main thread of the main
+      /// interpreter, this function does nothing and returns 0. The caller must
+      /// hold an attached thread state.</para>
+      /// <para>Added in version 3.1.</para>
+      /// <para>Changed in version 3.12: This function only runs pending calls
+      /// in the main interpreter.</para>
       /// </summary>
       class function  MakePendingCalls: boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Set the recursion limit for the current interpreter.</para>
+      /// <para>This function cannot fail, and the caller must hold an attached
+      /// thread state.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.setrecursionlimit">See also sys.setrecursionlimit().</see></para>
+      /// </remarks>
       class procedure SetRecursionLimit(new_limit: Integer);
       /// <summary>
-      /// <para></para>
+      /// <para>Get the recursion limit for the current interpreter. It can be
+      /// set with TPy.SetRecursionLimit(). The recursion limit prevents the
+      /// Python interpreter stack from growing infinitely.</para>
+      /// <para>This function cannot fail, and the caller must hold an attached
+      /// thread state.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.getrecursionlimit">See also sys.getrecursionlimit().</see></para>
+      /// </remarks>
       class function  GetRecursionLimit: integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Marks a point where a recursive C-level call is about to be
+      /// performed.</para>
+      /// <para>The function then checks if the stack limit is reached. If this
+      /// is the case, a RecursionError is set and False is returned.
+      /// Otherwise, True is returned.</para>
+      /// <para>where should be a UTF-8 encoded string such as
+      /// " in instance check" to be concatenated to the RecursionError message
+      /// caused by the recursion depth limit.</para>
       /// </summary>
       class function  EnterRecursiveCall(const where_: string): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Ends a TPy.EnterRecursiveCall(). Must be called once for each
+      /// successful invocation of TPy.EnterRecursiveCall().</para>
       /// </summary>
       class procedure LeaveRecursiveCall;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a byte string from the filesystem encoding and error
+      /// handler. If the error handler is surrogateescape error handler,
+      /// undecodable bytes are decoded as characters in range U+DC80..U+DCFF;
+      /// and if a byte sequence can be decoded as a surrogate character,
+      /// the bytes are escaped using the surrogateescape error handler instead
+      /// of decoding them.</para>
+      /// <para>Return a pointer to a newly allocated wide character string,
+      /// use TPyMem.RawFree() to free the memory. If size is not nil, write
+      /// the number of wide characters excluding the null character into
+      /// size_</para>
+      /// <para>Return nil on decoding error or memory allocation error.
+      /// size_ is set to (size_t)-1 on memory error or set to (size_t)-2 on
+      /// decoding error.</para>
+      /// <para>The filesystem encoding and error handler are selected by
+      /// IPyConfig.Read(): see filesystem_encoding and filesystem_errors
+      /// members of PyConfig.</para>
+      /// <para>Decoding errors should never happen, unless there is a bug in
+      /// the C library.</para>
+      /// <para>Use the TPy.EncodeLocale() function to encode the character
+      /// string back to a byte string.</para>
+      /// <para>See also The TPyUnicode.DecodeFSDefaultAndSize() and
+      /// TPyUnicode.DecodeLocaleAndSize() functions.</para>
+      /// <para>Added in version 3.5.</para>
+      /// <para>Changed in version 3.7: The function now uses the UTF-8 encoding
+      /// in the Python UTF-8 Mode.</para>
+      /// <para>Changed in version 3.8: The function now uses the UTF-8 encoding
+      /// on Windows if PyPreConfig.legacy_windows_fs_encoding is zero;</para>
+      /// <para>Warning: This function should not be called directly: use the
+      /// PyConfig API with the IPyConfig.SetBytesString() function which
+      /// ensures that Python is preinitialized.</para>
+      /// <para>This function must not be called before Python is preinitialized
+      /// and so that the LC_CTYPE locale is properly configured: see the
+      /// TPy.PreInitialize() function.</para>
       /// </summary>
-      class function  DecodeLocale(const arg: PAnsiChar; size_: NativeUInt): PWCharT;
+      class function  DecodeLocale(const arg: PAnsiChar; var size_: NativeUInt): PWCharT;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a wide character string to the filesystem encoding and
+      /// error handler. If the error handler is surrogateescape error handler,
+      /// surrogate characters in the range U+DC80..U+DCFF are converted to
+      /// bytes 0x80..0xFF.</para>
+      /// <para>Return a pointer to a newly allocated byte string, use
+      /// TPyMem.Free() to free the memory. Return nil on encoding error or
+      /// memory allocation error.</para>
+      /// <para>error_pos is set to (size_t)-1 on success, or set to the index
+      /// of the invalid character on encoding error.</para>
+      /// <para>The filesystem encoding and error handler are selected by
+      /// TPyConfig.Read(): see filesystem_encoding and filesystem_errors
+      /// members of PyConfig.</para>
+      /// <para>Use the TPy.DecodeLocale() function to decode the bytes string
+      /// back to a wide character string.</para>
+      /// <para>Warning This function must not be called before Python is
+      /// preinitialized and so that the LC_CTYPE locale is properly configured:
+      /// see the TPy.PreInitialize() function.</para>
+      /// <para>See also The TPyUnicode.EncodeFSDefault() and
+      /// TPyUnicode.EncodeLocale() functions.</para>
+      /// <para>Added in version 3.5.</para>
+      /// <para>Changed in version 3.7: The function now uses the UTF-8 encoding
+      /// in the Python UTF-8 Mode.</para>
+      /// <para>Changed in version 3.8: The function now uses the UTF-8 encoding
+      /// on Windows if PyPreConfig.legacy_windows_fs_encoding is zero.</para>
       /// </summary>
-      class function  EncodeLocale(const text: PWCharT; error_pos: NativeUInt): PAnsiChar;
+      class function  EncodeLocale(const text: PWCharT; var error_pos: NativeUInt): PAnsiChar;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to fopen(), but path is a Python object and an exception
+      /// is set on error.</para>
+      /// <para>path must be a str object, a bytes object, or a path-like
+      /// object.</para>
+      /// <para>On success, return the new file pointer. On error, set an
+      /// exception and return nil.</para>
+      /// <para>The file must be closed by TPy.fclose() rather than calling
+      /// directly fclose().</para>
+      /// <para>The file descriptor is created non-inheritable (PEP 446).</para>
+      /// <para>The caller must have an attached thread state.</para>
+      /// <para>Added in version 3.14.</para>
       /// </summary>
       class function  fopen(const path: IPyObject; const mode: string): PFILE;
       /// <summary>
-      /// <para></para>
+      /// <para>Close a file that was opened by TPy.fopen().</para>
+      /// <para>On success, return 0. On error, return EOF and errno is set to
+      /// indicate the error. In either case, any further access (including
+      /// another call to TPy.fclose()) to the stream results in undefined
+      /// behavior.</para>
+      /// <para>Added in version 3.14.</para>
       /// </summary>
       class function  fclose(file_: PFILE): integer;
   end;
@@ -623,7 +1077,7 @@ end;
 
 class function TPy.UniversalNewlineFgets(buf: PByte; n: integer; stream: PFILE): PByte;
 begin
-  // The fobj parameter exists solely for legacy reasons and must be NULL.
+  // The fobj parameter exists solely for legacy reasons and must be nil.
   if assigned(Py_UniversalNewlineFgets) then
     Result := PByte(Py_UniversalNewlineFgets(PAnsiChar(buf), n, stream, nil))
    else
@@ -707,8 +1161,8 @@ begin
 
   if TPyObject.IsInitialized(aPyObject) then
     begin
-      if assigned(Py_TYPE) then
-        Result := Py_TYPE(aPyObject.PyObject)
+      if assigned(Py_Type) then
+        Result := Py_Type(aPyObject.PyObject)
        else
         Result := aPyObject.PyObject^.ob_type;
     end;
@@ -1113,7 +1567,7 @@ class procedure TPy.ExitStatusException(const status: IPyStatus);
 begin
   if assigned(Py_ExitStatusException) and
      assigned(status) then
-    Py_ExitStatusException(status.Status)
+    Py_ExitStatusException(status.Status);
 end;
 
 class function TPy.FdIsInteractive(file_: PFILE; const filename: string): boolean;
@@ -1197,18 +1651,18 @@ begin
     Py_LeaveRecursiveCall();
 end;
 
-class function TPy.DecodeLocale(const arg: PAnsiChar; size_: NativeUInt): PWCharT;
+class function TPy.DecodeLocale(const arg: PAnsiChar; var size_: NativeUInt): PWCharT;
 begin
   if assigned(Py_DecodeLocale) then
-    Result := Py_DecodeLocale(arg, size_)
+    Result := Py_DecodeLocale(arg, @size_)
    else
     Result := nil;
 end;
 
-class function TPy.EncodeLocale(const text: PWCharT; error_pos: NativeUInt): PAnsiChar;
+class function TPy.EncodeLocale(const text: PWCharT; var error_pos: NativeUInt): PAnsiChar;
 begin
   if assigned(Py_EncodeLocale) then
-    Result := Py_EncodeLocale(text, error_pos)
+    Result := Py_EncodeLocale(text, @error_pos)
    else
     Result := nil;
 end;

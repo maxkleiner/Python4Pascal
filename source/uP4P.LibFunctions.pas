@@ -1325,8 +1325,8 @@ var
   PyOS_mystricmp                                 : function(const str1, str2: PAnsiChar): integer; cdecl;
 
   {* include/fileutils.h  include/cpython/fileutils.h *}
-  Py_DecodeLocale                                : function(const arg: PAnsiChar; size_: NativeUInt): PWCharT; cdecl;
-  Py_EncodeLocale                                : function(const text: PWCharT; error_pos: NativeUInt): PAnsiChar; cdecl;
+  Py_DecodeLocale                                : function(const arg: PAnsiChar; size_: PNativeUInt): PWCharT; cdecl;
+  Py_EncodeLocale                                : function(const text: PWCharT; error_pos: PNativeUInt): PAnsiChar; cdecl;
   Py_fopen                                       : function(path: PPyObject; const mode: PAnsiChar): PFILE; cdecl;
   Py_fclose                                      : function(file_: PFILE): integer; cdecl;
 

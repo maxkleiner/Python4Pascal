@@ -249,14 +249,14 @@ type
       /// <para>Fields which are already initialized are left unchanged.</para>
       /// <para>Fields for path configuration are no longer calculated or modified
       /// when calling this function, as of Python 3.11.</para>
-      /// <para>The PyConfig_Read() function only parses PyConfig.argv arguments
+      /// <para>The IPyConfig.Read() function only parses PyConfig.argv arguments
       /// once: PyConfig.parse_argv is set to 2 after arguments are parsed. Since
       /// Python arguments are stripped from PyConfig.argv, parsing arguments
       /// twice would parse the application options as Python options.</para>
       /// <para>Changed in version 3.10: The PyConfig.argv arguments are now only
       /// parsed once, PyConfig.parse_argv is set to 2 after arguments are parsed,
       /// and arguments are only parsed if PyConfig.parse_argv equals 1.</para>
-      /// <para>Changed in version 3.11: PyConfig_Read() no longer calculates all
+      /// <para>Changed in version 3.11: IPyConfig.Read() no longer calculates all
       /// paths, and so fields listed under Python Path Configuration may no
       /// longer be updated until Py_InitializeFromConfig() is called.</para>
       /// </summary>
@@ -644,7 +644,7 @@ type
       /// <para>The list of the original command line arguments passed to the
       /// Python executable: sys.orig_argv.</para>
       /// <para>If orig_argv list is empty and argv is not a list only
-      /// containing an empty string, PyConfig_Read() copies argv into orig_argv
+      /// containing an empty string, IPyConfig.Read() copies argv into orig_argv
       /// before modifying argv (if parse_argv is non-zero).</para>
       /// <para>See also the argv member and the Py_GetArgcArgv()
       /// function.</para>
@@ -656,7 +656,7 @@ type
       /// <para>Parse command line arguments?</para>
       /// <para>If True, parse argv the same way the regular Python parses
       /// command line arguments, and strip Python arguments from argv.</para>
-      /// <para>The PyConfig_Read() function only parses PyConfig.argv arguments
+      /// <para>The IPyConfig.Read() function only parses PyConfig.argv arguments
       /// once: PyConfig.parse_argv is set to True after arguments are parsed.
       /// Since Python arguments are stripped from PyConfig.argv, parsing
       /// arguments twice would parse the application options as Python
