@@ -901,7 +901,7 @@ type
       class function  InitVar(const ob: IPyObject; typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
       /// <summary>
       /// <para>Allocates a new Python object using the Python type object
-      /// type_ (PPyTypeObject) by calling TPyObject.Malloc() to allocate
+      /// typeobj (PPyTypeObject) by calling TPyObject.Malloc() to allocate
       /// memory and initializing it like TPyObject.Init(). The caller will own
       /// the only reference to the object (i.e. its reference count will be
       /// one).</para>
@@ -924,12 +924,12 @@ type
       /// further initialization by tp_init. To construct a fully initialized
       /// object, call typeobj instead.</para>
       /// </summary>
-      class function  New(type_: PPyTypeObject): Pointer;
+      class function  New(typeobj: PPyTypeObject): Pointer;
       /// <summary>
       /// <para>TPyObject.New2 is the same as TPyObject.New but it wraps the
       /// result as a TPyObject.</para>
       /// </summary>
-      class function  New2(type_: PPyTypeObject): IPyObject;
+      class function  New2(typeobj: PPyTypeObject): IPyObject;
       /// <summary>
       /// <para>Like TPyObject.New except:</para>
       /// <code>
@@ -1256,18 +1256,18 @@ begin
     Result := nil;
 end;
 
-class function TPyObject.New(type_: PPyTypeObject): Pointer;
+class function TPyObject.New(typeobj: PPyTypeObject): Pointer;
 begin
   if assigned(PyObject_New) and
-     assigned(type_) then
-    Result := PyObject_New(type_)
+     assigned(typeobj) then
+    Result := PyObject_New(typeobj)
    else
     Result := nil;
 end;
 
-class function TPyObject.New2(type_: PPyTypeObject): IPyObject;
+class function TPyObject.New2(typeobj: PPyTypeObject): IPyObject;
 begin
-  Result := TPyObject.Wrap(TPyObject.New(type_));
+  Result := TPyObject.Wrap(TPyObject.New(typeobj));
 end;
 
 class function TPyObject.NewVar(typeobj: PPyTypeObject; size_: Py_ssize_t): IPyObject;
