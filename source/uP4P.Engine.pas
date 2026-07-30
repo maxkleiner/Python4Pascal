@@ -55,28 +55,109 @@ type
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       procedure   BeforeDestruction; override;
+      /// <summary>
+      /// <para>Add the module to sys.modules.</para>
+      /// </summary>
       function    AddModuleToSys(const aModule: TCustomPyModule): boolean;
+      /// <summary>
+      /// <para>Add the module to the internal module list.</para>
+      /// </summary>
       procedure   AddModule(const aModule: TCustomPyModule);
+      /// <summary>
+      /// <para>Remove the module from the internal module list.</para>
+      /// </summary>
       procedure   RemoveModule(const aModule: TCustomPyModule);
+      /// <summary>
+      /// <para>Search the module in the internal module list.</para>
+      /// </summary>
       function    SearchModule(module: PPyObject; var aResult: TCustomPyModule): boolean;
+      /// <summary>
+      /// <para>Return True if module is the internal IOModule.</para>
+      /// </summary>
       function    IsIOModule(module: PPyObject): boolean;
+      /// <summary>
+      /// <para>Internal function used by TIOPyModule.Write. Don't use!</para>
+      /// </summary>
       procedure   doOnOutputMessage(const aMessage: string);
+      /// <summary>
+      /// <para>Internal function used by TIOPyModule.Read. Don't use!</para>
+      /// </summary>
       function    doOnInputMessage(var aResultObj: IPyObject): boolean;
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
       function    Initialize: boolean; override;
+      /// <summary>
+      /// <para>Detach the attached thread state and return it. The thread will
+      /// have no thread state upon returning.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/glossary.html#term-attached-thread-state">See the article about attached thread states.</see></para>
+      /// <para><see href="https://docs.python.org/3/glossary.html#term-thread-state">See the article about thread states.</see></para>
+      /// </remarks>
       procedure   SaveThreadState;
+      /// <summary>
+      /// <para>Set the attached thread state to tstate. The passed thread
+      /// state should not be attached, otherwise deadlock ensues. tstate will
+      /// be attached upon returning.</para>
+      /// <para>Note Calling this function from a thread when the runtime is
+      /// finalizing will hang the thread until the program exits, even if the
+      /// thread was not created by Python. Refer to Cautions regarding runtime
+      /// finalization for more details.</para>
+      /// <para>Changed in version 3.14: Hangs the current thread, rather than
+      /// terminating it, if called while the interpreter is finalizing.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/glossary.html#term-attached-thread-state">See the article about attached thread states.</see></para>
+      /// <para><see href="https://docs.python.org/3/glossary.html#term-thread-state">See the article about thread states.</see></para>
+      /// </remarks>
       procedure   RestoreThreadState;
+      /// <summary>
+      /// Update LastErrorMessage with the last raised exception information.
+      /// </summary>
       function    GetRaisedException: boolean;
 
+      /// <summary>
+      /// IOModule instance used by the interpreter for standard input, output
+      /// and errors.
+      /// </summary>
       property IOModule                  : TIOPyModule              read FIOModule;
+      /// <summary>
+      /// <para>The current interpreter.</para>
+      /// </summary>
       property InterpreterState          : IPyInterpreterState      read FInterpreterState;
+      /// <summary>
+      /// <para>Return True if this property runs in the same thread that
+      /// created the TP4PEngine instance.</para>
+      /// </summary>
       property IsMainThread              : boolean                  read GetIsMainThread;
+      /// <summary>
+      /// This property is True after a successfull call to
+      /// TP4PEngine.SaveThreadState and before the call to
+      /// TP4PEngine.RestoreThreadState.
+      /// </summary>
       property SavedThreadState          : boolean                  read GetSavedThreadState            write SetSavedThreadState;
+      /// <summary>
+      /// TPyTimeModule instance used for DateTime conversions.
+      /// </summary>
       property TimeModule                : TPyTimeModule            read FTimeModule;
+      /// <summary>
+      /// TPyDateTimeModule instance used for DateTime conversions.
+      /// </summary>
       property DateTimeModule            : TPyDateTimeModule        read FDateTimeModule;
+      /// <summary>
+      /// Event triggered when Python outputs a string message.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.stderr">See the article about sys.stdin, sys.stdout and sys.stderr.</see></para>
+      /// </remarks>
       property OnOutputMessage           : TOnOutputMessageEvent    read FOnOutputMessage               write FOnOutputMessage;
+      /// <summary>
+      /// Event triggered in all interactive input including Python calls to input().
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.stderr">See the article about sys.stdin, sys.stdout and sys.stderr.</see></para>
+      /// </remarks>
       property OnInputMessage            : TOnInputMessageEvent     read FOnInputMessage                write FOnInputMessage;
   end;
 
@@ -242,7 +323,6 @@ function TP4PEngine.AddModuleToSys(const aModule: TCustomPyModule): boolean;
 var
   TempModuleDict : IPyObject;
 begin
-  // add the module to sys.modules
   TempModuleDict := TPyImport.GetModuleDict;
   Result         := TPyDict.SetItemString(TempModuleDict, aModule.Name_, aModule.Module);
   TempModuleDict := nil;

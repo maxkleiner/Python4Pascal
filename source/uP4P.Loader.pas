@@ -164,6 +164,10 @@ type
       constructor Create; virtual;
       destructor  Destroy; override;
       procedure   BeforeDestruction; override;
+      /// <summary>
+      /// Return true if the loaded Python library version is greater or equal
+      /// to the version information in the arguments.
+      /// </summary>
       function    PythonLibIsGreaterOrEqualThan(aMajor, aMinor, aMicro: integer): boolean;
       /// <summary>
       /// Load the Python library.
@@ -246,23 +250,191 @@ type
       /// Returns the Python library path when it's installed in the OS.
       /// </summary>
       property OSPythonLibPath                   : string                                       read GetOSPythonLibPath;
-
+      /// <summary>
+      /// <para>If True, enable isolated mode:</para>
+      /// <code>
+      /// - Set safe_path to True: don't prepend a potentially unsafe path to
+      ///   sys.path at Python startup, such as the current directory, the
+      ///   script's directory or an empty string.
+      /// - Set use_environment to False: ignore PYTHON environment variables.
+      /// - Set user_site_directory to False: don't add the user site directory
+      ///   to sys.path.
+      /// - Python REPL doesn't import readline nor enable default readline
+      ///   configuration on interactive prompts.
+      /// </code>
+      /// <para>Set to True by the -I command line option.</para>
+      /// <para>Default: False in Python mode, True in isolated mode.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#isolated-configuration">See the article about Isolated Configuration.</see></para>
+      /// </remarks>
       property Isolated                          : boolean                                      read FIsolated                          write FIsolated;
+      /// <summary>
+      /// <para>Parser debug mode. If True, turn on parser debugging output
+      /// (for expert only, depending on compilation options).</para>
+      /// <para>Enabled by the -d command line option. Set to the PYTHONDEBUG
+      /// environment variable value.</para>
+      /// <para>Needs a debug build of Python (the Py_DEBUG macro must be
+      /// defined).</para>
+      /// <para>Default: False.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDEBUG">See the article about PYTHONDEBUG.</see></para>
+      /// </remarks>
       property ParserDebug                       : boolean                                      read FParserDebug                       write FParserDebug;
+      /// <summary>
+      /// <para>Verbose mode. If pvmModule or pvmFull, print a message each time
+      /// a module is imported, showing the place (filename or built-in module)
+      /// from which it is loaded.</para>
+      /// <para>If pvmFull, print a message for each file
+      /// that is checked for when searching for a module. Also provides
+      /// information on module cleanup at exit.</para>
+      /// <para>Enabled by the -v command line option.</para>
+      /// <para>Set by the PYTHONVERBOSE environment variable value.</para>
+      /// <para>Default: pvmDisabled.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONVERBOSE">See the article about PYTHONVERBOSE.</see></para>
+      /// </remarks>
       property Verbose                           : TPyVerboseMode                               read FVerbose                           write FVerbose;
+      /// <summary>
+      /// <para>If True, enable the interactive mode (REPL).</para>
+      /// <para>Enabled by the -i command line option.</para>
+      /// <para>Default: False.</para>
+      /// </summary>
       property Interactive                       : boolean                                      read FInteractive                       write FInteractive;
+      /// <summary>
+      /// <para>Compilation optimization level:</para>
+      /// <code>
+      /// - polDebug (0) : Peephole optimizer, set __debug__ to True.
+      /// - polRelease (1) : Level 0, remove assertions, set __debug__ to False.
+      /// - polReleaseNoDocStrings (2) : Level 1, strip docstrings.
+      /// </code>
+      /// <para>Incremented by the -O command line option. Set to the
+      /// PYTHONOPTIMIZE environment variable value.</para>
+      /// <para>Default: polDebug (0).</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONOPTIMIZE">See the article about PYTHONOPTIMIZE.</see></para>
+      /// </remarks>
       property OptimizationLevel                 : TPyOptimizationLevel                         read FOptimizationLevel                 write FOptimizationLevel;
+      /// <summary>
+      /// <para>Import the site module at startup?</para>
+      /// <para>If equal to zero, disable the import of the module site and the
+      /// site-dependent manipulations of sys.path that it entails.</para>
+      /// <para>Also disable these manipulations if the site module is
+      /// explicitly imported later (call site.main() if you want them to be
+      /// triggered).</para>
+      /// <para>Set to False by the -S command line option.</para>
+      /// <para>sys.flags.no_site is set to the inverted value of
+      /// site_import.</para>
+      /// <para>Default: True.</para>
+      /// </summary>
       property SiteImport                        : boolean                                      read FSiteImport                        write FSiteImport;
+      /// <summary>
+      /// <para>If True, calculation of path configuration is allowed to log
+      /// warnings into stderr. If False, suppress these warnings.</para>
+      /// <para>Default: True in Python mode, False in isolated mode.</para>
+      /// <para>Changed in version 3.11: Now also applies on Windows.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration input.</see></para>
+      /// </remarks>
       property PathConfigWarnings                : boolean                                      read FPathConfigWarnings                write FPathConfigWarnings;
+      /// <summary>
+      /// <para>Use environment variables?</para>
+      /// <para>If False, ignore the environment variables.</para>
+      /// <para>Set to False by the -E environment variable.</para>
+      /// <para>Default: True in Python config and False in isolated
+      /// config.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#using-on-envvars">See the article about environment variables.</see></para>
+      /// </remarks>
       property UseEnvironment                    : boolean                                      read FUseEnvironment                    write FUseEnvironment;
+      /// <summary>
+      /// <para>If True, add the user site directory to sys.path.</para>
+      /// <para>Set to False by the -s and -I command line options.</para>
+      /// <para>Set to False by the PYTHONNOUSERSITE environment variable.</para>
+      /// <para>Default: True in Python mode, False in isolated mode.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONNOUSERSITE">See the article about PYTHONNOUSERSITE.</see></para>
+      /// </remarks>
       property UserSiteDirectory                 : boolean                                      read FUserSiteDirectory                 write FUserSiteDirectory;
+      /// <summary>
+      /// <para>If False, Python won't try to write .pyc files on the import of
+      /// source modules.</para>
+      /// <para>Set to False by the -B command line option and the
+      /// PYTHONDONTWRITEBYTECODE environment variable.</para>
+      /// <para>sys.dont_write_bytecode is initialized to the inverted value of
+      /// write_bytecode.</para>
+      /// <para>Default: True.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE">See the article about PYTHONDONTWRITEBYTECODE.</see></para>
+      /// </remarks>
       property WriteBytecode                     : boolean                                      read FWriteBytecode                     write FWriteBytecode;
+      /// <summary>
+      /// <para>If True, enable the Python Development Mode.</para>
+      /// <para>Set to True by the -X dev option and the PYTHONDEVMODE
+      /// environment variable.</para>
+      /// <para>Default: True in Python mode, False in isolated mode.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/library/devmode.html#devmode">See the article about Python Development Mode.</see></para>
+      /// </remarks>
       property DevMode                           : boolean                                      read FDevMode                           write FDevMode;
+      /// <summary>
+      /// <para>Set the default Python "home" directory, that is, the location
+      /// of the standard Python libraries.</para>
+      /// <para>Set by the PYTHONHOME environment variable.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration input.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">See the article about PYTHONHOME.</see></para>
+      /// </remarks>
       property Home                              : string                                       read FHome                              write FHome;
+      /// <summary>
+      /// <para>The absolute path of the executable binary for the Python
+      /// interpreter: sys.executable.</para>
+      /// <para>Part of the Python Path Configuration output.</para>
+      /// <para>See also PyConfig.base_executable.</para>
+      /// </summary>
       property Executable                        : string                                       read FExecutable                        write FExecutable;
+      /// <summary>
+      /// <para>Program name used to initialize executable and in early error
+      /// messages during Python initialization.</para>
+      /// <para>On macOS, use PYTHONEXECUTABLE environment variable if
+      /// set.</para>
+      /// <para>If the WITH_NEXT_FRAMEWORK macro is defined, use
+      /// __PYVENV_LAUNCHER__ environment variable if set.</para>
+      /// <para>Use argv[0] of argv if available and non-empty.</para>
+      /// <para>Otherwise, use "python" on Windows, or "python3" on other
+      /// platforms.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration input.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONEXECUTABLE">See the article about PYTHONEXECUTABLE.</see></para>
+      /// <para>See PyConfig.executable and PyConfig.base_executable.</para>
+      /// </remarks>
       property ProgramName                       : string                                       read FProgramName                       write FProgramName;
+      /// <summary>
+      /// <para>A list of strings that specifies the search path for
+      /// modules.</para>
+      /// <para>Initialized from the environment variable PYTHONPATH, plus an
+      /// installation-dependent default.</para>
+      /// <para>If module_search_paths_set is False, Py_InitializeFromConfig()
+      /// will replace module_search_paths and sets module_search_paths_set to
+      /// True.</para>
+      /// <para>Default: empty list.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/init_config.html#init-path-config">Part of the Python Path Configuration output.</see></para>
+      /// <para><see href="https://docs.python.org/3/library/sys.html#sys.path">See the article about sys.path.</see></para>
+      /// <para><see href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">See the article about PYTHONPATH.</see></para>
+      /// </remarks>
       property ModuleSearchPaths                 : string                                       read FModuleSearchPaths                 write FModuleSearchPaths;
-
       /// <summary>
       /// Event triggered right before the Python initialization. It's used to change the configuration properties.
       /// </summary>

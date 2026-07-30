@@ -39,7 +39,7 @@ uses
   uP4P.PyUnicodeWriter, uP4P.PyVectorcall, uP4P.PyWeakref, 
   uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, uP4P.PyDateTimeModule, 
   uP4P.PyObjectVariantType, uP4P.PyTimeModule, uP4P.Thread, 
-  uP4P.ImportedPyModule, LazarusPackageIntf;
+  uP4P.ImportedPyModule, uP4P.PyGenericAlias, LazarusPackageIntf;
 
 implementation
 

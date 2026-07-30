@@ -27,6 +27,10 @@ type
       class function GetSlice(const p: IPyObject; low, high: Py_ssize_t): IPyObject;
       class function New(len: Py_ssize_t): IPyObject;
       class function Pack(const objects: IPyObjectArray): IPyObject;
+      /// <summary>
+      /// <para>Return true if aPyObject is a tuple object or an instance of a
+      /// subtype of the tuple type. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function FromArray(const aItems: array of const): IPyObject;

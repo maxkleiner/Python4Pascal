@@ -19,6 +19,13 @@ uses
 type
   TPyMapping = class
     public
+      /// <summary>
+      /// <para>Return True if the object provides the mapping protocol or
+      /// supports slicing, and False otherwise. Note that it returns True for
+      /// Python classes with a __getitem__() method, since in general it is
+      /// impossible to determine what type of keys the class supports.
+      /// This function always succeeds.</para>
+      /// </summary>
       class function Check(const o: IPyObject): boolean;
       class function Size(const o: IPyObject): Py_ssize_t;
       class function Length(const o: IPyObject): Py_ssize_t;

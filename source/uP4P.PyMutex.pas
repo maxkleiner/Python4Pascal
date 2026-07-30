@@ -50,7 +50,7 @@ type
       /// </summary>
       procedure Lock;
       /// <summary>
-      /// <para>Unlock mutex. The mutex must be locked — otherwise, the
+      /// <para>Unlock mutex. The mutex must be locked - otherwise, the
       /// function will issue a fatal error.</para>
       /// <para>Added in version 3.13.</para>
       /// </summary>

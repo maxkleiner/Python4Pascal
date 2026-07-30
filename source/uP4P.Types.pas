@@ -508,10 +508,10 @@ type
     /// <summary>
     /// A new reference to the exporting object. The reference is owned by the
     /// consumer and automatically released (i.e. reference count decremented)
-    /// and set to NULL by PyBuffer_Release(). The field is the equivalent of
+    /// and set to nil by PyBuffer_Release(). The field is the equivalent of
     /// the return value of any standard C-API function. As a special case, for
     /// temporary buffers that are wrapped by PyMemoryView_FromBuffer() or
-    /// PyBuffer_FillInfo() this field is NULL. In general, exporting objects
+    /// PyBuffer_FillInfo() this field is nil. In general, exporting objects
     /// MUST NOT use this scheme.
     /// </summary>
     obj        : PPyObject;
@@ -527,13 +527,13 @@ type
     len        : Py_ssize_t;
     /// <summary>
     /// Item size in bytes of a single element. Same as the value of
-    /// struct.calcsize() called on non-NULL format values.
+    /// struct.calcsize() called on non-nil format values.
     /// Important exception: If a consumer requests a buffer without the
-    /// PyBUF_FORMAT flag, format will be set to NULL, but itemsize still has
+    /// PyBUF_FORMAT flag, format will be set to nil, but itemsize still has
     /// the value for the original format.
     /// If shape is present, the equality product(shape) * itemsize == len
     /// still holds and the consumer can use itemsize to navigate the buffer.
-    /// If shape is NULL as a result of a PyBUF_SIMPLE or a PyBUF_WRITABLE
+    /// If shape is nil as a result of a PyBUF_SIMPLE or a PyBUF_WRITABLE
     /// request, the consumer must disregard itemsize and assume itemsize == 1.
     /// </summary>
     itemsize   : Py_ssize_t;
@@ -545,13 +545,13 @@ type
     /// <summary>
     /// The number of dimensions the memory represents as an n-dimensional
     /// array. If it is 0, buf points to a single item representing a scalar.
-    /// In this case, shape, strides and suboffsets MUST be NULL. The maximum
+    /// In this case, shape, strides and suboffsets MUST be nil. The maximum
     /// number of dimensions is given by PyBUF_MAX_NDIM.
     /// </summary>
     ndim       : Integer;
     /// <summary>
-    /// A NULL terminated string in struct module style syntax describing the
-    /// contents of a single item. If this is NULL, "B" (unsigned bytes) is
+    /// A nil terminated string in struct module style syntax describing the
+    /// contents of a single item. If this is nil, "B" (unsigned bytes) is
     /// assumed. This field is controlled by the PyBUF_FORMAT flag.
     /// </summary>
     format     : PAnsiChar;
@@ -580,7 +580,7 @@ type
     /// de-referencing. A suboffset value that is negative indicates that no
     /// de-referencing should occur (striding in a contiguous memory block).
     /// If all suboffsets are negative (i.e. no de-referencing is needed), then
-    /// this field must be NULL (the default value).
+    /// this field must be nil (the default value).
     /// This type of array representation is used by the Python Imaging
     /// Library (PIL). See complex arrays for further information how to access
     /// elements of such an array.
@@ -648,7 +648,7 @@ type
   /// </remarks>
   _object = record
     /// <summary>
-    /// <para>The object’s reference count, as returned by Py_REFCNT. Do not use
+    /// <para>The object's reference count, as returned by Py_REFCNT. Do not use
     /// this field directly; instead use functions and macros such as Py_REFCNT,
     /// Py_INCREF() and Py_DecRef().</para>
     /// <para>The field type may be different from Py_ssize_t, depending on
@@ -656,7 +656,7 @@ type
     /// </summary>
     ob_refcnt : Py_ssize_t;
     /// <summary>
-    /// <para>The object’s type. Do not use this field directly; use Py_TYPE
+    /// <para>The object's type. Do not use this field directly; use Py_TYPE
     /// and Py_SET_TYPE() instead.</para>
     /// </summary>
     ob_type   : PPyTypeObject;
@@ -696,7 +696,7 @@ type
   /// </remarks>
   PySendResult = (
     /// <summary>
-    /// if iterator has raised and exception. presult is set to NULL.
+    /// if iterator has raised and exception. presult is set to nil.
     /// </summary>
     PYGEN_ERROR  = -1,
     /// <summary>
@@ -818,7 +818,7 @@ type
     flags     : cardinal;
     /// <summary>
     /// Array of PyType_Slot structures. Terminated by the special slot
-    /// value {0, NULL}.
+    /// value {0, nil}.
     /// </summary>
     slots     : PPyType_Slot;
   end;
@@ -1452,9 +1452,9 @@ type
     /// </summary>
     ma_keys                : PPyDictKeysObject;
     /// <summary>
-    /// If ma_values is NULL, the table is "combined": keys and values are
+    /// If ma_values is nil, the table is "combined": keys and values are
     /// stored in ma_keys.
-    /// If ma_values is not NULL, the table is split: keys are stored in ma_keys
+    /// If ma_values is not nil, the table is split: keys are stored in ma_keys
     /// and values are stored in ma_values
     /// </summary>
     ma_values              : PPyDictValues;
@@ -1520,7 +1520,7 @@ type
     /// </summary>
     m_ml          : PPyMethodDef;
     /// <summary>
-    /// Passed as 'self' arg to the C func, can be NULL
+    /// Passed as 'self' arg to the C func, can be nil
     /// </summary>
     m_self        : PPyObject;
     /// <summary>
@@ -1632,33 +1632,33 @@ type
     m_size     : Py_ssize_t;
     /// <summary>
     /// A pointer to a table of module-level functions, described by PyMethodDef
-    /// values. Can be NULL if no functions are present.
+    /// values. Can be nil if no functions are present.
     /// </summary>
     m_methods  : PPyMethodDef;
     /// <summary>
-    /// An array of slot definitions for multi-phase initialization, terminated by a {0, NULL} entry. When using legacy single-phase initialization, m_slots must be NULL.
+    /// An array of slot definitions for multi-phase initialization, terminated by a {0, nil} entry. When using legacy single-phase initialization, m_slots must be nil.
     /// </summary>
     m_slots    : PPyModuleDef_Slot;
     /// <summary>
     /// A traversal function to call during GC traversal of the module object,
-    /// or NULL if not needed.
+    /// or nil if not needed.
     /// This function is not called if the module state was requested but is not
     /// allocated yet. This is the case immediately after the module is created
     /// and before the module is executed (Py_mod_exec function). More precisely,
     /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is NULL.
+    /// state (as returned by PyModule_GetState()) is nil.
     /// Changed in version 3.9: No longer called before the module state is
     /// allocated.
     /// </summary>
     m_traverse : traverseproc;
     /// <summary>
     /// A clear function to call during GC clearing of the module object, or
-    /// NULL if not needed.
+    /// nil if not needed.
     /// This function is not called if the module state was requested but is not
     /// allocated yet. This is the case immediately after the module is created
     /// and before the module is executed (Py_mod_exec function). More precisely,
     /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is NULL.
+    /// state (as returned by PyModule_GetState()) is nil.
     /// Like PyTypeObject.tp_clear, this function is not always called before a
     /// module is deallocated. For example, when reference counting is enough to
     /// determine that an object is no longer used, the cyclic garbage collector
@@ -1667,13 +1667,13 @@ type
     /// </summary>
     m_clear    : inquiry;
     /// <summary>
-    /// A function to call during deallocation of the module object, or NULL if
+    /// A function to call during deallocation of the module object, or nil if
     /// not needed.
     /// This function is not called if the module state was requested but is not
     /// allocated yet. This is the case immediately after the module is created
     /// and before the module is executed (Py_mod_exec function). More precisely,
     /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is NULL.
+    /// state (as returned by PyModule_GetState()) is nil.
     /// Changed in version 3.9: No longer called before the module state is allocated.
     /// </summary>
     m_free     : inquiry;
@@ -1717,7 +1717,7 @@ type
     /// </summary>
     func_doc         : PPyObject;
     /// <summary>
-    /// The __dict__ attribute, a dict or NULL
+    /// The __dict__ attribute, a dict or nil
     /// </summary>
     func_dict        : PPyObject;
     /// <summary>
@@ -1729,7 +1729,7 @@ type
     /// </summary>
     func_module      : PPyObject;
     /// <summary>
-    /// Annotations, a dict or NULL
+    /// Annotations, a dict or nil
     /// </summary>
     func_annotations : PPyObject;
     /// <summary>
@@ -1737,7 +1737,7 @@ type
     /// </summary>
     func_annotate    : PPyObject;
     /// <summary>
-    /// Tuple of active type variables or NULL
+    /// Tuple of active type variables or nil
     /// </summary>
     func_typeparams  : PPyObject;
     /// <summary>
@@ -1755,7 +1755,7 @@ type
     /// Invariant:
     /// func_closure contains the bindings for func_code->co_freevars, so
     /// PyTuple_Size(func_closure) == PyCode_GetNumFree(func_code)
-    /// (func_closure may be NULL if PyCode_GetNumFree(func_code) == 0).
+    /// (func_closure may be nil if PyCode_GetNumFree(func_code) == 0).
     /// </summary>
     func_version     : cardinal;
   end;
@@ -1927,7 +1927,7 @@ type
     /// </summary>
     _type     : TPyStatus_Type;
     /// <summary>
-    /// Name of the function which created an error, can be NULL.
+    /// Name of the function which created an error, can be nil.
     /// </summary>
     func      : PAnsiChar;
     /// <summary>
@@ -1941,7 +1941,7 @@ type
   end;
 
   /// <summary>
-  /// List of wchar_t* strings. If length is non-zero, items must be non-NULL and all strings must be non-NULL.
+  /// List of wchar_t* strings. If length is non-zero, items must be non-nil and all strings must be non-nil.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/init_config.html#c.PyWideStringList">See the article about PyWideStringList.</see></para>
@@ -2147,7 +2147,7 @@ type
     /// <summary>
     /// Filename where to dump Python references.
     /// Set by the PYTHONDUMPREFSFILE environment variable.
-    /// Default: NULL.
+    /// Default: nil.
     /// Added in version 3.11.
     /// </summary>
     dump_refs_file           : PWCharT;
@@ -2185,8 +2185,8 @@ type
     /// <summary>
     /// Directory where cached .pyc files are written: sys.pycache_prefix.
     /// Set by the -X pycache_prefix=PATH command line option and the PYTHONPYCACHEPREFIX environment variable. The command-line option takes precedence.
-    /// If NULL, sys.pycache_prefix is set to None.
-    /// Default: NULL.
+    /// If nil, sys.pycache_prefix is set to None.
+    /// Default: nil.
     /// </summary>
     pycache_prefix           : PWCharT;
     /// <summary>
@@ -2209,7 +2209,7 @@ type
     /// Set sys.argv command line arguments based on argv. These parameters are similar to those passed to the program's main() function with the difference that the first entry should refer to the script file to be executed rather than the executable hosting the Python interpreter. If there isn't a script that will be run, the first entry in argv can be an empty string.
     /// Set parse_argv to 1 to parse argv the same way the regular Python parses Python command line arguments and then to strip Python arguments from argv.
     /// If argv is empty, an empty string is added to ensure that sys.argv always exists and is never empty.
-    /// Default: NULL.
+    /// Default: nil.
     /// See also the orig_argv member.
     /// </summary>
     argv                     : PyWideStringList;
@@ -2425,20 +2425,20 @@ type
     /// If the WITH_NEXT_FRAMEWORK macro is defined, use __PYVENV_LAUNCHER__ environment variable if set.
     /// Use argv[0] of argv if available and non-empty.
     /// Otherwise, use L"python" on Windows, or L"python3" on other platforms.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration input.
     /// </summary>
     program_name             : PWCharT;
     /// <summary>
     /// Set by the PYTHONPATH environment variable.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration input.
     /// </summary>
     pythonpath_env           : PWCharT;
     /// <summary>
     /// Set the default Python "home" directory, that is, the location of the standard Python libraries (see PYTHONHOME).
     /// Set by the PYTHONHOME environment variable.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration input.
     /// </summary>
     home                     : PWCharT;
@@ -2464,13 +2464,13 @@ type
     module_search_paths      : PyWideStringList;
     /// <summary>
     /// Directory of the Python standard library.
-    /// Default: NULL.
+    /// Default: nil.
     /// Added in version 3.11.
     /// </summary>
     stdlib_dir               : PWCharT;
     /// <summary>
     /// The absolute path of the executable binary for the Python interpreter: sys.executable.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.base_executable.
     /// </summary>
@@ -2478,36 +2478,36 @@ type
     /// <summary>
     /// Python base executable: sys._base_executable.
     /// Set by the __PYVENV_LAUNCHER__ environment variable.
-    /// Set from PyConfig.executable if NULL.
-    /// Default: NULL.
+    /// Set from PyConfig.executable if nil.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.executable.
     /// </summary>
     base_executable          : PWCharT;
     /// <summary>
     /// The site-specific directory prefix where the platform independent Python files are installed: sys.prefix.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.base_prefix.
     /// </summary>
     prefix                   : PWCharT;
     /// <summary>
     /// sys.base_exec_prefix.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.exec_prefix.
     /// </summary>
     base_prefix              : PWCharT;
     /// <summary>
     /// The site-specific directory prefix where the platform-dependent Python files are installed: sys.exec_prefix.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.base_exec_prefix.
     /// </summary>
     exec_prefix              : PWCharT;
     /// <summary>
     /// sys.base_exec_prefix.
-    /// Default: NULL.
+    /// Default: nil.
     /// Part of the Python Path Configuration output.
     /// See also PyConfig.exec_prefix.
     /// </summary>
@@ -2522,20 +2522,20 @@ type
     /// <summary>
     /// Value of the -c command line option.
     /// Used by Py_RunMain().
-    /// Default: NULL.
+    /// Default: nil.
     /// </summary>
     run_command              : PWCharT;
     /// <summary>
     /// Value of the -m command line option.
     /// Used by Py_RunMain().
-    /// Default: NULL.
+    /// Default: nil.
     /// </summary>
     run_module               : PWCharT;
     /// <summary>
     /// Filename passed on the command line: trailing command line argument without -c or -m. It is used by the Py_RunMain() function.
     /// For example, it is set to script.py by the python3 script.py arg command line.
     /// See also the PyConfig.skip_source_first_line option.
-    /// Default: NULL.
+    /// Default: nil.
     /// </summary>
     run_filename             : PWCharT;
     /// <summary>
@@ -2883,7 +2883,7 @@ type
     /// </summary>
     get     : getter;
     /// <summary>
-    /// Optional function to set or delete the attribute. If NULL, the attribute
+    /// Optional function to set or delete the attribute. If nil, the attribute
     /// is read-only.
     /// </summary>
     set_    : setter;
@@ -2900,7 +2900,7 @@ type
 
   /// <summary>
   /// Record which describes an attribute of a type which corresponds to a C
-  /// struct member. When defining a class, put a NULL-terminated array of these
+  /// struct member. When defining a class, put a nil-terminated array of these
   /// structures in the tp_members slot.
   /// </summary>
   /// <remarks>
@@ -2908,7 +2908,7 @@ type
   /// </remarks>
   PyMemberDef = record
     /// <summary>
-    /// Name of the member. A NULL value marks the end of a PyMemberDef[] array.
+    /// Name of the member. A nil value marks the end of a PyMemberDef[] array.
     /// The string should be static, no copy is made of it.
     /// </summary>
     name   : PAnsiChar;
@@ -2927,7 +2927,7 @@ type
     /// </summary>
     flags  : Integer;
     /// <summary>
-    /// The docstring, or NULL. The string should be static, no copy is made of
+    /// The docstring, or nil. The string should be static, no copy is made of
     /// it. Typically, it is defined using PyDoc_STR.
     /// </summary>
     doc    : PAnsiChar;
@@ -3016,7 +3016,7 @@ type
     /// </summary>
     wr_object              : PPyObject;
     /// <summary>
-    /// A callable to invoke when wr_object dies, or NULL if none.
+    /// A callable to invoke when wr_object dies, or nil if none.
     /// </summary>
     wr_callback            : PPyObject;
     /// <summary>
@@ -3025,14 +3025,14 @@ type
     /// </summary>
     hash                   : Py_hash_t;
     /// <summary>
-    /// If wr_object is weakly referenced, wr_object has a doubly-linked NULL-
+    /// If wr_object is weakly referenced, wr_object has a doubly-linked nil-
     /// terminated list of weak references to it.  These are the list pointers.
     /// If wr_object goes away, wr_object is set to Py_None, and these pointers
     /// have no meaning then.
     /// </summary>
     wr_prev                : PPyWeakReference;
     /// <summary>
-    /// If wr_object is weakly referenced, wr_object has a doubly-linked NULL-
+    /// If wr_object is weakly referenced, wr_object has a doubly-linked nil-
     /// terminated list of weak references to it.  These are the list pointers.
     /// If wr_object goes away, wr_object is set to Py_None, and these pointers
     /// have no meaning then.
@@ -3061,12 +3061,12 @@ type
   /// </remarks>
   PyStructSequence_Field = record
     /// <summary>
-    /// Name for the field or NULL to end the list of named fields, set to
+    /// Name for the field or nil to end the list of named fields, set to
     /// PyStructSequence_UnnamedField to leave unnamed.
     /// </summary>
     name_     : PAnsiChar;
     /// <summary>
-    /// Field docstring or NULL to omit.
+    /// Field docstring or nil to omit.
     /// </summary>
     doc       : PAnsiChar;
   end;
@@ -3084,11 +3084,11 @@ type
     /// </summary>
     name_         : PAnsiChar;
     /// <summary>
-    /// Pointer to docstring for the type or NULL to omit.
+    /// Pointer to docstring for the type or nil to omit.
     /// </summary>
     doc           : PAnsiChar;
     /// <summary>
-    /// Pointer to NULL-terminated array with field names of the new type.
+    /// Pointer to nil-terminated array with field names of the new type.
     /// </summary>
     fields        : PPyStructSequence_Field;
     /// <summary>
@@ -3170,7 +3170,7 @@ type
   /// only being compiled, it is passed as int flags, and in cases where code is
   /// being executed, it is passed as PyCompilerFlags *flags. In this case,
   /// from __future__ import can modify flags.
-  /// Whenever PyCompilerFlags *flags is NULL, cf_flags is treated as equal
+  /// Whenever PyCompilerFlags *flags is nil, cf_flags is treated as equal
   /// to 0, and any modification due to from __future__ import is discarded.
   /// </summary>
   /// <remarks>
@@ -3464,7 +3464,7 @@ type
   _frame  = record
     ob_base                     : PyObject; // PyObject_HEAD
     /// <summary>
-    /// previous frame, or NULL
+    /// previous frame, or nil
     /// </summary>
     f_back                      : PPyFrameObject;
     /// <summary>
@@ -3489,7 +3489,7 @@ type
     /// </summary>
     f_trace_opcodes             : AnsiChar;
     /// <summary>
-    /// Dict for locals set by users using f_locals, could be NULL
+    /// Dict for locals set by users using f_locals, could be nil
     /// </summary>
     f_extra_locals              : PPyObject;
     /// <summary>

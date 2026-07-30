@@ -24,6 +24,10 @@ type
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function ReturnFalse: IPyObject;
       class function ReturnTrue: IPyObject;
+      /// <summary>
+      /// <para>Return true if aPyObject is of type PyBool_Type. This function
+      /// always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
   end;
 

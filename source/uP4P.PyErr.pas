@@ -26,7 +26,25 @@ type
       class procedure Clear();
       class procedure Fetch(out ptype, pvalue, ptraceback: IPyObject);
       class procedure Restore(const type_, value, traceback: IPyObject);
+      /// <summary>
+      /// <para>Return the exception currently being raised, clearing the error
+      /// indicator at the same time. Return nil if the error indicator is
+      /// not set.</para>
+      /// <para>This function is used by code that needs to catch exceptions,
+      /// or code that needs to save and restore the error indicator
+      /// temporarily.</para>
+      /// <para>See also TPyErr.GetHandledException(), to save the exception
+      /// currently being handled.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
       class function GetRaisedException(): IPyObject;
+      /// <summary>
+      /// <para>Set exc as the exception currently being raised, clearing the
+      /// existing exception if one is set. If exc is nil, just clear the
+      /// existing exception.</para>
+      /// <para>exc must be a valid exception or nil.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
       class procedure SetRaisedException(const exc: IPyObject);
       class function GetHandledException(): IPyObject;
       class procedure SetHandledException(const exc: IPyObject);

@@ -29,6 +29,10 @@ type
       class function GetMax: double;
       class function GetMin: double;
       class function GetInfo: IPyObject;
+      /// <summary>
+      /// <para>Return true if its argument is a PyFloatObject or a subtype of
+      /// PyFloatObject. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function Pack2(const x: double; p: pbyte; le: boolean): boolean;

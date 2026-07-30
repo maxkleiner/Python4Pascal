@@ -59,7 +59,7 @@ type
       /// To prevent naive misuse, you must write your own C extension to call
       /// this. Must be called with an attached thread state. Returns the number
       /// of thread states modified; this is normally one, but will be zero if
-      /// the thread id isn’t found. If exc is nil, the pending exception
+      /// the thread id isn't found. If exc is nil, the pending exception
       /// (if any) for the thread is cleared. This raises no exceptions.</para>
       /// <para>Changed in version 3.7: The type of the id parameter changed
       /// from long to unsigned long.</para>
@@ -121,13 +121,13 @@ type
       /// <summary>
       /// <para>Return the attached thread state. If the thread has no attached
       /// thread state, (such as when inside of Py_BEGIN_ALLOW_THREADS block),
-      /// then this issues a fatal error (so that the caller needn’t check for
+      /// then this issues a fatal error (so that the caller needn't check for
       /// nil).</para>
       /// <para>See also TPyThreadState.GetUnchecked().</para>
       /// </summary>
       class function  Get: IPyThreadState;
       /// <summary>
-      /// <para>Similar to TPyThreadState.Get(), but don’t kill the process with
+      /// <para>Similar to TPyThreadState.Get(), but don't kill the process with
       /// a fatal error if it is nil. The caller is responsible to check if the
       /// result is nil.</para>
       /// <para>Added in version 3.13.</para>

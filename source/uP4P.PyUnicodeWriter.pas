@@ -118,7 +118,7 @@ type
       /// <para>errors is an error handler name, such as "replace". If errors is
       /// nil, use the strict error handler.</para>
       /// <para>If consumed is not nil, set *consumed to the number of decoded
-      /// bytes on success. If consumed is NULL, treat trailing incomplete UTF-8
+      /// bytes on success. If consumed is nil, treat trailing incomplete UTF-8
       /// byte sequences as an error.</para>
       /// <para>On success, return True. On error, set an exception, leave the
       /// writer unchanged, and return False.</para>

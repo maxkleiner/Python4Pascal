@@ -19,6 +19,9 @@ uses
 type
   TPyCallable = class
     public
+      /// <summary>
+      /// <para>Return true if obj is callable.</para>
+      /// </summary>
       class function Check(const obj: IPyObject): boolean;
   end;
 

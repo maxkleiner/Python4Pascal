@@ -137,8 +137,8 @@ type
       /// value to be accurate, other than a value of 0 or 1.</para>
       /// <para>Use the Py_SET_REFCNT() function to set an object reference
       /// count.</para>
-      /// <para>Note On free-threaded builds of Python, returning 1 isn’t
-      /// sufficient to determine if it’s safe to treat o as having no access
+      /// <para>Note On free-threaded builds of Python, returning 1 isn't
+      /// sufficient to determine if it's safe to treat o as having no access
       /// by other threads. Use PyUnstable_Object_IsUniquelyReferenced() for
       /// that instead.</para>
       /// <para>Changed in version 3.10: Py_REFCNT() is changed to the inline
@@ -156,7 +156,7 @@ type
       /// to create a new strong reference.</para>
       /// <para>When done using the object, release is by calling
       /// TPy.DecRef().</para>
-      /// <para>The object must not be nil; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren't sure that it isn't
       /// nil, use Py_XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -173,7 +173,7 @@ type
       /// to create a new strong reference.</para>
       /// <para>When done using the object, release is by calling
       /// TPy.DecRef().</para>
-      /// <para>The object must not be nil; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren't sure that it isn't
       /// nil, use Py_XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -185,12 +185,12 @@ type
       /// <para>Release a strong reference to object aPyObject, indicating the
       /// reference is no longer used.</para>
       /// <para>This function has no effect on immortal objects.</para>
-      /// <para>Once the last strong reference is released (i.e. the object’s
-      /// reference count reaches 0), the object’s type’s deallocation function
+      /// <para>Once the last strong reference is released (i.e. the object's
+      /// reference count reaches 0), the object's type's deallocation function
       /// (which must not be nil) is invoked.</para>
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
-      /// <para>The object must not be nil; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren't sure that it isn't
       /// nil, use Py_XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -210,12 +210,12 @@ type
       /// <para>Release a strong reference to object aPyObject, indicating the
       /// reference is no longer used.</para>
       /// <para>This function has no effect on immortal objects.</para>
-      /// <para>Once the last strong reference is released (i.e. the object’s
-      /// reference count reaches 0), the object’s type’s deallocation function
+      /// <para>Once the last strong reference is released (i.e. the object's
+      /// reference count reaches 0), the object's type's deallocation function
       /// (which must not be nil) is invoked.</para>
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
-      /// <para>The object must not be nil; if you aren’t sure that it isn’t
+      /// <para>The object must not be nil; if you aren't sure that it isn't
       /// nil, use Py_XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
@@ -439,7 +439,7 @@ type
       /// <para>Create a new sub-interpreter. This is essentially just a wrapper
       /// around NewInterpreterFromConfig() with a config that preserves the
       /// existing behavior. The result is an unisolated sub-interpreter that
-      /// shares the main interpreter’s GIL, allows fork/exec, allows daemon
+      /// shares the main interpreter's GIL, allows fork/exec, allows daemon
       /// threads, and allows single-phase init modules.</para>
       /// </summary>
       class function  NewInterpreter: IPyThreadState;
@@ -448,7 +448,7 @@ type
       /// state. The given thread state must be attached. When the call returns,
       /// there will be no attached thread state. All thread states associated
       /// with this interpreter are destroyed.</para>
-      /// <para>FinalizeEx() will destroy all sub-interpreters that haven’t been
+      /// <para>FinalizeEx() will destroy all sub-interpreters that haven't been
       /// explicitly destroyed at that point.</para>
       /// </summary>
       class procedure EndInterpreter(const tstate: IPyThreadState);
@@ -458,7 +458,7 @@ type
       /// return no value. At most 32 cleanup functions can be registered. When
       /// the registration is successful, AtExit() returns True; on failure, it
       /// returns False. The cleanup function registered last is called first.
-      /// Each cleanup function will be called at most once. Since Python’s
+      /// Each cleanup function will be called at most once. Since Python's
       /// internal finalization will have completed before the cleanup function,
       /// no Python APIs should be called by func.</para>
       /// </summary>
@@ -481,7 +481,7 @@ type
       /// full CPython command line interface, rather than just embedding a
       /// Python runtime in a larger application.</para>
       /// <para>The argc and argv parameters are similar to those which are
-      /// passed to a C program’s main() function, except that the argv entries
+      /// passed to a C program's main() function, except that the argv entries
       /// are first converted to wchar_t using TPy.DecodeLocale(). It is also
       /// important to note that the argument list entries may be modified to
       /// point to strings other than those passed in (however, the contents of
@@ -530,7 +530,7 @@ type
       /// relative to the interpreter executable. The default value is 'python'.
       /// The argument should point to a zero-terminated wide character string
       /// in static storage whose contents will not change for the duration of
-      /// the program’s execution. No code in the Python interpreter will change
+      /// the program's execution. No code in the Python interpreter will change
       /// the contents of this storage.</para>
       /// <para>Use TPy.DecodeLocale() to decode a bytes string to get a
       /// wchar_t* string.</para>
@@ -699,7 +699,7 @@ type
       class function  GetVersion: string;
       /// <summary>
       /// <para>Return the platform identifier for the current platform.
-      /// On Unix, this is formed from the “official” name of the operating
+      /// On Unix, this is formed from the "official" name of the operating
       /// system, converted to lower case, followed by the major revision
       /// number; e.g., for Solaris 2.x, which is also known as SunOS 5.x,
       /// the value is 'sunos5'. On macOS, it is 'darwin'. On Windows,
@@ -776,7 +776,7 @@ type
       /// (PyConfig.run_filename) or the module (PyConfig.run_module) specified
       /// on the command line or in the configuration. If none of these values
       /// are set, runs the interactive Python prompt (REPL) using the __main__
-      /// module’s global namespace.</para>
+      /// module's global namespace.</para>
       /// <para>If PyConfig.inspect is not set (the default), the return value
       /// will be 0 if the interpreter exits normally (that is, without raising
       /// an exception), the exit status of an unhandled SystemExit, or 1 for
@@ -834,7 +834,7 @@ type
       /// detached upon returning. On success, the returned thread state will
       /// be attached. If the sub-interpreter is created with its own GIL then
       /// the attached thread state of the calling interpreter will be detached.
-      /// When the function returns, the new interpreter’s thread state will be
+      /// When the function returns, the new interpreter's thread state will be
       /// attached to the current thread and the previous interpreter's
       /// attached thread state will remain detached.</para>
       /// <para>Added in version 3.12.</para>
@@ -857,7 +857,7 @@ type
       /// }
       /// </code>
       /// <para>Note that the config is used only briefly and does not get
-      /// modified. During initialization the config’s values are converted
+      /// modified. During initialization the config's values are converted
       /// into various PyInterpreterState values. A read-only copy of the
       /// config may be stored internally on the PyInterpreterState.</para>
       /// <para>Extension modules are shared between (sub-)interpreters as
@@ -869,16 +869,16 @@ type
       /// <para>- For modules using legacy single-phase initialization,
       /// e.g. TPyModule.Create(), the first time a particular extension is
       /// imported, it is initialized normally, and a (shallow) copy of its
-      /// module’s dictionary is squirreled away. When the same extension is
+      /// module's dictionary is squirreled away. When the same extension is
       /// imported by another (sub-)interpreter, a new module is initialized
-      /// and filled with the contents of this copy; the extension’s init
-      /// function is not called. Objects in the module’s dictionary thus end up
+      /// and filled with the contents of this copy; the extension's init
+      /// function is not called. Objects in the module's dictionary thus end up
       /// shared across (sub-)interpreters, which might cause unwanted behavior
       /// (see Bugs and caveats below).</para>
       /// <para>Note that this is different from what happens when an extension
       /// is imported after the interpreter has been completely re-initialized
       /// by calling TPy.FinalizeEx() and TPy.Initialize(); in that case,
-      /// the extension’s initmodule function is called again. As with
+      /// the extension's initmodule function is called again. As with
       /// multi-phase initialization, this means that only C-level static and
       /// global variables are shared between these modules.</para>
       /// </summary>

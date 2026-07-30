@@ -19,6 +19,10 @@ uses
 type
   TPyUnicode = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a Unicode object or an instance of
+      /// a Unicode subtype. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;

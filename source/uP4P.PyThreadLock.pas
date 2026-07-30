@@ -70,7 +70,7 @@ type
       /// been released.</para>
       /// <para>If intr_flag is True, acquiring the lock may be interrupted by a
       /// signal, in which case this function returns PY_LOCK_INTR. Upon
-      /// interruption, it’s generally expected that the caller makes a call to
+      /// interruption, it's generally expected that the caller makes a call to
       /// TPy.MakePendingCalls() to propagate an exception to Python code.</para>
       /// <para>If the lock is successfully acquired, this function returns
       /// PY_LOCK_ACQUIRED.</para>

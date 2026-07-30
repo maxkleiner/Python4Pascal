@@ -20,7 +20,7 @@ type
   /// <summary>
   /// <para>This class represents the state of a thread key, the
   /// definition of which may depend on the underlying TLS implementation,
-  /// and it has an internal field representing the key’s initialization
+  /// and it has an internal field representing the key's initialization
   /// state.</para>
   /// <para>When Py_LIMITED_API is not defined, static allocation of this type
   /// by Py_tss_NEEDS_INIT is allowed.</para>
@@ -68,7 +68,7 @@ type
       function    TSSCreate: boolean;
       /// <summary>
       /// <para>Destroy a TSS key to forget the values associated with the key
-      /// across all threads, and change the key’s initialization state to
+      /// across all threads, and change the key's initialization state to
       /// uninitialized. A destroyed key is able to be initialized again by
       /// TSSCreate(). This function can be called repeatedly on the same
       /// key – calling it on an already destroyed key is a no-op.</para>

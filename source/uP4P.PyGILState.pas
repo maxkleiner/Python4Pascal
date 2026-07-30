@@ -36,7 +36,7 @@ type
 
       /// <summary>
       /// <para>Release any resources previously acquired. After this call,
-      /// Python’s state will be the same as it was prior to the corresponding
+      /// Python's state will be the same as it was prior to the corresponding
       /// TPyGILState.Ensure() call (but generally this state will be unknown
       /// to the caller, hence the use of the GILState API).</para>
       /// <para>Every call to TPyGILState.Ensure() must be matched by a call to
@@ -58,7 +58,7 @@ type
       /// thread state is restored to its previous state before the Release().
       /// For example, normal usage of the Py_BEGIN_ALLOW_THREADS and
       /// Py_END_ALLOW_THREADS macros is acceptable.</para>
-      /// <para>The return value is an opaque “handle” to the attached thread
+      /// <para>The return value is an opaque "handle" to the attached thread
       /// state when TPyGILState.Ensure() was called, and must be passed to
       /// TPyGILState.Release() to ensure Python is left in the same state.
       /// Even though recursive calls are allowed, these handles cannot be

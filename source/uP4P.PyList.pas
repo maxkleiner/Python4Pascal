@@ -22,6 +22,10 @@ type
       class function FromVariantArray(const aVariant: Variant; dim, totaldim: integer; var indices: TCustomIntArray): IPyObject;
 
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a list object or an instance of a
+      /// subtype of the list type. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
       class function New(len: Py_ssize_t): IPyObject;

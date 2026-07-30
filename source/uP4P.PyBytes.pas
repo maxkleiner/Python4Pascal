@@ -38,6 +38,10 @@ type
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function DecodeEscape(const s: string; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para>Return true if aPyObject is a bytes object or an instance of a
+      /// subtype of the bytes type. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
 

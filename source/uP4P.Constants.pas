@@ -627,12 +627,12 @@ const
   /// </summary>
   PyInterpreterConfig_DEFAULT_GIL = 0;
   /// <summary>
-  /// Use (share) the main interpreter’s GIL.
+  /// Use (share) the main interpreter's GIL.
   /// Used in PyInterpreterConfig.gil
   /// </summary>
   PyInterpreterConfig_SHARED_GIL  = 1;
   /// <summary>
-  /// Use the sub-interpreter’s own GIL.
+  /// Use the sub-interpreter's own GIL.
   /// Used in PyInterpreterConfig.gil
   /// </summary>
   PyInterpreterConfig_OWN_GIL     = 2;

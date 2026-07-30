@@ -65,6 +65,10 @@ type
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function GetNativeLayout: PPyLongLayout;
       class function GetInfo: IPyObject;
+      /// <summary>
+      /// <para>Return true if its argument is a PyLongObject or a subtype of
+      /// PyLongObject. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
       class function CheckExact(const aPyObject: IPyObject): boolean;
   end;

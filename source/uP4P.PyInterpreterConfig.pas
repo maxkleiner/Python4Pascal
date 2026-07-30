@@ -60,7 +60,7 @@ type
       property Config                        : Pointer                  read GetConfig;
       /// <summary>
       /// <para>If this is False then the sub-interpreter will use its own
-      /// “object” allocator state.</para>
+      /// "object" allocator state.</para>
       /// <para>Otherwise it will use (share) the main interpreter's.</para>
       /// <para>If this is False then check_multi_interp_extensions must be True.
       /// If this is True then gil must not be gilOwn.</para>

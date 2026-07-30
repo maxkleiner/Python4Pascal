@@ -113,7 +113,7 @@ type
       /// </summary>
       property State        : PPyInterpreterState   read GetState         write SetState;
       /// <summary>
-      /// <para>Return the interpreter’s unique ID. If there was any error in
+      /// <para>Return the interpreter's unique ID. If there was any error in
       /// doing so then -1 is returned and an error is set.</para>
       /// <para>The caller must have an attached thread state.</para>
       /// <para>Added in version 3.7.</para>
@@ -121,7 +121,7 @@ type
       property ID           : int64                 read GetID;
       /// <summary>
       /// <para>Return a dictionary in which interpreter-specific data may be
-      /// stored. If this function returns NULL then no exception has been
+      /// stored. If this function returns nil then no exception has been
       /// raised and the caller should assume no interpreter-specific dict is
       /// available.</para>
       /// <para>This is not a replacement for PyModule_GetState(), which
