@@ -1573,7 +1573,7 @@ type
   end;
 
   /// <summary>
-  /// Slot definition.
+  /// Module slot definition.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef_Slot">See the article about PyModuleDef_Slot.</see></para>

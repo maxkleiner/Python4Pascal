@@ -18,7 +18,7 @@ uses
 
 type
   /// <summary>
-  /// <para>Helper class for all the PyEval_ methods.</para>
+  /// <para>Helper class for all the PyEval_* methods.</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer">See the The Very High Level Layer article.</see></para>

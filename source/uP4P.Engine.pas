@@ -21,6 +21,13 @@ type
   TOnOutputMessageEvent = procedure(Sender: TObject; const message_: string) of object;
   TOnInputMessageEvent  = procedure(Sender: TObject; var message_: string) of object;
 
+  /// <summary>
+  /// <para>TP4PEngine extends the TP4PLoader functionality. It handles the
+  /// modules used in the Python initialization and all the imported
+  /// modules.</para>
+  /// <para>It also exposes the events to capture the output and input, and some
+  /// functions used by Python threads.</para>
+  /// </summary>
   TP4PEngine = class(TP4PLoader)
     protected
       FModules                   : TList;
@@ -149,6 +156,7 @@ type
       /// Event triggered when Python outputs a string message.
       /// </summary>
       /// <remarks>
+      /// <para>This event will run in the context of a background thread if you use TP4PThread.</para>
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys.stderr">See the article about sys.stdin, sys.stdout and sys.stderr.</see></para>
       /// </remarks>
       property OnOutputMessage           : TOnOutputMessageEvent    read FOnOutputMessage               write FOnOutputMessage;
@@ -156,6 +164,7 @@ type
       /// Event triggered in all interactive input including Python calls to input().
       /// </summary>
       /// <remarks>
+      /// <para>This event will run in the context of a background thread if you use TP4PThread.</para>
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys.stderr">See the article about sys.stdin, sys.stdout and sys.stderr.</see></para>
       /// </remarks>
       property OnInputMessage            : TOnInputMessageEvent     read FOnInputMessage                write FOnInputMessage;
@@ -411,7 +420,7 @@ begin
 
   if not(assigned(FIOModule)) then
     begin
-      FIOModule := TIOPyModule.Create(ModuleName);
+      FIOModule := TIOPyModule.Create(IOPyModuleName);
       if not(FIOModule.Initialize) then exit;
     end;
 

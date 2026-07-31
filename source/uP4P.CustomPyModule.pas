@@ -17,6 +17,13 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>TCustomPyModule is the base class for all the modules created with
+  /// the Python API methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-objects">See the article about Module Objects.</see></para>
+  /// </remarks>
   TCustomPyModule = class
     protected
       FModule                : IPyObject;
@@ -48,10 +55,21 @@ type
       function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
       function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
       function  AddGILSlot(aGILUsed: boolean): boolean;
+      /// <summary>
+      /// Override this procedure to add your custom slots.
+      /// </summary>
       procedure AddAllSlots; virtual;
+      /// <summary>
+      /// Override this procedure to add your custom methods.
+      /// </summary>
       procedure AddAllMethods; virtual;
-
+      /// <summary>
+      /// Return True if the last slot in the list is a sentinel slot.
+      /// </summary>
       property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+      /// <summary>
+      /// Return True if the last method in the list is a sentinel method.
+      /// </summary>
       property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
 
     public
@@ -59,16 +77,44 @@ type
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       procedure   BeforeDestruction; override;
+      /// <summary>
+      /// <para>Internal function used to trigger the OnAfterInitialization
+      /// event. Don't use!</para>
+      /// </summary>
       function    doOnAfterInitialization: integer;
+      /// <summary>
+      /// <para>Test if this module is the same as the "other" module.</para>
+      /// </summary>
       function    SameAs(const other: PPyObject): boolean;
+      /// <summary>
+      /// <para>Create the module and all the slots and methods.</para>
+      /// </summary>
       function    Initialize: boolean;
-
+      /// <summary>
+      /// <para>Module name.</para>
+      /// </summary>
       property Name_                         : AnsiString          read FName;
+      /// <summary>
+      /// <para>PyObject instance of this module.</para>
+      /// </summary>
       property Module                        : IPyObject           read FModule;
+      /// <summary>
+      /// Multiple interpreter support in a module.
+      /// </summary>
       property MultIntprSupport              : TMultIntprSupport   read FMultIntprSupport         write FMultIntprSupport;
+      /// <summary>
+      /// <para>Event triggered after the module has been initialized.</para>
+      /// </summary>
       property OnAfterInitialization         : TNotifyEvent        read FOnAfterInitialization    write FOnAfterInitialization;
   end;
 
+  /// <summary>
+  /// <para>TCustomPyModuleDefSlot is used to store the information about module
+  /// slots.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-slots">See the article about Module slots.</see></para>
+  /// </remarks>
   TCustomPyModuleDefSlot = class
     protected
       FSlot : PyModuleDef_Slot;
@@ -77,11 +123,24 @@ type
 
     public
       constructor Create(aSlot: integer; aValue: Pointer);
-
+      /// <summary>
+      /// Module slot record.
+      /// </summary>
       property Slot        : PyModuleDef_Slot  read FSlot;
+      /// <summary>
+      /// Return True if this is the last slot in the list. The sentinel
+      /// slot has 0 as ID and nil as value.
+      /// </summary>
       property IsSentinel  : boolean           read GetIsSentinel;
   end;
 
+  /// <summary>
+  /// <para>TCustomPyMethodDef is used to store the information about module
+  /// methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// </remarks>
   TCustomPyMethodDef = class
     protected
       FMethod      : PyMethodDef;
@@ -92,8 +151,15 @@ type
 
     public
       constructor Create(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer);
-
+      /// <summary>
+      /// Record used to describe a method of an extension type.
+      /// </summary>
       property Method      : PyMethodDef       read FMethod;
+      /// <summary>
+      /// Return True if this is the last method definition in the slot list.
+      /// The sentinel method definition has a 0 as ml_flags and a nil value in
+      /// ml_meth and ml_doc.
+      /// </summary>
       property IsSentinel  : boolean           read GetIsSentinel;
   end;
 
@@ -419,7 +485,9 @@ end;
 
 function TCustomPyModule.SameAs(const other: PPyObject): boolean;
 begin
-  Result := assigned(FModule) and assigned(other) and FModule.SameAs(other);
+  Result := assigned(FModule) and
+            assigned(other) and
+            FModule.SameAs(other);
 end;
 
 function TCustomPyModule.Initialize: boolean;

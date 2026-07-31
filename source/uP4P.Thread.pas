@@ -18,6 +18,12 @@ uses
   uP4P.PyInterpreterState;
 
 type
+  /// <summary>
+  /// Custom thread class used to simplify running Python code in a thread.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/threads.html">See the article about Thread states and the global interpreter lock.</see></para>
+  /// </remarks>
   TP4PThread = class(TThread)
     protected
       FUseLegacyInit     : boolean;
@@ -44,11 +50,29 @@ type
 
     public
       procedure AfterConstruction; override;
-
+      /// <summary>
+      /// Execute the Python code using the legacy API.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/threads.html#legacy-api">See the article about the Legacy API.</see></para>
+      /// </remarks>
       property  UseLegacyInit     : boolean       read GetUseLegacyInit      write SetUseLegacyInit;
+      /// <summary>
+      /// Execute the Python code in a subinterpreter with a shared GIL.
+      /// </summary>
       property  SharedGIL         : boolean       read GetSharedGIL          write SetSharedGIL;
+      /// <summary>
+      /// Execute the Python code using a shared interpreter.
+      /// </summary>
       property  SharedInterpreter : boolean       read GetSharedInterpreter  write SetSharedInterpreter;
+      /// <summary>
+      /// Last error message.
+      /// </summary>
       property  ErrorMsg          : string        read FErrorMsg;
+      /// <summary>
+      /// Event triggered when the thread is initialized. Use it to execute the
+      /// Python code.
+      /// </summary>
       property  OnExecutePython   : TNotifyEvent  read FOnExecutePython      write FOnExecutePython;
   end;
 
@@ -170,7 +194,7 @@ begin
       if TPyThreadState.IsInitialized(TempThreadState) then
         try
           TempThreadState.Swap;
-          TempModule := TIOPyModule.Create(ModuleName);
+          TempModule := TIOPyModule.Create(IOPyModuleName);
 
           if TempModule.Initialize and TIOPyModule.RunInitCode then
             begin
@@ -213,7 +237,7 @@ begin
         try
           TempThreadState.Swap;
 
-          TempModule                  := TIOPyModule.Create(ModuleName);
+          TempModule                  := TIOPyModule.Create(IOPyModuleName);
           TempModule.MultIntprSupport := piGilSupported;
 
           if TempModule.Initialize and TIOPyModule.RunInitCode then

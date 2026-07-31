@@ -17,14 +17,17 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class to create a ModuleSpec object used by TPyModule.FromDefAndSpec
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://peps.python.org/pep-0451/">See PEP 451 - A ModuleSpec Type for the Import.</see></para>
+  /// </remarks>
   TPyModuleSpecHelper = class
     public
       /// <summary>
       /// Helper function to create a ModuleSpec object used by TPyModule.FromDefAndSpec
       /// </summary>
-      /// <remarks>
-      /// <para><see href="https://peps.python.org/pep-0451/">See PEP 451 – A ModuleSpec Type for the Import.</see></para>
-      /// </remarks>
       class function FromModuleName(const name_: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
       class function FromModuleName(const name_: AnsiString): IPyObject; overload;

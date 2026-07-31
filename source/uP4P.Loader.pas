@@ -27,6 +27,10 @@ uses
 type
   TOnBeforeInitializationEvent = procedure(Sender: TObject; const aInitConfig: IPyInitConfig; const aConfig: IPyConfig) of object;
 
+  /// <summary>
+  /// <para>TP4PLoader simplifies the initialization and destruction of the
+  /// Python library.</para>
+  /// </summary>
   TP4PLoader = class
     protected
       FLibHandle                         : {$IFDEF FPC}TLibHandle{$ELSE}THandle{$ENDIF};

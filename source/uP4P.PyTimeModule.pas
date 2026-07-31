@@ -18,6 +18,10 @@ uses
   uP4P.ImportedPyModule;
 
 type
+  /// <summary>
+  /// <para>TPyTimeModule imports the "time" module and gets the
+  /// "struct_time" type.</para>
+  /// </summary>
   TPyTimeModule = class(TImportedPyModule)
     protected
       FTimeStructType : Pointer;
@@ -27,6 +31,10 @@ type
       procedure Finalize; override;
 
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance of the "struct_time"
+      /// type.</para>
+      /// </summary>
       function CheckTimeStruct(const aPyObject: IPyObject): boolean;
   end;
 

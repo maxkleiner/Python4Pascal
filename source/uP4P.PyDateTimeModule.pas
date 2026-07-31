@@ -18,6 +18,10 @@ uses
   uP4P.ImportedPyModule;
 
 type
+  /// <summary>
+  /// <para>TPyDateTimeModule imports the "datetime" module and gets several
+  /// object types related to that module.</para>
+  /// </summary>
   TPyDateTimeModule = class(TImportedPyModule)
     protected
       FDateType       : Pointer;
@@ -33,21 +37,72 @@ type
       procedure Finalize; override;
 
     public
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "date" type.
+      /// </summary>
       function CheckExactDate(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "datetime" type.
+      /// </summary>
       function CheckExactDateTime(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "timedelta" type.
+      /// </summary>
       function CheckExactDelta(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "time" type.
+      /// </summary>
       function CheckExactTime(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "tzinfo" type.
+      /// </summary>
       function CheckExactTZInfo(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "timetz" type.
+      /// </summary>
       function CheckExactTimeTZ(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// Return true if aPyObject is an instance of the "datetimetz" type.
+      /// </summary>
       function CheckExactDateTimeTZ(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "date" object or an instance of a
+      /// subtype of the "date" type.</para>
+      /// </summary>
       function CheckDate(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "datetime" object or an instance
+      /// of a subtype of the "datetime" type.</para>
+      /// </summary>
       function CheckDateTime(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "timedelta" object or an instance
+      /// of a subtype of the "timedelta" type.</para>
+      /// </summary>
       function CheckDelta(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "time" object or an instance of a
+      /// subtype of the "time" type.</para>
+      /// </summary>
       function CheckTime(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "tzinfo" object or an instance of
+      /// a subtype of the "tzinfo" type.</para>
+      /// </summary>
       function CheckTZInfo(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "timetz" object or an instance of
+      /// a subtype of the "timetz" type.</para>
+      /// </summary>
       function CheckTimeTZ(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a "datetimetz" object or an instance
+      /// of a subtype of the "datetimetz" type.</para>
+      /// </summary>
       function CheckDateTimeTZ(const aPyObject: IPyObject): boolean;
-
+      /// <summary>
+      /// Pointer to the "datetime" type.
+      /// </summary>
       property DateTimeType   : Pointer  read FDateTimeType;
   end;
 

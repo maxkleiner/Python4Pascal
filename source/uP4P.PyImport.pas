@@ -17,30 +17,224 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>Helper class for all the PyImport_* methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/import.html#importing-modules">See the article about Importing Modules.</see></para>
+  /// </remarks>
   TPyImport = class
     public
+      /// <summary>
+      /// <para>Return the magic number for Python bytecode files
+      /// (a.k.a. .pyc file). The magic number should be present in the first
+      /// four bytes of the bytecode file, in little-endian byte order.
+      /// Returns -1 on error.</para>
+      /// <para>Changed in version 3.3: Return value of -1 upon failure.</para>
+      /// </summary>
       class function GetMagicNumber: C_Long;
+      /// <summary>
+      /// <para>Return the magic tag string for PEP 3147 format Python bytecode
+      /// file names. Keep in mind that the value at
+      /// sys.implementation.cache_tag is authoritative and should be used
+      /// instead of this function.</para>
+      /// </summary>
       class function GetMagicTag: string;
+      /// <summary>
+      /// <para>Given a module name (possibly of the form package.module) and a
+      /// code object read from a Python bytecode file or obtained from the
+      /// built-in function compile(), load the module. Return a new reference
+      /// to the module object, or nil with an exception set if an error
+      /// occurred. name is removed from sys.modules in error cases, even if
+      /// name was already in sys.modules on entry to
+      /// TPyImport.ExecCodeModule(). Leaving incompletely initialized modules
+      /// in sys.modules is dangerous, as imports of such modules have no way to
+      /// know that the module object is an unknown (and probably damaged with
+      /// respect to the module author's intents) state.</para>
+      /// <para>The module's __spec__ and __loader__ will be set, if not set
+      /// already, with the appropriate values. The spec's loader will be set
+      /// to the module's __loader__ (if set) and to an instance of
+      /// SourceFileLoader otherwise.</para>
+      /// <para>The module's __file__ attribute will be set to the code
+      /// object's co_filename. If applicable, __cached__ will also be
+      /// set.</para>
+      /// <para>This function will reload the module if it was already imported.
+      /// See TPyImport.ReloadModule() for the intended way to reload a
+      /// module.</para>
+      /// <para>If name points to a dotted name of the form package.module,
+      /// any package structures not already created will still not be
+      /// created.</para>
+      /// <para>See also TPyImport.ExecCodeModuleEx() and
+      /// TPyImport.ExecCodeModuleWithPathnames().</para>
+      /// <para>Changed in version 3.12: The setting of __cached__ and
+      /// __loader__ is deprecated. See ModuleSpec for alternatives.</para>
+      /// </summary>
       class function ExecCodeModule(const name_: string; const co: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Like TPyImport.ExecCodeModule(), but the __file__ attribute of
+      /// the module object is set to pathname if it is non-nil.</para>
+      /// <para>See also TPyImport.ExecCodeModuleWithPathnames().</para>
+      /// </summary>
       class function ExecCodeModuleEx(const name_: string; const co: IPyObject; const pathname: string): IPyObject;
+      /// <summary>
+      /// <para>Like TPyImport.ExecCodeModuleObject(), but name, pathname and
+      /// cpathname are UTF-8 encoded strings. Attempts are also made to figure
+      /// out what the value for pathname should be from cpathname if the former
+      /// is set to NULL.</para>
+      /// <para>Added in version 3.2.</para>
+      /// <para>Changed in version 3.3: Uses imp.source_from_cache() in
+      /// calculating the source path if only the bytecode path is
+      /// provided.</para>
+      /// <para>Changed in version 3.12: No longer uses the removed imp
+      /// module.</para>
+      /// </summary>
       class function ExecCodeModuleWithPathnames(const name_: string; const co: IPyObject; const pathname, cpathname: string): IPyObject;
+      /// <summary>
+      /// <para>Like TPyImport.ExecCodeModuleEx(), but the __cached__ attribute
+      /// of the module object is set to cpathname if it is non-nil. Of the
+      /// three functions, this is the preferred one to use.</para>
+      /// <para>Added in version 3.3.</para>
+      /// <para>Changed in version 3.12: Setting __cached__ is deprecated.
+      /// See ModuleSpec for alternatives.</para>
+      /// </summary>
       class function ExecCodeModuleObject(const name_, co, pathname, cpathname: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the dictionary used for the module administration
+      /// (a.k.a. sys.modules). Note that this is a per-interpreter
+      /// variable.</para>
+      /// </summary>
       class function GetModuleDict: IPyObject;
+      /// <summary>
+      /// <para>Return the already imported module with the given name. If the
+      /// module has not been imported yet then returns nil but does not set
+      /// an error. Returns nil and sets an error if the lookup failed.</para>
+      /// </summary>
       class function GetModule(const name_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Similar to TPyImport.AddModuleRef(), but return a borrowed
+      /// reference and name is a Python str object.</para>
+      /// </summary>
       class function AddModuleObject(const name_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Similar to TPyImport.AddModuleRef(), but return a borrowed
+      /// reference.</para>
+      /// </summary>
       class function AddModule(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>Return the module object corresponding to a module name.</para>
+      /// <para>The name argument may be of the form package.module. First check
+      /// the modules dictionary if there's one there, and if not, create a new
+      /// one and insert it in the modules dictionary.</para>
+      /// <para>Return a strong reference to the module on success. Return nil
+      /// with an exception set on failure.</para>
+      /// <para>This function does not load or import the module; if the module
+      /// wasn't already loaded, you will get an empty module object.
+      /// Use TPyImport.ImportModule() or one of its variants to import a
+      /// module. Package structures implied by a dotted name for name are not
+      /// created if not already present.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       class function AddModuleRef(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>This is a wrapper around TPyImport.Import() which takes a string
+      /// as an argument instead of a IPyObject.</para>
+      /// </summary>
       class function ImportModule(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>Similar to TPyImport.ImportModuleLevelObject(), but the name is
+      /// a string instead of a Unicode object.</para>
+      /// <para>Changed in version 3.3: Negative values for level are no longer
+      /// accepted.</para>
+      /// </summary>
       class function ImportModuleLevel(const name_: string; const globals, locals, fromlist: IPyObject; level: integer): IPyObject;
+      /// <summary>
+      /// <para>Import a module. This is best described by referring to the
+      /// built-in Python function __import__(), as the standard __import__()
+      /// function calls this function directly.</para>
+      /// <para>The return value is a new reference to the imported module or
+      /// top-level package, or NULL with an exception set on failure. Like for
+      /// __import__(), the return value when a submodule of a package was
+      /// requested is normally the top-level package, unless a non-empty
+      /// fromlist was given.</para>
+      /// </summary>
       class function ImportModuleLevelObject(const name_, globals, locals, fromlist: IPyObject; level: integer): IPyObject;
+      /// <summary>
+      /// <para>Return a finder object for a sys.path/pkg.__path__ item path,
+      /// possibly by fetching it from the sys.path_importer_cache dict.
+      /// If it wasn't yet cached, traverse sys.path_hooks until a hook is
+      /// found that can handle the path item. Return None if no hook could;
+      /// this tells our caller that the path based finder could not find a
+      /// finder for this path item. Cache the result in
+      /// sys.path_importer_cache. Return a new reference to the finder
+      /// object.</para>
+      /// </summary>
       class function GetImporter(const path: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>This is a higher-level interface that calls the current
+      /// "import hook function" (with an explicit level of 0, meaning absolute
+      /// import). It invokes the __import__() function from the __builtins__
+      /// of the current globals. This means that the import is done using
+      /// whatever import hooks are installed in the current environment.</para>
+      /// <para>This function always uses absolute imports.</para>
+      /// </summary>
       class function Import(const name_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Reload a module. Return a new reference to the reloaded module,
+      /// or nil with an exception set on failure (the module still exists in
+      /// this case).</para>
+      /// </summary>
       class function ReloadModule(const m: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Load a frozen module named name. Return 1 for success, 0 if the
+      /// module is not found, and -1 with an exception set if the
+      /// initialization failed. To access the imported module on a successful
+      /// load, use TPyImport.ImportModule(). (Note the misnomer - this function
+      /// would reload the module if it was already imported.)</para>
+      /// </summary>
       class function ImportFrozenModuleObject(const name_: IPyObject): integer;
+      /// <summary>
+      /// <para>Similar to TPyImport.ImportFrozenModuleObject(), but the name is
+      /// a string instead of a Unicode object.</para>
+      /// </summary>
       class function ImportFrozenModule(const name_: string): integer;
+      /// <summary>
+      /// <para>Add a single module to the existing table of built-in modules.
+      /// This is a convenience wrapper around TPyImport.ExtendInittab(),
+      /// returning False if the table could not be extended. The new module
+      /// can be imported by the name name, and uses the function initfunc as
+      /// the initialization function called on the first attempted import.
+      /// This should be called before TPy.Initialize().</para>
+      /// </summary>
       class function AppendInittab(const name_: string; initfunc_: initfunc): boolean;
+      /// <summary>
+      /// <para>Add a collection of modules to the table of built-in modules.
+      /// The newtab array must end with a sentinel entry which contains nil for
+      /// the name field; failure to provide the sentinel value can result in a
+      /// memory fault. Returns True on success or False if insufficient memory
+      /// could be allocated to extend the internal table. In the event of
+      /// failure, no modules are added to the internal table. This must be
+      /// called before TPy.Initialize().</para>
+      /// <para>If Python is initialized multiple times,
+      /// TPyImport.AppendInittab() or TPyImport.ExtendInittab() must be called
+      /// before each Python initialization.</para>
+      /// </summary>
       class function ExtendInittab(newtab: P_inittab): boolean;
+      /// <summary>
+      /// <para>Import the module mod_name and get its attribute
+      /// attr_name.</para>
+      /// <para>Names must be Python str objects.</para>
+      /// <para>Helper function combining TPyImport.Import() and
+      /// TPyObject.GetAttr(). For example, it can raise ImportError if the
+      /// module is not found, and AttributeError if the attribute doesn't
+      /// exist.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function ImportModuleAttr(const mod_name, attr_name: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Similar to TPyImport.ImportModuleAttr(), but names are strings
+      /// instead of Python str objects.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function ImportModuleAttrString(const mod_name, attr_name: string): IPyObject;
   end;
 
@@ -54,7 +248,7 @@ begin
   if assigned(PyImport_GetMagicNumber) then
     Result := PyImport_GetMagicNumber()
    else
-    Result := 0;
+    Result := C_Long(-1);
 end;
 
 class function TPyImport.GetMagicTag: string;

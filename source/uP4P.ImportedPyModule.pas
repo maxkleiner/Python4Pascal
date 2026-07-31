@@ -17,6 +17,9 @@ uses
   uP4P.LibFunctions, uP4P.Types;
 
 type
+  /// <summary>
+  /// <para>TImportedPyModule is the base class for imported modules.</para>
+  /// </summary>
   TImportedPyModule = class
     protected
       procedure DecRef(var aObject : Pointer);
@@ -31,6 +34,9 @@ type
   end;
 
 implementation
+
+uses
+  uP4P.Py;
 
 constructor TImportedPyModule.Create;
 begin
@@ -57,12 +63,8 @@ end;
 
 procedure TImportedPyModule.DecRef(var aObject : Pointer);
 begin
-  if assigned(Py_DecRef) and assigned(aObject) then
-    try
-      Py_DecRef(PPyObject(aObject));
-    finally
-      aObject := nil;
-    end;
+  TPy.DecRef(aObject);
+  aObject := nil;
 end;
 
 end.

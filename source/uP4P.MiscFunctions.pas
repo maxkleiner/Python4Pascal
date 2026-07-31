@@ -30,38 +30,102 @@ uses
 function  GetModulePath : string;
 procedure OutputDebugMessage(const aMessage : string);
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
+/// <summary>
+/// Custom function to show a message dialog.
+/// </summary>
 procedure ShowErrorMessageDlg(const aError : string);
+/// <summary>
+/// Return True if this is a 32 bit process.
+/// </summary>
 function  Is32BitProcess : boolean;
+/// <summary>
+/// Custom function to get the current thread ID.
+/// </summary>
 function  CustomGetCurrentThreadId: TThreadID;
+/// <summary>
+/// Custom function to get the file size.
+/// </summary>
 function  GetFileSize(const aFilename: string): int64;
+/// <summary>
+/// Custom function to find all the files in a directory.
+/// </summary>
 function  CustomFindAllFiles(const aPath, aFilename: string): TStringList;
 {$IFNDEF DELPHI14_UP}{$IFNDEF FPC}
 function  CharInSet(const aChar: char; const aCharSet: TSysCharSet) : boolean;
 {$ENDIF}{$ENDIF}
 
+/// <summary>
+/// Convert a UTF8 Python string to a wide string.
+/// </summary>
 function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;
+/// <summary>
+/// Convert a UTF8 Python string to a regular string.
+/// </summary>
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean = False): string;
+/// <summary>
+/// Convert a regular string to a UTF8 Python string.
+/// </summary>
 function StringToPyUTF8(const aString: string): AnsiString;
 
 {$IFDEF MSWINDOWS}
 function ProcessUnderWow64(hProcess: THandle; Wow64Process: PBOOL): BOOL; stdcall; external 'kernel32.dll' name 'IsWow64Process';
+/// <summary>
+/// Convert a UnicodeString to AnsiString.
+/// </summary>
 function UnicodeStringToAnsiString(const aString: UnicodeString): AnsiString;
+/// <summary>
+/// Convert an AnsiString to UnicodeString.
+/// </summary>
 function AnsiStringToUnicodeString(const aString: AnsiString): UnicodeString;
+/// <summary>
+/// Return True if this is a 32 bit process running in a 64 bit OS.
+/// </summary>
 function Is32BitProcessRunningIn64BitOS : boolean;
+/// <summary>
+/// Returns the machine type information from the DLL header.
+/// </summary>
 function GetDLLHeaderMachine(const aDLLFile : string; var aMachine : integer) : boolean;
 {$ENDIF}
 
+/// <summary>
+/// Convert a wide string to a regular string.
+/// </summary>
 function PyWCharTStringToString(const aString: WCharTString): string;
+/// <summary>
+/// Convert a regular string to a wide string.
+/// </summary>
 function StringToPyWCharTString(const aString: string): WCharTString;
 
+/// <summary>
+/// Convert an array of wide strings to a TStringList.
+/// </summary>
 function WCharTArrayToStringList(aItems: PPWCharT; aLength: NativeInt; var aResultSL: TStringList): boolean;
+/// <summary>
+/// Convert a list of wide strings to a TStringList.
+/// </summary>
 function PyWideStringListToStringList(const aList: PyWideStringList; var aResultSL: TStringList): boolean;
 
+/// <summary>
+/// Convert an array of wide strings to a TStringDynArray.
+/// </summary>
 function WCharTArrayToStringDynArray(aItems: PPWCharT; aLength: NativeInt; var aResult: TStringDynArray): boolean;
+/// <summary>
+/// Convert a list of wide strings to a TStringDynArray.
+/// </summary>
 function PyWideStringListToStringDynArray(const aList: PyWideStringList; var aResult: TStringDynArray): boolean;
 
+/// <summary>
+/// Convert a error (TPyCodecErrors) to an AnsiString.
+/// </summary>
 function ErrorToAnsiString(error: TPyCodecErrors): AnsiString;
+/// <summary>
+/// Convert a start symbol (TPyStartSymbols) to an integer.
+/// </summary>
 function PyStartSymbolToInt(start: TPyStartSymbols): integer;
+
+/// <summary>
+/// Custom function to split strings with delimeters.
+/// </summary>
 function CustomSplitString(const S, Delimiters: string): TStringDynArray;
 
 

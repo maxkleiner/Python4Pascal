@@ -18,32 +18,16 @@ uses
   uP4P.CustomPyModule, uP4P.PyNone;
 
 const
-  ModuleName = 'pyio';
-
-  InitCode = 'import sys' + LF +
-             'class DebugOutput:' + LF +
-             '  pyio = __import__("' + ModuleName + '")' + LF +
-             '  softspace=0' + LF +
-             '  encoding=None' + LF +
-             '  def write(self,message):' + LF +
-             '     self.pyio.write(message)' + LF +
-             '  def readline(self, size_=None):' + LF +
-             '     return self.pyio.read(size_)' + LF +
-             '  def flush(self):' + LF +
-             '     pass' + LF +
-             '  def isatty(self):' + LF +
-             '     return False' + LF +
-             'sys.old_stdin=sys.stdin' + LF +
-             'sys.old_stdout=sys.stdout' + LF +
-             'sys.old_stderr=sys.stderr' + LF +
-             'sys.stdin=sys.stderr=sys.stdout=DebugOutput()' + LF + #0;
-
-  RestoreCode = 'import sys' + LF +
-                'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout' + LF +
-                'if hasattr(sys, "old_stdin"): sys.stdin=sys.old_stdin' + LF +
-                'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr' + LF + #0;
+  IOPyModuleName = 'pyio';
 
 type
+  /// <summary>
+  /// <para>TIOPyModule is a custom module created to capture the input and
+  /// output in Python.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-objects">See the article about Module Objects.</see></para>
+  /// </remarks>
   TIOPyModule = class(TCustomPyModule)
     protected
       procedure AddAllMethods; override;
@@ -51,7 +35,15 @@ type
       function  Read(args: PPyObject): PPyObject;
 
     public
+      /// <summary>
+      /// Helper function used to run the initialization Python code for this
+      /// module.
+      /// </summary>
       class function RunInitCode: boolean;
+      /// <summary>
+      /// Helper function used to run the Python code that restores the original
+      /// input and output.
+      /// </summary>
       class function RunRestoreCode: boolean;
   end;
 
@@ -107,6 +99,9 @@ procedure TIOPyModule.AddAllMethods;
 begin
   inherited AddAllMethods;
 
+  // We add the "read" and "write" methods. The pyio_write and pyio_read
+  // functions will execute the TIOPyModule.Read and TIOPyModule.Write
+  // functions in Delphi.
   AddMethod('write', 'write(string) -> None', @pyio_write, METH_VARARGS);
   AddMethod('read',  'read() -> string',      @pyio_read,  METH_VARARGS);
 end;
@@ -138,11 +133,34 @@ begin
 end;
 
 class function TIOPyModule.RunInitCode: boolean;
+const
+  InitCode = 'import sys' + LF +
+             'class DebugOutput:' + LF +
+             '  pyio = __import__("' + IOPyModuleName + '")' + LF +
+             '  softspace=0' + LF +
+             '  encoding=None' + LF +
+             '  def write(self,message):' + LF +
+             '     self.pyio.write(message)' + LF +
+             '  def readline(self, size_=None):' + LF +
+             '     return self.pyio.read(size_)' + LF +
+             '  def flush(self):' + LF +
+             '     pass' + LF +
+             '  def isatty(self):' + LF +
+             '     return False' + LF +
+             'sys.old_stdin=sys.stdin' + LF +
+             'sys.old_stdout=sys.stdout' + LF +
+             'sys.old_stderr=sys.stderr' + LF +
+             'sys.stdin=sys.stderr=sys.stdout=DebugOutput()' + LF + #0;
 begin
   Result := TPyRun.SimpleString(InitCode);
 end;
 
 class function TIOPyModule.RunRestoreCode: boolean;
+const
+  RestoreCode = 'import sys' + LF +
+                'if hasattr(sys, "old_stdout"): sys.stdout=sys.old_stdout' + LF +
+                'if hasattr(sys, "old_stdin"): sys.stdin=sys.old_stdin' + LF +
+                'if hasattr(sys, "old_stderr"): sys.stderr=sys.old_stderr' + LF + #0;
 begin
   Result := TPyRun.SimpleString(RestoreCode);
 end;
