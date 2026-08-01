@@ -17,12 +17,36 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyBool_* methods. Booleans in Python are implemented
+  /// as a subclass of integers. There are only two booleans, Py_False and
+  /// Py_True. As such, the normal creation and deletion functions don't apply
+  /// to booleans.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/bool.html#boolean-objects">See the article about Boolean Objects.</see></para>
+  /// </remarks>
   TPyBool = class
     public
+      /// <summary>
+      /// <para>Return Py_True or Py_False, depending on the truth value of aValue.</para>
+      /// </summary>
       class function FromLong(aValue: C_Long): IPyObject;
+      /// <summary>
+      /// <para>Wrap a Variant with a boolean type.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      /// <summary>
+      /// <para>Wrap a Variant with a boolean type.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
+      /// <summary>
+      /// <para>Return a IPyObject instance wrapping a False boolean.</para>
+      /// </summary>
       class function ReturnFalse: IPyObject;
+      /// <summary>
+      /// <para>Return a IPyObject instance wrapping a True boolean.</para>
+      /// </summary>
       class function ReturnTrue: IPyObject;
       /// <summary>
       /// <para>Return true if aPyObject is of type PyBool_Type. This function

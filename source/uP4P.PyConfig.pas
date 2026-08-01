@@ -36,7 +36,7 @@ type
   end;
 
   /// <summary>
-  /// Record containing most parameters to configure Python.
+  /// Class containing most parameters to configure Python.
   /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
   /// </summary>
   /// <remarks>
