@@ -1163,7 +1163,7 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
-  uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTime,
+  uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTimeModule,
   uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone,
   uP4P.PyObjectVariantType, uP4P.PyCallable, uP4P.PyMapping;
 
@@ -2244,7 +2244,7 @@ begin
       if aUseDateTuple then
         Result := TPyTuple.FromVariant(TempVariant, TempType)
        else
-        Result := TPyDateTime.FromVariant(TempVariant, TempType);
+        Result := TPyDateTimeModule.FromVariant(TempVariant, TempType);
   end;
 
   if not(assigned(Result)) then
@@ -2483,7 +2483,7 @@ var
   TempDateTime : TDateTime;
 begin
   if TPyTimeStruct.AsDateTime(self, TempDateTime) or
-     TPyDateTime.AsDateTime(self, TempDateTime) then
+     TPyDateTimeModule.AsDateTime(self, TempDateTime) then
     Result := TempDateTime
    else
     Result := -1;
@@ -2516,7 +2516,7 @@ begin
             if TPyTimeStruct.AsDateTime(self, TempDateTime) then
               Result := TempDateTime
              else
-              if TPyDateTime.AsDateTime(self, TempDateTime) then
+              if TPyDateTimeModule.AsDateTime(self, TempDateTime) then
                 Result := TempDateTime
                else
                 Result := TPySequence.CastValueAsVariant(self);

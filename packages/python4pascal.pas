@@ -16,7 +16,7 @@ uses
   uP4P.PyClassMethod, uP4P.PyCMethod, uP4P.PyCode, uP4P.PyCodec, 
   uP4P.PyCompile, uP4P.PyComplex, uP4P.PyConfig, uP4P.PyContext, 
   uP4P.PyContextToken, uP4P.PyContextVar, uP4P.PyCoro, uP4P.PyCriticalSection, 
-  uP4P.PyDebug, uP4P.PyDescr, uP4P.PyDict, uP4P.PyDictItems, uP4P.PyDictKeys, 
+  uP4P.PyDescr, uP4P.PyDict, uP4P.PyDictItems, uP4P.PyDictKeys, 
   uP4P.PyDictProxy, uP4P.PyDictValues, uP4P.PyDictViewSet, uP4P.PyEllipsis, 
   uP4P.PyErr, uP4P.PyEval, uP4P.PyException, uP4P.PyExceptionClass, 
   uP4P.PyExceptionInstance, uP4P.PyExceptionName, uP4P.PyFile, uP4P.PyFloat, 

@@ -17,8 +17,18 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class to check dictionary values.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#dictionary-objects">See the article about the Dictionary Objects.</see></para>
+  /// </remarks>
   TPyDictValues = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance of a dictionary values
+      /// view. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
   end;
 

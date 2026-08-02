@@ -156,10 +156,6 @@
         <UnitName Value="uP4P.PyCriticalSection"/>
       </Item>
       <Item>
-        <Filename Value="..\source\uP4P.PyDebug.pas"/>
-        <UnitName Value="uP4P.PyDebug"/>
-      </Item>
-      <Item>
         <Filename Value="..\source\uP4P.PyDescr.pas"/>
         <UnitName Value="uP4P.PyDescr"/>
       </Item>

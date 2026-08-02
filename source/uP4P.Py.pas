@@ -1056,6 +1056,14 @@ type
       /// <para>Added in version 3.14.</para>
       /// </summary>
       class function  fclose(file_: PFILE): integer;
+      /// <summary>
+      /// <para>Like getenv(s), but returns nil if -E was passed on the command
+      /// line (see PyConfig.use_environment).</para>
+      /// <para>Return the value of the environment variable key as a string if
+      /// it exists.</para>
+      /// <para>Availability: Unix, Windows.</para>
+      /// </summary>
+      class function  GetEnv(const key: string): string;
   end;
 
 implementation
@@ -1688,6 +1696,19 @@ begin
     Result := Py_fclose(file_)
    else
     Result := 0;
+end;
+
+class function TPy.GetEnv(const key: string): string;
+var
+  TempKey : AnsiString;
+begin
+  if assigned(Py_GETENV) then
+    begin
+      TempKey := StringToPyUTF8(key);
+      Result  := PyUTF8ToString(Py_GETENV(PAnsiChar(TempKey)));
+    end
+   else
+    Result := '';
 end;
 
 end.

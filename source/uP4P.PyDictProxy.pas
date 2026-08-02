@@ -17,8 +17,20 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyDictProxy_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#dictionary-objects">See the article about the Dictionary Objects.</see></para>
+  /// </remarks>
   TPyDictProxy = class
     public
+      /// <summary>
+      /// <para>Return a types.MappingProxyType object for a mapping which
+      /// enforces read-only behavior. This is normally used to create a view
+      /// to prevent modification of the dictionary for non-dynamic class
+      /// types.</para>
+      /// </summary>
       class function New(const mapping: IPyObject): IPyObject;
   end;
 

@@ -131,7 +131,6 @@
         <DCCReference Include="..\source\uP4P.PyRefTracer.pas"/>
         <DCCReference Include="..\source\uP4P.PyGC.pas"/>
         <DCCReference Include="..\source\uP4P.PyHash.pas"/>
-        <DCCReference Include="..\source\uP4P.PyDebug.pas"/>
         <DCCReference Include="..\source\uP4P.PyErr.pas"/>
         <DCCReference Include="..\source\uP4P.Py.pas"/>
         <DCCReference Include="..\source\uP4P.PyException.pas"/>
@@ -219,7 +218,6 @@
         <DCCReference Include="..\source\uP4P.PyDateTimeModule.pas"/>
         <DCCReference Include="..\source\uP4P.ImportedPyModule.pas"/>
         <DCCReference Include="..\source\uP4P.PyTimeStruct.pas"/>
-        <DCCReference Include="..\source\uP4P.PyDateTime.pas"/>
         <DCCReference Include="..\source\uP4P.PyGenericAlias.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

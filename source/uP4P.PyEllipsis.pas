@@ -17,9 +17,22 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>Helper class to create ellipsis objects.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/slice.html#ellipsis-object">See the Ellipsis Object article.</see></para>
+  /// </remarks>
   TPyEllipsis = class
     public
+      /// <summary>
+      /// <para>Create an ellipsis object.</para>
+      /// <para>Changed in version 3.12: Py_Ellipsis is immortal.</para>
+      /// </summary>
       class function New: IPyObject;
+      /// <summary>
+      /// <para>Return true if aPyObject is of type PyEllipsis_Type.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
   end;
 

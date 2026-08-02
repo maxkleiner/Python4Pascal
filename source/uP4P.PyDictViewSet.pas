@@ -17,8 +17,19 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class to check dictionary view sets.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#dictionary-objects">See the article about the Dictionary Objects.</see></para>
+  /// </remarks>
   TPyDictViewSet = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a view of a set inside a dictionary.
+      /// This is currently equivalent to TPyDictKeys.Check(aPyObject) or
+      /// TPyDictItems.Check(aPyObject). This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
   end;
 

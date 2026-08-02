@@ -70,7 +70,6 @@ contains
   uP4P.PyRefTracer in '..\source\uP4P.PyRefTracer.pas',
   uP4P.PyGC in '..\source\uP4P.PyGC.pas',
   uP4P.PyHash in '..\source\uP4P.PyHash.pas',
-  uP4P.PyDebug in '..\source\uP4P.PyDebug.pas',
   uP4P.PyErr in '..\source\uP4P.PyErr.pas',
   uP4P.Py in '..\source\uP4P.Py.pas',
   uP4P.PyException in '..\source\uP4P.PyException.pas',
@@ -158,7 +157,6 @@ contains
   uP4P.PyDateTimeModule in '..\source\uP4P.PyDateTimeModule.pas',
   uP4P.ImportedPyModule in '..\source\uP4P.ImportedPyModule.pas',
   uP4P.PyTimeStruct in '..\source\uP4P.PyTimeStruct.pas',
-  uP4P.PyDateTime in '..\source\uP4P.PyDateTime.pas',
   uP4P.PyGenericAlias in '..\source\uP4P.PyGenericAlias.pas';
 
 end.

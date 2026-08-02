@@ -47,7 +47,7 @@ class function TPyGen.New(const frame: IPyObject): IPyObject;
 begin
   if assigned(PyGen_New) and
      TPyObject.IsInitialized(frame) then
-    Result := TPyObject.Wrap(PyGen_New(PPyFrameObject(frame.PyObject)))
+    Result := TPyObject.Wrap(PyGen_New(PPyFrameObject(frame.Unwrap)))
    else
     Result := nil;
 end;
@@ -58,7 +58,7 @@ begin
      TPyObject.IsInitialized(frame) and
      TPyObject.IsInitialized(name_) and
      TPyObject.IsInitialized(qualname) then
-    Result := TPyObject.Wrap(PyGen_NewWithQualName(PPyFrameObject(frame.PyObject), name_.PyObject, qualname.PyObject))
+    Result := TPyObject.Wrap(PyGen_NewWithQualName(PPyFrameObject(frame.Unwrap), name_.PyObject, qualname.PyObject))
    else
     Result := nil;
 end;

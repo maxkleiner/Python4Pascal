@@ -40,7 +40,7 @@ begin
      TPyObject.IsInitialized(frame) and
      TPyObject.IsInitialized(name_) and
      TPyObject.IsInitialized(qualname) then
-    Result := TPyObject.Wrap(PyCoro_New(PPyFrameObject(frame.PyObject), name_.PyObject, qualname.PyObject))
+    Result := TPyObject.Wrap(PyCoro_New(PPyFrameObject(frame.Unwrap), name_.PyObject, qualname.PyObject))
    else
     Result := nil;
 end;
