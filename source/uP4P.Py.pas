@@ -321,6 +321,11 @@ type
       /// </summary>
       class function  CompileString(const str: string; const filename: string = DEFAULT_COMPILE_FILENAME; start: TPyStartSymbols = ssFile): IPyObject;
       /// <summary>
+      /// <para>This is a simplified interface to TPy.CompileStringExFlags()
+      /// below, with optimize set to -1.</para>
+      /// </summary>
+      class function  CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
+      /// <summary>
       /// <para>Like CompileStringObject(), but filename is a byte string
       /// decoded from the filesystem encoding and error handler.</para>
       /// </summary>
@@ -341,11 +346,6 @@ type
       /// 2 (docstrings are removed too).</para>
       /// </summary>
       class function  CompileStringObject(const str: string; const filename: IPyObject; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
-      /// <summary>
-      /// <para>This is a simplified interface to CompileStringExFlags(),
-      /// with optimize set to -1.</para>
-      /// </summary>
-      class function  CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
       /// <summary>
       /// <para>Initialize the Python interpreter. In an application embedding
       /// Python, this should be called before using any other Python/C API
@@ -1316,6 +1316,20 @@ begin
     Result := nil;
 end;
 
+class function TPy.CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
+var
+  TempString, TempFilename : AnsiString;
+begin
+  if assigned(Py_CompileStringFlags) then
+    begin
+      TempString   := StringToPyUTF8(str);
+      TempFilename := StringToPyUTF8(filename);
+      Result       := TPyObject.Wrap(Py_CompileStringFlags(PAnsiChar(TempString), PAnsiChar(TempFilename), PyStartSymbolToInt(start), flags));
+    end
+   else
+    Result := TPy.CompileStringExFlags(str, filename, start, flags, -1);
+end;
+
 class function TPy.CompileStringExFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags; optimize: integer): IPyObject;
 var
   TempString, TempFilename : AnsiString;
@@ -1342,11 +1356,6 @@ begin
     end
    else
     Result := nil;
-end;
-
-class function TPy.CompileStringFlags(const str, filename: string; start: TPyStartSymbols; flags: PPyCompilerFlags): IPyObject;
-begin
-  Result := TPy.CompileStringExFlags(str, filename, start, flags, -1);
 end;
 
 class procedure TPy.Initialize;

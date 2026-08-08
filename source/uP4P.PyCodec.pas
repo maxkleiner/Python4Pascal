@@ -17,26 +17,124 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyCodec_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/codec.html#codec-registry-and-support-functions">See the article about Codec registry and support functions.</see></para>
+  /// </remarks>
   TPyCodec = class
     public
+      /// <summary>
+      /// <para>Register a new codec search function.</para>
+      /// <para>As a side effect, this tries to load the encodings package,
+      /// if not yet done, to make sure that it is always first in the list of
+      /// search functions.</para>
+      /// </summary>
       class function Register_(const search_function: IPyObject): boolean;
+      /// <summary>
+      /// <para>Unregister a codec search function and clear the registry's
+      /// cache. If the search function is not registered, do nothing.
+      /// Return True on success. Raise an exception and return False on
+      /// error.</para>
+      /// </summary>
       class function Unregister(const search_function: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return True or False depending on whether there is a registered
+      /// codec for the given encoding. This function always succeeds.</para>
+      /// </summary>
       class function KnownEncoding(const encoding: string): boolean;
+      /// <summary>
+      /// <para>Generic codec based encoding API.</para>
+      /// <para>object_ is passed through the encoder function found for the
+      /// given encoding using the error handling method defined by errors.
+      /// errors may be nil to use the default method defined for the codec.
+      /// Raises a LookupError if no encoder can be found.</para>
+      /// </summary>
       class function Encode(const object_: IPyObject; const encoding, errors: string): IPyObject;
+      /// <summary>
+      /// <para>Generic codec based decoding API.</para>
+      /// <para>object_ is passed through the decoder function found for the
+      /// given encoding using the error handling method defined by errors.
+      /// errors may be nil to use the default method defined for the codec.
+      /// Raises a LookupError if no decoder can be found.</para>
+      /// </summary>
       class function Decode(const object_: IPyObject; const encoding, errors: string): IPyObject;
+      /// <summary>
+      /// <para>Get an encoder function for the given encoding.</para>
+      /// </summary>
       class function Encoder(const encoding: string): IPyObject;
+      /// <summary>
+      /// <para>Get a decoder function for the given encoding.</para>
+      /// </summary>
       class function Decoder(const encoding: string): IPyObject;
+      /// <summary>
+      /// <para>Get an IncrementalEncoder object for the given encoding.</para>
+      /// </summary>
       class function IncrementalEncoder(const encoding, errors: string): IPyObject;
+      /// <summary>
+      /// <para>Get an IncrementalDecoder object for the given encoding.</para>
+      /// </summary>
       class function IncrementalDecoder(const encoding, errors: string): IPyObject;
+      /// <summary>
+      /// <para>Get a StreamReader factory function for the given
+      /// encoding.</para>
+      /// </summary>
       class function StreamReader(const encoding: string; const stream: IPyObject; const errors: string): IPyObject;
+      /// <summary>
+      /// <para>Get a StreamWriter factory function for the given
+      /// encoding.</para>
+      /// </summary>
       class function StreamWriter(const encoding: string; const stream: IPyObject; const errors: string): IPyObject;
+      /// <summary>
+      /// <para>Register the error handling callback function error under the
+      /// given name. This callback function will be called by a codec when it
+      /// encounters unencodable characters/undecodable bytes and name is
+      /// specified as the error parameter in the call to the encode/decode
+      /// function.</para>
+      /// <para>The callback gets a single argument, an instance of
+      /// UnicodeEncodeError, UnicodeDecodeError or UnicodeTranslateError that
+      /// holds information about the problematic sequence of characters or
+      /// bytes and their offset in the original string (see Unicode Exception
+      /// Objects for functions to extract this information). The callback must
+      /// either raise the given exception, or return a two-item tuple
+      /// containing the replacement for the problematic sequence, and an
+      /// integer giving the offset in the original string at which
+      /// encoding/decoding should be resumed.</para>
+      /// <para>Return True on success, False on error.</para>
+      /// </summary>
       class function RegisterError(const name_: string; const error: IPyObject): boolean;
+      /// <summary>
+      /// <para>Lookup the error handling callback function registered under
+      /// name. As a special case nil can be passed, in which case the error
+      /// handling callback for "strict" will be returned.</para>
+      /// </summary>
       class function LookupError(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>Raise exc as an exception.</para>
+      /// </summary>
       class function StrictErrors(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Ignore the unicode error, skipping the faulty input.</para>
+      /// </summary>
       class function IgnoreErrors(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Replace the unicode encode error with ? or U+FFFD.</para>
+      /// </summary>
       class function ReplaceErrors(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Replace the unicode encode error with XML character
+      /// references.</para>
+      /// </summary>
       class function XMLCharRefReplaceErrors(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Replace the unicode encode error with backslash escapes
+      /// (\x, \u and \U).</para>
+      /// </summary>
       class function BackslashReplaceErrors(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Replace the unicode encode error with \N{...} escapes.</para>
+      /// </summary>
       class function NameReplaceErrors(const exc: IPyObject): IPyObject;
   end;
 

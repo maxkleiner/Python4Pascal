@@ -19,7 +19,6 @@ uses
 type
   /// <summary>
   /// Helper class for all PyCapsule_* methods.
-  /// objects.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/capsule.html#capsules">See the article about Capsules.</see></para>

@@ -17,8 +17,17 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyExceptionClass_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/exceptions.html#exception-classes">See the article about Exception Classes.</see></para>
+  /// </remarks>
   TPyExceptionName = class
     public
+      /// <summary>
+      /// <para>Return tp_name of the exception class ob.</para>
+      /// </summary>
       class function Name_(const ob: IPyObject): string;
   end;
 

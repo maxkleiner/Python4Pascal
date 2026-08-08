@@ -17,15 +17,62 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>Helper class for all the PyException_* methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/exceptions.html#exception-objects">See the Exception Objects article.</see></para>
+  /// </remarks>
   TPyException = class
     public
+      /// <summary>
+      /// <para>Set the traceback associated with the exception to tb.
+      /// Use nil to clear it.</para>
+      /// </summary>
       class function  SetTraceback(const ex, tb: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return the traceback associated with the exception as a new
+      /// reference, as accessible from Python through the __traceback__
+      /// attribute. If there is no traceback associated, this returns
+      /// nil.</para>
+      /// </summary>
       class function  GetTraceback(const ex: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the cause (either an exception instance, or None,
+      /// set by raise ... from ...) associated with the exception as a new
+      /// reference, as accessible from Python through the __cause__
+      /// attribute.</para>
+      /// </summary>
       class function  GetCause(const ex: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Set the cause associated with the exception to cause.
+      /// Use nil to clear it. There is no type check to make sure that cause
+      /// is either an exception instance or None. This "steals" a reference to
+      /// cause.</para>
+      /// <para>The __suppress_context__ attribute is implicitly set to True by
+      /// this function.</para>
+      /// </summary>
       class procedure SetCause(const ex, cause: IPyObject);
+      /// <summary>
+      /// <para>Return the context (another exception instance during whose
+      /// handling ex was raised) associated with the exception as a new
+      /// reference, as accessible from Python through the __context__
+      /// attribute. If there is no context associated, this returns nil.</para>
+      /// </summary>
       class function  GetContext(const ex: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Set the context associated with the exception to ctx. Use nil
+      /// to clear it. There is no type check to make sure that ctx is an
+      /// exception instance. This "steals" a reference to ctx.</para>
+      /// </summary>
       class procedure SetContext(const ex, ctx: IPyObject);
+      /// <summary>
+      /// <para>Return args of exception ex.</para>
+      /// </summary>
       class function  GetArgs(const ex: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Set args of exception ex to args.</para>
+      /// </summary>
       class procedure SetArgs(const ex, args: IPyObject);
   end;
 

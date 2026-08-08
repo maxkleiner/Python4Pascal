@@ -17,17 +17,90 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyCode_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/code.html#code-objects">See the article about Code Objects.</see></para>
+  /// </remarks>
   TPyCode = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a code object.
+      /// This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a new empty code object with the specified filename,
+      /// function name, and first line number. The resulting code object
+      /// will raise an Exception if executed.</para>
+      /// </summary>
       class function NewEmpty(const filename, funcname: string; firstlineno: integer): IPyObject;
+      /// <summary>
+      /// <para>Register callback as a code object watcher for the current
+      /// interpreter. Return an ID which may be passed to
+      /// TPyCode.ClearWatcher(). In case of error (e.g. no more watcher IDs
+      /// available), return -1 and set an exception.</para>
+      /// </summary>
       class function AddWatcher(callback: PyCode_WatchCallback): integer;
+      /// <summary>
+      /// <para>Clear watcher identified by watcher_id previously returned from
+      /// TPyCode.AddWatcher() for the current interpreter. Return True on
+      /// success, or False and set an exception on error (e.g. if the given
+      /// watcher_id was never registered.)</para>
+      /// </summary>
       class function ClearWatcher(watcher_id: integer): boolean;
+      /// <summary>
+      /// <para>Return the line number of the instruction that occurs on or
+      /// before byte_offset and ends after it. If you just need the line
+      /// number of a frame, use TPyFrame.GetLineNumber() instead.</para>
+      /// <para>For efficiently iterating over the line numbers in a code
+      /// object, use the API described in PEP 626.</para>
+      /// </summary>
       class function Addr2Line(const co: IPyObject; byte_offset: integer): integer;
+      /// <summary>
+      /// <para>Sets the passed int pointers to the source code line and column
+      /// numbers for the instruction at byte_offset. Sets the value to 0 when
+      /// information is not available for any particular element.</para>
+      /// <para>Returns True if the function succeeds and False otherwise.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       class function Addr2Location(const co: IPyObject; byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): boolean;
+      /// <summary>
+      /// <para>Equivalent to the Python code getattr(co, 'co_code'). Returns a
+      /// strong reference to a PyBytesObject representing the bytecode in a
+      /// code object. On error, nil is returned and an exception is
+      /// raised.</para>
+      /// <para>This PyBytesObject may be created on-demand by the interpreter
+      /// and does not necessarily represent the bytecode actually executed by
+      /// CPython. The primary use case for this function is debuggers and
+      /// profilers.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       class function GetCode(const co: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Equivalent to the Python code getattr(co, 'co_varnames').
+      /// Returns a new reference to a PyTupleObject containing the names of
+      /// the local variables. On error, nil is returned and an exception is
+      /// raised.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       class function GetVarnames(const co: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Equivalent to the Python code getattr(co, 'co_cellvars').
+      /// Returns a new reference to a PyTupleObject containing the names of
+      /// the local variables that are referenced by nested functions.
+      /// On error, nil is returned and an exception is raised.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       class function GetCellvars(const co: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Equivalent to the Python code getattr(co, 'co_freevars').
+      /// Returns a new reference to a PyTupleObject containing the names of
+      /// the free (closure) variables. On error, nil is returned and an
+      /// exception is raised.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
       class function GetFreevars(const co: IPyObject): IPyObject;
   end;
 

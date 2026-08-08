@@ -19,7 +19,6 @@ uses
 type
   /// <summary>
   /// Helper class for all PyCallIter_* methods.
-  /// objects.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/iterator.html#iterator-objects">See the article about Iterator Objects.</see></para>

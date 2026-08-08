@@ -19,7 +19,6 @@ uses
 type
   /// <summary>
   /// Helper class for all PyCallable_* methods.
-  /// objects.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/call.html#call-support-api">See the article about the Call Support API.</see></para>

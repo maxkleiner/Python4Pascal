@@ -2792,6 +2792,7 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyRun_InteractiveLoopFlags{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyRun_InteractiveLoopFlags');
   {$IFDEF FPC}Pointer({$ENDIF}PyRun_StringFlags{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyRun_StringFlags');
   {$IFDEF FPC}Pointer({$ENDIF}PyRun_FileExFlags{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyRun_FileExFlags');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_CompileStringFlags{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'Py_CompileStringFlags');
   {$IFDEF FPC}Pointer({$ENDIF}Py_CompileStringExFlags{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'Py_CompileStringExFlags');
   {$IFDEF FPC}Pointer({$ENDIF}Py_CompileStringObject{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_CompileStringObject');
   {$IFDEF FPC}Pointer({$ENDIF}PyRun_String{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyRun_String');

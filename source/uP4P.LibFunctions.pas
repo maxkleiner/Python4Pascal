@@ -1073,6 +1073,7 @@ var
   PyRun_InteractiveLoopFlags                     : function(fp: PFILE; const filename: PAnsiChar; flags: PPyCompilerFlags): integer; cdecl;
   PyRun_StringFlags                              : function(const str: PAnsiChar; start: integer; globals, locals: PPyObject; flags: PPyCompilerFlags): PPyObject; cdecl;
   PyRun_FileExFlags                              : function(fp: PFILE; const filename: PAnsiChar; start: integer; globals, locals: PPyObject; closeit: integer; flags: PPyCompilerFlags): PPyObject; cdecl;
+  Py_CompileStringFlags                          : function(const str, filename: PAnsiChar; start: integer; flags: PPyCompilerFlags): PPyObject; cdecl;
   Py_CompileStringExFlags                        : function(const str, filename: PAnsiChar; start: integer; flags: PPyCompilerFlags; optimize: integer): PPyObject; cdecl;
   Py_CompileStringObject                         : function(const str: PAnsiChar; filename: PPyObject; start: integer; flags: PPyCompilerFlags; optimize: integer): PPyObject; cdecl;
   PyRun_String                                   : function(const str: PAnsiChar; start: integer; globals, locals: PPyObject): PPyObject; cdecl;
