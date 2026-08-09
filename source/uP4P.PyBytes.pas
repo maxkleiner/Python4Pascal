@@ -161,11 +161,11 @@ type
       /// </summary>
       class function FromObject(const ob: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Wrap a Variant with a Bytes type.</para>
+      /// <para>Wrap a Variant with a TPyBytes type.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       /// <summary>
-      /// <para>Wrap a Variant with a Bytes type.</para>
+      /// <para>Wrap a Variant with a TPyBytes type.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       /// <summary>

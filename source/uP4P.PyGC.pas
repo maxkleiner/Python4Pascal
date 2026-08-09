@@ -17,11 +17,41 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyGC_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/gcsupport.html#controlling-the-garbage-collector-state">See the article about Controlling the Garbage Collector State.</see></para>
+  /// </remarks>
   TPyGC = class
     public
+      /// <summary>
+      /// <para>Perform a full garbage collection, if the garbage collector is
+      /// enabled. (Note that gc.collect() runs it unconditionally.)</para>
+      /// <para>Returns the number of collected + unreachable objects which
+      /// cannot be collected. If the garbage collector is disabled or already
+      /// collecting, returns 0 immediately. Errors during garbage collection
+      /// are passed to sys.unraisablehook. This function does not raise
+      /// exceptions.</para>
+      /// </summary>
       class function Collect: Py_ssize_t;
+      /// <summary>
+      /// <para>Enable the garbage collector: similar to gc.enable().
+      /// Returns the previous state, False for disabled and True for
+      /// enabled.</para>
+      /// </summary>
       class function Enable: boolean;
+      /// <summary>
+      /// <para>Disable the garbage collector: similar to gc.disable().
+      /// Returns the previous state, False for disabled and True for
+      /// enabled.</para>
+      /// </summary>
       class function Disable: boolean;
+      /// <summary>
+      /// <para>Query the state of the garbage collector: similar to
+      /// gc.isenabled(). Returns the current state, False for disabled and
+      /// True for enabled.</para>
+      /// </summary>
       class function IsEnabled: boolean;
   end;
 

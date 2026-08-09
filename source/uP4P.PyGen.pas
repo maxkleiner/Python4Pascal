@@ -17,12 +17,41 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyGen_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/gen.html#generator-objects">See the article about Generator Objects.</see></para>
+  /// </remarks>
   TPyGen = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a generator object; aPyObject
+      /// must not be nil. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject's type is PyGen_Type; aPyObject
+      /// must not be nil. This function always succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Create and return a new generator object based on the frame
+      /// object. A reference to frame is "stolen" by this function
+      /// (even on error). The argument must not be nil.</para>
+      /// </summary>
       class function New(const frame: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Create and return a new generator object based on the frame
+      /// object, with __name__ and __qualname__ set to name and qualname.
+      /// A reference to frame is "stolen" by this function (even on error).
+      /// The frame argument must not be nil.</para>
+      /// </summary>
       class function NewWithQualName(const frame, name_, qualname: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return a new strong reference to the code object wrapped by gen.
+      /// This function always succeeds.</para>
+      /// </summary>
       class function GetCode(const gen: IPyObject): IPyObject;
   end;
 

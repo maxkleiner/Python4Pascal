@@ -17,14 +17,33 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyFrozenSet_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/set.html#set-objects">See the article about Set Objects.</see></para>
+  /// </remarks>
   TPyFrozenSet = class
     public
+      /// <summary>
+      /// <para>Return true if aPyObject is a frozenset object or an instance
+      /// of a subtype. This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a frozenset object but not an
+      /// instance of a subtype. This function always succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a new frozenset containing objects returned by the
+      /// iterable. The iterable may be nil to create a new empty frozenset.
+      /// Return the new set on success or nil on failure. Raise TypeError if
+      /// iterable is not actually iterable.</para>
+      /// <para>Note: The operation is atomic on free threading when iterable is
+      /// a set, frozenset or dict.</para>
+      /// </summary>
       class function New(const iterable: IPyObject): IPyObject;
-      class function Add(const set_, key: IPyObject): boolean;
-      class function Contains(const anyset, key: IPyObject): integer;
-      class function Size(const anyset: IPyObject): Py_ssize_t;
   end;
 
 implementation
@@ -51,33 +70,6 @@ begin
     Result := TPyObject.Wrap(PyFrozenSet_New(iterable.PyObject))
    else
     Result := nil;
-end;
-
-class function TPyFrozenSet.Add(const set_, key: IPyObject): boolean;
-begin
-  Result := assigned(PySet_Add) and
-            TPyObject.IsInitialized(set_) and
-            TPyObject.IsInitialized(key) and
-            (PySet_Add(set_.PyObject, key.PyObject) = 0);
-end;
-
-class function TPyFrozenSet.Contains(const anyset, key: IPyObject): integer;
-begin
-  if assigned(PySet_Contains) and
-     TPyObject.IsInitialized(anyset) and
-     TPyObject.IsInitialized(key) then
-    Result := PySet_Contains(anyset.PyObject, key.PyObject)
-   else
-    Result := -1;
-end;
-
-class function TPyFrozenSet.Size(const anyset: IPyObject): Py_ssize_t;
-begin
-  if assigned(PySet_Size) and
-     TPyObject.IsInitialized(anyset) then
-    Result := PySet_Size(anyset.PyObject)
-   else
-    Result := 0;
 end;
 
 end.

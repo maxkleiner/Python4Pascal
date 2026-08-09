@@ -1064,6 +1064,27 @@ type
       /// <para>Availability: Unix, Windows.</para>
       /// </summary>
       class function  GetEnv(const key: string): string;
+      /// <summary>
+      /// <para>Hash a pointer value: process the pointer value as an integer
+      /// (cast it to uintptr_t internally). The pointer is not
+      /// dereferenced.</para>
+      /// <para>The function cannot fail: it cannot return -1.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
+      class function  HashPointer(const ptr: Pointer): Py_hash_t;
+      /// <summary>
+      /// <para>Compute and return the hash value of a buffer of len bytes
+      /// starting at address ptr. The hash is guaranteed to match that of
+      /// bytes, memoryview, and other built-in objects that implement the
+      /// buffer protocol.
+      /// <para>Use this function to implement hashing for immutable objects
+      /// whose tp_richcompare function compares to another object's
+      /// buffer.</para>
+      /// <para>len must be greater than or equal to 0.</para>
+      /// <para>This function always succeeds.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
+      class function  HashBuffer(const ptr: Pointer; len: Py_ssize_t): Py_hash_t;
   end;
 
 implementation
@@ -1718,6 +1739,22 @@ begin
     end
    else
     Result := '';
+end;
+
+class function TPy.HashPointer(const ptr: Pointer): Py_hash_t;
+begin
+  if assigned(Py_HashPointer) then
+    Result := Py_HashPointer(ptr)
+   else
+    Result := -1;
+end;
+
+class function TPy.HashBuffer(const ptr: Pointer; len: Py_ssize_t): Py_hash_t;
+begin
+  if assigned(Py_HashBuffer) then
+    Result := Py_HashBuffer(ptr, len)
+   else
+    Result := -1;
 end;
 
 end.

@@ -17,11 +17,20 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyHash_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/hash.html#pyhash-api">See the article about PyHash API.</see></para>
+  /// </remarks>
   TPyHash = class
     public
+      /// <summary>
+      /// <para>Get the hash function definition.</para>
+      /// <para>See also PEP 456 "Secure and interchangeable hash
+      /// algorithm".</para>
+      /// </summary>
       class function GetFuncDef: PPyHash_FuncDef;
-      class function HashPointer(const ptr: Pointer): Py_hash_t;
-      class function HashBuffer(const ptr: Pointer; len: Py_ssize_t): Py_hash_t;
   end;
 
 implementation
@@ -33,22 +42,5 @@ begin
    else
     Result := nil;
 end;
-
-class function TPyHash.HashPointer(const ptr: Pointer): Py_hash_t;
-begin
-  if assigned(Py_HashPointer) then
-    Result := Py_HashPointer(ptr)
-   else
-    Result := -1;
-end;
-
-class function TPyHash.HashBuffer(const ptr: Pointer; len: Py_ssize_t): Py_hash_t;
-begin
-  if assigned(Py_HashBuffer) then
-    Result := Py_HashBuffer(ptr, len)
-   else
-    Result := -1;
-end;
-
 
 end.
