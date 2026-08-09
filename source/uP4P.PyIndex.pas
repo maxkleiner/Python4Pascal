@@ -21,7 +21,7 @@ type
   /// Helper class for all PyIndex_* methods.
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/hash.html#pyhash-api">See the article about PyHash API.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/number.html#number-protocol">See the article about the Number Protocol.</see></para>
   /// </remarks>
   TPyIndex = class
     public

@@ -17,9 +17,24 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PySeqIter_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/iterator.html#iterator-objects">See the article about Iterator Objects.</see></para>
+  /// </remarks>
   TPySeqIter = class
     public
+      /// <summary>
+      /// <para>Return true if the type of aPyObject is PySeqIter_Type.
+      /// This function always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return an iterator that works with a general sequence object,
+      /// seq. The iteration ends when the sequence raises IndexError for the
+      /// subscripting operation.</para>
+      /// </summary>
       class function New(const seq: IPyObject): IPyObject;
   end;
 

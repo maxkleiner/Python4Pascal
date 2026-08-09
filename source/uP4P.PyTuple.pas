@@ -37,7 +37,13 @@ type
       class function FromStrings(const aStringList: TStringList): IPyObject;
       class function FromDateTime(year, month, day, hour, minute, second, weekday, yearday: integer; DST: TPyDaylightSavingTime): IPyObject; overload;
       class function FromDateTime(aDateTime : TDateTime; DST: TPyDaylightSavingTime = dstUnknown): IPyObject; overload;
+      /// <summary>
+      /// <para>Wrap a Variant with a python tuple object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      /// <summary>
+      /// <para>Wrap a Variant with a python tuple object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function FromVarDataArray(const Arguments: TVarDataArray; aMaxLength: integer): IPyObject;
       class function AsDateTime(const aPyObject: IPyObject; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: TPyDaylightSavingTime): boolean; overload;

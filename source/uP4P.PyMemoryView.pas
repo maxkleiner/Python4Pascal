@@ -17,12 +17,46 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyMemoryView_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/memoryview.html">See the article about MemoryView objects.</see></para>
+  /// </remarks>
   TPyMemoryView = class
     public
+      /// <summary>
+      /// <para>Return true if the object obj is a memoryview object. It is not
+      /// currently allowed to create subclasses of memoryview. This function
+      /// always succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Create a memoryview object to a contiguous chunk of memory
+      /// (in either C or Fortran order) from an object that defines the
+      /// buffer interface. If memory is contiguous, the memoryview object
+      /// points to the original memory. Otherwise, a copy is made and the
+      /// memoryview points to a new bytes object.</para>
+      /// <para>buffertype can be one of PyBUF_READ or PyBUF_WRITE.</para>
+      /// </summary>
       class function GetContiguous(const obj: IPyObject; buffertype: integer; order: TPyMemoryViewOrder): IPyObject;
+      /// <summary>
+      /// <para>Create a memoryview object from an object that provides the
+      /// buffer interface. If obj supports writable buffer exports, the
+      /// memoryview object will be read/write, otherwise it may be either
+      /// read-only or read/write at the discretion of the exporter.</para>
+      /// </summary>
       class function FromObject(const obj: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Create a memoryview object using mem as the underlying buffer.
+      /// flags can be one of PyBUF_READ or PyBUF_WRITE.</para>
+      /// </summary>
       class function FromMemory(mem: Pointer; size_: Py_ssize_t; flags: integer): IPyObject;
+      /// <summary>
+      /// <para>Create a memoryview object wrapping the given buffer structure
+      /// view. For simple byte buffers, TPyMemoryView.FromMemory() is the
+      /// preferred function.</para>
+      /// </summary>
       class function FromBuffer(const view: PPy_buffer): IPyObject;
   end;
 

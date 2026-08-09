@@ -17,8 +17,20 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// The NotImplemented singleton, used to signal that an operation is not
+  /// implemented for the given type combination. It's immortal since
+  /// Python 3.12.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/object.html#object-protocol">See the article about the Object Protocol.</see></para>
+  /// </remarks>
   TPyNotImplemented = class
     public
+      /// <summary>
+      /// <para>Return an IPyObject instance of the Python NotImplemented
+      /// object.</para>
+      /// </summary>
       class function New: IPyObject;
   end;
 

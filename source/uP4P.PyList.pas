@@ -17,40 +17,197 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyList_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/list.html#list-objects">See the article about List Objects.</see></para>
+  /// </remarks>
   TPyList = class
-    protected
-      class function FromVariantArray(const aVariant: Variant; dim, totaldim: integer; var indices: TCustomIntArray): IPyObject;
-
     public
       /// <summary>
       /// <para>Return true if aPyObject is a list object or an instance of a
       /// subtype of the list type. This function always succeeds.</para>
       /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if aPyObject is a list object, but not an instance
+      /// of a subtype of the list type. This function always succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a new list of length len on success, or nil on
+      /// failure.</para>
+      /// <para>Note: If len is greater than zero, the returned list
+      /// object's items are set to nil. Thus you cannot use abstract API
+      /// functions such as TPySequence.SetItem() or expose the object to
+      /// Python code before setting all items to a real object with
+      /// TPyList.SetItem(). The following APIs are safe APIs before the list
+      /// is fully initialized: TPyList.SetItem().</para>
+      /// </summary>
       class function New(len: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Return the length of the list object in list; this is equivalent
+      /// to len(list) on a list object.</para>
+      /// </summary>
       class function Size(const list: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Like TPyList.GetItemRef(), but returns a borrowed reference
+      /// instead of a strong reference.</para>
+      /// <para>Note: In the free-threaded build, the returned borrowed
+      /// reference may become invalid if another thread modifies the list
+      /// concurrently. Prefer TPyList.GetItemRef(), which returns a strong
+      /// reference.</para>
+      /// </summary>
       class function GetItem(const list: IPyObject; index: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Like TPyList.GetItemRef(), but returns a borrowed reference
+      /// instead of a strong reference.</para>
+      /// <para>Note: In the free-threaded build, the returned borrowed
+      /// reference may become invalid if another thread modifies the list
+      /// concurrently. Prefer TPyList.GetItemRef(), which returns a strong
+      /// reference.</para>
+      /// </summary>
       class function GetItem(const list: IPyObject; const index: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para>Return the object at position index in the list pointed to by
+      /// list. The position must be non-negative; indexing from the end of the
+      /// list is not supported. If index is out of bounds (<0 or >=len(list)),
+      /// return nil and set an IndexError exception.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       class function GetItemRef(const list: IPyObject; index: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Return the object at position index in the list pointed to by
+      /// list. The position must be non-negative; indexing from the end of the
+      /// list is not supported. If index is out of bounds (<0 or >=len(list)),
+      /// return nil and set an IndexError exception.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       class function GetItemRef(const list: IPyObject; const index: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para>Set the item at index index in list to item. Return True on
+      /// success. If index is out of bounds, return False and set an
+      /// IndexError exception.</para>
+      /// <para>Note: This function "steals" a reference to item, even on error.
+      /// On success, it discards a reference to an item already in the list at
+      /// the affected position (unless it was nil).</para>
+      /// </summary>
       class function SetItem(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Set the item at index index in list to item. Return True on
+      /// success. If index is out of bounds, return False and set an
+      /// IndexError exception.</para>
+      /// <para>Note: This function "steals" a reference to item, even on error.
+      /// On success, it discards a reference to an item already in the list at
+      /// the affected position (unless it was nil).</para>
+      /// </summary>
       class function SetItem(const list: IPyObject; const index, item: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Insert the item item into list list in front of index index.
+      /// Return True if successful; return False and set an exception if
+      /// unsuccessful. Analogous to list.insert(index, item).</para>
+      /// </summary>
       class function Insert(const list: IPyObject; index: Py_ssize_t; const item: IPyObject): boolean;
+      /// <summary>
+      /// <para>Append the object item at the end of list list. Return True if
+      /// successful; return False and set an exception if unsuccessful.
+      /// Analogous to list.append(item).</para>
+      /// </summary>
       class function Append(const list, item: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a list of the objects in list containing the objects
+      /// between low and high. Return nil and set an exception if unsuccessful.
+      /// Analogous to list[low:high]. Indexing from the end of the list is not
+      /// supported.</para>
+      /// </summary>
       class function GetSlice(const list: IPyObject; low, high: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Set the slice of list between low and high to the contents of
+      /// itemlist. Analogous to list[low:high] = itemlist. The itemlist may be
+      /// nil, indicating the assignment of an empty list (slice deletion).
+      /// Return True on success, False on failure. Indexing from the end of
+      /// the list is not supported.</para>
+      /// <para>Note: In the free-threaded build, when itemlist is a list, both
+      /// list and itemlist are locked for the duration of the operation.
+      /// For other iterables (or nil), only list is locked.</para>
+      /// </summary>
       class function SetSlice(const list: IPyObject; low, high: Py_ssize_t; const itemlist: IPyObject): boolean;
+      /// <summary>
+      /// <para>Sort the items of list in place. Return True on success, False
+      /// on failure. This is equivalent to list.sort().</para>
+      /// <para>Note: In the free-threaded build, element comparison via
+      /// __lt__() can execute arbitrary Python code, during which the
+      /// per-object lock may be temporarily released. For built-in types
+      /// (str, int, float), the lock is not released during comparison.</para>
+      /// </summary>
       class function Sort(const list: IPyObject): boolean;
+      /// <summary>
+      /// <para>Reverse the items of list in place. Return True on success,
+      /// False on failure. This is the equivalent of list.reverse().</para>
+      /// </summary>
       class function Reverse(const list: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a new tuple object containing the contents of list;
+      /// equivalent to tuple(list).</para>
+      /// </summary>
       class function AsTuple(const list: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Extend list with the contents of iterable. This is the same as
+      /// TPyList.SetSlice(list, PY_SSIZE_T_MAX, PY_SSIZE_T_MAX, iterable) and
+      /// analogous to list.extend(iterable) or list += iterable.</para>
+      /// <para>Raise an exception and return False if list is not a list
+      /// object. Return True on success.</para>
+      /// <para>Added in version 3.13.</para>
+      /// <para>Note: In the free-threaded build, when iterable is a list, set,
+      /// dict, or dict view, both list and iterable (or its underlying dict)
+      /// are locked for the duration of the operation. For other iterables,
+      /// only list is locked; iterable may be concurrently modified by another
+      /// thread.</para>
+      /// </summary>
       class function Extend(const self_, iterable: IPyObject): boolean;
+      /// <summary>
+      /// <para>Remove all items from list. This is the same as
+      /// TPyList.SetSlice(list, 0, PY_SSIZE_T_MAX, NULL) and analogous to
+      /// list.clear() or del list[:].</para>
+      /// <para>Raise an exception and return False if list is not a list
+      /// object. Return True on success.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
       class function Clear(const self_: IPyObject): boolean;
+      /// <summary>
+      /// <para>Custom function that creates a new list object and populates
+      /// the new list with the aItems array</para>
+      /// </summary>
       class function FromArray(const aItems: array of const) : IPyObject;
+      /// <summary>
+      /// <para>Custom function that creates a new list object and populates
+      /// the new list with the aStringList string list</para>
+      /// </summary>
       class function FromStrings(const aStringList: TStringList) : IPyObject;
+      /// <summary>
+      /// <para>Custom function that creates a new list object and populates
+      /// the new list with the objects array</para>
+      /// </summary>
       class function FromObjects(const objects: IPyObjectArray): IPyObject;
+      /// <summary>
+      /// <para>Wrap a Variant with a python list object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      /// <summary>
+      /// <para>Wrap a Variant with a python list object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
+      /// <summary>
+      /// <para>Custom function used to copy the list items in a string
+      /// list.</para>
+      /// </summary>
       class function AsStrings(const aPyObject: IPyObject; var aStringList: TStringList): boolean;
+      /// <summary>
+      /// <para>Custom function that creates a new list object and populates
+      /// the new list with the aVariant array</para>
+      /// </summary>
+      class function FromVariantArray(const aVariant: Variant; dim, totaldim: integer; var indices: TCustomIntArray): IPyObject;
   end;
 
 implementation

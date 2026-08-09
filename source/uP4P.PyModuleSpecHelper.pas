@@ -30,6 +30,9 @@ type
       /// </summary>
       class function FromModuleName(const name_: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
+      /// <summary>
+      /// Helper function to create a ModuleSpec object used by TPyModule.FromDefAndSpec
+      /// </summary>
       class function FromModuleName(const name_: AnsiString): IPyObject; overload;
       {$ENDIF}
   end;

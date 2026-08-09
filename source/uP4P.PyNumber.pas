@@ -17,44 +17,243 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyNumber_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/number.html#number-protocol">See the article about the Number Protocol.</see></para>
+  /// </remarks>
   TPyNumber = class
     public
+      /// <summary>
+      /// <para>Returns True if the object o provides numeric protocols, and
+      /// false otherwise. This function always succeeds.</para>
+      /// </summary>
       class function Check(const o: IPyObject): boolean;
+      /// <summary>
+      /// <para>Returns the result of adding o1 and o2, or nil on failure.
+      /// This is the equivalent of the Python expression o1 + o2.</para>
+      /// </summary>
       class function Add(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of subtracting o2 from o1, or nil on failure.
+      /// This is the equivalent of the Python expression o1 - o2.</para>
+      /// </summary>
       class function Subtract(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of multiplying o1 and o2, or nil on failure.
+      /// This is the equivalent of the Python expression o1 * o2.</para>
+      /// </summary>
       class function Multiply(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of matrix multiplication on o1 and o2, or nil
+      /// on failure. This is the equivalent of the Python expression
+      /// o1 @ o2.</para>
+      /// </summary>
       class function MatrixMultiply(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the floor of o1 divided by o2, or nil on failure.
+      /// This is the equivalent of the Python expression o1 // o2.</para>
+      /// </summary>
       class function FloorDivide(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return a reasonable approximation for the mathematical value of
+      /// o1 divided by o2, or nil on failure. The return value is "approximate"
+      /// because binary floating-point numbers are approximate; it is not
+      /// possible to represent all real numbers in base two. This function can
+      /// return a floating-point value when passed two integers. This is the
+      /// equivalent of the Python expression o1 / o2.</para>
+      /// </summary>
       class function TrueDivide(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the remainder of dividing o1 by o2, or nil on failure.
+      /// This is the equivalent of the Python expression o1 % o2.</para>
+      /// </summary>
       class function Remainder(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>See the built-in function divmod(). Returns nil on failure.
+      /// This is the equivalent of the Python expression divmod(o1, o2).</para>
+      /// </summary>
       class function Divmod(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>See the built-in function pow(). Returns nil on failure.
+      /// This is the equivalent of the Python expression pow(o1, o2, o3),
+      /// where o3 is optional. If o3 is to be ignored, pass Py_None in its
+      /// place (passing nil for o3 would cause an illegal memory
+      /// access).</para>
+      /// </summary>
       class function Power(const o1, o2, o3: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the negation of o on success, or nil on failure.
+      /// This is the equivalent of the Python expression -o.</para>
+      /// </summary>
       class function Negative(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns o on success, or nil on failure. This is the equivalent
+      /// of the Python expression +o.</para>
+      /// </summary>
       class function Positive(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the absolute value of o, or nil on failure. This is the
+      /// equivalent of the Python expression abs(o).</para>
+      /// </summary>
       class function Absolute_(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the bitwise negation of o on success, or nil on failure.
+      /// This is the equivalent of the Python expression ~o.</para>
+      /// </summary>
       class function Invert(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of left shifting o1 by o2 on success, or nil
+      /// on failure. This is the equivalent of the Python expression
+      /// o1 << o2.</para>
+      /// </summary>
       class function Lshift(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of right shifting o1 by o2 on success, or nil
+      /// on failure. This is the equivalent of the Python expression
+      /// o1 >> o2.</para>
+      /// </summary>
       class function Rshift(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise and" of o1 and o2 on success and nil on
+      /// failure. This is the equivalent of the Python expression
+      /// o1 & o2.</para>
+      /// </summary>
       class function And_(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise exclusive or" of o1 by o2 on success, or
+      /// nil on failure. This is the equivalent of the Python expression
+      /// o1 ^ o2.</para>
+      /// </summary>
       class function Xor_(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise or" of o1 and o2 on success, or nil on
+      /// failure. This is the equivalent of the Python expression
+      /// o1 | o2.</para>
+      /// </summary>
       class function Or_(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the o converted to a Python int on success or nil with a
+      /// TypeError exception raised on failure.</para>
+      /// </summary>
       class function Index(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns o converted to a Py_ssize_t value if o can be
+      /// interpreted as an integer. If the call fails, an exception is raised
+      /// and -1 is returned.</para>
+      /// <para>If o can be converted to a Python int but the attempt to convert
+      /// to a Py_ssize_t value would raise an OverflowError, then the exc
+      /// argument is the type of exception that will be raised (usually
+      /// IndexError or OverflowError). If exc is nil, then the exception is
+      /// cleared and the value is clipped to PY_SSIZE_T_MIN for a negative
+      /// integer or PY_SSIZE_T_MAX for a positive integer.</para>
+      /// </summary>
       class function AsSsize_t(const o, exc: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Returns the o converted to an integer object on success, or nil
+      /// on failure. This is the equivalent of the Python expression
+      /// int(o).</para>
+      /// </summary>
       class function Long(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the o converted to a float object on success, or nil on
+      /// failure. This is the equivalent of the Python expression
+      /// float(o).</para>
+      /// </summary>
       class function Float(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of adding o1 and o2, or nil on failure.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 += o2.</para>
+      /// </summary>
       class function InPlaceAdd(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of subtracting o2 from o1, or nil on failure.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 -= o2.</para>
+      /// </summary>
       class function InPlaceSubtract(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of multiplying o1 and o2, or nil on failure.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 *= o2.</para>
+      /// </summary>
       class function InPlaceMultiply(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of matrix multiplication on o1 and o2, or nil
+      /// on failure. The operation is done in-place when o1 supports it.
+      /// This is the equivalent of the Python statement o1 @= o2.</para>
+      /// </summary>
       class function InPlaceMatrixMultiply(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the mathematical floor of dividing o1 by o2, or nil on
+      /// failure. The operation is done in-place when o1 supports it.
+      /// This is the equivalent of the Python statement o1 //= o2.</para>
+      /// </summary>
       class function InPlaceFloorDivide(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return a reasonable approximation for the mathematical value of
+      ///  o1 divided by o2, or nil on failure. The return value is
+      /// "approximate" because binary floating-point numbers are approximate;
+      /// it is not possible to represent all real numbers in base two. This
+      /// function can return a floating-point value when passed two integers.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 /= o2.</para>
+      /// </summary>
       class function InPlaceTrueDivide(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the remainder of dividing o1 by o2, or nil on failure.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 %= o2.</para>
+      /// </summary>
       class function InPlaceRemainder(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>See the built-in function pow(). Returns nil on failure.
+      /// The operation is done in-place when o1 supports it. This is the
+      /// equivalent of the Python statement o1 **= o2 when o3 is Py_None, or
+      /// an in-place variant of pow(o1, o2, o3) otherwise. If o3 is to be
+      /// ignored, pass Py_None in its place (passing NULL for o3 would cause
+      /// an illegal memory access).</para>
+      /// </summary>
       class function InPlacePower(const o1, o2, o3: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of left shifting o1 by o2 on success, or nil
+      /// on failure. The operation is done in-place when o1 supports it. This
+      /// is the equivalent of the Python statement o1 <<= o2.</para>
+      /// </summary>
       class function InPlaceLshift(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the result of right shifting o1 by o2 on success, or
+      /// nil on failure. The operation is done in-place when o1 supports it.
+      /// This is the equivalent of the Python statement o1 >>= o2.</para>
+      /// </summary>
       class function InPlaceRshift(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise and" of o1 and o2 on success and nil on
+      /// failure. The operation is done in-place when o1 supports it. This is
+      /// the equivalent of the Python statement o1 &= o2.</para>
+      /// </summary>
       class function InPlaceAnd(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise exclusive or" of o1 by o2 on success,
+      /// or nil on failure. The operation is done in-place when o1 supports it.
+      /// This is the equivalent of the Python statement o1 ^= o2.</para>
+      /// </summary>
       class function InPlaceXor(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the "bitwise or" of o1 and o2 on success, or nil on
+      /// failure. The operation is done in-place when o1 supports it. This is
+      /// the equivalent of the Python statement o1 |= o2.</para>
+      /// </summary>
       class function InPlaceOr(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Returns the integer n converted to base base as a string. The
+      /// base argument must be one of 2, 8, 10, or 16. For base 2, 8, or 16,
+      /// the returned string is prefixed with a base marker of '0b', '0o', or
+      /// '0x', respectively. If n is not a Python int, it is converted with
+      /// TPyNumber.Index() first.</para>
+      /// </summary>
       class function ToBase(const n: IPyObject; base: integer): IPyObject;
   end;
 

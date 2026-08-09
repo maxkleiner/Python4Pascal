@@ -33,11 +33,11 @@ type
       /// </summary>
       class function FromLong(aValue: C_Long): IPyObject;
       /// <summary>
-      /// <para>Wrap a Variant with a boolean type.</para>
+      /// <para>Wrap a Variant with a Python boolean type.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       /// <summary>
-      /// <para>Wrap a Variant with a boolean type.</para>
+      /// <para>Wrap a Variant with a Python boolean type.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       /// <summary>

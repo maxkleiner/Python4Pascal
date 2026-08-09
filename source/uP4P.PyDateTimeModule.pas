@@ -136,11 +136,11 @@ type
       /// </summary>
       class function FromDateTime(year, month, day, hour, minute, second, msecond: integer): IPyObject; overload;
       /// <summary>
-      /// <para>Create a datetime object from a Variant.</para>
+      /// <para>Create a Python datetime object from a Variant.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       /// <summary>
-      /// <para>Create a datetime object from a Variant.</para>
+      /// <para>Create a Python datetime object from a Variant.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       /// <summary>

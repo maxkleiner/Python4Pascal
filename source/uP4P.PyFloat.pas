@@ -44,11 +44,11 @@ type
       /// </summary>
       class function FromString(const str: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Wrap a Variant with a TPyFloat type.</para>
+      /// <para>Wrap a Variant with a Python float object.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
       /// <summary>
-      /// <para>Wrap a Variant with a TPyFloat type.</para>
+      /// <para>Wrap a Variant with a Python float object.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       /// <summary>

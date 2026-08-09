@@ -17,17 +17,45 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyODict_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/dict.html#ordered-dictionaries">See the article about Ordered Dictionaries.</see></para>
+  /// </remarks>
   TPyODict = class
     public
+      /// <summary>
+      /// <para>Return true if od is an ordered dictionary object or an instance
+      /// of a subtype of the OrderedDict type. This function always
+      /// succeeds.</para>
+      /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if od is an ordered dictionary object, but not an
+      /// instance of a subtype of the OrderedDict type. This function always
+      /// succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a new empty ordered dictionary, or nil on failure.</para>
+      /// <para>This is analogous to TPyDict,New().</para>
+      /// </summary>
       class function New: IPyObject;
+      /// <summary>
+      /// <para>Insert value into the ordered dictionary od with a key of key.
+      /// Return True on success or False with an exception set on
+      /// failure.</para>
+      /// <para>This is analogous to TPyDict.SetItem().</para>
+      /// </summary>
       class function SetItem(const od, key, value: IPyObject): boolean;
+      /// <summary>
+      /// <para>Remove the entry in the ordered dictionary od with key key.
+      /// Return True on success or False with an exception set on
+      /// failure.</para>
+      /// <para>This is analogous to TPyDict.DelItem().</para>
+      /// </summary>
       class function DelItem(const od, key: IPyObject): boolean;
-      class function GetItem(const od, key: IPyObject): IPyObject;
-      class function GetItemWithError(const od, key: IPyObject): IPyObject;
-      class function Size(const od: IPyObject): Py_ssize_t;
-      class function GetItemString(const od: IPyObject; const key: string): IPyObject;
   end;
 
 implementation
@@ -70,47 +98,6 @@ begin
             TPyObject.IsInitialized(od) and
             TPyObject.IsInitialized(key) and
             (PyODict_DelItem(od.PyObject, key.PyObject) = 0);
-end;
-
-class function TPyODict.GetItem(const od, key: IPyObject): IPyObject;
-begin
-  if assigned(PyDict_GetItem) and
-     TPyObject.IsInitialized(od) and
-     TPyObject.IsInitialized(key) then
-    Result := TPyObject.Wrap(PyDict_GetItem(od.PyObject, key.PyObject), False)
-   else
-    Result := nil;
-end;
-
-class function TPyODict.GetItemWithError(const od, key: IPyObject): IPyObject;
-begin
-  if assigned(PyDict_GetItemWithError) and
-     TPyObject.IsInitialized(od) and
-     TPyObject.IsInitialized(key) then
-    Result := TPyObject.Wrap(PyDict_GetItemWithError(od.PyObject, key.PyObject), False)
-   else
-    Result := nil;
-end;
-
-class function TPyODict.Size(const od: IPyObject): Py_ssize_t;
-begin
-  if assigned(PyDict_Size) and TPyObject.IsInitialized(od) then
-    Result := PyDict_Size(od.PyObject)
-   else
-    Result := -1;
-end;
-
-class function TPyODict.GetItemString(const od: IPyObject; const key: string): IPyObject;
-var
-  TempString: AnsiString;
-begin
-  if assigned(PyDict_GetItemString) and TPyObject.IsInitialized(od) then
-    begin
-      TempString := StringToPyUTF8(key);
-      Result     := TPyObject.Wrap(PyDict_GetItemString(od.PyObject, PAnsiChar(TempString)), False)
-    end
-   else
-    Result := nil;
 end;
 
 end.

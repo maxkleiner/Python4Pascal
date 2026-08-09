@@ -655,13 +655,39 @@ const
   {* include/bltinmodule.h *}
   {* include/cpython/pyctype.h *}
   {* include/pystrtod.h *}
+
+  /// <summary>
+  /// <para>Always precede the returned string with a sign character, even if
+  /// val is non-negative.</para>
+  /// </summary>
   Py_DTSF_SIGN      = $01;
+  /// <summary>
+  /// <para>Ensure that the returned string will not look like an
+  /// integer.</para>
+  /// </summary>
   Py_DTSF_ADD_DOT_0 = $02;
+  /// <summary>
+  /// <para>Apply “alternate” formatting rules. See the documentation for the
+  /// TPyOS.snprintf() '#' specifier for details.</para>
+  /// </summary>
   Py_DTSF_ALT       = $04;
+  /// <summary>
+  /// <para>Negative zero is converted to positive zero.
+  /// Added in version 3.11.</para>
+  /// </summary>
   Py_DTSF_NO_NEG_0  = $08;
 
+  /// <summary>
+  /// <para>finite number</para>
+  /// </summary>
   Py_DTST_FINITE    = 0;
+  /// <summary>
+  /// <para>infinite number</para>
+  /// </summary>
   Py_DTST_INFINITE  = 1;
+  /// <summary>
+  /// <para>not a number</para>
+  /// </summary>
   Py_DTST_NAN       = 2;
 
   {* include/pystrcmp.h *}

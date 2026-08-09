@@ -32,7 +32,13 @@ type
       {$ENDIF}
       class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       class function FromBuffer(const buffer: PByte): IPyObject;
+      /// <summary>
+      /// <para>Wrap a Variant with a python unicode object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant): IPyObject; overload;
+      /// <summary>
+      /// <para>Wrap a Variant with a python unicode object.</para>
+      /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
       class function AsUCS4(const unicode: IPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: boolean): PPy_UCS4;
