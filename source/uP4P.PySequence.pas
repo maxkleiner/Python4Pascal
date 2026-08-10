@@ -17,6 +17,12 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PySequence_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/sequence.html#sequence-protocol">See the article about the Sequence Protocol.</see></para>
+  /// </remarks>
   TPySequence = class
     public
       /// <summary>
@@ -27,33 +33,162 @@ type
       /// supports. This function always succeeds.</para>
       /// </summary>
       class function Check(const o: IPyObject): boolean;
+      /// <summary>
+      /// <para>Returns the number of objects in sequence o on success, and -1
+      /// on failure. This is equivalent to the Python expression len(o).</para>
+      /// </summary>
       class function Size(const o: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Returns the number of objects in sequence o on success, and -1
+      /// on failure. This is equivalent to the Python expression len(o).</para>
+      /// </summary>
       class function Length(const o: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Return the concatenation of o1 and o2 on success, and nil on
+      /// failure. This is the equivalent of the Python expression
+      /// o1 + o2.</para>
+      /// </summary>
       class function Concat(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the result of repeating sequence object o count times,
+      /// or nil on failure. This is the equivalent of the Python expression
+      /// o * count.</para>
+      /// </summary>
       class function Repeat_(const o: IPyObject; count_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Internal function used by the Variant version of GetSlice</para>
+      /// </summary>
       class function GetSliceIndex(const i: TVarData; aEllipsisDefault: integer): integer;
+      /// <summary>
+      /// <para>Return the ith element of o, or nil on failure. This is the
+      /// equivalent of the Python expression o[i].</para>
+      /// </summary>
       class function GetItem(const o: IPyObject; i: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Variant version of GetItem</para>
+      /// </summary>
       class function GetItem(const o: IPyObject; const i: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para>Return the slice of sequence object o between i1 and i2, or nil
+      /// on failure. This is the equivalent of the Python expression
+      /// o[i1:i2].</para>
+      /// </summary>
       class function GetSlice(const o: IPyObject; i1, i2: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Variant version of GetSlice</para>
+      /// </summary>
       class function GetSlice(const o: IPyObject; const i1, i2: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para>Assign object v to the ith element of o. Raise an exception and
+      /// return False on failure; return True on success. This is the
+      /// equivalent of the Python statement o[i] = v. This function does not
+      /// "steal" a reference to v.</para>
+      /// <para>If v is nil, the element is deleted, but this feature is
+      /// deprecated in favour of using TPySequence.DelItem().</para>
+      /// </summary>
       class function SetItem(const o: IPyObject; i: Py_ssize_t; v: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Variant version of SetItem</para>
+      /// </summary>
       class function SetItem(const o: IPyObject; const i, v: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Delete the ith element of object o. Returns False on failure.
+      /// This is the equivalent of the Python statement del o[i].</para>
+      /// </summary>
       class function DelItem(const o: IPyObject; i: Py_ssize_t): boolean; overload;
+      /// <summary>
+      /// <para>Variant version of DelItem</para>
+      /// </summary>
       class function DelItem(const o: IPyObject; const i: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Assign the sequence object v to the slice in sequence object o
+      /// from i1 to i2. This is the equivalent of the Python statement
+      /// o[i1:i2] = v.</para>
+      /// </summary>
       class function SetSlice(const o: IPyObject; i1, i2: Py_ssize_t; v: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Variant version of SetSlice</para>
+      /// </summary>
       class function SetSlice(const o: IPyObject; const i1, i2, v: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Delete the slice in sequence object o from i1 to i2. Returns
+      /// False on failure. This is the equivalent of the Python statement
+      /// del o[i1:i2].</para>
+      /// </summary>
       class function DelSlice(const o: IPyObject; i1, i2: Py_ssize_t): boolean; overload;
+      /// <summary>
+      /// <para>Variant version of DelSlice</para>
+      /// </summary>
       class function DelSlice(const o: IPyObject; const i1, i2: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Return a tuple object with the same contents as the sequence or
+      /// iterable o, or nil on failure. If o is a tuple, a new reference will
+      /// be returned, otherwise a tuple will be constructed with the
+      /// appropriate contents. This is equivalent to the Python expression
+      /// tuple(o).</para>
+      /// </summary>
       class function Tuple(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return a list object with the same contents as the sequence or
+      /// iterable o, or nil on failure. The returned list is guaranteed to be
+      /// new. This is equivalent to the Python expression list(o).</para>
+      /// </summary>
       class function List(const o: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the sequence or iterable o as an object usable by the
+      /// other PySequence_Fast* family of functions. If the object is not a
+      /// sequence or iterable, raises TypeError with m as the message text.
+      /// Returns nil on failure.</para>
+      /// <para>The PySequence_Fast* functions are thus named because they
+      /// assume o is a PyTupleObject or a PyListObject and access the data
+      /// fields of o directly.</para>
+      /// <para>As a CPython implementation detail, if o is already a sequence
+      /// or list, it will be returned.</para>
+      /// </summary>
       class function Fast(const o: IPyObject; const m: string): IPyObject;
+      /// <summary>
+      /// <para>Return the number of occurrences of value in o, that is, return
+      /// the number of keys for which o[key] == value. On failure, return -1.
+      /// This is equivalent to the Python expression o.count(value).</para>
+      /// </summary>
       class function Count(const o, value: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Determine if o contains value. If an item in o is equal to
+      /// value, return 1, otherwise return 0. On error, return -1. This is
+      /// equivalent to the Python expression value in o.</para>
+      /// </summary>
       class function Contains(const o, value: IPyObject): integer; overload;
+      /// <summary>
+      /// <para>Variant version of Contains</para>
+      /// </summary>
       class function Contains(const o: IPyObject; const value: TVarData): integer; overload;
+      /// <summary>
+      /// <para>Alias for PySequence_Contains().</para>
+      /// <para>Soft deprecated since version 3.14: The function should no
+      /// longer be used to write new code.</para>
+      /// </summary>
       class function In_(const o, value: IPyObject): integer;
+      /// <summary>
+      /// <para>Return the first index i for which o[i] == value. On error,
+      /// return -1. This is equivalent to the Python expression
+      /// o.index(value).</para>
+      /// </summary>
       class function Index(const o, value: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Return the concatenation of o1 and o2 on success, and nil on
+      /// failure. The operation is done in-place when o1 supports it. This is
+      /// the equivalent of the Python expression o1 += o2.</para>
+      /// </summary>
       class function InPlaceConcat(const o1, o2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the result of repeating sequence object o count times,
+      /// or nil on failure. The operation is done in-place when o supports it.
+      /// This is the equivalent of the Python expression o *= count.</para>
+      /// </summary>
       class function InPlaceRepeat(const o: IPyObject; count_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Cast the values in this sequence as a Variant array.</para>
+      /// </summary>
       class function CastValueAsVariant(const o: IPyObject): Variant;
   end;
 
