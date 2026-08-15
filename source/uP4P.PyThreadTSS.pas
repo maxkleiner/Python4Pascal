@@ -89,7 +89,9 @@ type
       /// </summary>
       property IsCreated   : boolean     read GetIsCreated;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the pointer value associated with a TSS key in the
+      /// current thread. This returns nil if no value is associated with the
+      /// key in the current thread.</para>
       /// </summary>
       property Value       : pointer     read GetValue        write SetValue;
   end;

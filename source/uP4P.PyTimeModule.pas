@@ -22,6 +22,9 @@ type
   /// <para>TPyTimeModule imports the "time" module and gets the
   /// "struct_time" type.</para>
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/library/time.html">See the article about time — Time access and conversions.</see></para>
+  /// </remarks>
   TPyTimeModule = class(TImportedPyModule)
     protected
       FTimeStructType : Pointer;

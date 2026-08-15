@@ -17,42 +17,373 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
-   TPyTypeObject = class
-     public
-       class function FromSpec(spec: PPyType_Spec): IPyObject;
-       class function FromSpecWithBases(spec: PPyType_Spec; const bases: IPyObject): IPyObject;
-       class function GetSlot(type_: PPyTypeObject; i: integer): Pointer;
-       class function FromModuleAndSpec(const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
-       class function GetModule(type_: PPyTypeObject): IPyObject;
-       class function GetModuleState(type_: PPyTypeObject): Pointer;
-       class function GetName(type_: PPyTypeObject): IPyObject;
-       class function GetQualName(type_: PPyTypeObject): IPyObject;
-       class function GetFullyQualifiedName(type_: PPyTypeObject): IPyObject;
-       class function GetModuleName(type_: PPyTypeObject): IPyObject;
-       class function FromMetaclass(metaclass: PPyTypeObject; const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
-       class function GetTypeDataSize(cls: PPyTypeObject): Py_ssize_t;
-       class function GetBaseByToken(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
-       class function IsSubtype(type1, type2: PPyTypeObject): boolean; overload;
-       class function IsSubtype(const aPyObject: IPyObject; type2: PPyTypeObject): boolean; overload;
-       class function GetFlags(aPyTypeObject: PPyTypeObject): C_ULong;
-       class function Ready(type_: PPyTypeObject): boolean;
-       class function GenericAlloc(type_: PPyTypeObject; nitems: Py_ssize_t): IPyObject;
-       class function GenericNew(type_: PPyTypeObject; const args, kwds: IPyObject): IPyObject;
-       class procedure ClearCache;
-       class procedure Modified(aPyTypeObject: PPyTypeObject);
-       class function GetModuleByDef(type_: PPyTypeObject; def: PPyModuleDef): IPyObject;
-       class function Freeze(type_: PPyTypeObject): boolean;
-       class function GetDict(type_: PPyTypeObject): IPyObject;
-       class function AddWatcher(callback: PyType_WatchCallback): integer;
-       class function ClearWatcher(watcher_id: integer): boolean;
-       class function Watch(watcher_id: integer; const type_: IPyObject): boolean;
-       class function Unwatch(watcher_id: integer; const type_: IPyObject): boolean;
-       class function SUPPORTS_WEAKREFS(type_: PPyTypeObject): boolean;
-       class function HasFeature(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
-       class function FastSubclass(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
-       class function Check(const aPyObject: IPyObject): boolean;
-       class function CheckExact(const aPyObject: IPyObject): boolean;
-   end;
+  /// <summary>
+  /// <para>Helper class for all PyType_* methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#type-objects">See the article about Type Objects.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/object.html#object-protocol">See the article about the Object Protocol.</see></para>
+  /// </remarks>
+  TPyTypeObject = class
+    public
+      /// <summary>
+      /// <para>Equivalent to
+      /// TPyTypeObject.FromMetaclass(nil, nil, spec, nil).</para>
+      /// <para>Changed in version 3.12: The function now finds and uses a
+      /// metaclass corresponding to the base classes provided in
+      /// Py_tp_base[s] slots. Previously, only type instances were
+      /// returned.</para>
+      /// <para>The tp_new of the metaclass is ignored. which may result in
+      /// incomplete initialization. Creating classes whose metaclass overrides
+      /// tp_new is deprecated.</para>
+      /// <para>Changed in version 3.14: Creating classes whose metaclass
+      /// overrides tp_new is no longer allowed.</para>
+      /// </summary>
+      class function FromSpec(spec: PPyType_Spec): IPyObject;
+      /// <summary>
+      /// <para>Equivalent to
+      /// TPyTypeObject.FromMetaclass(nil, nil, spec, bases).</para>
+      /// <para>Added in version 3.3.</para>
+      /// <para>Changed in version 3.12: The function now finds and uses a
+      /// metaclass corresponding to the provided base classes. Previously, only
+      /// type instances were returned.</para>
+      /// <para>The tp_new of the metaclass is ignored. which may result in
+      /// incomplete initialization. Creating classes whose metaclass overrides
+      /// tp_new is deprecated.</para>
+      /// <para>Changed in version 3.14: Creating classes whose metaclass
+      /// overrides tp_new is no longer allowed.</para>
+      /// </summary>
+      class function FromSpecWithBases(spec: PPyType_Spec; const bases: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the function pointer stored in the given slot. If the
+      /// result is nil, this indicates that either the slot is nil, or that the
+      /// function was called with invalid parameters. Callers will typically
+      /// cast the result pointer into the appropriate function type.</para>
+      /// <para>See PyType_Slot.slot for possible values of the slot
+      /// argument.</para>
+      /// </summary>
+      class function GetSlot(type_: PPyTypeObject; i: integer): Pointer;
+      /// <summary>
+      /// <para>Equivalent to
+      /// TPyTypeObject.FromMetaclass(nil, module, spec, bases).</para>
+      /// <para>Added in version 3.9.</para>
+      /// <para>Changed in version 3.10: The function now accepts a single class
+      /// as the bases argument and nil as the tp_doc slot.</para>
+      /// <para>Changed in version 3.12: The function now finds and uses a
+      /// metaclass corresponding to the provided base classes. Previously, only
+      /// type instances were returned.</para>
+      /// <para>The tp_new of the metaclass is ignored. which may result in
+      /// incomplete initialization. Creating classes whose metaclass overrides
+      /// tp_new is deprecated.</para>
+      /// <para>Changed in version 3.14: Creating classes whose metaclass
+      /// overrides tp_new is no longer allowed.</para>
+      /// </summary>
+      class function FromModuleAndSpec(const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the module object associated with the given type when the
+      /// type was created using TPyTypeObject.FromModuleAndSpec().</para>
+      /// <para>The returned reference is borrowed from type, and will be valid
+      /// as long as you hold a reference to type. Do not release it with
+      /// TPy.DECREF() or similar.</para>
+      /// <para>If no module is associated with the given type, sets TypeError
+      /// and returns nil.</para>
+      /// <para>This function is usually used to get the module in which a
+      /// method is defined. Note that in such a method,
+      /// TPyTypeObject.GetModule(TPy.TYPE(self)) may not return the intended
+      /// result. TPy.TYPE(self) may be a subclass of the intended class, and
+      /// subclasses are not necessarily defined in the same module as their
+      /// superclass. See PyCMethod to get the class that defines the method.
+      /// See TPyTypeObject.GetModuleByDef() for cases when PyCMethod cannot be
+      /// used.</para>
+      /// </summary>
+      class function GetModule(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Return the state of the module object associated with the given
+      /// type. This is a shortcut for calling TPyModule.GetState() on the
+      /// result of TPyType.GetModule().</para>
+      /// <para>If no module is associated with the given type, sets TypeError
+      /// and returns nil.</para>
+      /// <para>If the type has an associated module but its state is nil,
+      /// returns nil without setting an exception.</para>
+      /// </summary>
+      class function GetModuleState(type_: PPyTypeObject): Pointer;
+      /// <summary>
+      /// <para>Return the type's name. Equivalent to getting the type's
+      /// __name__ attribute.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
+      class function GetName(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Return the type's qualified name. Equivalent to getting the
+      /// type's __qualname__ attribute.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
+      class function GetQualName(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Return the type's fully qualified name. Equivalent to
+      /// f"{type.__module__}.{type.__qualname__}", or type.__qualname__ if
+      /// type.__module__ is not a string or is equal to "builtins".</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
+      class function GetFullyQualifiedName(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Return the type's module name. Equivalent to getting the
+      /// type.__module__ attribute.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
+      class function GetModuleName(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Create and return a heap type from the spec
+      /// (see Py_TPFLAGS_HEAPTYPE).</para>
+      /// <para>The metaclass metaclass is used to construct the resulting type
+      /// object. When metaclass is nil, the metaclass is derived from bases
+      /// (or Py_tp_base[s] slots if bases is nil, see below).</para>
+      /// <para>Metaclasses that override tp_new are not supported, except if
+      /// tp_new is nil.</para>
+      /// <para>The bases argument can be used to specify base classes; it can
+      /// either be only one class or a tuple of classes. If bases is nil, the
+      /// Py_tp_bases slot is used instead. If that also is nil, the Py_tp_base
+      /// slot is used instead. If that also is nil, the new type derives from
+      /// object.</para>
+      /// <para>The module argument can be used to record the module in which
+      /// the new class is defined. It must be a module object or nil.
+      /// If not nil, the module is associated with the new type and can later
+      /// be retrieved with TPyTypeObject.GetModule(). The associated module is
+      /// not inherited by subclasses; it must be specified for each class
+      /// individually.</para>
+      /// <para>This function calls TPyTypeObject.Ready() on the new
+      /// type.</para>
+      /// <para>Note that this function does not fully match the behavior of
+      /// calling type() or using the class statement. With user-provided base
+      /// types or metaclasses, prefer calling type (or the metaclass) over
+      /// TPyTypeObject.From* functions. Specifically:</para>
+      /// <para>__new__() is not called on the new class (and it must be set to
+      /// type.__new__).</para>
+      /// <para>__init__() is not called on the new class.</para>
+      /// <para>__init_subclass__() is not called on any bases.</para>
+      /// <para>__set_name__() is not called on new descriptors.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function FromMetaclass(metaclass: PPyTypeObject; const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the size of the instance memory space reserved for cls,
+      /// i.e. the size of the memory TPyObject.GetTypeData() returns.</para>
+      /// <para>This may be larger than requested using -PyType_Spec.basicsize;
+      /// it is safe to use this larger size (e.g. with memset()).</para>
+      /// <para>The type cls must have been created using negative
+      /// PyType_Spec.basicsize. Python does not check this.</para>
+      /// <para>On error, set an exception and return a negative value.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function GetTypeDataSize(cls: PPyTypeObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Find the first superclass in type's method resolution order
+      /// whose Py_tp_token token is equal to the given one.</para>
+      /// <code>
+      /// - If found, set result_ to a new strong reference to it and return 1.
+      /// - If not found, set result_ to nil and return 0.
+      /// - On error, set result_ to nil and return -1 with an exception set.
+      /// </code>
+      /// <para>The result_ argument may be nil, in which case result_ is not
+      /// set. Use this if you need only the return value.</para>
+      /// <para>The token argument may not be nil.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
+      class function GetBaseByToken(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
+      /// <summary>
+      /// <para>Return true if type1 is a subtype of type2.</para>
+      /// <para>This function only checks for actual subtypes, which means that
+      /// __subclasscheck__() is not called on type2.
+      /// Call TPyObject.IsSubclass() to do the same check that issubclass()
+      /// would do.</para>
+      /// </summary>
+      class function IsSubtype(type1, type2: PPyTypeObject): boolean; overload;
+      /// <summary>
+      /// <para>Return true if aPyObject is a subtype of type2.</para>
+      /// <para>This function only checks for actual subtypes, which means that
+      /// __subclasscheck__() is not called on type2.
+      /// Call TPyObject.IsSubclass() to do the same check that issubclass()
+      /// would do.</para>
+      /// </summary>
+      class function IsSubtype(const aPyObject: IPyObject; type2: PPyTypeObject): boolean; overload;
+      /// <summary>
+      /// <para>Return the tp_flags member of type. This function is primarily
+      /// meant for use with Py_LIMITED_API; the individual flag bits are
+      /// guaranteed to be stable across Python releases, but access to tp_flags
+      /// itself is not part of the limited API.</para>
+      /// </summary>
+      class function GetFlags(aPyTypeObject: PPyTypeObject): C_ULong;
+      /// <summary>
+      /// <para>Finalize a type object. This should be called on all type
+      /// objects to finish their initialization. This function is responsible
+      /// for adding inherited slots from a type’s base class. Return True on
+      /// success, or return False and sets an exception on error.</para>
+      /// <para>Note: If some of the base classes implements the GC protocol
+      /// and the provided type does not include the Py_TPFLAGS_HAVE_GC in its
+      /// flags, then the GC protocol will be automatically implemented from its
+      /// parents. On the contrary, if the type being created does include
+      /// Py_TPFLAGS_HAVE_GC in its flags then it must implement the GC protocol
+      /// itself by at least implementing the tp_traverse handle.</para>
+      /// </summary>
+      class function Ready(type_: PPyTypeObject): boolean;
+      /// <summary>
+      /// <para>Generic handler for the tp_alloc slot of a type object. Uses
+      /// Python's default memory allocation mechanism to allocate memory for a
+      /// new instance, zeros the memory, then initializes the memory as if by
+      /// calling TPyObject.Init() or TPyObject.InitVar().</para>
+      /// <para>Do not call this directly to allocate memory for an object; call
+      /// the type's tp_alloc slot instead.</para>
+      /// <para>For types that support garbage collection (i.e., the
+      /// Py_TPFLAGS_HAVE_GC flag is set), this function behaves like
+      /// TPyObject.GC_New or TPyObject.GC_NewVar (except the memory is
+      /// guaranteed to be zeroed before initialization), and should be paired
+      /// with TPyObject.GC_Del() in tp_free. Otherwise, it behaves like
+      /// TPyObject.New or TPyObject.NewVar (except the memory is guaranteed to
+      /// be zeroed before initialization) and should be paired with
+      /// TPyObject.Free() in tp_free.</para>
+      /// </summary>
+      class function GenericAlloc(type_: PPyTypeObject; nitems: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Generic handler for the tp_new slot of a type object. Creates a
+      /// new instance using the type's tp_alloc slot and returns the resulting
+      /// object.</para>
+      /// </summary>
+      class function GenericNew(type_: PPyTypeObject; const args, kwds: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Clear the internal lookup cache. Return the current version
+      /// tag.</para>
+      /// </summary>
+      class procedure ClearCache;
+      /// <summary>
+      /// <para>Invalidate the internal lookup cache for the type and all of its
+      /// subtypes. This function must be called after any manual modification
+      /// of the attributes or base classes of the type.</para>
+      /// </summary>
+      class procedure Modified(aPyTypeObject: PPyTypeObject);
+      /// <summary>
+      /// <para>Find the first superclass whose module was created from the
+      /// given PyModuleDef def, and return that module.</para>
+      /// <para>If no module is found, raises a TypeError and returns
+      /// nil.</para>
+      /// <para>This function is intended to be used together with
+      /// TPyModule.GetState() to get module state from slot methods (such as
+      /// tp_init or nb_add) and other places where a method's defining class
+      /// cannot be passed using the PyCMethod calling convention.</para>
+      /// <para>The returned reference is borrowed from type, and will be valid
+      /// as long as you hold a reference to type. Do not release it with
+      /// TPy.DECREF() or similar.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
+      class function GetModuleByDef(type_: PPyTypeObject; def: PPyModuleDef): IPyObject;
+      /// <summary>
+      /// <para>Make a type immutable: set the Py_TPFLAGS_IMMUTABLETYPE
+      /// flag.</para>
+      /// <para>All base classes of type must be immutable.</para>
+      /// <para>On success, return True. On error, set an exception and return
+      /// False.</para>
+      /// <para>The type must not be used before it's made immutable.
+      /// For example, type instances must not be created before the type is
+      /// made immutable.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
+      class function Freeze(type_: PPyTypeObject): boolean;
+      /// <summary>
+      /// <para>Return the type object's internal namespace, which is otherwise
+      /// only exposed via a read-only proxy (cls.__dict__). This is a
+      /// replacement for accessing tp_dict directly. The returned dictionary
+      /// must be treated as read-only.</para>
+      /// <para>This function is meant for specific embedding and
+      /// language-binding cases, where direct access to the dict is necessary
+      /// and indirect access (e.g. via the proxy or TPyObject.GetAttr()) isn't
+      /// adequate.</para>
+      /// <para>Extension modules should continue to use tp_dict, directly or
+      /// indirectly, when setting up their own types.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function GetDict(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>Register callback as a type watcher. Return a non-negative
+      /// integer ID which must be passed to future calls to
+      /// TPyTypeObject.Watch(). In case of error (e.g. no more watcher IDs
+      /// available), return -1 and set an exception.</para>
+      /// <para>In free-threaded builds, TPyTypeObject.AddWatcher() is not
+      /// thread-safe, so it must be called at start up (before spawning the
+      /// first thread).</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function AddWatcher(callback: PyType_WatchCallback): integer;
+      /// <summary>
+      /// <para>Clear watcher identified by watcher_id (previously returned from
+      /// TPyTypeObject.AddWatcher()). Return True on success, False on error
+      /// (e.g. if watcher_id was never registered.)</para>
+      /// <para>An extension should never call TPyTypeObject.ClearWatcher with
+      /// a watcher_id that was not returned to it by a previous call to
+      /// TPyTypeObject.AddWatcher().</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function ClearWatcher(watcher_id: integer): boolean;
+      /// <summary>
+      /// <para>Mark type as watched. The callback granted watcher_id by
+      /// TPyTypeObject.AddWatcher() will be called whenever
+      /// TPyTypeObject.Modified() reports a change to type. (The callback may
+      /// be called only once for a series of consecutive modifications to type,
+      /// if _PyType_Lookup() is not called on type between the modifications;
+      /// this is an implementation detail and subject to change.)</para>
+      /// <para>An extension should never call TPyTypeObject.Watch with a
+      /// watcher_id that was not returned to it by a previous call to
+      /// TPyTypeObject.AddWatcher().</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function Watch(watcher_id: integer; const type_: IPyObject): boolean;
+      /// <summary>
+      /// <para>Mark type as not watched. This undoes a previous call to
+      /// TPyTypeObject.Watch(). type must not be nil.</para>
+      /// <para>An extension should never call this function with a watcher_id
+      /// that was not returned to it by a previous call to
+      /// TPyTypeObject.AddWatcher().</para>
+      /// <para>On success, this function returns True. On failure, this function
+      /// returns False with an exception set.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
+      class function Unwatch(watcher_id: integer; const type_: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if instances of type support creating weak
+      /// references, false otherwise. This function always succeeds. type must
+      /// not be nil.</para>
+      /// <para>See also:</para>
+      /// <code>
+      /// - Weak Reference Objects
+      /// - weakref
+      /// </code>
+      /// </summary>
+      class function SUPPORTS_WEAKREFS(type_: PPyTypeObject): boolean;
+      /// <summary>
+      /// <para>Return True if the type object o sets the feature feature.
+      /// Type features are denoted by single bit flags.</para>
+      /// </summary>
+      class function HasFeature(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
+      /// <summary>
+      /// <para>Return True if the type object type sets the subclass flag flag.
+      /// Subclass flags are denoted by Py_TPFLAGS_*_SUBCLASS. This function is
+      /// used by many _Check functions for common types.</para>
+      /// <para>See also TPyObject.TypeCheck(), which is used as a slower
+      /// alternative in _Check functions for types that don't come with
+      /// subclass flags.</para>
+      /// </summary>
+      class function FastSubclass(aPyTypeObject: PPyTypeObject; feature: C_ULong): boolean;
+      /// <summary>
+      /// <para>Return True if aPyObject is a type object, including instances
+      /// of types derived from the standard type object. Return False in all
+      /// other cases. This function always succeeds.</para>
+      /// </summary>
+      class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return True if aPyObject is a type object, but not a subtype of
+      /// the standard type object. Return False in all other cases. This
+      /// function always succeeds.</para>
+      /// </summary>
+      class function CheckExact(const aPyObject: IPyObject): boolean;
+  end;
 
 implementation
 

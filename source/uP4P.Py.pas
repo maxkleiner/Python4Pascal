@@ -20,6 +20,9 @@ type
   /// <summary>
   /// <para>Helper for all the Py_* functions.</para>
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/object.html#object-protocol">See the article about the Object Protocol.</see></para>
+  /// </remarks>
   TPy = class
     public
       /// <summary>

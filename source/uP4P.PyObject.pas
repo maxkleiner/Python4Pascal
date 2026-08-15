@@ -27,6 +27,7 @@ type
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyObject">See the article about PyObject.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/object.html#object-protocol">See the article about the Object Protocol.</see></para>
   /// </remarks>
   TPyObject = class(TInterfacedObject, IPyObject)
     protected

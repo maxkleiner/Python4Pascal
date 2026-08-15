@@ -17,25 +17,105 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyTuple_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/tuple.html#tuple-objects">See the article about Tuple Objects.</see></para>
+  /// </remarks>
   TPyTuple = class
     public
+      /// <summary>
+      /// <para>Take a pointer to a tuple object, and return the size of that
+      /// tuple. On error, return -1 with an exception set.</para>
+      /// </summary>
       class function Size(const p: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Return the object at position pos in the tuple pointed to by p.
+      /// If pos is negative or out of bounds, return nil and set an IndexError
+      /// exception.</para>
+      /// <para>The returned reference is borrowed from the tuple p
+      /// (that is: it is only valid as long as you hold a reference to p).
+      /// To get a strong reference, use TPy.NewRef(TPyTuple.GetItem(...)) or
+      /// TPySequence.GetItem().</para>
+      /// </summary>
       class function GetItem(const p: IPyObject; pos: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Return the object at position pos in the tuple pointed to by p.
+      /// If pos is negative or out of bounds, return nil and set an IndexError
+      /// exception.</para>
+      /// <para>The returned reference is borrowed from the tuple p
+      /// (that is: it is only valid as long as you hold a reference to p).
+      /// To get a strong reference, use TPy.NewRef(TPyTuple.GetItem(...)) or
+      /// TPySequence.GetItem().</para>
+      /// </summary>
       class function GetItem(const p: IPyObject; const pos: TVarData): IPyObject; overload;
+      /// <summary>
+      /// <para>Insert a reference to object o at position pos of the tuple
+      /// pointed to by p. Return True on success. If pos is out of bounds,
+      /// return False and set an IndexError exception.</para>
+      /// <para>Note: This function "steals" a reference to o and discards a
+      /// reference to an item already in the tuple at the affected position
+      /// (unless it was nil).</para>
+      /// </summary>
       class function SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean; overload;
+      /// <summary>
+      /// <para>Insert a reference to object o at position pos of the tuple
+      /// pointed to by p. Return True on success. If pos is out of bounds,
+      /// return False and set an IndexError exception.</para>
+      /// <para>Note: This function "steals" a reference to o and discards a
+      /// reference to an item already in the tuple at the affected position
+      /// (unless it was nil).</para>
+      /// </summary>
       class function SetItem(const p: IPyObject; const pos, o: TVarData): boolean; overload;
+      /// <summary>
+      /// <para>Return the slice of the tuple pointed to by p between low and
+      /// high, or nil with an exception set on failure.</para>
+      /// <para>This is the equivalent of the Python expression p[low:high].
+      /// Indexing from the end of the tuple is not supported.</para>
+      /// </summary>
       class function GetSlice(const p: IPyObject; low, high: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Return a new tuple object of size len, or nil with an exception
+      /// set on failure.</para>
+      /// </summary>
       class function New(len: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para>Return a new tuple object of size n, or nil with an exception
+      /// set on failure. The tuple values are initialized to the subsequent n
+      /// arguments pointing to Python objects. TPyTuple.Pack(2, a, b) is
+      /// equivalent to TPy.BuildValue("(OO)", a, b).</para>
+      /// </summary>
       class function Pack(const objects: IPyObjectArray): IPyObject;
       /// <summary>
       /// <para>Return true if aPyObject is a tuple object or an instance of a
       /// subtype of the tuple type. This function always succeeds.</para>
       /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if p is a tuple object, but not an instance of a
+      /// subtype of the tuple type. This function always succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Custom function that creates a new tuple object and populates
+      /// the new tuple with the aItems array.</para>
+      /// </summary>
       class function FromArray(const aItems: array of const): IPyObject;
+      /// <summary>
+      /// <para>Custom function that creates a new tuple object and populates
+      /// the new tuple with the aStringList string list.</para>
+      /// </summary>
       class function FromStrings(const aStringList: TStringList): IPyObject;
+      /// <summary>
+      /// <para>Custom function that creates a new tuple object and populates
+      /// the new tuple with the datetime arguments.</para>
+      /// </summary>
       class function FromDateTime(year, month, day, hour, minute, second, weekday, yearday: integer; DST: TPyDaylightSavingTime): IPyObject; overload;
+      /// <summary>
+      /// <para>Custom function that creates a new tuple object and populates
+      /// the new tuple with the datetime arguments.</para>
+      /// </summary>
       class function FromDateTime(aDateTime : TDateTime; DST: TPyDaylightSavingTime = dstUnknown): IPyObject; overload;
       /// <summary>
       /// <para>Wrap a Variant with a python tuple object.</para>
@@ -45,9 +125,23 @@ type
       /// <para>Wrap a Variant with a python tuple object.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
+      /// <summary>
+      /// <para>Custom function that creates a new tuple object and populates
+      /// the new tuple with the Arguments array.</para>
+      /// </summary>
       class function FromVarDataArray(const Arguments: TVarDataArray; aMaxLength: integer): IPyObject;
+      /// <summary>
+      /// <para>Return the datetime attributes values represented by this
+      /// tuple.</para>
+      /// </summary>
       class function AsDateTime(const aPyObject: IPyObject; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: TPyDaylightSavingTime): boolean; overload;
+      /// <summary>
+      /// <para>Convert this datetime tuple to a TDateTime.</para>
+      /// </summary>
       class function AsDateTime(const aPyObject: IPyObject; var aDateTime : TDateTime): boolean; overload;
+      /// <summary>
+      /// <para>Convert the items in this tuple to a TStringList.</para>
+      /// </summary>
       class function AsStrings(const aPyObject: IPyObject; var aStringList: TStringList): boolean;
   end;
 

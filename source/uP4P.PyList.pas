@@ -177,17 +177,17 @@ type
       class function Clear(const self_: IPyObject): boolean;
       /// <summary>
       /// <para>Custom function that creates a new list object and populates
-      /// the new list with the aItems array</para>
+      /// the new list with the aItems array.</para>
       /// </summary>
       class function FromArray(const aItems: array of const) : IPyObject;
       /// <summary>
       /// <para>Custom function that creates a new list object and populates
-      /// the new list with the aStringList string list</para>
+      /// the new list with the aStringList string list.</para>
       /// </summary>
       class function FromStrings(const aStringList: TStringList) : IPyObject;
       /// <summary>
       /// <para>Custom function that creates a new list object and populates
-      /// the new list with the objects array</para>
+      /// the new list with the objects array.</para>
       /// </summary>
       class function FromObjects(const objects: IPyObjectArray): IPyObject;
       /// <summary>

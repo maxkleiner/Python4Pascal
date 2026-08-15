@@ -17,9 +17,23 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// <para>Helper functions for the "struct_time" type, which was imported by
+  /// the "time" module (See TPyTimeModule)</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/library/time.html">See the article about time — Time access and conversions.</see></para>
+  /// </remarks>
   TPyTimeStruct = class
     public
+      /// <summary>
+      /// <para>Return the attributes values of the "struct_time" that represent
+      /// a time.</para>
+      /// </summary>
       class function AsDateTime(const aPyObject: IPyObject; var tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst, tm_gmtoff: integer; var tm_zone: string): boolean; overload;
+      /// <summary>
+      /// <para>Convert a "struct_time" object to a TDateTime.</para>
+      /// </summary>
       class function AsDateTime(const aPyObject: IPyObject; var aDateTime : TDateTime): boolean; overload;
   end;
 

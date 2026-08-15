@@ -3260,6 +3260,11 @@ type
 
   {* include/sysmodule.h *}
   {* include/audit.h *}
+  /// <summary>
+  /// The type of the hook function. event is the C string event argument passed
+  /// to TPySys.Audit() or TPySys.AuditTuple(). args is guaranteed to be a
+  /// PyTupleObject. userData is the argument passed to TPySys.AddAuditHook().
+  /// </summary>
   Py_AuditHookFunction = function(const str: PAnsiChar; obj: PPyObject; ptr: Pointer): integer; cdecl;
 
   {* include/osmodule.h *}
