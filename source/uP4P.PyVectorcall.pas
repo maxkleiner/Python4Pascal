@@ -17,11 +17,41 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyVectorcall_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/call.html#vectorcall-support-api">See the article about Vectorcall Support API.</see></para>
+  /// </remarks>
   TPyVectorcall = class
     public
+      /// <summary>
+      /// <para>Given a vectorcall nargsf argument, return the actual number of
+      /// arguments. Currently equivalent to:</para>
+      /// <code>(Py_ssize_t)(nargsf & ~PY_VECTORCALL_ARGUMENTS_OFFSET)</code>
+      /// <para>However, the function PyVectorcall_NARGS should be used to allow
+      /// for future extensions.</para>
+      /// </summary>
       class function NARGS(nargsf: NativeUInt): Py_ssize_t;
+      /// <summary>
+      /// <para>Call callable's vectorcallfunc with positional and keyword
+      /// arguments given in a tuple and dict, respectively.</para>
+      /// <para>This is a specialized function, intended to be put in the
+      /// tp_call slot or be used in an implementation of tp_call. It does not
+      /// check the Py_TPFLAGS_HAVE_VECTORCALL flag and it does not fall back
+      /// to tp_call.</para>
+      /// </summary>
       class function Call(const callable, tuple, dict: IPyObject): IPyObject;
-      class function Function_(const callable: IPyObject): vectorcallfunc;
+      /// <summary>
+      /// <para>If op does not support the vectorcall protocol (either because
+      /// the type does not or because the specific instance does not), return
+      /// nil. Otherwise, return the vectorcall function pointer stored in op.
+      /// This function never raises an exception.</para>
+      /// <para>This is mostly useful to check whether or not op supports
+      /// vectorcall, which can be done by checking
+      /// TPyVectorcall.Function(op) <> nil.</para>
+      /// </summary>
+      class function Function_(const op: IPyObject): vectorcallfunc;
   end;
 
 implementation
@@ -49,11 +79,11 @@ begin
     Result := nil;
 end;
 
-class function TPyVectorcall.Function_(const callable: IPyObject): vectorcallfunc;
+class function TPyVectorcall.Function_(const op: IPyObject): vectorcallfunc;
 begin
   if assigned(PyVectorcall_Function) and
-     TPyObject.IsInitialized(callable) then
-    Result := PyVectorcall_Function(callable.PyObject)
+     TPyObject.IsInitialized(op) then
+    Result := PyVectorcall_Function(op.PyObject)
    else
     Result := nil;
 end;

@@ -17,19 +17,35 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyWrapper_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/descriptor.html#descriptor-objects">See the article about the Descriptor Objects.</see></para>
+  /// </remarks>
   TPyWrapper = class
     public
-      class function New(const obj1, obj2: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Create a new bound wrapper object from the wrapper descriptor d
+      /// and the instance self_.</para>
+      /// <para>This is the bound form of a wrapper descriptor created by
+      /// TPyDescr.NewWrapper(). CPython creates these objects when a slot
+      /// wrapper is accessed through an instance, and they appear in Python as
+      /// types.MethodWrapperType objects.</para>
+      /// <para>On success, return a strong reference to the wrapper object.
+      /// Return nil with an exception set on failure.</para>
+      /// </summary>
+      class function New(const d, self_: IPyObject): IPyObject;
   end;
 
 implementation
 
-class function TPyWrapper.New(const obj1, obj2: IPyObject): IPyObject;
+class function TPyWrapper.New(const d, self_: IPyObject): IPyObject;
 begin
   if assigned(PyWrapper_New) and
-     TPyObject.IsInitialized(obj1) and
-     TPyObject.IsInitialized(obj2) then
-    Result := TPyObject.Wrap(PyWrapper_New(obj1.PyObject, obj2.PyObject))
+     TPyObject.IsInitialized(d) and
+     TPyObject.IsInitialized(self_) then
+    Result := TPyObject.Wrap(PyWrapper_New(d.PyObject, self_.PyObject))
    else
     Result := nil;
 end;

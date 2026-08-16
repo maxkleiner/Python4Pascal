@@ -17,6 +17,12 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyUnicode_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/unicode.html#unicode-objects-and-codecs">See the article about the Unicode Objects and Codecs.</see></para>
+  /// </remarks>
   TPyUnicode = class
     public
       /// <summary>
@@ -24,13 +30,32 @@ type
       /// a Unicode subtype. This function always succeeds.</para>
       /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return true if the object aPyObject is a Unicode object, but not
+      /// an instance of a subtype. This function always succeeds.</para>
+      /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromString(const str: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromString(const str: AnsiString): IPyObject; overload;
       {$ENDIF}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromBuffer(const buffer: PByte): IPyObject;
       /// <summary>
       /// <para>Wrap a Variant with a python unicode object.</para>
@@ -40,94 +65,355 @@ type
       /// <para>Wrap a Variant with a python unicode object.</para>
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsUCS4(const unicode: IPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: boolean): PPy_UCS4;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsUCS4Copy(const unicode: IPyObject): PPy_UCS4;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function GetLength(const unicode: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function ReadChar(const unicode: IPyObject; index: Py_ssize_t): Py_UCS4;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function WriteChar(const unicode: IPyObject; index: Py_ssize_t; character: Py_UCS4): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Resize(const unicode: IPyObject; length_: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromEncodedObject(const obj: IPyObject; const encodging, errors: PAnsiChar): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromObject(const obj: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure InternInPlace(const unicode: IPyObject);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function InternFromString(const str: string): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromWideChar(const w: PWCharT; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsWideChar(const unicode: IPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsWideCharString(const unicode: IPyObject; var size_: Py_ssize_t): PWCharT;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromOrdinal(ordinal: integer): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function GetDefaultEncoding(): string;
-      class function Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject; 
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsEncodedString(const unicode: IPyObject; const encoding: string; errors: TPyCodecErrors): IPyObject;
-      class function BuildEncodingMap(const string_: IPyObject): IPyObject;           
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function BuildEncodingMap(const string_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF7(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF7Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF8(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF8Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsUTF8String(const unicode: IPyObject): IPyObject;
-      class function AsUTF8AndSize(const unicode: IPyObject; var size_: Py_ssize_t): PAnsiChar;     
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsUTF8AndSize(const unicode: IPyObject; var size_: Py_ssize_t): PAnsiChar;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF32(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF32Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder; var consumed: Py_ssize_t): IPyObject;
-      class function AsUTF32String(const unicode: IPyObject): IPyObject; 
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsUTF32String(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF16(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUTF16Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder; var consumed: Py_ssize_t): IPyObject;
-      class function AsUTF16String(const unicode: IPyObject): IPyObject;       
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsUTF16String(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeUnicodeEscape(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
-      class function AsUnicodeEscapeString(const unicode: IPyObject): IPyObject;        
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsUnicodeEscapeString(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeRawUnicodeEscape(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
-      class function AsRawUnicodeEscapeString(const unicode: IPyObject): IPyObject;       
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsRawUnicodeEscapeString(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeLatin1(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
-      class function AsLatin1String(const unicode: IPyObject): IPyObject;        
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsLatin1String(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeASCII(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
-      class function AsASCIIString(const unicode: IPyObject): IPyObject;                
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function AsASCIIString(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeCharmap(const str: PAnsiChar; length: Py_ssize_t; const mapping: IPyObject; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsCharmapString(const unicode, mapping: IPyObject): IPyObject;
       {$IFDEF MSWINDOWS}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeMBCS(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeMBCSStateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeCodePageStateful(codepage: integer; const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsMBCSString(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
       {$ENDIF}
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeLocaleAndSize(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeLocale(const str: PAnsiChar; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function EncodeLocale(const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
-      class function FSConverter(const obj: IPyObject; result_: Pointer): boolean;          
-      class function FSDecoder(const obj: IPyObject; result_: Pointer): boolean;   
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function FSConverter(const obj: IPyObject; result_: Pointer): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function FSDecoder(const obj: IPyObject; result_: Pointer): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeFSDefault(const str: PAnsiChar): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeFSDefault(const str: string): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeFSDefaultAndSize(const str: PAnsiChar; size_: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DecodeFSDefaultAndSize(const str: string; size_: Py_ssize_t): IPyObject; overload;
-      class function EncodeFSDefault(const unicode: IPyObject): IPyObject;        
+      /// <summary>
+      /// <para></para>
+      /// </summary>
+      class function EncodeFSDefault(const unicode: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Concat(const left, right: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure Append(const left, right: IPyObject);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class procedure AppendAndDel(const left, right: IPyObject);
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Split(const unicode, sep: IPyObject; maxsplit: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Splitlines(const unicode: IPyObject; keepends: boolean): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Partition(const unicode, sep: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function RPartition(const unicode, sep: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function RSplit(const unicode, sep: IPyObject; maxsplit: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Translate(const unicode, table: IPyObject; errors: TPyCodecErrors): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Join(const separator, sep: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Tailmatch(const unicode, substr: IPyObject; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Find(const unicode, substr: IPyObject; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FindChar(const unicode: IPyObject; ch: Py_UCS4; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Count(const unicode, substr: IPyObject; start, end_: Py_ssize_t): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Replace(const str, substr, replstr: IPyObject; maxcount: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Compare(const left, right: IPyObject): integer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function CompareWithASCIIString(const left: IPyObject; const right: PAnsiChar): integer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function EqualToUTF8(const unicode: IPyObject; const string_: PAnsiChar): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size_: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Equal(const a, b: IPyObject): integer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function RichCompare(const left, right: IPyObject; op: integer): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Format(const format_, args: IPyObject): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Contains(const unicode, substr: IPyObject): integer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function IsIdentifier(const unicode: IPyObject): boolean;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function KIND(const unicode: IPyObject): PyUnicode_Kind_Result;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function DATA(const unicode: IPyObject): Pointer;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function New(size_: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function CopyCharacters(const to_: IPyObject; to_start: Py_ssize_t; const from: IPyObject; from_start, how_many: Py_ssize_t): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function Fill(const unicode: IPyObject; start, length: Py_ssize_t; fill_char: Py_UCS4): Py_ssize_t;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function FromKindAndData(kind_: integer; buffer: Pointer; size_: Py_ssize_t): IPyObject;
+      /// <summary>
+      /// <para></para>
+      /// </summary>
       class function AsUTF8(const unicode: IPyObject): PAnsiChar;
   end;
 

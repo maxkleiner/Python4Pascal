@@ -17,16 +17,69 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
+  /// <summary>
+  /// Helper class for all PyUnicodeDecodeError_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/exceptions.html#unicode-exception-objects">See the article about Unicode Exception Objects.</see></para>
+  /// </remarks>
   TPyUnicodeDecodeError = class
     public
+      /// <summary>
+      /// <para>Create a UnicodeDecodeError object with the attributes encoding,
+      /// object, length, start, end and reason. encoding and reason are
+      /// strings.</para>
+      /// </summary>
       class function Create(const encoding, object_: string; length, start, end_: Py_ssize_t; const reason: string): IPyObject;
+      /// <summary>
+      /// <para>Return the encoding attribute of the given exception object.</para>
+      /// </summary>
       class function GetEncoding(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Return the object attribute of the given exception object.</para>
+      /// </summary>
       class function GetObject(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Get the start attribute of the given exception object and place
+      /// it into *start. start must not be nil. Return True on success, False
+      /// on failure.</para>
+      /// <para>If the UnicodeError.object is an empty sequence, the resulting
+      /// start is 0. Otherwise, it is clipped to
+      /// [0, len(object) - 1].</para>
+      /// <para>See also UnicodeError.start</para>
+      /// </summary>
       class function GetStart(const exc: IPyObject; out start: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para>Set the start attribute of the given exception object to start.
+      /// Return True on success, False on failure.</para>
+      /// <para>Note While passing a negative start does not raise an exception,
+      /// the corresponding getters will not consider it as a relative
+      /// offset.</para>
+      /// </summary>
       class function SetStart(const exc: IPyObject; start: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para>Get the end attribute of the given exception object and place it
+      /// into end_. end must not be nil. Return True on success, False on
+      /// failure.</para>
+      /// <para>If the UnicodeError.object is an empty sequence, the resulting
+      /// end is 0. Otherwise, it is clipped to [1, len(object)].</para>
+      /// </summary>
       class function GetEnd(const exc: IPyObject; out end_: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para>Set the end_ attribute of the given exception object to end.
+      /// Return True on success, False on failure.</para>
+      /// <para>See also UnicodeError.end</para>
+      /// </summary>
       class function SetEnd(const exc: IPyObject; end_: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para>Return the reason attribute of the given exception
+      /// object.</para>
+      /// </summary>
       class function GetReason(const exc: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Set the reason attribute of the given exception object to
+      /// reason. Return True on success, False on failure.</para>
+      /// </summary>
       class function SetReason(const exc: IPyObject; const reason: string): boolean;
   end;
 

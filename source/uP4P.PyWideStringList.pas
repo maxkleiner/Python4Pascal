@@ -17,9 +17,25 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
 type
+  /// <summary>
+  /// Helper class for all PyWideStringList_* methods.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pywidestringlist">See the article about PyWideStringList.</see></para>
+  /// </remarks>
   TPyWideStringList = class
     public
+      /// <summary>
+      /// <para>Append item to list. Python must be preinitialized to call this
+      /// function.</para>
+      /// </summary>
       class function Append(aList: PPyWideStringList; const aItem: string): IPyStatus;
+      /// <summary>
+      /// <para>Insert item into list at index. If index is greater than or
+      /// equal to list length, append item to list. index must be greater than
+      /// or equal to 0. Python must be preinitialized to call this
+      /// function.</para>
+      /// </summary>
       class function Insert(aList: PPyWideStringList; aIndex: integer; const aItem: string): IPyStatus;
   end;
 

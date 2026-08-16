@@ -84,16 +84,16 @@ type
       /// </summary>
       function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
       /// <summary>
-      /// <para>Call PyObject_Str() on obj and write the output into
+      /// <para>Call TPyObject.Str() on obj and write the output into
       /// writer.</para>
       /// <para>On success, return True. On error, set an exception, leave the
       /// writer unchanged, and return False.</para>
       /// <para>To write a str subclass which overrides the __str__() method,
-      /// PyUnicode_FromObject() can be used to get the original string.</para>
+      /// TPyUnicode.FromObject() can be used to get the original string.</para>
       /// </summary>
       function  WriteStr(const obj: IPyObject): boolean;
       /// <summary>
-      /// <para>Call PyObject_Repr() on obj and write the output into
+      /// <para>Call TPyObject.Repr() on obj and write the output into
       /// writer.</para>
       /// <para>If obj is nil, write the string "<NULL>" into writer.</para>
       /// <para>On success, return True. On error, set an exception, leave the
