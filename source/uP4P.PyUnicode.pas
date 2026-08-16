@@ -36,25 +36,43 @@ type
       /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from the char buffer str. The buffer is
+      /// copied into the new object. The return value might be a shared object,
+      /// i.e. modification of the data is not allowed.</para>
+      /// <para>This function raises SystemError when:</para>
+      /// <code>
+      /// - size < 0,
+      /// - str is nil and size > 0
+      /// </code>
+      /// <para>Changed in version 3.12: str = nil with size > 0 is not allowed
+      /// anymore.</para>
       /// </summary>
       class function FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from a string.</para>
       /// </summary>
       class function FromString(const str: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from a string.</para>
       /// </summary>
       class function FromString(const str: AnsiString): IPyObject; overload;
       {$ENDIF}
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from the buffer. The buffer is
+      /// copied into the new object. The return value might be a shared object,
+      /// i.e. modification of the data is not allowed.</para>
+      /// <para>This function raises SystemError when:</para>
+      /// <code>
+      /// - size < 0,
+      /// - buffer is nil and size > 0
+      /// </code>
+      /// <para>Changed in version 3.12: buffer = nil with size > 0 is not
+      /// allowed anymore.</para>
       /// </summary>
       class function FromBufferAndSize(const buffer: PByte; size_: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from a byte buffer.</para>
       /// </summary>
       class function FromBuffer(const buffer: PByte): IPyObject;
       /// <summary>
@@ -66,353 +84,796 @@ type
       /// </summary>
       class function FromVariant(const aVariant: Variant; aVarType: TVarType): IPyObject; overload;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a substring of unicode, from character index start
+      /// (included) to character index end (excluded). Negative indices are
+      /// not supported. On error, set an exception and return nil.</para>
       /// </summary>
       class function Substring(const str: IPyObject; start, end_: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Copy the string unicode into a UCS4 buffer, including a nil
+      /// character, if copy_null is set. Returns nil and sets an exception
+      /// on error (in particular, a SystemError if buflen is smaller than
+      /// the length of unicode). buffer is returned on success.</para>
       /// </summary>
       class function AsUCS4(const unicode: IPyObject; buffer: PPy_UCS4; buflen: Py_ssize_t; copy_null: boolean): PPy_UCS4;
       /// <summary>
-      /// <para></para>
+      /// <para>Copy the string unicode into a new UCS4 buffer that is
+      /// allocated using TPyMem.Malloc(). If this fails, nil is returned with
+      /// a MemoryError set. The returned buffer always has an extra nil code
+      /// point appended.</para>
       /// </summary>
       class function AsUCS4Copy(const unicode: IPyObject): PPy_UCS4;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the length of the Unicode object, in code points.</para>
+      /// <para>On error, set an exception and return -1.</para>
       /// </summary>
       class function GetLength(const unicode: IPyObject): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Read a character from a string. This function checks that
+      /// unicode is a Unicode object and the index is not out of bounds.</para>
+      /// <para>Return character on success, -1 on error with an exception
+      /// set.</para>
       /// </summary>
       class function ReadChar(const unicode: IPyObject; index: Py_ssize_t): Py_UCS4;
       /// <summary>
-      /// <para></para>
+      /// <para>Write a character to the string unicode at the zero-based index.
+      /// Return True on success, False on error with an exception set.</para>
+      /// <para>This function checks that unicode is a Unicode object, that the
+      /// index is not out of bounds, and that the object's reference count is
+      /// one.</para>
+      /// <para>The string must not have been "used" yet. See TPyUnicode.New()
+      /// for details.</para>
       /// </summary>
       class function WriteChar(const unicode: IPyObject; index: Py_ssize_t; character: Py_UCS4): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Resize a Unicode object *unicode to the new length in code
+      /// points.</para>
+      /// <para>Try to resize the string in place (which is usually faster than
+      /// allocating a new string and copying characters), or create a new
+      /// string.</para>
+      /// <para>*unicode is modified to point to the new (resized) object and
+      /// True is returned on success. Otherwise, False is returned and an
+      /// exception is set, and *unicode is left untouched.</para>
+      /// <para>The function doesn't check string content, the result may not
+      /// be a string in canonical representation.</para>
       /// </summary>
       class function Resize(const unicode: IPyObject; length_: Py_ssize_t): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode an encoded object obj to a Unicode object.</para>
+      /// <para>bytes, bytearray and other bytes-like objects are decoded
+      /// according to the given encoding and using the error handling defined
+      /// by errors. Both can be nil to have the interface use the default
+      /// values (see Built-in Codecs for details).</para>
+      /// <para>All other objects, including Unicode objects, cause a TypeError
+      /// to be set.</para>
+      /// <para>The API returns nil if there was an error. The caller is
+      /// responsible for decref'ing the returned objects.</para>
       /// </summary>
       class function FromEncodedObject(const obj: IPyObject; const encodging, errors: PAnsiChar): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Copy an instance of a Unicode subtype to a new true Unicode
+      /// object if necessary. If obj is already a true Unicode object
+      /// (not a subtype), return a new strong reference to the object.</para>
+      /// <para>Objects other than Unicode or its subtypes will cause a
+      /// TypeError.</para>
       /// </summary>
       class function FromObject(const obj: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Intern the argument *p_unicode in place. The argument must be a
+      /// Python Unicode string object. If there is an existing interned string
+      /// that is the same as *p_unicode, it sets *p_unicode to it (releasing
+      /// the reference to the old string object and creating a new strong
+      /// reference to the interned string object), otherwise it leaves
+      /// *p_unicode alone and interns it.</para>
+      /// <para>(Clarification: even though there is a lot of talk about
+      /// references, think of this function as reference-neutral. You must own
+      /// the object you pass in; after the call you no longer own the passed-in
+      /// reference, but you newly own the result.)</para>
+      /// <para>This function never raises an exception. On error, it leaves
+      /// its argument unchanged without interning it.</para>
+      /// <para>Instances of subclasses of str may not be interned, that is,
+      /// TPyUnicode.CheckExact(*p_unicode) must be true. If it is not, then -
+      /// as with any other error - the argument is left unchanged.</para>
+      /// <para>Note that interned strings are not "immortal". You must keep a
+      /// reference to the result to benefit from interning.</para>
       /// </summary>
-      class procedure InternInPlace(const unicode: IPyObject);
+      class procedure InternInPlace(const p_unicode: IPyObject);
       /// <summary>
-      /// <para></para>
+      /// <para>A combination of TPyUnicode.FromString() and
+      /// TPyUnicode.InternInPlace(), meant for statically allocated
+      /// strings.</para>
+      /// <para>Return a new ("owned") reference to either a new Unicode string
+      /// object that has been interned, or an earlier interned string object
+      /// with the same value.</para>
+      /// <para>Python may keep a reference to the result, or make it immortal,
+      /// preventing it from being garbage-collected promptly. For interning an
+      /// unbounded number of different strings, such as ones coming from user
+      /// input, prefer calling TPyUnicode.FromString() and
+      /// TPyUnicode.InternInPlace() directly.</para>
       /// </summary>
       class function InternFromString(const str: string): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object from the wchar_t buffer wstr of the
+      /// given size. Passing -1 as the size indicates that the function must
+      /// itself compute the length, using wcslen().
+      /// Return nil on failure.</para>
       /// </summary>
       class function FromWideChar(const w: PWCharT; size_: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Copy the Unicode object contents into the wchar_t buffer wstr.
+      /// At most size wchar_t characters are copied (excluding a possibly
+      /// trailing nil termination character). Return the number of wchar_t
+      /// characters copied or -1 in case of an error.</para>
+      /// <para>When wstr is nil, instead return the size that would be required
+      /// to store all of unicode including a terminating nil.</para>
+      /// <para>Note that the resulting wchar_t* string may or may not be
+      /// nil-terminated. It is the responsibility of the caller to make sure
+      /// that the wchar_t* string is nil-terminated in case this is required
+      /// by the application. Also, note that the wchar_t* string might contain
+      /// nil characters, which would cause the string to be truncated when
+      /// used with most C functions.</para>
       /// </summary>
       class function AsWideChar(const unicode: IPyObject; w: PWCharT; size_: Py_ssize_t): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Convert the Unicode object to a wide character string. The
+      /// output string always ends with a nil character. If size is not nil,
+      /// write the number of wide characters (excluding the trailing nil
+      /// termination character) into *size. Note that the resulting wchar_t
+      /// string might contain nil characters, which would cause the string to
+      /// be truncated when used with most C functions. If size is nil and the
+      /// wchar_t* string contains nil characters a ValueError is
+      /// raised.</para>
+      /// <para>Returns a buffer allocated by TPyMem.New (use TPyMem.Free() to
+      /// free it) on success. On error, returns nil and *size is undefined.
+      /// Raises a MemoryError if memory allocation is failed.</para>
       /// </summary>
       class function AsWideCharString(const unicode: IPyObject; var size_: Py_ssize_t): PWCharT;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode Object from the given Unicode code point
+      /// ordinal.</para>
+      /// <para>The ordinal must be in range($110000). A ValueError is raised
+      /// in the case it is not.</para>
       /// </summary>
       class function FromOrdinal(ordinal: integer): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the name of the default string encoding, "utf-8".
+      /// See sys.getdefaultencoding().</para>
+      /// <para>The returned string does not need to be freed, and is valid
+      /// until interpreter shutdown.</para>
       /// </summary>
       class function GetDefaultEncoding(): string;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the encoded
+      /// string str. encoding and errors have the same meaning as the
+      /// parameters of the same name in the str() built-in function. The codec
+      /// to be used is looked up using the Python codec registry. Return nil
+      /// if an exception was raised by the codec.</para>
       /// </summary>
       class function Decode(const s: PAnsiChar; size_: Py_ssize_t; const encoding: string; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object and return the result as Python bytes
+      /// object. encoding and errors have the same meaning as the parameters
+      /// of the same name in the Unicode encode() method. The codec to be used
+      /// is looked up using the Python codec registry. Return nil if an
+      /// exception was raised by the codec.</para>
       /// </summary>
       class function AsEncodedString(const unicode: IPyObject; const encoding: string; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a mapping suitable for decoding a custom single-byte
+      /// encoding. Given a Unicode string string of up to 256 characters
+      /// representing an encoding table, returns either a compact internal
+      /// mapping object or a dictionary mapping character ordinals to byte
+      /// values. Raises a TypeError and return nil on invalid input.</para>
       /// </summary>
       class function BuildEncodingMap(const string_: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the UTF-7
+      /// encoded string str. Return nil if an exception was raised by the
+      /// codec.</para>
       /// </summary>
       class function DecodeUTF7(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>If consumed is nil, behave like TPyUnicode.DecodeUTF7().
+      /// If consumed is not nil, trailing incomplete UTF-7 base-64 sections
+      /// will not be treated as an error. Those bytes will not be decoded and
+      /// the number of bytes that have been decoded will be stored in
+      /// consumed.</para>
       /// </summary>
       class function DecodeUTF7Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the UTF-8
+      /// encoded string str. Return nil if an exception was raised by the
+      /// codec.</para>
       /// </summary>
       class function DecodeUTF8(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>If consumed is nil, behave like PyUnicode_DecodeUTF8().
+      /// If consumed is not nil, trailing incomplete UTF-8 byte sequences
+      /// will not be treated as an error. Those bytes will not be decoded
+      /// and the number of bytes that have been decoded will be stored in
+      /// consumed.</para>
       /// </summary>
       class function DecodeUTF8Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using UTF-8 and return the result as
+      /// Python bytes object. Error handling is "strict". Return nil if an
+      /// exception was raised by the codec.</para>
+      /// <para>The function fails if the string contains surrogate
+      /// code points (U+D800 - U+DFFF).</para>
       /// </summary>
       class function AsUTF8String(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a pointer to the UTF-8 encoding of the Unicode object,
+      /// and store the size of the encoded representation (in bytes) in size.
+      /// The size argument can be nil; in this case no size will be stored.
+      /// The returned buffer always has an extra nil byte appended
+      /// (not included in size), regardless of whether there are any other
+      /// nil code points.</para>
+      /// <para>On error, set an exception, set size to -1 (if it's not nil)
+      /// and return nil.</para>
+      /// <para>The function fails if the string contains surrogate
+      /// code points (U+D800 - U+DFFF).</para>
+      /// <para>This caches the UTF-8 representation of the string in the
+      /// Unicode object, and subsequent calls will return a pointer to the
+      /// same buffer. The caller is not responsible for deallocating the
+      /// buffer. The buffer is deallocated and pointers to it become invalid
+      /// when the Unicode object is garbage collected.</para>
       /// </summary>
       class function AsUTF8AndSize(const unicode: IPyObject; var size_: Py_ssize_t): PAnsiChar;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode size bytes from a UTF-32 encoded buffer string and
+      /// return the corresponding Unicode object. errors (if non-nil) defines
+      /// the error handling. It defaults to "strict".
+      /// <para>If byteorder is non-nil, the decoder starts decoding using the
+      /// given byte order:</para>
+      /// <code>
+      /// *byteorder == -1: little endian
+      /// *byteorder == 0:  native order
+      /// *byteorder == 1:  big endian
+      /// </code>
+      /// <para>If *byteorder is zero, and the first four bytes of the input
+      /// data are a byte order mark (BOM), the decoder switches to this byte
+      /// order and the BOM is not copied into the resulting Unicode string.
+      /// If *byteorder is -1 or 1, any byte order mark is copied to the
+      /// output.</para>
+      /// <para>After completion, *byteorder is set to the current byte order
+      /// at the end of input data.</para>
+      /// <para>If byteorder is nil, the codec starts in native order
+      /// mode.</para>
+      /// <para>Return nil if an exception was raised by the codec.</para>
       /// </summary>
       class function DecodeUTF32(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>If consumed is nil, behave like TPyUnicode.DecodeUTF32().
+      /// If consumed is not nil, TPyUnicode.DecodeUTF32Stateful() will not
+      /// treat trailing incomplete UTF-32 byte sequences (such as a number
+      /// of bytes not divisible by four) as an error. Those bytes will not
+      /// be decoded and the number of bytes that have been decoded will be
+      /// stored in consumed.</para>
       /// </summary>
       class function DecodeUTF32Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a Python byte string using the UTF-32 encoding in native
+      /// byte order. The string always starts with a BOM mark. Error handling
+      /// is "strict". Return nil if an exception was raised by the codec.</para>
       /// </summary>
       class function AsUTF32String(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode size bytes from a UTF-16 encoded buffer string and
+      /// return the corresponding Unicode object. errors (if non-nil) defines
+      /// the error handling. It defaults to "strict".</para>
+      /// <para>If byteorder is non-nil, the decoder starts decoding using
+      /// the given byte order:</para>
+      /// <code>
+      /// *byteorder == -1: little endian
+      /// *byteorder == 0:  native order
+      /// *byteorder == 1:  big endian
+      /// </code>
+      /// <para>If *byteorder is zero, and the first two bytes of the input
+      /// data are a byte order mark (BOM), the decoder switches to this byte
+      /// order and the BOM is not copied into the resulting Unicode string.
+      /// If *byteorder is -1 or 1, any byte order mark is copied to the
+      /// output (where it will result in either a \ufeff or a \ufffe
+      /// character).</para>
+      /// <para>After completion, *byteorder is set to the current byte order
+      /// at the end of input data.</para>
+      /// <para>If byteorder is nil, the codec starts in native order
+      /// mode.</para>
+      /// <para>Return nil if an exception was raised by the codec.</para>
       /// </summary>
       class function DecodeUTF16(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>If consumed is nil, behave like TPyUnicode.DecodeUTF16().
+      /// If consumed is not nil, TPyUnicode.DecodeUTF16Stateful() will not
+      /// treat trailing incomplete UTF-16 byte sequences (such as an odd
+      /// number of bytes or a split surrogate pair) as an error. Those bytes
+      /// will not be decoded and the number of bytes that have been decoded
+      /// will be stored in consumed.</para>
       /// </summary>
       class function DecodeUTF16Stateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var byteorder: TPyBiteOrder; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a Python byte string using the UTF-16 encoding in
+      /// native byte order. The string always starts with a BOM mark.
+      /// Error handling is "strict". Return nil if an exception was raised
+      /// by the codec.</para>
       /// </summary>
       class function AsUTF16String(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the
+      /// Unicode-Escape encoded string str. Return nil if an exception was
+      /// raised by the codec.</para>
       /// </summary>
       class function DecodeUnicodeEscape(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using Unicode-Escape and return the
+      /// result as a bytes object. Error handling is "strict". Return nil if
+      /// an exception was raised by the codec.</para>
       /// </summary>
       class function AsUnicodeEscapeString(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the
+      /// Raw-Unicode-Escape encoded string str. Return nil if an exception
+      /// was raised by the codec.</para>
       /// </summary>
       class function DecodeRawUnicodeEscape(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using Raw-Unicode-Escape and return
+      /// the result as a bytes object. Error handling is "strict". Return nil
+      /// if an exception was raised by the codec.</para>
       /// </summary>
       class function AsRawUnicodeEscapeString(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the Latin-1
+      /// encoded string str. Return nil if an exception was raised by the
+      /// codec.</para>
       /// </summary>
       class function DecodeLatin1(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using Latin-1 and return the result as
+      /// Python bytes object. Error handling is "strict". Return nil if an
+      /// exception was raised by the codec.</para>
       /// </summary>
       class function AsLatin1String(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the ASCII
+      /// encoded string str. Return nil if an exception was raised by the
+      /// codec.</para>
       /// </summary>
       class function DecodeASCII(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using ASCII and return the result as
+      /// Python bytes object. Error handling is "strict". Return nil if an
+      /// exception was raised by the codec.</para>
       /// </summary>
       class function AsASCIIString(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the encoded
+      /// string str using the given mapping object. Return nil if an exception
+      /// was raised by the codec.</para>
+      /// <para>If mapping is nil, Latin-1 decoding will be applied. Else
+      /// mapping must map bytes ordinals (integers in the range from 0 to 255)
+      /// to Unicode strings, integers (which are then interpreted as Unicode
+      /// ordinals) or None. Unmapped data bytes - ones which cause a
+      /// LookupError, as well as ones which get mapped to None, $FFFE or
+      /// '\ufffe', are treated as undefined mappings and cause an error.</para>
       /// </summary>
       class function DecodeCharmap(const str: PAnsiChar; length: Py_ssize_t; const mapping: IPyObject; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using the given mapping object and
+      /// return the result as a bytes object. Error handling is "strict".
+      /// Return nil if an exception was raised by the codec.</para>
+      /// <para>The mapping object must map Unicode ordinal integers to bytes
+      /// objects, integers in the range from 0 to 255 or None. Unmapped
+      /// character ordinals (ones which cause a LookupError) as well as
+      /// mapped to None are treated as "undefined mapping" and cause an
+      /// error.</para>
       /// </summary>
       class function AsCharmapString(const unicode, mapping: IPyObject): IPyObject;
       {$IFDEF MSWINDOWS}
       /// <summary>
-      /// <para></para>
+      /// <para>Create a Unicode object by decoding size bytes of the MBCS
+      /// encoded string str. Return nil if an exception was raised by the
+      /// codec.</para>
       /// </summary>
       class function DecodeMBCS(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>If consumed is nil, behave like TPyUnicode.DecodeMBCS().
+      /// If consumed is not nil, TPyUnicode.DecodeMBCSStateful() will not
+      /// decode trailing lead byte and the number of bytes that have been
+      /// decoded will be stored in consumed.</para>
       /// </summary>
       class function DecodeMBCSStateful(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPyUnicode.DecodeMBCSStateful(), except uses the
+      /// code page specified by code_page.</para>
       /// </summary>
       class function DecodeCodePageStateful(codepage: integer; const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors; var consumed: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object using MBCS and return the result as
+      /// Python bytes object. Error handling is "strict". Return nil if an
+      /// exception was raised by the codec.</para>
       /// </summary>
       class function AsMBCSString(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode the Unicode object using the specified code page and
+      /// return a Python bytes object. Return nil if an exception was raised
+      /// by the codec. Use CP_ACP code page to get the MBCS encoder.</para>
       /// </summary>
       class function EncodeCodePage(codepage: integer; const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
       {$ENDIF}
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a string from UTF-8 on Android and VxWorks, or from the
+      /// current locale encoding on other platforms. The supported error
+      /// handlers are "strict" and "surrogateescape" (PEP 383). The decoder
+      /// uses "strict" error handler if errors is nil. str must end with a nil
+      /// character but cannot contain embedded nil characters.</para>
+      /// <para>Use TPyUnicode.DecodeFSDefaultAndSize() to decode a string from
+      /// the filesystem encoding and error handler.</para>
+      /// <para>This function ignores the Python UTF-8 Mode.</para>
+      /// <para>See also The TPy.DecodeLocale() function.</para>
       /// </summary>
       class function DecodeLocaleAndSize(const str: PAnsiChar; length: Py_ssize_t; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPyUnicode.DecodeLocaleAndSize(), but compute the
+      /// string length using strlen().</para>
       /// </summary>
       class function DecodeLocale(const str: PAnsiChar; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object to UTF-8 on Android and VxWorks, or to
+      /// the current locale encoding on other platforms. The supported error
+      /// handlers are "strict" and "surrogateescape" (PEP 383). The encoder
+      /// uses "strict" error handler if errors is nil. Return a bytes object.
+      /// unicode cannot contain embedded nil characters.</para>
+      /// <para>Use TPyUnicode.EncodeFSDefault() to encode a string to the
+      /// filesystem encoding and error handler.</para>
+      /// <para>This function ignores the Python UTF-8 Mode.</para>
+      /// <para>See also The TPy.EncodeLocale() function.</para>
       /// </summary>
       class function EncodeLocale(const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>PyArg_Parse* converter: encode str objects - obtained directly
+      /// or through the os.PathLike interface – to bytes using
+      /// TPyUnicode.EncodeFSDefault(); bytes objects are output as-is.
+      /// result_ must be an address of a C variable of type PPyObject
+      /// (or PPyBytesObject). On success, set the variable to a new strong
+      /// reference to a bytes object which must be released when it is no
+      /// longer used and return True (TPy.CLEANUP_SUPPORTED).
+      /// Embedded nil bytes are not allowed in the result.
+      /// On failure, return False with an exception set.</para>
+      /// <para>If obj is nil, the function releases a strong reference stored
+      /// in the variable referred by result and returns True.</para>
       /// </summary>
       class function FSConverter(const obj: IPyObject; result_: Pointer): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>PyArg_Parse* converter: decode bytes objects – obtained either
+      /// directly or indirectly through the os.PathLike interface – to str
+      /// using TPyUnicode.DecodeFSDefaultAndSize(); str objects are output
+      /// as-is. result must be an address of a C variable of type PyObject*
+      /// (or PyUnicodeObject*). On success, set the variable to a new strong
+      /// reference to a Unicode object which must be released when it is no
+      /// longer used and return True (Py_CLEANUP_SUPPORTED).
+      /// Embedded nil characters are not allowed in the result.
+      /// On failure, return False with an exception set.</para>
+      /// <para>If obj is nil, release the strong reference to the object
+      /// referred to by result and return True.</para>
       /// </summary>
       class function FSDecoder(const obj: IPyObject; result_: Pointer): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a nil-terminated string from the filesystem encoding and
+      /// error handler.</para>
+      /// <para>If the string length is known, use
+      /// TPyUnicode.DecodeFSDefaultAndSize().</para>
       /// </summary>
       class function DecodeFSDefault(const str: PAnsiChar): IPyObject; overload;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a string from the filesystem encoding and error
+      /// handler.</para>
+      /// <para>If the string length is known, use
+      /// TPyUnicode.DecodeFSDefaultAndSize().</para>
       /// </summary>
       class function DecodeFSDefault(const str: string): IPyObject; overload;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a string from the filesystem encoding and error
+      /// handler.</para>
+      /// <para>If you need to decode a string from the current locale encoding,
+      /// use TPyUnicode.DecodeLocaleAndSize().</para>
+      /// <para>See also: The TPy.DecodeLocale() function.</para>
       /// </summary>
       class function DecodeFSDefaultAndSize(const str: PAnsiChar; size_: Py_ssize_t): IPyObject; overload;
       /// <summary>
-      /// <para></para>
+      /// <para>Decode a string from the filesystem encoding and error
+      /// handler.</para>
+      /// <para>If you need to decode a string from the current locale encoding,
+      /// use TPyUnicode.DecodeLocaleAndSize().</para>
+      /// <para>See also: The TPy.DecodeLocale() function.</para>
       /// </summary>
       class function DecodeFSDefaultAndSize(const str: string; size_: Py_ssize_t): IPyObject; overload;
       /// <summary>
-      /// <para></para>
+      /// <para>Encode a Unicode object to the filesystem encoding and error
+      /// handler, and return bytes. Note that the resulting bytes object can
+      /// contain nil bytes.</para>
+      /// <para>If you need to encode a string to the current locale encoding,
+      /// use TPyUnicode.EncodeLocale().</para>
+      /// <para>See also: The TPy.EncodeLocale() function.</para>
       /// </summary>
       class function EncodeFSDefault(const unicode: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Concat two strings giving a new Unicode string.</para>
       /// </summary>
       class function Concat(const left, right: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Append the string right to the end of p_left. p_left must be a
+      /// Unicode object; TPyUnicode.Append() releases ("steals") this
+      /// reference.</para>
+      /// <para>On error, set *p_left to nil and set an exception.</para>
+      /// <para>On success, set *p_left to a new strong reference to the
+      /// result.</para>
       /// </summary>
-      class procedure Append(const left, right: IPyObject);
+      class procedure Append(const p_left, right: IPyObject);
       /// <summary>
-      /// <para></para>
+      /// <para>The function is similar to TPyUnicode.Append(), with the only
+      /// difference being that it decrements the reference count of right by
+      /// one.</para>
       /// </summary>
       class procedure AppendAndDel(const left, right: IPyObject);
       /// <summary>
-      /// <para></para>
+      /// <para>Split a string giving a list of Unicode strings. If sep is nil,
+      /// splitting will be done at all whitespace substrings. Otherwise,
+      /// splits occur at the given separator. At most maxsplit splits will be
+      /// done. If negative, no limit is set. Separators are not included in
+      /// the resulting list.</para>
+      /// <para>On error, return nil with an exception set.</para>
+      /// <para>Equivalent to str.split().</para>
       /// </summary>
       class function Split(const unicode, sep: IPyObject; maxsplit: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Split a Unicode string at line breaks, returning a list of
+      /// Unicode strings. CRLF is considered to be one line break. If keepends
+      /// is False, the Line break characters are not included in the resulting
+      /// strings.</para>
       /// </summary>
       class function Splitlines(const unicode: IPyObject; keepends: boolean): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Split a Unicode string at the first occurrence of sep, and
+      /// return a 3-tuple containing the part before the separator, the
+      /// separator itself, and the part after the separator. If the separator
+      /// is not found, return a 3-tuple containing the string itself,
+      /// followed by two empty strings.</para>
+      /// <para>sep must not be empty.</para>
+      /// <para>On error, return nil with an exception set.</para>
+      /// <para>Equivalent to str.partition().</para>
       /// </summary>
       class function Partition(const unicode, sep: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPyUnicode.Partition(), but split a Unicode string
+      /// at the last occurrence of sep. If the separator is not found, return
+      /// a 3-tuple containing two empty strings, followed by the string
+      /// itself.</para>
+      /// <para>sep must not be empty.</para>
+      /// <para>On error, return nil with an exception set.</para>
+      /// <para>Equivalent to str.rpartition().</para>
       /// </summary>
       class function RPartition(const unicode, sep: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPyUnicode.Split(), but splitting will be done
+      /// beginning at the end of the string.</para>
+      /// <para>On error, return nil with an exception set.</para>
+      /// <para>Equivalent to str.rsplit().</para>
       /// </summary>
       class function RSplit(const unicode, sep: IPyObject; maxsplit: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Translate a string by applying a character mapping table to it
+      /// and return the resulting Unicode object. Return nil if an exception
+      /// was raised by the codec.</para>
+      /// <para>The mapping table must map Unicode ordinal integers to Unicode
+      /// ordinal integers or None (causing deletion of the character).</para>
+      /// <para>Mapping tables need only provide the __getitem__() interface;
+      /// dictionaries and sequences work well. Unmapped character ordinals
+      /// (ones which cause a LookupError) are left untouched and are copied
+      /// as-is.</para>
+      /// <para>errors has the usual meaning for codecs. It may be nil which
+      /// indicates to use the default error handling.</para>
       /// </summary>
       class function Translate(const unicode, table: IPyObject; errors: TPyCodecErrors): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Join a sequence of strings using the given separator and return
+      /// the resulting Unicode string.</para>
       /// </summary>
       class function Join(const separator, sep: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return 1 if substr matches unicode[start:end] at the given tail
+      /// end (direction == -1 means to do a prefix match, direction == 1 a
+      /// suffix match), 0 otherwise. Return -1 if an error occurred.</para>
       /// </summary>
       class function Tailmatch(const unicode, substr: IPyObject; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the first position of substr in unicode[start:end] using
+      /// the given direction (direction == 1 means to do a forward search,
+      /// direction == -1 a backward search). The return value is the index of
+      /// the first match; a value of -1 indicates that no match was found,
+      /// and -2 indicates that an error occurred and an exception has been
+      /// set.</para>
       /// </summary>
       class function Find(const unicode, substr: IPyObject; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the first position of the character ch in
+      /// unicode[start:end] using the given direction (direction == 1 means to
+      /// do a forward search, direction == -1 a backward search). The return
+      /// value is the index of the first match; a value of -1 indicates that
+      /// no match was found, and -2 indicates that an error occurred and an
+      /// exception has been set.</para>
       /// </summary>
       class function FindChar(const unicode: IPyObject; ch: Py_UCS4; start, end_: Py_ssize_t; direction: integer): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Return the number of non-overlapping occurrences of substr in
+      /// unicode[start:end]. Return -1 if an error occurred.</para>
       /// </summary>
       class function Count(const unicode, substr: IPyObject; start, end_: Py_ssize_t): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Replace at most maxcount occurrences of substr in unicode with
+      /// replstr and return the resulting Unicode object. maxcount == -1 means
+      /// replace all occurrences.</para>
       /// </summary>
       class function Replace(const str, substr, replstr: IPyObject; maxcount: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Compare two strings and return -1, 0, 1 for less than, equal,
+      /// and greater than, respectively.</para>
+      /// <para>This function returns -1 upon failure, so one should call
+      /// TPyErr.Occurred() to check for errors.</para>
+      /// <para>See also The TPyUnicode.Equal() function.</para>
       /// </summary>
       class function Compare(const left, right: IPyObject): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Compare a Unicode object, unicode, with string and return
+      /// -1, 0, 1 for less than, equal, and greater than, respectively.
+      /// It is best to pass only ASCII-encoded strings, but the function
+      /// interprets the input string as ISO-8859-1 if it contains non-ASCII
+      /// characters.</para>
+      /// <para>This function does not raise exceptions.</para>
       /// </summary>
       class function CompareWithASCIIString(const left: IPyObject; const right: PAnsiChar): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Similar to TPyUnicode.EqualToUTF8AndSize(), but compute string
+      /// length using strlen(). If the Unicode object contains nil characters,
+      /// false is returned.</para>
+      /// <para>Added in version 3.13.</para>
       /// </summary>
       class function EqualToUTF8(const unicode: IPyObject; const string_: PAnsiChar): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Compare a Unicode object with a char buffer which is
+      /// interpreted as being UTF-8 or ASCII encoded and return true if they
+      /// are equal, or false otherwise. If the Unicode object contains
+      /// surrogate code points (U+D800 - U+DFFF) or the C string is not valid
+      /// UTF-8, false (0) is returned.</para>
+      /// <para>This function does not raise exceptions.</para>
+      /// <para>Added in version 3.13.</para>
       /// </summary>
       class function EqualToUTF8AndSize(const unicode: IPyObject; const string_: PAnsiChar; size_: Py_ssize_t): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Test if two strings are equal:</para>
+      /// <code>
+      /// - Return 1 if a is equal to b.
+      /// - Return 0 if a is not equal to b.
+      /// - Set a TypeError exception and return -1 if a or b is not a str
+      ///   object.
+      /// </code>
+      /// <para>The function always succeeds if a and b are str objects.</para>
+      /// <para>The function works for str subclasses, but does not honor
+      /// custom __eq__() method.</para>
+      /// <para>See also The TPyUnicode.Compare() function.</para>
+      /// <para>Added in version 3.14.</para>
       /// </summary>
       class function Equal(const a, b: IPyObject): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Rich compare two Unicode strings and return one of the
+      /// following:</para>
+      /// <code>
+      /// - nil in case an exception was raised
+      /// - Py_True or Py_False for successful comparisons
+      /// - Py_NotImplemented in case the type combination is unknown
+      /// </code>
+      /// <para>Possible values for op are Py_GT, Py_GE, Py_EQ, Py_NE, Py_LT,
+      /// and Py_LE.</para>
       /// </summary>
       class function RichCompare(const left, right: IPyObject; op: integer): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a new string object from format and args; this is
+      /// analogous to format % args.</para>
       /// </summary>
       class function Format(const format_, args: IPyObject): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Check whether substr is contained in unicode and return true or
+      /// false accordingly.</para>
+      /// <para>substr has to coerce to a one element Unicode string. -1 is
+      /// returned if there was an error.</para>
       /// </summary>
       class function Contains(const unicode, substr: IPyObject): integer;
       /// <summary>
-      /// <para></para>
+      /// <para>Return True if the string is a valid identifier according to
+      /// the language definition, section Names (identifiers and keywords).
+      /// Return False otherwise.</para>
       /// </summary>
       class function IsIdentifier(const unicode: IPyObject): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Return one of the PyUnicode kind constants (see above) that
+      /// indicate how many bytes per character this Unicode object uses to
+      /// store its data. unicode has to be a Unicode object in the "canonical"
+      /// representation (not checked).</para>
       /// </summary>
       class function KIND(const unicode: IPyObject): PyUnicode_Kind_Result;
       /// <summary>
-      /// <para></para>
+      /// <para>Return a void pointer to the raw Unicode buffer. unicode has to
+      /// be a Unicode object in the "canonical" representation
+      /// (not checked).</para>
       /// </summary>
       class function DATA(const unicode: IPyObject): Pointer;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a new Unicode object. maxchar should be the true maximum
+      /// code point to be placed in the string. As an approximation, it can be
+      /// rounded up to the nearest value in the sequence 127, 255, 65535,
+      /// 1114111.</para>
+      /// <para>On error, set an exception and return nil.</para>
+      /// <para>After creation, the string can be filled by
+      /// TPyUnicode.WriteChar(), TPyUnicode.CopyCharacters(),
+      /// TPyUnicode.Fill(), TPyUnicode.WRITE() or similar. Since strings are
+      /// supposed to be immutable, take care to not "use" the result while it
+      /// is being modified. In particular, before it's filled with its final
+      /// contents, a string:</para>
+      /// <code>
+      /// - must not be hashed,
+      /// - must not be converted to UTF-8, or another non-"canonical" representation,
+      /// - must not have its reference count changed,
+      /// - must not be shared with code that might do one of the above.
+      /// </code>
+      /// <para>This list is not exhaustive. Avoiding these uses is your
+      /// responsibility; Python does not always check these
+      /// requirements.</para>
+      /// <para>To avoid accidentally exposing a partially-written string
+      /// object, prefer using the PyUnicodeWriter API, or one of the
+      /// TPyUnicode.From* functions.</para>
       /// </summary>
       class function New(size_: Py_ssize_t; maxchar: Py_UCS4): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>Copy characters from one Unicode object into another. This
+      /// function performs character conversion when necessary and falls back
+      /// to memcpy() if possible. Returns -1 and sets an exception on error,
+      /// otherwise returns the number of copied characters.</para>
+      /// <para>The string must not have been “used” yet. See TPyUnicode.New()
+      /// for details.</para>
       /// </summary>
       class function CopyCharacters(const to_: IPyObject; to_start: Py_ssize_t; const from: IPyObject; from_start, how_many: Py_ssize_t): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Fill a string with a character: write fill_char into
+      /// unicode[start:start+length].</para>
+      /// <para>Fail if fill_char is bigger than the string maximum character,
+      /// or if the string has more than 1 reference.</para>
+      /// <para>The string must not have been "used" yet. See TPyUnicode.New()
+      /// for details.</para>
+      /// <para>Return the number of written characters, or return -1 and raise
+      /// an exception on error.</para>
       /// </summary>
       class function Fill(const unicode: IPyObject; start, length: Py_ssize_t; fill_char: Py_UCS4): Py_ssize_t;
       /// <summary>
-      /// <para></para>
+      /// <para>Create a new Unicode object with the given kind (possible
+      /// values are PyUnicode_1BYTE_KIND etc., as returned by
+      /// TPyUnicode.KIND()). The buffer must point to an array of size units
+      /// of 1, 2 or 4 bytes per character, as given by the kind.</para>
+      /// <para>If necessary, the input buffer is copied and transformed into
+      /// the canonical representation. For example, if the buffer is a UCS4
+      /// string (PyUnicode_4BYTE_KIND) and it consists only of codepoints in
+      /// the UCS1 range, it will be transformed into
+      /// UCS1 (PyUnicode_1BYTE_KIND).</para>
       /// </summary>
       class function FromKindAndData(kind_: integer; buffer: Pointer; size_: Py_ssize_t): IPyObject;
       /// <summary>
-      /// <para></para>
+      /// <para>As TPyUnicode.AsUTF8AndSize(), but does not store the
+      /// size.</para>
+      /// <para>Warning: This function does not have any special behavior for
+      /// nil characters embedded within unicode. As a result, strings
+      /// containing nil characters will remain in the returned string, which
+      /// some C functions might interpret as the end of the string, leading to
+      /// truncation. If truncation is an issue, it is recommended to use
+      /// TPyUnicode.AsUTF8AndSize() instead.</para>
       /// </summary>
       class function AsUTF8(const unicode: IPyObject): PAnsiChar;
   end;
@@ -925,19 +1386,19 @@ begin
     Result := '';
 end;
 
-class procedure TPyUnicode.InternInPlace(const unicode: IPyObject);
+class procedure TPyUnicode.InternInPlace(const p_unicode: IPyObject);
 var
   TempObj : PPyObject;
 begin
   if assigned(PyUnicode_InternInPlace) and
-     TPyObject.IsInitialized(unicode) then
+     TPyObject.IsInitialized(p_unicode) then
     begin
-      TempObj := unicode.PyObject;
+      TempObj := p_unicode.PyObject;
 
       PyUnicode_InternInPlace(@TempObj);
 
-      unicode.PyObject    := TempObj;
-      unicode.ObjRefOwner := True;
+      p_unicode.PyObject    := TempObj;
+      p_unicode.ObjRefOwner := True;
     end;
 end;
 
@@ -1087,9 +1548,9 @@ begin
   if assigned(PyUnicode_FSConverter) then
     begin
       if TPyObject.IsInitialized(obj) then
-        Result := (PyUnicode_FSConverter(obj.PyObject, result_) = 0)
+        Result := (PyUnicode_FSConverter(obj.PyObject, result_) <> 0)
        else
-        Result := (PyUnicode_FSConverter(nil, result_) = 0);
+        Result := (PyUnicode_FSConverter(nil, result_) <> 0);
     end;
 end;
 
@@ -1100,9 +1561,9 @@ begin
   if assigned(PyUnicode_FSDecoder) then
     begin
       if TPyObject.IsInitialized(obj) then
-        Result := (PyUnicode_FSDecoder(obj.PyObject, result_) = 0)
+        Result := (PyUnicode_FSDecoder(obj.PyObject, result_) <> 0)
        else
-        Result := (PyUnicode_FSDecoder(nil, result_) = 0);
+        Result := (PyUnicode_FSDecoder(nil, result_) <> 0);
     end;
 end; 
 
@@ -1147,19 +1608,19 @@ begin
     Result := nil; 
 end;
 
-class procedure TPyUnicode.Append(const left, right: IPyObject);
+class procedure TPyUnicode.Append(const p_left, right: IPyObject);
 var
   TempObj : PPyObject;
 begin
   if assigned(PyUnicode_Append) and
-     TPyObject.IsInitialized(left) and
+     TPyObject.IsInitialized(p_left) and
      TPyObject.IsInitialized(right) then
     begin
-      TempObj := left.Unwrap;
+      TempObj := p_left.Unwrap;
 
       PyUnicode_Append(@TempObj, right.PyObject);
 
-      left.PyObject := TempObj;
+      p_left.PyObject := TempObj;
     end;
 end;
 
