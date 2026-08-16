@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyCode: Class TPyCode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyCode"></span><h1 class="cio">Class TPyCode</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyCode.html">uP4P.PyCode</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyCode = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyCode_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/code.html#code-objects">https://docs.python.org/3/c-api/code.html#code-objects</a>&quot;&gt;See the article about Code Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyCode</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#NewEmpty-string-string-integer-">NewEmpty</a></strong>(const filename, funcname: string; firstlineno: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#AddWatcher-PyCode_WatchCallback-">AddWatcher</a></strong>(callback: <a href="uP4P.Types.html#PyCode_WatchCallback">PyCode_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#ClearWatcher-integer-">ClearWatcher</a></strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#Addr2Line-IPyObject-integer-">Addr2Line</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; byte_offset: integer): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#Addr2Location-IPyObject-integer-Integer-Integer-Integer-Integer-">Addr2Location</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#GetCode-IPyObject-">GetCode</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#GetVarnames-IPyObject-">GetVarnames</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#GetCellvars-IPyObject-">GetCellvars</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCode.TPyCode.html#GetFreevars-IPyObject-">GetFreevars</a></strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a code object. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewEmpty-string-string-integer-"></span><code>class function <strong>NewEmpty</strong>(const filename, funcname: string; firstlineno: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new empty code object with the specified filename, function name, and first line number. The resulting code object will raise an Exception if executed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddWatcher-PyCode_WatchCallback-"></span><code>class function <strong>AddWatcher</strong>(callback: <a href="uP4P.Types.html#PyCode_WatchCallback">PyCode_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Register callback as a code object watcher for the current interpreter. Return an ID which may be passed to TPyCode.ClearWatcher(). In case of error (e.g. no more watcher IDs available), return -1 and set an exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ClearWatcher-integer-"></span><code>class function <strong>ClearWatcher</strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Clear watcher identified by watcher_id previously returned from TPyCode.AddWatcher() for the current interpreter. Return True on success, or False and set an exception on error (e.g. if the given watcher_id was never registered.)
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Addr2Line-IPyObject-integer-"></span><code>class function <strong>Addr2Line</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; byte_offset: integer): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the line number of the instruction that occurs on or before byte_offset and ends after it. If you just need the line number of a frame, use TPyFrame.GetLineNumber() instead.
+
+<p>For efficiently iterating over the line numbers in a code object, use the API described in PEP 626.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Addr2Location-IPyObject-integer-Integer-Integer-Integer-Integer-"></span><code>class function <strong>Addr2Location</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; byte_offset: integer; out start_line, start_column, end_line, end_column: Integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Sets the passed int pointers to the source code line and column numbers for the instruction at byte_offset. Sets the value to 0 when information is not available for any particular element.
+
+<p>Returns True if the function succeeds and False otherwise.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCode-IPyObject-"></span><code>class function <strong>GetCode</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Equivalent to the Python code getattr(co, 'co_code'). Returns a strong reference to a PyBytesObject representing the bytecode in a code object. On error, nil is returned and an exception is raised.
+
+<p>This PyBytesObject may be created on-demand by the interpreter and does not necessarily represent the bytecode actually executed by CPython. The primary use case for this function is debuggers and profilers.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetVarnames-IPyObject-"></span><code>class function <strong>GetVarnames</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Equivalent to the Python code getattr(co, 'co_varnames'). Returns a new reference to a PyTupleObject containing the names of the local variables. On error, nil is returned and an exception is raised.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCellvars-IPyObject-"></span><code>class function <strong>GetCellvars</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Equivalent to the Python code getattr(co, 'co_cellvars'). Returns a new reference to a PyTupleObject containing the names of the local variables that are referenced by nested functions. On error, nil is returned and an exception is raised.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFreevars-IPyObject-"></span><code>class function <strong>GetFreevars</strong>(const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Equivalent to the Python code getattr(co, 'co_freevars'). Returns a new reference to a PyTupleObject containing the names of the free (closure) variables. On error, nil is returned and an exception is raised.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

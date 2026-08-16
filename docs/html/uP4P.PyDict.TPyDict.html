@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyDict: Class TPyDict</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyDict"></span><h1 class="cio">Class TPyDict</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyDict.html">uP4P.PyDict</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyDict = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyDict_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/dict.html#dictionary-objects">https://docs.python.org/3/c-api/dict.html#dictionary-objects</a>&quot;&gt;See the article about the Dictionary Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyDict</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#New">New</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#GetItem-IPyObject-IPyObject-">GetItem</a></strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#GetItemWithError-IPyObject-IPyObject-">GetItemWithError</a></strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#SetItem-IPyObject-IPyObject-IPyObject-">SetItem</a></strong>(const mp, key, val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#SetItem-IPyObject-string-IPyObject-">SetItem</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#DelItem-IPyObject-IPyObject-">DelItem</a></strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyDict.TPyDict.html#Clear-IPyObject-">Clear</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Next-IPyObject-Py_ssize_t-IPyObject-IPyObject-">Next</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; out key, val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Keys-IPyObject-">Keys</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Values-IPyObject-">Values</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Items-IPyObject-">Items</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Size-IPyObject-">Size</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Copy-IPyObject-">Copy</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Contains-IPyObject-IPyObject-">Contains</a></strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Update-IPyObject-IPyObject-">Update</a></strong>(const mp, other: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Merge-IPyObject-IPyObject-boolean-">Merge</a></strong>(const a, b: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; override_: boolean): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#MergeFromSeq2-IPyObject-IPyObject-boolean-">MergeFromSeq2</a></strong>(const a, seq2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; override_: boolean): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#GetItemString-IPyObject-string-">GetItemString</a></strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#SetItemString-IPyObject-string-IPyObject-">SetItemString</a></strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const item: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#DelItemString-IPyObject-string-">DelItemString</a></strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#GetItemRef-IPyObject-IPyObject-IPyObject-">GetItemRef</a></strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#GetItemStringRef-IPyObject-string-IPyObject-">GetItemStringRef</a></strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#SetDefault-IPyObject-IPyObject-IPyObject-">SetDefault</a></strong>(const p, key, defaultobj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#SetDefaultRef-IPyObject-IPyObject-IPyObject-IPyObject-">SetDefaultRef</a></strong>(const p, key, default_value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#ContainsString-IPyObject-string-">ContainsString</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Pop-IPyObject-IPyObject-IPyObject-">Pop</a></strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#PopString-IPyObject-string-IPyObject-">PopString</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#AddWatcher-PyDict_WatchCallback-">AddWatcher</a></strong>(callback: <a href="uP4P.Types.html#PyDict_WatchCallback">PyDict_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#ClearWatcher-integer-">ClearWatcher</a></strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Watch-integer-IPyObject-">Watch</a></strong>(watcher_id: integer; const dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#Unwatch-integer-IPyObject-">Unwatch</a></strong>(watcher_id: integer; const dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#FromStringsArray-TStringList-arrayof-">FromStringsArray</a></strong>(const aKeys: TStringList; const aValues: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDict.TPyDict.html#FromNamedParamArray-TNamedParamArray-TVarDataArray-">FromNamedParamArray</a></strong>(const NamedParamArray: <a href="uP4P.Types.html#TNamedParamArray">TNamedParamArray</a>; const Arguments: TVarDataArray): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a dict object or an instance of a subtype of the dict type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a dict object, but not an instance of a subtype of the dict type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New"></span><code>class function <strong>New</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new empty dictionary, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-IPyObject-"></span><code>class function <strong>GetItem</strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a borrowed reference to the object from dictionary mp which has a key key. Return nil if the key key is missing without setting an exception.
+
+<p>Note: Exceptions that occur while this calls __hash__() and __eq__() methods are silently ignored. Prefer the TPyDict.GetItemWithError() function instead.
+
+<p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemRef(), which returns a strong reference.
+
+<p>Changed in version 3.10: Calling this API without an attached thread state had been allowed for historical reason. It is no longer allowed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemWithError-IPyObject-IPyObject-"></span><code>class function <strong>GetItemWithError</strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant of TPyDict.GetItem() that does not suppress exceptions. Return nil with an exception set if an exception occurred. Return nil without an exception set if the key wasn't present.
+
+<p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemRef(), which returns a strong reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>SetItem</strong>(const mp, key, val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Insert val into the dictionary mp with a key of key. key must be hashable; if it isn't, TypeError will be raised. Return True on success or False on failure. This function does not &quot;steal&quot; a reference to val.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-string-IPyObject-"></span><code>class function <strong>SetItem</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Insert val into the dictionary mp with a key of key. key must be hashable; if it isn't, TypeError will be raised. Return True on success or False on failure. This function does not &quot;steal&quot; a reference to val.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItem-IPyObject-IPyObject-"></span><code>class function <strong>DelItem</strong>(const mp, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the entry in dictionary mp with key key. key must be hashable; if it isn't, TypeError is raised. If key is not in the dictionary, KeyError is raised. Return True on success or False on failure.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Clear-IPyObject-"></span><code>class procedure <strong>Clear</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Empty an existing dictionary of all key-value pairs.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Next-IPyObject-Py_ssize_t-IPyObject-IPyObject-"></span><code>class function <strong>Next</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; out key, val: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Iterate over all key-value pairs in the dictionary p. The Py_ssize_t referred to by ppos must be initialized to 0 prior to the first call to this function to start the iteration; the function returns true for each pair in the dictionary, and false once all pairs have been reported. The parameters pkey and pvalue should either point to PyObject variables that will be filled in with each key and value, respectively, or may be nil. Any references returned through them are borrowed. ppos should not be altered during iteration. Its value represents offsets within the internal dictionary structure, and since the structure is sparse, the offsets are not consecutive.
+
+<p>For example:
+
+<p></p>
+
+<pre class="preformatted">
+PyObject *key, *value;
+Py_ssize_t pos = 0;
+
+while (PyDict_Next(self-&gt;dict, &amp;pos, &amp;key, &amp;value)) {
+    /* do something interesting with the values... */
+    ...
+}</pre>
+
+<p>
+
+<p>The dictionary p should not be mutated during iteration. It is safe to modify the values of the keys as you iterate over the dictionary, but only so long as the set of keys does not change. For example:
+
+<p></p>
+
+<pre class="preformatted">
+PyObject *key, *value;
+Py_ssize_t pos = 0;
+
+while (PyDict_Next(self-&gt;dict, &amp;pos, &amp;key, &amp;value)) {
+    long i = PyLong_AsLong(value);
+    if (i == -1 &amp;&amp; PyErr_Occurred()) {
+        return -1;
+    }
+    PyObject *o = PyLong_FromLong(i + 1);
+    if (o == NULL)
+        return -1;
+    if (PyDict_SetItem(self-&gt;dict, key, o) &lt; 0) {
+        Py_DECREF(o);
+        return -1;
+    }
+    Py_DECREF(o);
+}</pre>
+
+<p>
+
+<p>The function is not thread-safe in the free-threaded build without external synchronization. You can use Py_BEGIN_CRITICAL_SECTION to lock the dictionary while iterating over it:
+
+<p></p>
+
+<pre class="preformatted">
+Py_BEGIN_CRITICAL_SECTION(self-&gt;dict);
+while (PyDict_Next(self-&gt;dict, &amp;pos, &amp;key, &amp;value)) {
+    ...
+}
+Py_END_CRITICAL_SECTION();</pre>
+
+<p>
+
+<p>Note On the free-threaded build, this function can be used safely inside a critical section. However, the references returned for pkey and pvalue are borrowed and are only valid while the critical section is held. If you need to use these objects outside the critical section or when the critical section can be suspended, create a strong reference (for example, using TPy.NewRef()).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Keys-IPyObject-"></span><code>class function <strong>Keys</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a PyListObject containing all the keys from the dictionary.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Values-IPyObject-"></span><code>class function <strong>Values</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a PyListObject containing all the values from the dictionary mp.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Items-IPyObject-"></span><code>class function <strong>Items</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a PyListObject containing all the items from the dictionary.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size-IPyObject-"></span><code>class function <strong>Size</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the number of items in the dictionary. This is equivalent to len(mp) on a dictionary.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Copy-IPyObject-"></span><code>class function <strong>Copy</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new dictionary that contains the same key-value pairs as mp.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Contains-IPyObject-IPyObject-"></span><code>class function <strong>Contains</strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Determine if dictionary p contains key. If an item in p matches key, return 1, otherwise return 0. On error, return -1. This is equivalent to the Python expression key in p.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Update-IPyObject-IPyObject-"></span><code>class function <strong>Update</strong>(const mp, other: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyDict.Merge(a, b, 1), and is similar to a.update(b) in Python except that TPyDict.Update() doesn't fall back to the iterating over a sequence of key value pairs if the second argument has no &quot;keys&quot; attribute. Return True on success or False if an exception was raised.
+
+<p>Note In the free-threaded build, when b is a dict (with the standard iterator), both a and b are locked for the duration of the operation. When b is a non-dict mapping, only a is locked; b may be concurrently modified by another thread.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Merge-IPyObject-IPyObject-boolean-"></span><code>class function <strong>Merge</strong>(const a, b: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; override_: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Iterate over mapping object b adding key-value pairs to dictionary a. b may be a dictionary, or any object supporting TPyMapping.Keys() and TPyObject.GetItem(). If override is true, existing pairs in a will be replaced if a matching key is found in b, otherwise pairs will only be added if there is not a matching key in a. Return True on success or False if an exception was raised.
+
+<p>Note: In the free-threaded build, when b is a dict (with the standard iterator), both a and b are locked for the duration of the operation. When b is a non-dict mapping, only a is locked; b may be concurrently modified by another thread.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="MergeFromSeq2-IPyObject-IPyObject-boolean-"></span><code>class function <strong>MergeFromSeq2</strong>(const a, seq2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; override_: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Update or merge into dictionary a, from the key-value pairs in seq2. seq2 must be an iterable object producing iterable objects of length 2, viewed as key-value pairs. In case of duplicate keys, the last wins if override is true, else the first wins. Return True on success or False if an exception was raised. Equivalent Python (except for the return value):
+
+<p></p>
+
+<pre class="preformatted">
+def PyDict_MergeFromSeq2(a, seq2, override):
+    for key, value in seq2:
+        if override or key not in a:
+            a[key] = value</pre>
+
+<p>
+
+<p>Note: In the free-threaded build, only a is locked. The iteration over seq2 is not synchronized; seq2 may be concurrently modified by another thread.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemString-IPyObject-string-"></span><code>class function <strong>GetItemString</strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyDict.GetItem(), but key is specified as a string, rather than a IPyObject.
+
+<p>Note: Exceptions that occur while this calls __hash__() and __eq__() methods or while creating the temporary str object are silently ignored. Prefer using the TPyDict.GetItemWithError() function with your own TPyUnicode.FromString() key instead.
+
+<p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemStringRef(), which returns a strong reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItemString-IPyObject-string-IPyObject-"></span><code>class function <strong>SetItemString</strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const item: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyDict.SetItem(), but key is specified as a string, rather than a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItemString-IPyObject-string-"></span><code>class function <strong>DelItemString</strong>(const dp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyDict.DelItem(), but key is specified as a string, rather than a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemRef-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>GetItemRef</strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new strong reference to the object from dictionary p which has a key key:
+
+<p></p>
+
+<pre class="preformatted">
+- If the key is present, set result_ to a new strong reference to the
+  value and return 1.
+- If the key is missing, set result_ to nil and return 0.
+- On error, raise an exception, set result_ to nil and return -1.</pre>
+
+<p>
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p>Added in version 3.13.
+
+<p>See also the TPyObject.GetItem() function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemStringRef-IPyObject-string-IPyObject-"></span><code>class function <strong>GetItemStringRef</strong>(const mp: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyDict.GetItemRef(), but key is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetDefault-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>SetDefault</strong>(const p, key, defaultobj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as the Python-level dict.setdefault(). If present, it returns the value corresponding to key from the dictionary p. If the key is not in the dict, it is inserted with value defaultobj and defaultobj is returned. This function evaluates the hash function of key only once, instead of evaluating it independently for the lookup and the insertion.
+
+<p>Added in version 3.4.
+
+<p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.SetDefaultRef(), which returns a strong reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetDefaultRef-IPyObject-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>SetDefaultRef</strong>(const p, key, default_value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Inserts default_value into the dictionary p with a key of key if the key is not already present in the dictionary. If result is not nil, then result_ is set to a strong reference to either default_value, if the key was not present, or the existing value, if key was already present in the dictionary. Returns 1 if the key was present and default_value was not inserted, or 0 if the key was not present and default_value was inserted. On failure, returns -1, sets an exception, and sets result_ to nil.
+
+<p>For clarity: if you have a strong reference to default_value before calling this function, then after it returns, you hold a strong reference to both default_value and result_ (if it's not nil). These may refer to the same object: in that case you hold two separate references to it.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ContainsString-IPyObject-string-"></span><code>class function <strong>ContainsString</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyDict.Contains(), but key is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Pop-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>Pop</strong>(const p, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove key from dictionary p and optionally return the removed value. Do not raise KeyError if the key is missing.
+
+<p></p>
+
+<pre class="preformatted">
+- If the key is present, set result_ to a new reference to the removed
+  value if result is not nil, and return 1.
+- If the key is missing, set result_ to nil if result is not nil,
+  and return 0.
+- On error, raise an exception and return -1.</pre>
+
+<p>
+
+<p>Similar to dict.pop(), but without the default value and not raising KeyError if the key is missing.
+
+<p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PopString-IPyObject-string-IPyObject-"></span><code>class function <strong>PopString</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyDict.Pop(), but key is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddWatcher-PyDict_WatchCallback-"></span><code>class function <strong>AddWatcher</strong>(callback: <a href="uP4P.Types.html#PyDict_WatchCallback">PyDict_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Register callback as a dictionary watcher. Return a non-negative integer id which must be passed to future calls to TPyDict.Watch(). In case of error (e.g. no more watcher IDs available), return -1 and set an exception.
+
+<p>Note: This function is not internally synchronized. In the free-threaded build, callers should ensure no concurrent calls to TPyDict.AddWatcher() or TPyDict.ClearWatcher() are in progress.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ClearWatcher-integer-"></span><code>class function <strong>ClearWatcher</strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Clear watcher identified by watcher_id previously returned from TPyDict.AddWatcher(). Return True on success, False on error (e.g. if the given watcher_id was never registered.)
+
+<p>Note: This function is not internally synchronized. In the free-threaded build, callers should ensure no concurrent calls to TPyDict.AddWatcher() or TPyDict.ClearWatcher() are in progress.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Watch-integer-IPyObject-"></span><code>class function <strong>Watch</strong>(watcher_id: integer; const dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Mark dictionary dict as watched. The callback granted watcher_id by TPyDict.AddWatcher() will be called when dict is modified or deallocated. Return True on success or False on error.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Unwatch-integer-IPyObject-"></span><code>class function <strong>Unwatch</strong>(watcher_id: integer; const dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Mark dictionary dict as no longer watched. The callback granted watcher_id by TPyDict.AddWatcher() will no longer be called when dict is modified or deallocated. The dict must previously have been watched by this watcher. Return True on success or False on error.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromStringsArray-TStringList-arrayof-"></span><code>class function <strong>FromStringsArray</strong>(const aKeys: TStringList; const aValues: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Helper function that creates a PyDict and sets all the values from aValues.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromNamedParamArray-TNamedParamArray-TVarDataArray-"></span><code>class function <strong>FromNamedParamArray</strong>(const NamedParamArray: <a href="uP4P.Types.html#TNamedParamArray">TNamedParamArray</a>; const Arguments: TVarDataArray): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Helper function that creates a PyDict and sets all the values from NamedParamArray and Arguments.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

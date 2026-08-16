@@ -67,7 +67,7 @@ type
       /// </summary>
       class function  GetGlobals(const frame: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Get the frame’s f_builtins attribute.</para>
+      /// <para>Get the frame's f_builtins attribute.</para>
       /// <para>Return a strong reference. The result cannot be nil.</para>
       /// <para>Added in version 3.11.</para>
       /// </summary>

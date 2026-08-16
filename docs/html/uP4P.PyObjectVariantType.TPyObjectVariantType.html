@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyObjectVariantType: Class TPyObjectVariantType</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyObjectVariantType"></span><h1 class="cio">Class TPyObjectVariantType</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyObjectVariantType.html">uP4P.PyObjectVariantType</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyObjectVariantType = class(TInvokeableVariantType, IVarInstanceReference)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ PyObject custom variant type helper class. </p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInvokeableVariantType</li>
+<li class="thisitem">TPyObjectVariantType</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#FNamedParams">FNamedParams</a></strong>: <a href="uP4P.Types.html#TNamedParamArray">TNamedParamArray</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#GetInstance-TVarData-">GetInstance</a></strong>(const V: TVarData): TObject;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#LeftPromotion-TVarData-TVarOp-TVarType-">LeftPromotion</a></strong>(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#RightPromotion-TVarData-TVarOp-TVarType-">RightPromotion</a></strong>(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#CallObject-TVarData-string-TVarDataArray-">CallObject</a></strong>(const V: TVarData; const AName: string; const Arguments: TVarDataArray): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#AssignResult-TVarData-IPyObject-">AssignResult</a></strong>(var Left: TVarData; const aResult: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoAddString-TVarData-TVarData-">DoAddString</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoAdd-TVarData-TVarData-">DoAdd</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoSubtract-TVarData-TVarData-">DoSubtract</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoMultiply-TVarData-TVarData-">DoMultiply</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoDivide-TVarData-TVarData-">DoDivide</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoIntDivide-TVarData-TVarData-">DoIntDivide</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoModulus-TVarData-TVarData-">DoModulus</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoShiftLeft-TVarData-TVarData-">DoShiftLeft</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoShiftRight-TVarData-TVarData-">DoShiftRight</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoAnd-TVarData-TVarData-">DoAnd</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoOr-TVarData-TVarData-">DoOr</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoXor-TVarData-TVarData-">DoXor</a></strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoNegate-TVarData-">DoNegate</a></strong>(var Right: TVarData);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoNot-TVarData-">DoNot</a></strong>(var Right: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#Clear-TVarData-">Clear</a></strong>(var V: TVarData); override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#IsClear-TVarData-">IsClear</a></strong>(const V: TVarData): Boolean; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#Copy-TVarData-TVarData-Boolean-">Copy</a></strong>(var Dest: TVarData; const Source: TVarData; const Indirect: Boolean); override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#Cast-TVarData-TVarData-">Cast</a></strong>(var Dest: TVarData; const Source: TVarData); override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#CastTo-TVarData-TVarData-TVarType-">CastTo</a></strong>(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#BinaryOp-TVarData-TVarData-TVarOp-">BinaryOp</a></strong>(var Left: TVarData; const Right: TVarData; const AOperator: TVarOp); override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#UnaryOp-TVarData-TVarOp-">UnaryOp</a></strong>(var Right: TVarData; const AOperator: TVarOp); override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#CompareOp-TVarData-TVarData-TVarOp-">CompareOp</a></strong>(const Left: TVarData; const Right: TVarData; const AOperator: TVarOp): Boolean; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoFunction-TVarData-TVarData-string-TVarDataArray-">DoFunction</a></strong>(var Dest: TVarData; const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DoProcedure-TVarData-string-TVarDataArray-">DoProcedure</a></strong>(const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#GetProperty-TVarData-TVarData-string-">GetProperty</a></strong>(var Dest: TVarData; const V: TVarData; const AName: string): Boolean; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#SetProperty-TVarData-string-TVarData-">SetProperty</a></strong>(var V: TVarData; const AName: string; const Value: TVarData): Boolean; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#VarDataClear-TVarData-">VarDataClear</a></strong>(var Dest: TVarData);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#VarDataCopyNoInd-TVarData-TVarData-">VarDataCopyNoInd</a></strong>(var Dest: TVarData; const Source: TVarData);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#VarDataCastTo-TVarData-TVarData-TVarType-">VarDataCastTo</a></strong>(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#DispInvoke-PVarData-TVarData-PCallDesc-Pointer-">DispInvoke</a></strong>(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#PyObjectVarDataCreate-TVarData-IPyObject-">PyObjectVarDataCreate</a></strong>(var Dest: TVarData; const aObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyObjectVariantType.TPyObjectVariantType.html#PyObjectVariantCreate-Variant-IPyObject-">PyObjectVariantCreate</a></strong>(var Dest: Variant; const aObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FNamedParams"></span><code><strong>FNamedParams</strong>: <a href="uP4P.Types.html#TNamedParamArray">TNamedParamArray</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInstance-TVarData-"></span><code>function <strong>GetInstance</strong>(const V: TVarData): TObject;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+IVarInstanceReference</p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="LeftPromotion-TVarData-TVarOp-TVarType-"></span><code>function <strong>LeftPromotion</strong>(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+TCustomVariantType</p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="RightPromotion-TVarData-TVarOp-TVarType-"></span><code>function <strong>RightPromotion</strong>(const V: TVarData; const AOperator: TVarOp; out RequiredVarType: TVarType): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CallObject-TVarData-string-TVarDataArray-"></span><code>function <strong>CallObject</strong>(const V: TVarData; const AName: string; const Arguments: TVarDataArray): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Custom</p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AssignResult-TVarData-IPyObject-"></span><code>procedure <strong>AssignResult</strong>(var Left: TVarData; const aResult: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoAddString-TVarData-TVarData-"></span><code>procedure <strong>DoAddString</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoAdd-TVarData-TVarData-"></span><code>procedure <strong>DoAdd</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoSubtract-TVarData-TVarData-"></span><code>procedure <strong>DoSubtract</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoMultiply-TVarData-TVarData-"></span><code>procedure <strong>DoMultiply</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoDivide-TVarData-TVarData-"></span><code>procedure <strong>DoDivide</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoIntDivide-TVarData-TVarData-"></span><code>procedure <strong>DoIntDivide</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoModulus-TVarData-TVarData-"></span><code>procedure <strong>DoModulus</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoShiftLeft-TVarData-TVarData-"></span><code>procedure <strong>DoShiftLeft</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoShiftRight-TVarData-TVarData-"></span><code>procedure <strong>DoShiftRight</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoAnd-TVarData-TVarData-"></span><code>procedure <strong>DoAnd</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoOr-TVarData-TVarData-"></span><code>procedure <strong>DoOr</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoXor-TVarData-TVarData-"></span><code>procedure <strong>DoXor</strong>(var Left: TVarData; const Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoNegate-TVarData-"></span><code>procedure <strong>DoNegate</strong>(var Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DoNot-TVarData-"></span><code>procedure <strong>DoNot</strong>(var Right: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Clear-TVarData-"></span><code>procedure <strong>Clear</strong>(var V: TVarData); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+TCustomVariantType</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsClear-TVarData-"></span><code>function <strong>IsClear</strong>(const V: TVarData): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Copy-TVarData-TVarData-Boolean-"></span><code>procedure <strong>Copy</strong>(var Dest: TVarData; const Source: TVarData; const Indirect: Boolean); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Cast-TVarData-TVarData-"></span><code>procedure <strong>Cast</strong>(var Dest: TVarData; const Source: TVarData); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CastTo-TVarData-TVarData-TVarType-"></span><code>procedure <strong>CastTo</strong>(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BinaryOp-TVarData-TVarData-TVarOp-"></span><code>procedure <strong>BinaryOp</strong>(var Left: TVarData; const Right: TVarData; const AOperator: TVarOp); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnaryOp-TVarData-TVarOp-"></span><code>procedure <strong>UnaryOp</strong>(var Right: TVarData; const AOperator: TVarOp); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CompareOp-TVarData-TVarData-TVarOp-"></span><code>function <strong>CompareOp</strong>(const Left: TVarData; const Right: TVarData; const AOperator: TVarOp): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DoFunction-TVarData-TVarData-string-TVarDataArray-"></span><code>function <strong>DoFunction</strong>(var Dest: TVarData; const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DoProcedure-TVarData-string-TVarDataArray-"></span><code>function <strong>DoProcedure</strong>(const V: TVarData; const AName: string; const Arguments: TVarDataArray): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetProperty-TVarData-TVarData-string-"></span><code>function <strong>GetProperty</strong>(var Dest: TVarData; const V: TVarData; const AName: string): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetProperty-TVarData-string-TVarData-"></span><code>function <strong>SetProperty</strong>(var V: TVarData; const AName: string; const Value: TVarData): Boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VarDataClear-TVarData-"></span><code>procedure <strong>VarDataClear</strong>(var Dest: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VarDataCopyNoInd-TVarData-TVarData-"></span><code>procedure <strong>VarDataCopyNoInd</strong>(var Dest: TVarData; const Source: TVarData);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VarDataCastTo-TVarData-TVarData-TVarType-"></span><code>procedure <strong>VarDataCastTo</strong>(var Dest: TVarData; const Source: TVarData; const AVarType: TVarType); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DispInvoke-PVarData-TVarData-PCallDesc-Pointer-"></span><code>procedure <strong>DispInvoke</strong>(Dest: PVarData; var Source: TVarData; CallDesc: PCallDesc; Params: Pointer); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+TInvokeableVariantType</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PyObjectVarDataCreate-TVarData-IPyObject-"></span><code>function <strong>PyObjectVarDataCreate</strong>(var Dest: TVarData; const aObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Custom</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PyObjectVariantCreate-Variant-IPyObject-"></span><code>procedure <strong>PyObjectVariantCreate</strong>(var Dest: Variant; const aObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

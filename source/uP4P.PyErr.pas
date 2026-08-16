@@ -247,7 +247,7 @@ type
       class function SetFromErrno(const type_: IPyObject): IPyObject;
       /// <summary>
       /// <para>Similar to TPyErr.SetFromErrno(), with the additional behavior
-      /// that if filenameObject is not NULL, it is passed to the constructor of
+      /// that if filenameObject is not nil, it is passed to the constructor of
       /// type as a third parameter. In the case of OSError exception, this is
       /// used to define the filename attribute of the exception
       /// instance.</para>
@@ -318,7 +318,7 @@ type
       /// <summary>
       /// <para>This is a convenience function to raise ImportError. msg will be
       /// set as the exception's message string. name and path, both of which
-      /// can be NULL, will be set as the ImportError's respective name and path
+      /// can be nil, will be set as the ImportError's respective name and path
       /// attributes.</para>
       /// </summary>
       class function SetImportError(const msg, name_, path: IPyObject): IPyObject;
@@ -454,7 +454,7 @@ type
       /// <para>Get the source line in filename at line lineno. filename should
       /// be a Python str object.</para>
       /// <para>On success, this function returns a Python string object with
-      /// the found line. On failure, this function returns NULL without an
+      /// the found line. On failure, this function returns nil without an
       /// exception set.</para>
       /// </summary>
       class function ProgramTextObject(const filename: IPyObject; lineno: integer): IPyObject;
@@ -485,7 +485,7 @@ type
       /// <para>Issue a warning message with explicit control over all warning
       /// attributes. This is a straightforward wrapper around the Python
       /// function warnings.warn_explicit(); see there for more information.
-      /// The module and registry arguments may be set to NULL to get the
+      /// The module and registry arguments may be set to nil to get the
       /// default effect described there.</para>
       /// </summary>
       class function WarnExplicitObject(const category, message_, filename: IPyObject; lineno: integer; const module_, registry_: IPyObject): boolean;

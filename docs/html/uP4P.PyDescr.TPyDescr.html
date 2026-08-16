@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyDescr: Class TPyDescr</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyDescr"></span><h1 class="cio">Class TPyDescr</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyDescr.html">uP4P.PyDescr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyDescr = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyDescr_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/descriptor.html#descriptor-objects">https://docs.python.org/3/c-api/descriptor.html#descriptor-objects</a>&quot;&gt;See the article about the Descriptor Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyDescr</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#NewMethod-PPyTypeObject-PPyMethodDef-">NewMethod</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#NewClassMethod-PPyTypeObject-PPyMethodDef-">NewClassMethod</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#NewMember-PPyTypeObject-PPyMemberDef-">NewMember</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMemberDef">PPyMemberDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#NewGetSet-PPyTypeObject-PPyGetSetDef-">NewGetSet</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; getset: <a href="uP4P.Types.html#PPyGetSetDef">PPyGetSetDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#NewWrapper-PPyTypeObject-wrapperbase-Pointer-">NewWrapper</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const wrapper: <a href="uP4P.Types.wrapperbase.html">wrapperbase</a>; wrapped: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDescr.TPyDescr.html#IsData-IPyObject-">IsData</a></strong>(const descr: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewMethod-PPyTypeObject-PPyMethodDef-"></span><code>class function <strong>NewMethod</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new method descriptor for extension type type from the PyMethodDef structure meth.
+
+<p>Method descriptors expose functions as methods on a type. This is the same kind of descriptor created for entries in tp_methods, and it appears in Python as a types.MethodDescriptorType object.
+
+<p>On success, return a strong reference to the descriptor. Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewClassMethod-PPyTypeObject-PPyMethodDef-"></span><code>class function <strong>NewClassMethod</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new class method descriptor for extension type type from the PyMethodDef structure method.
+
+<p>Class method descriptors expose methods that receive the class rather than an instance when accessed. This is the same kind of descriptor created for METH_CLASS entries in tp_methods, and it appears in Python as a types.ClassMethodDescriptorType object.
+
+<p>On success, return a strong reference to the descriptor. Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewMember-PPyTypeObject-PPyMemberDef-"></span><code>class function <strong>NewMember</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; meth: <a href="uP4P.Types.html#PPyMemberDef">PPyMemberDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new member descriptor for extension type type from the PyMemberDef structure member.
+
+<p>Member descriptors expose fields in the type's record as Python attributes. This is the same kind of descriptor created for entries in tp_members, and it appears in Python as a types.MemberDescriptorType object.
+
+<p>On success, return a strong reference to the descriptor. Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewGetSet-PPyTypeObject-PPyGetSetDef-"></span><code>class function <strong>NewGetSet</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; getset: <a href="uP4P.Types.html#PPyGetSetDef">PPyGetSetDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new get-set descriptor for extension type type from the PyGetSetDef structure getset.
+
+<p>Get-set descriptors expose attributes implemented by getter and setter functions rather than stored directly in the instance. This is the same kind of descriptor created for entries in tp_getset, and it appears in Python as a types.GetSetDescriptorType object.
+
+<p>On success, return a strong reference to the descriptor. Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewWrapper-PPyTypeObject-wrapperbase-Pointer-"></span><code>class function <strong>NewWrapper</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const wrapper: <a href="uP4P.Types.wrapperbase.html">wrapperbase</a>; wrapped: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new wrapper descriptor for extension type type from the wrapperbase structure base and the wrapped slot function pointer wrapped.
+
+<p>Wrapper descriptors expose special methods implemented by type slots. This is the same kind of descriptor that CPython creates for slot-based special methods such as __repr__ or __add__, and it appears in Python as a types.WrapperDescriptorType object.
+
+<p>On success, return a strong reference to the descriptor. Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsData-IPyObject-"></span><code>class function <strong>IsData</strong>(const descr: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the descriptor object descr describes a data attribute, or False if it describes a method. descr must be a descriptor object; there is no error checking.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyModuleDef</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyModuleDef"></span><h1 class="cio">Record PyModuleDef</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyModuleDef = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ The module definition struct, which holds all information needed to create a module object. This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist). Usually, there is only one variable of this type for each extension module. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">https://docs.python.org/3/c-api/module.html#c.PyModuleDef</a>&quot;&gt;See the article about PyModuleDef.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_base">m_base</a></strong>: <a href="uP4P.Types.PyModuleDef_Base.html">PyModuleDef_Base</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_name">m_name</a></strong>: PAnsiChar;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_doc">m_doc</a></strong>: PAnsiChar;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_size">m_size</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_methods">m_methods</a></strong>: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_slots">m_slots</a></strong>: <a href="uP4P.Types.html#PPyModuleDef_Slot">PPyModuleDef_Slot</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_traverse">m_traverse</a></strong>: <a href="uP4P.Types.html#traverseproc">traverseproc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_clear">m_clear</a></strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyModuleDef.html#m_free">m_free</a></strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_base"></span><code><strong>m_base</strong>: <a href="uP4P.Types.PyModuleDef_Base.html">PyModuleDef_Base</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Always initialize this member to PyModuleDef_HEAD_INIT. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_name"></span><code><strong>m_name</strong>: PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name for the new module. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_doc"></span><code><strong>m_doc</strong>: PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Docstring for the module; usually a docstring variable created with PyDoc_STRVAR is used. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_size"></span><code><strong>m_size</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Module state may be kept in a per-module memory area that can be retrieved with PyModule_GetState(), rather than in static globals. This makes modules safe for use in multiple sub-interpreters. This memory area is allocated based on m_size on module creation, and freed when the module object is deallocated, after the m_free function has been called, if present. Setting it to a non-negative value means that the module can be re-initialized and specifies the additional amount of memory it requires for its state. Setting m_size to -1 means that the module does not support sub-interpreters, because it has global state. Negative m_size is only allowed when using legacy single-phase initialization or when creating modules dynamically. See PEP 3121 for more details. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_methods"></span><code><strong>m_methods</strong>: <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ A pointer to a table of module-level functions, described by PyMethodDef values. Can be nil if no functions are present. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_slots"></span><code><strong>m_slots</strong>: <a href="uP4P.Types.html#PPyModuleDef_Slot">PPyModuleDef_Slot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ An array of slot definitions for multi-phase initialization, terminated by a {0, nil} entry. When using legacy single-phase initialization, m_slots must be nil. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_traverse"></span><code><strong>m_traverse</strong>: <a href="uP4P.Types.html#traverseproc">traverseproc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ A traversal function to call during GC traversal of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Changed in version 3.9: No longer called before the module state is allocated. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_clear"></span><code><strong>m_clear</strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ A clear function to call during GC clearing of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Like PyTypeObject.tp_clear, this function is not always called before a module is deallocated. For example, when reference counting is enough to determine that an object is no longer used, the cyclic garbage collector is not involved and m_free is called directly. Changed in version 3.9: No longer called before the module state is allocated. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="m_free"></span><code><strong>m_free</strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ A function to call during deallocation of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Changed in version 3.9: No longer called before the module state is allocated. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

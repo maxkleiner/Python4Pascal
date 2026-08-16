@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyNumberMethods</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyNumberMethods"></span><h1 class="cio">Record PyNumberMethods</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyNumberMethods = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ This structure holds pointers to the functions which an object uses to implement the number protocol. Each function is used by the function of similar name documented in the Number Protocol section. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/typeobj.html#c.PyNumberMethods">https://docs.python.org/3/c-api/typeobj.html#c.PyNumberMethods</a>&quot;&gt;See the article about PyNumberMethods.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_add">nb_add</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_subtract">nb_subtract</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_multiply">nb_multiply</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_remainder">nb_remainder</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_divmod">nb_divmod</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_power">nb_power</a></strong>: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_negative">nb_negative</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_positive">nb_positive</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_absolute">nb_absolute</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_bool">nb_bool</a></strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_invert">nb_invert</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_lshift">nb_lshift</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_rshift">nb_rshift</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_and">nb_and</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_xor">nb_xor</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_or">nb_or</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_int">nb_int</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_reserved">nb_reserved</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_float">nb_float</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_add">nb_inplace_add</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_subtract">nb_inplace_subtract</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_multiply">nb_inplace_multiply</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_remainder">nb_inplace_remainder</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_power">nb_inplace_power</a></strong>: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_lshift">nb_inplace_lshift</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_rshift">nb_inplace_rshift</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_and">nb_inplace_and</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_xor">nb_inplace_xor</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_or">nb_inplace_or</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_floor_divide">nb_floor_divide</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_true_divide">nb_true_divide</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_floor_divide">nb_inplace_floor_divide</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_true_divide">nb_inplace_true_divide</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_index">nb_index</a></strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_matrix_multiply">nb_matrix_multiply</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyNumberMethods.html#nb_inplace_matrix_multiply">nb_inplace_matrix_multiply</a></strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_add"></span><code><strong>nb_add</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_subtract"></span><code><strong>nb_subtract</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_multiply"></span><code><strong>nb_multiply</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_remainder"></span><code><strong>nb_remainder</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_divmod"></span><code><strong>nb_divmod</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_power"></span><code><strong>nb_power</strong>: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_negative"></span><code><strong>nb_negative</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_positive"></span><code><strong>nb_positive</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_absolute"></span><code><strong>nb_absolute</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_bool"></span><code><strong>nb_bool</strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_invert"></span><code><strong>nb_invert</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_lshift"></span><code><strong>nb_lshift</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_rshift"></span><code><strong>nb_rshift</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_and"></span><code><strong>nb_and</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_xor"></span><code><strong>nb_xor</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_or"></span><code><strong>nb_or</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_int"></span><code><strong>nb_int</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_reserved"></span><code><strong>nb_reserved</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_float"></span><code><strong>nb_float</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_add"></span><code><strong>nb_inplace_add</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_subtract"></span><code><strong>nb_inplace_subtract</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_multiply"></span><code><strong>nb_inplace_multiply</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_remainder"></span><code><strong>nb_inplace_remainder</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_power"></span><code><strong>nb_inplace_power</strong>: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_lshift"></span><code><strong>nb_inplace_lshift</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_rshift"></span><code><strong>nb_inplace_rshift</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_and"></span><code><strong>nb_inplace_and</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_xor"></span><code><strong>nb_inplace_xor</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_or"></span><code><strong>nb_inplace_or</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_floor_divide"></span><code><strong>nb_floor_divide</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_true_divide"></span><code><strong>nb_true_divide</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_floor_divide"></span><code><strong>nb_inplace_floor_divide</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_true_divide"></span><code><strong>nb_inplace_true_divide</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_index"></span><code><strong>nb_index</strong>: <a href="uP4P.Types.html#unaryfunc">unaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_matrix_multiply"></span><code><strong>nb_matrix_multiply</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="nb_inplace_matrix_multiply"></span><code><strong>nb_inplace_matrix_multiply</strong>: <a href="uP4P.Types.html#binaryfunc">binaryfunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -29,7 +29,7 @@ type
 
       function GetInitialized: boolean;
       /// <summary>
-      /// <para>Discard a PyLongWriter created by PyLongWriter_Create().</para>
+      /// <para>Discard a PyLongWriter created by TPyLongWriter.Create().</para>
       /// <para>If writer is nil, no operation is performed.</para>
       /// <para>The writer instance and the digits array are invalid after the
       /// call.</para>
@@ -40,7 +40,7 @@ type
       constructor Create(writer: PPyLongWriter);
       destructor  Destroy; override;
       /// <summary>
-      /// <para>Finish a PyLongWriter created by PyLongWriter_Create().</para>
+      /// <para>Finish a PyLongWriter created by TPyLongWriter.Create().</para>
       /// <para>On success, return a Python int object. On error, set an
       /// exception and return nil.</para>
       /// <para>The function takes care of normalizing the digits and converts
@@ -60,13 +60,13 @@ type
       /// greater than 0.</para>
       /// <para>digits must not be nil.</para>
       /// <para>After a successful call to this function, the caller should fill
-      /// in the array of digits digits and then call PyLongWriter_Finish() to
+      /// in the array of digits digits and then call TPyLongWriter.Finish() to
       /// get a Python int. The layout of digits is described by
-      /// PyLong_GetNativeLayout().</para>
+      /// TPyLong.GetNativeLayout().</para>
       /// <para>Digits must be in the range [0; (1 << bits_per_digit) - 1]
       /// (where the bits_per_digit is the number of bits per digit).
       /// Any unused most significant digits must be set to 0.</para>
-      /// <para>Alternately, call PyLongWriter_Discard() to destroy the writer
+      /// <para>Alternately, call TPyLongWriter.Discard() to destroy the writer
       /// instance without creating an int object.</para>
       /// </summary>
       class function New(negative: boolean; ndigits: Py_ssize_t; var digits: Pointer): IPyLongWriter;

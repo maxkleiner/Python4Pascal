@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyFloat: Class TPyFloat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyFloat"></span><h1 class="cio">Class TPyFloat</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyFloat.html">uP4P.PyFloat</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyFloat = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyFloat_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/float.html#floating-point-objects">https://docs.python.org/3/c-api/float.html#floating-point-objects</a>&quot;&gt;See the article about Floating-Point Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyFloat</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#AsDouble-IPyObject-">AsDouble</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#FromDouble-double-">FromDouble</a></strong>(v: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#FromString-IPyObject-">FromString</a></strong>(const str: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#FromVariant-Variant-">FromVariant</a></strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#FromVariant-Variant-TVarType-">FromVariant</a></strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#ReturnNAN">ReturnNAN</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#ReturnINF-boolean-">ReturnINF</a></strong>(sign: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#GetMax">GetMax</a></strong>: double;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#GetMin">GetMin</a></strong>: double;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#GetInfo">GetInfo</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#Pack2-double-pbyte-boolean-">Pack2</a></strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#Pack4-double-pbyte-boolean-">Pack4</a></strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#Pack8-double-pbyte-boolean-">Pack8</a></strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#UnPack2-pbyte-boolean-">UnPack2</a></strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#UnPack4-pbyte-boolean-">UnPack4</a></strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFloat.TPyFloat.html#UnPack8-pbyte-boolean-">UnPack8</a></strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDouble-IPyObject-"></span><code>class function <strong>AsDouble</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a double representation of the contents of pyfloat. If pyfloat is not a Python floating-point object but has a __float__() method, this method will first be called to convert pyfloat into a float. If __float__() is not defined then it falls back to __index__(). This method returns -1.0 upon failure, so one should call TPyErr.Occurred() to check for errors.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDouble-double-"></span><code>class function <strong>FromDouble</strong>(v: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a PyFloatObject object from v, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromString-IPyObject-"></span><code>class function <strong>FromString</strong>(const str: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a PyFloatObject object based on the string value in str, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a Python float object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-TVarType-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a Python float object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReturnNAN"></span><code>class function <strong>ReturnNAN</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a TPyFloat that represents a quiet not-a-number (qNaN) value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReturnINF-boolean-"></span><code>class function <strong>ReturnINF</strong>(sign: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a TPyFloat that represents a infinity value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetMax"></span><code>class function <strong>GetMax</strong>: double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the maximum representable finite float DBL_MAX as double.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetMin"></span><code>class function <strong>GetMin</strong>: double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the minimum normalized positive float DBL_MIN as double.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInfo"></span><code>class function <strong>GetInfo</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a structseq instance which contains information about the precision, minimum and maximum values of a float. It's a thin wrapper around the header file float.h.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyFloatObject or a subtype of PyFloatObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyFloatObject, but not a subtype of PyFloatObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Pack2-double-pbyte-boolean-"></span><code>class function <strong>Pack2</strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pack a double as the IEEE 754 binary16 half-precision format.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Pack4-double-pbyte-boolean-"></span><code>class function <strong>Pack4</strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pack a double as the IEEE 754 binary32 half-precision format.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Pack8-double-pbyte-boolean-"></span><code>class function <strong>Pack8</strong>(const x: double; p: pbyte; le: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pack a double as the IEEE 754 binary64 half-precision format.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnPack2-pbyte-boolean-"></span><code>class function <strong>UnPack2</strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Unpack the IEEE 754 binary16 half-precision format as a double.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnPack4-pbyte-boolean-"></span><code>class function <strong>UnPack4</strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Unpack the IEEE 754 binary32 half-precision format as a double.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnPack8-pbyte-boolean-"></span><code>class function <strong>UnPack8</strong>(p: pbyte; le: boolean): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Unpack the IEEE 754 binary64 half-precision format as a double.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

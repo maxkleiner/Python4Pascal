@@ -79,7 +79,7 @@ type
       property ExitCode    : integer   read GetExitCode;
       /// <summary>
       /// <para>Is the status an error or an exit? If true, the exception must
-      /// be handled; by calling Py_ExitStatusException() for example.</para>
+      /// be handled; by calling TPy.ExitStatusException() for example.</para>
       /// </summary>
       property IsException : boolean   read GetIsException;
       /// <summary>

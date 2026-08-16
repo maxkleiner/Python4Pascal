@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyDateTimeModule: Class TPyDateTimeModule</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyDateTimeModule"></span><h1 class="cio">Class TPyDateTimeModule</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyDateTimeModule.html">uP4P.PyDateTimeModule</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyDateTimeModule = class(<a class="normal" href="uP4P.ImportedPyModule.TImportedPyModule.html">TImportedPyModule</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>TPyDateTimeModule imports the &quot;datetime&quot; module and gets several object types related to that module.
+
+<p>This class also includes several helper functions to create and convert &quot;datetime&quot; objects. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/datetime.html">https://docs.python.org/3/library/datetime.html</a>&quot;&gt;See the article about the &quot;datetime&quot; module.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal" href="uP4P.ImportedPyModule.TImportedPyModule.html">TImportedPyModule</a></li>
+<li class="thisitem">TPyDateTimeModule</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateType">FDateType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateTimeType">FDateTimeType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDeltaType">FDeltaType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FTimeType">FTimeType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FTZInfoType">FTZInfoType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FTimeTZType">FTimeTZType</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateTimeTZType">FDateTimeTZType</a></strong>: Pointer;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#Import">Import</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#Initialize">Initialize</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#Finalize">Finalize</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactDate-IPyObject-">CheckExactDate</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactDateTime-IPyObject-">CheckExactDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactDelta-IPyObject-">CheckExactDelta</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactTime-IPyObject-">CheckExactTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactTZInfo-IPyObject-">CheckExactTZInfo</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactTimeTZ-IPyObject-">CheckExactTimeTZ</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckExactDateTimeTZ-IPyObject-">CheckExactDateTimeTZ</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckDate-IPyObject-">CheckDate</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckDateTime-IPyObject-">CheckDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckDelta-IPyObject-">CheckDelta</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckTime-IPyObject-">CheckTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckTZInfo-IPyObject-">CheckTZInfo</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckTimeTZ-IPyObject-">CheckTimeTZ</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#CheckDateTimeTZ-IPyObject-">CheckDateTimeTZ</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#AsDate-IPyObject-integer-integer-integer-">AsDate</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#AsTime-IPyObject-integer-integer-integer-integer-">AsTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var hour, minute, second, microsecond: integer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#AsDelta-IPyObject-integer-integer-integer-">AsDelta</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var days, seconds, microseconds: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#AsDateTime-IPyObject-integer-integer-integer-integer-integer-integer-integer-">AsDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day, hour, minute, second, microsecond: integer): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#AsDateTime-IPyObject-TDateTime-">AsDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aDateTime : TDateTime): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FromDateTime-TDateTime-">FromDateTime</a></strong>(aDateTime: TDateTime): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FromDateTime-integer-integer-integer-integer-integer-integer-integer-">FromDateTime</a></strong>(year, month, day, hour, minute, second, msecond: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FromVariant-Variant-">FromVariant</a></strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FromVariant-Variant-TVarType-">FromVariant</a></strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#DateTimeType">DateTimeType</a></strong>   : Pointer  read <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateTimeType">FDateTimeType</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDateType"></span><code><strong>FDateType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDateTimeType"></span><code><strong>FDateTimeType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDeltaType"></span><code><strong>FDeltaType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FTimeType"></span><code><strong>FTimeType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FTZInfoType"></span><code><strong>FTZInfoType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FTimeTZType"></span><code><strong>FTimeTZType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDateTimeTZType"></span><code><strong>FDateTimeTZType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Import"></span><code>procedure <strong>Import</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Initialize"></span><code>procedure <strong>Initialize</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Finalize"></span><code>procedure <strong>Finalize</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactDate-IPyObject-"></span><code>function <strong>CheckExactDate</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;date&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactDateTime-IPyObject-"></span><code>function <strong>CheckExactDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;datetime&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactDelta-IPyObject-"></span><code>function <strong>CheckExactDelta</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;timedelta&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactTime-IPyObject-"></span><code>function <strong>CheckExactTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;time&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactTZInfo-IPyObject-"></span><code>function <strong>CheckExactTZInfo</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;tzinfo&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactTimeTZ-IPyObject-"></span><code>function <strong>CheckExactTimeTZ</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;timetz&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExactDateTimeTZ-IPyObject-"></span><code>function <strong>CheckExactDateTimeTZ</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if aPyObject is an instance of the &quot;datetimetz&quot; type. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckDate-IPyObject-"></span><code>function <strong>CheckDate</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;date&quot; object or an instance of a subtype of the &quot;date&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckDateTime-IPyObject-"></span><code>function <strong>CheckDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;datetime&quot; object or an instance of a subtype of the &quot;datetime&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckDelta-IPyObject-"></span><code>function <strong>CheckDelta</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;timedelta&quot; object or an instance of a subtype of the &quot;timedelta&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckTime-IPyObject-"></span><code>function <strong>CheckTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;time&quot; object or an instance of a subtype of the &quot;time&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckTZInfo-IPyObject-"></span><code>function <strong>CheckTZInfo</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;tzinfo&quot; object or an instance of a subtype of the &quot;tzinfo&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckTimeTZ-IPyObject-"></span><code>function <strong>CheckTimeTZ</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;timetz&quot; object or an instance of a subtype of the &quot;timetz&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckDateTimeTZ-IPyObject-"></span><code>function <strong>CheckDateTimeTZ</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a &quot;datetimetz&quot; object or an instance of a subtype of the &quot;datetimetz&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDate-IPyObject-integer-integer-integer-"></span><code>class function <strong>AsDate</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert aPyObject to year, month, day.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsTime-IPyObject-integer-integer-integer-integer-"></span><code>class function <strong>AsTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var hour, minute, second, microsecond: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert aPyObject to hour, minute, second, microsecond.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDelta-IPyObject-integer-integer-integer-"></span><code>class function <strong>AsDelta</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var days, seconds, microseconds: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert aPyObject to days, seconds, microseconds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDateTime-IPyObject-integer-integer-integer-integer-integer-integer-integer-"></span><code>class function <strong>AsDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day, hour, minute, second, microsecond: integer): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert aPyObject to year, month, day, hour, minute, second, microsecond.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDateTime-IPyObject-TDateTime-"></span><code>class function <strong>AsDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aDateTime : TDateTime): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert aPyObject to TDateTime.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDateTime-TDateTime-"></span><code>class function <strong>FromDateTime</strong>(aDateTime: TDateTime): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a datetime object from a TDateTime.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDateTime-integer-integer-integer-integer-integer-integer-integer-"></span><code>class function <strong>FromDateTime</strong>(year, month, day, hour, minute, second, msecond: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a datetime object from year, month, day, hour, minute, second, msecond.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python datetime object from a Variant.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-TVarType-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python datetime object from a Variant.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTimeType"></span><code>property <strong>DateTimeType</strong>   : Pointer  read <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateTimeType">FDateTimeType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Pointer to the &quot;datetime&quot; type. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -233,7 +233,7 @@ type
       /// <para>Set the tracing function to func. This is similar to
       /// TPyEval.SetProfile(), except the tracing function does receive
       /// line-number events and per-opcode events, but does not receive any
-      /// event related to C function objects being called. Any trace function
+      /// event related to function objects being called. Any trace function
       /// registered using TPyEval.SetTrace() will not receive
       /// PyTrace_C_CALL, PyTrace_C_EXCEPTION or PyTrace_C_RETURN as a value
       /// for the what parameter.</para>

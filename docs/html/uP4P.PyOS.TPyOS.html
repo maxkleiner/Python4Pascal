@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyOS: Class TPyOS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyOS"></span><h1 class="cio">Class TPyOS</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyOS.html">uP4P.PyOS</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyOS = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyOS_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/sys.html#operating-system-utilities">https://docs.python.org/3/c-api/sys.html#operating-system-utilities</a>&quot;&gt;See the article about Operating System Utilities.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer">https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer</a>&quot;&gt;See the article about The Very High Level Layer.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/conversion.html#string-conversion-and-formatting">https://docs.python.org/3/c-api/conversion.html#string-conversion-and-formatting</a>&quot;&gt;See the article about String conversion and formatting.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyOS</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#strtoul-string-integer-">strtoul</a></strong>(const str: string; base: integer): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#strtol-string-integer-">strtol</a></strong>(const str: string; base: integer): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#CheckStack">CheckStack</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#Readline-PFILE-PFILE-string-">Readline</a></strong>(sys_stdin, sys_stdout: <a href="uP4P.Types.html#PFILE">PFILE</a>; const prompt: string): string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#getsig-integer-">getsig</a></strong>(i: integer): <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#setsig-integer-PyOS_sighandler_t-">setsig</a></strong>(i: integer; s: <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>): <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#FSPath-IPyObject-">FSPath</a></strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#InterruptOccurred">InterruptOccurred</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#string_to_double-string-IPyObject-">string_to_double</a></strong>(const str: string; const overflow_exception: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#double_to_string-double-TPyDoubleToStringFormatCode-integer-integer-">double_to_string</a></strong>(val: double; format_code: <a href="uP4P.Types.html#TPyDoubleToStringFormatCode">TPyDoubleToStringFormatCode</a>; flags: integer; out ptype: integer): string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#mystrnicmp-PAnsiChar-PAnsiChar-Py_ssize_t-">mystrnicmp</a></strong>(const str1, str2: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): integer; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#mystrnicmp-string-string-Py_ssize_t-">mystrnicmp</a></strong>(const str1, str2: string; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): integer; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#mystricmp-PAnsiChar-PAnsiChar-">mystricmp</a></strong>(const str1, str2: PAnsiChar): integer; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyOS.TPyOS.html#mystricmp-string-string-">mystricmp</a></strong>(const str1, str2: string): integer; overload;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="strtoul-string-integer-"></span><code>class function <strong>strtoul</strong>(const str: string; base: integer): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert the initial part of the string in str to a C_ULong value according to the given base, which must be between 2 and 36 inclusive, or be the special value 0.
+
+<p>Leading white space and case of characters are ignored. If base is zero it looks for a leading 0b, 0o or 0x to tell which base. If these are absent it defaults to 10. Base must be 0 or between 2 and 36 (inclusive). If ptr is non-nil it will contain a pointer to the end of the scan.
+
+<p>If the converted value falls out of range of corresponding return type, range error occurs (errno is set to ERANGE) and ULONG_MAX is returned. If no conversion can be performed, 0 is returned.
+
+<p>See also the Unix man page strtoul(3).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="strtol-string-integer-"></span><code>class function <strong>strtol</strong>(const str: string; base: integer): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert the initial part of the string in str to an long value according to the given base, which must be between 2 and 36 inclusive, or be the special value 0.
+
+<p>Same as TPyOS.strtoul(), but return a long value instead and LONG_MAX on overflows.
+
+<p>See also the Unix man page strtol(3).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckStack"></span><code>class function <strong>CheckStack</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true when the interpreter runs out of stack space. This is a reliable check, but is only available when USE_STACKCHECK is defined (currently on certain versions of Windows using the Microsoft Visual C++ compiler). USE_STACKCHECK will be defined automatically; you should never change the definition in your own code.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Readline-PFILE-PFILE-string-"></span><code>class function <strong>Readline</strong>(sys_stdin, sys_stdout: <a href="uP4P.Types.html#PFILE">PFILE</a>; const prompt: string): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="getsig-integer-"></span><code>class function <strong>getsig</strong>(i: integer): <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the current signal handler for signal i. This is a thin wrapper around either sigaction() or signal(). Do not call those functions directly!
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="setsig-integer-PyOS_sighandler_t-"></span><code>class function <strong>setsig</strong>(i: integer; s: <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>): <a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the signal handler for signal i to be h; return the old signal handler. This is a thin wrapper around either sigaction() or signal(). Do not call those functions directly!
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FSPath-IPyObject-"></span><code>class function <strong>FSPath</strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true when the interpreter runs out of stack space. This is a reliable check, but is only available when USE_STACKCHECK is defined (currently on certain versions of Windows using the Microsoft Visual C++ compiler). USE_STACKCHECK will be defined automatically; you should never change the definition in your own code.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InterruptOccurred"></span><code>class function <strong>InterruptOccurred</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Check if a SIGINT signal has been received.
+
+<p>Returns True if a SIGINT has occurred and clears the signal flag, or False otherwise.
+
+<p>In most cases, you should prefer TPyErr.CheckSignals() over this function. TPyErr.CheckSignals() invokes the appropriate signal handlers for all pending signals, allowing Python code to handle the signal properly. This function only detects SIGINT and does not invoke any Python signal handlers.
+
+<p>This function is async-signal-safe and this function cannot fail. The caller must hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="string_to_double-string-IPyObject-"></span><code>class function <strong>string_to_double</strong>(const str: string; const overflow_exception: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert a string s to a double, raising a Python exception on failure. The set of accepted strings corresponds to the set of strings accepted by Python's float() constructor, except that s must not have leading or trailing whitespace. The conversion is independent of the current locale.
+
+<p>If endptr is nil, convert the whole string. Raise ValueError and return -1.0 if the string is not a valid representation of a floating-point number.
+
+<p>If s represents a value that is too large to store in a float (for example, &quot;1e500&quot; is such a string on many platforms) then if overflow_exception is nil return Py_INFINITY (with an appropriate sign) and don't set any exception. Otherwise, overflow_exception must point to a Python exception object; raise that exception and return -1.0. In both cases, set *endptr to point to the first character after the converted value.
+
+<p>If any other error occurs during the conversion (for example an out-of-memory error), set the appropriate Python exception and return -1.0.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="double_to_string-double-TPyDoubleToStringFormatCode-integer-integer-"></span><code>class function <strong>double_to_string</strong>(val: double; format_code: <a href="uP4P.Types.html#TPyDoubleToStringFormatCode">TPyDoubleToStringFormatCode</a>; flags: integer; out ptype: integer): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert a double val to a string using supplied format_code, precision, and flags.
+
+<p>format_code must be one of 'e', 'E', 'f', 'F', 'g', 'G' or 'r'. For 'r', the supplied precision must be 0 and is ignored. The 'r' format code specifies the standard repr() format.
+
+<p>flags can be zero or more of the Py_DTSF_* constants.
+
+<p>ptype will be set to one of the Py_DTST_* constants.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="mystrnicmp-PAnsiChar-PAnsiChar-Py_ssize_t-"></span><code>class function <strong>mystrnicmp</strong>(const str1, str2: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Case insensitive comparison of strings. These functions work almost identically to strcmp() and strncmp() (respectively), except that they ignore the case of ASCII characters.
+
+<p>Return 0 if the strings are equal, a negative value if str1 sorts lexicographically before str2, or a positive value if it sorts after.
+
+<p>In the str1 or str2 arguments, a NUL byte marks the end of the string. For TPyOS.mystrnicmp(), the size argument gives the maximum size of the string, as if NUL was present at the index given by size.
+
+<p>These functions do not use the locale.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="mystrnicmp-string-string-Py_ssize_t-"></span><code>class function <strong>mystrnicmp</strong>(const str1, str2: string; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Case insensitive comparison of strings. These functions work almost identically to strcmp() and strncmp() (respectively), except that they ignore the case of ASCII characters.
+
+<p>Return 0 if the strings are equal, a negative value if str1 sorts lexicographically before str2, or a positive value if it sorts after.
+
+<p>In the str1 or str2 arguments, a NUL byte marks the end of the string. For TPyOS.mystrnicmp(), the size argument gives the maximum size of the string, as if NUL was present at the index given by size.
+
+<p>These functions do not use the locale.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="mystricmp-PAnsiChar-PAnsiChar-"></span><code>class function <strong>mystricmp</strong>(const str1, str2: PAnsiChar): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Case insensitive comparison of strings. These functions work almost identically to strcmp() and strncmp() (respectively), except that they ignore the case of ASCII characters.
+
+<p>Return 0 if the strings are equal, a negative value if str1 sorts lexicographically before str2, or a positive value if it sorts after.
+
+<p>In the str1 or str2 arguments, a NUL byte marks the end of the string.
+
+<p>These functions do not use the locale.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="mystricmp-string-string-"></span><code>class function <strong>mystricmp</strong>(const str1, str2: string): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Case insensitive comparison of strings. These functions work almost identically to strcmp() and strncmp() (respectively), except that they ignore the case of ASCII characters.
+
+<p>Return 0 if the strings are equal, a negative value if str1 sorts lexicographically before str2, or a positive value if it sorts after.
+
+<p>In the str1 or str2 arguments, a NUL byte marks the end of the string.
+
+<p>These functions do not use the locale.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

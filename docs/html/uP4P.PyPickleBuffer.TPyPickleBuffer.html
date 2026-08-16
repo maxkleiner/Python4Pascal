@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyPickleBuffer: Class TPyPickleBuffer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyPickleBuffer"></span><h1 class="cio">Class TPyPickleBuffer</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyPickleBuffer.html">uP4P.PyPickleBuffer</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyPickleBuffer = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyPickleBuffer_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/picklebuffer.html#pickle-buffer-objects">https://docs.python.org/3/c-api/picklebuffer.html#pickle-buffer-objects</a>&quot;&gt;See the article about Pickle buffer objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyPickleBuffer</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyPickleBuffer.TPyPickleBuffer.html#Check-IPyObject-">Check</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyPickleBuffer.TPyPickleBuffer.html#FromObject-IPyObject-">FromObject</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyPickleBuffer.TPyPickleBuffer.html#GetBuffer-IPyObject-">GetBuffer</a></strong>(const picklebuf: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPy_buffer">PPy_buffer</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyPickleBuffer.TPyPickleBuffer.html#Release-IPyObject-">Release</a></strong>(const picklebuf: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if op is a pickle buffer instance. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromObject-IPyObject-"></span><code>class function <strong>FromObject</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a pickle buffer from the object obj.
+
+<p>This function will fail if obj doesn't support the buffer protocol.
+
+<p>On success, return a new pickle buffer instance. On failure, set an exception and return nil.
+
+<p>Analogous to calling pickle.PickleBuffer with obj in Python.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBuffer-IPyObject-"></span><code>class function <strong>GetBuffer</strong>(const picklebuf: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPy_buffer">PPy_buffer</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get a pointer to the underlying Py_buffer that the pickle buffer wraps.
+
+<p>The returned pointer is valid as long as picklebuf is alive and has not been released. The caller must not modify or free the returned Py_buffer. If the pickle buffer has been released, raise ValueError.
+
+<p>On success, return a pointer to the buffer view. On failure, set an exception and return nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Release-IPyObject-"></span><code>class function <strong>Release</strong>(const picklebuf: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release the underlying buffer held by the pickle buffer.
+
+<p>Return True on success. On failure, set an exception and return False.
+
+<p>Analogous to calling pickle.PickleBuffer.release() in Python.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

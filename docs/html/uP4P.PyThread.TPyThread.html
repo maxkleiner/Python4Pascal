@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyThread: Class TPyThread</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyThread"></span><h1 class="cio">Class TPyThread</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyThread.html">uP4P.PyThread</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyThread = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyThread_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/threads.html#operating-system-thread-apis">https://docs.python.org/3/c-api/threads.html#operating-system-thread-apis</a>&quot;&gt;See the article about Operating system thread APIs.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyThread</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyThread.TPyThread.html#init_thread">init_thread</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#start_new_thread-PyThread_start_new_thread_func-Pointer-">start_new_thread</a></strong>(func_: <a href="uP4P.Types.html#PyThread_start_new_thread_func">PyThread_start_new_thread_func</a>; arg: Pointer): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#get_thread_ident">get_thread_ident</a></strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#get_thread_native_id">get_thread_native_id</a></strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#get_stacksize">get_stacksize</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#set_stacksize-NativeUInt-">set_stacksize</a></strong>(size_: NativeUInt): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThread.TPyThread.html#GetInfo">GetInfo</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="init_thread"></span><code>class procedure <strong>init_thread</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initialize PyThread* APIs. Python executes this function automatically, so there's little need to call it from an extension module.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="start_new_thread-PyThread_start_new_thread_func-Pointer-"></span><code>class function <strong>start_new_thread</strong>(func_: <a href="uP4P.Types.html#PyThread_start_new_thread_func">PyThread_start_new_thread_func</a>; arg: Pointer): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Start function func in a new thread with argument arg. The resulting thread is not intended to be joined.
+
+<p>func must not be nil, but arg may be nil.
+
+<p>On success, this function returns the identifier of the new thread; on failure, this returns PYTHREAD_INVALID_THREAD_ID.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="get_thread_ident"></span><code>class function <strong>get_thread_ident</strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the identifier of the current thread, which will never be zero.
+
+<p>This function cannot fail, and the caller does not need to hold an attached thread state.
+
+<p>See also threading.get_ident()
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="get_thread_native_id"></span><code>class function <strong>get_thread_native_id</strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the native identifier of the current thread as it was assigned by the operating system's kernel, which will never be less than zero.
+
+<p>This function is only available when PY_HAVE_THREAD_NATIVE_ID is defined.
+
+<p>This function cannot fail, and the caller does not need to hold an attached thread state.
+
+<p>See also threading.get_native_id()
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="get_stacksize"></span><code>class function <strong>get_stacksize</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the stack size of the current thread in bytes, or 0 if the system's default stack size is in use.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="set_stacksize-NativeUInt-"></span><code>class function <strong>set_stacksize</strong>(size_: NativeUInt): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the stack size of the current thread to size bytes.
+
+<p>This function returns 0 on success, -1 if size is invalid, or -2 if the system does not support changing the stack size. This function does not set exceptions.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInfo"></span><code>class function <strong>GetInfo</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get general information about the current thread in the form of a struct sequence object. This information is accessible as sys.thread_info in Python.
+
+<p>On success, this returns a new strong reference to the thread information; on failure, this returns nil with an exception set.
+
+<p>The caller must hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

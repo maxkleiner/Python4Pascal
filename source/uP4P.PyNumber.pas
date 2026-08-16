@@ -213,7 +213,7 @@ type
       /// The operation is done in-place when o1 supports it. This is the
       /// equivalent of the Python statement o1 **= o2 when o3 is Py_None, or
       /// an in-place variant of pow(o1, o2, o3) otherwise. If o3 is to be
-      /// ignored, pass Py_None in its place (passing NULL for o3 would cause
+      /// ignored, pass Py_None in its place (passing nil for o3 would cause
       /// an illegal memory access).</para>
       /// </summary>
       class function InPlacePower(const o1, o2, o3: IPyObject): IPyObject;

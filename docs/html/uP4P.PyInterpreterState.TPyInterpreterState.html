@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyInterpreterState: Class TPyInterpreterState</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyInterpreterState"></span><h1 class="cio">Class TPyInterpreterState</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyInterpreterState.html">uP4P.PyInterpreterState</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyInterpreterState = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>This class represents the state shared by a number of cooperating threads. Threads belonging to the same interpreter share their module administration and a few other internal items. There are no public members in this structure.
+
+<p>Threads belonging to different interpreters initially share nothing, except process state like available memory, open file descriptors and such. The global interpreter lock is also shared by all threads, regardless of to which interpreter they belong.
+
+<p>Changed in version 3.12: PEP 684 introduced the possibility of a per-interpreter GIL. See TPy.NewInterpreterFromConfig().
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/subinterpreters.html">https://docs.python.org/3/c-api/subinterpreters.html</a>&quot;&gt;See the Multiple interpreters in a Python process article.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyInterpreterState</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#FPyInterpreterState">FPyInterpreterState</a></strong>: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetState">GetState</a></strong>: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetID">GetID</a></strong>: int64;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetDict">GetDict</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#SetState-PPyInterpreterState-">SetState</a></strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Clear">Clear</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Delete">Delete</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Next">Next</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#ThreadHead">ThreadHead</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Create-PPyInterpreterState-">Create</a></strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Wrap-PPyInterpreterState-">Wrap</a></strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>): <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#New">New</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Get">Get</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Main">Main</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Head">Head</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#IsInitialized-IPyInterpreterState-">IsInitialized</a></strong>(const aPyInterpreterState: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>): boolean;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Initialized">Initialized</a></strong>  : boolean               read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#State">State</a></strong>        : <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>   read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetState">GetState</a>         write <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#SetState-PPyInterpreterState-">SetState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#ID">ID</a></strong>           : int64                 read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetID">GetID</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterState.TPyInterpreterState.html#Dict">Dict</a></strong>         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetDict">GetDict</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPyInterpreterState"></span><code><strong>FPyInterpreterState</strong>: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetState"></span><code>function <strong>GetState</strong>: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetID"></span><code>function <strong>GetID</strong>: int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetDict"></span><code>function <strong>GetDict</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetState-PPyInterpreterState-"></span><code>procedure <strong>SetState</strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Clear"></span><code>procedure <strong>Clear</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Reset all information in an interpreter state object. There must be an attached thread state for the interpreter.
+
+<p>Raises an auditing event cpython.PyInterpreterState_Clear with no arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Delete"></span><code>procedure <strong>Delete</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Destroy an interpreter state object. There should not be an attached thread state for the target interpreter. The interpreter state must have been reset with a previous call to Clear().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Next"></span><code>function <strong>Next</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the next interpreter state object after interp from the list of all such objects.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ThreadHead"></span><code>function <strong>ThreadHead</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the pointer to the first PyThreadState object in the list of threads associated with the interpreter interp.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PPyInterpreterState-"></span><code>constructor <strong>Create</strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Wrap-PPyInterpreterState-"></span><code>class function <strong>Wrap</strong>(aState: <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>): <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New"></span><code>class function <strong>New</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new interpreter state object. An attached thread state is not needed, but may optionally exist if it is necessary to serialize calls to this function.
+
+<p>Raises an auditing event cpython.PyInterpreterState_New with no arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get"></span><code>class function <strong>Get</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the current interpreter.
+
+<p>Issue a fatal error if there is no attached thread state. It cannot return nil.
+
+<p>Added in version 3.9.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Main"></span><code>class function <strong>Main</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the main interpreter state object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Head"></span><code>class function <strong>Head</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the interpreter state object at the head of the list of all such objects.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInitialized-IPyInterpreterState-"></span><code>class function <strong>IsInitialized</strong>(const aPyInterpreterState: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Helper function to check if an IPyInterpreterState instance is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean               read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="State"></span><code>property <strong>State</strong>        : <a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a>   read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetState">GetState</a>         write <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#SetState-PPyInterpreterState-">SetState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyInterpreterState
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ID"></span><code>property <strong>ID</strong>           : int64                 read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetID">GetID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the interpreter's unique ID. If there was any error in doing so then -1 is returned and an error is set.
+
+<p>The caller must have an attached thread state.
+
+<p>Added in version 3.7.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Dict"></span><code>property <strong>Dict</strong>         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyInterpreterState.TPyInterpreterState.html#GetDict">GetDict</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a dictionary in which interpreter-specific data may be stored. If this function returns nil then no exception has been raised and the caller should assume no interpreter-specific dict is available.
+
+<p>This is not a replacement for TPyModule.GetState(), which extensions should use to store interpreter-specific state information.
+
+<p>The returned dictionary is borrowed from the interpreter and is valid until interpreter shutdown.
+
+<p>Added in version 3.8.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

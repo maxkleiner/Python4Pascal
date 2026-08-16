@@ -17,11 +17,13 @@ uses
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
-  ///<summary>
-  ///<para>Custom TVarData record used by TPyObjectVariantType.</para>
-  ///<para>The size of TVarData is 16 bytes on 32-bit (x86) systems and 24 bytes on 64-bit (x64) systems.</para>
-  ///<para>The size difference is primarily caused by pointer size changes and stricter data alignment rules on 64-bit architectures.</para>
-  ///</summary>
+  /// <summary>
+  /// <para>Custom TVarData record used by TPyObjectVariantType.</para>
+  /// <para>The size of TVarData is 16 bytes on 32-bit (x86) systems and 24
+  /// bytes on 64-bit (x64) systems.</para>
+  /// <para>The size difference is primarily caused by pointer size changes and
+  /// stricter data alignment rules on 64-bit architectures.</para>
+  /// </summary>
   TPyObjectVarData = packed record
     VType      : TVarType;
     Reserved1  : Word;
@@ -34,9 +36,9 @@ type
     {$ENDIF TARGET_64BITS}
   end;
 
-  ///<summary>
+  /// <summary>
   /// PyObject custom variant type helper class.
-  ///</summary>
+  /// </summary>
   TPyObjectVariantType = class(TInvokeableVariantType, IVarInstanceReference)
     protected
       FNamedParams : TNamedParamArray;
@@ -102,9 +104,9 @@ type
   end;
 
 var
-  ///<summary>
+  /// <summary>
   /// PyObject custom variant type helper instance.
-  ///</summary>
+  /// </summary>
   PyObjectVariantType : TPyObjectVariantType = nil;
 
 implementation

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyComplex: Class TPyComplex</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyComplex"></span><h1 class="cio">Class TPyComplex</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyComplex.html">uP4P.PyComplex</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyComplex = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyComplex_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/complex.html#complex-number-objects">https://docs.python.org/3/c-api/complex.html#complex-number-objects</a>&quot;&gt;See the article about the Complex Number Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyComplex</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#RealAsDouble-IPyObject-">RealAsDouble</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#ImagAsDouble-IPyObject-">ImagAsDouble</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#AsCComplex-IPyObject-">AsCComplex</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.Py_complex.html">Py_complex</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#FromDoubles-double-double-">FromDoubles</a></strong>(const real, imag: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#FromCComplex-Py_complex-">FromCComplex</a></strong>(const v: <a href="uP4P.Types.Py_complex.html">Py_complex</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyComplex.TPyComplex.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RealAsDouble-IPyObject-"></span><code>class function <strong>RealAsDouble</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the real part of op as a double.
+
+<p>If op is not a Python complex number object but has a __complex__() method, this method will first be called to convert op to a Python complex number object. If __complex__() is not defined then it falls back to call TPyFloat.AsDouble() and returns its result.
+
+<p>Upon failure, this method returns -1.0 with an exception set, so one should call TPyErr.Occurred() to check for errors.
+
+<p>Changed in version 3.13: Use __complex__() if available.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImagAsDouble-IPyObject-"></span><code>class function <strong>ImagAsDouble</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the imaginary part of op as a C double.
+
+<p>If op is not a Python complex number object but has a __complex__() method, this method will first be called to convert op to a Python complex number object. If __complex__() is not defined then it falls back to call TPyFloat.AsDouble() and returns 0.0 on success.
+
+<p>Upon failure, this method returns -1.0 with an exception set, so one should call PyErr_Occurred() to check for errors.
+
+<p>Changed in version 3.13: Use __complex__() if available.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsCComplex-IPyObject-"></span><code>class function <strong>AsCComplex</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.Py_complex.html">Py_complex</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the Py_complex value of the complex number op.
+
+<p>If op is not a Python complex number object but has a __complex__() method, this method will first be called to convert op to a Python complex number object. If __complex__() is not defined then it falls back to __float__(). If __float__() is not defined then it falls back to __index__().
+
+<p>Upon failure, this method returns Py_complex with real set to -1.0 and with an exception set, so one should call TPyErr.Occurred() to check for errors.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDoubles-double-double-"></span><code>class function <strong>FromDoubles</strong>(const real, imag: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyComplexObject object from real and imag. Return nil with an exception set on error.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromCComplex-Py_complex-"></span><code>class function <strong>FromCComplex</strong>(const v: <a href="uP4P.Types.Py_complex.html">Py_complex</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new Python complex number object from a Py_complex value. Return nil with an exception set on error.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyComplexObject or a subtype of PyComplexObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyComplexObject, but not a subtype of PyComplexObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

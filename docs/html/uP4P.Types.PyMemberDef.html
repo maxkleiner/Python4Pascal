@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyMemberDef</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyMemberDef"></span><h1 class="cio">Record PyMemberDef</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyMemberDef = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record which describes an attribute of a type which corresponds to a C struct member. When defining a class, put a nil-terminated array of these structures in the tp_members slot. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMemberDef">https://docs.python.org/3/c-api/structures.html#c.PyMemberDef</a>&quot;&gt;See the article about PyMemberDef.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyMemberDef.html#name">name</a></strong>: PAnsiChar;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyMemberDef.html#type_">type_</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyMemberDef.html#offset">offset</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyMemberDef.html#flags">flags</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyMemberDef.html#doc">doc</a></strong>: PAnsiChar;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="name"></span><code><strong>name</strong>: PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name of the member. A nil value marks the end of a PyMemberDef[] array. The string should be static, no copy is made of it. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="type_"></span><code><strong>type_</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The type of the member in the C struct. See Member types for the possible values. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="offset"></span><code><strong>offset</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The offset in bytes that the member is located on the type's object struct. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="flags"></span><code><strong>flags</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Zero or more of the Member flags, combined using bitwise OR. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="doc"></span><code><strong>doc</strong>: PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The docstring, or nil. The string should be static, no copy is made of it. Typically, it is defined using PyDoc_STR. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

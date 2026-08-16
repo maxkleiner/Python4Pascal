@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyCapsule: Class TPyCapsule</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyCapsule"></span><h1 class="cio">Class TPyCapsule</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyCapsule.html">uP4P.PyCapsule</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyCapsule = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyCapsule_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/capsule.html#capsules">https://docs.python.org/3/c-api/capsule.html#capsules</a>&quot;&gt;See the article about Capsules.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyCapsule</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#New-Pointer-PAnsiChar-PyCapsule_Destructor-">New</a></strong>(pointer_: Pointer; const name_: PAnsiChar; destructor_: <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#GetPointer-IPyObject-string-">GetPointer</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#GetDestructor-IPyObject-">GetDestructor</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#GetName-IPyObject-">GetName</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#GetContext-IPyObject-">GetContext</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#IsValid-IPyObject-string-">IsValid</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#SetPointer-IPyObject-Pointer-">SetPointer</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pointer_: Pointer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#SetDestructor-IPyObject-PyCapsule_Destructor-">SetDestructor</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; destructor_: <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#SetName-IPyObject-PAnsiChar-">SetName</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: PAnsiChar): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#SetContext-IPyObject-Pointer-">SetContext</a></strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; context: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyCapsule.TPyCapsule.html#Import-string-">Import</a></strong>(const name_: string): Pointer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyCapsule. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-Pointer-PAnsiChar-PyCapsule_Destructor-"></span><code>class function <strong>New</strong>(pointer_: Pointer; const name_: PAnsiChar; destructor_: <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a PyCapsule encapsulating the pointer. The pointer_ argument may not be nil.
+
+<p>On failure, set an exception and return nil.
+
+<p>The name_ string may either be nil or a pointer to a valid C string. If non-nil, this string must outlive the capsule. (Though it is permitted to free it inside the destructor.)
+
+<p>If the destructor_ argument is not nil, it will be called with the capsule as its argument when it is destroyed.
+
+<p>If this capsule will be stored as an attribute of a module, the name should be specified as modulename.attributename. This will enable other modules to import the capsule using TPyCapsule.Import().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPointer-IPyObject-string-"></span><code>class function <strong>GetPointer</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Retrieve the pointer stored in the capsule. On failure, set an exception and return nil.
+
+<p>The name parameter must compare exactly to the name stored in the capsule. If the name stored in the capsule is nil, the name passed in must also be nil. Python uses the C function strcmp() to compare capsule names.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetDestructor-IPyObject-"></span><code>class function <strong>GetDestructor</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the current destructor stored in the capsule. On failure, set an exception and return nil.
+
+<p>It is legal for a capsule to have a nil destructor. This makes a nil return code somewhat ambiguous; use TPyCapsule.IsValid() or TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetName-IPyObject-"></span><code>class function <strong>GetName</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the current name stored in the capsule. On failure, set an exception and return nil.
+
+<p>It is legal for a capsule to have a nil name. This makes a nil return code somewhat ambiguous; use TPyCapsule.IsValid() or TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetContext-IPyObject-"></span><code>class function <strong>GetContext</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the current context stored in the capsule. On failure, set an exception and return nil.
+
+<p>It is legal for a capsule to have a nil context. This makes a nil return code somewhat ambiguous; use TPyCapsule.IsValid() or TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsValid-IPyObject-string-"></span><code>class function <strong>IsValid</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Determines whether or not capsule is a valid capsule. A valid capsule is non-nil, passes TPyCapsule.CheckExact(), has a non-nil pointer stored in it, and its internal name matches the name parameter. (See TPyCapsule.GetPointer() for information on how capsule names are compared.)
+
+<p>In other words, if TPyCapsule.IsValid() returns a true value, calls to any of the accessors (any function starting with TPyCapsule.Get) are guaranteed to succeed.
+
+<p>Return True if the object is valid and matches the name passed in. Return False otherwise. This function will not fail.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetPointer-IPyObject-Pointer-"></span><code>class function <strong>SetPointer</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pointer_: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the void pointer inside capsule to pointer. The pointer may not be nil.
+
+<p>Return True on success. Return False and set an exception on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetDestructor-IPyObject-PyCapsule_Destructor-"></span><code>class function <strong>SetDestructor</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; destructor_: <a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the destructor inside capsule to destructor.
+
+<p>Return True on success. Return False and set an exception on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetName-IPyObject-PAnsiChar-"></span><code>class function <strong>SetName</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: PAnsiChar): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the name inside capsule to name. If non-nil, the name must outlive the capsule. If the previous name stored in the capsule was not nil, no attempt is made to free it.
+
+<p>Return True on success. Return False and set an exception on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetContext-IPyObject-Pointer-"></span><code>class function <strong>SetContext</strong>(const capsule: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; context: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the context pointer inside capsule to context.
+
+<p>Return True on success. Return False and set an exception on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Import-string-"></span><code>class function <strong>Import</strong>(const name_: string): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Import a pointer to a C object from a capsule attribute in a module. The name parameter should specify the full name to the attribute, as in module.attribute. The name stored in the capsule must match this string exactly.
+
+<p>This function splits name on the . character, and imports the first element. It then processes further elements using attribute lookups.
+
+<p>Return the capsule's internal pointer on success. On failure, set an exception and return nil.
+
+<p>Note: If name points to an attribute of some submodule or subpackage, this submodule or subpackage must be previously imported using other means (for example, by using TPyImport.ImportModule()) for the attribute lookups to succeed.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

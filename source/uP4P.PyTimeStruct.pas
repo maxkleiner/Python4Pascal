@@ -22,7 +22,7 @@ type
   /// the "time" module (See TPyTimeModule)</para>
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://docs.python.org/3/library/time.html">See the article about time — Time access and conversions.</see></para>
+  /// <para><see href="https://docs.python.org/3/library/time.html">See the article about time - Time access and conversions.</see></para>
   /// </remarks>
   TPyTimeStruct = class
     public

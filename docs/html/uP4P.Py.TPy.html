@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Py: Class TPy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPy"></span><h1 class="cio">Class TPy</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Py.html">uP4P.Py</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPy = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper for all the Py_* functions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/object.html#object-protocol">https://docs.python.org/3/c-api/object.html#object-protocol</a>&quot;&gt;See the article about the Object Protocol.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPy</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#FatalError-string-">FatalError</a></strong>(const message_: string);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#UniversalNewlineFgets-PByte-integer-PFILE-">UniversalNewlineFgets</a></strong>(buf: PByte; n: integer; stream: <a href="uP4P.Types.html#PFILE">PFILE</a>): PByte;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetArgcArgv-integer-TStringList-">GetArgcArgv</a></strong>(var argc: integer; var argv: TStringList): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetArgcArgv-integer-PPWCharT-">GetArgcArgv</a></strong>(out argc: integer; out argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#InitializeFromInitConfig-IPyInitConfig-">InitializeFromInitConfig</a></strong>(const initconfig: <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#InitializeFromConfig-PPyConfig-">InitializeFromConfig</a></strong>(config: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsIntialized">IsIntialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GenericAlias-IPyObject-IPyObject-">GenericAlias</a></strong>(const origin, args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsTrue-IPyObject-">IsTrue</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsFalse-IPyObject-">IsFalse</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsNone-IPyObject-">IsNone</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#Type_-IPyObject-">Type_</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsType-IPyObject-PPyTypeObject-">IsType</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#RefCnt-IPyObject-">RefCnt</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#IncRef-IPyObject-">IncRef</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#IncRef-PPyObject-">IncRef</a></strong>(const aPyObject: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#DecRef-IPyObject-">DecRef</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#DecRef-PPyObject-">DecRef</a></strong>(const aPyObject: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#NewRef-IPyObject-">NewRef</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#NewRef-PPyConfig-">NewRef</a></strong>(aPyObject: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#XNewRef-IPyObject-">XNewRef</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#XNewRef-PPyConfig-">XNewRef</a></strong>(aPyObject: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#Is_-IPyObject-IPyObject-">Is_</a></strong>(const x, y: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#Is_-PPyObject-PPyObject-">Is_</a></strong>(const x, y: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetConstant-cardinal-">GetConstant</a></strong>(constant_id: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetConstantBorrowed-cardinal-">GetConstantBorrowed</a></strong>(constant_id: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#ReprEnter-IPyObject-">ReprEnter</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#ReprLeave-IPyObject-">ReprLeave</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#CompileString-string-string-TPyStartSymbols-">CompileString</a></strong>(const str: string; const filename: string = <a href="uP4P.Constants.html#DEFAULT_COMPILE_FILENAME">DEFAULT_COMPILE_FILENAME</a>; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a> = <a href="uP4P.Types.html#ssFile">ssFile</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#CompileStringFlags-string-string-TPyStartSymbols-PPyCompilerFlags-">CompileStringFlags</a></strong>(const str, filename: string; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#CompileStringExFlags-string-string-TPyStartSymbols-PPyCompilerFlags-integer-">CompileStringExFlags</a></strong>(const str, filename: string; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>; optimize: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#CompileStringObject-string-IPyObject-TPyStartSymbols-PPyCompilerFlags-integer-">CompileStringObject</a></strong>(const str: string; const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>; optimize: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#Initialize">Initialize</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#InitializeEx-integer-">InitializeEx</a></strong>(initsigs: integer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#Finalize">Finalize</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#FinalizeEx">FinalizeEx</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#NewInterpreter">NewInterpreter</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#EndInterpreter-IPyThreadState-">EndInterpreter</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#AtExit-AtExitProc-">AtExit</a></strong>(proc: <a href="uP4P.Types.html#AtExitProc">AtExitProc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#Exit-Integer-">Exit</a></strong>(status: Integer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#Main-integer-PPWCharT-">Main</a></strong>(argc: integer; argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#BytesMain-integer-PPAnsiChar-">BytesMain</a></strong>(argc: integer; argv: PPAnsiChar): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#SetProgramName-string-">SetProgramName</a></strong>(const name_: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetProgramName">GetProgramName</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#SetPythonHome-string-">SetPythonHome</a></strong>(const home: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetPythonHome">GetPythonHome</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetProgramFullPath">GetProgramFullPath</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetPrefix">GetPrefix</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetExecPrefix">GetExecPrefix</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetPath">GetPath</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetVersion">GetVersion</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetPlatform">GetPlatform</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetCopyright">GetCopyright</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetCompiler">GetCompiler</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetBuildInfo">GetBuildInfo</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#IsFinalizing">IsFinalizing</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#PreInitialize-IPyPreConfig-">PreInitialize</a></strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#PreInitializeFromBytesArgs-IPyPreConfig-Py_ssize_t-PPAnsiChar-">PreInitializeFromBytesArgs</a></strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>; argc: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; argv: PPAnsiChar): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#PreInitializeFromArgs-IPyPreConfig-Py_ssize_t-PPWCharT-">PreInitializeFromArgs</a></strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>; argc: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#RunMain">RunMain</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#ExitStatusException-IPyStatus-">ExitStatusException</a></strong>(const status: <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#FdIsInteractive-PFILE-string-">FdIsInteractive</a></strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#NewInterpreterFromConfig-IPyThreadState-IPyInterpreterConfig-">NewInterpreterFromConfig</a></strong>(out tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; const config: <a href="uP4P.Interfaces.IPyInterpreterConfig.html">IPyInterpreterConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#AddPendingCall-Py_AddPendingCall_func-pointer-">AddPendingCall</a></strong>(func: <a href="uP4P.Types.html#Py_AddPendingCall_func">Py_AddPendingCall_func</a>; arg: pointer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#MakePendingCalls">MakePendingCalls</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#SetRecursionLimit-Integer-">SetRecursionLimit</a></strong>(new_limit: Integer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetRecursionLimit">GetRecursionLimit</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#EnterRecursiveCall-string-">EnterRecursiveCall</a></strong>(const where_: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#LeaveRecursiveCall">LeaveRecursiveCall</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#DecodeLocale-PAnsiChar-NativeUInt-">DecodeLocale</a></strong>(const arg: PAnsiChar; var size_: NativeUInt): <a href="uP4P.Types.html#PWCharT">PWCharT</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#EncodeLocale-PWCharT-NativeUInt-">EncodeLocale</a></strong>(const text: <a href="uP4P.Types.html#PWCharT">PWCharT</a>; var error_pos: NativeUInt): PAnsiChar;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fopen-IPyObject-string-">fopen</a></strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fclose-PFILE-">fclose</a></strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetEnv-string-">GetEnv</a></strong>(const key: string): string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#HashPointer-Pointer-">HashPointer</a></strong>(const ptr: Pointer): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#HashBuffer-Pointer-Py_ssize_t-">HashBuffer</a></strong>(const ptr: Pointer; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FatalError-string-"></span><code>class procedure <strong>FatalError</strong>(const message_: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Print a fatal error message and kill the process. No cleanup is performed. This function should only be invoked when a condition is detected that would make it dangerous to continue using the Python interpreter; e.g., when the object administration appears to be corrupted. On Unix, the standard C library function abort() is called which will attempt to produce a core file.
+
+<p>The TPy.FatalError() function is replaced with a macro which logs automatically the name of the current function, unless the Py_LIMITED_API macro is defined.
+
+<p>Changed in version 3.9: Log the function name automatically.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UniversalNewlineFgets-PByte-integer-PFILE-"></span><code>class function <strong>UniversalNewlineFgets</strong>(buf: PByte; n: integer; stream: <a href="uP4P.Types.html#PFILE">PFILE</a>): PByte;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>TPy.UniversalNewlineFgets is an fgets variation that understands all of \r, \n and \r\n conventions.
+
+<p>The stream should be opened in binary mode.
+
+<p>Note that we need no error handling: fgets() treats error and eof identically.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetArgcArgv-integer-TStringList-"></span><code>class function <strong>GetArgcArgv</strong>(var argc: integer; var argv: TStringList): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the original command line arguments, before Python modified them.
+
+<p>See also PyConfig.orig_argv member.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetArgcArgv-integer-PPWCharT-"></span><code>class function <strong>GetArgcArgv</strong>(out argc: integer; out argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the original command line arguments, before Python modified them.
+
+<p>See also PyConfig.orig_argv member.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitializeFromInitConfig-IPyInitConfig-"></span><code>class function <strong>InitializeFromInitConfig</strong>(const initconfig: <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initialize Python from the initialization configuration.
+
+<p>Return True on success.
+
+<p>Set an error in config and return False on error.
+
+<p>Set an exit code in config and return False if Python wants to exit.
+
+<p>See IPyInitConfig.Exitcode for the exit code case.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitializeFromConfig-PPyConfig-"></span><code>class function <strong>InitializeFromConfig</strong>(config: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initialize Python from config configuration, as described in Initialization with PyConfig.
+
+<p>See the Python Initialization Configuration section for details on pre-initializing the interpreter, populating the runtime configuration structure, and querying the returned status structure.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsIntialized"></span><code>class function <strong>IsIntialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True when the Python interpreter has been initialized, False if not. After TPy.FinalizeEx() is called, this returns False until TPy.Initialize() is called again.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericAlias-IPyObject-IPyObject-"></span><code>class function <strong>GenericAlias</strong>(const origin, args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a GenericAlias object. Equivalent to calling the Python class types.GenericAlias. The origin and args arguments set the GenericAlias‘s __origin__ and __args__ attributes respectively. origin should be a PyTypeObject*, and args can be a PyTupleObject* or any PyObject*. If args passed is not a tuple, a 1-tuple is automatically constructed and __args__ is set to (args,). Minimal checking is done for the arguments, so the function will succeed even if origin is not a type. The GenericAlias‘s __parameters__ attribute is constructed lazily from __args__.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/stdtypes.html#generic-alias-type">https://docs.python.org/3/library/stdtypes.html#generic-alias-type</a>&quot;&gt;See the article about Generic Alias Type.)
+
+<p>See the TPyGenericAlias class.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsTrue-IPyObject-"></span><code>class function <strong>IsTrue</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if an object is the True singleton, the same as x is True in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsFalse-IPyObject-"></span><code>class function <strong>IsFalse</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if an object is the False singleton, the same as x is False in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsNone-IPyObject-"></span><code>class function <strong>IsNone</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if an object is the None singleton, the same as x is None in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Type_-IPyObject-"></span><code>class function <strong>Type_</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the type of the Python object aPyObject.
+
+<p>The returned reference is borrowed from aPyObject.
+
+<p>Do not release it with TPy.DecRef() or similar.
+
+<p>Changed in version 3.11: TPy.Type_() is changed to an inline static function. The parameter type is no longer const PyObject*.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsType-IPyObject-PPyTypeObject-"></span><code>class function <strong>IsType</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if aPyObject's type is aPyTypeObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RefCnt-IPyObject-"></span><code>class function <strong>RefCnt</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the reference count of the Python object aPyObject.
+
+<p>Note that the returned value may not actually reflect how many references to the object are actually held. For example, some objects are immortal and have a very high refcount that does not reflect the actual number of references. Consequently, do not rely on the returned value to be accurate, other than a value of 0 or 1.
+
+<p>Use the TPy.SET_REFCNT() function to set an object reference count.
+
+<p>Note On free-threaded builds of Python, returning 1 isn't sufficient to determine if it's safe to treat o as having no access by other threads. Use PyUnstable_Object_IsUniquelyReferenced() for that instead.
+
+<p>Changed in version 3.10: TPy.REFCNT() is changed to the inline static function.
+
+<p>Changed in version 3.11: The parameter type is no longer const PyObject*.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IncRef-IPyObject-"></span><code>class procedure <strong>IncRef</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Indicate taking a new strong reference to object aPyObject, indicating it is in use and should not be destroyed.
+
+<p>This function has no effect on immortal objects.
+
+<p>This function is usually used to convert a borrowed reference to a strong reference in-place. The TPy.NewRef() function can be used to create a new strong reference.
+
+<p>When done using the object, release is by calling TPy.DecRef().
+
+<p>The object must not be nil; if you aren't sure that it isn't nil, use TPy.XINCREF().
+
+<p>Do not expect this function to actually modify aPyObject in any way. For at least some objects, this function has no effect.
+
+<p>Changed in version 3.12: Immortal objects are not modified.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IncRef-PPyObject-"></span><code>class procedure <strong>IncRef</strong>(const aPyObject: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Indicate taking a new strong reference to object aPyObject, indicating it is in use and should not be destroyed.
+
+<p>This function has no effect on immortal objects.
+
+<p>This function is usually used to convert a borrowed reference to a strong reference in-place. The TPy.NewRef() function can be used to create a new strong reference.
+
+<p>When done using the object, release is by calling TPy.DecRef().
+
+<p>The object must not be nil; if you aren't sure that it isn't nil, use TPy.XINCREF().
+
+<p>Do not expect this function to actually modify aPyObject in any way. For at least some objects, this function has no effect.
+
+<p>Changed in version 3.12: Immortal objects are not modified.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DecRef-IPyObject-"></span><code>class procedure <strong>DecRef</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release a strong reference to object aPyObject, indicating the reference is no longer used.
+
+<p>This function has no effect on immortal objects.
+
+<p>Once the last strong reference is released (i.e. the object's reference count reaches 0), the object's type's deallocation function (which must not be nil) is invoked.
+
+<p>This function is usually used to delete a strong reference before exiting its scope.
+
+<p>The object must not be nil; if you aren't sure that it isn't nil, use TPy.XDECREF().
+
+<p>Do not expect this function to actually modify aPyObject in any way. For at least some objects, this function has no effect.
+
+<p>Warning The deallocation function can cause arbitrary Python code to be invoked (e.g. when a class instance with a __del__() method is deallocated). While exceptions in such code are not propagated, the executed code has free access to all Python global variables. This means that any object that is reachable from a global variable should be in a consistent state before TPy.DecRef() is invoked. For example, code to delete an object from a list should copy a reference to the deleted object in a temporary variable, update the list data structure, and then call TPy.DecRef() for the temporary variable.
+
+<p>Changed in version 3.12: Immortal objects are not modified.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DecRef-PPyObject-"></span><code>class procedure <strong>DecRef</strong>(const aPyObject: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release a strong reference to object aPyObject, indicating the reference is no longer used.
+
+<p>This function has no effect on immortal objects.
+
+<p>Once the last strong reference is released (i.e. the object's reference count reaches 0), the object's type's deallocation function (which must not be nil) is invoked.
+
+<p>This function is usually used to delete a strong reference before exiting its scope.
+
+<p>The object must not be nil; if you aren't sure that it isn't nil, use TPy.XDECREF().
+
+<p>Do not expect this function to actually modify aPyObject in any way. For at least some objects, this function has no effect.
+
+<p>Warning The deallocation function can cause arbitrary Python code to be invoked (e.g. when a class instance with a __del__() method is deallocated). While exceptions in such code are not propagated, the executed code has free access to all Python global variables. This means that any object that is reachable from a global variable should be in a consistent state before TPy.DecRef() is invoked. For example, code to delete an object from a list should copy a reference to the deleted object in a temporary variable, update the list data structure, and then call TPy.DecRef() for the temporary variable.
+
+<p>Changed in version 3.12: Immortal objects are not modified.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewRef-IPyObject-"></span><code>class function <strong>NewRef</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new strong reference to an object: call TPy.INCREF() on aPyObject and return the object aPyObject.
+
+<p>When the strong reference is no longer needed, TPy.DecRef() should be called on it to release the reference.
+
+<p>The object aPyObject must not be nil; use XNewRef() if aPyObject can be nil.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewRef-PPyConfig-"></span><code>class function <strong>NewRef</strong>(aPyObject: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new strong reference to an object: call TPy.INCREF() on aPyObject and return the object aPyObject.
+
+<p>When the strong reference is no longer needed, TPy.DecRef() should be called on it to release the reference.
+
+<p>The object aPyObject must not be nil; use XNewRef() if aPyObject can be nil.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="XNewRef-IPyObject-"></span><code>class function <strong>XNewRef</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to NewRef(), but the object aPyObject can be nil.
+
+<p>If the object aPyObject is nil, the function just returns nil.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="XNewRef-PPyConfig-"></span><code>class function <strong>XNewRef</strong>(aPyObject: <a href="uP4P.Types.html#PPyConfig">PPyConfig</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to NewRef(), but the object aPyObject can be nil.
+
+<p>If the object aPyObject is nil, the function just returns nil.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Is_-IPyObject-IPyObject-"></span><code>class function <strong>Is_</strong>(const x, y: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if the x object is the y object, the same as x is y in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Is_-PPyObject-PPyObject-"></span><code>class function <strong>Is_</strong>(const x, y: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if the x object is the y object, the same as x is y in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetConstant-cardinal-"></span><code>class function <strong>GetConstant</strong>(constant_id: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get a strong reference to a constant.
+
+<p>Set an exception and return nil if constant_id is invalid.
+
+<p>constant_id must be one of the Py_CONSTANT_* constant identifiers.
+
+<p>Added in version 3.13.
+
+<p>CPython implementation detail: In CPython, all of these constants are immortal.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetConstantBorrowed-cardinal-"></span><code>class function <strong>GetConstantBorrowed</strong>(constant_id: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to GetConstant(), but return a borrowed reference.
+
+<p>This function is primarily intended for backwards compatibility: using GetConstant() is recommended for new code.
+
+<p>The reference is borrowed from the interpreter, and is valid until the interpreter finalization.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReprEnter-IPyObject-"></span><code>class function <strong>ReprEnter</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Called at the beginning of the tp_repr implementation to detect cycles.
+
+<p>If the object has already been processed, the function returns a positive integer. In that case the tp_repr implementation should return a string object indicating a cycle. As examples, dict objects return {...} and list objects return [...].
+
+<p>The function will return a negative integer if the recursion limit is reached. In that case the tp_repr implementation should typically return nil.
+
+<p>Otherwise, the function returns zero and the tp_repr implementation can continue normally.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReprLeave-IPyObject-"></span><code>class procedure <strong>ReprLeave</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ends a ReprEnter(). Must be called once for each invocation of ReprEnter() that returns zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CompileString-string-string-TPyStartSymbols-"></span><code>class function <strong>CompileString</strong>(const str: string; const filename: string = <a href="uP4P.Constants.html#DEFAULT_COMPILE_FILENAME">DEFAULT_COMPILE_FILENAME</a>; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a> = <a href="uP4P.Types.html#ssFile">ssFile</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to CompileStringFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CompileStringFlags-string-string-TPyStartSymbols-PPyCompilerFlags-"></span><code>class function <strong>CompileStringFlags</strong>(const str, filename: string; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPy.CompileStringExFlags() below, with optimize set to -1.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CompileStringExFlags-string-string-TPyStartSymbols-PPyCompilerFlags-integer-"></span><code>class function <strong>CompileStringExFlags</strong>(const str, filename: string; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>; optimize: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like CompileStringObject(), but filename is a byte string decoded from the filesystem encoding and error handler.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CompileStringObject-string-IPyObject-TPyStartSymbols-PPyCompilerFlags-integer-"></span><code>class function <strong>CompileStringObject</strong>(const str: string; const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>; optimize: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Parse and compile the Python source code in str, returning the resulting code object. The start symbol is given by start; this can be used to constrain the code which can be compiled and should be available start symbols. The filename specified by filename is used to construct the code object and may appear in tracebacks or SyntaxError exception messages. This returns nil if the code cannot be parsed or compiled.
+
+<p>The integer optimize specifies the optimization level of the compiler; a value of -1 selects the optimization level of the interpreter as given by -O options.
+
+<p>Explicit levels are 0 (no optimization; __debug__ is true), 1 (asserts are removed, __debug__ is false) or 2 (docstrings are removed too).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialize"></span><code>class procedure <strong>Initialize</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initialize the Python interpreter. In an application embedding Python, this should be called before using any other Python/C API functions; see Before Python Initialization for the few exceptions.
+
+<p>This initializes the table of loaded modules (sys.modules), and creates the fundamental modules builtins, __main__ and sys. It also initializes the module search path (sys.path). It does not set sys.argv; use the Python Initialization Configuration API for that. This is a no-op when called for a second time (without calling FinalizeEx() first). There is no return value; it is a fatal error if the initialization fails.
+
+<p>Use InitializeFromConfig() to customize the Python Initialization Configuration.
+
+<p>Note On Windows, changes the console mode from O_TEXT to O_BINARY, which will also affect non-Python uses of the console using the C Runtime.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/interp-lifecycle.html#pre-init-safe">https://docs.python.org/3/c-api/interp-lifecycle.html#pre-init-safe</a>&quot;&gt;See the Before Python Initialization article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitializeEx-integer-"></span><code>class procedure <strong>InitializeEx</strong>(initsigs: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function works like TPy.Initialize() if initsigs is 1. If initsigs is 0, it skips initialization registration of signal handlers, which may be useful when CPython is embedded as part of a larger application.
+
+<p>Use InitializeFromConfig() to customize the Python Initialization Configuration.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/interp-lifecycle.html#pre-init-safe">https://docs.python.org/3/c-api/interp-lifecycle.html#pre-init-safe</a>&quot;&gt;See the Before Python Initialization article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Finalize"></span><code>class procedure <strong>Finalize</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a backwards-compatible version of FinalizeEx() that disregards the return value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FinalizeEx"></span><code>class function <strong>FinalizeEx</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Undo all initializations made by Initialize() and subsequent use of Python/C API functions, and destroy all sub-interpreters (see NewInterpreter()) that were created and not yet destroyed since the last call to Initialize(). This is a no-op when called for a second time (without calling Initialize() again first).
+
+<p>Since this is the reverse of Initialize(), it should be called in the same thread with the same interpreter active. That means the main thread and the main interpreter. This should never be called while RunMain() is running.
+
+<p>Normally the return value is True. If there were errors during finalization (flushing buffered data), False is returned.
+
+<p>Note that Python will do a best effort at freeing all memory allocated by the Python interpreter. Therefore, any C-Extension should make sure to correctly clean up all of the previously allocated PyObjects before using them in subsequent calls to Initialize(). Otherwise it could introduce vulnerabilities and incorrect behavior.
+
+<p>This function is provided for a number of reasons. An embedding application might want to restart Python without having to restart the application itself. An application that has loaded the Python interpreter from a dynamically loadable library (or DLL) might want to free all memory allocated by Python before unloading the DLL. During a hunt for memory leaks in an application a developer might want to free all memory allocated by Python before exiting from the application.
+
+<p>Bugs and caveats: The destruction of modules and objects in modules is done in random order; this may cause destructors (__del__() methods) to fail when they depend on other objects (even functions) or modules. Dynamically loaded extension modules loaded by Python are not unloaded. Small amounts of memory allocated by the Python interpreter may not be freed (if you find a leak, please report it). Memory tied up in circular references between objects is not freed. Interned strings will all be deallocated regardless of their reference count. Some memory allocated by extension modules may not be freed. Some extensions may not work properly if their initialization routine is called more than once; this can happen if an application calls Initialize() and FinalizeEx() more than once. FinalizeEx() must not be called recursively from within itself. Therefore, it must not be called by any code that may be run as part of the interpreter shutdown process, such as atexit handlers, object finalizers, or any code that may be run while flushing the stdout and stderr files.
+
+<p>Raises an auditing event cpython._PySys_ClearAuditHooks with no arguments.
+
+<p>Added in version 3.6.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewInterpreter"></span><code>class function <strong>NewInterpreter</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new sub-interpreter. This is essentially just a wrapper around NewInterpreterFromConfig() with a config that preserves the existing behavior. The result is an unisolated sub-interpreter that shares the main interpreter's GIL, allows fork/exec, allows daemon threads, and allows single-phase init modules.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EndInterpreter-IPyThreadState-"></span><code>class procedure <strong>EndInterpreter</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Destroy the (sub-)interpreter represented by the given thread state. The given thread state must be attached. When the call returns, there will be no attached thread state. All thread states associated with this interpreter are destroyed.
+
+<p>FinalizeEx() will destroy all sub-interpreters that haven't been explicitly destroyed at that point.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AtExit-AtExitProc-"></span><code>class function <strong>AtExit</strong>(proc: <a href="uP4P.Types.html#AtExitProc">AtExitProc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Register a cleanup function to be called by FinalizeEx(). The cleanup function will be called with no arguments and should return no value. At most 32 cleanup functions can be registered. When the registration is successful, AtExit() returns True; on failure, it returns False. The cleanup function registered last is called first. Each cleanup function will be called at most once. Since Python's internal finalization will have completed before the cleanup function, no Python APIs should be called by func.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Exit-Integer-"></span><code>class procedure <strong>Exit</strong>(status: Integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Exit the current process. This calls FinalizeEx() and then calls the standard C library function exit(status). If FinalizeEx() indicates an error, the exit status is set to 120.
+
+<p>Changed in version 3.6: Errors from finalization no longer ignored.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Main-integer-PPWCharT-"></span><code>class function <strong>Main</strong>(argc: integer; argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The main program for the standard interpreter, encapsulating a full initialization/finalization cycle, as well as additional behaviour to implement reading configurations settings from the environment and command line, and then executing __main__ in accordance with Command line.
+
+<p>This is made available for programs which wish to support the full CPython command line interface, rather than just embedding a Python runtime in a larger application.
+
+<p>The argc and argv parameters are similar to those which are passed to a C program's main() function, except that the argv entries are first converted to wchar_t using TPy.DecodeLocale(). It is also important to note that the argument list entries may be modified to point to strings other than those passed in (however, the contents of the strings pointed to by the argument list are not modified).
+
+<p>The return value is 2 if the argument list does not represent a valid Python command line, and otherwise the same as TPy.RunMain().
+
+<p>In terms of the CPython runtime configuration APIs documented in the runtime configuration section (and without accounting for error handling), TPy.Main is approximately equivalent to:
+
+<p></p>
+
+<pre class="preformatted">
+PyConfig config;
+PyConfig_InitPythonConfig(&amp;config);
+PyConfig_SetArgv(&amp;config, argc, argv);
+Py_InitializeFromConfig(&amp;config);
+PyConfig_Clear(&amp;config);
+Py_RunMain();</pre>
+
+<p>
+
+<p>In normal usage, an embedding application will call this function instead of calling TPy.Initialize(), TPy.InitializeEx() or TPy.InitializeFromConfig() directly, and all settings will be applied as described elsewhere in this documentation. If this function is instead called after a preceding runtime initialization API call, then exactly which environmental and command line configuration settings will be updated is version dependent (as it depends on which settings correctly support being modified after they have already been set once when the runtime was first initialized).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BytesMain-integer-PPAnsiChar-"></span><code>class function <strong>BytesMain</strong>(argc: integer; argv: PPAnsiChar): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPy.Main() but argv is an array of bytes strings, allowing the calling application to delegate the text decoding step to the CPython runtime.
+
+<p>Added in version 3.8.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetProgramName-string-"></span><code>class function <strong>SetProgramName</strong>(const name_: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This API is kept for backward compatibility: setting PyConfig.program_name should be used instead, see Python Initialization Configuration.
+
+<p>This function should be called before TPy.Initialize() is called for the first time, if it is called at all. It tells the interpreter the value of the argv[0] argument to the main() function of the program (converted to wide characters). This is used by TPy.GetPath() and some other functions below to find the Python run-time libraries relative to the interpreter executable. The default value is 'python'. The argument should point to a zero-terminated wide character string in static storage whose contents will not change for the duration of the program's execution. No code in the Python interpreter will change the contents of this storage.
+
+<p>Use TPy.DecodeLocale() to decode a bytes string to get a wchar_t* string.
+
+<p>Deprecated since version 3.11, will be removed in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetProgramName"></span><code>class function <strong>GetProgramName</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the program name set with PyConfig.program_name, or the default. The returned string points into static storage; the caller should not modify its value.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.executable (sys.executable) instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetPythonHome-string-"></span><code>class function <strong>SetPythonHome</strong>(const home: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This API is kept for backward compatibility: setting PyConfig.home should be used instead, see Python Initialization Configuration.
+
+<p>Set the default &quot;home&quot; directory, that is, the location of the standard Python libraries. See PYTHONHOME for the meaning of the argument string.
+
+<p>The argument should point to a zero-terminated character string in static storage whose contents will not change for the duration of the program's execution. No code in the Python interpreter will change the contents of this storage.
+
+<p>Use TPy.DecodeLocale() to decode a bytes string to get a wchar_t* string.
+
+<p>Deprecated since version 3.11, will be removed in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME</a>&quot;&gt;See the article about PYTHONHOME.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPythonHome"></span><code>class function <strong>GetPythonHome</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the default &quot;home&quot;, that is, the value set by PyConfig.home, or the value of the PYTHONHOME environment variable if it is set.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.home or the PYTHONHOME environment variable instead.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-config">https://docs.python.org/3/c-api/init_config.html#init-config</a>&quot;&gt;See the Python Initialization Configuration article.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME</a>&quot;&gt;See the article about PYTHONHOME.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetProgramFullPath"></span><code>class function <strong>GetProgramFullPath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the full program name of the Python executable; this is computed as a side-effect of deriving the default module search path from the program name (set by PyConfig.program_name). The returned string points into static storage; the caller should not modify its value. The value is available to Python code as sys.executable.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.executable (sys.executable) instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPrefix"></span><code>class function <strong>GetPrefix</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the prefix for installed platform-independent files. This is derived through a number of complicated rules from the program name set with PyConfig.program_name and some environment variables; for example, if the program name is '/usr/local/bin/python', the prefix is '/usr/local'. The returned string points into static storage; the caller should not modify its value. This corresponds to the prefix variable in the top-level Makefile and the &ndash;prefix argument to the configure script at build time. The value is available to Python code as sys.base_prefix. It is only useful on Unix. See also the next function.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.base_prefix (sys.base_prefix) instead. Use TPyConfig.prefix (sys.prefix) if virtual environments need to be handled.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetExecPrefix"></span><code>class function <strong>GetExecPrefix</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the exec-prefix for installed platform-dependent files. This is derived through a number of complicated rules from the program name set with PyConfig.program_name and some environment variables; for example, if the program name is '/usr/local/bin/python', the exec-prefix is '/usr/local'. The returned string points into static storage; the caller should not modify its value. This corresponds to the exec_prefix variable in the top-level Makefile and the &ndash;exec-prefix argument to the configure script at build time. The value is available to Python code as sys.base_exec_prefix. It is only useful on Unix.
+
+<p>Background: The exec-prefix differs from the prefix when platform dependent files (such as executables and shared libraries) are installed in a different directory tree. In a typical installation, platform dependent files may be installed in the /usr/local/plat subtree while platform independent may be installed in /usr/local.
+
+<p>Generally speaking, a platform is a combination of hardware and software families, e.g. Sparc machines running the Solaris 2.x operating system are considered the same platform, but Intel machines running Solaris 2.x are another platform, and Intel machines running Linux are yet another platform. Different major revisions of the same operating system generally also form different platforms. Non-Unix operating systems are a different story; the installation strategies on those systems are so different that the prefix and exec-prefix are meaningless, and set to the empty string. Note that compiled Python bytecode files are platform independent (but not independent from the Python version by which they were compiled!).
+
+<p>System administrators will know how to configure the mount or automount programs to share /usr/local between platforms while having /usr/local/plat be a different filesystem for each platform.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.base_exec_prefix (sys.base_exec_prefix) instead. Use TPyConfig.exec_prefix (sys.exec_prefix) if virtual environments need to be handled.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPath"></span><code>class function <strong>GetPath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the default module search path; this is computed from the program name (set by PyConfig.program_name) and some environment variables. The returned string consists of a series of directory names separated by a platform dependent delimiter character. The delimiter character is ':' on Unix and macOS, ';' on Windows. The returned string points into static storage; the caller should not modify its value. The list sys.path is initialized with this value on interpreter startup; it can be (and usually is) modified later to change the search path for loading modules.
+
+<p>This function should not be called before TPy.Initialize(), otherwise it returns nil.
+
+<p>Changed in version 3.10: It now returns nil if called before TPy.Initialize().
+
+<p>Deprecated since version 3.13, will be removed in version 3.15: Use TPyConfig.module_search_paths (sys.path) instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetVersion"></span><code>class function <strong>GetVersion</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the version of this Python interpreter. This is a string that looks something like
+
+<p></p>
+
+<pre class="preformatted">&quot;3.0a5+ (py3k:63103M, May 12 2008, 00:53:55) \n[GCC 4.2.3]&quot;</pre>
+
+<p>
+
+<p>The first word (up to the first space character) is the current Python version; the first characters are the major and minor version separated by a period. The returned string points into static storage; the caller should not modify its value. The value is available to Python code as sys.version.
+
+<p>See also the Py_Version constant.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPlatform"></span><code>class function <strong>GetPlatform</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the platform identifier for the current platform. On Unix, this is formed from the &quot;official&quot; name of the operating system, converted to lower case, followed by the major revision number; e.g., for Solaris 2.x, which is also known as SunOS 5.x, the value is 'sunos5'. On macOS, it is 'darwin'. On Windows, it is 'win'. The returned string points into static storage; the caller should not modify its value. The value is available to Python code as sys.platform.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCopyright"></span><code>class function <strong>GetCopyright</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the official copyright string for the current Python version, for example
+
+<p></p>
+
+<pre class="preformatted">'Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam'</pre>
+
+<p>
+
+<p>The returned string points into static storage; the caller should not modify its value. The value is available to Python code as sys.copyright.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCompiler"></span><code>class function <strong>GetCompiler</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return an indication of the compiler used to build the current Python version, in square brackets, for example:
+
+<p></p>
+
+<pre class="preformatted">&quot;[GCC 2.7.2.2]&quot;</pre>
+
+<p>
+
+<p>The returned string points into static storage; the caller should not modify its value. The value is available to Python code as part of the variable sys.version.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBuildInfo"></span><code>class function <strong>GetBuildInfo</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return information about the sequence number and build date and time of the current Python interpreter instance, for example
+
+<p></p>
+
+<pre class="preformatted">&quot;#67, Aug  1 1997, 22:34:28&quot;</pre>
+
+<p>
+
+<p>The returned string points into static storage; the caller should not modify its value. The value is available to Python code as part of the variable sys.version.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsFinalizing"></span><code>class function <strong>IsFinalizing</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if the main Python interpreter is shutting down. Return false otherwise.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PreInitialize-IPyPreConfig-"></span><code>class function <strong>PreInitialize</strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Preinitialize Python from preconfig preconfiguration.
+
+<p>preconfig must not be nil.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig</a>&quot;&gt;See the Preinitialize Python with PyPreConfig article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PreInitializeFromBytesArgs-IPyPreConfig-Py_ssize_t-PPAnsiChar-"></span><code>class function <strong>PreInitializeFromBytesArgs</strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>; argc: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; argv: PPAnsiChar): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Preinitialize Python from preconfig preconfiguration.
+
+<p>Parse argv command line arguments (bytes strings) if parse_argv of preconfig is non-zero.
+
+<p>preconfig must not be nil.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig</a>&quot;&gt;See the Preinitialize Python with PyPreConfig article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PreInitializeFromArgs-IPyPreConfig-Py_ssize_t-PPWCharT-"></span><code>class function <strong>PreInitializeFromArgs</strong>(const src_config: <a href="uP4P.Interfaces.IPyPreConfig.html">IPyPreConfig</a>; argc: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; argv: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Preinitialize Python from preconfig preconfiguration.
+
+<p>Parse argv command line arguments (wide strings) if parse_argv of preconfig is non-zero.
+
+<p>preconfig must not be nil.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig">https://docs.python.org/3/c-api/init_config.html#preinitialize-python-with-pypreconfig</a>&quot;&gt;See the Preinitialize Python with PyPreConfig article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RunMain"></span><code>class function <strong>RunMain</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Executes the main module in a fully configured CPython runtime.
+
+<p>Executes the command (PyConfig.run_command), the script (PyConfig.run_filename) or the module (PyConfig.run_module) specified on the command line or in the configuration. If none of these values are set, runs the interactive Python prompt (REPL) using the __main__ module's global namespace.
+
+<p>If PyConfig.inspect is not set (the default), the return value will be 0 if the interpreter exits normally (that is, without raising an exception), the exit status of an unhandled SystemExit, or 1 for any other unhandled exception.
+
+<p>If PyConfig.inspect is set (such as when the -i option is used), rather than returning when the interpreter exits, execution will instead resume in an interactive Python prompt (REPL) using the __main__ module's global namespace. If the interpreter exited with an exception, it is immediately raised in the REPL session. The function return value is then determined by the way the REPL session terminates: 0, 1, or the status of a SystemExit, as specified above.
+
+<p>This function always finalizes the Python interpreter before it returns.
+
+<p>See Python Configuration for an example of a customized Python that always runs in isolated mode using TPy.RunMain().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExitStatusException-IPyStatus-"></span><code>class procedure <strong>ExitStatusException</strong>(const status: <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call exit(exitcode) if status is an exit. Print the error message and exit with a non-zero exit code if status is an error. Must only be called if TPyStatus.IsException is true.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FdIsInteractive-PFILE-string-"></span><code>class function <strong>FdIsInteractive</strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if the standard I/O file fp with name filename is deemed interactive. This is the case for files for which isatty(fileno(fp)) is true. If the PyConfig.interactive is non-zero, this function also returns true if the filename pointer is nil or if the name is equal to one of the strings '&lt;stdin&gt;' or '???'.
+
+<p>This function must not be called before Python is initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewInterpreterFromConfig-IPyThreadState-IPyInterpreterConfig-"></span><code>class function <strong>NewInterpreterFromConfig</strong>(out tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; const config: <a href="uP4P.Interfaces.IPyInterpreterConfig.html">IPyInterpreterConfig</a>): <a href="uP4P.Interfaces.IPyStatus.html">IPyStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new sub-interpreter. This is an (almost) totally separate environment for the execution of Python code. In particular, the new interpreter has separate, independent versions of all imported modules, including the fundamental modules builtins, __main__ and sys. The table of loaded modules (sys.modules) and the module search path (sys.path) are also separate. The new environment has no sys.argv variable. It has new standard I/O stream file objects sys.stdin, sys.stdout and sys.stderr (however these refer to the same underlying file descriptors).
+
+<p>The given config controls the options with which the interpreter is initialized.
+
+<p>Upon success, tstate_p will be set to the first thread state created in the new sub-interpreter. This thread state is attached. Note that no actual thread is created; see the discussion of thread states below. If creation of the new interpreter is unsuccessful, tstate_p is set to nil; no exception is set since the exception state is stored in the attached thread state, which might not exist.
+
+<p>Like all other Python/C API functions, an attached thread state must be present before calling this function, but it might be detached upon returning. On success, the returned thread state will be attached. If the sub-interpreter is created with its own GIL then the attached thread state of the calling interpreter will be detached. When the function returns, the new interpreter's thread state will be attached to the current thread and the previous interpreter's attached thread state will remain detached.
+
+<p>Added in version 3.12.
+
+<p>Sub-interpreters are most effective when isolated from each other, with certain functionality restricted:
+
+<p></p>
+
+<pre class="preformatted">
+PyInterpreterConfig config = {
+    .use_main_obmalloc = 0,
+    .allow_fork = 0,
+    .allow_exec = 0,
+    .allow_threads = 1,
+    .allow_daemon_threads = 0,
+    .check_multi_interp_extensions = 1,
+    .gil = PyInterpreterConfig_OWN_GIL,
+};
+PyThreadState *tstate = NULL;
+PyStatus status = Py_NewInterpreterFromConfig(&amp;tstate, &amp;config);
+if (PyStatus_Exception(status)) {
+    Py_ExitStatusException(status);
+}</pre>
+
+<p>
+
+<p>Note that the config is used only briefly and does not get modified. During initialization the config's values are converted into various PyInterpreterState values. A read-only copy of the config may be stored internally on the PyInterpreterState.
+
+<p>Extension modules are shared between (sub-)interpreters as follows:
+
+<p>- For modules using multi-phase initialization, e.g. TPyModule.FromDefAndSpec(), a separate module object is created and initialized for each interpreter. Only C-level static and global variables are shared between these module objects.
+
+<p>- For modules using legacy single-phase initialization, e.g. TPyModule.Create(), the first time a particular extension is imported, it is initialized normally, and a (shallow) copy of its module's dictionary is squirreled away. When the same extension is imported by another (sub-)interpreter, a new module is initialized and filled with the contents of this copy; the extension's init function is not called. Objects in the module's dictionary thus end up shared across (sub-)interpreters, which might cause unwanted behavior (see Bugs and caveats below).
+
+<p>Note that this is different from what happens when an extension is imported after the interpreter has been completely re-initialized by calling TPy.FinalizeEx() and TPy.Initialize(); in that case, the extension's initmodule function is called again. As with multi-phase initialization, this means that only C-level static and global variables are shared between these modules.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddPendingCall-Py_AddPendingCall_func-pointer-"></span><code>class function <strong>AddPendingCall</strong>(func: <a href="uP4P.Types.html#Py_AddPendingCall_func">Py_AddPendingCall_func</a>; arg: pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Schedule a function to be called from the main interpreter thread. On success, True is returned and func is queued for being called in the main thread. On failure, False is returned without setting any exception.
+
+<p>When successfully queued, func will be eventually called from the main interpreter thread with the argument arg. It will be called asynchronously with respect to normally running Python code, but with both these conditions met:
+
+<p></p>
+
+<pre class="preformatted">
+- on a bytecode boundary;
+- with the main thread holding an attached thread state (func can
+  therefore use the full C API).</pre>
+
+<p>
+
+<p>func must return 0 on success, or -1 on failure with an exception set. func won't be interrupted to perform another asynchronous notification recursively, but it can still be interrupted to switch threads if the thread state is detached.
+
+<p>This function doesn't need an attached thread state. However, to call this function in a subinterpreter, the caller must have an attached thread state. Otherwise, the function func can be scheduled to be called from the wrong interpreter.
+
+<p>Warning This is a low-level function, only useful for very special cases. There is no guarantee that func will be called as quick as possible. If the main thread is busy executing a system call, func won't be called before the system call returns. This function is generally not suitable for calling Python code from arbitrary C threads. Instead, use the PyGILState API.
+
+<p>Added in version 3.1.
+
+<p>Changed in version 3.9: If this function is called in a subinterpreter, the function func is now scheduled to be called from the subinterpreter, rather than being called from the main interpreter. Each subinterpreter now has its own list of scheduled calls.
+
+<p>Changed in version 3.12: This function now always schedules func to be run in the main interpreter.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="MakePendingCalls"></span><code>class function <strong>MakePendingCalls</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Execute all pending calls. This is usually executed automatically by the interpreter.
+
+<p>This function returns True on success, and returns False with an exception set on failure.
+
+<p>If this is not called in the main thread of the main interpreter, this function does nothing and returns 0. The caller must hold an attached thread state.
+
+<p>Added in version 3.1.
+
+<p>Changed in version 3.12: This function only runs pending calls in the main interpreter.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetRecursionLimit-Integer-"></span><code>class procedure <strong>SetRecursionLimit</strong>(new_limit: Integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the recursion limit for the current interpreter.
+
+<p>This function cannot fail, and the caller must hold an attached thread state.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.setrecursionlimit">https://docs.python.org/3/library/sys.html#sys.setrecursionlimit</a>&quot;&gt;See also sys.setrecursionlimit().)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetRecursionLimit"></span><code>class function <strong>GetRecursionLimit</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the recursion limit for the current interpreter. It can be set with TPy.SetRecursionLimit(). The recursion limit prevents the Python interpreter stack from growing infinitely.
+
+<p>This function cannot fail, and the caller must hold an attached thread state.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.getrecursionlimit">https://docs.python.org/3/library/sys.html#sys.getrecursionlimit</a>&quot;&gt;See also sys.getrecursionlimit().)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EnterRecursiveCall-string-"></span><code>class function <strong>EnterRecursiveCall</strong>(const where_: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Marks a point where a recursive C-level call is about to be performed.
+
+<p>The function then checks if the stack limit is reached. If this is the case, a RecursionError is set and False is returned. Otherwise, True is returned.
+
+<p>where_ should be a string such as &quot; in instance check&quot; to be concatenated to the RecursionError message caused by the recursion depth limit.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LeaveRecursiveCall"></span><code>class procedure <strong>LeaveRecursiveCall</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ends a TPy.EnterRecursiveCall(). Must be called once for each successful invocation of TPy.EnterRecursiveCall().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DecodeLocale-PAnsiChar-NativeUInt-"></span><code>class function <strong>DecodeLocale</strong>(const arg: PAnsiChar; var size_: NativeUInt): <a href="uP4P.Types.html#PWCharT">PWCharT</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Decode a byte string from the filesystem encoding and error handler. If the error handler is surrogateescape error handler, undecodable bytes are decoded as characters in range U+DC80..U+DCFF; and if a byte sequence can be decoded as a surrogate character, the bytes are escaped using the surrogateescape error handler instead of decoding them.
+
+<p>Return a pointer to a newly allocated wide character string, use TPyMem.RawFree() to free the memory. If size is not nil, write the number of wide characters excluding the nil character into size_
+
+<p>Return nil on decoding error or memory allocation error. size_ is set to (size_t)-1 on memory error or set to (size_t)-2 on decoding error.
+
+<p>The filesystem encoding and error handler are selected by IPyConfig.Read(): see filesystem_encoding and filesystem_errors members of PyConfig.
+
+<p>Decoding errors should never happen, unless there is a bug in the C library.
+
+<p>Use the TPy.EncodeLocale() function to encode the character string back to a byte string.
+
+<p>See also The TPyUnicode.DecodeFSDefaultAndSize() and TPyUnicode.DecodeLocaleAndSize() functions.
+
+<p>Added in version 3.5.
+
+<p>Changed in version 3.7: The function now uses the UTF-8 encoding in the Python UTF-8 Mode.
+
+<p>Changed in version 3.8: The function now uses the UTF-8 encoding on Windows if PyPreConfig.legacy_windows_fs_encoding is zero;
+
+<p>Warning: This function should not be called directly: use the PyConfig API with the IPyConfig.SetBytesString() function which ensures that Python is preinitialized.
+
+<p>This function must not be called before Python is preinitialized and so that the LC_CTYPE locale is properly configured: see the TPy.PreInitialize() function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EncodeLocale-PWCharT-NativeUInt-"></span><code>class function <strong>EncodeLocale</strong>(const text: <a href="uP4P.Types.html#PWCharT">PWCharT</a>; var error_pos: NativeUInt): PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Encode a wide character string to the filesystem encoding and error handler. If the error handler is surrogateescape error handler, surrogate characters in the range U+DC80..U+DCFF are converted to bytes 0x80..0xFF.
+
+<p>Return a pointer to a newly allocated byte string, use TPyMem.Free() to free the memory. Return nil on encoding error or memory allocation error.
+
+<p>error_pos is set to (size_t)-1 on success, or set to the index of the invalid character on encoding error.
+
+<p>The filesystem encoding and error handler are selected by TPyConfig.Read(): see filesystem_encoding and filesystem_errors members of PyConfig.
+
+<p>Use the TPy.DecodeLocale() function to decode the bytes string back to a wide character string.
+
+<p>Warning This function must not be called before Python is preinitialized and so that the LC_CTYPE locale is properly configured: see the TPy.PreInitialize() function.
+
+<p>See also The TPyUnicode.EncodeFSDefault() and TPyUnicode.EncodeLocale() functions.
+
+<p>Added in version 3.5.
+
+<p>Changed in version 3.7: The function now uses the UTF-8 encoding in the Python UTF-8 Mode.
+
+<p>Changed in version 3.8: The function now uses the UTF-8 encoding on Windows if PyPreConfig.legacy_windows_fs_encoding is zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="fopen-IPyObject-string-"></span><code>class function <strong>fopen</strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to fopen(), but path is a Python object and an exception is set on error.
+
+<p>path must be a str object, a bytes object, or a path-like object.
+
+<p>On success, return the new file pointer. On error, set an exception and return nil.
+
+<p>The file must be closed by TPy.fclose() rather than calling directly fclose().
+
+<p>The file descriptor is created non-inheritable (PEP 446).
+
+<p>The caller must have an attached thread state.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="fclose-PFILE-"></span><code>class function <strong>fclose</strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Close a file that was opened by TPy.fopen().
+
+<p>On success, return 0. On error, return EOF and errno is set to indicate the error. In either case, any further access (including another call to TPy.fclose()) to the stream results in undefined behavior.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetEnv-string-"></span><code>class function <strong>GetEnv</strong>(const key: string): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like getenv(s), but returns nil if -E was passed on the command line (see PyConfig.use_environment).
+
+<p>Return the value of the environment variable key as a string if it exists.
+
+<p>Availability: Unix, Windows.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HashPointer-Pointer-"></span><code>class function <strong>HashPointer</strong>(const ptr: Pointer): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Hash a pointer value: process the pointer value as an integer (cast it to uintptr_t internally). The pointer is not dereferenced.
+
+<p>The function cannot fail: it cannot return -1.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HashBuffer-Pointer-Py_ssize_t-"></span><code>class function <strong>HashBuffer</strong>(const ptr: Pointer; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compute and return the hash value of a buffer of len bytes starting at address ptr. The hash is guaranteed to match that of bytes, memoryview, and other built-in objects that implement the buffer protocol.
+
+<p>Use this function to implement hashing for immutable objects whose tp_richcompare function compares to another object's buffer.
+
+<p>len must be greater than or equal to 0.
+
+<p>This function always succeeds.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

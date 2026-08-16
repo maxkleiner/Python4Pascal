@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyByteArray: Class TPyByteArray</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyByteArray"></span><h1 class="cio">Class TPyByteArray</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyByteArray.html">uP4P.PyByteArray</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyByteArray = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyByteArray_* methods used to handle bytearray objects. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/bytearray.html#byte-array-objects">https://docs.python.org/3/c-api/bytearray.html#byte-array-objects</a>&quot;&gt;See the article about Byte Array Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyByteArray</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#Concat-IPyObject-IPyObject-">Concat</a></strong>(const ob1, ob2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#Size-IPyObject-">Size</a></strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#AsString-IPyObject-">AsString</a></strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#AsBuffer-IPyObject-">AsBuffer</a></strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): PByte;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#Resize-IPyObject-Py_ssize_t-">Resize</a></strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#FromObject-IPyObject-">FromObject</a></strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#FromString-string-">FromString</a></strong>(const str: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#FromStringAndSize-AnsiString-Py_ssize_t-">FromStringAndSize</a></strong>(const str: AnsiString; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#FromBufferAndSize-PByte-Py_ssize_t-">FromBufferAndSize</a></strong>(const buffer: PByte; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyByteArray.TPyByteArray.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Concat-IPyObject-IPyObject-"></span><code>class function <strong>Concat</strong>(const ob1, ob2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Concat bytearrays ob1 and ob2 and return a new bytearray with the result.
+
+<p>On failure, return nil with an exception set.
+
+<p>Note: If the object implements the buffer protocol, then the buffer must not be mutated while the bytearray object is being created.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size-IPyObject-"></span><code>class function <strong>Size</strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the size of bytearray after checking for a nil pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsString-IPyObject-"></span><code>class function <strong>AsString</strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the contents of bytearray as a string after checking for a nil pointer.
+
+<p>Note: It is not thread-safe to mutate the bytearray object while using the returned string.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsBuffer-IPyObject-"></span><code>class function <strong>AsBuffer</strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): PByte;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the contents of bytearray as a PByte after checking for a nil pointer. The returned PByte always has an extra nil byte appended.
+
+<p>Note: It is not thread-safe to mutate the bytearray object while using the returned PByte.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Resize-IPyObject-Py_ssize_t-"></span><code>class function <strong>Resize</strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resize the internal buffer of bytearray to len. Return False in case of a failure with an exception set.
+
+<p>Changed in version 3.14: A negative len will now result in an exception being set and False returned.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromObject-IPyObject-"></span><code>class function <strong>FromObject</strong>(const ob: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new bytearray object from any object, ob, that implements the buffer protocol.
+
+<p>On failure, return nil with an exception set.
+
+<p>Note: If the object implements the buffer protocol, then the buffer must not be mutated while the bytearray object is being created.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromString-string-"></span><code>class function <strong>FromString</strong>(const str: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new bytearray object from a string.
+
+<p>On failure, return nil with an exception set.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromStringAndSize-AnsiString-Py_ssize_t-"></span><code>class function <strong>FromStringAndSize</strong>(const str: AnsiString; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new bytearray object from str and its length, len.
+
+<p>On failure, return nil with an exception set.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromBufferAndSize-PByte-Py_ssize_t-"></span><code>class function <strong>FromBufferAndSize</strong>(const buffer: PByte; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new bytearray object from buffer and its length, len.
+
+<p>On failure, return nil with an exception set.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if the object aPyObject is a bytearray object or an instance of a subtype of the bytearray type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if the object aPyObject is a bytearray object, but not an instance of a subtype of the bytearray type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

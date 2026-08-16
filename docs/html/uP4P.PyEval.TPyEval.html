@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyEval: Class TPyEval</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyEval"></span><h1 class="cio">Class TPyEval</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyEval.html">uP4P.PyEval</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyEval = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper class for all the PyEval_* methods.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer">https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer</a>&quot;&gt;See the Very High Level Layer article.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyEval</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#EvalCode-IPyObject-IPyObject-IPyObject-">EvalCode</a></strong>(const co, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#EvalCodeEx-IPyObject-IPyObject-IPyObject-IPyObjectArray-IPyObjectArray-IPyObjectArray-IPyObject-IPyObject-">EvalCodeEx</a></strong>(const co, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const args, kwds, defs: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwdefs, closure: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetBuiltins">GetBuiltins</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetGlobals">GetGlobals</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetLocals">GetLocals</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFrame">GetFrame</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFrameBuiltins">GetFrameBuiltins</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFrameGlobals">GetFrameGlobals</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFrameLocals">GetFrameLocals</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFuncName-IPyObject-">GetFuncName</a></strong>(const func: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#GetFuncDesc-IPyObject-">GetFuncDesc</a></strong>(const func: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#EvalFrame-IPyObject-">EvalFrame</a></strong>(const f: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#EvalFrameEx-IPyObject-boolean-">EvalFrameEx</a></strong>(const f: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; throwflag: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#SaveThread">SaveThread</a></strong>(): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#RestoreThread-IPyThreadState-">RestoreThread</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#AcquireThread-IPyThreadState-">AcquireThread</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#ReleaseThread-IPyThreadState-">ReleaseThread</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#SetProfile-Py_tracefunc-IPyObject-">SetProfile</a></strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#SetProfileAllThreads-Py_tracefunc-IPyObject-">SetProfileAllThreads</a></strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#SetTrace-Py_tracefunc-IPyObject-">SetTrace</a></strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyEval.TPyEval.html#SetTraceAllThreads-Py_tracefunc-IPyObject-">SetTraceAllThreads</a></strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#MergeCompilerFlags-PyCompilerFlags-">MergeCompilerFlags</a></strong>(const cf: <a href="uP4P.Types.PyCompilerFlags.html">PyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyEval.TPyEval.html#EvalString-string-">EvalString</a></strong>(const code: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EvalCode-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>EvalCode</strong>(const co, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyEval.EvalCodeEx(), with just the code object, and global and local variables. The other arguments are set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EvalCodeEx-IPyObject-IPyObject-IPyObject-IPyObjectArray-IPyObjectArray-IPyObjectArray-IPyObject-IPyObject-"></span><code>class function <strong>EvalCodeEx</strong>(const co, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const args, kwds, defs: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwdefs, closure: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Evaluate a precompiled code object, given a particular environment for its evaluation. This environment consists of a dictionary of global variables, a mapping object of local variables, arrays of arguments, keywords and defaults, a dictionary of default values for keyword-only arguments and a closure tuple of cells.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBuiltins"></span><code>class function <strong>GetBuiltins</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Deprecated since version 3.13: Use TPyEval.GetFrameBuiltins() instead.
+
+<p>Return a dictionary of the builtins in the current execution frame, or the interpreter of the thread state if no frame is currently executing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetGlobals"></span><code>class function <strong>GetGlobals</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Deprecated since version 3.13: Use TPyEval.GetFrameGlobals() instead.
+
+<p>Return a dictionary of the global variables in the current execution frame, or nil if no frame is currently executing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLocals"></span><code>class function <strong>GetLocals</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Deprecated since version 3.13: Use either TPyEval.GetFrameLocals() to obtain the same behaviour as calling locals() in Python code, or else call TPyFrame.GetLocals() on the result of TPyEval.GetFrame() to access the f_locals attribute of the currently executing frame.
+
+<p>Return a mapping providing access to the local variables in the current execution frame, or nil if no frame is currently executing.
+
+<p>Refer to locals() for details of the mapping returned at different scopes.
+
+<p>As this function returns a borrowed reference, the dictionary returned for optimized scopes is cached on the frame object and will remain alive as long as the frame object does. Unlike TPyEval.GetFrameLocals() and locals(), subsequent calls to this function in the same frame will update the contents of the cached dictionary to reflect changes in the state of the local variables rather than returning a new snapshot.
+
+<p>Changed in version 3.13: As part of PEP 667, TPyFrame.GetLocals(), locals(), and FrameType.f_locals no longer make use of the shared cache dictionary. Refer to the What's New entry for additional details.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFrame"></span><code>class function <strong>GetFrame</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the attached thread state's frame, which is nil if no frame is currently executing.
+
+<p>See also TPyThreadState.GetFrame().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFrameBuiltins"></span><code>class function <strong>GetFrameBuiltins</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a dictionary of the builtins in the current execution frame, or the interpreter of the thread state if no frame is currently executing.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFrameGlobals"></span><code>class function <strong>GetFrameGlobals</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a dictionary of the global variables in the current execution frame, or nil if no frame is currently executing. Equivalent to calling globals() in Python code.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFrameLocals"></span><code>class function <strong>GetFrameLocals</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a dictionary of the local variables in the current execution frame, or nil if no frame is currently executing. Equivalent to calling locals() in Python code.
+
+<p>To access f_locals on the current frame without making an independent snapshot in optimized scopes, call TPyFrame.GetLocals() on the result of TPyEval.GetFrame().
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFuncName-IPyObject-"></span><code>class function <strong>GetFuncName</strong>(const func: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the name of func if it is a function, class or instance object, else the name of funcs type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFuncDesc-IPyObject-"></span><code>class function <strong>GetFuncDesc</strong>(const func: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a description string, depending on the type of func. Return values include &quot;()&quot; for functions and methods, &quot;constructor&quot;, &quot;instance&quot;, and &quot;object&quot;. Concatenated with the result of TPyEval.GetFuncName(), the result will be a description of func.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EvalFrame-IPyObject-"></span><code>class function <strong>EvalFrame</strong>(const f: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Evaluate an execution frame. This is a simplified interface to TPyEval.EvalFrameEx(), for backward compatibility.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EvalFrameEx-IPyObject-boolean-"></span><code>class function <strong>EvalFrameEx</strong>(const f: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; throwflag: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the main, unvarnished function of Python interpretation. The code object associated with the execution frame f is executed, interpreting bytecode and executing calls as needed. The additional throwflag parameter can mostly be ignored - if true, then it causes an exception to immediately be thrown; this is used for the throw() methods of generator objects.
+
+<p>Changed in version 3.4: This function now includes a debug assertion to help ensure that it does not silently discard an active exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SaveThread"></span><code>class function <strong>SaveThread</strong>(): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Detach the attached thread state and return it. The thread will have no thread state upon returning.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RestoreThread-IPyThreadState-"></span><code>class procedure <strong>RestoreThread</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the attached thread state to tstate. The passed thread state should not be attached, otherwise deadlock ensues. tstate will be attached upon returning.
+
+<p>Note Calling this function from a thread when the runtime is finalizing will hang the thread until the program exits, even if the thread was not created by Python. Refer to Cautions regarding runtime finalization for more details.
+
+<p>Changed in version 3.14: Hangs the current thread, rather than terminating it, if called while the interpreter is finalizing.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AcquireThread-IPyThreadState-"></span><code>class procedure <strong>AcquireThread</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Attach tstate to the current thread, which must not be nil or already attached.
+
+<p>The calling thread must not already have an attached thread state.
+
+<p>Note Calling this function from a thread when the runtime is finalizing will hang the thread until the program exits, even if the thread was not created by Python. Refer to Cautions regarding runtime finalization for more details.
+
+<p>Changed in version 3.8: Updated to be consistent with TPyEval.RestoreThread(), Py_END_ALLOW_THREADS(), and TPyGILState.Ensure(), and terminate the current thread if called while the interpreter is finalizing.
+
+<p>Changed in version 3.14: Hangs the current thread, rather than terminating it, if called while the interpreter is finalizing.
+
+<p>TPyEval.RestoreThread() is a higher-level function which is always available (even when threads have not been initialized).
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReleaseThread-IPyThreadState-"></span><code>class procedure <strong>ReleaseThread</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Detach the attached thread state. The tstate argument, which must not be nil, is only used to check that it represents the attached thread state - if it isn't, a fatal error is reported.
+
+<p>TPyEval.SaveThread() is a higher-level function which is always available (even when threads have not been initialized).
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetProfile-Py_tracefunc-IPyObject-"></span><code>class procedure <strong>SetProfile</strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the profiler function to func. The obj parameter is passed to the function as its first parameter, and may be any Python object, or nilL. If the profile function needs to maintain state, using a different value for obj for each thread provides a convenient and thread-safe place to store it. The profile function is called for all monitored events except PyTrace_LINE PyTrace_OPCODE and PyTrace_EXCEPTION.
+
+<p>See also the sys.setprofile() function.
+
+<p>The caller must have an attached thread state.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetProfileAllThreads-Py_tracefunc-IPyObject-"></span><code>class procedure <strong>SetProfileAllThreads</strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyEval.SetProfile() but sets the profile function in all running threads belonging to the current interpreter instead of the setting it only on the current thread.
+
+<p>The caller must have an attached thread state.
+
+<p>As TPyEval.SetProfile(), this function ignores any exceptions raised while setting the profile functions in all threads.
+
+<p>Added in version 3.12.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetTrace-Py_tracefunc-IPyObject-"></span><code>class procedure <strong>SetTrace</strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the tracing function to func. This is similar to TPyEval.SetProfile(), except the tracing function does receive line-number events and per-opcode events, but does not receive any event related to function objects being called. Any trace function registered using TPyEval.SetTrace() will not receive PyTrace_C_CALL, PyTrace_C_EXCEPTION or PyTrace_C_RETURN as a value for the what parameter.
+
+<p>See also the sys.settrace() function.
+
+<p>The caller must have an attached thread state.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetTraceAllThreads-Py_tracefunc-IPyObject-"></span><code>class procedure <strong>SetTraceAllThreads</strong>(func: <a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a>; const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyEval.SetTrace() but sets the tracing function in all running threads belonging to the current interpreter instead of the setting it only on the current thread.
+
+<p>The caller must have an attached thread state.
+
+<p>As TPyEval.SetTrace(), this function ignores any exceptions raised while setting the trace functions in all threads.
+
+<p>Added in version 3.12.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="MergeCompilerFlags-PyCompilerFlags-"></span><code>class function <strong>MergeCompilerFlags</strong>(const cf: <a href="uP4P.Types.PyCompilerFlags.html">PyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function changes the flags of the current evaluation frame, and returns true on success, false on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EvalString-string-"></span><code>class function <strong>EvalString</strong>(const code: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compiles and evaluates Python code.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

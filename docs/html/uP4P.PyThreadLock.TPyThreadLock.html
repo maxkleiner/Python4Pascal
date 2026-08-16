@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyThreadLock: Class TPyThreadLock</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyThreadLock"></span><h1 class="cio">Class TPyThreadLock</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyThreadLock.html">uP4P.PyThreadLock</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyThreadLock = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyThreadLock.html">IPyThreadLock</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ A mutual exclusion lock. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/synchronization.html#c.PyThread_type_lock">https://docs.python.org/3/c-api/synchronization.html#c.PyThread_type_lock</a>&quot;&gt;See the article about PyThread_type_lock.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyThreadLock</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#FLock">FLock</a></strong>: <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#GetLock">GetLock</a></strong>: <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#AllocateLock">AllocateLock</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#FreeLock">FreeLock</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#Create">Create</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#AcquireLock-boolean-">AcquireLock</a></strong>(waitflag: boolean): <a href="uP4P.Types.html#PyLockStatus">PyLockStatus</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#AcquireLockTimed-PY_TIMEOUT_T-boolean-">AcquireLockTimed</a></strong>(microseconds: <a href="uP4P.Types.html#PY_TIMEOUT_T">PY_TIMEOUT_T</a>; intr_flag: boolean): <a href="uP4P.Types.html#PyLockStatus">PyLockStatus</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#ReleaseLock">ReleaseLock</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#Initialized">Initialized</a></strong> : boolean              read <a href="uP4P.PyThreadLock.TPyThreadLock.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadLock.TPyThreadLock.html#Lock">Lock</a></strong>        : <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>   read <a href="uP4P.PyThreadLock.TPyThreadLock.html#GetLock">GetLock</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FLock"></span><code><strong>FLock</strong>: <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetLock"></span><code>function <strong>GetLock</strong>: <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AllocateLock"></span><code>procedure <strong>AllocateLock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Allocate a new lock.
+
+<p>On success, this function returns a lock; on failure, this function returns nil without an exception set.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FreeLock"></span><code>procedure <strong>FreeLock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Destroy lock. The lock should not be held by any thread when calling this.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AfterConstruction"></span><code>procedure <strong>AfterConstruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AcquireLock-boolean-"></span><code>function <strong>AcquireLock</strong>(waitflag: boolean): <a href="uP4P.Types.html#PyLockStatus">PyLockStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Acquire lock.
+
+<p>If waitflag is True and another thread currently holds the lock, this function will wait until the lock can be acquired and will always return PY_LOCK_ACQUIRED.
+
+<p>If waitflag is False and another thread holds the lock, this function will not wait and instead return PY_LOCK_FAILURE. If the lock is not held by any other thread, then this function will acquire it and return PY_LOCK_ACQUIRED.
+
+<p>Unlike AcquireLockTimed(), acquiring the lock cannot be interrupted by a signal.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AcquireLockTimed-PY_TIMEOUT_T-boolean-"></span><code>function <strong>AcquireLockTimed</strong>(microseconds: <a href="uP4P.Types.html#PY_TIMEOUT_T">PY_TIMEOUT_T</a>; intr_flag: boolean): <a href="uP4P.Types.html#PyLockStatus">PyLockStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Acquire lock with a timeout.
+
+<p>This will wait for microseconds microseconds to acquire the lock. If the timeout expires, this function returns PY_LOCK_FAILURE. If microseconds is -1, this will wait indefinitely until the lock has been released.
+
+<p>If intr_flag is True, acquiring the lock may be interrupted by a signal, in which case this function returns PY_LOCK_INTR. Upon interruption, it's generally expected that the caller makes a call to TPy.MakePendingCalls() to propagate an exception to Python code.
+
+<p>If the lock is successfully acquired, this function returns PY_LOCK_ACQUIRED.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReleaseLock"></span><code>procedure <strong>ReleaseLock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release lock. If lock is not held, then this function issues a fatal error.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong> : boolean              read <a href="uP4P.PyThreadLock.TPyThreadLock.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Lock"></span><code>property <strong>Lock</strong>        : <a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a>   read <a href="uP4P.PyThreadLock.TPyThreadLock.html#GetLock">GetLock</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The mutual exclusion lock
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -42,7 +42,7 @@ type
       /// <para>If op is not a Python complex number object but has a
       /// __complex__() method, this method will first be called to convert op
       /// to a Python complex number object. If __complex__() is not defined
-      /// then it falls back to call PyFloat_AsDouble() and returns 0.0 on
+      /// then it falls back to call TPyFloat.AsDouble() and returns 0.0 on
       /// success.</para>
       /// <para>Upon failure, this method returns -1.0 with an exception set,
       /// so one should call PyErr_Occurred() to check for errors.</para>
@@ -57,7 +57,7 @@ type
       /// then it falls back to __float__(). If __float__() is not defined then
       /// it falls back to __index__().</para>
       /// <para>Upon failure, this method returns Py_complex with real set to
-      /// -1.0 and with an exception set, so one should call PyErr_Occurred()
+      /// -1.0 and with an exception set, so one should call TPyErr.Occurred()
       /// to check for errors.</para>
       /// </summary>
       class function AsCComplex(const op: IPyObject): Py_complex;

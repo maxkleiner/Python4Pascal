@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.MiscFunctions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<h1 class="unit">Unit uP4P.MiscFunctions</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#GetModulePath">GetModulePath</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>procedure <strong><a href="uP4P.MiscFunctions.html#OutputDebugMessage-string-">OutputDebugMessage</a></strong>(const aMessage : string);</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#CustomExceptionHandler-string-exception-">CustomExceptionHandler</a></strong>(const aFunctionName : string; const aException : exception) : boolean;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>procedure <strong><a href="uP4P.MiscFunctions.html#ShowErrorMessageDlg-string-">ShowErrorMessageDlg</a></strong>(const aError : string);</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#Is32BitProcess">Is32BitProcess</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#CustomGetCurrentThreadId">CustomGetCurrentThreadId</a></strong>: TThreadID;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#GetFileSize-string-">GetFileSize</a></strong>(const aFilename: string): int64;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#CustomFindAllFiles-string-string-">CustomFindAllFiles</a></strong>(const aPath, aFilename: string): TStringList;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyUTF8ToWideString-PAnsiChar-boolean-">PyUTF8ToWideString</a></strong>(aString: PAnsiChar; aFreeMem : boolean = False): WideString;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyUTF8ToString-PAnsiChar-boolean-">PyUTF8ToString</a></strong>(aString: PAnsiChar; aFreeMem : boolean = False): string;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#StringToPyUTF8-string-">StringToPyUTF8</a></strong>(const aString: string): AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#ProcessUnderWow64-THandle-PBOOL-">ProcessUnderWow64</a></strong>(hProcess: THandle; Wow64Process: PBOOL): BOOL; stdcall; external 'kernel32.dll' name 'IsWow64Process';</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#UnicodeStringToAnsiString-UnicodeString-">UnicodeStringToAnsiString</a></strong>(const aString: UnicodeString): AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#AnsiStringToUnicodeString-AnsiString-">AnsiStringToUnicodeString</a></strong>(const aString: AnsiString): UnicodeString;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#Is32BitProcessRunningIn64BitOS">Is32BitProcessRunningIn64BitOS</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#GetDLLHeaderMachine-string-integer-">GetDLLHeaderMachine</a></strong>(const aDLLFile : string; var aMachine : integer) : boolean;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyWCharTStringToString-WCharTString-">PyWCharTStringToString</a></strong>(const aString: <a href="uP4P.Types.html#WCharTString">WCharTString</a>): string;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#StringToPyWCharTString-string-">StringToPyWCharTString</a></strong>(const aString: string): <a href="uP4P.Types.html#WCharTString">WCharTString</a>;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#WCharTArrayToStringList-PPWCharT-NativeInt-TStringList-">WCharTArrayToStringList</a></strong>(aItems: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>; aLength: NativeInt; var aResultSL: TStringList): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyWideStringListToStringList-PyWideStringList-TStringList-">PyWideStringListToStringList</a></strong>(const aList: <a href="uP4P.Types.PyWideStringList.html">PyWideStringList</a>; var aResultSL: TStringList): boolean;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#WCharTArrayToStringDynArray-PPWCharT-NativeInt-TStringDynArray-">WCharTArrayToStringDynArray</a></strong>(aItems: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>; aLength: NativeInt; var aResult: TStringDynArray): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyWideStringListToStringDynArray-PyWideStringList-TStringDynArray-">PyWideStringListToStringDynArray</a></strong>(const aList: <a href="uP4P.Types.PyWideStringList.html">PyWideStringList</a>; var aResult: TStringDynArray): boolean;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#ErrorToAnsiString-TPyCodecErrors-">ErrorToAnsiString</a></strong>(error: <a href="uP4P.Types.html#TPyCodecErrors">TPyCodecErrors</a>): AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#PyStartSymbolToInt-TPyStartSymbols-">PyStartSymbolToInt</a></strong>(start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code>function <strong><a href="uP4P.MiscFunctions.html#CustomSplitString-string-string-">CustomSplitString</a></strong>(const S, Delimiters: string): TStringDynArray;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="GetModulePath"></span><code>function <strong>GetModulePath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Retrieves the fully qualified path for the current module. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew">https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew</a>&quot;&gt;See the GetModuleFileNameW article.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="OutputDebugMessage-string-"></span><code>procedure <strong>OutputDebugMessage</strong>(const aMessage : string);</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="CustomExceptionHandler-string-exception-"></span><code>function <strong>CustomExceptionHandler</strong>(const aFunctionName : string; const aException : exception) : boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="ShowErrorMessageDlg-string-"></span><code>procedure <strong>ShowErrorMessageDlg</strong>(const aError : string);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom function to show a message dialog. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="Is32BitProcess"></span><code>function <strong>Is32BitProcess</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return True if this is a 32 bit process. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="CustomGetCurrentThreadId"></span><code>function <strong>CustomGetCurrentThreadId</strong>: TThreadID;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom function to get the current thread ID. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="GetFileSize-string-"></span><code>function <strong>GetFileSize</strong>(const aFilename: string): int64;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom function to get the file size. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="CustomFindAllFiles-string-string-"></span><code>function <strong>CustomFindAllFiles</strong>(const aPath, aFilename: string): TStringList;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom function to find all the files in a directory. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyUTF8ToWideString-PAnsiChar-boolean-"></span><code>function <strong>PyUTF8ToWideString</strong>(aString: PAnsiChar; aFreeMem : boolean = False): WideString;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a UTF8 Python string to a wide string. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyUTF8ToString-PAnsiChar-boolean-"></span><code>function <strong>PyUTF8ToString</strong>(aString: PAnsiChar; aFreeMem : boolean = False): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a UTF8 Python string to a regular string. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="StringToPyUTF8-string-"></span><code>function <strong>StringToPyUTF8</strong>(const aString: string): AnsiString;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a regular string to a UTF8 Python string. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="ProcessUnderWow64-THandle-PBOOL-"></span><code>function <strong>ProcessUnderWow64</strong>(hProcess: THandle; Wow64Process: PBOOL): BOOL; stdcall; external 'kernel32.dll' name 'IsWow64Process';</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="UnicodeStringToAnsiString-UnicodeString-"></span><code>function <strong>UnicodeStringToAnsiString</strong>(const aString: UnicodeString): AnsiString;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a UnicodeString to AnsiString. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="AnsiStringToUnicodeString-AnsiString-"></span><code>function <strong>AnsiStringToUnicodeString</strong>(const aString: AnsiString): UnicodeString;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert an AnsiString to UnicodeString. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="Is32BitProcessRunningIn64BitOS"></span><code>function <strong>Is32BitProcessRunningIn64BitOS</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return True if this is a 32 bit process running in a 64 bit OS. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="GetDLLHeaderMachine-string-integer-"></span><code>function <strong>GetDLLHeaderMachine</strong>(const aDLLFile : string; var aMachine : integer) : boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Returns the machine type information from the DLL header. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyWCharTStringToString-WCharTString-"></span><code>function <strong>PyWCharTStringToString</strong>(const aString: <a href="uP4P.Types.html#WCharTString">WCharTString</a>): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a wide string to a regular string. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="StringToPyWCharTString-string-"></span><code>function <strong>StringToPyWCharTString</strong>(const aString: string): <a href="uP4P.Types.html#WCharTString">WCharTString</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a regular string to a wide string. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="WCharTArrayToStringList-PPWCharT-NativeInt-TStringList-"></span><code>function <strong>WCharTArrayToStringList</strong>(aItems: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>; aLength: NativeInt; var aResultSL: TStringList): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert an array of wide strings to a TStringList. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyWideStringListToStringList-PyWideStringList-TStringList-"></span><code>function <strong>PyWideStringListToStringList</strong>(const aList: <a href="uP4P.Types.PyWideStringList.html">PyWideStringList</a>; var aResultSL: TStringList): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a list of wide strings to a TStringList. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="WCharTArrayToStringDynArray-PPWCharT-NativeInt-TStringDynArray-"></span><code>function <strong>WCharTArrayToStringDynArray</strong>(aItems: <a href="uP4P.Types.html#PPWCharT">PPWCharT</a>; aLength: NativeInt; var aResult: TStringDynArray): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert an array of wide strings to a TStringDynArray. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyWideStringListToStringDynArray-PyWideStringList-TStringDynArray-"></span><code>function <strong>PyWideStringListToStringDynArray</strong>(const aList: <a href="uP4P.Types.PyWideStringList.html">PyWideStringList</a>; var aResult: TStringDynArray): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a list of wide strings to a TStringDynArray. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="ErrorToAnsiString-TPyCodecErrors-"></span><code>function <strong>ErrorToAnsiString</strong>(error: <a href="uP4P.Types.html#TPyCodecErrors">TPyCodecErrors</a>): AnsiString;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a error (TPyCodecErrors) to an AnsiString. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyStartSymbolToInt-TPyStartSymbols-"></span><code>function <strong>PyStartSymbolToInt</strong>(start: <a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a>): integer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Convert a start symbol (TPyStartSymbols) to an integer. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="CustomSplitString-string-string-"></span><code>function <strong>CustomSplitString</strong>(const S, Delimiters: string): TStringDynArray;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom function to split strings with delimeters. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

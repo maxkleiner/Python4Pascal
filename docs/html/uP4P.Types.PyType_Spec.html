@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyType_Spec</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyType_Spec"></span><h1 class="cio">Record PyType_Spec</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyType_Spec = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record defining a type's behavior. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/type.html#c.PyType_Spec">https://docs.python.org/3/c-api/type.html#c.PyType_Spec</a>&quot;&gt;See the article about PyType_Spec.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyType_Spec.html#name">name</a></strong>: PAnsiChar;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyType_Spec.html#basicsize">basicsize</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyType_Spec.html#itemsize">itemsize</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyType_Spec.html#flags">flags</a></strong>: cardinal;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyType_Spec.html#slots">slots</a></strong>: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="name"></span><code><strong>name</strong>: PAnsiChar;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name of the type, used to set PyTypeObject.tp_name. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="basicsize"></span><code><strong>basicsize</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If positive, specifies the size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize. If zero, specifies that tp_basicsize should be inherited. If negative, the absolute value specifies how much space instances of the class need in addition to the superclass. Use PyObject_GetTypeData() to get a pointer to subclass-specific memory reserved this way. For negative basicsize, Python will insert padding when needed to meet tp_basicsize's alignment requirements. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="itemsize"></span><code><strong>itemsize</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="flags"></span><code><strong>flags</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Type flags, used to set PyTypeObject.tp_flags. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="slots"></span><code><strong>slots</strong>: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Array of PyType_Slot structures. Terminated by the special slot value {0, nil}. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

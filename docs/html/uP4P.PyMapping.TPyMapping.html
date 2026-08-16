@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyMapping: Class TPyMapping</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyMapping"></span><h1 class="cio">Class TPyMapping</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyMapping.html">uP4P.PyMapping</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyMapping = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyMapping_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/mapping.html#mapping-protocol">https://docs.python.org/3/c-api/mapping.html#mapping-protocol</a>&quot;&gt;See the article about Mapping Protocol.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyMapping</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Check-IPyObject-">Check</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Size-IPyObject-">Size</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Length-IPyObject-">Length</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#HasKeyString-IPyObject-string-">HasKeyString</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#HasKey-IPyObject-IPyObject-">HasKey</a></strong>(const o, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#HasKeyWithError-IPyObject-IPyObject-">HasKeyWithError</a></strong>(const o, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#HasKeyStringWithError-IPyObject-string-">HasKeyStringWithError</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Keys-IPyObject-">Keys</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Values-IPyObject-">Values</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#Items-IPyObject-">Items</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#GetItemString-IPyObject-string-">GetItemString</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#GetOptionalItem-IPyObject-IPyObject-IPyObject-">GetOptionalItem</a></strong>(const obj, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#GetOptionalItemString-IPyObject-string-IPyObject-">GetOptionalItemString</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMapping.TPyMapping.html#SetItemString-IPyObject-string-IPyObject-">SetItemString</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the object provides the mapping protocol or supports slicing, and False otherwise. Note that it returns True for Python classes with a __getitem__() method, since in general it is impossible to determine what type of keys the class supports. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size-IPyObject-"></span><code>class function <strong>Size</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the number of keys in object o on success, and -1 on failure. This is equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Length-IPyObject-"></span><code>class function <strong>Length</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the number of keys in object o on success, and -1 on failure. This is equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasKeyString-IPyObject-string-"></span><code>class function <strong>HasKeyString</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyMapping.HasKey(), but key is specified as a string, rather than a IPyObject.
+
+<p>Note: Exceptions that occur when this calls the __getitem__() method or while creating the temporary str object are silently ignored. For proper error handling, use TPyMapping.HasKeyStringWithError(), TPyMapping.GetOptionalItemString() or TPyMapping.GetItemString() instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasKey-IPyObject-IPyObject-"></span><code>class function <strong>HasKey</strong>(const o, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the mapping object has the key key and False otherwise. This is equivalent to the Python expression key in o. This function always succeeds.
+
+<p>Note: Exceptions which occur when this calls the __getitem__() method are silently ignored. For proper error handling, use TPyMapping.HasKeyWithError(), TPyMapping.GetOptionalItem() or TPyObject.GetItem() instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasKeyWithError-IPyObject-IPyObject-"></span><code>class function <strong>HasKeyWithError</strong>(const o, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return 1 if the mapping object has the key key and 0 otherwise. This is equivalent to the Python expression key in o. On failure, return -1.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasKeyStringWithError-IPyObject-string-"></span><code>class function <strong>HasKeyStringWithError</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyMapping.HasKeyWithError(), but key is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Keys-IPyObject-"></span><code>class function <strong>Keys</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>On success, return a list of the keys in object o. On failure, return nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Values-IPyObject-"></span><code>class function <strong>Values</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>On success, return a list of the values in object o. On failure, return nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Items-IPyObject-"></span><code>class function <strong>Items</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>On success, return a list of the items in object o, where each item is a tuple containing a key-value pair. On failure, return nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemString-IPyObject-string-"></span><code>class function <strong>GetItemString</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetItem(), but key is specified as a string, rather than a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalItem-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>GetOptionalItem</strong>(const obj, key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant of TPyObject.GetItem() which doesn't raise KeyError if the key is not found.
+
+<p>If the key is found, return 1 and set result_ to a new strong reference to the corresponding value. If the key is not found, return 0 and set result_ to nil; the KeyError is silenced. If an error other than KeyError is raised, return -1 and set result_ to nil.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalItemString-IPyObject-string-IPyObject-"></span><code>class function <strong>GetOptionalItemString</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyMapping.GetOptionalItem(), but key is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItemString-IPyObject-string-IPyObject-"></span><code>class function <strong>SetItemString</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const key: string; const v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.SetItem(), but key is specified as a string, rather than a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -40,7 +40,7 @@ type
       /// The module's __name__, __doc__, __package__ and __loader__ attributes
       /// are filled in (all but __name__ are set to None). The caller is
       /// responsible for setting a __file__ attribute.</para>
-      /// <para>Return NULL with an exception set on error.</para>
+      /// <para>Return nil with an exception set on error.</para>
       /// </summary>
       class function NewObject(const name_: IPyObject): IPyObject;
       /// <summary>
@@ -84,13 +84,13 @@ type
       /// <summary>
       /// <para>Return the name of the file from which module was loaded using
       /// module's __file__ attribute. If this is not defined, or if it is not
-      /// a string, raise SystemError and return NULL; otherwise return a
+      /// a string, raise SystemError and return nil; otherwise return a
       /// reference to a Unicode object.</para>
       /// </summary>
       class function GetFilenameObject(const module_: IPyObject): IPyObject;
       /// <summary>
       /// <para>Return a pointer to the PyModuleDef struct from which the module
-      /// was created, or NULL if the module wasn't created from a
+      /// was created, or nil if the module wasn't created from a
       /// definition.</para>
       /// <para>On error, return nil with an exception set.
       /// Use TPyErr.Occurred() to tell this case apart from a missing
@@ -122,7 +122,7 @@ type
       ///     return res;
       ///  }
       /// </code>
-      /// <para>To be convenient, the function accepts NULL value with an
+      /// <para>To be convenient, the function accepts nil value with an
       /// exception set. In this case, return False and just leave the raised
       /// exception unchanged.</para>
       /// <para>The example can also be written without checking explicitly if

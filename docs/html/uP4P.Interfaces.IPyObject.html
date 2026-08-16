@@ -1,0 +1,2676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces: Interface IPyObject</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="IPyObject"></span><h1 class="cio">Interface IPyObject</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Interfaces.html">uP4P.Interfaces</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IPyObject = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>All object types are extensions of this type. This is a type which contains the information Python needs to treat a pointer to an object as an object. In a normal &quot;release&quot; build, it contains only the object's reference count and a pointer to the corresponding type object. Nothing is actually declared to be a PyObject, but every pointer to a Python object can be cast to a PPyObject.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyObject">https://docs.python.org/3/c-api/structures.html#c.PyObject</a>&quot;&gt;See the article about PyObject.)</p>
+<h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{22FC7944-7F88-4638-ADD4-F029A356D81B}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IPyObject</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetPyObject">GetPyObject</a></strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetObjRefOwner">GetObjRefOwner</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetPyTypeObject">GetPyTypeObject</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetTypeData-PyTypeObject-">GetTypeData</a></strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsString">GetAsString</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsAnsiString">GetAsAnsiString</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsWideString">GetAsWideString</a></strong>: WideString;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsInteger">GetAsInteger</a></strong>: <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsCardinal">GetAsCardinal</a></strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsInt64">GetAsInt64</a></strong>: Int64;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsUInt64">GetAsUInt64</a></strong>: uint64;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsDouble">GetAsDouble</a></strong>: double;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsDateTime">GetAsDateTime</a></strong>: TDateTime;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsVariant">GetAsVariant</a></strong>: Variant;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsCallable">GetIsCallable</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsTuple">GetIsTuple</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsList">GetIsList</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsSequence">GetIsSequence</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsMapping">GetIsMapping</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsFloat">GetIsFloat</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsLong">GetIsLong</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsBool">GetIsBool</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsUnicode">GetIsUnicode</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsBytes">GetIsBytes</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#SetObjRefOwner-boolean-">SetObjRefOwner</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#SetPyObject-PPyObject-">SetPyObject</a></strong>(aValue: <a href="uP4P.Types.html#PPyObject">PPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsTrueSingleton">IsTrueSingleton</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsFalseSingleton">IsFalseSingleton</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsNoneSingleton">IsNoneSingleton</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#IncRef">IncRef</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#DecRef">DecRef</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#NewRef">NewRef</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SameAs-IPyObject-">SameAs</a></strong>(const other: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SameAs-PPyObject-">SameAs</a></strong>(const other: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsType-PPyTypeObject-">IsType</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#TypeCheck-PPyTypeObject-">TypeCheck</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#InitPyObject">InitPyObject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsInstance-IPyObject-">IsInstance</a></strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsSubclass-IPyObject-">IsSubclass</a></strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericGetDict-Pointer-">GenericGetDict</a></strong>(context: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CheckBuffer">CheckBuffer</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetBuffer-Py_buffer-Integer-">GetBuffer</a></strong>(var view: <a href="uP4P.Types.Py_buffer.html">Py_buffer</a>; flags: Integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CopyData-IPyObject-">CopyData</a></strong>(const src: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Repr">Repr</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Str">Str</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#ASCII">ASCII</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Bytes">Bytes</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#RichCompare-IPyObject-integer-">RichCompare</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; opid: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#RichCompareBool-IPyObject-integer-">RichCompareBool</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; opid: integer): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttrString-string-">GetAttrString</a></strong>(const attr_name: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttrString2-string-">GetAttrString2</a></strong>(const attr_name: string): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetAttrString-string-IPyObject-">SetAttrString</a></strong>(const attr_name: string; const value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetAttrString2-string-Pointer-">SetAttrString2</a></strong>(const attr_name: string; value: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#DelAttrString-string-">DelAttrString</a></strong>(const attr_name: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#HasAttrString-string-">HasAttrString</a></strong>(const attr_name: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttr-IPyObject-">GetAttr</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttr2-IPyObject-">GetAttr2</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetOptionalAttr-IPyObject-IPyObject-">GetOptionalAttr</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetOptionalAttr2-IPyObject-Pointer-">GetOptionalAttr2</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetOptionalAttrString-string-IPyObject-">GetOptionalAttrString</a></strong>(const attr_name: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetOptionalAttrString2-string-Pointer-">GetOptionalAttrString2</a></strong>(const attr_name: string; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttrAsInteger-string-integer-">GetAttrAsInteger</a></strong>(const attr_name: string; out result_: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAttrAsString-string-string-">GetAttrAsString</a></strong>(const attr_name: string; out result_: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetAttr-IPyObject-IPyObject-">SetAttr</a></strong>(const attr_name, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetAttr2-IPyObject-Pointer-">SetAttr2</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; value: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#DelAttr-IPyObject-">DelAttr</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#HasAttr-IPyObject-">HasAttr</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#HasAttrWithError-IPyObject-">HasAttrWithError</a></strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#HasAttrStringWithError-string-">HasAttrStringWithError</a></strong>(const attr_name: string): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SelfIter">SelfIter</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericGetAttr-IPyObject-">GenericGetAttr</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericGetAttr2-IPyObject-">GenericGetAttr2</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericSetAttr-IPyObject-IPyObject-">GenericSetAttr</a></strong>(const name_, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericSetAttr2-IPyObject-Pointer-">GenericSetAttr2</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; value: Pointer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericSetDict-IPyObject-Pointer-">GenericSetDict</a></strong>(const value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; context: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Hash">Hash</a></strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#HashNotImplemented">HashNotImplemented</a></strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IsTrue">IsTrue</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Not_">Not_</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#ClearWeakRefs">ClearWeakRefs</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Dir">Dir</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#ReprEnter">ReprEnter</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#ReprLeave">ReprLeave</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Print-PFILE-integer-">Print</a></strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>; flags: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#CallFinalizer">CallFinalizer</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CallFinalizerFromDealloc">CallFinalizerFromDealloc</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetItemData">GetItemData</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#VisitManagedDict-visitproc-Pointer-">VisitManagedDict</a></strong>(visit: <a href="uP4P.Types.html#visitproc">visitproc</a>; arg: Pointer): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#ClearManagedDict">ClearManagedDict</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#GC_Track">GC_Track</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#GC_UnTrack">GC_UnTrack</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GC_IsTracked">GC_IsTracked</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GC_IsFinalized">GC_IsFinalized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#IS_GC">IS_GC</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GenericHash">GenericHash</a></strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#AsFileDescriptor">AsFileDescriptor</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Type_">Type_</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Size">Size</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Length">Length</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetItem-IPyObject-">GetItem</a></strong>(const key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetItem-TVarData-">GetItem</a></strong>(const key: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetItem-IPyObject-IPyObject-">SetItem</a></strong>(const key, v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#SetItem-TVarData-TVarData-">SetItem</a></strong>(const key, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#DelItemString-string-">DelItemString</a></strong>(const key: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#DelItem-IPyObject-">DelItem</a></strong>(const key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#DelItem-TVarData-">DelItem</a></strong>(const key: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Format-IPyObject-">Format</a></strong>(const format_spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIter">GetIter</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAIter">GetAIter</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#LengthHint-Py_ssize_t-">LengthHint</a></strong>(defaultvalue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CallNoArgs">CallNoArgs</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Call-IPyObject-IPyObject-">Call</a></strong>(const args, kwargs: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CallObject-IPyObject-">CallObject</a></strong>(const args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#Vectorcall-IPyObjectArray-IPyObject-">Vectorcall</a></strong>(const args: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwnames: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#VectorcallDict-IPyObjectArray-IPyObject-">VectorcallDict</a></strong>(const args: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwargs: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CallOneArg-IPyObject-">CallOneArg</a></strong>(const arg: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#CastValueAsVariant">CastValueAsVariant</a></strong>: Variant;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#UnWrap">UnWrap</a></strong>: Pointer;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#Initialized">Initialized</a></strong>   : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#PyObject">PyObject</a></strong>      : <a href="uP4P.Types.html#PPyObject">PPyObject</a>       read <a href="uP4P.Interfaces.IPyObject.html#GetPyObject">GetPyObject</a>        write <a href="uP4P.Interfaces.IPyObject.html#SetPyObject-PPyObject-">SetPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#ObjRefOwner">ObjRefOwner</a></strong>   : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetObjRefOwner">GetObjRefOwner</a>     write <a href="uP4P.Interfaces.IPyObject.html#SetObjRefOwner-boolean-">SetObjRefOwner</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#RefCnt">RefCnt</a></strong>        : integer         read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a></strong>  : <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>   read <a href="uP4P.Interfaces.IPyObject.html#GetPyTypeObject">GetPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsString">AsString</a></strong>      : string          read <a href="uP4P.Interfaces.IPyObject.html#GetAsString">GetAsString</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsAnsiString">AsAnsiString</a></strong>  : AnsiString      read <a href="uP4P.Interfaces.IPyObject.html#GetAsAnsiString">GetAsAnsiString</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsWideString">AsWideString</a></strong>  : WideString      read <a href="uP4P.Interfaces.IPyObject.html#GetAsWideString">GetAsWideString</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsInteger">AsInteger</a></strong>     : <a href="uP4P.Types.html#C_Long">C_Long</a>          read <a href="uP4P.Interfaces.IPyObject.html#GetAsInteger">GetAsInteger</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsCardinal">AsCardinal</a></strong>    : <a href="uP4P.Types.html#C_ULong">C_ULong</a>         read <a href="uP4P.Interfaces.IPyObject.html#GetAsCardinal">GetAsCardinal</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsInt64">AsInt64</a></strong>       : int64           read <a href="uP4P.Interfaces.IPyObject.html#GetAsInt64">GetAsInt64</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsUInt64">AsUInt64</a></strong>      : uint64          read <a href="uP4P.Interfaces.IPyObject.html#GetAsUInt64">GetAsUInt64</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsDouble">AsDouble</a></strong>      : double          read <a href="uP4P.Interfaces.IPyObject.html#GetAsDouble">GetAsDouble</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsDateTime">AsDateTime</a></strong>    : TDateTime       read <a href="uP4P.Interfaces.IPyObject.html#GetAsDateTime">GetAsDateTime</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#AsVariant">AsVariant</a></strong>     : Variant         read <a href="uP4P.Interfaces.IPyObject.html#GetAsVariant">GetAsVariant</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsCallable">IsCallable</a></strong>    : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsCallable">GetIsCallable</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsTuple">IsTuple</a></strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsTuple">GetIsTuple</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsList">IsList</a></strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsList">GetIsList</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsSequence">IsSequence</a></strong>    : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsSequence">GetIsSequence</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsMapping">IsMapping</a></strong>     : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsMapping">GetIsMapping</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsFloat">IsFloat</a></strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsFloat">GetIsFloat</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsLong">IsLong</a></strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsLong">GetIsLong</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsBool">IsBool</a></strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsBool">GetIsBool</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsUnicode">IsUnicode</a></strong>     : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsUnicode">GetIsUnicode</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#IsBytes">IsBytes</a></strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsBytes">GetIsBytes</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPyObject"></span><code>function <strong>GetPyObject</strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetRefCnt"></span><code>function <strong>GetRefCnt</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetObjRefOwner"></span><code>function <strong>GetObjRefOwner</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetPyTypeObject"></span><code>function <strong>GetPyTypeObject</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetTypeData-PyTypeObject-"></span><code>function <strong>GetTypeData</strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsString"></span><code>function <strong>GetAsString</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsAnsiString"></span><code>function <strong>GetAsAnsiString</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsWideString"></span><code>function <strong>GetAsWideString</strong>: WideString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsInteger"></span><code>function <strong>GetAsInteger</strong>: <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsCardinal"></span><code>function <strong>GetAsCardinal</strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsInt64"></span><code>function <strong>GetAsInt64</strong>: Int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsUInt64"></span><code>function <strong>GetAsUInt64</strong>: uint64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsDouble"></span><code>function <strong>GetAsDouble</strong>: double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsDateTime"></span><code>function <strong>GetAsDateTime</strong>: TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAsVariant"></span><code>function <strong>GetAsVariant</strong>: Variant;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsCallable"></span><code>function <strong>GetIsCallable</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsTuple"></span><code>function <strong>GetIsTuple</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsList"></span><code>function <strong>GetIsList</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsSequence"></span><code>function <strong>GetIsSequence</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsMapping"></span><code>function <strong>GetIsMapping</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsFloat"></span><code>function <strong>GetIsFloat</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsLong"></span><code>function <strong>GetIsLong</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsBool"></span><code>function <strong>GetIsBool</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsUnicode"></span><code>function <strong>GetIsUnicode</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIsBytes"></span><code>function <strong>GetIsBytes</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetObjRefOwner-boolean-"></span><code>procedure <strong>SetObjRefOwner</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetPyObject-PPyObject-"></span><code>procedure <strong>SetPyObject</strong>(aValue: <a href="uP4P.Types.html#PPyObject">PPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsTrueSingleton"></span><code>function <strong>IsTrueSingleton</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this object is the True singleton, the same as x is True in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsFalseSingleton"></span><code>function <strong>IsFalseSingleton</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this object is the False singleton, the same as x is False in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsNoneSingleton"></span><code>function <strong>IsNoneSingleton</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this object is the None singleton, the same as x is None in Python.
+
+<p>Added in version 3.10.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IncRef"></span><code>procedure <strong>IncRef</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Indicate taking a new strong reference to this object, indicating it is in use and should not be destroyed.
+
+<p>This function has no effect on immortal objects.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DecRef"></span><code>procedure <strong>DecRef</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release a strong reference to this object aPyObject, indicating the reference is no longer used.
+
+<p>This function has no effect on immortal objects.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewRef"></span><code>function <strong>NewRef</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new strong reference to this object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SameAs-IPyObject-"></span><code>function <strong>SameAs</strong>(const other: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this object is the same as the &quot;other&quot; object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SameAs-PPyObject-"></span><code>function <strong>SameAs</strong>(const other: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this object is the same as the &quot;other&quot; object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsType-PPyTypeObject-"></span><code>function <strong>IsType</strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the PyObject is a type of aPyTypeObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TypeCheck-PPyTypeObject-"></span><code>function <strong>TypeCheck</strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the PyObject is a type or subtype of aPyTypeObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitPyObject"></span><code>procedure <strong>InitPyObject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the internal PyObject to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInstance-IPyObject-"></span><code>function <strong>IsInstance</strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return 1 if inst is an instance of the class cls or a subclass of cls, or 0 if not. On error, returns -1 and sets an exception.
+
+<p>If cls is a tuple, the check will be done against every entry in cls. The result will be 1 when at least one of the checks returns 1, otherwise it will be 0.
+
+<p>If cls has a __instancecheck__() method, it will be called to determine the subclass status as described in PEP 3119. Otherwise, inst is an instance of cls if its class is a subclass of cls.
+
+<p>An instance inst can override what is considered its class by having a __class__ attribute.
+
+<p>An object cls can override if it is considered a class, and what its base classes are, by having a __bases__ attribute (which must be a tuple of base classes).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsSubclass-IPyObject-"></span><code>function <strong>IsSubclass</strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return 1 if the class derived is identical to or derived from the class cls, otherwise return 0. In case of an error, return -1.
+
+<p>If cls is a tuple, the check will be done against every entry in cls. The result will be 1 when at least one of the checks returns 1, otherwise it will be 0.
+
+<p>If cls has a __subclasscheck__() method, it will be called to determine the subclass status as described in PEP 3119. Otherwise, derived is a subclass of cls if it is a direct or indirect subclass, i.e. contained in cls.__mro__.
+
+<p>Normally only class objects, i.e. instances of type or a derived class, are considered classes. However, objects can override this by having a __bases__ attribute (which must be a tuple of base classes).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericGetDict-Pointer-"></span><code>function <strong>GenericGetDict</strong>(context: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A generic implementation for the getter of a __dict__ descriptor. It creates the dictionary if necessary.
+
+<p>This function may also be called to get the __dict__ of this object. Pass nil for context when calling it. Since this function may need to allocate memory for the dictionary, it may be more efficient to call PyObject_GetAttr() when accessing an attribute on the object.
+
+<p>On failure, returns nil with an exception set.
+
+<p>Added in version 3.3.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckBuffer"></span><code>function <strong>CheckBuffer</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if obj supports the buffer interface otherwise False. When True is returned, it doesn't guarantee that TPyObject.GetBuffer() will succeed. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBuffer-Py_buffer-Integer-"></span><code>function <strong>GetBuffer</strong>(var view: <a href="uP4P.Types.Py_buffer.html">Py_buffer</a>; flags: Integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Send a request to exporter to fill in view as specified by flags. If the exporter cannot provide a buffer of the exact type, it MUST raise BufferError, set view-&gt;obj to nil and return False.
+
+<p>On success, fill in view, set view-&gt;obj to a new reference to exporter and return True. In the case of chained buffer providers that redirect requests to a single object, view-&gt;obj MAY refer to this object instead of exporter (See Buffer Object Structures).
+
+<p>Successful calls to TPyObject.GetBuffer() must be paired with calls to TPyBuffer.Release(), similar to malloc() and free(). Thus, after the consumer is done with the buffer, TPyBuffer.Release() must be called exactly once.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CopyData-IPyObject-"></span><code>function <strong>CopyData</strong>(const src: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Copy data from src to dest buffer. Can convert between C-style and or Fortran-style buffers.
+
+<p>True is returned on success, False on error.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Repr"></span><code>function <strong>Repr</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compute a string representation of this object. Returns the string representation on success, nil on failure. This is the equivalent of the Python expression repr(o). Called by the repr() built-in function.
+
+<p>Changed in version 3.4: This function now includes a debug assertion to help ensure that it does not silently discard an active exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Str"></span><code>function <strong>Str</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compute a string representation of this object. Returns the string representation on success, nil on failure. This is the equivalent of the Python expression str(o). Called by the str() built-in function and, therefore, by the print() function.
+
+<p>Changed in version 3.4: This function now includes a debug assertion to help ensure that it does not silently discard an active exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ASCII"></span><code>function <strong>ASCII</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>As TPyObject.Repr(), compute a string representation of this object, but escape the non-ASCII characters in the string returned by TPyObject.Repr() with \x, \u or \U escapes. This generates a string similar to that returned by TPyObject.Repr() in Python 2. Called by the ascii() built-in function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Bytes"></span><code>function <strong>Bytes</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compute a bytes representation of this object. nil is returned on failure and a bytes object on success. This is equivalent to the Python expression bytes(o), when o is not an integer. Unlike bytes(o), a TypeError is raised when o is an integer instead of a zero-initialized bytes object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RichCompare-IPyObject-integer-"></span><code>function <strong>RichCompare</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; opid: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compare the values of this object and obj using the operation specified by opid, which must be one of Py_LT, Py_LE, Py_EQ, Py_NE, Py_GT, or Py_GE, corresponding to &lt;, &lt;=, ==, !=, &gt;, or &gt;= respectively. This is the equivalent of the Python expression o1 op o2, where op is the operator corresponding to opid. Returns the value of the comparison on success, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RichCompareBool-IPyObject-integer-"></span><code>function <strong>RichCompareBool</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; opid: integer): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compare the values of this object and obj using the operation specified by opid, like TPyObject.RichCompare(), but returns -1 on error, 0 if the result is false, 1 otherwise.
+
+<p>Note If o1 and o2 are the same object, TPyObject.RichCompareBool() will always return 1 for Py_EQ and 0 for Py_NE.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttrString-string-"></span><code>function <strong>GetAttrString</strong>(const attr_name: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>If the missing attribute should not be treated as a failure, you can use TPyObject.GetOptionalAttrString() instead.
+
+<p>This function returns a IPyObject instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttrString2-string-"></span><code>function <strong>GetAttrString2</strong>(const attr_name: string): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>If the missing attribute should not be treated as a failure, you can use TPyObject.GetOptionalAttrString() instead.
+
+<p>This function returns a PPyObject pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAttrString-string-IPyObject-"></span><code>function <strong>SetAttrString</strong>(const attr_name: string; const value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.SetAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>If value is nil, the attribute is deleted, but this feature is deprecated in favour of using TPyObject.DelAttrString().
+
+<p>The number of different attribute names passed to this function should be kept small, usually by using a statically allocated string as attr_name. For attribute names that aren't known at compile time, prefer calling TPyUnicode.FromString() and TPyObject.SetAttr() directly. For more details, see TPyUnicode.InternFromString(), which may be used internally to create a key object.
+
+<p>This function uses a IPyObject for the value parameter.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAttrString2-string-Pointer-"></span><code>function <strong>SetAttrString2</strong>(const attr_name: string; value: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.SetAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>If value is nil, the attribute is deleted, but this feature is deprecated in favour of using TPyObject.DelAttrString().
+
+<p>The number of different attribute names passed to this function should be kept small, usually by using a statically allocated string as attr_name. For attribute names that aren't known at compile time, prefer calling TPyUnicode.FromString() and TPyObject.SetAttr() directly. For more details, see TPyUnicode.InternFromString(), which may be used internally to create a key object.
+
+<p>This function uses a PPyObject pointer for the value parameter.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelAttrString-string-"></span><code>function <strong>DelAttrString</strong>(const attr_name: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.DelAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>The number of different attribute names passed to this function should be kept small, usually by using a statically allocated string as attr_name. For attribute names that areni't known at compile time, prefer calling TPyUnicode.FromString() and TPyObject.DelAttr() directly. For more details, see TPyUnicode.InternFromString(), which may be used internally to create a key object for lookup.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasAttrString-string-"></span><code>function <strong>HasAttrString</strong>(const attr_name: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.HasAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>Note Exceptions that occur when this calls __getattr__() and __getattribute__() methods or while creating the temporary str object are silently ignored. For proper error handling, use TPyObject.HasAttrStringWithError(), TPyObject.GetOptionalAttrString() or TPyObject.GetAttrString() instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttr-IPyObject-"></span><code>function <strong>GetAttr</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Retrieve an attribute named attr_name from this object. Returns the attribute value on success, or nil on failure. This is the equivalent of the Python expression o.attr_name.
+
+<p>If the missing attribute should not be treated as a failure, you can use TPyObject.GetOptionalAttr() instead.
+
+<p>This function returns a IPyObject instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttr2-IPyObject-"></span><code>function <strong>GetAttr2</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Retrieve an attribute named attr_name from this object. Returns the attribute value on success, or nil on failure. This is the equivalent of the Python expression o.attr_name.
+
+<p>If the missing attribute should not be treated as a failure, you can use TPyObject.GetOptionalAttr() instead.
+
+<p>This function returns a PPyObject pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttr-IPyObject-IPyObject-"></span><code>function <strong>GetOptionalAttr</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant of TPyObject.GetAttr() which doesn't raise AttributeError if the attribute is not found.
+
+<p>If the attribute is found, return True and set result_ to a new strong reference to the attribute. If the attribute is not found, return False and set result_ to nil; the AttributeError is silenced. If an error other than AttributeError is raised, return False and set result_ to nil.
+
+<p>Added in version 3.13.
+
+<p>This function returns a IPyObject instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttr2-IPyObject-Pointer-"></span><code>function <strong>GetOptionalAttr2</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant of TPyObject.GetAttr() which doesn't raise AttributeError if the attribute is not found.
+
+<p>If the attribute is found, return True and set result_ to a new strong reference to the attribute. If the attribute is not found, return False and set result_ to nil; the AttributeError is silenced. If an error other than AttributeError is raised, return False and set result_ to nil.
+
+<p>Added in version 3.13.
+
+<p>This function returns a PPyObject pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttrString-string-IPyObject-"></span><code>function <strong>GetOptionalAttrString</strong>(const attr_name: string; out result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetOptionalAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p>This function returns a IPyObject instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttrString2-string-Pointer-"></span><code>function <strong>GetOptionalAttrString2</strong>(const attr_name: string; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetOptionalAttr(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p>This function returns a PPyObject pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttrAsInteger-string-integer-"></span><code>function <strong>GetAttrAsInteger</strong>(const attr_name: string; out result_: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetAttrString but result_ is converted to integer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttrAsString-string-string-"></span><code>function <strong>GetAttrAsString</strong>(const attr_name: string; out result_: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.GetAttrString but result_ is converted to string.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAttr-IPyObject-IPyObject-"></span><code>function <strong>SetAttr</strong>(const attr_name, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the value of the attribute named attr_name, for this object, to the value. Raise an exception and return False on failure; return True on success. This is the equivalent of the Python statement o.attr_name = v.
+
+<p>If value is nil, the attribute is deleted. This behaviour is deprecated in favour of using TPyObject.DelAttr(), but there are currently no plans to remove it.
+
+<p>This function uses a IPyObject value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAttr2-IPyObject-Pointer-"></span><code>function <strong>SetAttr2</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; value: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the value of the attribute named attr_name, for this object, to the value. Raise an exception and return False on failure; return True on success. This is the equivalent of the Python statement o.attr_name = v.
+
+<p>If value is nil, the attribute is deleted. This behaviour is deprecated in favour of using TPyObject.DelAttr(), but there are currently no plans to remove it.
+
+<p>This function uses a PPyObject pointer in the value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelAttr-IPyObject-"></span><code>function <strong>DelAttr</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Delete attribute named attr_name, for this object. Returns False on failure. This is the equivalent of the Python statement del o.attr_name.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasAttr-IPyObject-"></span><code>function <strong>HasAttr</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns True if o has the attribute attr_name, and False otherwise. This function always succeeds.
+
+<p>Note Exceptions that occur when this calls __getattr__() and __getattribute__() methods aren't propagated, but instead given to sys.unraisablehook(). For proper error handling, use TPyObject.HasAttrWithError(), TPyObject.GetOptionalAttr() or TPyObject.GetAttr() instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasAttrWithError-IPyObject-"></span><code>function <strong>HasAttrWithError</strong>(const attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns 1 if o has the attribute attr_name, and 0 otherwise. This is equivalent to the Python expression hasattr(o, attr_name). On failure, return -1.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasAttrStringWithError-string-"></span><code>function <strong>HasAttrStringWithError</strong>(const attr_name: string): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.HasAttrWithError(), but attr_name is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SelfIter"></span><code>function <strong>SelfIter</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is equivalent to the Python __iter__(self): return self method. It is intended for iterator types, to be used in the PyTypeObject.tp_iter slot.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericGetAttr-IPyObject-"></span><code>function <strong>GenericGetAttr</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Generic attribute getter function that is meant to be put into a type object's tp_getattro slot. It looks for a descriptor in the dictionary of classes in the object's MRO as well as an attribute in the object's __dict__ (if present). As outlined in Implementing Descriptors, data descriptors take preference over instance attributes, while non-data descriptors don't. Otherwise, an AttributeError is raised.
+
+<p>This function returns a IPyObject instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericGetAttr2-IPyObject-"></span><code>function <strong>GenericGetAttr2</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Generic attribute getter function that is meant to be put into a type object's tp_getattro slot. It looks for a descriptor in the dictionary of classes in the object's MRO as well as an attribute in the object's __dict__ (if present). As outlined in Implementing Descriptors, data descriptors take preference over instance attributes, while non-data descriptors don't. Otherwise, an AttributeError is raised.
+
+<p>This function returns a PPyObject pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericSetAttr-IPyObject-IPyObject-"></span><code>function <strong>GenericSetAttr</strong>(const name_, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Generic attribute setter and deleter function that is meant to be put into a type object's tp_setattro slot. It looks for a data descriptor in the dictionary of classes in the object's MRO, and if found it takes preference over setting or deleting the attribute in the instance dictionary. Otherwise, the attribute is set or deleted in the object's __dict__ (if present). On success, True is returned, otherwise an AttributeError is raised and False is returned.
+
+<p>This function uses a IPyObject value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericSetAttr2-IPyObject-Pointer-"></span><code>function <strong>GenericSetAttr2</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; value: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Generic attribute setter and deleter function that is meant to be put into a type object's tp_setattro slot. It looks for a data descriptor in the dictionary of classes in the object's MRO, and if found it takes preference over setting or deleting the attribute in the instance dictionary. Otherwise, the attribute is set or deleted in the object's __dict__ (if present). On success, True is returned, otherwise an AttributeError is raised and False is returned.
+
+<p>This function uses a PPyObject pointer in the value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericSetDict-IPyObject-Pointer-"></span><code>function <strong>GenericSetDict</strong>(const value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; context: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A generic implementation for the setter of a __dict__ descriptor. This implementation does not allow the dictionary to be deleted.
+
+<p>Added in version 3.3.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Hash"></span><code>function <strong>Hash</strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compute and return the hash value of this object. On failure, return False. This is the equivalent of the Python expression hash(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HashNotImplemented"></span><code>function <strong>HashNotImplemented</strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set a TypeError indicating that type(o) is not hashable and return -1. This function receives special treatment when stored in a tp_hash slot, allowing a type to explicitly indicate to the interpreter that it is not hashable.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsTrue"></span><code>function <strong>IsTrue</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns 1 if this object is considered to be true, and 0 otherwise. This is equivalent to the Python expression not not o. On failure, return -1.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Not_"></span><code>function <strong>Not_</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns 0 if this object is considered to be true, and 1 otherwise. This is equivalent to the Python expression not o. On failure, return -1.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ClearWeakRefs"></span><code>procedure <strong>ClearWeakRefs</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function is called by the tp_dealloc handler to clear weak references.
+
+<p>This iterates through the weak references for this object and calls callbacks for those references which have one. It returns when all callbacks have been attempted.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Dir"></span><code>function <strong>Dir</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is equivalent to the Python expression dir(o), returning a (possibly empty) list of strings appropriate for the object argument, or nil if there was an error. If the argument is nil, this is like the Python dir(), returning the names of the current locals; in this case, if no execution frame is active then nil is returned but TPyErr.Occurred() will return false.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReprEnter"></span><code>function <strong>ReprEnter</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Called at the beginning of the tp_repr implementation to detect cycles.
+
+<p>If this object has already been processed, the function returns a positive integer. In that case the tp_repr implementation should return a string object indicating a cycle. As examples, dict objects return {...} and list objects return [...].
+
+<p>The function will return a negative integer if the recursion limit is reached. In that case the tp_repr implementation should typically return nil.
+
+<p>Otherwise, the function returns zero and the tp_repr implementation can continue normally.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReprLeave"></span><code>procedure <strong>ReprLeave</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ends a ReprEnter(). Must be called once for each invocation of ReprEnter() that returns zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Print-PFILE-integer-"></span><code>function <strong>Print</strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>; flags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Print this object, on file fp. Returns False on error. The flags argument is used to enable certain printing options. The only option currently supported is Py_PRINT_RAW; if given, the str() of this object is written instead of the repr().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CallFinalizer"></span><code>procedure <strong>CallFinalizer</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Finalizes this object as described in tp_finalize. Call this function (or TPyObject.CallFinalizerFromDealloc()) instead of calling tp_finalize directly because this function may deduplicate multiple calls to tp_finalize. Currently, calls are only deduplicated if the type supports garbage collection (i.e., the Py_TPFLAGS_HAVE_GC flag is set); this may change in the future.
+
+<p>Added in version 3.4.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CallFinalizerFromDealloc"></span><code>function <strong>CallFinalizerFromDealloc</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Same as TPyObject.CallFinalizer() but meant to be called at the beginning of the object's destructor (tp_dealloc). There must not be any references to the object. If the object's finalizer resurrects the object, this function returns False; no further destruction should happen. Otherwise, this function returns True and destruction can continue normally.
+
+<p>Added in version 3.4.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemData"></span><code>function <strong>GetItemData</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get a pointer to per-item data for a class with Py_TPFLAGS_ITEMS_AT_END.
+
+<p>On error, set an exception and return nil. TypeError is raised if this object does not have Py_TPFLAGS_ITEMS_AT_END set.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VisitManagedDict-visitproc-Pointer-"></span><code>function <strong>VisitManagedDict</strong>(visit: <a href="uP4P.Types.html#visitproc">visitproc</a>; arg: Pointer): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Visit the managed dictionary of this object.
+
+<p>This function must only be called in a traverse function of the type which has the Py_TPFLAGS_MANAGED_DICT flag set.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ClearManagedDict"></span><code>procedure <strong>ClearManagedDict</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Clear the managed dictionary of this object.
+
+<p>This function must only be called in a clear function of the type which has the Py_TPFLAGS_MANAGED_DICT flag set.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GC_Track"></span><code>procedure <strong>GC_Track</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Adds the object op to the set of container objects tracked by the collector. The collector can run at unexpected times so objects must be valid while being tracked. This should be called once all the fields followed by the tp_traverse handler become valid, usually near the end of the constructor.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GC_UnTrack"></span><code>procedure <strong>GC_UnTrack</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the object op from the set of container objects tracked by the collector. Note that TPyObject.GC_Track() can be called again on this object to add it back to the set of tracked objects. The deallocator (tp_dealloc handler) should call this for the object before any of the fields used by the tp_traverse handler become invalid.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GC_IsTracked"></span><code>function <strong>GC_IsTracked</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns True if the object type of op implements the GC protocol and op is being currently tracked by the garbage collector and False otherwise.
+
+<p>This is analogous to the Python function gc.is_tracked().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GC_IsFinalized"></span><code>function <strong>GC_IsFinalized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns True if the object type of op implements the GC protocol and op has been already finalized by the garbage collector and False otherwise.
+
+<p>This is analogous to the Python function gc.is_finalized().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IS_GC"></span><code>function <strong>IS_GC</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns True if the object implements the garbage collector protocol, otherwise returns False.
+
+<p>The object cannot be tracked by the garbage collector if this function returns False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GenericHash"></span><code>function <strong>GenericHash</strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Generic hashing function that is meant to be put into a type object's tp_hash slot. Its result only depends on the object's identity.
+
+<p>CPython implementation detail: In CPython, it is equivalent to TPy.HashPointer().
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsFileDescriptor"></span><code>function <strong>AsFileDescriptor</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the file descriptor associated with p as an int. If the object is an integer, its value is returned. If not, the object's fileno() method is called if it exists; the method must return an integer, which is returned as the file descriptor value. Sets an exception and returns -1 on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Type_"></span><code>function <strong>Type_</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns a type object corresponding to the object type of this object. On failure, raises SystemError and returns nil. This is equivalent to the Python expression type(o). This function creates a new strong reference to the return value. There's really no reason to use this function instead of the TPy.Type_() function, which returns a pointer of type PPyTypeObject, except when a new strong reference is needed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size"></span><code>function <strong>Size</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the Size of this object. If this object provides either the sequence and mapping protocols, the sequence length is returned. On error, -1 is returned. This is the equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Length"></span><code>function <strong>Length</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the length of this object. If this object provides either the sequence and mapping protocols, the sequence length is returned. On error, -1 is returned. This is the equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-"></span><code>function <strong>GetItem</strong>(const key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return element of this object corresponding to the key or nil on failure. This is the equivalent of the Python expression o[key].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-TVarData-"></span><code>function <strong>GetItem</strong>(const key: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return element of this object corresponding to the key or nil on failure. This is the equivalent of the Python expression o[key].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-IPyObject-"></span><code>function <strong>SetItem</strong>(const key, v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Map the key to the value v. Raise an exception and return False on failure; return 0 on success. This is the equivalent of the Python statement o[key] = v. This function does not steal a reference to v.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-TVarData-TVarData-"></span><code>function <strong>SetItem</strong>(const key, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Map the key to the value v. Raise an exception and return False on failure; return 0 on success. This is the equivalent of the Python statement o[key] = v. This function does not steal a reference to v.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItemString-string-"></span><code>function <strong>DelItemString</strong>(const key: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPyObject.DelItem(), but key is specified as a string, rather than a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItem-IPyObject-"></span><code>function <strong>DelItem</strong>(const key: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the mapping for the key from this object. Return False on failure. This is equivalent to the Python statement del o[key].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItem-TVarData-"></span><code>function <strong>DelItem</strong>(const key: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the mapping for the key from this object. Return False on failure. This is equivalent to the Python statement del o[key].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Format-IPyObject-"></span><code>function <strong>Format</strong>(const format_spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Format this object using format_spec. This is equivalent to the Python expression format(obj, format_spec).
+
+<p>format_spec may be nil. In this case the call is equivalent to format(obj). Returns the formatted string on success, nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIter"></span><code>function <strong>GetIter</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is equivalent to the Python expression iter(o). It returns a new iterator for the object argument, or the object itself if the object is already an iterator. Raises TypeError and returns nil if the object cannot be iterated.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAIter"></span><code>function <strong>GetAIter</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the equivalent to the Python expression aiter(o). Takes an AsyncIterable object and returns an AsyncIterator for it. This is typically a new iterator but if the argument is an AsyncIterator, this returns itself. Raises TypeError and returns nil if the object cannot be iterated.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LengthHint-Py_ssize_t-"></span><code>function <strong>LengthHint</strong>(defaultvalue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return an estimated length for this object. First try to return its actual length, then an estimate using __length_hint__(), and finally return the default value. On error return -1. This is the equivalent to the Python expression operator.length_hint(o, defaultvalue).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CallNoArgs"></span><code>function <strong>CallNoArgs</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call a callable Python object callable without any arguments.
+
+<p>It is the most efficient way to call a callable Python object without any argument.
+
+<p>Return the result of the call on success, or raise an exception and return nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Call-IPyObject-IPyObject-"></span><code>function <strong>Call</strong>(const args, kwargs: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call a callable Python object callable, with arguments given by the tuple args, and named arguments given by the dictionary kwargs.
+
+<p>args must not be nil; use an empty tuple if no arguments are needed. If no named arguments are needed, kwargs can be nil.
+
+<p>Return the result of the call on success, or raise an exception and return nil on failure.
+
+<p>This is the equivalent of the Python expression: callable(*args, **kwargs).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CallObject-IPyObject-"></span><code>function <strong>CallObject</strong>(const args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call a callable Python object callable, with arguments given by the tuple args. If no arguments are needed, then args can be nil.
+
+<p>Return the result of the call on success, or raise an exception and return nil on failure.
+
+<p>This is the equivalent of the Python expression: callable(*args).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Vectorcall-IPyObjectArray-IPyObject-"></span><code>function <strong>Vectorcall</strong>(const args: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwnames: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call a callable Python object callable. The arguments are the same as for vectorcallfunc. If callable supports vectorcall, this directly calls the vectorcall function stored in callable.
+
+<p>Return the result of the call on success, or raise an exception and return nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VectorcallDict-IPyObjectArray-IPyObject-"></span><code>function <strong>VectorcallDict</strong>(const args: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>; const kwargs: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call callable with positional arguments passed exactly as in the vectorcall protocol, but with keyword arguments passed as a dictionary kwdict. The args array contains only the positional arguments.
+
+<p>Regardless of which protocol is used internally, a conversion of arguments needs to be done. Therefore, this function should only be used if the caller already has a dictionary ready to use for the keyword arguments, but not a tuple for the positional arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CallOneArg-IPyObject-"></span><code>function <strong>CallOneArg</strong>(const arg: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call a callable Python object callable with exactly 1 positional argument arg and no keyword arguments.
+
+<p>Return the result of the call on success, or raise an exception and return nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CastValueAsVariant"></span><code>function <strong>CastValueAsVariant</strong>: Variant;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Cast the value of this object as a Variant.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnWrap"></span><code>function <strong>UnWrap</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the PyObject pointer that was handled by this TPyObject instance.
+
+<p>This function must be used when passing a PyObject pointer to a function that steals the PyObject reference.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>   : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if this class is fully initialized. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PyObject"></span><code>property <strong>PyObject</strong>      : <a href="uP4P.Types.html#PPyObject">PPyObject</a>       read <a href="uP4P.Interfaces.IPyObject.html#GetPyObject">GetPyObject</a>        write <a href="uP4P.Interfaces.IPyObject.html#SetPyObject-PPyObject-">SetPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to the PyObject record.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ObjRefOwner"></span><code>property <strong>ObjRefOwner</strong>   : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetObjRefOwner">GetObjRefOwner</a>     write <a href="uP4P.Interfaces.IPyObject.html#SetObjRefOwner-boolean-">SetObjRefOwner</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns True if this TPyObkect instance is the owner of the PyObject reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RefCnt"></span><code>property <strong>RefCnt</strong>        : integer         read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the reference count of the PyObject reference.
+
+<p></p>
+<p>
+
+
+<p>See the TPy.RefCnt function for more details.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PyTypeObject"></span><code>property <strong>PyTypeObject</strong>  : <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>   read <a href="uP4P.Interfaces.IPyObject.html#GetPyTypeObject">GetPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the type of the Python object.
+
+<p></p>
+<p>
+
+
+<p>See the TPy.Type_ function for more details.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsString"></span><code>property <strong>AsString</strong>      : string          read <a href="uP4P.Interfaces.IPyObject.html#GetAsString">GetAsString</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a string.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsAnsiString"></span><code>property <strong>AsAnsiString</strong>  : AnsiString      read <a href="uP4P.Interfaces.IPyObject.html#GetAsAnsiString">GetAsAnsiString</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as an AnsiString.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsWideString"></span><code>property <strong>AsWideString</strong>  : WideString      read <a href="uP4P.Interfaces.IPyObject.html#GetAsWideString">GetAsWideString</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a WideString.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsInteger"></span><code>property <strong>AsInteger</strong>     : <a href="uP4P.Types.html#C_Long">C_Long</a>          read <a href="uP4P.Interfaces.IPyObject.html#GetAsInteger">GetAsInteger</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as an integer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsCardinal"></span><code>property <strong>AsCardinal</strong>    : <a href="uP4P.Types.html#C_ULong">C_ULong</a>         read <a href="uP4P.Interfaces.IPyObject.html#GetAsCardinal">GetAsCardinal</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a cardinal.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsInt64"></span><code>property <strong>AsInt64</strong>       : int64           read <a href="uP4P.Interfaces.IPyObject.html#GetAsInt64">GetAsInt64</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as an int64.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUInt64"></span><code>property <strong>AsUInt64</strong>      : uint64          read <a href="uP4P.Interfaces.IPyObject.html#GetAsUInt64">GetAsUInt64</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a uint64.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDouble"></span><code>property <strong>AsDouble</strong>      : double          read <a href="uP4P.Interfaces.IPyObject.html#GetAsDouble">GetAsDouble</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a double.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDateTime"></span><code>property <strong>AsDateTime</strong>    : TDateTime       read <a href="uP4P.Interfaces.IPyObject.html#GetAsDateTime">GetAsDateTime</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a TDateTime.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsVariant"></span><code>property <strong>AsVariant</strong>     : Variant         read <a href="uP4P.Interfaces.IPyObject.html#GetAsVariant">GetAsVariant</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this object as a Variant.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsCallable"></span><code>property <strong>IsCallable</strong>    : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsCallable">GetIsCallable</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is callable.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsTuple"></span><code>property <strong>IsTuple</strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsTuple">GetIsTuple</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a tuple object or an instance of a subtype of the tuple type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsList"></span><code>property <strong>IsList</strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsList">GetIsList</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a list object or an instance of a subtype of the list type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsSequence"></span><code>property <strong>IsSequence</strong>    : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsSequence">GetIsSequence</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if this object provides the sequence protocol, and False otherwise.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsMapping"></span><code>property <strong>IsMapping</strong>     : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsMapping">GetIsMapping</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if this object provides the mapping protocol or supports slicing, and False otherwise.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsFloat"></span><code>property <strong>IsFloat</strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsFloat">GetIsFloat</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a PyFloatObject or a subtype of PyFloatObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsLong"></span><code>property <strong>IsLong</strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsLong">GetIsLong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a PyLongObject or a subtype of PyLongObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsBool"></span><code>property <strong>IsBool</strong>        : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsBool">GetIsBool</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is of type PyBool_Type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsUnicode"></span><code>property <strong>IsUnicode</strong>     : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsUnicode">GetIsUnicode</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a Unicode object or an instance of a Unicode subtype.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsBytes"></span><code>property <strong>IsBytes</strong>       : boolean         read <a href="uP4P.Interfaces.IPyObject.html#GetIsBytes">GetIsBytes</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if this object is a bytes object or an instance of a subtype of the bytes type.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

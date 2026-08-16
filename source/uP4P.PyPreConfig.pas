@@ -88,8 +88,8 @@ type
       /// </summary>
       property Initialized                 : boolean            read GetInitialized;
       /// <summary>
-      /// <para>If True, Py_PreInitializeFromArgs() and
-      /// Py_PreInitializeFromBytesArgs() parse their argv argument the same way
+      /// <para>If True, TPy.PreInitializeFromArgs() and
+      /// TPy.PreInitializeFromBytesArgs() parse their argv argument the same way
       /// the regular Python parses command line arguments: see Command Line
       /// Arguments.</para>
       /// <para>Default: True in Python config, False in isolated config.</para>

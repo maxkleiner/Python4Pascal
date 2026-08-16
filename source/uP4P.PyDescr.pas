@@ -28,7 +28,7 @@ type
       /// <summary>
       /// <para>Create a new method descriptor for extension type type from the
       /// PyMethodDef structure meth.</para>
-      /// <para>Method descriptors expose C functions as methods on a type.
+      /// <para>Method descriptors expose functions as methods on a type.
       /// This is the same kind of descriptor created for entries in tp_methods,
       /// and it appears in Python as a types.MethodDescriptorType
       /// object.</para>
@@ -39,7 +39,7 @@ type
       /// <summary>
       /// <para>Create a new class method descriptor for extension type type
       /// from the PyMethodDef structure method.</para>
-      /// <para>Class method descriptors expose C methods that receive the
+      /// <para>Class method descriptors expose methods that receive the
       /// class rather than an instance when accessed. This is the same kind
       /// of descriptor created for METH_CLASS entries in tp_methods, and it
       /// appears in Python as a types.ClassMethodDescriptorType object.</para>

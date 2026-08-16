@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyException: Class TPyException</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyException"></span><h1 class="cio">Class TPyException</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyException.html">uP4P.PyException</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyException = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper class for all the PyException_* methods.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/exceptions.html#exception-objects">https://docs.python.org/3/c-api/exceptions.html#exception-objects</a>&quot;&gt;See the Exception Objects article.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyException</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#SetTraceback-IPyObject-IPyObject-">SetTraceback</a></strong>(const ex, tb: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#GetTraceback-IPyObject-">GetTraceback</a></strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#GetCause-IPyObject-">GetCause</a></strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyException.TPyException.html#SetCause-IPyObject-IPyObject-">SetCause</a></strong>(const ex, cause: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#GetContext-IPyObject-">GetContext</a></strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyException.TPyException.html#SetContext-IPyObject-IPyObject-">SetContext</a></strong>(const ex, ctx: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#GetArgs-IPyObject-">GetArgs</a></strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyException.TPyException.html#SetArgs-IPyObject-IPyObject-">SetArgs</a></strong>(const ex, args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetTraceback-IPyObject-IPyObject-"></span><code>class function <strong>SetTraceback</strong>(const ex, tb: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the traceback associated with the exception to tb. Use nil to clear it.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetTraceback-IPyObject-"></span><code>class function <strong>GetTraceback</strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the traceback associated with the exception as a new reference, as accessible from Python through the __traceback__ attribute. If there is no traceback associated, this returns nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCause-IPyObject-"></span><code>class function <strong>GetCause</strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the cause (either an exception instance, or None, set by raise ... from ...) associated with the exception as a new reference, as accessible from Python through the __cause__ attribute.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetCause-IPyObject-IPyObject-"></span><code>class procedure <strong>SetCause</strong>(const ex, cause: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the cause associated with the exception to cause. Use nil to clear it. There is no type check to make sure that cause is either an exception instance or None. This &quot;steals&quot; a reference to cause.
+
+<p>The __suppress_context__ attribute is implicitly set to True by this function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetContext-IPyObject-"></span><code>class function <strong>GetContext</strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the context (another exception instance during whose handling ex was raised) associated with the exception as a new reference, as accessible from Python through the __context__ attribute. If there is no context associated, this returns nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetContext-IPyObject-IPyObject-"></span><code>class procedure <strong>SetContext</strong>(const ex, ctx: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the context associated with the exception to ctx. Use nil to clear it. There is no type check to make sure that ctx is an exception instance. This &quot;steals&quot; a reference to ctx.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetArgs-IPyObject-"></span><code>class function <strong>GetArgs</strong>(const ex: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return args of exception ex.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetArgs-IPyObject-IPyObject-"></span><code>class procedure <strong>SetArgs</strong>(const ex, args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set args of exception ex to args.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

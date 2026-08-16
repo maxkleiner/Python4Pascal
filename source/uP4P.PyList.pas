@@ -168,7 +168,7 @@ type
       class function Extend(const self_, iterable: IPyObject): boolean;
       /// <summary>
       /// <para>Remove all items from list. This is the same as
-      /// TPyList.SetSlice(list, 0, PY_SSIZE_T_MAX, NULL) and analogous to
+      /// TPyList.SetSlice(list, 0, PY_SSIZE_T_MAX, nil) and analogous to
       /// list.clear() or del list[:].</para>
       /// <para>Raise an exception and return False if list is not a list
       /// object. Return True on success.</para>

@@ -39,7 +39,7 @@ type
       /// </summary>
       class procedure FatalError(const message_: string);
       /// <summary>
-      /// <para>Py_UniversalNewlineFgets is an fgets variation that understands
+      /// <para>TPy.UniversalNewlineFgets is an fgets variation that understands
       /// all of \r, \n and \r\n conventions.</para>
       /// <para>The stream should be opened in binary mode.</para>
       /// <para>Note that we need no error handling: fgets() treats error and
@@ -138,13 +138,13 @@ type
       /// are immortal and have a very high refcount that does not reflect the
       /// actual number of references. Consequently, do not rely on the returned
       /// value to be accurate, other than a value of 0 or 1.</para>
-      /// <para>Use the Py_SET_REFCNT() function to set an object reference
+      /// <para>Use the TPy.SET_REFCNT() function to set an object reference
       /// count.</para>
       /// <para>Note On free-threaded builds of Python, returning 1 isn't
       /// sufficient to determine if it's safe to treat o as having no access
       /// by other threads. Use PyUnstable_Object_IsUniquelyReferenced() for
       /// that instead.</para>
-      /// <para>Changed in version 3.10: Py_REFCNT() is changed to the inline
+      /// <para>Changed in version 3.10: TPy.REFCNT() is changed to the inline
       /// static function.</para>
       /// <para>Changed in version 3.11: The parameter type is no longer const
       /// PyObject*.</para>
@@ -160,7 +160,7 @@ type
       /// <para>When done using the object, release is by calling
       /// TPy.DecRef().</para>
       /// <para>The object must not be nil; if you aren't sure that it isn't
-      /// nil, use Py_XINCREF().</para>
+      /// nil, use TPy.XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
       /// <para>Changed in version 3.12: Immortal objects are not
@@ -177,7 +177,7 @@ type
       /// <para>When done using the object, release is by calling
       /// TPy.DecRef().</para>
       /// <para>The object must not be nil; if you aren't sure that it isn't
-      /// nil, use Py_XINCREF().</para>
+      /// nil, use TPy.XINCREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
       /// <para>Changed in version 3.12: Immortal objects are not
@@ -194,7 +194,7 @@ type
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
       /// <para>The object must not be nil; if you aren't sure that it isn't
-      /// nil, use Py_XDECREF().</para>
+      /// nil, use TPy.XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
       /// <para>Warning The deallocation function can cause arbitrary Python
@@ -219,7 +219,7 @@ type
       /// <para>This function is usually used to delete a strong reference
       /// before exiting its scope.</para>
       /// <para>The object must not be nil; if you aren't sure that it isn't
-      /// nil, use Py_XDECREF().</para>
+      /// nil, use TPy.XDECREF().</para>
       /// <para>Do not expect this function to actually modify aPyObject in any
       /// way. For at least some objects, this function has no effect.</para>
       /// <para>Warning The deallocation function can cause arbitrary Python
@@ -235,7 +235,7 @@ type
       /// </summary>
       class procedure DecRef(const aPyObject: PPyObject); overload;
       /// <summary>
-      /// <para>Create a new strong reference to an object: call Py_INCREF() on
+      /// <para>Create a new strong reference to an object: call TPy.INCREF() on
       /// aPyObject and return the object aPyObject.</para>
       /// <para>When the strong reference is no longer needed, TPy.DecRef()
       /// should be called on it to release the reference.</para>
@@ -245,7 +245,7 @@ type
       /// </summary>
       class function  NewRef(const aPyObject: IPyObject): PPyObject; overload;
       /// <summary>
-      /// <para>Create a new strong reference to an object: call Py_INCREF() on
+      /// <para>Create a new strong reference to an object: call TPy.INCREF() on
       /// aPyObject and return the object aPyObject.</para>
       /// <para>When the strong reference is no longer needed, TPy.DecRef()
       /// should be called on it to release the reference.</para>
@@ -494,7 +494,7 @@ type
       /// TPy.RunMain().</para>
       /// <para>In terms of the CPython runtime configuration APIs documented
       /// in the runtime configuration section (and without accounting for error
-      /// handling), Py_Main is approximately equivalent to:</para>
+      /// handling), TPy.Main is approximately equivalent to:</para>
       /// <code>
       /// PyConfig config;
       /// PyConfig_InitPythonConfig(&config);
@@ -963,7 +963,7 @@ type
       /// <para>The function then checks if the stack limit is reached. If this
       /// is the case, a RecursionError is set and False is returned.
       /// Otherwise, True is returned.</para>
-      /// <para>where should be a UTF-8 encoded string such as
+      /// <para>where_ should be a string such as
       /// " in instance check" to be concatenated to the RecursionError message
       /// caused by the recursion depth limit.</para>
       /// </summary>
@@ -982,7 +982,7 @@ type
       /// of decoding them.</para>
       /// <para>Return a pointer to a newly allocated wide character string,
       /// use TPyMem.RawFree() to free the memory. If size is not nil, write
-      /// the number of wide characters excluding the null character into
+      /// the number of wide characters excluding the nil character into
       /// size_</para>
       /// <para>Return nil on decoding error or memory allocation error.
       /// size_ is set to (size_t)-1 on memory error or set to (size_t)-2 on

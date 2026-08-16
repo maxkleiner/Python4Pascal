@@ -409,16 +409,120 @@ const
   METH_METHOD    = $0200;
 
   {* include/moduleobject.h *}
+  /// <summary>
+  /// <para>Specifies a function that is called to create the module object
+  /// itself. The value pointer of this slot must point to a function of the
+  /// signature:</para>
+  /// <code>PyObject *create_module(PyObject *spec, PyModuleDef *def)</code>
+  /// <para>The function receives a ModuleSpec instance, as defined in PEP 451,
+  /// and the module definition. It should return a new module object, or set
+  /// an error and return nil.</para>
+  /// <para>This function should be kept minimal. In particular, it should not
+  /// call arbitrary Python code, as trying to import the same module again may
+  /// result in an infinite loop.</para>
+  /// <para>Multiple Py_mod_create slots may not be specified in one module
+  /// definition.</para>
+  /// <para>If Py_mod_create is not specified, the import machinery will create
+  /// a normal module object using TPyModule.New(). The name is taken from spec,
+  /// not the definition, to allow extension modules to dynamically adjust to
+  /// their place in the module hierarchy and be imported under different names
+  /// through symlinks, all while sharing a single module definition.</para>
+  /// <para>There is no requirement for the returned object to be an instance
+  /// of PyModule_Type. Any type can be used, as long as it supports setting
+  /// and getting import-related attributes. However, only PyModule_Type
+  /// instances may be returned if the PyModuleDef has non-nil m_traverse,
+  /// m_clear, m_free; non-zero m_size; or slots other than Py_mod_create.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-slots">See the article about Module slots.</see></para>
+  /// </remarks>
   Py_mod_create                 = 1;
+  /// <summary>
+  /// <para>Specifies a function that is called to execute the module. This is
+  /// equivalent to executing the code of a Python module: typically, this
+  /// function adds classes and constants to the module. The signature of the
+  /// function is:</para>
+  /// <code>int exec_module(PyObject *module)</code>
+  /// <para>If multiple Py_mod_exec slots are specified, they are processed in
+  /// the order they appear in the m_slots array.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-slots">See the article about Module slots.</see></para>
+  /// </remarks>
   Py_mod_exec                   = 2;
+  /// <summary>
+  /// <para>Specifies one of the following values:</para>
+  /// <para>Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED: The module does not
+  /// support being imported in subinterpreters.</para>
+  /// <para>Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED: The module supports being
+  /// imported in subinterpreters, but only when they share the main
+  /// interpreter's GIL. (See Isolating Extension Modules.)</para>
+  /// <para>Py_MOD_PER_INTERPRETER_GIL_SUPPORTED: The module supports being
+  /// imported in subinterpreters, even when they have their own GIL. (See
+  /// Isolating Extension Modules.)</para>
+  /// <para>This slot determines whether or not importing this module in a
+  /// subinterpreter will fail.</para>
+  /// <para>Multiple Py_mod_multiple_interpreters slots may not be specified in
+  /// one module definition.</para>
+  /// <para>If Py_mod_multiple_interpreters is not specified, the import
+  /// machinery defaults to Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-slots">See the article about Module slots.</see></para>
+  /// </remarks>
   Py_mod_multiple_interpreters  = 3;
+  /// <summary>
+  /// <para>Specifies one of the following values:</para>
+  /// <para>Py_MOD_GIL_USED: The module depends on the presence of the global
+  /// interpreter lock (GIL), and may access global state without
+  /// synchronization.</para>
+  /// <para>Py_MOD_GIL_NOT_USED: The module is safe to run without an active
+  /// GIL.</para>
+  /// <para>This slot is ignored by Python builds not configured with
+  /// --disable-gil. Otherwise, it determines whether or not importing this
+  /// module will cause the GIL to be automatically enabled. See Free-threaded
+  /// CPython for more detail.</para>
+  /// <para>Multiple Py_mod_gil slots may not be specified in one module
+  /// definition.</para>
+  /// <para>If Py_mod_gil is not specified, the import machinery defaults to
+  /// Py_MOD_GIL_USED.</para>
+  /// <para>Added in version 3.13.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/module.html#module-slots">See the article about Module slots.</see></para>
+  /// </remarks>
   Py_mod_gil                    = 4;
 
+  /// <summary>
+  /// <para>The module does not support being imported in
+  /// subinterpreters.</para>
+  /// </summary>
   Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED  : Pointer = Pointer(0);
+  /// <summary>
+  /// <para>The module supports being imported in subinterpreters, but only when
+  /// they share the main interpreter's GIL.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/howto/isolating-extensions.html#isolating-extensions-howto">See the article about Isolating Extension Modules.</see></para>
+  /// </remarks>
   Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED      : Pointer = Pointer(1);
+  /// <summary>
+  /// <para>The module supports being imported in subinterpreters, even when
+  /// they have their own GIL.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/howto/isolating-extensions.html#isolating-extensions-howto">See the article about Isolating Extension Modules.</see></para>
+  /// </remarks>
   Py_MOD_PER_INTERPRETER_GIL_SUPPORTED        : Pointer = Pointer(2);
 
+  /// <summary>
+  /// <para>The module depends on the presence of the global interpreter lock
+  /// (GIL), and may access global state without synchronization.</para>
+  /// </summary>
   Py_MOD_GIL_USED                             : Pointer = Pointer(0);
+  /// <summary>
+  /// <para>The module is safe to run without an active GIL.</para>
+  /// </summary>
   Py_MOD_GIL_NOT_USED                         : Pointer = Pointer(1);
 
   {* include/monitoring.h *}
@@ -667,7 +771,7 @@ const
   /// </summary>
   Py_DTSF_ADD_DOT_0 = $02;
   /// <summary>
-  /// <para>Apply “alternate” formatting rules. See the documentation for the
+  /// <para>Apply "alternate" formatting rules. See the documentation for the
   /// TPyOS.snprintf() '#' specifier for details.</para>
   /// </summary>
   Py_DTSF_ALT       = $04;

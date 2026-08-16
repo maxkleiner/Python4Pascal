@@ -21,9 +21,11 @@ uses
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 
-// Update the SUPPORTED_MAJOR_VERSION, MAX_SUPPORTED_MINOR_VERSION and
-// MIN_SUPPORTED_MINOR_VERSION constant values and also the TPyConfigBuilder.New
-// function after creating a new TPyConfigXY class.
+{*
+ Update the SUPPORTED_MAJOR_VERSION, MAX_SUPPORTED_MINOR_VERSION and
+ MIN_SUPPORTED_MINOR_VERSION constant values and also the TPyConfigBuilder.New
+ function after creating a new TPyConfigXY class.
+*}
 
 type
   TPyConfig = class
@@ -218,7 +220,7 @@ type
       function SetArgv(const items: TStringDynArray): boolean; overload;
       /// <summary>
       /// Set command line arguments (argv member of config) from the argv array
-      /// of bytes strings. Decode bytes using Py_DecodeLocale().
+      /// of bytes strings. Decode bytes using TPy.DecodeLocale().
       /// </summary>
       function SetBytesArgv(argc: integer; const argv: array of PAnsiChar): IPyStatus;
       /// <summary>
@@ -249,16 +251,16 @@ type
       /// <para>Fields which are already initialized are left unchanged.</para>
       /// <para>Fields for path configuration are no longer calculated or modified
       /// when calling this function, as of Python 3.11.</para>
-      /// <para>The IPyConfig.Read() function only parses PyConfig.argv arguments
+      /// <para>The TPyConfig.Read() function only parses PyConfig.argv arguments
       /// once: PyConfig.parse_argv is set to 2 after arguments are parsed. Since
       /// Python arguments are stripped from PyConfig.argv, parsing arguments
       /// twice would parse the application options as Python options.</para>
       /// <para>Changed in version 3.10: The PyConfig.argv arguments are now only
       /// parsed once, PyConfig.parse_argv is set to 2 after arguments are parsed,
       /// and arguments are only parsed if PyConfig.parse_argv equals 1.</para>
-      /// <para>Changed in version 3.11: IPyConfig.Read() no longer calculates all
+      /// <para>Changed in version 3.11: TPyConfig.Read() no longer calculates all
       /// paths, and so fields listed under Python Path Configuration may no
-      /// longer be updated until Py_InitializeFromConfig() is called.</para>
+      /// longer be updated until TPy.InitializeFromConfig() is called.</para>
       /// </summary>
       function    Read: IPyStatus;
       /// <summary>
@@ -644,9 +646,9 @@ type
       /// <para>The list of the original command line arguments passed to the
       /// Python executable: sys.orig_argv.</para>
       /// <para>If orig_argv list is empty and argv is not a list only
-      /// containing an empty string, IPyConfig.Read() copies argv into orig_argv
+      /// containing an empty string, TPyConfig.Read() copies argv into orig_argv
       /// before modifying argv (if parse_argv is non-zero).</para>
-      /// <para>See also the argv member and the Py_GetArgcArgv()
+      /// <para>See also the argv member and the TPy.GetArgcArgv()
       /// function.</para>
       /// <para>Default: empty list.</para>
       /// <para>Added in version 3.10.</para>
@@ -656,7 +658,7 @@ type
       /// <para>Parse command line arguments?</para>
       /// <para>If True, parse argv the same way the regular Python parses
       /// command line arguments, and strip Python arguments from argv.</para>
-      /// <para>The IPyConfig.Read() function only parses PyConfig.argv arguments
+      /// <para>The TPyConfig.Read() function only parses PyConfig.argv arguments
       /// once: PyConfig.parse_argv is set to True after arguments are parsed.
       /// Since Python arguments are stripped from PyConfig.argv, parsing
       /// arguments twice would parse the application options as Python
@@ -801,13 +803,13 @@ type
       property remote_debug              : boolean              read Get_remote_debug                 write Set_remote_debug;
       /// <summary>
       /// <para>Value of the -c command line option.</para>
-      /// <para>Used by Py_RunMain().</para>
+      /// <para>Used by TPy.RunMain().</para>
       /// <para>Default: Empty.</para>
       /// </summary>
       property run_command               : string               read Get_run_command                  write Set_run_command;
       /// <summary>
       /// <para>Filename passed on the command line: trailing command line
-      /// argument without -c or -m. It is used by the Py_RunMain()
+      /// argument without -c or -m. It is used by the TPy.RunMain()
       /// function.</para>
       /// <para>For example, it is set to script.py by the python3 script.py
       /// arg command line.</para>
@@ -819,12 +821,12 @@ type
       property run_filename              : string               read Get_run_filename                 write Set_run_filename;
       /// <summary>
       /// <para>Value of the -m command line option.</para>
-      /// <para>Used by Py_RunMain().</para>
+      /// <para>Used by TPy.RunMain().</para>
       /// <para>Default: Empty.</para>
       /// </summary>
       property run_module                : string               read Get_run_module                   write Set_run_module;
       /// <summary>
-      /// <para>If equals to zero, Py_RunMain() prepends a potentially unsafe
+      /// <para>If equals to zero, TPy.RunMain() prepends a potentially unsafe
       /// path to sys.path at startup:</para>
       /// <code>
       /// - If argv[0] is equal to "-m" (python -m module), prepend the current

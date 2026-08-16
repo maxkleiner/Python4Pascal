@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyThreadState: Class TPyThreadState</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyThreadState"></span><h1 class="cio">Class TPyThreadState</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyThreadState.html">uP4P.PyThreadState</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyThreadState = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ This class represents the state of a single thread. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/threads.html#c.PyThreadState">https://docs.python.org/3/c-api/threads.html#c.PyThreadState</a>&quot;&gt;See the article about PyThreadState.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyThreadState</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyThreadState.TPyThreadState.html#FPyThreadState">FPyThreadState</a></strong>: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetThreadState">GetThreadState</a></strong>: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetID">GetID</a></strong>: int64;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetDict">GetDict</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetInterpreter">GetInterpreter</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetFrame">GetFrame</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#SetThreadState-PPyThreadState-">SetThreadState</a></strong>(aThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Clear">Clear</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Delete">Delete</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#SetAsyncExc-C_ULong-IPyObject-">SetAsyncExc</a></strong>(id: <a href="uP4P.Types.html#C_ULong">C_ULong</a>; const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#EnterTracing">EnterTracing</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#LeaveTracing">LeaveTracing</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Swap">Swap</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Next">Next</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Create-PPyThreadState-">Create</a></strong>(aPyThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#UnWrap">UnWrap</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Wrap-PPyThreadState-">Wrap</a></strong>(aPyThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#New-IPyInterpreterState-">New</a></strong>(const state: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Get">Get</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#GetUnchecked">GetUnchecked</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Swap-IPyThreadState-">Swap</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#IsInitialized-IPyThreadState-">IsInitialized</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#DeleteCurrent">DeleteCurrent</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Initialized">Initialized</a></strong>  : boolean               read <a href="uP4P.PyThreadState.TPyThreadState.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#ThreadState">ThreadState</a></strong>  : <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>        read <a href="uP4P.PyThreadState.TPyThreadState.html#GetThreadState">GetThreadState</a>         write <a href="uP4P.PyThreadState.TPyThreadState.html#SetThreadState-PPyThreadState-">SetThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#ID">ID</a></strong>           : int64                 read <a href="uP4P.PyThreadState.TPyThreadState.html#GetID">GetID</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Dict">Dict</a></strong>         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyThreadState.TPyThreadState.html#GetDict">GetDict</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Interpreter">Interpreter</a></strong>  : <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>   read <a href="uP4P.PyThreadState.TPyThreadState.html#GetInterpreter">GetInterpreter</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Frame">Frame</a></strong>        : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyThreadState.TPyThreadState.html#GetFrame">GetFrame</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPyThreadState"></span><code><strong>FPyThreadState</strong>: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetThreadState"></span><code>function <strong>GetThreadState</strong>: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetID"></span><code>function <strong>GetID</strong>: int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetDict"></span><code>function <strong>GetDict</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInterpreter"></span><code>function <strong>GetInterpreter</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetFrame"></span><code>function <strong>GetFrame</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetThreadState-PPyThreadState-"></span><code>procedure <strong>SetThreadState</strong>(aThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Clear"></span><code>procedure <strong>Clear</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Reset all information in a thread state object. tstate must be attached
+
+<p>Changed in version 3.9: This function now calls the PyThreadState.on_delete callback. Previously, that happened in TPyThreadState.Delete().
+
+<p>Changed in version 3.13: The PyThreadState.on_delete callback was removed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Delete"></span><code>procedure <strong>Delete</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Destroy a thread state object. tstate should not be attached to any thread. tstate must have been reset with a previous call to TPyThreadState.Clear().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetAsyncExc-C_ULong-IPyObject-"></span><code>function <strong>SetAsyncExc</strong>(id: <a href="uP4P.Types.html#C_ULong">C_ULong</a>; const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Asynchronously raise an exception in a thread. The id argument is the thread id of the target thread; exc is the exception object to be raised. This function does not steal any references to exc. To prevent naive misuse, you must write your own extension to call this. Must be called with an attached thread state. Returns the number of thread states modified; this is normally one, but will be zero if the thread id isn't found. If exc is nil, the pending exception (if any) for the thread is cleared. This raises no exceptions.
+
+<p>Changed in version 3.7: The type of the id parameter changed from long to unsigned long.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="EnterTracing"></span><code>procedure <strong>EnterTracing</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Suspend tracing and profiling in the Python thread state tstate.
+
+<p>Resume them using the TPyThreadState.LeaveTracing() function.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="LeaveTracing"></span><code>procedure <strong>LeaveTracing</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resume tracing and profiling in the Python thread state tstate suspended by the TPyThreadState.EnterTracing() function.
+
+<p>See also TPyEval.SetTrace() and TPyEval.SetProfile() functions.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Swap"></span><code>function <strong>Swap</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the attached thread state to tstate, and return the thread state that was attached prior to calling.
+
+<p>This function is safe to call without an attached thread state; it will simply return nil indicating that there was no prior thread state.
+
+<p>See also TPyEval.ReleaseThread()
+
+<p>Note Similar to TPyGILState.Ensure(), this function will hang the thread if the runtime is finalizing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Next"></span><code>function <strong>Next</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the next thread state object after tstate from the list of all such objects belonging to the same PyInterpreterState object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PPyThreadState-"></span><code>constructor <strong>Create</strong>(aPyThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UnWrap"></span><code>function <strong>UnWrap</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the PyThreadState pointer that was handled by this TPyThreadState instance.
+
+<p>This function must be used when passing a PyThreadState pointer to a function that steals the PyThreadState reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Wrap-PPyThreadState-"></span><code>class function <strong>Wrap</strong>(aPyThreadState: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap an existing PyThreadState pointer in a TPyThreadState instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-IPyInterpreterState-"></span><code>class function <strong>New</strong>(const state: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new thread state object belonging to the given interpreter object. An attached thread state is not needed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get"></span><code>class function <strong>Get</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the attached thread state. If the thread has no attached thread state, (such as when inside of Py_BEGIN_ALLOW_THREADS block), then this issues a fatal error (so that the caller needn't check for nil).
+
+<p>See also TPyThreadState.GetUnchecked().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetUnchecked"></span><code>class function <strong>GetUnchecked</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyThreadState.Get(), but don't kill the process with a fatal error if it is nil. The caller is responsible to check if the result is nil.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Swap-IPyThreadState-"></span><code>class function <strong>Swap</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the attached thread state to tstate, and return the thread state that was attached prior to calling.
+
+<p>This function is safe to call without an attached thread state; it will simply return nil indicating that there was no prior thread state.
+
+<p>See also TPyEval.ReleaseThread()
+
+<p>Note Similar to TPyGILState.Ensure(), this function will hang the thread if the runtime is finalizing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInitialized-IPyThreadState-"></span><code>class function <strong>IsInitialized</strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Helper function to check if an IPyThreadState instance is fully initialized. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DeleteCurrent"></span><code>class procedure <strong>DeleteCurrent</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean               read <a href="uP4P.PyThreadState.TPyThreadState.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ThreadState"></span><code>property <strong>ThreadState</strong>  : <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>        read <a href="uP4P.PyThreadState.TPyThreadState.html#GetThreadState">GetThreadState</a>         write <a href="uP4P.PyThreadState.TPyThreadState.html#SetThreadState-PPyThreadState-">SetThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyThreadState
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ID"></span><code>property <strong>ID</strong>           : int64                 read <a href="uP4P.PyThreadState.TPyThreadState.html#GetID">GetID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the unique thread state identifier of the Python thread state tstate.
+
+<p>tstate must not be nil, and must be attached.
+
+<p>Added in version 3.9.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Dict"></span><code>property <strong>Dict</strong>         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyThreadState.TPyThreadState.html#GetDict">GetDict</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a dictionary in which extensions can store thread-specific state information. Each extension should use a unique key to use to store state in the dictionary. It is okay to call this function when no thread state is attached. If this function returns nil, no exception has been raised and the caller should assume no thread state is attached.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Interpreter"></span><code>property <strong>Interpreter</strong>  : <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>   read <a href="uP4P.PyThreadState.TPyThreadState.html#GetInterpreter">GetInterpreter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the interpreter of the Python thread state tstate.
+
+<p>tstate must not be nil, and must be attached.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Frame"></span><code>property <strong>Frame</strong>        : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>             read <a href="uP4P.PyThreadState.TPyThreadState.html#GetFrame">GetFrame</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Get the current frame of the Python thread state tstate.
+
+<p>Return a strong reference. Return nil if no frame is currently executing.
+
+<p>See also TPyEval.GetFrame().
+
+<p>tstate must not be nil, and must be attached.
+
+<p>Added in version 3.9.
+
+<p>)</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

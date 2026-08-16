@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces: Interface IPyInterpreterConfig</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="IPyInterpreterConfig"></span><h1 class="cio">Interface IPyInterpreterConfig</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Interfaces.html">uP4P.Interfaces</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IPyInterpreterConfig = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Interface containing most parameters to configure a sub-interpreter.
+
+<p>Its values are used only in TPy.NewInterpreterFromConfig() and never modified by the runtime.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/subinterpreters.html">https://docs.python.org/3/c-api/subinterpreters.html</a>&quot;&gt;See the Multiple interpreters in a Python process article.)</p>
+<h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{E188197E-2A57-4466-9018-DF0534D96BD1}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IPyInterpreterConfig</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#GetConfig">GetConfig</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_use_main_obmalloc">Get_use_main_obmalloc</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_fork">Get_allow_fork</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_exec">Get_allow_exec</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_threads">Get_allow_threads</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_daemon_threads">Get_allow_daemon_threads</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_check_multi_interp_extensions">Get_check_multi_interp_extensions</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_gil">Get_gil</a></strong>: <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_use_main_obmalloc-boolean-">Set_use_main_obmalloc</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_fork-boolean-">Set_allow_fork</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_exec-boolean-">Set_allow_exec</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_threads-boolean-">Set_allow_threads</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_daemon_threads-boolean-">Set_allow_daemon_threads</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_check_multi_interp_extensions-boolean-">Set_check_multi_interp_extensions</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_gil-TPyInterpreterCfgGIL-">Set_gil</a></strong>(aValue: <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Init">Init</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#Config">Config</a></strong>                        : Pointer                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#GetConfig">GetConfig</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#use_main_obmalloc">use_main_obmalloc</a></strong>             : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_use_main_obmalloc">Get_use_main_obmalloc</a>              write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_use_main_obmalloc-boolean-">Set_use_main_obmalloc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#allow_fork">allow_fork</a></strong>                    : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_fork">Get_allow_fork</a>                     write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_fork-boolean-">Set_allow_fork</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#allow_exec">allow_exec</a></strong>                    : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_exec">Get_allow_exec</a>                     write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_exec-boolean-">Set_allow_exec</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#allow_threads">allow_threads</a></strong>                 : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_threads">Get_allow_threads</a>                  write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_threads-boolean-">Set_allow_threads</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#allow_daemon_threads">allow_daemon_threads</a></strong>          : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_daemon_threads">Get_allow_daemon_threads</a>           write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_daemon_threads-boolean-">Set_allow_daemon_threads</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#check_multi_interp_extensions">check_multi_interp_extensions</a></strong> : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_check_multi_interp_extensions">Get_check_multi_interp_extensions</a>  write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_check_multi_interp_extensions-boolean-">Set_check_multi_interp_extensions</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterConfig.html#gil">gil</a></strong>                           : <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>     read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_gil">Get_gil</a>                            write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_gil-TPyInterpreterCfgGIL-">Set_gil</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetConfig"></span><code>function <strong>GetConfig</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_use_main_obmalloc"></span><code>function <strong>Get_use_main_obmalloc</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_allow_fork"></span><code>function <strong>Get_allow_fork</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_allow_exec"></span><code>function <strong>Get_allow_exec</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_allow_threads"></span><code>function <strong>Get_allow_threads</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_allow_daemon_threads"></span><code>function <strong>Get_allow_daemon_threads</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_check_multi_interp_extensions"></span><code>function <strong>Get_check_multi_interp_extensions</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_gil"></span><code>function <strong>Get_gil</strong>: <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_use_main_obmalloc-boolean-"></span><code>procedure <strong>Set_use_main_obmalloc</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_allow_fork-boolean-"></span><code>procedure <strong>Set_allow_fork</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_allow_exec-boolean-"></span><code>procedure <strong>Set_allow_exec</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_allow_threads-boolean-"></span><code>procedure <strong>Set_allow_threads</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_allow_daemon_threads-boolean-"></span><code>procedure <strong>Set_allow_daemon_threads</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_check_multi_interp_extensions-boolean-"></span><code>procedure <strong>Set_check_multi_interp_extensions</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_gil-TPyInterpreterCfgGIL-"></span><code>procedure <strong>Set_gil</strong>(aValue: <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Init"></span><code>procedure <strong>Init</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initial configuration values defined by the _PyInterpreterConfig_INIT macro.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Config"></span><code>property <strong>Config</strong>                        : Pointer                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#GetConfig">GetConfig</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyInterpreterConfig.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="use_main_obmalloc"></span><code>property <strong>use_main_obmalloc</strong>             : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_use_main_obmalloc">Get_use_main_obmalloc</a>              write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_use_main_obmalloc-boolean-">Set_use_main_obmalloc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then the sub-interpreter will use its own &quot;object&quot; allocator state.
+
+<p>Otherwise it will use (share) the main interpreter's.
+
+<p>If this is False then check_multi_interp_extensions must be True. If this is True then gil must not be gilOwn.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_fork"></span><code>property <strong>allow_fork</strong>                    : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_fork">Get_allow_fork</a>                     write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_fork-boolean-">Set_allow_fork</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then the runtime will not support forking the process in any thread where the sub-interpreter is currently active.
+
+<p>Otherwise fork is unrestricted.
+
+<p>Note that the subprocess module still works when fork is disallowed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_exec"></span><code>property <strong>allow_exec</strong>                    : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_exec">Get_allow_exec</a>                     write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_exec-boolean-">Set_allow_exec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then the runtime will not support replacing the current process via exec (e.g. os.execv()) in any thread where the sub-interpreter is currently active.
+
+<p>Otherwise exec is unrestricted.
+
+<p>Note that the subprocess module still works when exec is disallowed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_threads"></span><code>property <strong>allow_threads</strong>                 : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_threads">Get_allow_threads</a>                  write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_threads-boolean-">Set_allow_threads</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then the sub-interpreter's threading module won't create threads.
+
+<p>Otherwise threads are allowed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_daemon_threads"></span><code>property <strong>allow_daemon_threads</strong>          : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_allow_daemon_threads">Get_allow_daemon_threads</a>           write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_allow_daemon_threads-boolean-">Set_allow_daemon_threads</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then the sub-interpreter's threading module won't create daemon threads.
+
+<p>Otherwise daemon threads are allowed (as long as allow_threads is non-zero).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="check_multi_interp_extensions"></span><code>property <strong>check_multi_interp_extensions</strong> : boolean                  read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_check_multi_interp_extensions">Get_check_multi_interp_extensions</a>  write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_check_multi_interp_extensions-boolean-">Set_check_multi_interp_extensions</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If this is False then all extension modules may be imported, including legacy (single-phase init) modules, in any thread where the sub-interpreter is currently active.
+
+<p>Otherwise only multi-phase init extension modules (see PEP 489) may be imported. (Also see Py_mod_multiple_interpreters.)
+
+<p>This must be True if use_main_obmalloc is True.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="gil"></span><code>property <strong>gil</strong>                           : <a href="uP4P.Types.html#TPyInterpreterCfgGIL">TPyInterpreterCfgGIL</a>     read <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Get_gil">Get_gil</a>                            write <a href="uP4P.Interfaces.IPyInterpreterConfig.html#Set_gil-TPyInterpreterCfgGIL-">Set_gil</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This determines the operation of the GIL for the sub-interpreter. It may be one of the following:
+
+<p></p>
+
+<pre class="preformatted">
+- gilDefault: Use the default selection (gilShared).
+- gilShared: Use (share) the main interpreter's GIL.
+- gilOwn: Use the sub-interpreter's own GIL.</pre>
+
+<p>
+
+<p>If this is gilOwn then use_main_obmalloc must be False.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

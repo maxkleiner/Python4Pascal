@@ -107,7 +107,7 @@ type
       /// floating-point number.</para>
       /// <para>If s represents a value that is too large to store in a float
       /// (for example, "1e500" is such a string on many platforms) then if
-      /// overflow_exception is NULL return Py_INFINITY (with an appropriate
+      /// overflow_exception is nil return Py_INFINITY (with an appropriate
       /// sign) and don't set any exception. Otherwise, overflow_exception must
       /// point to a Python exception object; raise that exception and return
       /// -1.0. In both cases, set *endptr to point to the first character after

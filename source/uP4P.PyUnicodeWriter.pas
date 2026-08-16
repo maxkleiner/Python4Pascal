@@ -111,10 +111,10 @@ type
       /// </summary>
       function  WriteSubstring(str: PPyObject; start, end_: Py_ssize_t): boolean;
       /// <summary>
-      /// <para>Decode the string str from UTF-8 with errors error handler and
+      /// <para>Decode string_ from UTF-8 with errors error handler and
       /// write the output into writer.</para>
       /// <para>size_ is the string length in bytes. If size_ is equal to -1,
-      /// call strlen(str) to get the string length.</para>
+      /// call strlen(string_) to get the string length.</para>
       /// <para>errors is an error handler name, such as "replace". If errors is
       /// nil, use the strict error handler.</para>
       /// <para>If consumed is not nil, set *consumed to the number of decoded

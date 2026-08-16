@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyDateTime_CAPI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyDateTime_CAPI"></span><h1 class="cio">Record PyDateTime_CAPI</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyDateTime_CAPI = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record containing the fields for the datetime C API. The fields of this structure are private and subject to change. Do not use this directly; prefer PyDateTime_* APIs instead. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_CAPI">https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_CAPI</a>&quot;&gt;See the article about PyDateTime_CAPI.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DateType">DateType</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DateTimeType">DateTimeType</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#TimeType">TimeType</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DeltaType">DeltaType</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#TZInfoType">TZInfoType</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#TimeZone_UTC">TimeZone_UTC</a></strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#Date_FromDate">Date_FromDate</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Date_FromDate_func">PyDateTime_CAPI_Date_FromDate_func</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DateTime_FromDateAndTime">DateTime_FromDateAndTime</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromDateAndTime_func">PyDateTime_CAPI_DateTime_FromDateAndTime_func</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#Time_FromTime">Time_FromTime</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Time_FromTime_func">PyDateTime_CAPI_Time_FromTime_func</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#Delta_FromDelta">Delta_FromDelta</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Delta_FromDelta_func">PyDateTime_CAPI_Delta_FromDelta_func</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#TimeZone_FromTimeZone">TimeZone_FromTimeZone</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_TimeZone_FromTimeZone_func">PyDateTime_CAPI_TimeZone_FromTimeZone_func</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DateTime_FromTimestamp">DateTime_FromTimestamp</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromTimestamp_func">PyDateTime_CAPI_DateTime_FromTimestamp_func</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#Date_FromTimestamp">Date_FromTimestamp</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Date_FromTimestamp_func">PyDateTime_CAPI_Date_FromTimestamp_func</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#DateTime_FromDateAndTimeAndFold">DateTime_FromDateAndTimeAndFold</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func">PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_CAPI.html#Time_FromTimeAndFold">Time_FromTimeAndFold</a></strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Time_FromTimeAndFold_func">PyDateTime_CAPI_Time_FromTimeAndFold_func</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateType"></span><code><strong>DateType</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTimeType"></span><code><strong>DateTimeType</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TimeType"></span><code><strong>TimeType</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DeltaType"></span><code><strong>DeltaType</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TZInfoType"></span><code><strong>TZInfoType</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TimeZone_UTC"></span><code><strong>TimeZone_UTC</strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Date_FromDate"></span><code><strong>Date_FromDate</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Date_FromDate_func">PyDateTime_CAPI_Date_FromDate_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTime_FromDateAndTime"></span><code><strong>DateTime_FromDateAndTime</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromDateAndTime_func">PyDateTime_CAPI_DateTime_FromDateAndTime_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Time_FromTime"></span><code><strong>Time_FromTime</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Time_FromTime_func">PyDateTime_CAPI_Time_FromTime_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Delta_FromDelta"></span><code><strong>Delta_FromDelta</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Delta_FromDelta_func">PyDateTime_CAPI_Delta_FromDelta_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TimeZone_FromTimeZone"></span><code><strong>TimeZone_FromTimeZone</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_TimeZone_FromTimeZone_func">PyDateTime_CAPI_TimeZone_FromTimeZone_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTime_FromTimestamp"></span><code><strong>DateTime_FromTimestamp</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromTimestamp_func">PyDateTime_CAPI_DateTime_FromTimestamp_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Date_FromTimestamp"></span><code><strong>Date_FromTimestamp</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Date_FromTimestamp_func">PyDateTime_CAPI_Date_FromTimestamp_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTime_FromDateAndTimeAndFold"></span><code><strong>DateTime_FromDateAndTimeAndFold</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func">PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Time_FromTimeAndFold"></span><code><strong>Time_FromTimeAndFold</strong>: <a href="uP4P.Types.html#PyDateTime_CAPI_Time_FromTimeAndFold_func">PyDateTime_CAPI_Time_FromTimeAndFold_func</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

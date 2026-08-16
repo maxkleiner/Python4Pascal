@@ -838,7 +838,7 @@ type
       /// function performs character conversion when necessary and falls back
       /// to memcpy() if possible. Returns -1 and sets an exception on error,
       /// otherwise returns the number of copied characters.</para>
-      /// <para>The string must not have been “used” yet. See TPyUnicode.New()
+      /// <para>The string must not have been "used" yet. See TPyUnicode.New()
       /// for details.</para>
       /// </summary>
       class function CopyCharacters(const to_: IPyObject; to_start: Py_ssize_t; const from: IPyObject; from_start, how_many: Py_ssize_t): Py_ssize_t;

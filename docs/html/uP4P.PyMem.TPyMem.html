@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyMem: Class TPyMem</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyMem"></span><h1 class="cio">Class TPyMem</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyMem.html">uP4P.PyMem</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyMem = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyMem_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/memory.html#memory-interface">https://docs.python.org/3/c-api/memory.html#memory-interface</a>&quot;&gt;See the article about Memory Interface.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/memory.html#raw-memory-interface">https://docs.python.org/3/c-api/memory.html#raw-memory-interface</a>&quot;&gt;See the article about Raw Memory Interface.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyMem</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#Malloc-NativeUInt-">Malloc</a></strong>(n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#Calloc-NativeUInt-NativeUInt-">Calloc</a></strong>(nelem, elsize: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#Realloc-Pointer-NativeUInt-">Realloc</a></strong>(p: Pointer; n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyMem.TPyMem.html#Free-Pointer-">Free</a></strong>(p: Pointer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#RawMalloc-NativeUInt-">RawMalloc</a></strong>(n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#RawCalloc-NativeUInt-NativeUInt-">RawCalloc</a></strong>(nelem, elsize: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMem.TPyMem.html#RawRealloc-Pointer-NativeUInt-">RawRealloc</a></strong>(p: Pointer; n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyMem.TPyMem.html#RawFree-Pointer-">RawFree</a></strong>(p: Pointer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyMem.TPyMem.html#GetAllocator-PyMemAllocatorDomain-PyMemAllocatorEx-">GetAllocator</a></strong>(domain: <a href="uP4P.Types.html#PyMemAllocatorDomain">PyMemAllocatorDomain</a>; out allocator: <a href="uP4P.Types.PyMemAllocatorEx.html">PyMemAllocatorEx</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyMem.TPyMem.html#SetAllocator-PyMemAllocatorDomain-PyMemAllocatorEx-">SetAllocator</a></strong>(domain: <a href="uP4P.Types.html#PyMemAllocatorDomain">PyMemAllocatorDomain</a>; var allocator: <a href="uP4P.Types.PyMemAllocatorEx.html">PyMemAllocatorEx</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyMem.TPyMem.html#SetupDebugHooks">SetupDebugHooks</a></strong>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Malloc-NativeUInt-"></span><code>class function <strong>Malloc</strong>(n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Allocates n bytes and returns a pointer to the allocated memory, or nil if the request fails.
+
+<p>Requesting zero bytes returns a distinct non-nil pointer if possible, as if TPyMem.Malloc(1) had been called instead. The memory will not have been initialized in any way.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Calloc-NativeUInt-NativeUInt-"></span><code>class function <strong>Calloc</strong>(nelem, elsize: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Allocates nelem elements each of size elsize bytes and returns a pointer to the allocated memory, or nil if the request fails. The memory is initialized to zeros.
+
+<p>Requesting zero elements or elements of size zero bytes returns a distinct non-nil pointer if possible, as if TPyMem.Calloc(1, 1) had been called instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Realloc-Pointer-NativeUInt-"></span><code>class function <strong>Realloc</strong>(p: Pointer; n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resizes the memory block pointed to by p to n bytes. The contents will be unchanged to the minimum of the old and the new sizes.
+
+<p>If p is nil, the call is equivalent to TPyMem.Malloc(n); else if n is equal to zero, the memory block is resized but is not freed, and the returned pointer is non-nil.
+
+<p>Unless p is nil, it must have been returned by a previous call to TPyMem.Malloc(), TPyMem.Realloc() or TPyMem.Calloc().
+
+<p>If the request fails, TPyMem.Realloc() returns nil and p remains a valid pointer to the previous memory area.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Free-Pointer-"></span><code>class procedure <strong>Free</strong>(p: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Frees the memory block pointed to by p, which must have been returned by a previous call to TPyMem.Malloc(), TPyMem.Realloc() or TPyMem.Calloc(). Otherwise, or if TPyMem.Free(p) has been called before, undefined behavior occurs.
+
+<p>If p is nil, no operation is performed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RawMalloc-NativeUInt-"></span><code>class function <strong>RawMalloc</strong>(n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Allocates n bytes and returns a pointer to the allocated memory, or nil if the request fails.
+
+<p>Requesting zero bytes returns a distinct non-nil pointer if possible, as if TPyMem.RawMalloc(1) had been called instead. The memory will not have been initialized in any way.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RawCalloc-NativeUInt-NativeUInt-"></span><code>class function <strong>RawCalloc</strong>(nelem, elsize: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Allocates nelem elements each of size elsize bytes and returns a pointer to the allocated memory, or nil if the request fails. The memory is initialized to zeros.
+
+<p>Requesting zero elements or elements of size zero bytes returns a distinct non-nil pointer if possible, as if TPyMem.RawCalloc(1, 1) had been called instead.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RawRealloc-Pointer-NativeUInt-"></span><code>class function <strong>RawRealloc</strong>(p: Pointer; n: NativeUInt): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resizes the memory block pointed to by p to n bytes. The contents will be unchanged to the minimum of the old and the new sizes.
+
+<p>If p is nil, the call is equivalent to TPyMem.RawMalloc(n); else if n is equal to zero, the memory block is resized but is not freed, and the returned pointer is non-nil.
+
+<p>Unless p is nil, it must have been returned by a previous call to TPyMem.RawMalloc(), TPyMem.RawRealloc() or TPyMem.RawCalloc().
+
+<p>If the request fails, TPyMem.RawRealloc() returns nil and p remains a valid pointer to the previous memory area.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RawFree-Pointer-"></span><code>class procedure <strong>RawFree</strong>(p: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Frees the memory block pointed to by p, which must have been returned by a previous call to TPyMem.RawMalloc(), TPyMem.RawRealloc() or TPyMem.RawCalloc(). Otherwise, or if TPyMem.RawFree(p) has been called before, undefined behavior occurs.
+
+<p>If p is nil, no operation is performed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAllocator-PyMemAllocatorDomain-PyMemAllocatorEx-"></span><code>class procedure <strong>GetAllocator</strong>(domain: <a href="uP4P.Types.html#PyMemAllocatorDomain">PyMemAllocatorDomain</a>; out allocator: <a href="uP4P.Types.PyMemAllocatorEx.html">PyMemAllocatorEx</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the memory block allocator of the specified domain.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAllocator-PyMemAllocatorDomain-PyMemAllocatorEx-"></span><code>class procedure <strong>SetAllocator</strong>(domain: <a href="uP4P.Types.html#PyMemAllocatorDomain">PyMemAllocatorDomain</a>; var allocator: <a href="uP4P.Types.PyMemAllocatorEx.html">PyMemAllocatorEx</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the memory block allocator of the specified domain.
+
+<p>The new allocator must return a distinct non-nil pointer when requesting zero bytes.
+
+<p>For the PYMEM_DOMAIN_RAW domain, the allocator must be thread-safe: a thread state is not attached when the allocator is called.
+
+<p>For the remaining domains, the allocator must also be thread-safe: the allocator may be called in different interpreters that do not share a GIL.
+
+<p>If the new allocator is not a hook (does not call the previous allocator), the TPyMem.SetupDebugHooks() function must be called to reinstall the debug hooks on top on the new allocator.
+
+<p>See also PyPreConfig.allocator and Preinitialize Python with PyPreConfig.
+
+<p>Warning TPyMem.SetAllocator() does have the following contract:
+
+<p></p>
+
+<pre class="preformatted">
+- It can be called after TPy.PreInitialize() and before
+  TPy.InitializeFromConfig() to install a custom memory allocator.
+  There are no restrictions over the installed allocator other than
+  the ones imposed by the domain (for instance, the Raw Domain allows
+  the allocator to be called without an attached thread state). See
+  the section on allocator domains for more information.
+- If called after Python has finish initializing (after
+  TPy.InitializeFromConfig() has been called) the allocator must wrap
+  the existing allocator. Substituting the current allocator for some
+  other arbitrary one is not supported.</pre>
+
+<p>
+
+<p>Changed in version 3.12: All allocators must be thread-safe.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetupDebugHooks"></span><code>class procedure <strong>SetupDebugHooks</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Setup debug hooks in the Python memory allocators to detect memory errors.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

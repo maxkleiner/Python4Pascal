@@ -56,7 +56,7 @@ type
       /// <para>Asynchronously raise an exception in a thread. The id argument
       /// is the thread id of the target thread; exc is the exception object to
       /// be raised. This function does not steal any references to exc.
-      /// To prevent naive misuse, you must write your own C extension to call
+      /// To prevent naive misuse, you must write your own extension to call
       /// this. Must be called with an attached thread state. Returns the number
       /// of thread states modified; this is normally one, but will be zero if
       /// the thread id isn't found. If exc is nil, the pending exception

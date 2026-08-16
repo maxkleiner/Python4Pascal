@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PySequence: Class TPySequence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPySequence"></span><h1 class="cio">Class TPySequence</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PySequence.html">uP4P.PySequence</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPySequence = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PySequence_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/sequence.html#sequence-protocol">https://docs.python.org/3/c-api/sequence.html#sequence-protocol</a>&quot;&gt;See the article about the Sequence Protocol.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPySequence</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Check-IPyObject-">Check</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Size-IPyObject-">Size</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Length-IPyObject-">Length</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Concat-IPyObject-IPyObject-">Concat</a></strong>(const o1, o2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Repeat_-IPyObject-Py_ssize_t-">Repeat_</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; count_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#GetSliceIndex-TVarData-integer-">GetSliceIndex</a></strong>(const i: TVarData; aEllipsisDefault: integer): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#GetItem-IPyObject-Py_ssize_t-">GetItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#GetItem-IPyObject-TVarData-">GetItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#GetSlice-IPyObject-Py_ssize_t-Py_ssize_t-">GetSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#GetSlice-IPyObject-TVarData-TVarData-">GetSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#SetItem-IPyObject-Py_ssize_t-IPyObject-">SetItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#SetItem-IPyObject-TVarData-TVarData-">SetItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#DelItem-IPyObject-Py_ssize_t-">DelItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#DelItem-IPyObject-TVarData-">DelItem</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#SetSlice-IPyObject-Py_ssize_t-Py_ssize_t-IPyObject-">SetSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#SetSlice-IPyObject-TVarData-TVarData-TVarData-">SetSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#DelSlice-IPyObject-Py_ssize_t-Py_ssize_t-">DelSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#DelSlice-IPyObject-TVarData-TVarData-">DelSlice</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Tuple-IPyObject-">Tuple</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#List-IPyObject-">List</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Fast-IPyObject-string-">Fast</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const m: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Count-IPyObject-IPyObject-">Count</a></strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Contains-IPyObject-IPyObject-">Contains</a></strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Contains-IPyObject-TVarData-">Contains</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const value: TVarData): integer; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#In_-IPyObject-IPyObject-">In_</a></strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#Index-IPyObject-IPyObject-">Index</a></strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#InPlaceConcat-IPyObject-IPyObject-">InPlaceConcat</a></strong>(const o1, o2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#InPlaceRepeat-IPyObject-Py_ssize_t-">InPlaceRepeat</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; count_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySequence.TPySequence.html#CastValueAsVariant-IPyObject-">CastValueAsVariant</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Variant;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the object provides the sequence protocol, and False otherwise. Note that it returns True for Python classes with a __getitem__() method, unless they are dict subclasses, since in general it is impossible to determine what type of keys the class supports. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size-IPyObject-"></span><code>class function <strong>Size</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the number of objects in sequence o on success, and -1 on failure. This is equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Length-IPyObject-"></span><code>class function <strong>Length</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the number of objects in sequence o on success, and -1 on failure. This is equivalent to the Python expression len(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Concat-IPyObject-IPyObject-"></span><code>class function <strong>Concat</strong>(const o1, o2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the concatenation of o1 and o2 on success, and nil on failure. This is the equivalent of the Python expression o1 + o2.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Repeat_-IPyObject-Py_ssize_t-"></span><code>class function <strong>Repeat_</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; count_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the result of repeating sequence object o count times, or nil on failure. This is the equivalent of the Python expression o * count.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSliceIndex-TVarData-integer-"></span><code>class function <strong>GetSliceIndex</strong>(const i: TVarData; aEllipsisDefault: integer): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Internal function used by the Variant version of GetSlice
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the ith element of o, or nil on failure. This is the equivalent of the Python expression o[i].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-TVarData-"></span><code>class function <strong>GetItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of GetItem
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSlice-IPyObject-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>GetSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the slice of sequence object o between i1 and i2, or nil on failure. This is the equivalent of the Python expression o[i1:i2].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSlice-IPyObject-TVarData-TVarData-"></span><code>class function <strong>GetSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of GetSlice
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-Py_ssize_t-IPyObject-"></span><code>class function <strong>SetItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Assign object v to the ith element of o. Raise an exception and return False on failure; return True on success. This is the equivalent of the Python statement o[i] = v. This function does not &quot;steal&quot; a reference to v.
+
+<p>If v is nil, the element is deleted, but this feature is deprecated in favour of using TPySequence.DelItem().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-TVarData-TVarData-"></span><code>class function <strong>SetItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of SetItem
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItem-IPyObject-Py_ssize_t-"></span><code>class function <strong>DelItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Delete the ith element of object o. Returns False on failure. This is the equivalent of the Python statement del o[i].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelItem-IPyObject-TVarData-"></span><code>class function <strong>DelItem</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of DelItem
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetSlice-IPyObject-Py_ssize_t-Py_ssize_t-IPyObject-"></span><code>class function <strong>SetSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; v: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Assign the sequence object v to the slice in sequence object o from i1 to i2. This is the equivalent of the Python statement o[i1:i2] = v.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetSlice-IPyObject-TVarData-TVarData-TVarData-"></span><code>class function <strong>SetSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2, v: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of SetSlice
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelSlice-IPyObject-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>DelSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i1, i2: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Delete the slice in sequence object o from i1 to i2. Returns False on failure. This is the equivalent of the Python statement del o[i1:i2].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DelSlice-IPyObject-TVarData-TVarData-"></span><code>class function <strong>DelSlice</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const i1, i2: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of DelSlice
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Tuple-IPyObject-"></span><code>class function <strong>Tuple</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a tuple object with the same contents as the sequence or iterable o, or nil on failure. If o is a tuple, a new reference will be returned, otherwise a tuple will be constructed with the appropriate contents. This is equivalent to the Python expression tuple(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="List-IPyObject-"></span><code>class function <strong>List</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a list object with the same contents as the sequence or iterable o, or nil on failure. The returned list is guaranteed to be new. This is equivalent to the Python expression list(o).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Fast-IPyObject-string-"></span><code>class function <strong>Fast</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const m: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the sequence or iterable o as an object usable by the other TPySequence.Fast* family of functions. If the object is not a sequence or iterable, raises TypeError with m as the message text. Returns nil on failure.
+
+<p>The TPySequence.Fast* functions are thus named because they assume o is a PyTupleObject or a PyListObject and access the data fields of o directly.
+
+<p>As a CPython implementation detail, if o is already a sequence or list, it will be returned.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Count-IPyObject-IPyObject-"></span><code>class function <strong>Count</strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the number of occurrences of value in o, that is, return the number of keys for which o[key] == value. On failure, return -1. This is equivalent to the Python expression o.count(value).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Contains-IPyObject-IPyObject-"></span><code>class function <strong>Contains</strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Determine if o contains value. If an item in o is equal to value, return 1, otherwise return 0. On error, return -1. This is equivalent to the Python expression value in o.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Contains-IPyObject-TVarData-"></span><code>class function <strong>Contains</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const value: TVarData): integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant version of Contains
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="In_-IPyObject-IPyObject-"></span><code>class function <strong>In_</strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Alias for TPySequence.Contains().
+
+<p>Soft deprecated since version 3.14: The function should no longer be used to write new code.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Index-IPyObject-IPyObject-"></span><code>class function <strong>Index</strong>(const o, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the first index i for which o[i] == value. On error, return -1. This is equivalent to the Python expression o.index(value).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InPlaceConcat-IPyObject-IPyObject-"></span><code>class function <strong>InPlaceConcat</strong>(const o1, o2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the concatenation of o1 and o2 on success, and nil on failure. The operation is done in-place when o1 supports it. This is the equivalent of the Python expression o1 += o2.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InPlaceRepeat-IPyObject-Py_ssize_t-"></span><code>class function <strong>InPlaceRepeat</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; count_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the result of repeating sequence object o count times, or nil on failure. The operation is done in-place when o supports it. This is the equivalent of the Python expression o *= count.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CastValueAsVariant-IPyObject-"></span><code>class function <strong>CastValueAsVariant</strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Variant;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Cast the values in this sequence as a Variant array.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

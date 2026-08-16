@@ -46,7 +46,7 @@ type
       /// <para>Get the registered reference tracer function and the value of
       /// the opaque data pointer that was registered when
       /// TPyRefTracer.SetTracer() was called. If no tracer was registered this
-      /// function will return NULL and will set the data pointer to nil.</para>
+      /// function will return nil and will set the data pointer to nil.</para>
       /// <para>There must be an attached thread state when calling this
       /// function.</para>
       /// </summary>

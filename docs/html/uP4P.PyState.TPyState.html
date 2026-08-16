@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyState: Class TPyState</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyState"></span><h1 class="cio">Class TPyState</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyState.html">uP4P.PyState</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyState = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyState_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#module-lookup-single-phase-initialization">https://docs.python.org/3/c-api/module.html#module-lookup-single-phase-initialization</a>&quot;&gt;See the article about Module lookup (single-phase initialization).)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyState</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyState.TPyState.html#AddModule-IPyObject-PPyModuleDef-">AddModule</a></strong>(const module: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyState.TPyState.html#RemoveModule-PPyModuleDef-">RemoveModule</a></strong>(def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyState.TPyState.html#FindModule-PPyModuleDef-">FindModule</a></strong>(def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModule-IPyObject-PPyModuleDef-"></span><code>class function <strong>AddModule</strong>(const module: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Attaches the module object passed to the function to the interpreter state. This allows the module object to be accessible via TPyState.FindModule().
+
+<p>Only effective on modules created using single-phase initialization.
+
+<p>Python calls TPyState.AddModule automatically after importing a module that uses single-phase initialization, so it is unnecessary (but harmless) to call it from module initialization code. An explicit call is needed only if the module's own init code subsequently calls TPyState.FindModule. The function is mainly intended for implementing alternative import mechanisms (either by calling it directly, or by referring to its implementation for details of the required state updates).
+
+<p>If a module was attached previously using the same def, it is replaced by the new module.
+
+<p>The caller must have an attached thread state.
+
+<p>Return False with an exception set on error, True on success.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RemoveModule-PPyModuleDef-"></span><code>class function <strong>RemoveModule</strong>(def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Removes the module object created from def from the interpreter state. Return False with an exception set on error, True on success.
+
+<p>The caller must have an attached thread state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FindModule-PPyModuleDef-"></span><code>class function <strong>FindModule</strong>(def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns the module object that was created from def for the current interpreter. This method requires that the module object has been attached to the interpreter state with TPyState.AddModule() beforehand. In case the corresponding module object is not found or has not been attached to the interpreter state yet, it returns nil.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

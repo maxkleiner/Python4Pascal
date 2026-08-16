@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyImport: Class TPyImport</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyImport"></span><h1 class="cio">Class TPyImport</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyImport.html">uP4P.PyImport</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyImport = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper class for all the PyImport_* methods.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/import.html#importing-modules">https://docs.python.org/3/c-api/import.html#importing-modules</a>&quot;&gt;See the article about Importing Modules.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyImport</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetMagicNumber">GetMagicNumber</a></strong>: <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetMagicTag">GetMagicTag</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ExecCodeModule-string-IPyObject-">ExecCodeModule</a></strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ExecCodeModuleEx-string-IPyObject-string-">ExecCodeModuleEx</a></strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pathname: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ExecCodeModuleWithPathnames-string-IPyObject-string-string-">ExecCodeModuleWithPathnames</a></strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pathname, cpathname: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ExecCodeModuleObject-IPyObject-IPyObject-IPyObject-IPyObject-">ExecCodeModuleObject</a></strong>(const name_, co, pathname, cpathname: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetModuleDict">GetModuleDict</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetModule-IPyObject-">GetModule</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#AddModuleObject-IPyObject-">AddModuleObject</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#AddModule-string-">AddModule</a></strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#AddModuleRef-string-">AddModuleRef</a></strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModule-string-">ImportModule</a></strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModuleLevel-string-IPyObject-IPyObject-IPyObject-integer-">ImportModuleLevel</a></strong>(const name_: string; const globals, locals, fromlist: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; level: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModuleLevelObject-IPyObject-IPyObject-IPyObject-IPyObject-integer-">ImportModuleLevelObject</a></strong>(const name_, globals, locals, fromlist: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; level: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetImporter-IPyObject-">GetImporter</a></strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#Import-IPyObject-">Import</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ReloadModule-IPyObject-">ReloadModule</a></strong>(const m: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportFrozenModuleObject-IPyObject-">ImportFrozenModuleObject</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportFrozenModule-string-">ImportFrozenModule</a></strong>(const name_: string): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#AppendInittab-string-initfunc-">AppendInittab</a></strong>(const name_: string; initfunc_: <a href="uP4P.Types.html#initfunc">initfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ExtendInittab-P_inittab-">ExtendInittab</a></strong>(newtab: <a href="uP4P.Types.html#P_inittab">P_inittab</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModuleAttr-IPyObject-IPyObject-">ImportModuleAttr</a></strong>(const mod_name, attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModuleAttrString-string-string-">ImportModuleAttrString</a></strong>(const mod_name, attr_name: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetMagicNumber"></span><code>class function <strong>GetMagicNumber</strong>: <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the magic number for Python bytecode files (a.k.a. .pyc file). The magic number should be present in the first four bytes of the bytecode file, in little-endian byte order. Returns -1 on error.
+
+<p>Changed in version 3.3: Return value of -1 upon failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetMagicTag"></span><code>class function <strong>GetMagicTag</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the magic tag string for PEP 3147 format Python bytecode file names. Keep in mind that the value at sys.implementation.cache_tag is authoritative and should be used instead of this function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExecCodeModule-string-IPyObject-"></span><code>class function <strong>ExecCodeModule</strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Given a module name (possibly of the form package.module) and a code object read from a Python bytecode file or obtained from the built-in function compile(), load the module. Return a new reference to the module object, or nil with an exception set if an error occurred. name is removed from sys.modules in error cases, even if name was already in sys.modules on entry to TPyImport.ExecCodeModule(). Leaving incompletely initialized modules in sys.modules is dangerous, as imports of such modules have no way to know that the module object is an unknown (and probably damaged with respect to the module author's intents) state.
+
+<p>The module's __spec__ and __loader__ will be set, if not set already, with the appropriate values. The spec's loader will be set to the module's __loader__ (if set) and to an instance of SourceFileLoader otherwise.
+
+<p>The module's __file__ attribute will be set to the code object's co_filename. If applicable, __cached__ will also be set.
+
+<p>This function will reload the module if it was already imported. See TPyImport.ReloadModule() for the intended way to reload a module.
+
+<p>If name points to a dotted name of the form package.module, any package structures not already created will still not be created.
+
+<p>See also TPyImport.ExecCodeModuleEx() and TPyImport.ExecCodeModuleWithPathnames().
+
+<p>Changed in version 3.12: The setting of __cached__ and __loader__ is deprecated. See ModuleSpec for alternatives.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExecCodeModuleEx-string-IPyObject-string-"></span><code>class function <strong>ExecCodeModuleEx</strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pathname: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyImport.ExecCodeModule(), but the __file__ attribute of the module object is set to pathname if it is non-nil.
+
+<p>See also TPyImport.ExecCodeModuleWithPathnames().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExecCodeModuleWithPathnames-string-IPyObject-string-string-"></span><code>class function <strong>ExecCodeModuleWithPathnames</strong>(const name_: string; const co: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pathname, cpathname: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyImport.ExecCodeModuleObject(), but name, pathname and cpathname are strings. Attempts are also made to figure out what the value for pathname should be from cpathname if the former is set to nil.
+
+<p>Added in version 3.2.
+
+<p>Changed in version 3.3: Uses imp.source_from_cache() in calculating the source path if only the bytecode path is provided.
+
+<p>Changed in version 3.12: No longer uses the removed imp module.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExecCodeModuleObject-IPyObject-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>ExecCodeModuleObject</strong>(const name_, co, pathname, cpathname: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyImport.ExecCodeModuleEx(), but the __cached__ attribute of the module object is set to cpathname if it is non-nil. Of the three functions, this is the preferred one to use.
+
+<p>Added in version 3.3.
+
+<p>Changed in version 3.12: Setting __cached__ is deprecated. See ModuleSpec for alternatives.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModuleDict"></span><code>class function <strong>GetModuleDict</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the dictionary used for the module administration (a.k.a. sys.modules). Note that this is a per-interpreter variable.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModule-IPyObject-"></span><code>class function <strong>GetModule</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the already imported module with the given name. If the module has not been imported yet then returns nil but does not set an error. Returns nil and sets an error if the lookup failed.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModuleObject-IPyObject-"></span><code>class function <strong>AddModuleObject</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyImport.AddModuleRef(), but return a borrowed reference and name is a Python str object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModule-string-"></span><code>class function <strong>AddModule</strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyImport.AddModuleRef(), but return a borrowed reference.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModuleRef-string-"></span><code>class function <strong>AddModuleRef</strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the module object corresponding to a module name.
+
+<p>The name argument may be of the form package.module. First check the modules dictionary if there's one there, and if not, create a new one and insert it in the modules dictionary.
+
+<p>Return a strong reference to the module on success. Return nil with an exception set on failure.
+
+<p>This function does not load or import the module; if the module wasn't already loaded, you will get an empty module object. Use TPyImport.ImportModule() or one of its variants to import a module. Package structures implied by a dotted name for name are not created if not already present.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportModule-string-"></span><code>class function <strong>ImportModule</strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a wrapper around TPyImport.Import() which takes a string as an argument instead of a IPyObject.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportModuleLevel-string-IPyObject-IPyObject-IPyObject-integer-"></span><code>class function <strong>ImportModuleLevel</strong>(const name_: string; const globals, locals, fromlist: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; level: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyImport.ImportModuleLevelObject(), but the name is a string instead of a Unicode object.
+
+<p>Changed in version 3.3: Negative values for level are no longer accepted.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportModuleLevelObject-IPyObject-IPyObject-IPyObject-IPyObject-integer-"></span><code>class function <strong>ImportModuleLevelObject</strong>(const name_, globals, locals, fromlist: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; level: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Import a module. This is best described by referring to the built-in Python function __import__(), as the standard __import__() function calls this function directly.
+
+<p>The return value is a new reference to the imported module or top-level package, or nil with an exception set on failure. Like for __import__(), the return value when a submodule of a package was requested is normally the top-level package, unless a non-empty fromlist was given.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetImporter-IPyObject-"></span><code>class function <strong>GetImporter</strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a finder object for a sys.path/pkg.__path__ item path, possibly by fetching it from the sys.path_importer_cache dict. If it wasn't yet cached, traverse sys.path_hooks until a hook is found that can handle the path item. Return None if no hook could; this tells our caller that the path based finder could not find a finder for this path item. Cache the result in sys.path_importer_cache. Return a new reference to the finder object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Import-IPyObject-"></span><code>class function <strong>Import</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a higher-level interface that calls the current &quot;import hook function&quot; (with an explicit level of 0, meaning absolute import). It invokes the __import__() function from the __builtins__ of the current globals. This means that the import is done using whatever import hooks are installed in the current environment.
+
+<p>This function always uses absolute imports.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReloadModule-IPyObject-"></span><code>class function <strong>ReloadModule</strong>(const m: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Reload a module. Return a new reference to the reloaded module, or nil with an exception set on failure (the module still exists in this case).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportFrozenModuleObject-IPyObject-"></span><code>class function <strong>ImportFrozenModuleObject</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Load a frozen module named name. Return 1 for success, 0 if the module is not found, and -1 with an exception set if the initialization failed. To access the imported module on a successful load, use TPyImport.ImportModule(). (Note the misnomer - this function would reload the module if it was already imported.)
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportFrozenModule-string-"></span><code>class function <strong>ImportFrozenModule</strong>(const name_: string): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyImport.ImportFrozenModuleObject(), but the name is a string instead of a Unicode object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AppendInittab-string-initfunc-"></span><code>class function <strong>AppendInittab</strong>(const name_: string; initfunc_: <a href="uP4P.Types.html#initfunc">initfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add a single module to the existing table of built-in modules. This is a convenience wrapper around TPyImport.ExtendInittab(), returning False if the table could not be extended. The new module can be imported by the name name, and uses the function initfunc as the initialization function called on the first attempted import. This should be called before TPy.Initialize().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExtendInittab-P_inittab-"></span><code>class function <strong>ExtendInittab</strong>(newtab: <a href="uP4P.Types.html#P_inittab">P_inittab</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add a collection of modules to the table of built-in modules. The newtab array must end with a sentinel entry which contains nil for the name field; failure to provide the sentinel value can result in a memory fault. Returns True on success or False if insufficient memory could be allocated to extend the internal table. In the event of failure, no modules are added to the internal table. This must be called before TPy.Initialize().
+
+<p>If Python is initialized multiple times, TPyImport.AppendInittab() or TPyImport.ExtendInittab() must be called before each Python initialization.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportModuleAttr-IPyObject-IPyObject-"></span><code>class function <strong>ImportModuleAttr</strong>(const mod_name, attr_name: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Import the module mod_name and get its attribute attr_name.
+
+<p>Names must be Python str objects.
+
+<p>Helper function combining TPyImport.Import() and TPyObject.GetAttr(). For example, it can raise ImportError if the module is not found, and AttributeError if the attribute doesn't exist.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ImportModuleAttrString-string-string-"></span><code>class function <strong>ImportModuleAttrString</strong>(const mod_name, attr_name: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyImport.ImportModuleAttr(), but names are strings instead of Python str objects.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

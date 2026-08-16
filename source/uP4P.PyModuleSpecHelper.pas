@@ -18,7 +18,8 @@ uses
 
 type
   /// <summary>
-  /// Helper class to create a ModuleSpec object used by TPyModule.FromDefAndSpec
+  /// <para>Helper class to create a ModuleSpec object. Used by
+  /// TPyModule.FromDefAndSpec</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://peps.python.org/pep-0451/">See PEP 451 - A ModuleSpec Type for the Import.</see></para>
@@ -26,12 +27,14 @@ type
   TPyModuleSpecHelper = class
     public
       /// <summary>
-      /// Helper function to create a ModuleSpec object used by TPyModule.FromDefAndSpec
+      /// <para>Helper function to create a ModuleSpec object. Used by
+      /// TPyModule.FromDefAndSpec</para>
       /// </summary>
       class function FromModuleName(const name_: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
       /// <summary>
-      /// Helper function to create a ModuleSpec object used by TPyModule.FromDefAndSpec
+      /// <para>Helper function to create a ModuleSpec object. Used by
+      /// TPyModule.FromDefAndSpec</para>
       /// </summary>
       class function FromModuleName(const name_: AnsiString): IPyObject; overload;
       {$ENDIF}

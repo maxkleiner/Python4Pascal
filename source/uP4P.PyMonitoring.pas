@@ -37,7 +37,7 @@ type
       /// event_types (and hence also of state_array) is given in length.</para>
       /// <para>The version argument is a pointer to a value which should be
       /// allocated by the user together with state_array and initialized to 0,
-      /// and then set only by PyMonitoring_EnterScope() itself. It allows this
+      /// and then set only by TPyMonitoring.EnterScope() itself. It allows this
       /// function to determine whether event states have changed since the
       /// previous call, and to return quickly if they have not.</para>
       /// <para>The scopes referred to here are lexical scopes: a function,

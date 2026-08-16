@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyInterpreterConfig</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyInterpreterConfig"></span><h1 class="cio">Record PyInterpreterConfig</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyInterpreterConfig = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record containing most parameters to configure a sub-interpreter. Its values are used only in Py_NewInterpreterFromConfig() and never modified by the runtime. Added in version 3.12. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/subinterpreters.html#c.PyInterpreterConfig">https://docs.python.org/3/c-api/subinterpreters.html#c.PyInterpreterConfig</a>&quot;&gt;See the article about PyInterpreterConfig.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#use_main_obmalloc">use_main_obmalloc</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#allow_fork">allow_fork</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#allow_exec">allow_exec</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#allow_threads">allow_threads</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#allow_daemon_threads">allow_daemon_threads</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#check_multi_interp_extensions">check_multi_interp_extensions</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyInterpreterConfig.html#gil">gil</a></strong>: Integer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="use_main_obmalloc"></span><code><strong>use_main_obmalloc</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then the sub-interpreter will use its own &quot;object&quot; allocator state. Otherwise it will use (share) the main interpreter's. If this is 0 then check_multi_interp_extensions must be 1 (non-zero). If this is 1 then gil must not be PyInterpreterConfig_OWN_GIL. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_fork"></span><code><strong>allow_fork</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then the runtime will not support forking the process in any thread where the sub-interpreter is currently active. Otherwise fork is unrestricted. Note that the subprocess module still works when fork is disallowed. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_exec"></span><code><strong>allow_exec</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then the runtime will not support replacing the current process via exec (e.g. os.execv()) in any thread where the sub-interpreter is currently active. Otherwise exec is unrestricted. Note that the subprocess module still works when exec is disallowed. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_threads"></span><code><strong>allow_threads</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then the sub-interpreter's threading module won't create threads. Otherwise threads are allowed. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allow_daemon_threads"></span><code><strong>allow_daemon_threads</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then the sub-interpreter's threading module won't create daemon threads. Otherwise daemon threads are allowed (as long as allow_threads is non-zero). </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="check_multi_interp_extensions"></span><code><strong>check_multi_interp_extensions</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If this is 0 then all extension modules may be imported, including legacy (single-phase init) modules, in any thread where the sub-interpreter is currently active. Otherwise only multi-phase init extension modules (see PEP 489) may be imported. (Also see Py_mod_multiple_interpreters.) This must be 1 (non-zero) if use_main_obmalloc is 0. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="gil"></span><code><strong>gil</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ This determines the operation of the GIL for the sub-interpreter. It may be one of the following: PyInterpreterConfig_DEFAULT_GIL, PyInterpreterConfig_SHARED_GIL or PyInterpreterConfig_OWN_GIL. If this is PyInterpreterConfig_OWN_GIL then PyInterpreterConfig.use_main_obmalloc must be 0. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

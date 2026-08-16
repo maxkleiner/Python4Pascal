@@ -3079,7 +3079,7 @@ type
   /// </remarks>
   PyStructSequence_Desc = record
     /// <summary>
-    /// Fully qualified name of the type; null-terminated UTF-8 encoded. The
+    /// Fully qualified name of the type; nil-terminated UTF-8 encoded. The
     /// name must contain the module name.
     /// </summary>
     name_         : PAnsiChar;

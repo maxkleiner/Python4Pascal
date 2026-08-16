@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyDateTime_Delta</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyDateTime_Delta"></span><h1 class="cio">Record PyDateTime_Delta</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyDateTime_Delta = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ This subtype of PyObject represents the difference between two datetime values. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_Delta">https://docs.python.org/3/c-api/datetime.html#c.PyDateTime_Delta</a>&quot;&gt;See the article about PyDateTime_Delta.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_Delta.html#ob_base">ob_base</a></strong>: <a href="uP4P.Types.html#PyObject">PyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_Delta.html#hashcode">hashcode</a></strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_Delta.html#days">days</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_Delta.html#seconds">seconds</a></strong>: Integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyDateTime_Delta.html#microseconds">microseconds</a></strong>: Integer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ob_base"></span><code><strong>ob_base</strong>: <a href="uP4P.Types.html#PyObject">PyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="hashcode"></span><code><strong>hashcode</strong>: <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+PyObject_HEAD &lt;summary&gt; -1 when unknown &lt;/summary&gt;</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="days"></span><code><strong>days</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ -MAX_DELTA_DAYS &lt;= days &lt;= MAX_DELTA_DAYS </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="seconds"></span><code><strong>seconds</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ 0 &lt;= seconds &lt; 24*3600 is invariant </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="microseconds"></span><code><strong>microseconds</strong>: Integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ 0 &lt;= microseconds &lt; 1000000 is invariant </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

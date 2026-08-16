@@ -77,7 +77,7 @@ type
       class function GetIndicesEx(const slice: IPyObject; length: Py_ssize_t; var start, stop, step, slicelength: Py_ssize_t): boolean;
       /// <summary>
       /// <para>Extract the start, stop and step data members from a slice
-      /// object as C integers. Silently reduce values larger than
+      /// object as integers. Silently reduce values larger than
       /// PY_SSIZE_T_MAX to PY_SSIZE_T_MAX, silently boost the start and stop
       /// values less than PY_SSIZE_T_MIN to PY_SSIZE_T_MIN, and silently boost
       /// the step values less than -PY_SSIZE_T_MAX to -PY_SSIZE_T_MAX.</para>

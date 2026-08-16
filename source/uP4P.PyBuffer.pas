@@ -78,7 +78,7 @@ type
       class function FillInfo(var view: Py_buffer; const exporter: IPyObject; buf: Pointer; len: Py_ssize_t; readonly, flags: Integer): boolean;
       /// <summary>
       /// <para>Release the buffer view and release the strong reference
-      /// (i.e. decrement the reference count) to the view’s supporting object,
+      /// (i.e. decrement the reference count) to the view's supporting object,
       /// view->obj. This function MUST be called when the buffer is no longer
       /// being used, otherwise reference leaks may occur.</para>
       /// <para>It is an error to call this function on a buffer that was not

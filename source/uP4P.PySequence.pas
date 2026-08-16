@@ -136,10 +136,10 @@ type
       class function List(const o: IPyObject): IPyObject;
       /// <summary>
       /// <para>Return the sequence or iterable o as an object usable by the
-      /// other PySequence_Fast* family of functions. If the object is not a
+      /// other TPySequence.Fast* family of functions. If the object is not a
       /// sequence or iterable, raises TypeError with m as the message text.
       /// Returns nil on failure.</para>
-      /// <para>The PySequence_Fast* functions are thus named because they
+      /// <para>The TPySequence.Fast* functions are thus named because they
       /// assume o is a PyTupleObject or a PyListObject and access the data
       /// fields of o directly.</para>
       /// <para>As a CPython implementation detail, if o is already a sequence
@@ -163,7 +163,7 @@ type
       /// </summary>
       class function Contains(const o: IPyObject; const value: TVarData): integer; overload;
       /// <summary>
-      /// <para>Alias for PySequence_Contains().</para>
+      /// <para>Alias for TPySequence.Contains().</para>
       /// <para>Soft deprecated since version 3.14: The function should no
       /// longer be used to write new code.</para>
       /// </summary>

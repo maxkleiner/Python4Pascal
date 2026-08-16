@@ -307,7 +307,7 @@ type
     /// </summary>
     function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
     /// <summary>
-    /// <para>This is the same as PyObject_DelAttr(), but attr_name is
+    /// <para>This is the same as TPyObject.DelAttr(), but attr_name is
     /// specified as a string, rather than a IPyObject.</para>
     /// <para>The number of different attribute names passed to this function
     /// should be kept small, usually by using a statically allocated string
@@ -998,7 +998,7 @@ type
     ['{AB597432-E9BD-44E7-A8ED-9ECAAC43C811}']
     function GetInitialized: boolean;
     /// <summary>
-    /// <para>Finish a PyLongWriter created by PyLongWriter_Create().</para>
+    /// <para>Finish a PyLongWriter created by TPyLongWriter.Create().</para>
     /// <para>On success, return a Python int object. On error, set an
     /// exception and return nil.</para>
     /// <para>The function takes care of normalizing the digits and converts
@@ -1008,7 +1008,7 @@ type
     /// </summary>
     function Finish: IPyObject;
     /// <summary>
-    /// <para>Discard a PyLongWriter created by PyLongWriter_Create().</para>
+    /// <para>Discard a PyLongWriter created by TPyLongWriter.Create().</para>
     /// <para>If writer is nil, no operation is performed.</para>
     /// <para>The writer instance and the digits array are invalid after the
     /// call.</para>
@@ -1085,18 +1085,18 @@ type
     /// </summary>
     function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
     /// <summary>
-    /// <para>Call PyObject_Str() on obj and write the output into
+    /// <para>Call TPyObject.Str() on obj and write the output into
     /// writer.</para>
     /// <para>On success, return True. On error, set an exception, leave the
     /// writer unchanged, and return False.</para>
     /// <para>To write a str subclass which overrides the __str__() method,
-    /// PyUnicode_FromObject() can be used to get the original string.</para>
+    /// TPyUnicode.FromObject() can be used to get the original string.</para>
     /// </summary>
     function  WriteStr(const obj: IPyObject): boolean;
     /// <summary>
-    /// <para>Call PyObject_Repr() on obj and write the output into
+    /// <para>Call TPyObject.Repr() on obj and write the output into
     /// writer.</para>
-    /// <para>If obj is nil, write the string "<nil>" into writer.</para>
+    /// <para>If obj is nil, write the string "<NULL>" into writer.</para>
     /// <para>On success, return True. On error, set an exception, leave the
     /// writer unchanged, and return False.</para>
     /// <para>Changed in version 3.14.4: Added support for nil.</para>
@@ -1112,10 +1112,10 @@ type
     /// </summary>
     function  WriteSubstring(str: PPyObject; start, end_: Py_ssize_t): boolean;
     /// <summary>
-    /// <para>Decode the string str from UTF-8 with errors error handler and
+    /// <para>Decode string_ from UTF-8 with errors error handler and
     /// write the output into writer.</para>
     /// <para>size_ is the string length in bytes. If size_ is equal to -1,
-    /// call strlen(str) to get the string length.</para>
+    /// call strlen(string_) to get the string length.</para>
     /// <para>errors is an error handler name, such as "replace". If errors is
     /// nil, use the strict error handler.</para>
     /// <para>If consumed is not nil, set *consumed to the number of decoded
@@ -1298,7 +1298,7 @@ type
   /// such. The global interpreter lock is also shared by all threads,
   /// regardless of to which interpreter they belong.</para>
   /// <para>Changed in version 3.12: PEP 684 introduced the possibility of a
-  /// per-interpreter GIL. See Py_NewInterpreterFromConfig().</para>
+  /// per-interpreter GIL. See TPy.NewInterpreterFromConfig().</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
@@ -1354,7 +1354,7 @@ type
     /// stored. If this function returns nil then no exception has been
     /// raised and the caller should assume no interpreter-specific dict is
     /// available.</para>
-    /// <para>This is not a replacement for PyModule_GetState(), which
+    /// <para>This is not a replacement for TPyModule.GetState(), which
     /// extensions should use to store interpreter-specific state
     /// information.</para>
     /// <para>The returned dictionary is borrowed from the interpreter and is
@@ -2255,7 +2255,7 @@ type
     /// modules.</para>
     /// <para>Initialized from the environment variable PYTHONPATH, plus an
     /// installation-dependent default.</para>
-    /// <para>If module_search_paths_set is False, Py_InitializeFromConfig()
+    /// <para>If module_search_paths_set is False, TPy.InitializeFromConfig()
     /// will replace module_search_paths and sets module_search_paths_set to
     /// True.</para>
     /// <para>Default: empty list (module_search_paths) and False
@@ -2286,9 +2286,9 @@ type
     /// <para>The list of the original command line arguments passed to the
     /// Python executable: sys.orig_argv.</para>
     /// <para>If orig_argv list is empty and argv is not a list only
-    /// containing an empty string, PyConfig_Read() copies argv into orig_argv
-    /// before modifying argv (if parse_argv is non-zero).</para>
-    /// <para>See also the argv member and the Py_GetArgcArgv()
+    /// containing an empty string, TPyConfig.Read() copies argv into
+    /// orig_argv before modifying argv (if parse_argv is non-zero).</para>
+    /// <para>See also the argv member and the TPy.GetArgcArgv()
     /// function.</para>
     /// <para>Default: empty list.</para>
     /// <para>Added in version 3.10.</para>
@@ -2298,7 +2298,7 @@ type
     /// <para>Parse command line arguments?</para>
     /// <para>If True, parse argv the same way the regular Python parses
     /// command line arguments, and strip Python arguments from argv.</para>
-    /// <para>The PyConfig_Read() function only parses PyConfig.argv arguments
+    /// <para>The TPyConfig.Read() function only parses PyConfig.argv arguments
     /// once: PyConfig.parse_argv is set to True after arguments are parsed.
     /// Since Python arguments are stripped from PyConfig.argv, parsing
     /// arguments twice would parse the application options as Python
@@ -2424,13 +2424,13 @@ type
     property quiet                      : boolean                read Get_quiet                          write Set_quiet;
     /// <summary>
     /// <para>Value of the -c command line option.</para>
-    /// <para>Used by Py_RunMain().</para>
+    /// <para>Used by TPy.RunMain().</para>
     /// <para>Default: Empty.</para>
     /// </summary>
     property run_command                : string                 read Get_run_command                    write Set_run_command;
     /// <summary>
     /// <para>Filename passed on the command line: trailing command line
-    /// argument without -c or -m. It is used by the Py_RunMain()
+    /// argument without -c or -m. It is used by the TPy.RunMain()
     /// function.</para>
     /// <para>For example, it is set to script.py by the python3 script.py
     /// arg command line.</para>
@@ -2442,7 +2442,7 @@ type
     property run_filename               : string                 read Get_run_filename                   write Set_run_filename;
     /// <summary>
     /// <para>Value of the -m command line option.</para>
-    /// <para>Used by Py_RunMain().</para>
+    /// <para>Used by TPy.RunMain().</para>
     /// <para>Default: Empty.</para>
     /// </summary>
     property run_module                 : string                 read Get_run_module                     write Set_run_module;
@@ -2458,7 +2458,7 @@ type
     /// </summary>
     property run_presite                : string                 read Get_run_presite                    write Set_run_presite;
     /// <summary>
-    /// <para>If equals to zero, Py_RunMain() prepends a potentially unsafe
+    /// <para>If equals to zero, TPy.RunMain() prepends a potentially unsafe
     /// path to sys.path at startup:</para>
     /// <code>
     /// - If argv[0] is equal to "-m" (python -m module), prepend the current
@@ -2749,8 +2749,8 @@ type
     /// </summary>
     property Initialized                 : boolean            read GetInitialized;
     /// <summary>
-    /// <para>If True, Py_PreInitializeFromArgs() and
-    /// Py_PreInitializeFromBytesArgs() parse their argv argument the same way
+    /// <para>If True, TPy.PreInitializeFromArgs() and
+    /// TPy.PreInitializeFromBytesArgs() parse their argv argument the same way
     /// the regular Python parses command line arguments: see Command Line
     /// Arguments.</para>
     /// <para>Default: True in Python config, False in isolated config.</para>
@@ -3037,7 +3037,7 @@ type
     function SetArgv(const items: TStringDynArray): boolean; overload;
     /// <summary>
     /// Set command line arguments (argv member of config) from the argv array
-    /// of bytes strings. Decode bytes using Py_DecodeLocale().
+    /// of bytes strings. Decode bytes using TPy.DecodeLocale().
     /// </summary>
     function SetBytesArgv(argc: integer; const argv: array of PAnsiChar): IPyStatus;
     /// <summary>
@@ -3066,16 +3066,16 @@ type
     /// <para>Fields which are already initialized are left unchanged.</para>
     /// <para>Fields for path configuration are no longer calculated or modified
     /// when calling this function, as of Python 3.11.</para>
-    /// <para>The PyConfig_Read() function only parses PyConfig.argv arguments
+    /// <para>The TPyConfig.Read() function only parses PyConfig.argv arguments
     /// once: PyConfig.parse_argv is set to 2 after arguments are parsed. Since
     /// Python arguments are stripped from PyConfig.argv, parsing arguments
     /// twice would parse the application options as Python options.</para>
     /// <para>Changed in version 3.10: The PyConfig.argv arguments are now only
     /// parsed once, PyConfig.parse_argv is set to 2 after arguments are parsed,
     /// and arguments are only parsed if PyConfig.parse_argv equals 1.</para>
-    /// <para>Changed in version 3.11: PyConfig_Read() no longer calculates all
+    /// <para>Changed in version 3.11: TPyConfig.Read() no longer calculates all
     /// paths, and so fields listed under Python Path Configuration may no
-    /// longer be updated until Py_InitializeFromConfig() is called.</para>
+    /// longer be updated until TPy.InitializeFromConfig() is called.</para>
     /// </summary>
     function    Read: IPyStatus;
     /// <summary>
@@ -3461,7 +3461,7 @@ type
     /// <para>The list of the original command line arguments passed to the
     /// Python executable: sys.orig_argv.</para>
     /// <para>If orig_argv list is empty and argv is not a list only
-    /// containing an empty string, PyConfig_Read() copies argv into orig_argv
+    /// containing an empty string, TPyConfig.Read() copies argv into orig_argv
     /// before modifying argv (if parse_argv is non-zero).</para>
     /// <para>See also the argv member and the Py_GetArgcArgv()
     /// function.</para>
@@ -3618,13 +3618,13 @@ type
     property remote_debug              : boolean              read Get_remote_debug                 write Set_remote_debug;
     /// <summary>
     /// <para>Value of the -c command line option.</para>
-    /// <para>Used by Py_RunMain().</para>
+    /// <para>Used by TPy.RunMain().</para>
     /// <para>Default: Empty.</para>
     /// </summary>
     property run_command               : string               read Get_run_command                  write Set_run_command;
     /// <summary>
     /// <para>Filename passed on the command line: trailing command line
-    /// argument without -c or -m. It is used by the Py_RunMain()
+    /// argument without -c or -m. It is used by the TPy.RunMain()
     /// function.</para>
     /// <para>For example, it is set to script.py by the python3 script.py
     /// arg command line.</para>
@@ -3636,12 +3636,12 @@ type
     property run_filename              : string               read Get_run_filename                 write Set_run_filename;
     /// <summary>
     /// <para>Value of the -m command line option.</para>
-    /// <para>Used by Py_RunMain().</para>
+    /// <para>Used by TPy.RunMain().</para>
     /// <para>Default: Empty.</para>
     /// </summary>
     property run_module                : string               read Get_run_module                   write Set_run_module;
     /// <summary>
-    /// <para>If equals to zero, Py_RunMain() prepends a potentially unsafe
+    /// <para>If equals to zero, TPy.RunMain() prepends a potentially unsafe
     /// path to sys.path at startup:</para>
     /// <code>
     /// - If argv[0] is equal to "-m" (python -m module), prepend the current

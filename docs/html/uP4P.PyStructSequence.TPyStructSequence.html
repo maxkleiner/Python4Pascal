@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyStructSequence: Class TPyStructSequence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyStructSequence"></span><h1 class="cio">Class TPyStructSequence</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyStructSequence.html">uP4P.PyStructSequence</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyStructSequence = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyStructSequence_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/tuple.html#struct-sequence-objects">https://docs.python.org/3/c-api/tuple.html#struct-sequence-objects</a>&quot;&gt;See the article about Struct Sequence Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyStructSequence</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#InitType-PPyTypeObject-PPyStructSequence_Desc-">InitType</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#InitType2-PPyTypeObject-PPyStructSequence_Desc-">InitType2</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#NewType-PPyStructSequence_Desc-">NewType</a></strong>(desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>): <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#New-PPyTypeObject-">New</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#SetItem-IPyObject-Py_ssize_t-IPyObject-">SetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyStructSequence.TPyStructSequence.html#GetItem-IPyObject-Py_ssize_t-">GetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitType-PPyTypeObject-PPyStructSequence_Desc-"></span><code>class procedure <strong>InitType</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Initializes a struct sequence type type_ from desc in place.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InitType2-PPyTypeObject-PPyStructSequence_Desc-"></span><code>class function <strong>InitType2</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Like TPyStructSequence.InitType(), but returns True on success and False with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewType-PPyStructSequence_Desc-"></span><code>class function <strong>NewType</strong>(desc: <a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a>): <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new struct sequence type from the data in desc, described below. Instances of the resulting type can be created with TPyStructSequence.New().
+
+<p>Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-PPyTypeObject-"></span><code>class function <strong>New</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Creates an instance of type_, which must have been created with TPyStructSequence.NewType().
+
+<p>Return nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-Py_ssize_t-IPyObject-"></span><code>class procedure <strong>SetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Sets the field at index pos of the struct sequence p to value o. This should only be used to fill in brand new instances.
+
+<p>Bounds checking is performed as an assertion if Python is built in debug mode or with assertions.
+
+<p>Note This function &quot;steals&quot; a reference to o.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the object at position pos in the struct sequence pointed to by p.
+
+<p>Bounds checking is performed as an assertion if Python is built in debug mode or with assertions.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

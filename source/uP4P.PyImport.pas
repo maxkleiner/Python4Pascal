@@ -78,9 +78,9 @@ type
       class function ExecCodeModuleEx(const name_: string; const co: IPyObject; const pathname: string): IPyObject;
       /// <summary>
       /// <para>Like TPyImport.ExecCodeModuleObject(), but name, pathname and
-      /// cpathname are UTF-8 encoded strings. Attempts are also made to figure
+      /// cpathname are strings. Attempts are also made to figure
       /// out what the value for pathname should be from cpathname if the former
-      /// is set to NULL.</para>
+      /// is set to nil.</para>
       /// <para>Added in version 3.2.</para>
       /// <para>Changed in version 3.3: Uses imp.source_from_cache() in
       /// calculating the source path if only the bytecode path is
@@ -152,7 +152,7 @@ type
       /// built-in Python function __import__(), as the standard __import__()
       /// function calls this function directly.</para>
       /// <para>The return value is a new reference to the imported module or
-      /// top-level package, or NULL with an exception set on failure. Like for
+      /// top-level package, or nil with an exception set on failure. Like for
       /// __import__(), the return value when a submodule of a package was
       /// requested is normally the top-level package, unless a non-empty
       /// fromlist was given.</para>

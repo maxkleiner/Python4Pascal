@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyPreConfig</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyPreConfig"></span><h1 class="cio">Record PyPreConfig</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyPreConfig = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record used to preinitialize Python. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#pypreconfig">https://docs.python.org/3/c-api/init_config.html#pypreconfig</a>&quot;&gt;See the article about PyPreConfig.)</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#_config_init">_config_init</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#parse_argv">parse_argv</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#isolated">isolated</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#use_environment">use_environment</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#configure_locale">configure_locale</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#coerce_c_locale">coerce_c_locale</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#coerce_c_locale_warn">coerce_c_locale_warn</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#legacy_windows_fs_encoding">legacy_windows_fs_encoding</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#utf8_mode">utf8_mode</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#dev_mode">dev_mode</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyPreConfig.html#allocator">allocator</a></strong>: integer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="_config_init"></span><code><strong>_config_init</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ _PyConfigInitEnum value </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="parse_argv"></span><code><strong>parse_argv</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If non-zero, Py_PreInitializeFromArgs() and Py_PreInitializeFromBytesArgs() parse their argv argument the same way the regular Python parses command line arguments: see Command Line Arguments. Default: 1 in Python config, 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="isolated"></span><code><strong>isolated</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Isolated mode: see PyConfig.isolated. Default: 0 in Python mode, 1 in isolated mode. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="use_environment"></span><code><strong>use_environment</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Use environment variables? See PyConfig.use_environment. Default: 1 in Python config and 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="configure_locale"></span><code><strong>configure_locale</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the LC_CTYPE locale to the user preferred locale. If equals to 0, set coerce_c_locale and coerce_c_locale_warn members to 0. See the locale encoding. Default: 1 in Python config, 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="coerce_c_locale"></span><code><strong>coerce_c_locale</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If equals to 2, coerce the C locale. If equals to 1, read the LC_CTYPE locale to decide if it should be coerced. See the locale encoding. Default: -1 in Python config, 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="coerce_c_locale_warn"></span><code><strong>coerce_c_locale_warn</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If non-zero, emit a warning if the C locale is coerced. Default: -1 in Python config, 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="legacy_windows_fs_encoding"></span><code><strong>legacy_windows_fs_encoding</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If non-zero: - Set PyPreConfig.utf8_mode to 0, - Set PyConfig.filesystem_encoding to &quot;mbcs&quot;, - Set PyConfig.filesystem_errors to &quot;replace&quot;. Initialized from the PYTHONLEGACYWINDOWSFSENCODING environment variable value. Only available on Windows. Default: 0. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="utf8_mode"></span><code><strong>utf8_mode</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ If non-zero, enable the Python UTF-8 Mode. Set to 0 or 1 by the -X utf8 command line option and the PYTHONUTF8 environment variable. Also set to 1 if the LC_CTYPE locale is C or POSIX. Default: -1 in Python config and 0 in isolated config. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="dev_mode"></span><code><strong>dev_mode</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Python Development Mode: see PyConfig.dev_mode. Default: -1 in Python mode, 0 in isolated mode. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="allocator"></span><code><strong>allocator</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name of the Python memory allocator. See PyMemAllocatorName. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

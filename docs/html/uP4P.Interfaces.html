@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<h1 class="unit">Unit uP4P.Interfaces</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyObject.html"><code>IPyObject</code></a></td>
+<td class="itemdesc">
+
+<p>All object types are extensions of this type. This is a type which contains the information Python needs to treat a pointer to an object as an object. In a normal &quot;release&quot; build, it contains only the object's reference count and a pointer to the corresponding type object. Nothing is actually declared to be a PyObject, but every pointer to a Python object can be cast to a PPyObject.
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyLongExport.html"><code>IPyLongExport</code></a></td>
+<td class="itemdesc"> Export of a Python int object. There are two cases: If digits is nil, only use the value member. If digits is not nil, use negative, ndigits and digits members. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyLongWriter.html"><code>IPyLongWriter</code></a></td>
+<td class="itemdesc"> A Python int writer instance. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyUnicodeWriter.html"><code>IPyUnicodeWriter</code></a></td>
+<td class="itemdesc"> A Unicode writer instance. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyStatus.html"><code>IPyStatus</code></a></td>
+<td class="itemdesc">
+
+<p>Interface to store an initialization function status: success, error or exit.
+
+<p>For an error, it can store the function name which created the error.
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyInterpreterConfig.html"><code>IPyInterpreterConfig</code></a></td>
+<td class="itemdesc">
+
+<p>Interface containing most parameters to configure a sub-interpreter.
+
+<p>Its values are used only in TPy.NewInterpreterFromConfig() and never modified by the runtime.
+
+<p></td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyInterpreterState.html"><code>IPyInterpreterState</code></a></td>
+<td class="itemdesc">
+
+<p>This interface represents the state shared by a number of cooperating threads. Threads belonging to the same interpreter share their module administration and a few other internal items. There are no public members in this structure.
+
+<p>Threads belonging to different interpreters initially share nothing, except process state like available memory, open file descriptors and such. The global interpreter lock is also shared by all threads, regardless of to which interpreter they belong.
+
+<p>Changed in version 3.12: PEP 684 introduced the possibility of a per-interpreter GIL. See TPy.NewInterpreterFromConfig().
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyThreadState.html"><code>IPyThreadState</code></a></td>
+<td class="itemdesc"> This interface represents the state of a single thread. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyGILState.html"><code>IPyGILState</code></a></td>
+<td class="itemdesc"> The interface represents the GIL state. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyThreadLock.html"><code>IPyThreadLock</code></a></td>
+<td class="itemdesc"> A mutual exclusion lock. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyThreadTSS.html"><code>IPyThreadTSS</code></a></td>
+<td class="itemdesc">
+
+<p>This interface represents the state of a thread key, the definition of which may depend on the underlying TLS implementation, and it has an internal field representing the key's initialization state.
+
+<p>When Py_LIMITED_API is not defined, static allocation of this type by Py_tss_NEEDS_INIT is allowed.
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyInitConfig.html"><code>IPyInitConfig</code></a></td>
+<td class="itemdesc"> Interface to configure the Python initialization. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyPreConfig.html"><code>IPyPreConfig</code></a></td>
+<td class="itemdesc"> Interface used to preinitialize Python. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyConfig.html"><code>IPyConfig</code></a></td>
+<td class="itemdesc"> Record containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyMutex.html"><code>IPyMutex</code></a></td>
+<td class="itemdesc">
+
+<p>A mutual exclusion lock. The PyMutex should be initialized to zero to represent the unlocked state. For example:
+
+<p></p>
+
+<pre class="preformatted">PyMutex mutex = {0};</pre>
+
+<p>
+
+<p>Instances of PyMutex should not be copied or moved. Both the contents and address of a PyMutex are meaningful, and it must remain at a fixed, writable location in memory.
+
+<p>Note A PyMutex currently occupies one byte, but the size should be considered unstable. The size may change in future Python releases without a deprecation period.
+
+<p>Added in version 3.13.
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyCriticalSection.html"><code>IPyCriticalSection</code></a></td>
+<td class="itemdesc">
+
+<p>A critical section protected by one mutex. You *CANNOT* use nested critical sections to lock more than one object at once.
+
+<p></td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uP4P.Interfaces.IPyCriticalSection2.html"><code>IPyCriticalSection2</code></a></td>
+<td class="itemdesc">
+
+<p>A critical section protected by two mutexes. You *CANNOT* use nested critical sections to lock more than one object at once.
+
+<p></td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a></strong> = array of <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Types</h3>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="IPyObjectArray"></span><code><strong>IPyObjectArray</strong> = array of <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Custom IPyObject open array type. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

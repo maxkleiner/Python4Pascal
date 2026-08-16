@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PySlice: Class TPySlice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPySlice"></span><h1 class="cio">Class TPySlice</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PySlice.html">uP4P.PySlice</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPySlice = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PySlice_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/slice.html#slice-objects">https://docs.python.org/3/c-api/slice.html#slice-objects</a>&quot;&gt;See the article about Slice Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPySlice</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#New-IPyObject-IPyObject-IPyObject-">New</a></strong>(const start, stop, step: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#GetIndices-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-">GetIndices</a></strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop, step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#GetIndicesEx-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-">GetIndicesEx</a></strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop, step, slicelength: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#Unpack-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-">Unpack</a></strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var start, stop, step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlice.TPySlice.html#AdjustIndices-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-">AdjustIndices</a></strong>(length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a slice object; aPyObject must not be nil. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>New</strong>(const start, stop, step: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new slice object with the given values. The start, stop, and step parameters are used as the values of the slice object attributes of the same names. Any of the values may be nil, in which case the None will be used for the corresponding attribute.
+
+<p>Return nil with an exception set if the new object could not be allocated.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIndices-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>GetIndices</strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop, step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Retrieve the start, stop and step indices from the slice object slice, assuming a sequence of length length. Treats indices greater than length as errors.
+
+<p>Returns True on success and False on error with no exception set (unless one of the indices was not None and failed to be converted to an integer, in which case False is returned with an exception set).
+
+<p>You probably do not want to use this function.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetIndicesEx-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>GetIndicesEx</strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop, step, slicelength: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Usable replacement for TPySlice.GetIndices(). Retrieve the start, stop, and step indices from the slice object slice assuming a sequence of length length, and store the length of the slice in slicelength. Out of bounds indices are clipped in a manner consistent with the handling of normal slices.
+
+<p>Return True on success and False on error with an exception set.
+
+<p>Note: This function is considered not safe for resizable sequences. Its invocation should be replaced by a combination of TPySlice.Unpack() and TPySlice.AdjustIndices() where
+
+<p></p>
+
+<pre class="preformatted">
+if (PySlice_GetIndicesEx(slice, length, &amp;start, &amp;stop, &amp;step, &amp;slicelength) &lt; 0) {
+    // return error
+}</pre>
+
+<p>
+
+<p>is replaced by
+
+<p></p>
+
+<pre class="preformatted">
+if (PySlice_Unpack(slice, &amp;start, &amp;stop, &amp;step) &lt; 0) {
+    // return error
+}
+slicelength = PySlice_AdjustIndices(length, &amp;start, &amp;stop, step);</pre>
+
+<p> </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Unpack-IPyObject-Py_ssize_t-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>Unpack</strong>(const slice: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var start, stop, step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Extract the start, stop and step data members from a slice object as integers. Silently reduce values larger than PY_SSIZE_T_MAX to PY_SSIZE_T_MAX, silently boost the start and stop values less than PY_SSIZE_T_MIN to PY_SSIZE_T_MIN, and silently boost the step values less than -PY_SSIZE_T_MAX to -PY_SSIZE_T_MAX.
+
+<p>Return False with an exception set on error, True on success.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AdjustIndices-Py_ssize_t-Py_ssize_t-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>AdjustIndices</strong>(length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; var start, stop: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; step: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Adjust start/end slice indices assuming a sequence of the specified length. Out of bounds indices are clipped in a manner consistent with the handling of normal slices.
+
+<p>Return the length of the slice. Always successful. Doesn't call Python code.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

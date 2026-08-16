@@ -295,7 +295,7 @@ type
       /// </summary>
       function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
       /// <summary>
-      /// <para>This is the same as PyObject_DelAttr(), but attr_name is
+      /// <para>This is the same as TPyObject.DelAttr(), but attr_name is
       /// specified as a string, rather than a IPyObject.</para>
       /// <para>The number of different attribute names passed to this function
       /// should be kept small, usually by using a statically allocated string

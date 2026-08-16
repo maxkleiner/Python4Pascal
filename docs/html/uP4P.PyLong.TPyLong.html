@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyLong: Class TPyLong</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyLong"></span><h1 class="cio">Class TPyLong</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyLong.html">uP4P.PyLong</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyLong = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyLong_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/long.html#integer-objects">https://docs.python.org/3/c-api/long.html#integer-objects</a>&quot;&gt;See the article about Integer Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyLong</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsLong-IPyObject-">AsLong</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsLongAndOverflow-IPyObject-integer-">AsLongAndOverflow</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var overflow: integer): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsSsize_t-IPyObject-">AsSsize_t</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsSize_t-IPyObject-">AsSize_t</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): NativeUInt;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUnsignedLong-IPyObject-">AsUnsignedLong</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUnsignedLongMask-IPyObject-">AsUnsignedLongMask</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsInt-IPyObject-">AsInt</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsInt32-IPyObject-Integer-">AsInt32</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: Integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUInt32-IPyObject-cardinal-">AsUInt32</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: cardinal): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsInt64-IPyObject-int64-">AsInt64</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: int64): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUInt64-IPyObject-uint64-">AsUInt64</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: uint64): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsDouble-IPyObject-">AsDouble</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsVoidPtr-IPyObject-">AsVoidPtr</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsLongLong-IPyObject-">AsLongLong</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Int64;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUnsignedLongLong-IPyObject-">AsUnsignedLongLong</a></strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): uint64;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsUnsignedLongLongMask-IPyObject-">AsUnsignedLongLongMask</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): uint64;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsLongLongAndOverflow-IPyObject-integer-">AsLongLongAndOverflow</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var overflow: integer): Int64;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#AsNativeBytes-IPyObject-Pointer-Py_ssize_t-integer-">AsNativeBytes</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; buffer: Pointer; n_bytes: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; flags: integer): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#IsPositive-IPyObject-">IsPositive</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#IsNegative-IPyObject-">IsNegative</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#IsZero-IPyObject-">IsZero</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#GetSign-IPyObject-integer-">GetSign</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out sign: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#Export_-IPyObject-IPyLongExport-">Export_</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var export_long: <a href="uP4P.Interfaces.IPyLongExport.html">IPyLongExport</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromLong-C_Long-">FromLong</a></strong>(v: <a href="uP4P.Types.html#C_Long">C_Long</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUnsignedLong-C_ULong-">FromUnsignedLong</a></strong>(v: <a href="uP4P.Types.html#C_ULong">C_ULong</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromSize_t-NativeUInt-">FromSize_t</a></strong>(v: NativeUInt): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromSsize_t-Py_ssize_t-">FromSsize_t</a></strong>(v: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromDouble-double-">FromDouble</a></strong>(v: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromInt32-integer-">FromInt32</a></strong>(value: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUInt32-cardinal-">FromUInt32</a></strong>(value: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromInt64-int64-">FromInt64</a></strong>(value: int64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUInt64-uint64-">FromUInt64</a></strong>(value: uint64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromVoidPtr-Pointer-">FromVoidPtr</a></strong>(p: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromLongLong-int64-">FromLongLong</a></strong>(v: int64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUnsignedLongLong-uint64-">FromUnsignedLongLong</a></strong>(v: uint64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromString-string-integer-">FromString</a></strong>(const str: string; base: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUnicodeObject-IPyObject-integer-">FromUnicodeObject</a></strong>(const u: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; base: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromNativeBytes-Pointer-NativeUInt-integer-">FromNativeBytes</a></strong>(buffer: Pointer; n_bytes: NativeUInt; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromNativeBytes-TMemoryStream-integer-">FromNativeBytes</a></strong>(const aStream: TMemoryStream; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUnsignedNativeBytes-Pointer-NativeUInt-integer-">FromUnsignedNativeBytes</a></strong>(buffer: Pointer; n_bytes: NativeUInt; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromUnsignedNativeBytes-TMemoryStream-integer-">FromUnsignedNativeBytes</a></strong>(const aStream: TMemoryStream; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromVariant-Variant-">FromVariant</a></strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#FromVariant-Variant-TVarType-">FromVariant</a></strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#GetNativeLayout">GetNativeLayout</a></strong>: <a href="uP4P.Types.html#PPyLongLayout">PPyLongLayout</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#GetInfo">GetInfo</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyLong.TPyLong.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsLong-IPyObject-"></span><code>class function <strong>AsLong</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a C_long representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>Raise OverflowError if the value of obj is out of range for a long.
+
+<p>Returns -1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsLongAndOverflow-IPyObject-integer-"></span><code>class function <strong>AsLongAndOverflow</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var overflow: integer): <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a C_long representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the value of obj is greater than LONG_MAX or less than LONG_MIN, set overflow to 1 or -1, respectively, and return -1; otherwise, set overflow to 0. If any other exception occurs set overflow to 0 and return -1 as usual.
+
+<p>Returns -1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsSsize_t-IPyObject-"></span><code>class function <strong>AsSsize_t</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a Py_ssize_t representation of pylong. pylong must be an instance of PyLongObject.
+
+<p>Raise OverflowError if the value of pylong is out of range for a Py_ssize_t.
+
+<p>Returns -1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsSize_t-IPyObject-"></span><code>class function <strong>AsSize_t</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a NativeUInt representation of pylong. pylong must be an instance of PyLongObject.
+
+<p>Raise OverflowError if the value of pylong is out of range for a size_t.
+
+<p>Returns (size_t)-1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUnsignedLong-IPyObject-"></span><code>class function <strong>AsUnsignedLong</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a C_ULong representation of pylong. pylong must be an instance of PyLongObject.
+
+<p>Raise OverflowError if the value of pylong is out of range for a unsigned long.
+
+<p>Returns (unsigned long)-1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUnsignedLongMask-IPyObject-"></span><code>class function <strong>AsUnsignedLongMask</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a C_ULong representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the value of obj is out of range for an unsigned long, return the reduction of that value modulo ULONG_MAX + 1.
+
+<p>Returns (unsigned long)-1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsInt-IPyObject-"></span><code>class function <strong>AsInt</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyLong.AsLong(), but store the result in a integer instead of a C_long.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsInt32-IPyObject-Integer-"></span><code>class function <strong>AsInt32</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: Integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set *value to an Integer representation of obj.
+
+<p>If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the obj value is out of range, raise an OverflowError.
+
+<p>Set aValue and return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUInt32-IPyObject-cardinal-"></span><code>class function <strong>AsUInt32</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: cardinal): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set aValue to a cardinal representation of obj.
+
+<p>If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If obj is negative, raise a ValueError.
+
+<p>If the obj value is out of range, raise an OverflowError.
+
+<p>Set aValue and return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsInt64-IPyObject-int64-"></span><code>class function <strong>AsInt64</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: int64): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set *value to an int64 representation of obj.
+
+<p>If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the obj value is out of range, raise an OverflowError.
+
+<p>Set aValue and return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUInt64-IPyObject-uint64-"></span><code>class function <strong>AsUInt64</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out aValue: uint64): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set aValue to a uint64 representation of obj.
+
+<p>If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If obj is negative, raise a ValueError.
+
+<p>If the obj value is out of range, raise an OverflowError.
+
+<p>Set aValue and return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDouble-IPyObject-"></span><code>class function <strong>AsDouble</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a double representation of pylong. pylong must be an instance of PyLongObject.
+
+<p>Raise OverflowError if the value of pylong is out of range for a double.
+
+<p>Returns -1.0 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsVoidPtr-IPyObject-"></span><code>class function <strong>AsVoidPtr</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert a Python integer pylong to a pointer. If pylong cannot be converted, an OverflowError will be raised. This is only assured to produce a usable void pointer for values created with TPyLong.FromVoidPtr().
+
+<p>Returns nil on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsLongLong-IPyObject-"></span><code>class function <strong>AsLongLong</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return an Int64 representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>Raise OverflowError if the value of obj is out of range for a Int64.
+
+<p>Returns -1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUnsignedLongLong-IPyObject-"></span><code>class function <strong>AsUnsignedLongLong</strong>(const pylong: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): uint64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a uint64 representation of pylong. pylong must be an instance of PyLongObject.
+
+<p>Raise OverflowError if the value of pylong is out of range for a uint64.
+
+<p>Returns uint64(-1) on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsUnsignedLongLongMask-IPyObject-"></span><code>class function <strong>AsUnsignedLongLongMask</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): uint64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a uint64 representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the value of obj is out of range for an uint64, return the reduction of that value modulo ULLONG_MAX + 1.
+
+<p>Returns (uint64)-1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsLongLongAndOverflow-IPyObject-integer-"></span><code>class function <strong>AsLongLongAndOverflow</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var overflow: integer): Int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a Int64 representation of obj. If obj is not an instance of PyLongObject, first call its __index__() method (if present) to convert it to a PyLongObject.
+
+<p>If the value of obj is greater than LLONG_MAX or less than LLONG_MIN, set overflow to 1 or -1, respectively, and return -1; otherwise, set overflow to 0. If any other exception occurs set overflow to 0 and return -1 as usual.
+
+<p>Returns -1 on error. Use TPyErr.Occurred() to disambiguate.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsNativeBytes-IPyObject-Pointer-Py_ssize_t-integer-"></span><code>class function <strong>AsNativeBytes</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; buffer: Pointer; n_bytes: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; flags: integer): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Copy the Python integer value pylong to a native buffer of size n_bytes. The flags can be set to -1 to behave similarly to a C cast, or to values documented below to control the behavior.
+
+<p>Returns -1 with an exception raised on error. This may happen if pylong cannot be interpreted as an integer, or if pylong was negative and the Py_ASNATIVEBYTES_REJECT_NEGATIVE flag was set.
+
+<p>Otherwise, returns the number of bytes required to store the value. If this is equal to or less than n_bytes, the entire value was copied. All n_bytes of the buffer are written: remaining bytes filled by copies of the sign bit.
+
+<p>If the returned value is greater than n_bytes, the value was truncated: as many of the lowest bits of the value as could fit are written, and the higher bits are ignored. This matches the typical behavior of a C-style downcast.
+
+<p>Note: Overflow is not considered an error. If the returned value is larger than n_bytes, most significant bits were discarded.
+
+<p>0 will never be returned.
+
+<p>Values are always copied as two's-complement.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsPositive-IPyObject-"></span><code>class function <strong>IsPositive</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If obj is an instance of PyLongObject or its subtype, return 1 when it's positive and 0 otherwise. Else set an exception and return -1.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsNegative-IPyObject-"></span><code>class function <strong>IsNegative</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If obj is an instance of PyLongObject or its subtype, return 1 when it's positive and 0 otherwise. Else set an exception and return -1.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsZero-IPyObject-"></span><code>class function <strong>IsZero</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If obj is an instance of PyLongObject or its subtype, return 1 when it's zero and 0 otherwise. Else set an exception and return -1.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSign-IPyObject-integer-"></span><code>class function <strong>GetSign</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out sign: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the sign of the integer object obj.
+
+<p>On success, set sign to the integer sign (0, -1 or +1 for zero, negative or positive integer, respectively) and return True.
+
+<p>On failure, return False with an exception set. This function always succeeds if obj is a PyLongObject or its subtype.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Export_-IPyObject-IPyLongExport-"></span><code>class function <strong>Export_</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var export_long: <a href="uP4P.Interfaces.IPyLongExport.html">IPyLongExport</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Export a Python int object.
+
+<p>On success, fill in export_long and return True. On error, set an exception and return False.
+
+<p>TPyLong.FreeExport() must be called when the export is no longer needed.
+
+<p>CPython implementation detail: This function always succeeds if obj is a Python int object or a subclass.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromLong-C_Long-"></span><code>class function <strong>FromLong</strong>(v: <a href="uP4P.Types.html#C_Long">C_Long</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from v, or nil on failure.
+
+<p>CPython implementation detail: CPython keeps an array of integer objects for all integers between -5 and 256. When you create an int in that range you actually just get back a reference to the existing object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUnsignedLong-C_ULong-"></span><code>class function <strong>FromUnsignedLong</strong>(v: <a href="uP4P.Types.html#C_ULong">C_ULong</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a C_ULong, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromSize_t-NativeUInt-"></span><code>class function <strong>FromSize_t</strong>(v: NativeUInt): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a NativeUInt, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromSsize_t-Py_ssize_t-"></span><code>class function <strong>FromSsize_t</strong>(v: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a Py_ssize_t, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDouble-double-"></span><code>class function <strong>FromDouble</strong>(v: double): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from the integer part of v, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromInt32-integer-"></span><code>class function <strong>FromInt32</strong>(value: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a integer, or nil with an exception set on failure.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUInt32-cardinal-"></span><code>class function <strong>FromUInt32</strong>(value: cardinal): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a cardinal, or nil with an exception set on failure.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromInt64-int64-"></span><code>class function <strong>FromInt64</strong>(value: int64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a int64, or nil with an exception set on failure.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUInt64-uint64-"></span><code>class function <strong>FromUInt64</strong>(value: uint64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a uint64, or nil with an exception set on failure.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVoidPtr-Pointer-"></span><code>class function <strong>FromVoidPtr</strong>(p: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python integer from the pointer p. The pointer value can be retrieved from the resulting value using TPyLong.AsVoidPtr().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromLongLong-int64-"></span><code>class function <strong>FromLongLong</strong>(v: int64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a int64, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUnsignedLongLong-uint64-"></span><code>class function <strong>FromUnsignedLongLong</strong>(v: uint64): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject object from a uint64, or nil on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromString-string-integer-"></span><code>class function <strong>FromString</strong>(const str: string; base: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new PyLongObject based on the string value in str, which is interpreted according to the radix in base, or nil on failure. If base is 0, str is interpreted using the Integer literals definition; in this case, leading zeros in a non-zero decimal number raises a ValueError. If base is not 0, it must be between 2 and 36, inclusive. Leading and trailing whitespace and single underscores after a base specifier and between digits are ignored. If there are no digits, ValueError will be raised.
+
+<p>See also TPyLong.AsNativeBytes() and TPyLong.FromNativeBytes() functions can be used to convert a PyLongObject to/from an array of bytes in base 256.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUnicodeObject-IPyObject-integer-"></span><code>class function <strong>FromUnicodeObject</strong>(const u: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; base: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert a sequence of Unicode digits in the string u to a Python integer value.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromNativeBytes-Pointer-NativeUInt-integer-"></span><code>class function <strong>FromNativeBytes</strong>(buffer: Pointer; n_bytes: NativeUInt; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python integer from the value contained in the first n_bytes of buffer, interpreted as a two's-complement signed number.
+
+<p>flags are as for TPyLong.AsNativeBytes(). Passing -1 will select the native endian that CPython was compiled with and assume that the most-significant bit is a sign bit. Passing Py_ASNATIVEBYTES_UNSIGNED_BUFFER will produce the same result as calling TPyLong.FromUnsignedNativeBytes(). Other flags are ignored.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromNativeBytes-TMemoryStream-integer-"></span><code>class function <strong>FromNativeBytes</strong>(const aStream: TMemoryStream; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python integer from the value contained in the stream, interpreted as a two's-complement signed number.
+
+<p>flags are as for TPyLong.AsNativeBytes(). Passing -1 will select the native endian that CPython was compiled with and assume that the most-significant bit is a sign bit. Passing Py_ASNATIVEBYTES_UNSIGNED_BUFFER will produce the same result as calling TPyLong.FromUnsignedNativeBytes(). Other flags are ignored.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUnsignedNativeBytes-Pointer-NativeUInt-integer-"></span><code>class function <strong>FromUnsignedNativeBytes</strong>(buffer: Pointer; n_bytes: NativeUInt; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python integer from the value contained in the first n_bytes of buffer, interpreted as an unsigned number.
+
+<p>flags are as for TPyLong.AsNativeBytes(). Passing -1 will select the native endian that CPython was compiled with and assume that the most-significant bit is not a sign bit. Flags other than endian are ignored.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromUnsignedNativeBytes-TMemoryStream-integer-"></span><code>class function <strong>FromUnsignedNativeBytes</strong>(const aStream: TMemoryStream; flags: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Python integer from the value contained in the stream, interpreted as an unsigned number.
+
+<p>flags are as for TPyLong.AsNativeBytes(). Passing -1 will select the native endian that CPython was compiled with and assume that the most-significant bit is not a sign bit. Flags other than endian are ignored.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a python integer object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-TVarType-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a python integer object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetNativeLayout"></span><code>class function <strong>GetNativeLayout</strong>: <a href="uP4P.Types.html#PPyLongLayout">PPyLongLayout</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the native layout of Python int objects.
+
+<p>See the PyLongLayout structure.
+
+<p>The function must not be called before Python initialization nor after Python finalization. The returned layout is valid until Python is finalized. The layout is the same for all Python sub-interpreters in a process, and so it can be cached.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInfo"></span><code>class function <strong>GetInfo</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>On success, return a read only named tuple, that holds information about Python's internal representation of integers. See sys.int_info for description of individual fields.
+
+<p>On failure, return nil with an exception set.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyLongObject or a subtype of PyLongObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if its argument is a PyLongObject, but not a subtype of PyLongObject. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

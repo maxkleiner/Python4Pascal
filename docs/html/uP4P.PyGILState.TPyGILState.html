@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyGILState: Class TPyGILState</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyGILState"></span><h1 class="cio">Class TPyGILState</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyGILState.html">uP4P.PyGILState</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyGILState = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ The class represents the GIL state. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE</a>&quot;&gt;See the article about PyGILState_STATE.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyGILState</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyGILState.TPyGILState.html#FInitialized">FInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyGILState.TPyGILState.html#FState">FState</a></strong>: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGILState.TPyGILState.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGILState.TPyGILState.html#GetState">GetState</a></strong>: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGILState.TPyGILState.html#SetInitialized-boolean-">SetInitialized</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGILState.TPyGILState.html#SetState-PyGILState_STATE-">SetState</a></strong>(aState: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGILState.TPyGILState.html#Release">Release</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyGILState.TPyGILState.html#Create-PyGILState_STATE-">Create</a></strong>(aState: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.PyGILState.TPyGILState.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyGILState.TPyGILState.html#Ensure">Ensure</a></strong>: <a href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyGILState.TPyGILState.html#GetThisThreadState">GetThisThreadState</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyGILState.TPyGILState.html#Check">Check</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyGILState.TPyGILState.html#IsInitialized-IPyGILState-">IsInitialized</a></strong>(const aPyGILState: <a href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>): boolean;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGILState.TPyGILState.html#Initialized">Initialized</a></strong>  : boolean           read <a href="uP4P.PyGILState.TPyGILState.html#GetInitialized">GetInitialized</a>   write <a href="uP4P.PyGILState.TPyGILState.html#SetInitialized-boolean-">SetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGILState.TPyGILState.html#State">State</a></strong>        : <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>  read <a href="uP4P.PyGILState.TPyGILState.html#GetState">GetState</a>         write <a href="uP4P.PyGILState.TPyGILState.html#SetState-PyGILState_STATE-">SetState</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FInitialized"></span><code><strong>FInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FState"></span><code><strong>FState</strong>: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetState"></span><code>function <strong>GetState</strong>: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetInitialized-boolean-"></span><code>procedure <strong>SetInitialized</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetState-PyGILState_STATE-"></span><code>procedure <strong>SetState</strong>(aState: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Release"></span><code>procedure <strong>Release</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Release any resources previously acquired. After this call, Python's state will be the same as it was prior to the corresponding TPyGILState.Ensure() call (but generally this state will be unknown to the caller, hence the use of the GILState API).
+
+<p>Every call to TPyGILState.Ensure() must be matched by a call to TPyGILState.Release() on the same thread.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PyGILState_STATE-"></span><code>constructor <strong>Create</strong>(aState: <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Ensure"></span><code>class function <strong>Ensure</strong>: <a href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ensure that the current thread is ready to call the Python C API regardless of the current state of Python, or of the attached thread state. This may be called as many times as desired by a thread as long as each call is matched with a call to TPyGILState.Release(). In general, other thread-related APIs may be used between TPyGILState.Ensure() and TPyGILState.Release() calls as long as the thread state is restored to its previous state before the Release(). For example, normal usage of the Py_BEGIN_ALLOW_THREADS and Py_END_ALLOW_THREADS macros is acceptable.
+
+<p>The return value is an opaque &quot;handle&quot; to the attached thread state when TPyGILState.Ensure() was called, and must be passed to TPyGILState.Release() to ensure Python is left in the same state. Even though recursive calls are allowed, these handles cannot be shared - each unique call to TPyGILState.Ensure() must save the handle for its call to TPyGILState.Release().
+
+<p>When the function returns, there will be an attached thread state and the thread will be able to call arbitrary Python code. Failure is a fatal error.
+
+<p>Warning Calling this function when the runtime is finalizing is unsafe. Doing so will either hang the thread until the program ends, or fully crash the interpreter in rare cases. Refer to Cautions regarding runtime finalization for more details.
+
+<p>Changed in version 3.14: Hangs the current thread, rather than terminating it, if called while the interpreter is finalizing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetThisThreadState"></span><code>class function <strong>GetThisThreadState</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the attached thread state for this thread. May return nil if no GILState API has been used on the current thread. Note that the main thread always has such a thread-state, even if no auto-thread-state call has been made on the main thread. This is mainly a helper/diagnostic function.
+
+<p>Note This function may return non-nil even when the thread state is detached. Prefer TPyThreadState.Get() or TPyThreadState.GetUnchecked() for most cases.
+
+<p>See also TPyThreadState.Get()
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check"></span><code>class function <strong>Check</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if the current thread is holding the GIL and False otherwise. This function can be called from any thread at any time. Only if it has had its thread state initialized via TPyGILState.Ensure() will it return True. This is mainly a helper/diagnostic function. It can be useful for example in callback contexts or memory allocation functions when knowing that the GIL is locked can allow the caller to perform sensitive actions or otherwise behave differently.
+
+<p>Note If the current Python process has ever created a subinterpreter, this function will always return True. Prefer TPyThreadState.GetUnchecked() for most cases.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInitialized-IPyGILState-"></span><code>class function <strong>IsInitialized</strong>(const aPyGILState: <a href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Helper function to check if an IPyGILState instance is fully initialized. </p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean           read <a href="uP4P.PyGILState.TPyGILState.html#GetInitialized">GetInitialized</a>   write <a href="uP4P.PyGILState.TPyGILState.html#SetInitialized-boolean-">SetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="State"></span><code>property <strong>State</strong>        : <a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a>  read <a href="uP4P.PyGILState.TPyGILState.html#GetState">GetState</a>         write <a href="uP4P.PyGILState.TPyGILState.html#SetState-PyGILState_STATE-">SetState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>GIL state
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

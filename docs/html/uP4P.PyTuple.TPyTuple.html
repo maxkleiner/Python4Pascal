@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyTuple: Class TPyTuple</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyTuple"></span><h1 class="cio">Class TPyTuple</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyTuple.html">uP4P.PyTuple</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyTuple = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyTuple_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/tuple.html#tuple-objects">https://docs.python.org/3/c-api/tuple.html#tuple-objects</a>&quot;&gt;See the article about Tuple Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyTuple</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#Size-IPyObject-">Size</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#GetItem-IPyObject-Py_ssize_t-">GetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#GetItem-IPyObject-TVarData-">GetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pos: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#SetItem-IPyObject-Py_ssize_t-IPyObject-">SetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#SetItem-IPyObject-TVarData-TVarData-">SetItem</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pos, o: TVarData): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#GetSlice-IPyObject-Py_ssize_t-Py_ssize_t-">GetSlice</a></strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; low, high: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#New-Py_ssize_t-">New</a></strong>(len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#Pack-IPyObjectArray-">Pack</a></strong>(const objects: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromArray-arrayof-">FromArray</a></strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromStrings-TStringList-">FromStrings</a></strong>(const aStringList: TStringList): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromDateTime-integer-integer-integer-integer-integer-integer-integer-integer-TPyDaylightSavingTime-">FromDateTime</a></strong>(year, month, day, hour, minute, second, weekday, yearday: integer; DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromDateTime-TDateTime-TPyDaylightSavingTime-">FromDateTime</a></strong>(aDateTime : TDateTime; DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a> = <a href="uP4P.Types.html#dstUnknown">dstUnknown</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromVariant-Variant-">FromVariant</a></strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromVariant-Variant-TVarType-">FromVariant</a></strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromVarDataArray-TVarDataArray-integer-">FromVarDataArray</a></strong>(const Arguments: TVarDataArray; aMaxLength: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#AsDateTime-IPyObject-integer-integer-integer-integer-integer-integer-integer-integer-TPyDaylightSavingTime-">AsDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#AsDateTime-IPyObject-TDateTime-">AsDateTime</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aDateTime : TDateTime): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#AsStrings-IPyObject-TStringList-">AsStrings</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aStringList: TStringList): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size-IPyObject-"></span><code>class function <strong>Size</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Take a pointer to a tuple object, and return the size of that tuple. On error, return -1 with an exception set.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the object at position pos in the tuple pointed to by p. If pos is negative or out of bounds, return nil and set an IndexError exception.
+
+<p>The returned reference is borrowed from the tuple p (that is: it is only valid as long as you hold a reference to p). To get a strong reference, use TPy.NewRef(TPyTuple.GetItem(...)) or TPySequence.GetItem().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItem-IPyObject-TVarData-"></span><code>class function <strong>GetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pos: TVarData): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the object at position pos in the tuple pointed to by p. If pos is negative or out of bounds, return nil and set an IndexError exception.
+
+<p>The returned reference is borrowed from the tuple p (that is: it is only valid as long as you hold a reference to p). To get a strong reference, use TPy.NewRef(TPyTuple.GetItem(...)) or TPySequence.GetItem().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-Py_ssize_t-IPyObject-"></span><code>class function <strong>SetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; pos: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Insert a reference to object o at position pos of the tuple pointed to by p. Return True on success. If pos is out of bounds, return False and set an IndexError exception.
+
+<p>Note: This function &quot;steals&quot; a reference to o and discards a reference to an item already in the tuple at the affected position (unless it was nil).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItem-IPyObject-TVarData-TVarData-"></span><code>class function <strong>SetItem</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const pos, o: TVarData): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Insert a reference to object o at position pos of the tuple pointed to by p. Return True on success. If pos is out of bounds, return False and set an IndexError exception.
+
+<p>Note: This function &quot;steals&quot; a reference to o and discards a reference to an item already in the tuple at the affected position (unless it was nil).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSlice-IPyObject-Py_ssize_t-Py_ssize_t-"></span><code>class function <strong>GetSlice</strong>(const p: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; low, high: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the slice of the tuple pointed to by p between low and high, or nil with an exception set on failure.
+
+<p>This is the equivalent of the Python expression p[low:high]. Indexing from the end of the tuple is not supported.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-Py_ssize_t-"></span><code>class function <strong>New</strong>(len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new tuple object of size len, or nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Pack-IPyObjectArray-"></span><code>class function <strong>Pack</strong>(const objects: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new tuple object of size n, or nil with an exception set on failure. The tuple values are initialized to the subsequent n arguments pointing to Python objects. TPyTuple.Pack(2, a, b) is equivalent to TPy.BuildValue(&quot;(OO)&quot;, a, b).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a tuple object or an instance of a subtype of the tuple type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CheckExact-IPyObject-"></span><code>class function <strong>CheckExact</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if p is a tuple object, but not an instance of a subtype of the tuple type. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromArray-arrayof-"></span><code>class function <strong>FromArray</strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that creates a new tuple object and populates the new tuple with the aItems array.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromStrings-TStringList-"></span><code>class function <strong>FromStrings</strong>(const aStringList: TStringList): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that creates a new tuple object and populates the new tuple with the aStringList string list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDateTime-integer-integer-integer-integer-integer-integer-integer-integer-TPyDaylightSavingTime-"></span><code>class function <strong>FromDateTime</strong>(year, month, day, hour, minute, second, weekday, yearday: integer; DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that creates a new tuple object and populates the new tuple with the datetime arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromDateTime-TDateTime-TPyDaylightSavingTime-"></span><code>class function <strong>FromDateTime</strong>(aDateTime : TDateTime; DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a> = <a href="uP4P.Types.html#dstUnknown">dstUnknown</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that creates a new tuple object and populates the new tuple with the datetime arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a python tuple object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVariant-Variant-TVarType-"></span><code>class function <strong>FromVariant</strong>(const aVariant: Variant; aVarType: TVarType): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Wrap a Variant with a python tuple object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromVarDataArray-TVarDataArray-integer-"></span><code>class function <strong>FromVarDataArray</strong>(const Arguments: TVarDataArray; aMaxLength: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that creates a new tuple object and populates the new tuple with the Arguments array.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDateTime-IPyObject-integer-integer-integer-integer-integer-integer-integer-integer-TPyDaylightSavingTime-"></span><code>class function <strong>AsDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var year, month, day, hour, minute, second, weekday, yearday: integer; var DST: <a href="uP4P.Types.html#TPyDaylightSavingTime">TPyDaylightSavingTime</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the datetime attributes values represented by this tuple.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsDateTime-IPyObject-TDateTime-"></span><code>class function <strong>AsDateTime</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aDateTime : TDateTime): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert this datetime tuple to a TDateTime.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AsStrings-IPyObject-TStringList-"></span><code>class function <strong>AsStrings</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aStringList: TStringList): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convert the items in this tuple to a TStringList.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

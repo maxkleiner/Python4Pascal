@@ -294,8 +294,8 @@ type
       /// <code>
       /// - If the key is present, set result_ to a new strong reference to the
       ///   value and return 1.
-      /// - If the key is missing, set result_ to NULL and return 0.
-      /// - On error, raise an exception, set result_ to NULL and return -1.
+      /// - If the key is missing, set result_ to nil and return 0.
+      /// - On error, raise an exception, set result_ to nil and return -1.
       /// </code>
       /// <para>Note: The operation is atomic on free threading when key is str,
       /// int, float, bool or bytes.</para>
@@ -353,8 +353,8 @@ type
       /// value. Do not raise KeyError if the key is missing.</para>
       /// <code>
       /// - If the key is present, set result_ to a new reference to the removed
-      ///   value if result is not NULL, and return 1.
-      /// - If the key is missing, set result_ to NULL if result is not NULL,
+      ///   value if result is not nil, and return 1.
+      /// - If the key is missing, set result_ to nil if result is not nil,
       ///   and return 0.
       /// - On error, raise an exception and return -1.
       /// </code>

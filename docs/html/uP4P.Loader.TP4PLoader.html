@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Loader: Class TP4PLoader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TP4PLoader"></span><h1 class="cio">Class TP4PLoader</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Loader.html">uP4P.Loader</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TP4PLoader = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>TP4PLoader simplifies the initialization and destruction of the Python library.
+
+<p></p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TP4PLoader</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FLibHandle">FLibHandle</a></strong>: TLibHandle;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FReRaiseExceptions">FReRaiseExceptions</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FSetCurrentDir">FSetCurrentDir</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FShowMessageDlg">FShowMessageDlg</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FMustFreeLibrary">FMustFreeLibrary</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FStatus">FStatus</a></strong>: <a href="uP4P.Types.html#TP4PLoaderStatus">TP4PLoaderStatus</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FLastErrorMessage">FLastErrorMessage</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FFileVersion">FFileVersion</a></strong>: <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FIsolated">FIsolated</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FParserDebug">FParserDebug</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FVerbose">FVerbose</a></strong>: <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FInteractive">FInteractive</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FOptimizationLevel">FOptimizationLevel</a></strong>: <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FSiteImport">FSiteImport</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FPathConfigWarnings">FPathConfigWarnings</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FUseEnvironment">FUseEnvironment</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FUserSiteDirectory">FUserSiteDirectory</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FWriteBytecode">FWriteBytecode</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FDevMode">FDevMode</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FHome">FHome</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FExecutable">FExecutable</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FProgramName">FProgramName</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">FModuleSearchPaths</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a></strong>: <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetLoaded">GetLoaded</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetIsFinalizing">GetIsFinalizing</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetPlatform">GetPlatform</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetCopyright">GetCopyright</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetCompiler">GetCompiler</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetBuildInfo">GetBuildInfo</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetOSPythonHome">GetOSPythonHome</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetOSPythonLibPath">GetOSPythonLibPath</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#FreePythonLibrary">FreePythonLibrary</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#ReadLibraryVersionInfo-string-">ReadLibraryVersionInfo</a></strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#ReadVersionFromFilename-string-">ReadVersionFromFilename</a></strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#LoadPythonLibrary-string-">LoadPythonLibrary</a></strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#Version-integer-integer-integer-">Version</a></strong>(var aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetVersion-integer-integer-integer-">GetVersion</a></strong>(var aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetFileVersion-TFileVersionInfo-">GetFileVersion</a></strong>(var aFileVersion : <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#doOnBeforeInitialization-IPyInitConfig-IPyConfig-">doOnBeforeInitialization</a></strong>(const aInitConfig: <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>; const aConfig: <a href="uP4P.Interfaces.IPyConfig.html">IPyConfig</a> = nil);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#SetProgramArgs_PEP741-IPyInitConfig-">SetProgramArgs_PEP741</a></strong>(const aConfig : <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#SetProgramArgs_PEP587-IPyConfig-">SetProgramArgs_PEP587</a></strong>(const aConfig : <a href="uP4P.Interfaces.IPyConfig.html">IPyConfig</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#Initialize_PEP741">Initialize_PEP741</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#Initialize_PEP587">Initialize_PEP587</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#FindPythonLib-string-TStringList-">FindPythonLib</a></strong>(const aPath: string; var aFiles: TStringList): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#PythonLibExists-string-">PythonLibExists</a></strong>(const aPath: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetExtendedFileVersion-string-">GetExtendedFileVersion</a></strong>(const aFileName : string) : uint64;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#GetDLLVersion-string-">GetDLLVersion</a></strong>(const aFileName : string) : boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#SearchPythonRegistry-string-boolean-string-">SearchPythonRegistry</a></strong>(const aRegPath: string; aLocalMachine: boolean; var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#SearchMicrosoftStoreRegistry-string-">SearchMicrosoftStoreRegistry</a></strong>(var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#SearchUninstallRegistry-string-boolean-string-">SearchUninstallRegistry</a></strong>(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#CheckDLLbitness-string-">CheckDLLbitness</a></strong>(const aFilename : string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#SearchPythonHomeEnvironmentVariable-string-">SearchPythonHomeEnvironmentVariable</a></strong>(var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#LoadAllFunctions">LoadAllFunctions</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pymacro">Load_pymacro</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pymem">Load_pymem</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pybuffer">Load_pybuffer</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_lock">Load_lock</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_critical_section">Load_critical_section</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_object">Load_object</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_refcount">Load_refcount</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_objimpl">Load_objimpl</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pyhash">Load_pyhash</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pydebug">Load_pydebug</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_bytearrayobject">Load_bytearrayobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_bytesobject">Load_bytesobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_unicodeobject">Load_unicodeobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pyerrors">Load_pyerrors</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_longobject">Load_longobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_longintrepr">Load_longintrepr</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_boolobject">Load_boolobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_floatobject">Load_floatobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_complexobject">Load_complexobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_rangeobject">Load_rangeobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_memoryobject">Load_memoryobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_tupleobject">Load_tupleobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_listobject">Load_listobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_dictobject">Load_dictobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_odictobject">Load_odictobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_enumobject">Load_enumobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_setobject">Load_setobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_methodobject">Load_methodobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_moduleobject">Load_moduleobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_monitoring">Load_monitoring</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_funcobject">Load_funcobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_classobject">Load_classobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_fileobject">Load_fileobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pycapsule">Load_pycapsule</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_code">Load_code</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pyframe">Load_pyframe</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_traceback">Load_traceback</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_sliceobject">Load_sliceobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_cellobject">Load_cellobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_iterobject">Load_iterobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_initconfig">Load_initconfig</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pystate">Load_pystate</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_genobject">Load_genobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_descrobject">Load_descrobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_genericaliasobject">Load_genericaliasobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_warnings">Load_warnings</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_weakrefobject">Load_weakrefobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_structseq">Load_structseq</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_picklebufobject">Load_picklebufobject</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pytime">Load_pytime</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_codecs">Load_codecs</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pythread">Load_pythread</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_context">Load_context</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_modsupport">Load_modsupport</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_compile">Load_compile</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pythonrun">Load_pythonrun</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pylifecycle">Load_pylifecycle</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_ceval">Load_ceval</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_sysmodule">Load_sysmodule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_audit">Load_audit</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_osmodule">Load_osmodule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_intrcheck">Load_intrcheck</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_import">Load_import</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_abstract">Load_abstract</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_bltinmodule">Load_bltinmodule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pystrtod">Load_pystrtod</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_pystrcmp">Load_pystrcmp</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_fileutils">Load_fileutils</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_tracemalloc">Load_tracemalloc</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Load_frameobject">Load_frameobject</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.Loader.TP4PLoader.html#Create">Create</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.Loader.TP4PLoader.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#PythonLibIsGreaterOrEqualThan-integer-integer-integer-">PythonLibIsGreaterOrEqualThan</a></strong>(aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#Load-string-">Load</a></strong>(const aLibraryPath: string = '') : boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Loader.TP4PLoader.html#Initialize">Initialize</a></strong>: boolean; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Loader.TP4PLoader.html#Finalize">Finalize</a></strong>; virtual;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#SetCurrentDir">SetCurrentDir</a></strong>                     : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FSetCurrentDir">FSetCurrentDir</a>                     write <a href="uP4P.Loader.TP4PLoader.html#FSetCurrentDir">FSetCurrentDir</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Status">Status</a></strong>                            : <a href="uP4P.Types.html#TP4PLoaderStatus">TP4PLoaderStatus</a>                             read <a href="uP4P.Loader.TP4PLoader.html#FStatus">FStatus</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Initialized">Initialized</a></strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Loaded">Loaded</a></strong>                            : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetLoaded">GetLoaded</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#IsFinalizing">IsFinalizing</a></strong>                      : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetIsFinalizing">GetIsFinalizing</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#ReRaiseExceptions">ReRaiseExceptions</a></strong>                 : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FReRaiseExceptions">FReRaiseExceptions</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FReRaiseExceptions">FReRaiseExceptions</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#LastErrorMessage">LastErrorMessage</a></strong>                  : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FLastErrorMessage">FLastErrorMessage</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#ShowMessageDlg">ShowMessageDlg</a></strong>                    : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FShowMessageDlg">FShowMessageDlg</a>                    write <a href="uP4P.Loader.TP4PLoader.html#FShowMessageDlg">FShowMessageDlg</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#MustFreeLibrary">MustFreeLibrary</a></strong>                   : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FMustFreeLibrary">FMustFreeLibrary</a>                   write <a href="uP4P.Loader.TP4PLoader.html#FMustFreeLibrary">FMustFreeLibrary</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#LibHandle">LibHandle</a></strong>                         : TLibHandle read <a href="uP4P.Loader.TP4PLoader.html#FLibHandle">FLibHandle</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#FileVersion">FileVersion</a></strong>                       : <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>                             read <a href="uP4P.Loader.TP4PLoader.html#FFileVersion">FFileVersion</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Platform_">Platform_</a></strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetPlatform">GetPlatform</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Copyright">Copyright</a></strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetCopyright">GetCopyright</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Compiler">Compiler</a></strong>                          : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetCompiler">GetCompiler</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#BuildInfo">BuildInfo</a></strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetBuildInfo">GetBuildInfo</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#OSPythonHome">OSPythonHome</a></strong>                      : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetOSPythonHome">GetOSPythonHome</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#OSPythonLibPath">OSPythonLibPath</a></strong>                   : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetOSPythonLibPath">GetOSPythonLibPath</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Isolated">Isolated</a></strong>                          : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FIsolated">FIsolated</a>                          write <a href="uP4P.Loader.TP4PLoader.html#FIsolated">FIsolated</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#ParserDebug">ParserDebug</a></strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FParserDebug">FParserDebug</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FParserDebug">FParserDebug</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Verbose">Verbose</a></strong>                           : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>                               read <a href="uP4P.Loader.TP4PLoader.html#FVerbose">FVerbose</a>                           write <a href="uP4P.Loader.TP4PLoader.html#FVerbose">FVerbose</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Interactive">Interactive</a></strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FInteractive">FInteractive</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FInteractive">FInteractive</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#OptimizationLevel">OptimizationLevel</a></strong>                 : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>                         read <a href="uP4P.Loader.TP4PLoader.html#FOptimizationLevel">FOptimizationLevel</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FOptimizationLevel">FOptimizationLevel</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#SiteImport">SiteImport</a></strong>                        : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FSiteImport">FSiteImport</a>                        write <a href="uP4P.Loader.TP4PLoader.html#FSiteImport">FSiteImport</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#PathConfigWarnings">PathConfigWarnings</a></strong>                : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FPathConfigWarnings">FPathConfigWarnings</a>                write <a href="uP4P.Loader.TP4PLoader.html#FPathConfigWarnings">FPathConfigWarnings</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#UseEnvironment">UseEnvironment</a></strong>                    : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FUseEnvironment">FUseEnvironment</a>                    write <a href="uP4P.Loader.TP4PLoader.html#FUseEnvironment">FUseEnvironment</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#UserSiteDirectory">UserSiteDirectory</a></strong>                 : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FUserSiteDirectory">FUserSiteDirectory</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FUserSiteDirectory">FUserSiteDirectory</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#WriteBytecode">WriteBytecode</a></strong>                     : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FWriteBytecode">FWriteBytecode</a>                     write <a href="uP4P.Loader.TP4PLoader.html#FWriteBytecode">FWriteBytecode</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#DevMode">DevMode</a></strong>                           : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FDevMode">FDevMode</a>                           write <a href="uP4P.Loader.TP4PLoader.html#FDevMode">FDevMode</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Home">Home</a></strong>                              : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FHome">FHome</a>                              write <a href="uP4P.Loader.TP4PLoader.html#FHome">FHome</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#Executable">Executable</a></strong>                        : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FExecutable">FExecutable</a>                        write <a href="uP4P.Loader.TP4PLoader.html#FExecutable">FExecutable</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#ProgramName">ProgramName</a></strong>                       : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FProgramName">FProgramName</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FProgramName">FProgramName</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#ModuleSearchPaths">ModuleSearchPaths</a></strong>                 : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">FModuleSearchPaths</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">FModuleSearchPaths</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#OnBeforeInitialization">OnBeforeInitialization</a></strong>            : <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>                 read <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>            write <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FLibHandle"></span><code><strong>FLibHandle</strong>: TLibHandle;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FReRaiseExceptions"></span><code><strong>FReRaiseExceptions</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FSetCurrentDir"></span><code><strong>FSetCurrentDir</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FShowMessageDlg"></span><code><strong>FShowMessageDlg</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FMustFreeLibrary"></span><code><strong>FMustFreeLibrary</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FStatus"></span><code><strong>FStatus</strong>: <a href="uP4P.Types.html#TP4PLoaderStatus">TP4PLoaderStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FLastErrorMessage"></span><code><strong>FLastErrorMessage</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FFileVersion"></span><code><strong>FFileVersion</strong>: <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FIsolated"></span><code><strong>FIsolated</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FParserDebug"></span><code><strong>FParserDebug</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FVerbose"></span><code><strong>FVerbose</strong>: <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FInteractive"></span><code><strong>FInteractive</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOptimizationLevel"></span><code><strong>FOptimizationLevel</strong>: <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FSiteImport"></span><code><strong>FSiteImport</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPathConfigWarnings"></span><code><strong>FPathConfigWarnings</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FUseEnvironment"></span><code><strong>FUseEnvironment</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FUserSiteDirectory"></span><code><strong>FUserSiteDirectory</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FWriteBytecode"></span><code><strong>FWriteBytecode</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDevMode"></span><code><strong>FDevMode</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FHome"></span><code><strong>FHome</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FExecutable"></span><code><strong>FExecutable</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FProgramName"></span><code><strong>FProgramName</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FModuleSearchPaths"></span><code><strong>FModuleSearchPaths</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOnBeforeInitialization"></span><code><strong>FOnBeforeInitialization</strong>: <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetLoaded"></span><code>function <strong>GetLoaded</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsFinalizing"></span><code>function <strong>GetIsFinalizing</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetPlatform"></span><code>function <strong>GetPlatform</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetCopyright"></span><code>function <strong>GetCopyright</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetCompiler"></span><code>function <strong>GetCompiler</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetBuildInfo"></span><code>function <strong>GetBuildInfo</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetOSPythonHome"></span><code>function <strong>GetOSPythonHome</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetOSPythonLibPath"></span><code>function <strong>GetOSPythonLibPath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FreePythonLibrary"></span><code>procedure <strong>FreePythonLibrary</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ReadLibraryVersionInfo-string-"></span><code>function <strong>ReadLibraryVersionInfo</strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ReadVersionFromFilename-string-"></span><code>function <strong>ReadVersionFromFilename</strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="LoadPythonLibrary-string-"></span><code>function <strong>LoadPythonLibrary</strong>(const aLibraryPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Version-integer-integer-integer-"></span><code>function <strong>Version</strong>(var aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetVersion-integer-integer-integer-"></span><code>function <strong>GetVersion</strong>(var aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetFileVersion-TFileVersionInfo-"></span><code>function <strong>GetFileVersion</strong>(var aFileVersion : <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="doOnBeforeInitialization-IPyInitConfig-IPyConfig-"></span><code>procedure <strong>doOnBeforeInitialization</strong>(const aInitConfig: <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>; const aConfig: <a href="uP4P.Interfaces.IPyConfig.html">IPyConfig</a> = nil);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetProgramArgs_PEP741-IPyInitConfig-"></span><code>procedure <strong>SetProgramArgs_PEP741</strong>(const aConfig : <a href="uP4P.Interfaces.IPyInitConfig.html">IPyInitConfig</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetProgramArgs_PEP587-IPyConfig-"></span><code>procedure <strong>SetProgramArgs_PEP587</strong>(const aConfig : <a href="uP4P.Interfaces.IPyConfig.html">IPyConfig</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Initialize_PEP741"></span><code>function <strong>Initialize_PEP741</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Initialize_PEP587"></span><code>function <strong>Initialize_PEP587</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FindPythonLib-string-TStringList-"></span><code>function <strong>FindPythonLib</strong>(const aPath: string; var aFiles: TStringList): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="PythonLibExists-string-"></span><code>function <strong>PythonLibExists</strong>(const aPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetExtendedFileVersion-string-"></span><code>function <strong>GetExtendedFileVersion</strong>(const aFileName : string) : uint64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetDLLVersion-string-"></span><code>function <strong>GetDLLVersion</strong>(const aFileName : string) : boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SearchPythonRegistry-string-boolean-string-"></span><code>function <strong>SearchPythonRegistry</strong>(const aRegPath: string; aLocalMachine: boolean; var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SearchMicrosoftStoreRegistry-string-"></span><code>function <strong>SearchMicrosoftStoreRegistry</strong>(var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SearchUninstallRegistry-string-boolean-string-"></span><code>function <strong>SearchUninstallRegistry</strong>(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CheckDLLbitness-string-"></span><code>function <strong>CheckDLLbitness</strong>(const aFilename : string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SearchPythonHomeEnvironmentVariable-string-"></span><code>function <strong>SearchPythonHomeEnvironmentVariable</strong>(var aInstallPath: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="LoadAllFunctions"></span><code>procedure <strong>LoadAllFunctions</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pymacro"></span><code>procedure <strong>Load_pymacro</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pymem"></span><code>procedure <strong>Load_pymem</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pybuffer"></span><code>procedure <strong>Load_pybuffer</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_lock"></span><code>procedure <strong>Load_lock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_critical_section"></span><code>procedure <strong>Load_critical_section</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_object"></span><code>procedure <strong>Load_object</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_refcount"></span><code>procedure <strong>Load_refcount</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_objimpl"></span><code>procedure <strong>Load_objimpl</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pyhash"></span><code>procedure <strong>Load_pyhash</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pydebug"></span><code>procedure <strong>Load_pydebug</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_bytearrayobject"></span><code>procedure <strong>Load_bytearrayobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_bytesobject"></span><code>procedure <strong>Load_bytesobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_unicodeobject"></span><code>procedure <strong>Load_unicodeobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pyerrors"></span><code>procedure <strong>Load_pyerrors</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_longobject"></span><code>procedure <strong>Load_longobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_longintrepr"></span><code>procedure <strong>Load_longintrepr</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_boolobject"></span><code>procedure <strong>Load_boolobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_floatobject"></span><code>procedure <strong>Load_floatobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_complexobject"></span><code>procedure <strong>Load_complexobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_rangeobject"></span><code>procedure <strong>Load_rangeobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_memoryobject"></span><code>procedure <strong>Load_memoryobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_tupleobject"></span><code>procedure <strong>Load_tupleobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_listobject"></span><code>procedure <strong>Load_listobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_dictobject"></span><code>procedure <strong>Load_dictobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_odictobject"></span><code>procedure <strong>Load_odictobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_enumobject"></span><code>procedure <strong>Load_enumobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_setobject"></span><code>procedure <strong>Load_setobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_methodobject"></span><code>procedure <strong>Load_methodobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_moduleobject"></span><code>procedure <strong>Load_moduleobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_monitoring"></span><code>procedure <strong>Load_monitoring</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_funcobject"></span><code>procedure <strong>Load_funcobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_classobject"></span><code>procedure <strong>Load_classobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_fileobject"></span><code>procedure <strong>Load_fileobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pycapsule"></span><code>procedure <strong>Load_pycapsule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_code"></span><code>procedure <strong>Load_code</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pyframe"></span><code>procedure <strong>Load_pyframe</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_traceback"></span><code>procedure <strong>Load_traceback</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_sliceobject"></span><code>procedure <strong>Load_sliceobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_cellobject"></span><code>procedure <strong>Load_cellobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_iterobject"></span><code>procedure <strong>Load_iterobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_initconfig"></span><code>procedure <strong>Load_initconfig</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pystate"></span><code>procedure <strong>Load_pystate</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_genobject"></span><code>procedure <strong>Load_genobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_descrobject"></span><code>procedure <strong>Load_descrobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_genericaliasobject"></span><code>procedure <strong>Load_genericaliasobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_warnings"></span><code>procedure <strong>Load_warnings</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_weakrefobject"></span><code>procedure <strong>Load_weakrefobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_structseq"></span><code>procedure <strong>Load_structseq</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_picklebufobject"></span><code>procedure <strong>Load_picklebufobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pytime"></span><code>procedure <strong>Load_pytime</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_codecs"></span><code>procedure <strong>Load_codecs</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pythread"></span><code>procedure <strong>Load_pythread</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_context"></span><code>procedure <strong>Load_context</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_modsupport"></span><code>procedure <strong>Load_modsupport</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_compile"></span><code>procedure <strong>Load_compile</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pythonrun"></span><code>procedure <strong>Load_pythonrun</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pylifecycle"></span><code>procedure <strong>Load_pylifecycle</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_ceval"></span><code>procedure <strong>Load_ceval</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_sysmodule"></span><code>procedure <strong>Load_sysmodule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_audit"></span><code>procedure <strong>Load_audit</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_osmodule"></span><code>procedure <strong>Load_osmodule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_intrcheck"></span><code>procedure <strong>Load_intrcheck</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_import"></span><code>procedure <strong>Load_import</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_abstract"></span><code>procedure <strong>Load_abstract</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_bltinmodule"></span><code>procedure <strong>Load_bltinmodule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pystrtod"></span><code>procedure <strong>Load_pystrtod</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_pystrcmp"></span><code>procedure <strong>Load_pystrcmp</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_fileutils"></span><code>procedure <strong>Load_fileutils</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_tracemalloc"></span><code>procedure <strong>Load_tracemalloc</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Load_frameobject"></span><code>procedure <strong>Load_frameobject</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BeforeDestruction"></span><code>procedure <strong>BeforeDestruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PythonLibIsGreaterOrEqualThan-integer-integer-integer-"></span><code>function <strong>PythonLibIsGreaterOrEqualThan</strong>(aMajor, aMinor, aMicro: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if the loaded Python library version is greater or equal to the version information in the arguments. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Load-string-"></span><code>function <strong>Load</strong>(const aLibraryPath: string = '') : boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Load the Python library. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the Python interpreter. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Finalize"></span><code>procedure <strong>Finalize</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Finalize the Python interpreter. </p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetCurrentDir"></span><code>property <strong>SetCurrentDir</strong>                     : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FSetCurrentDir">FSetCurrentDir</a>                     write <a href="uP4P.Loader.TP4PLoader.html#FSetCurrentDir">FSetCurrentDir</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Used to set the current directory when the libraries are loaded. This is required if the application is launched from a different application. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Status"></span><code>property <strong>Status</strong>                            : <a href="uP4P.Types.html#TP4PLoaderStatus">TP4PLoaderStatus</a>                             read <a href="uP4P.Loader.TP4PLoader.html#FStatus">FStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the TP4PLoader initialization status. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if the loader has an initialized status. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Loaded"></span><code>property <strong>Loaded</strong>                            : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetLoaded">GetLoaded</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if the Python library is loaded. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsFinalizing"></span><code>property <strong>IsFinalizing</strong>                      : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#GetIsFinalizing">GetIsFinalizing</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return true if the main Python interpreter is shutting down. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReRaiseExceptions"></span><code>property <strong>ReRaiseExceptions</strong>                 : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FReRaiseExceptions">FReRaiseExceptions</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FReRaiseExceptions">FReRaiseExceptions</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set to true to raise all exceptions. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LastErrorMessage"></span><code>property <strong>LastErrorMessage</strong>                  : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FLastErrorMessage">FLastErrorMessage</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Last error message that is usually shown when there's an initialization problem. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ShowMessageDlg"></span><code>property <strong>ShowMessageDlg</strong>                    : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FShowMessageDlg">FShowMessageDlg</a>                    write <a href="uP4P.Loader.TP4PLoader.html#FShowMessageDlg">FShowMessageDlg</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set to true when you need to use a showmessage dialog to show the error messages. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="MustFreeLibrary"></span><code>property <strong>MustFreeLibrary</strong>                   : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FMustFreeLibrary">FMustFreeLibrary</a>                   write <a href="uP4P.Loader.TP4PLoader.html#FMustFreeLibrary">FMustFreeLibrary</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set to true to free the library handle when the loader is destroyed. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LibHandle"></span><code>property <strong>LibHandle</strong>                         : TLibHandle read <a href="uP4P.Loader.TP4PLoader.html#FLibHandle">FLibHandle</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Library handle. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FileVersion"></span><code>property <strong>FileVersion</strong>                       : <a href="uP4P.Types.TFileVersionInfo.html">TFileVersionInfo</a>                             read <a href="uP4P.Loader.TP4PLoader.html#FFileVersion">FFileVersion</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Library version information. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Platform_"></span><code>property <strong>Platform_</strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetPlatform">GetPlatform</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Python platform information. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Copyright"></span><code>property <strong>Copyright</strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetCopyright">GetCopyright</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Python copyright information. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Compiler"></span><code>property <strong>Compiler</strong>                          : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetCompiler">GetCompiler</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Python compiler information. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BuildInfo"></span><code>property <strong>BuildInfo</strong>                         : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetBuildInfo">GetBuildInfo</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Python build information. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OSPythonHome"></span><code>property <strong>OSPythonHome</strong>                      : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetOSPythonHome">GetOSPythonHome</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the Python home path when it's installed in the OS. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OSPythonLibPath"></span><code>property <strong>OSPythonLibPath</strong>                   : string                                       read <a href="uP4P.Loader.TP4PLoader.html#GetOSPythonLibPath">GetOSPythonLibPath</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the Python library path when it's installed in the OS. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Isolated"></span><code>property <strong>Isolated</strong>                          : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FIsolated">FIsolated</a>                          write <a href="uP4P.Loader.TP4PLoader.html#FIsolated">FIsolated</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If True, enable isolated mode:
+
+<p></p>
+
+<pre class="preformatted">
+- Set safe_path to True: don't prepend a potentially unsafe path to
+  sys.path at Python startup, such as the current directory, the
+  script's directory or an empty string.
+- Set use_environment to False: ignore PYTHON environment variables.
+- Set user_site_directory to False: don't add the user site directory
+  to sys.path.
+- Python REPL doesn't import readline nor enable default readline
+  configuration on interactive prompts.</pre>
+
+<p>
+
+<p>Set to True by the -I command line option.
+
+<p>Default: False in Python mode, True in isolated mode.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#isolated-configuration">https://docs.python.org/3/c-api/init_config.html#isolated-configuration</a>&quot;&gt;See the article about Isolated Configuration.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ParserDebug"></span><code>property <strong>ParserDebug</strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FParserDebug">FParserDebug</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FParserDebug">FParserDebug</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Parser debug mode. If True, turn on parser debugging output (for expert only, depending on compilation options).
+
+<p>Enabled by the -d command line option. Set to the PYTHONDEBUG environment variable value.
+
+<p>Needs a debug build of Python (the Py_DEBUG macro must be defined).
+
+<p>Default: False.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDEBUG">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDEBUG</a>&quot;&gt;See the article about PYTHONDEBUG.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Verbose"></span><code>property <strong>Verbose</strong>                           : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>                               read <a href="uP4P.Loader.TP4PLoader.html#FVerbose">FVerbose</a>                           write <a href="uP4P.Loader.TP4PLoader.html#FVerbose">FVerbose</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Verbose mode. If pvmModule or pvmFull, print a message each time a module is imported, showing the place (filename or built-in module) from which it is loaded.
+
+<p>If pvmFull, print a message for each file that is checked for when searching for a module. Also provides information on module cleanup at exit.
+
+<p>Enabled by the -v command line option.
+
+<p>Set by the PYTHONVERBOSE environment variable value.
+
+<p>Default: pvmDisabled.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONVERBOSE">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONVERBOSE</a>&quot;&gt;See the article about PYTHONVERBOSE.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Interactive"></span><code>property <strong>Interactive</strong>                       : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FInteractive">FInteractive</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FInteractive">FInteractive</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If True, enable the interactive mode (REPL).
+
+<p>Enabled by the -i command line option.
+
+<p>Default: False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OptimizationLevel"></span><code>property <strong>OptimizationLevel</strong>                 : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>                         read <a href="uP4P.Loader.TP4PLoader.html#FOptimizationLevel">FOptimizationLevel</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FOptimizationLevel">FOptimizationLevel</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Compilation optimization level:
+
+<p></p>
+
+<pre class="preformatted">
+- polDebug (0) : Peephole optimizer, set __debug__ to True.
+- polRelease (1) : Level 0, remove assertions, set __debug__ to False.
+- polReleaseNoDocStrings (2) : Level 1, strip docstrings.</pre>
+
+<p>
+
+<p>Incremented by the -O command line option. Set to the PYTHONOPTIMIZE environment variable value.
+
+<p>Default: polDebug (0).
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONOPTIMIZE">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONOPTIMIZE</a>&quot;&gt;See the article about PYTHONOPTIMIZE.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SiteImport"></span><code>property <strong>SiteImport</strong>                        : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FSiteImport">FSiteImport</a>                        write <a href="uP4P.Loader.TP4PLoader.html#FSiteImport">FSiteImport</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Import the site module at startup?
+
+<p>If equal to zero, disable the import of the module site and the site-dependent manipulations of sys.path that it entails.
+
+<p>Also disable these manipulations if the site module is explicitly imported later (call site.main() if you want them to be triggered).
+
+<p>Set to False by the -S command line option.
+
+<p>sys.flags.no_site is set to the inverted value of site_import.
+
+<p>Default: True.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PathConfigWarnings"></span><code>property <strong>PathConfigWarnings</strong>                : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FPathConfigWarnings">FPathConfigWarnings</a>                write <a href="uP4P.Loader.TP4PLoader.html#FPathConfigWarnings">FPathConfigWarnings</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If True, calculation of path configuration is allowed to log warnings into stderr. If False, suppress these warnings.
+
+<p>Default: True in Python mode, False in isolated mode.
+
+<p>Changed in version 3.11: Now also applies on Windows.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-path-config">https://docs.python.org/3/c-api/init_config.html#init-path-config</a>&quot;&gt;Part of the Python Path Configuration input.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UseEnvironment"></span><code>property <strong>UseEnvironment</strong>                    : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FUseEnvironment">FUseEnvironment</a>                    write <a href="uP4P.Loader.TP4PLoader.html#FUseEnvironment">FUseEnvironment</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Use environment variables?
+
+<p>If False, ignore the environment variables.
+
+<p>Set to False by the -E environment variable.
+
+<p>Default: True in Python config and False in isolated config.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#using-on-envvars">https://docs.python.org/3/using/cmdline.html#using-on-envvars</a>&quot;&gt;See the article about environment variables.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UserSiteDirectory"></span><code>property <strong>UserSiteDirectory</strong>                 : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FUserSiteDirectory">FUserSiteDirectory</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FUserSiteDirectory">FUserSiteDirectory</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If True, add the user site directory to sys.path.
+
+<p>Set to False by the -s and -I command line options.
+
+<p>Set to False by the PYTHONNOUSERSITE environment variable.
+
+<p>Default: True in Python mode, False in isolated mode.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONNOUSERSITE">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONNOUSERSITE</a>&quot;&gt;See the article about PYTHONNOUSERSITE.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="WriteBytecode"></span><code>property <strong>WriteBytecode</strong>                     : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FWriteBytecode">FWriteBytecode</a>                     write <a href="uP4P.Loader.TP4PLoader.html#FWriteBytecode">FWriteBytecode</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If False, Python won't try to write .pyc files on the import of source modules.
+
+<p>Set to False by the -B command line option and the PYTHONDONTWRITEBYTECODE environment variable.
+
+<p>sys.dont_write_bytecode is initialized to the inverted value of write_bytecode.
+
+<p>Default: True.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE</a>&quot;&gt;See the article about PYTHONDONTWRITEBYTECODE.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DevMode"></span><code>property <strong>DevMode</strong>                           : boolean                                      read <a href="uP4P.Loader.TP4PLoader.html#FDevMode">FDevMode</a>                           write <a href="uP4P.Loader.TP4PLoader.html#FDevMode">FDevMode</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If True, enable the Python Development Mode.
+
+<p>Set to True by the -X dev option and the PYTHONDEVMODE environment variable.
+
+<p>Default: True in Python mode, False in isolated mode.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/devmode.html#devmode">https://docs.python.org/3/library/devmode.html#devmode</a>&quot;&gt;See the article about Python Development Mode.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Home"></span><code>property <strong>Home</strong>                              : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FHome">FHome</a>                              write <a href="uP4P.Loader.TP4PLoader.html#FHome">FHome</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the default Python &quot;home&quot; directory, that is, the location of the standard Python libraries.
+
+<p>Set by the PYTHONHOME environment variable.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-path-config">https://docs.python.org/3/c-api/init_config.html#init-path-config</a>&quot;&gt;Part of the Python Path Configuration input.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME</a>&quot;&gt;See the article about PYTHONHOME.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Executable"></span><code>property <strong>Executable</strong>                        : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FExecutable">FExecutable</a>                        write <a href="uP4P.Loader.TP4PLoader.html#FExecutable">FExecutable</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The absolute path of the executable binary for the Python interpreter: sys.executable.
+
+<p>Part of the Python Path Configuration output.
+
+<p>See also PyConfig.base_executable.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ProgramName"></span><code>property <strong>ProgramName</strong>                       : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FProgramName">FProgramName</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FProgramName">FProgramName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Program name used to initialize executable and in early error messages during Python initialization.
+
+<p>On macOS, use PYTHONEXECUTABLE environment variable if set.
+
+<p>If the WITH_NEXT_FRAMEWORK macro is defined, use __PYVENV_LAUNCHER__ environment variable if set.
+
+<p>Use argv[0] of argv if available and non-empty.
+
+<p>Otherwise, use &quot;python&quot; on Windows, or &quot;python3&quot; on other platforms.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-path-config">https://docs.python.org/3/c-api/init_config.html#init-path-config</a>&quot;&gt;Part of the Python Path Configuration input.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONEXECUTABLE">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONEXECUTABLE</a>&quot;&gt;See the article about PYTHONEXECUTABLE.)
+
+<p>See PyConfig.executable and PyConfig.base_executable.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ModuleSearchPaths"></span><code>property <strong>ModuleSearchPaths</strong>                 : string                                       read <a href="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">FModuleSearchPaths</a>                 write <a href="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">FModuleSearchPaths</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A list of strings that specifies the search path for modules.
+
+<p>Initialized from the environment variable PYTHONPATH, plus an installation-dependent default.
+
+<p>If module_search_paths_set is False, Py_InitializeFromConfig() will replace module_search_paths and sets module_search_paths_set to True.
+
+<p>Default: empty list.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/init_config.html#init-path-config">https://docs.python.org/3/c-api/init_config.html#init-path-config</a>&quot;&gt;Part of the Python Path Configuration output.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.path">https://docs.python.org/3/library/sys.html#sys.path</a>&quot;&gt;See the article about sys.path.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH</a>&quot;&gt;See the article about PYTHONPATH.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OnBeforeInitialization"></span><code>property <strong>OnBeforeInitialization</strong>            : <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>                 read <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>            write <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Event triggered right before the Python initialization. It's used to change the configuration properties. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

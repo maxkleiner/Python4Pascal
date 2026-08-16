@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Engine: Class TP4PEngine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TP4PEngine"></span><h1 class="cio">Class TP4PEngine</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Engine.html">uP4P.Engine</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TP4PEngine = class(<a class="normal" href="uP4P.Loader.TP4PLoader.html">TP4PLoader</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>TP4PEngine extends the TP4PLoader functionality. It handles the modules used in the Python initialization and all the imported modules.
+
+<p>It also exposes the events to capture the output and input, and some functions used by Python threads.
+
+<p></p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal" href="uP4P.Loader.TP4PLoader.html">TP4PLoader</a></li>
+<li class="thisitem">TP4PEngine</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FModules">FModules</a></strong>: TList;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FSyncObj">FSyncObj</a></strong>: TCriticalSection;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FIOModule">FIOModule</a></strong>: <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FTimeModule">FTimeModule</a></strong>: <a href="uP4P.PyTimeModule.TPyTimeModule.html">TPyTimeModule</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FDateTimeModule">FDateTimeModule</a></strong>: <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html">TPyDateTimeModule</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FInterpreterState">FInterpreterState</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FThreadState">FThreadState</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FMainThreadID">FMainThreadID</a></strong>: TThreadID;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FSavedThreadState">FSavedThreadState</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a></strong>: <a href="uP4P.Engine.html#TOnOutputMessageEvent">TOnOutputMessageEvent</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a></strong>: <a href="uP4P.Engine.html#TOnInputMessageEvent">TOnInputMessageEvent</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#GetIsMainThread">GetIsMainThread</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#GetSavedThreadState">GetSavedThreadState</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#SetSavedThreadState-boolean-">SetSavedThreadState</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#Lock">Lock</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#UnLock">UnLock</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#CreateTimeModule">CreateTimeModule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#CreateDateTimeModule">CreateDateTimeModule</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyIOModule">DestroyIOModule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyTimeModule">DestroyTimeModule</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyDateTimeModule">DestroyDateTimeModule</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyModules">DestroyModules</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#RedirectIO">RedirectIO</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.Engine.TP4PEngine.html#Create">Create</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.Engine.TP4PEngine.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#AddModuleToSys-TCustomPyModule-">AddModuleToSys</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#AddModule-TCustomPyModule-">AddModule</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#RemoveModule-TCustomPyModule-">RemoveModule</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#SearchModule-PPyObject-TCustomPyModule-">SearchModule</a></strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; var aResult: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#IsIOModule-PPyObject-">IsIOModule</a></strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#doOnOutputMessage-string-">doOnOutputMessage</a></strong>(const aMessage: string);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#doOnInputMessage-IPyObject-">doOnInputMessage</a></strong>(var aResultObj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#Initialize">Initialize</a></strong>: boolean; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#SaveThreadState">SaveThreadState</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#RestoreThreadState">RestoreThreadState</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#GetRaisedException">GetRaisedException</a></strong>: boolean;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#IOModule">IOModule</a></strong>                  : <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>              read <a href="uP4P.Engine.TP4PEngine.html#FIOModule">FIOModule</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#InterpreterState">InterpreterState</a></strong>          : <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>      read <a href="uP4P.Engine.TP4PEngine.html#FInterpreterState">FInterpreterState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#IsMainThread">IsMainThread</a></strong>              : boolean                  read <a href="uP4P.Engine.TP4PEngine.html#GetIsMainThread">GetIsMainThread</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#SavedThreadState">SavedThreadState</a></strong>          : boolean                  read <a href="uP4P.Engine.TP4PEngine.html#GetSavedThreadState">GetSavedThreadState</a>            write <a href="uP4P.Engine.TP4PEngine.html#SetSavedThreadState-boolean-">SetSavedThreadState</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#TimeModule">TimeModule</a></strong>                : <a href="uP4P.PyTimeModule.TPyTimeModule.html">TPyTimeModule</a>            read <a href="uP4P.Engine.TP4PEngine.html#FTimeModule">FTimeModule</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#DateTimeModule">DateTimeModule</a></strong>            : <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html">TPyDateTimeModule</a>        read <a href="uP4P.Engine.TP4PEngine.html#FDateTimeModule">FDateTimeModule</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#OnOutputMessage">OnOutputMessage</a></strong>           : <a href="uP4P.Engine.html#TOnOutputMessageEvent">TOnOutputMessageEvent</a>    read <a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a>               write <a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Engine.TP4PEngine.html#OnInputMessage">OnInputMessage</a></strong>            : <a href="uP4P.Engine.html#TOnInputMessageEvent">TOnInputMessageEvent</a>     read <a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a>                write <a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FModules"></span><code><strong>FModules</strong>: TList;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FSyncObj"></span><code><strong>FSyncObj</strong>: TCriticalSection;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FIOModule"></span><code><strong>FIOModule</strong>: <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FTimeModule"></span><code><strong>FTimeModule</strong>: <a href="uP4P.PyTimeModule.TPyTimeModule.html">TPyTimeModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDateTimeModule"></span><code><strong>FDateTimeModule</strong>: <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html">TPyDateTimeModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FInterpreterState"></span><code><strong>FInterpreterState</strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FThreadState"></span><code><strong>FThreadState</strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FMainThreadID"></span><code><strong>FMainThreadID</strong>: TThreadID;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FSavedThreadState"></span><code><strong>FSavedThreadState</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOnOutputMessage"></span><code><strong>FOnOutputMessage</strong>: <a href="uP4P.Engine.html#TOnOutputMessageEvent">TOnOutputMessageEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOnInputMessage"></span><code><strong>FOnInputMessage</strong>: <a href="uP4P.Engine.html#TOnInputMessageEvent">TOnInputMessageEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsMainThread"></span><code>function <strong>GetIsMainThread</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetSavedThreadState"></span><code>function <strong>GetSavedThreadState</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetSavedThreadState-boolean-"></span><code>procedure <strong>SetSavedThreadState</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Lock"></span><code>function <strong>Lock</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="UnLock"></span><code>procedure <strong>UnLock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CreateTimeModule"></span><code>procedure <strong>CreateTimeModule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CreateDateTimeModule"></span><code>procedure <strong>CreateDateTimeModule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DestroyIOModule"></span><code>procedure <strong>DestroyIOModule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DestroyTimeModule"></span><code>procedure <strong>DestroyTimeModule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DestroyDateTimeModule"></span><code>procedure <strong>DestroyDateTimeModule</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DestroyModules"></span><code>procedure <strong>DestroyModules</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="RedirectIO"></span><code>function <strong>RedirectIO</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AfterConstruction"></span><code>procedure <strong>AfterConstruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BeforeDestruction"></span><code>procedure <strong>BeforeDestruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModuleToSys-TCustomPyModule-"></span><code>function <strong>AddModuleToSys</strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the module to sys.modules.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModule-TCustomPyModule-"></span><code>procedure <strong>AddModule</strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the module to the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RemoveModule-TCustomPyModule-"></span><code>procedure <strong>RemoveModule</strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the module from the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SearchModule-PPyObject-TCustomPyModule-"></span><code>function <strong>SearchModule</strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; var aResult: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Search the module in the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsIOModule-PPyObject-"></span><code>function <strong>IsIOModule</strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if module is the internal IOModule.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="doOnOutputMessage-string-"></span><code>procedure <strong>doOnOutputMessage</strong>(const aMessage: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Internal function used by TIOPyModule.Write. Don't use!
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="doOnInputMessage-IPyObject-"></span><code>function <strong>doOnInputMessage</strong>(var aResultObj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Internal function used by TIOPyModule.Read. Don't use!
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the Python interpreter. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SaveThreadState"></span><code>procedure <strong>SaveThreadState</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Detach the attached thread state and return it. The thread will have no thread state upon returning.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RestoreThreadState"></span><code>procedure <strong>RestoreThreadState</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the attached thread state to tstate. The passed thread state should not be attached, otherwise deadlock ensues. tstate will be attached upon returning.
+
+<p>Note Calling this function from a thread when the runtime is finalizing will hang the thread until the program exits, even if the thread was not created by Python. Refer to Cautions regarding runtime finalization for more details.
+
+<p>Changed in version 3.14: Hangs the current thread, rather than terminating it, if called while the interpreter is finalizing.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-attached-thread-state">https://docs.python.org/3/glossary.html#term-attached-thread-state</a>&quot;&gt;See the article about attached thread states.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/glossary.html#term-thread-state">https://docs.python.org/3/glossary.html#term-thread-state</a>&quot;&gt;See the article about thread states.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetRaisedException"></span><code>function <strong>GetRaisedException</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Update LastErrorMessage with the last raised exception information. </p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IOModule"></span><code>property <strong>IOModule</strong>                  : <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>              read <a href="uP4P.Engine.TP4PEngine.html#FIOModule">FIOModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ IOModule instance used by the interpreter for standard input, output and errors. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InterpreterState"></span><code>property <strong>InterpreterState</strong>          : <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>      read <a href="uP4P.Engine.TP4PEngine.html#FInterpreterState">FInterpreterState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The current interpreter.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsMainThread"></span><code>property <strong>IsMainThread</strong>              : boolean                  read <a href="uP4P.Engine.TP4PEngine.html#GetIsMainThread">GetIsMainThread</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if this property runs in the same thread that created the TP4PEngine instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SavedThreadState"></span><code>property <strong>SavedThreadState</strong>          : boolean                  read <a href="uP4P.Engine.TP4PEngine.html#GetSavedThreadState">GetSavedThreadState</a>            write <a href="uP4P.Engine.TP4PEngine.html#SetSavedThreadState-boolean-">SetSavedThreadState</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ This property is True after a successfull call to TP4PEngine.SaveThreadState and before the call to TP4PEngine.RestoreThreadState. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TimeModule"></span><code>property <strong>TimeModule</strong>                : <a href="uP4P.PyTimeModule.TPyTimeModule.html">TPyTimeModule</a>            read <a href="uP4P.Engine.TP4PEngine.html#FTimeModule">FTimeModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ TPyTimeModule instance used for DateTime conversions. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DateTimeModule"></span><code>property <strong>DateTimeModule</strong>            : <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html">TPyDateTimeModule</a>        read <a href="uP4P.Engine.TP4PEngine.html#FDateTimeModule">FDateTimeModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ TPyDateTimeModule instance used for DateTime conversions. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OnOutputMessage"></span><code>property <strong>OnOutputMessage</strong>           : <a href="uP4P.Engine.html#TOnOutputMessageEvent">TOnOutputMessageEvent</a>    read <a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a>               write <a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Event triggered when Python outputs a string message. </p>
+<p>
+
+
+<p>This event will run in the context of a background thread if you use TP4PThread.
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.stderr">https://docs.python.org/3/library/sys.html#sys.stderr</a>&quot;&gt;See the article about sys.stdin, sys.stdout and sys.stderr.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OnInputMessage"></span><code>property <strong>OnInputMessage</strong>            : <a href="uP4P.Engine.html#TOnInputMessageEvent">TOnInputMessageEvent</a>     read <a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a>                write <a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Event triggered in all interactive input including Python calls to input(). </p>
+<p>
+
+
+<p>This event will run in the context of a background thread if you use TP4PThread.
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.stderr">https://docs.python.org/3/library/sys.html#sys.stderr</a>&quot;&gt;See the article about sys.stdin, sys.stdout and sys.stderr.)</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

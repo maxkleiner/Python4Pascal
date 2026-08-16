@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyUnicodeDecodeError: Class TPyUnicodeDecodeError</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyUnicodeDecodeError"></span><h1 class="cio">Class TPyUnicodeDecodeError</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyUnicodeDecodeError.html">uP4P.PyUnicodeDecodeError</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyUnicodeDecodeError = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyUnicodeDecodeError_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/exceptions.html#unicode-exception-objects">https://docs.python.org/3/c-api/exceptions.html#unicode-exception-objects</a>&quot;&gt;See the article about Unicode Exception Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyUnicodeDecodeError</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#Create-string-string-Py_ssize_t-Py_ssize_t-Py_ssize_t-string-">Create</a></strong>(const encoding, object_: string; length, start, end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const reason: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#GetEncoding-IPyObject-">GetEncoding</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#GetObject-IPyObject-">GetObject</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#GetStart-IPyObject-Py_ssize_t-">GetStart</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out start: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#SetStart-IPyObject-Py_ssize_t-">SetStart</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; start: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#GetEnd-IPyObject-Py_ssize_t-">GetEnd</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#SetEnd-IPyObject-Py_ssize_t-">SetEnd</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#GetReason-IPyObject-">GetReason</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyUnicodeDecodeError.TPyUnicodeDecodeError.html#SetReason-IPyObject-string-">SetReason</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const reason: string): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-string-string-Py_ssize_t-Py_ssize_t-Py_ssize_t-string-"></span><code>class function <strong>Create</strong>(const encoding, object_: string; length, start, end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; const reason: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a UnicodeDecodeError object with the attributes encoding, object, length, start, end and reason. encoding and reason are strings.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetEncoding-IPyObject-"></span><code>class function <strong>GetEncoding</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the encoding attribute of the given exception object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetObject-IPyObject-"></span><code>class function <strong>GetObject</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the object attribute of the given exception object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetStart-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetStart</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out start: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the start attribute of the given exception object and place it into *start. start must not be nil. Return True on success, False on failure.
+
+<p>If the UnicodeError.object is an empty sequence, the resulting start is 0. Otherwise, it is clipped to [0, len(object) - 1].
+
+<p>See also UnicodeError.start
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetStart-IPyObject-Py_ssize_t-"></span><code>class function <strong>SetStart</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; start: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the start attribute of the given exception object to start. Return True on success, False on failure.
+
+<p>Note While passing a negative start does not raise an exception, the corresponding getters will not consider it as a relative offset.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetEnd-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetEnd</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the end attribute of the given exception object and place it into end_. end must not be nil. Return True on success, False on failure.
+
+<p>If the UnicodeError.object is an empty sequence, the resulting end is 0. Otherwise, it is clipped to [1, len(object)].
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetEnd-IPyObject-Py_ssize_t-"></span><code>class function <strong>SetEnd</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the end_ attribute of the given exception object to end. Return True on success, False on failure.
+
+<p>See also UnicodeError.end
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetReason-IPyObject-"></span><code>class function <strong>GetReason</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the reason attribute of the given exception object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetReason-IPyObject-string-"></span><code>class function <strong>SetReason</strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const reason: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the reason attribute of the given exception object to reason. Return True on success, False on failure.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

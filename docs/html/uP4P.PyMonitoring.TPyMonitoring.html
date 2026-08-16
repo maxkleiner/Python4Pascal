@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyMonitoring: Class TPyMonitoring</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyMonitoring"></span><h1 class="cio">Class TPyMonitoring</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyMonitoring.html">uP4P.PyMonitoring</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyMonitoring = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyMonitoring_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/monitoring.html#managing-the-monitoring-state">https://docs.python.org/3/c-api/monitoring.html#managing-the-monitoring-state</a>&quot;&gt;See the article about Managing the Monitoring State.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyMonitoring</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMonitoring.TPyMonitoring.html#EnterScope-PPyMonitoringState-PUint64-PByte-Py_ssize_t-">EnterScope</a></strong>(state_array: <a href="uP4P.Types.html#PPyMonitoringState">PPyMonitoringState</a>; version: PUint64; const event_types: PByte; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyMonitoring.TPyMonitoring.html#ExitScope">ExitScope</a></strong>: boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="EnterScope-PPyMonitoringState-PUint64-PByte-Py_ssize_t-"></span><code>class function <strong>EnterScope</strong>(state_array: <a href="uP4P.Types.html#PPyMonitoringState">PPyMonitoringState</a>; version: PUint64; const event_types: PByte; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Enter a monitored scope. event_types is an array of the event IDs for events that may be fired from the scope. For example, the ID of a PY_START event is the value PY_MONITORING_EVENT_PY_START, which is numerically equal to the base-2 logarithm of sys.monitoring.events.PY_START. state_array is an array with a monitoring state entry for each event in event_types, it is allocated by the user but populated by TPyMonitoring.EnterScope() with information about the activation state of the event. The size of event_types (and hence also of state_array) is given in length.
+
+<p>The version argument is a pointer to a value which should be allocated by the user together with state_array and initialized to 0, and then set only by TPyMonitoring.EnterScope() itself. It allows this function to determine whether event states have changed since the previous call, and to return quickly if they have not.
+
+<p>The scopes referred to here are lexical scopes: a function, class or method. TPyMonitoring.EnterScope() should be called whenever the lexical scope is entered. Scopes can be reentered, reusing the same state_array and version, in situations like when emulating a recursive Python function. When a code-like's execution is paused, such as when emulating a generator, the scope needs to be exited and re-entered.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExitScope"></span><code>class function <strong>ExitScope</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Exit the last scope that was entered with TPyMonitoring.EnterScope().
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

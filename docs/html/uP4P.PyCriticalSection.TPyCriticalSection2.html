@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyCriticalSection: Class TPyCriticalSection2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyCriticalSection2"></span><h1 class="cio">Class TPyCriticalSection2</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyCriticalSection.html">uP4P.PyCriticalSection</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyCriticalSection2 = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyCriticalSection2.html">IPyCriticalSection2</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>A critical section protected by two mutexes. You *CANNOT* use nested critical sections to lock more than one object at once.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api">https://docs.python.org/3/c-api/synchronization.html#python-critical-section-api</a>&quot;&gt;See the Python critical section API article.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyCriticalSection2</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#FPyCriticalSection">FPyCriticalSection</a></strong>: <a href="uP4P.Types.PyCriticalSection2.html">PyCriticalSection2</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#GetPyCriticalSection">GetPyCriticalSection</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#Create">Create</a></strong>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#Create-PyCriticalSection2-">Create</a></strong>(const aCriticalSection: <a href="uP4P.Types.PyCriticalSection2.html">PyCriticalSection2</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#Begin_-IPyObject-IPyObject-">Begin_</a></strong>(const a, b: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#BeginMutex-IPyMutex-IPyMutex-">BeginMutex</a></strong>(const m1, m2: <a href="uP4P.Interfaces.IPyMutex.html">IPyMutex</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#End_">End_</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#PyCriticalSection">PyCriticalSection</a></strong> : Pointer read <a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#GetPyCriticalSection">GetPyCriticalSection</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPyCriticalSection"></span><code><strong>FPyCriticalSection</strong>: <a href="uP4P.Types.PyCriticalSection2.html">PyCriticalSection2</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetPyCriticalSection"></span><code>function <strong>GetPyCriticalSection</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PyCriticalSection2-"></span><code>constructor <strong>Create</strong>(const aCriticalSection: <a href="uP4P.Types.PyCriticalSection2.html">PyCriticalSection2</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Overloaded constructor using an existing PyCriticalSection2.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Begin_-IPyObject-IPyObject-"></span><code>procedure <strong>Begin_</strong>(const a, b: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Acquires the per-object locks for the objects a and b and begins a critical section. The locks are acquired in a consistent order (lowest address first) to avoid lock ordering deadlocks.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BeginMutex-IPyMutex-IPyMutex-"></span><code>procedure <strong>BeginMutex</strong>(const m1, m2: <a href="uP4P.Interfaces.IPyMutex.html">IPyMutex</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Locks the mutexes m1 and m2 and begins a critical section.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="End_"></span><code>procedure <strong>End_</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ends the critical section and releases the per-object locks.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PyCriticalSection"></span><code>property <strong>PyCriticalSection</strong> : Pointer read <a href="uP4P.PyCriticalSection.TPyCriticalSection2.html#GetPyCriticalSection">GetPyCriticalSection</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to the PyCriticalSection2 record.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

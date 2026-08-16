@@ -27,7 +27,7 @@ type
   /// such. The global interpreter lock is also shared by all threads,
   /// regardless of to which interpreter they belong.</para>
   /// <para>Changed in version 3.12: PEP 684 introduced the possibility of a
-  /// per-interpreter GIL. See Py_NewInterpreterFromConfig().</para>
+  /// per-interpreter GIL. See TPy.NewInterpreterFromConfig().</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/subinterpreters.html">See the Multiple interpreters in a Python process article.</see></para>
@@ -124,7 +124,7 @@ type
       /// stored. If this function returns nil then no exception has been
       /// raised and the caller should assume no interpreter-specific dict is
       /// available.</para>
-      /// <para>This is not a replacement for PyModule_GetState(), which
+      /// <para>This is not a replacement for TPyModule.GetState(), which
       /// extensions should use to store interpreter-specific state
       /// information.</para>
       /// <para>The returned dictionary is borrowed from the interpreter and is

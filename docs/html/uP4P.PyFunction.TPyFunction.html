@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyFunction: Class TPyFunction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyFunction"></span><h1 class="cio">Class TPyFunction</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyFunction.html">uP4P.PyFunction</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyFunction = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyFunction_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/function.html#function-objects">https://docs.python.org/3/c-api/function.html#function-objects</a>&quot;&gt;See the article about Function Objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyFunction</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#New-IPyObject-IPyObject-">New</a></strong>(const code, globals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#NewWithQualName-IPyObject-IPyObject-IPyObject-">NewWithQualName</a></strong>(const code, globals, qualname: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetCode-IPyObject-">GetCode</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetGlobals-IPyObject-">GetGlobals</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetModule-IPyObject-">GetModule</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetDefaults-IPyObject-">GetDefaults</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#SetDefaults-IPyObject-IPyObject-">SetDefaults</a></strong>(const op, defaults: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyFunction.TPyFunction.html#SetVectorcall-PyFunctionObject-vectorcallfunc-">SetVectorcall</a></strong>(const func: <a href="uP4P.Types.PyFunctionObject.html">PyFunctionObject</a>; vectorcall: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetKwDefaults-IPyObject-">GetKwDefaults</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#SetKwDefaults-IPyObject-IPyObject-">SetKwDefaults</a></strong>(const op, defaults: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetClosure-IPyObject-">GetClosure</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#SetClosure-IPyObject-IPyObject-">SetClosure</a></strong>(const op, closure: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#GetAnnotations-IPyObject-">GetAnnotations</a></strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#SetAnnotations-IPyObject-IPyObject-">SetAnnotations</a></strong>(const op, annotations: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#AddWatcher-PyFunction_WatchCallback-">AddWatcher</a></strong>(callback: <a href="uP4P.Types.html#PyFunction_WatchCallback">PyFunction_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFunction.TPyFunction.html#ClearWatcher-integer-">ClearWatcher</a></strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if aPyObject is a function object (has type PyFunction_Type). The parameter must not be nil. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-IPyObject-IPyObject-"></span><code>class function <strong>New</strong>(const code, globals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a new function object associated with the code object code. globals must be a dictionary with the global variables accessible to the function.
+
+<p>The function's docstring and name are retrieved from the code object. __module__ is retrieved from globals. The argument defaults, annotations and closure are set to nil. __qualname__ is set to the same value as the code object's co_qualname field.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="NewWithQualName-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>NewWithQualName</strong>(const code, globals, qualname: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>As TPyFunction.New(), but also allows setting the function object's __qualname__ attribute. qualname should be a unicode object or nil; if nil, the __qualname__ attribute is set to the same value as the code object's co_qualname field.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCode-IPyObject-"></span><code>class function <strong>GetCode</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the code object associated with the function object op.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetGlobals-IPyObject-"></span><code>class function <strong>GetGlobals</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the globals dictionary associated with the function object op.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModule-IPyObject-"></span><code>class function <strong>GetModule</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a borrowed reference to the __module__ attribute of the function object op. It can be nil.
+
+<p>This is normally a string containing the module name, but can be set to any other object by Python code.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetDefaults-IPyObject-"></span><code>class function <strong>GetDefaults</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the argument default values of the function object op. This can be a tuple of arguments or nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetDefaults-IPyObject-IPyObject-"></span><code>class function <strong>SetDefaults</strong>(const op, defaults: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the argument default values for the function object op. defaults must be Py_None or a tuple.
+
+<p>Raises SystemError and returns False on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetVectorcall-PyFunctionObject-vectorcallfunc-"></span><code>class procedure <strong>SetVectorcall</strong>(const func: <a href="uP4P.Types.PyFunctionObject.html">PyFunctionObject</a>; vectorcall: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the vectorcall field of a given function object func.
+
+<p>Warning: extensions using this API must preserve the behavior of the unaltered (default) vectorcall function!
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetKwDefaults-IPyObject-"></span><code>class function <strong>GetKwDefaults</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the keyword-only argument default values of the function object op. This can be a dictionary of arguments or nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetKwDefaults-IPyObject-IPyObject-"></span><code>class function <strong>SetKwDefaults</strong>(const op, defaults: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the keyword-only argument default values of the function object op. defaults must be a dictionary of keyword-only arguments or Py_None.
+
+<p>This function returns True on success, and returns False with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetClosure-IPyObject-"></span><code>class function <strong>GetClosure</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the closure associated with the function object op. This can be nil or a tuple of cell objects.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetClosure-IPyObject-IPyObject-"></span><code>class function <strong>SetClosure</strong>(const op, closure: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the closure associated with the function object op. closure must be Py_None or a tuple of cell objects.
+
+<p>Raises SystemError and returns False on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAnnotations-IPyObject-"></span><code>class function <strong>GetAnnotations</strong>(const op: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the annotations of the function object op. This can be a mutable dictionary or nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetAnnotations-IPyObject-IPyObject-"></span><code>class function <strong>SetAnnotations</strong>(const op, annotations: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the annotations for the function object op. annotations must be a dictionary or Py_None.
+
+<p>Raises SystemError and returns False on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddWatcher-PyFunction_WatchCallback-"></span><code>class function <strong>AddWatcher</strong>(callback: <a href="uP4P.Types.html#PyFunction_WatchCallback">PyFunction_WatchCallback</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Register callback as a function watcher for the current interpreter. Return an ID which may be passed to TPyFunction.ClearWatcher(). In case of error (e.g. no more watcher IDs available), return -1 and set an exception.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ClearWatcher-integer-"></span><code>class function <strong>ClearWatcher</strong>(watcher_id: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Clear watcher identified by watcher_id previously returned from TPyFunction.AddWatcher() for the current interpreter. Return True on success, or False and set an exception on error (e.g. if the given watcher_id was never registered.)
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

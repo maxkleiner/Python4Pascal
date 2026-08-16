@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyFrame: Class TPyFrame</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyFrame"></span><h1 class="cio">Class TPyFrame</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyFrame.html">uP4P.PyFrame</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyFrame = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyFrame_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/frame.html#frame-objects">https://docs.python.org/3/c-api/frame.html#frame-objects</a>&quot;&gt;See the article about Frame objects.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyFrame</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#New-PPyThreadState-IPyObject-IPyObject-IPyObject-">New</a></strong>(tstate: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>; const code, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetLineNumber-IPyObject-">GetLineNumber</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetCode-IPyObject-">GetCode</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetBack-IPyObject-">GetBack</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetLocals-IPyObject-">GetLocals</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetGlobals-IPyObject-">GetGlobals</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetBuiltins-IPyObject-">GetBuiltins</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetGenerator-IPyObject-">GetGenerator</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetLasti-IPyObject-">GetLasti</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetVar-IPyObject-IPyObject-">GetVar</a></strong>(const frame, name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#GetVarString-IPyObject-string-">GetVarString</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyFrame.TPyFrame.html#LocalsToFast-IPyObject-boolean-">LocalsToFast</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; clear: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyFrame.TPyFrame.html#FastToLocalsWithError-IPyObject-">FastToLocalsWithError</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyFrame.TPyFrame.html#FastToLocals-IPyObject-">FastToLocals</a></strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-IPyObject-"></span><code>class function <strong>Check</strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return True if aPyObject is a frame object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="New-PPyThreadState-IPyObject-IPyObject-IPyObject-"></span><code>class function <strong>New</strong>(tstate: <a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a>; const code, globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new frame object. This function returns a strong reference to the new frame object on success, and returns nil with an exception set on failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLineNumber-IPyObject-"></span><code>class function <strong>GetLineNumber</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the line number that frame is currently executing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCode-IPyObject-"></span><code>class function <strong>GetCode</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the frame code. Return a strong reference.
+
+<p>The result (frame code) cannot be nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBack-IPyObject-"></span><code>class function <strong>GetBack</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the frame next outer frame.
+
+<p>Return a strong reference, or nil if frame has no outer frame. This raises no exceptions.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLocals-IPyObject-"></span><code>class function <strong>GetLocals</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the frame's f_locals attribute. If the frame refers to an optimized scope, this returns a write-through proxy object that allows modifying the locals. In all other cases (classes, modules, exec(), eval()) it returns the mapping representing the frame locals directly (as described for locals()).
+
+<p>Return a strong reference.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetGlobals-IPyObject-"></span><code>class function <strong>GetGlobals</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the frame's f_globals attribute.
+
+<p>Return a strong reference. The result cannot be nil.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBuiltins-IPyObject-"></span><code>class function <strong>GetBuiltins</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the frame's f_builtins attribute.
+
+<p>Return a strong reference. The result cannot be nil.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetGenerator-IPyObject-"></span><code>class function <strong>GetGenerator</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the generator, coroutine, or async generator that owns this frame, or nil if this frame is not owned by a generator. Does not raise an exception, even if the return value is nil.
+
+<p>Return a strong reference, or nil.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLasti-IPyObject-"></span><code>class function <strong>GetLasti</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns -1 if frame.f_lasti is None.
+
+<p>Added in version 3.11.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetVar-IPyObject-IPyObject-"></span><code>class function <strong>GetVar</strong>(const frame, name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the variable name_ of frame.
+
+<p>Return a strong reference to the variable value on success.
+
+<p>Raise NameError and return nil if the variable does not exist.
+
+<p>Raise an exception and return nil on error.
+
+<p>name_ type must be a str.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetVarString-IPyObject-string-"></span><code>class function <strong>GetVarString</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyFrame.GetVar(), but the variable name_ is a string.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LocalsToFast-IPyObject-boolean-"></span><code>class procedure <strong>LocalsToFast</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; clear: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Prior to Python 3.13, this function would copy the f_locals attribute of f to the internal &quot;fast&quot; array of local variables, allowing changes in frame objects to be visible to the interpreter. If clear was true, this function would process variables that were unset in the locals dictionary.
+
+<p>Soft deprecated since version 3.13: This function now does nothing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FastToLocalsWithError-IPyObject-"></span><code>class function <strong>FastToLocalsWithError</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Prior to Python 3.13, this function was similar to TPyFrame.FastToLocals(), but would return True on success, and False with an exception set on failure.
+
+<p>Soft deprecated since version 3.13: This function now does nothing.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FastToLocals-IPyObject-"></span><code>class procedure <strong>FastToLocals</strong>(const frame: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Prior to Python 3.13, this function would copy the internal &quot;fast&quot; array of local variables (which is used by the interpreter) to the f_locals attribute of f, allowing changes in local variables to be visible to frame objects.
+
+<p>Soft deprecated since version 3.13: This function now does nothing.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

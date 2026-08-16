@@ -36,7 +36,6 @@ type
       /// <para>Overloaded constructor using an existing PyCriticalSection.</para>
       /// </summary>
       constructor Create(const aCriticalSection: PyCriticalSection); overload;
-
       /// <summary>
       /// <para>Acquires the per-object lock for the object op and begins a
       /// critical section.</para>

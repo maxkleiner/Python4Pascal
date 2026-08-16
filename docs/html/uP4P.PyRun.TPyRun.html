@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyRun: Class TPyRun</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyRun"></span><h1 class="cio">Class TPyRun</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyRun.html">uP4P.PyRun</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyRun = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper class for all the PyRun_* methods.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer">https://docs.python.org/3/c-api/veryhigh.html#the-very-high-level-layer</a>&quot;&gt;See the article about The Very High Level Layer.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyRun</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleStringFlags-string-PPyCompilerFlags-">SimpleStringFlags</a></strong>(const command: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#AnyFileExFlags-PFILE-string-boolean-PPyCompilerFlags-">AnyFileExFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFileExFlags-PFILE-string-boolean-PPyCompilerFlags-">SimpleFileExFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveOneFlags-PFILE-string-PPyCompilerFlags-">InteractiveOneFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveOneObject-PFILE-IPyObject-PPyCompilerFlags-">InteractiveOneObject</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveLoopFlags-PFILE-string-PPyCompilerFlags-">InteractiveLoopFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#StringFlags-string-integer-IPyObject-IPyObject-PPyCompilerFlags-">StringFlags</a></strong>(const str: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#FileExFlags-PFILE-string-integer-IPyObject-IPyObject-boolean-PPyCompilerFlags-">FileExFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#String_-string-integer-IPyObject-IPyObject-">String_</a></strong>(const str: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#AnyFile-PFILE-string-">AnyFile</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#AnyFileEx-PFILE-string-boolean-">AnyFileEx</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string; closeit: boolean): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#AnyFileFlags-PFILE-string-PPyCompilerFlags-">AnyFileFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleString-string-">SimpleString</a></strong>(const command: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFile-PFILE-string-">SimpleFile</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFileEx-PFILE-string-boolean-">SimpleFileEx</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveOne-PFILE-string-">InteractiveOne</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveLoop-PFILE-string-">InteractiveLoop</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#File_-PFILE-string-integer-IPyObject-IPyObject-">File_</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#FileEx-PFILE-string-integer-IPyObject-IPyObject-boolean-">FileEx</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; closeit: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#FileFlags-PFILE-string-integer-IPyObject-IPyObject-PPyCompilerFlags-">FileFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleStringFlags-string-PPyCompilerFlags-"></span><code>class function <strong>SimpleStringFlags</strong>(const command: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Executes the Python source code from command in the __main__ module according to the flags argument. If __main__ does not already exist, it is created. Returns True on success or False if an exception was raised. If there was an error, there is no way to get the exception information. For the meaning of flags, see below.
+
+<p>Note that if an otherwise unhandled SystemExit is raised, this function will not return False, but exit the process, as long as PyConfig.inspect is zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AnyFileExFlags-PFILE-string-boolean-PPyCompilerFlags-"></span><code>class function <strong>AnyFileExFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If fp refers to a file associated with an interactive device (console or terminal input or Unix pseudo-terminal), return the value of TPyRun.InteractiveLoop(), otherwise return the result of TPyRun.SimpleFile(). filename is decoded from the filesystem encoding (sys.getfilesystemencoding()). If filename is nil, this function uses &quot;???&quot; as the filename. If closeit is true, the file is closed before TPyRun.SimpleFileExFlags() returns.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleFileExFlags-PFILE-string-boolean-PPyCompilerFlags-"></span><code>class function <strong>SimpleFileExFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyRun.SimpleStringFlags(), but the Python source code is read from fp instead of an in-memory string. filename should be the name of the file, it is decoded from filesystem encoding and error handler. If closeit is true, the file is closed before TPyRun.SimpleFileExFlags() returns.
+
+<p>Note: On Windows, fp should be opened as binary mode (e.g. fopen(filename, &quot;rb&quot;)). Otherwise, Python may not handle script file with LF line ending correctly.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InteractiveOneFlags-PFILE-string-PPyCompilerFlags-"></span><code>class function <strong>InteractiveOneFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyRun.InteractiveOneObject(), but filename is a string, which is decoded from the filesystem encoding and error handler.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InteractiveOneObject-PFILE-IPyObject-PPyCompilerFlags-"></span><code>class function <strong>InteractiveOneObject</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Read and execute a single statement from a file associated with an interactive device according to the flags argument. The user will be prompted using sys.ps1 and sys.ps2. filename must be a Python str object.
+
+<p>Returns True when the input was executed successfully, False if there was an exception, or an error code from the errcode.h include file distributed as part of Python if there was a parse error. (Note that errcode.h is not included by Python.h, so must be included specifically if needed.)
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InteractiveLoopFlags-PFILE-string-PPyCompilerFlags-"></span><code>class function <strong>InteractiveLoopFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Read and execute statements from a file associated with an interactive device until EOF is reached. The user will be prompted using sys.ps1 and sys.ps2. filename is decoded from the filesystem encoding and error handler. Returns 0 at EOF or a negative number upon failure.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="StringFlags-string-integer-IPyObject-IPyObject-PPyCompilerFlags-"></span><code>class function <strong>StringFlags</strong>(const str: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Execute Python source code from str in the context specified by the objects globals and locals with the compiler flags specified by flags. globals must be a dictionary; locals can be any object that implements the mapping protocol. The parameter start specifies the start symbol and must be one of the available start symbols.
+
+<p>Returns the result of executing the code as a Python object, or nil if an exception was raised.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FileExFlags-PFILE-string-integer-IPyObject-IPyObject-boolean-PPyCompilerFlags-"></span><code>class function <strong>FileExFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; closeit: boolean; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyRun.StringFlags(), but the Python source code is read from fp instead of an in-memory string. filename should be the name of the file, it is decoded from the filesystem encoding and error handler. If closeit is true, the file is closed before TPyRun.FileExFlags() returns.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="String_-string-integer-IPyObject-IPyObject-"></span><code>class function <strong>String_</strong>(const str: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.StringFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AnyFile-PFILE-string-"></span><code>class function <strong>AnyFile</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.AnyFileExFlags(), leaving closeit set to False and flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AnyFileEx-PFILE-string-boolean-"></span><code>class function <strong>AnyFileEx</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string; closeit: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.AnyFileExFlags(), leaving the flags argument set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AnyFileFlags-PFILE-string-PPyCompilerFlags-"></span><code>class function <strong>AnyFileFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const name_: string; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.AnyFileExFlags(), leaving the closeit argument set to False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleString-string-"></span><code>class function <strong>SimpleString</strong>(const command: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.SimpleStringFlags(), leaving the PPyCompilerFlags argument set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleFile-PFILE-string-"></span><code>class function <strong>SimpleFile</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.SimpleFileExFlags(), leaving closeit set to False and flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleFileEx-PFILE-string-boolean-"></span><code>class function <strong>SimpleFileEx</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.SimpleFileExFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InteractiveOne-PFILE-string-"></span><code>class function <strong>InteractiveOne</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.InteractiveOneFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InteractiveLoop-PFILE-string-"></span><code>class function <strong>InteractiveLoop</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.InteractiveLoopFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="File_-PFILE-string-integer-IPyObject-IPyObject-"></span><code>class function <strong>File_</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.FileExFlags(), leaving closeit set to False and flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FileEx-PFILE-string-integer-IPyObject-IPyObject-boolean-"></span><code>class function <strong>FileEx</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; closeit: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.FileExFlags(), leaving flags set to nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FileFlags-PFILE-string-integer-IPyObject-IPyObject-PPyCompilerFlags-"></span><code>class function <strong>FileFlags</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.FileExFlags(), leaving closeit set to False.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

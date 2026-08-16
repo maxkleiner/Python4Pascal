@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyUnicodeWriter: Class TPyUnicodeWriter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyUnicodeWriter"></span><h1 class="cio">Class TPyUnicodeWriter</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyUnicodeWriter.html">uP4P.PyUnicodeWriter</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyUnicodeWriter = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyUnicodeWriter.html">IPyUnicodeWriter</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ A Unicode writer instance. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/unicode.html#c.PyUnicodeWriter">https://docs.python.org/3/c-api/unicode.html#c.PyUnicodeWriter</a>&quot;&gt;See the article about PyUnicodeWriter.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyUnicodeWriter</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#FWriter">FWriter</a></strong>: <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetWriter">GetWriter</a></strong>: <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Discard">Discard</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Finish">Finish</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteChar-Py_UCS4-">WriteChar</a></strong>(ch: <a href="uP4P.Types.html#Py_UCS4">Py_UCS4</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteUTF8-PAnsiChar-Py_ssize_t-">WriteUTF8</a></strong>(const str: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteASCII-PAnsiChar-Py_ssize_t-">WriteASCII</a></strong>(const str: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteWideChar-PWCharT-Py_ssize_t-">WriteWideChar</a></strong>(const str: <a href="uP4P.Types.html#PWCharT">PWCharT</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteUCS4-PPy_UCS4-Py_ssize_t-">WriteUCS4</a></strong>(str: <a href="uP4P.Types.html#PPy_UCS4">PPy_UCS4</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteStr-IPyObject-">WriteStr</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteRepr-IPyObject-">WriteRepr</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#WriteSubstring-PPyObject-Py_ssize_t-Py_ssize_t-">WriteSubstring</a></strong>(str: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; start, end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#DecodeUTF8Stateful-PAnsiChar-Py_ssize_t-TPyCodecErrors-Py_ssize_t-">DecodeUTF8Stateful</a></strong>(const string_: PAnsiChar; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; errors: <a href="uP4P.Types.html#TPyCodecErrors">TPyCodecErrors</a>; var consumed: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Create-Py_ssize_t-">Create</a></strong>(length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Initialized">Initialized</a></strong>  : boolean           read <a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#Writer">Writer</a></strong>       : <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>  read <a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetWriter">GetWriter</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FWriter"></span><code><strong>FWriter</strong>: <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetWriter"></span><code>function <strong>GetWriter</strong>: <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Discard"></span><code>procedure <strong>Discard</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Discard the internal Unicode buffer and destroy the writer instance.
+
+<p>The writer instance is invalid after this call.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Finish"></span><code>function <strong>Finish</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the final Python str object and destroy the writer instance.
+
+<p>Set an exception and return nil on error.
+
+<p>The writer instance is invalid after this call.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteChar-Py_UCS4-"></span><code>function <strong>WriteChar</strong>(ch: <a href="uP4P.Types.html#Py_UCS4">Py_UCS4</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Write the single Unicode character ch into writer.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteUTF8-PAnsiChar-Py_ssize_t-"></span><code>function <strong>WriteUTF8</strong>(const str: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Decode the string str from UTF-8 in strict mode and write the output into writer.
+
+<p>size_ is the string length in bytes. If size is equal to -1, call strlen(str) to get the string length.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p>See also DecodeUTF8Stateful().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteASCII-PAnsiChar-Py_ssize_t-"></span><code>function <strong>WriteASCII</strong>(const str: PAnsiChar; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Write the ASCII string str into writer.
+
+<p>size_ is the string length in bytes. If size_ is equal to -1, call strlen(str) to get the string length.
+
+<p>str must only contain ASCII characters. The behavior is undefined if str contains non-ASCII characters.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteWideChar-PWCharT-Py_ssize_t-"></span><code>function <strong>WriteWideChar</strong>(const str: <a href="uP4P.Types.html#PWCharT">PWCharT</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Write the wide string str into writer.
+
+<p>size_ is a number of wide characters. If size_ is equal to -1, call wcslen(str) to get the string length.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteUCS4-PPy_UCS4-Py_ssize_t-"></span><code>function <strong>WriteUCS4</strong>(str: <a href="uP4P.Types.html#PPy_UCS4">PPy_UCS4</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Writer the UCS4 string str into writer.
+
+<p>size_ is a number of UCS4 characters.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteStr-IPyObject-"></span><code>function <strong>WriteStr</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call TPyObject.Str() on obj and write the output into writer.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p>To write a str subclass which overrides the __str__() method, TPyUnicode.FromObject() can be used to get the original string.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteRepr-IPyObject-"></span><code>function <strong>WriteRepr</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Call TPyObject.Repr() on obj and write the output into writer.
+
+<p>If obj is nil, write the string &quot;&lt;NULL&gt;&quot; into writer.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p>Changed in version 3.14.4: Added support for nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="WriteSubstring-PPyObject-Py_ssize_t-Py_ssize_t-"></span><code>function <strong>WriteSubstring</strong>(str: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; start, end_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Write the substring str[start:end] into writer.
+
+<p>str must be Python str object. start must be greater than or equal to 0, and less than or equal to end. end must be less than or equal to str length.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DecodeUTF8Stateful-PAnsiChar-Py_ssize_t-TPyCodecErrors-Py_ssize_t-"></span><code>function <strong>DecodeUTF8Stateful</strong>(const string_: PAnsiChar; length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; errors: <a href="uP4P.Types.html#TPyCodecErrors">TPyCodecErrors</a>; var consumed: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Decode string_ from UTF-8 with errors error handler and write the output into writer.
+
+<p>size_ is the string length in bytes. If size_ is equal to -1, call strlen(string_) to get the string length.
+
+<p>errors is an error handler name, such as &quot;replace&quot;. If errors is nil, use the strict error handler.
+
+<p>If consumed is not nil, set *consumed to the number of decoded bytes on success. If consumed is nil, treat trailing incomplete UTF-8 byte sequences as an error.
+
+<p>On success, return True. On error, set an exception, leave the writer unchanged, and return False.
+
+<p>See also WriteUTF8().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-Py_ssize_t-"></span><code>constructor <strong>Create</strong>(length: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a Unicode writer instance.
+
+<p>length must be greater than or equal to 0.
+
+<p>If length is greater than 0, preallocate an internal buffer of length characters.
+
+<p>Set an exception on error.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean           read <a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if this class is fully initialized. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Writer"></span><code>property <strong>Writer</strong>       : <a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a>  read <a href="uP4P.PyUnicodeWriter.TPyUnicodeWriter.html#GetWriter">GetWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Pointer to the PyUnicodeWriter record. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>
