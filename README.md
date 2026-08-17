@@ -10,7 +10,7 @@ Python4Pascal was developed and tested on Delphi 13.1, Delphi XE2, Delphi 7 and 
 
 ## Links
 * [Developer Forums](https://www.briskbard.com/forum)
-* [Python downloads](https://www.python.org/downloads/)
+* [Python Downloads](https://www.python.org/downloads/)
 * [Python Repository](https://github.com/python/cpython)
 * [Python Website](https://www.python.org/)
 * [Python Documentation](https://www.python.org/doc/)
