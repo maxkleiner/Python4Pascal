@@ -11,6 +11,10 @@ Python4Pascal was developed and tested on Delphi 13.1, Delphi XE2, Delphi 7 and 
 ## Links
 * [Developer Forums](https://www.briskbard.com/forum)
 * [Python downloads](https://www.python.org/downloads/)
+* [Python Repository](https://github.com/python/cpython)
+* [Python Website](https://www.python.org/)
+* [Python Documentation](https://www.python.org/doc/)
+* [Python Enhancement Proposals](https://peps.python.org/)
 
 ## Support
 If you find this project useful, please consider making a donation.
@@ -34,7 +38,14 @@ You can also support this project with Liberapay.
 * [VirtualTouchKeyboard4Delphi](https://github.com/salvadordf/VirtualTouchKeyboard4Delphi)
 
 ## Other resources
-* [Python Repository](https://github.com/python/cpython)
-* [Python Website](https://www.python.org/)
-* [Python Documentation](https://www.python.org/doc/)
-* [Python Enhancement Proposals](https://peps.python.org/)
+* [Learn Delphi](https://learndelphi.org/)
+* [Essential Pascal by Marco Cantù](https://www.marcocantu.com/epascal/)
+* [Free Pascal Reference guide](https://www.freepascal.org/docs-html/ref/ref.html)
+* [Modern Object Pascal Introduction for Programmers](https://castle-engine.io/modern_pascal)
+* [FreePascal from Square One by Jeff Duntemann](http://www.copperwood.com/pub/FreePascalFromSquareOne.pdf)
+* [Pascal and Lazarus Books and Magazines](https://wiki.freepascal.org/Pascal_and_Lazarus_Books_and_Magazines)
+* [Lazarus Documentation](https://wiki.freepascal.org/Lazarus_Documentation)
+* [Delphi Succinctly](https://www.syncfusion.com/succinctly-free-ebooks/delphi)
+* [Start Programming using Object Pascal](https://code.sd/startprog/StartProgUsingPascal.pdf)
+* [Free Pascal and Lazarus Programming Textbook](https://sourceforge.net/p/lazarus-wiki-projects/code/ci/master/tree/FPC_Lazarus_Textbook/)
+* [LAZARUS FREE PASCAL Développement rapide](https://lazaruscomponents.com/2025/11/08/livrel-lazarus-free-pascad/)
