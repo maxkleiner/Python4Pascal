@@ -1,2 +1,40 @@
-# Python4Pascal
-Python4Pascal
+# Python4Pascal [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Use%20Python4Pascal%20to%20embed%20Pythond%20in%20your%20application&url=https://github.com/salvadordf/Python4Pascal&via=briskbard&hashtags=Python4Pascal,delphi,lazarus,fpc)
+
+Python4Pascal is an open source project used to embed Python in applications made with [Delphi](https://www.embarcadero.com/products/delphi/starter) or [Lazarus/FPC](https://www.lazarus-ide.org/).
+
+Python4Pascal is based in the [Python4Delphi project](https://github.com/lmbelo/python4delphi) made by Kiriakos Vlahos [PyScripter](https://github.com/pyscripter).
+
+Python4Pascal supports Windows, Linux, macOS and Android.
+
+Python4Pascal was developed and tested on Delphi 13.1, Delphi XE2, Delphi 7 and Lazarus 4.8/FPC 3.2.2. 
+
+## Links
+* [Developer Forums](https://www.briskbard.com/forum)
+* [Python downloads](https://www.python.org/downloads/)
+
+## Support
+If you find this project useful, please consider making a donation.
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FTSD2CCGXTD86)
+
+You can also support this project with Patreon.
+
+<a href="https://patreon.com/salvadordf"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Patreon donate button" /></a>
+
+You can also support this project with Liberapay.
+
+<a href="https://liberapay.com/salvadordf/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+
+## Related projects
+* [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) 
+* [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi)
+* [WebUI4Delphi](https://github.com/salvadordf/WebUI4Delphi)
+* [WebUI4CSharp](https://github.com/salvadordf/WebUI4CSharp)
+* [Tesseract4Delphi](https://github.com/salvadordf/Tesseract4Delphi)
+* [VirtualTouchKeyboard4Delphi](https://github.com/salvadordf/VirtualTouchKeyboard4Delphi)
+
+## Other resources
+* [Python Repository](https://github.com/python/cpython)
+* [Python Website](https://www.python.org/)
+* [Python Documentation](https://www.python.org/doc/)
+* [Python Enhancement Proposals](https://peps.python.org/)
