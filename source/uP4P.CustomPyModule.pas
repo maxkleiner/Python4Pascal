@@ -473,9 +473,7 @@ end;
 procedure TCustomPyModule.AddAllSlots;
 begin
   AddExecSlot(@Exec_Module);
-
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    AddMultipleInterpretersSlot(FMultIntprSupport);
+  AddMultipleInterpretersSlot(FMultIntprSupport);
 end;
 
 procedure TCustomPyModule.AddAllMethods;
