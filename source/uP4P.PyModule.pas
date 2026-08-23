@@ -168,7 +168,7 @@ type
       /// <para>The new TPyModule.Add() or TPyModule.AddObjectRef() functions
       /// are recommended, since it is easy to introduce reference leaks by
       /// misusing the TPyModule.AddObject() function.</para>
-      /// <para>Note Unlike other functions that steal references,
+      /// <para>Note: Unlike other functions that steal references,
       /// TPyModule.AddObject() only releases the reference to value on
       /// success.</para>
       /// <para>This means that its return value must be checked, and calling
@@ -246,8 +246,7 @@ type
       /// <summary>
       /// <para>Create a new module object, given the definition in def.
       /// This function calls TPyModule.Create2() with module_api_version set
-      /// to PYTHON_API_VERSION, or to PYTHON_ABI_VERSION if using the
-      /// limited API.</para>
+      /// to PYTHON_API_VERSION.</para>
       /// </summary>
       class function Create(def: PPyModuleDef): IPyObject;
       /// <summary>
@@ -258,15 +257,14 @@ type
       /// <para>Return nil with an exception set on error.</para>
       /// <para>This function does not support slots. The m_slots member of def
       /// must be nil.</para>
-      /// <para>Note Most uses of this function should be using
+      /// <para>Note: Most uses of this function should be using
       /// TPyModule.Create() instead; only use this if you are sure you need
       /// it.</para>
       /// </summary>
       class function Create2(def: PPyModuleDef; module_api_version: integer): IPyObject;
       /// <summary>
       /// <para>This macro calls TPyModule.FromDefAndSpec2() with
-      /// module_api_version set to PYTHON_API_VERSION, or to PYTHON_ABI_VERSION
-      /// if using the limited API.</para>
+      /// module_api_version set to PYTHON_API_VERSION.</para>
       /// </summary>
       class function FromDefAndSpec(def: PPyModuleDef; const spec: IPyObject): IPyObject;
       /// <summary>
@@ -278,7 +276,7 @@ type
       /// <para>Note that this does not process execution slots (Py_mod_exec).
       /// Both TPyModule.FromDefAndSpec and TPyModule.ExecDef must be called to
       /// fully initialize a module.</para>
-      /// <para>Note Most uses of this function should be using
+      /// <para>Note: Most uses of this function should be using
       /// TPyModule.FromDefAndSpec() instead; only use this if you are sure you
       /// need it.</para>
       /// </summary>
@@ -426,10 +424,12 @@ begin
      TPyObject.IsInitialized(value) then
     begin
       TempName := StringToPyUTF8(name_);
-      Result   := (PyModule_Add(module_.PyObject, PAnsiChar(TempName), value.PyObject) = 0);
 
-      if not(Result) then
-        value.ObjRefOwner := False;  
+      if (PyModule_Add(module_.PyObject, PAnsiChar(TempName), value.PyObject) = 0) then
+        begin
+          Result := True;
+          value.InitPyObject;
+        end;
     end;
 end;
 
