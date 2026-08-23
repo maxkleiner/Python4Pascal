@@ -22,6 +22,7 @@ type
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/module.html#module-objects">See the article about Module Objects.</see></para>
+  /// <para><see href="https://docs.python.org/3/reference/datamodel.html#modules">See the article about Modules.</see></para>
   /// </remarks>
   TPyModule = class
     public

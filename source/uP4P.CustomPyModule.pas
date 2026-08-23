@@ -340,19 +340,27 @@ end;
 
 function TCustomPyModule.AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
 begin
-  case aSupport of
-    miUnsupported  : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
-    piGilSupported : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
-    else             Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
-  end;
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    case aSupport of
+      miUnsupported  : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
+      piGilSupported : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
+      else             Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
+    end
+   else
+    Result := False;
 end;
 
 function TCustomPyModule.AddGILSlot(aGILUsed: boolean): boolean;
 begin
-  if aGILUsed then
-    Result := AddSlot(Py_mod_gil, Py_MOD_GIL_USED)
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 13, 0) then
+    begin
+      if aGILUsed then
+        Result := AddSlot(Py_mod_gil, Py_MOD_GIL_USED)
+       else
+        Result := AddSlot(Py_mod_gil, Py_MOD_GIL_NOT_USED);
+    end
    else
-    Result := AddSlot(Py_mod_gil, Py_MOD_GIL_NOT_USED);
+    Result := False;
 end;
 
 procedure TCustomPyModule.DestroySlotList;

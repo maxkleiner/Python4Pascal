@@ -22,6 +22,7 @@ type
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
   /// </remarks>
   TPyModuleDef = class
     public
