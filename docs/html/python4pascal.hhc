@@ -7006,6 +7006,14 @@
 <param name="Local" value="uP4P.PyBool.TPyBool.html#FromVariant">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="NewFalse">
+<param name="Local" value="uP4P.PyBool.TPyBool.html#NewFalse">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="NewTrue">
+<param name="Local" value="uP4P.PyBool.TPyBool.html#NewTrue">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ReturnFalse">
 <param name="Local" value="uP4P.PyBool.TPyBool.html#ReturnFalse">
 </object>
@@ -12117,6 +12125,10 @@
 <param name="Name" value="Check">
 <param name="Local" value="uP4P.PyEllipsis.TPyEllipsis.html#Check">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnEllipsis">
+<param name="Local" value="uP4P.PyEllipsis.TPyEllipsis.html#ReturnEllipsis">
+</object>
 </ul>
 </ul>
 </ul>
@@ -15609,6 +15621,10 @@
 <param name="Name" value="Init">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="Init2">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init2">
+</object>
 </ul>
 </ul>
 </ul>
@@ -15765,6 +15781,10 @@
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyNone.TPyNone.html#New">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnNone">
+<param name="Local" value="uP4P.PyNone.TPyNone.html#ReturnNone">
+</object>
 </ul>
 </ul>
 </ul>
@@ -15792,6 +15812,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyNotImplemented.TPyNotImplemented.html#New">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnNotImplemented">
+<param name="Local" value="uP4P.PyNotImplemented.TPyNotImplemented.html#ReturnNotImplemented">
 </object>
 </ul>
 </ul>
@@ -34458,6 +34482,14 @@
 <param name="Local" value="uP4P.PyBool.TPyBool.html#FromVariant">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="NewFalse">
+<param name="Local" value="uP4P.PyBool.TPyBool.html#NewFalse">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="NewTrue">
+<param name="Local" value="uP4P.PyBool.TPyBool.html#NewTrue">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ReturnFalse">
 <param name="Local" value="uP4P.PyBool.TPyBool.html#ReturnFalse">
 </object>
@@ -39217,6 +39249,10 @@
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyEllipsis.TPyEllipsis.html#New">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnEllipsis">
+<param name="Local" value="uP4P.PyEllipsis.TPyEllipsis.html#ReturnEllipsis">
+</object>
 </ul>
 </ul>
 <li><object type="text/sitemap">
@@ -42277,6 +42313,10 @@
 <param name="Name" value="Init">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="Init2">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init2">
+</object>
 </ul>
 </ul>
 <li><object type="text/sitemap">
@@ -42385,6 +42425,10 @@
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyNone.TPyNone.html#New">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnNone">
+<param name="Local" value="uP4P.PyNone.TPyNone.html#ReturnNone">
+</object>
 </ul>
 </ul>
 <li><object type="text/sitemap">
@@ -42400,6 +42444,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyNotImplemented.TPyNotImplemented.html#New">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ReturnNotImplemented">
+<param name="Local" value="uP4P.PyNotImplemented.TPyNotImplemented.html#ReturnNotImplemented">
 </object>
 </ul>
 </ul>

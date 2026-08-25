@@ -43,11 +43,19 @@ type
       /// <summary>
       /// <para>Return a IPyObject instance wrapping a False boolean.</para>
       /// </summary>
-      class function ReturnFalse: IPyObject;
+      class function NewFalse: IPyObject;
       /// <summary>
       /// <para>Return a IPyObject instance wrapping a True boolean.</para>
       /// </summary>
-      class function ReturnTrue: IPyObject;
+      class function NewTrue: IPyObject;
+      /// <summary>
+      /// <para>Return a valid Py_False pointer.</para>
+      /// </summary>
+      class function ReturnFalse: PPyObject;
+      /// <summary>
+      /// <para>Return a valid Py_True pointer.</para>
+      /// </summary>
+      class function ReturnTrue: PPyObject;
       /// <summary>
       /// <para>Return true if aPyObject is of type PyBool_Type. This function
       /// always succeeds.</para>
@@ -58,7 +66,7 @@ type
 implementation
 
 uses
-  uP4P.Engine;
+  uP4P.Engine, uP4P.Py;
 
 class function TPyBool.FromLong(aValue: C_Long): IPyObject;
 begin
@@ -90,25 +98,41 @@ begin
   Result := FromVariant(TempVariant, VarType(TempVariant) and (VarTypeMask or VarArray));
 end;
 
-class function TPyBool.ReturnFalse: IPyObject;
+class function TPyBool.NewFalse: IPyObject;
 begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     Result := TPyObject.Wrap(Py_False, False)
    else
-    Result := TPyObject.Wrap(Py_NewRef(PPyObject(Py_False)), True);
+    Result := TPyObject.Wrap(Py_False, True, True);
 end;
 
-class function TPyBool.ReturnTrue: IPyObject;
+class function TPyBool.NewTrue: IPyObject;
 begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     Result := TPyObject.Wrap(Py_True, False)
    else
-    Result := TPyObject.Wrap(Py_NewRef(PPyObject(Py_True)), True);
+    Result := TPyObject.Wrap(Py_True, True, True);
 end;
 
 class function TPyBool.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and aPyObject.IsType(PyBool_Type);
+end;
+
+class function TPyBool.ReturnFalse: PPyObject;
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    Result := PPyObject(Py_False)
+   else
+    Result := TPy.NewRef(Py_False);
+end;
+
+class function TPyBool.ReturnTrue: PPyObject;
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    Result := PPyObject(Py_True)
+   else
+    Result := TPy.NewRef(Py_True);
 end;
 
 end.

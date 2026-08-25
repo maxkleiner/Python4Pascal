@@ -205,8 +205,6 @@ begin
 end;
 
 class function TPyFunction.SetDefaults(const op, defaults: IPyObject): boolean;
-var
-  TempNone : IPyObject;
 begin
   Result := False;
 
@@ -216,11 +214,7 @@ begin
       if TPyObject.IsInitialized(defaults) then
         Result := (PyFunction_SetDefaults(op.PyObject, defaults.PyObject) <> -1)
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := (PyFunction_SetDefaults(op.PyObject, TempNone.PyObject) <> -1);
-          TempNone := nil;
-        end;
+        Result := (PyFunction_SetDefaults(op.PyObject, TPyNone.ReturnNone) <> -1);
     end;
 end;
 
@@ -240,8 +234,6 @@ begin
 end;
 
 class function TPyFunction.SetKwDefaults(const op, defaults: IPyObject): boolean;
-var
-  TempNone : IPyObject;
 begin
   Result := False;
 
@@ -251,11 +243,7 @@ begin
       if TPyObject.IsInitialized(defaults) then
         Result := (PyFunction_SetKwDefaults(op.PyObject, defaults.PyObject) = 0)
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := (PyFunction_SetKwDefaults(op.PyObject, TempNone.PyObject) = 0);
-          TempNone := nil;
-        end;
+        Result := (PyFunction_SetKwDefaults(op.PyObject, TPyNone.ReturnNone) = 0);
     end;
 end;
 
@@ -269,8 +257,6 @@ begin
 end;
 
 class function TPyFunction.SetClosure(const op, closure: IPyObject): boolean;
-var
-  TempNone : IPyObject;
 begin
   Result := False;
 
@@ -280,11 +266,7 @@ begin
       if TPyObject.IsInitialized(closure) then
         Result := (PyFunction_SetClosure(op.PyObject, closure.PyObject) <> -1)
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := (PyFunction_SetClosure(op.PyObject, TempNone.PyObject) <> -1);
-          TempNone := nil;
-        end;
+        Result := (PyFunction_SetClosure(op.PyObject, TPyNone.ReturnNone) <> -1);
     end;
 end;
 
@@ -298,8 +280,6 @@ begin
 end;
 
 class function TPyFunction.SetAnnotations(const op, annotations: IPyObject): boolean;
-var
-  TempNone : IPyObject;
 begin
   Result := False;
 
@@ -309,11 +289,7 @@ begin
       if TPyObject.IsInitialized(annotations) then
         Result := (PyFunction_SetAnnotations(op.PyObject, annotations.PyObject) <> -1)
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := (PyFunction_SetAnnotations(op.PyObject, TempNone.PyObject) <> -1);
-          TempNone := nil;
-        end;
+        Result := (PyFunction_SetAnnotations(op.PyObject, TPyNone.ReturnNone) <> -1);
     end;
 end;
 

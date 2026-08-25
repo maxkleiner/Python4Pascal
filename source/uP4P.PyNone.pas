@@ -30,12 +30,16 @@ type
       /// <para>Return an IPyObject instance of the Python None object.</para>
       /// </summary>
       class function New: IPyObject;
+      /// <summary>
+      /// <para>Return a valid Py_None pointer.</para>
+      /// </summary>
+      class function ReturnNone: PPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.Engine;
+  uP4P.Engine, uP4P.Py;
 
 class function TPyNone.New: IPyObject;
 begin
@@ -43,6 +47,14 @@ begin
     Result := TPyObject.Wrap(Py_None, False)
    else
     Result := TPyObject.Wrap(Py_None, True, True);
+end;
+
+class function TPyNone.ReturnNone: PPyObject;
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    Result := Py_None
+   else
+    Result := TPy.NewRef(Py_None);
 end;
 
 end.

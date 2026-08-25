@@ -34,12 +34,16 @@ type
       /// <para>Return true if aPyObject is of type PyEllipsis_Type.</para>
       /// </summary>
       class function Check(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Return a valid Py_Ellipsis pointer.</para>
+      /// </summary>
+      class function ReturnEllipsis: PPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.Engine;
+  uP4P.Engine, uP4P.Py;
 
 class function TPyEllipsis.New: IPyObject;
 begin
@@ -53,6 +57,14 @@ class function TPyEllipsis.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
             aPyObject.IsType(PyEllipsis_Type);
+end;
+
+class function TPyEllipsis.ReturnEllipsis: PPyObject;
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    Result := Py_Ellipsis
+   else
+    Result := TPy.NewRef(Py_Ellipsis);
 end;
 
 end.

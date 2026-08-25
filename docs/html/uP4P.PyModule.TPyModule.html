@@ -31,7 +31,9 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#module-objects">https://docs.python.org/3/c-api/module.html#module-objects</a>&quot;&gt;See the article about Module Objects.)</p>
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#module-objects">https://docs.python.org/3/c-api/module.html#module-objects</a>&quot;&gt;See the article about Module Objects.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/reference/datamodel.html#modules">https://docs.python.org/3/reference/datamodel.html#modules</a>&quot;&gt;See the article about Modules.)</p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TObject</li>
 <li class="thisitem">TPyModule</li></ul><h2 class="overview">Overview</h2>
@@ -399,7 +401,7 @@ if (PyModule_Add(module, &quot;spam&quot;, PyBytes_FromString(value)) &lt; 0) {
 
 <p>The new TPyModule.Add() or TPyModule.AddObjectRef() functions are recommended, since it is easy to introduce reference leaks by misusing the TPyModule.AddObject() function.
 
-<p>Note Unlike other functions that steal references, TPyModule.AddObject() only releases the reference to value on success.
+<p>Note: Unlike other functions that steal references, TPyModule.AddObject() only releases the reference to value on success.
 
 <p>This means that its return value must be checked, and calling code must TPy.XDECREF() value manually on error.
 
@@ -529,7 +531,7 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 <p>
 
 
-<p>Create a new module object, given the definition in def. This function calls TPyModule.Create2() with module_api_version set to PYTHON_API_VERSION, or to PYTHON_ABI_VERSION if using the limited API.
+<p>Create a new module object, given the definition in def. This function calls TPyModule.Create2() with module_api_version set to PYTHON_API_VERSION.
 
 <p></p>
 </td></tr>
@@ -549,7 +551,7 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 
 <p>This function does not support slots. The m_slots member of def must be nil.
 
-<p>Note Most uses of this function should be using TPyModule.Create() instead; only use this if you are sure you need it.
+<p>Note: Most uses of this function should be using TPyModule.Create() instead; only use this if you are sure you need it.
 
 <p></p>
 </td></tr>
@@ -563,7 +565,7 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 <p>
 
 
-<p>This macro calls TPyModule.FromDefAndSpec2() with module_api_version set to PYTHON_API_VERSION, or to PYTHON_ABI_VERSION if using the limited API.
+<p>This macro calls TPyModule.FromDefAndSpec2() with module_api_version set to PYTHON_API_VERSION.
 
 <p></p>
 </td></tr>
@@ -583,7 +585,7 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 
 <p>Note that this does not process execution slots (Py_mod_exec). Both TPyModule.FromDefAndSpec and TPyModule.ExecDef must be called to fully initialize a module.
 
-<p>Note Most uses of this function should be using TPyModule.FromDefAndSpec() instead; only use this if you are sure you need it.
+<p>Note: Most uses of this function should be using TPyModule.FromDefAndSpec() instead; only use this if you are sure you need it.
 
 <p></p>
 </td></tr>

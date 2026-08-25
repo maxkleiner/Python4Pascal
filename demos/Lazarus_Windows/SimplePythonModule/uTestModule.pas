@@ -45,7 +45,7 @@ begin
      (TempModule is TTestModule) then
     Result := TTestModule(TempModule).Write(args)
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 function mytest_read(self, args: PPyObject): PPyObject; cdecl;
@@ -59,7 +59,7 @@ begin
      (TempModule is TTestModule) then
     Result := TTestModule(TempModule).Read(args)
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 procedure TTestModule.AddAllMethods;
@@ -82,7 +82,7 @@ begin
       TMainForm(FMainForm).CustomValue := TempItem.AsString;
     end;
 
-  Result := TPyNone.New.PyObject;
+  Result := TPyNone.ReturnNone;
 end;
 
 function TTestModule.Read(args: PPyObject): PPyObject;
@@ -95,7 +95,7 @@ begin
       Result     := TempResult.UnWrap;
     end
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 end.

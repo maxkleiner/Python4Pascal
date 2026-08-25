@@ -47,11 +47,19 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#ReturnFalse">ReturnFalse</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#NewFalse">NewFalse</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#ReturnTrue">ReturnTrue</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#NewTrue">NewTrue</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#ReturnFalse">ReturnFalse</a></strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBool.TPyBool.html#ReturnTrue">ReturnTrue</a></strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -105,7 +113,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="ReturnFalse"></span><code>class function <strong>ReturnFalse</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><span id="NewFalse"></span><code>class function <strong>NewFalse</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -119,13 +127,41 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="ReturnTrue"></span><code>class function <strong>ReturnTrue</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><span id="NewTrue"></span><code>class function <strong>NewTrue</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
 
 
 <p>Return a IPyObject instance wrapping a True boolean.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReturnFalse"></span><code>class function <strong>ReturnFalse</strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a valid Py_False pointer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ReturnTrue"></span><code>class function <strong>ReturnTrue</strong>: <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a valid Py_True pointer.
 
 <p></p>
 </td></tr>

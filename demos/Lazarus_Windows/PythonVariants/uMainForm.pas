@@ -99,6 +99,9 @@ begin
       // See demo 25 in P4D. See FPC tickets #39815 and #20849 :
       // https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
       // https://gitlab.com/freepascal.org/fpc/source/-/work_items/20849
+      // https://github.com/lmbelo/python4delphi/issues/498
+      // https://github.com/lmbelo/python4delphi/wiki/SupportedPlatforms
+      // https://gitlab.com/freepascal.org/fpc/source/-/work_items/41235
       LogMem.Lines.Add('MyClass.x = ' + inttostr(TempClass.x));
       TempClass.x := TempClass.x * TempClass.x;
       LogMem.Lines.Add('MyClass.x * TempClass.x = ' + inttostr(TempClass.x));

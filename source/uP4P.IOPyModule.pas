@@ -68,10 +68,10 @@ begin
            (TempModule is TIOPyModule) then
           Result := TIOPyModule(TempModule).Write(args)
          else
-          Result := TPyNone.New.PyObject;
+          Result := TPyNone.ReturnNone;
     end
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 function pyio_read(self, args: PPyObject): PPyObject; cdecl;
@@ -89,10 +89,10 @@ begin
            (TempModule is TIOPyModule) then
           Result := TIOPyModule(TempModule).Read(args)
          else
-          Result := TPyNone.New.PyObject;
+          Result := TPyNone.ReturnNone;
     end
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 procedure TIOPyModule.AddAllMethods;
@@ -118,7 +118,7 @@ begin
       GlobalP4PEngine.doOnOutputMessage(TempItem.AsString);
     end;
 
-  Result := TPyNone.New.PyObject;
+  Result := TPyNone.ReturnNone;
 end;
 
 function TIOPyModule.Read(args: PPyObject): PPyObject;
@@ -129,7 +129,7 @@ begin
      GlobalP4PEngine.doOnInputMessage(TempResult) then
     Result := TempResult.UnWrap
    else
-    Result := TPyNone.New.PyObject;
+    Result := TPyNone.ReturnNone;
 end;
 
 class function TIOPyModule.RunInitCode: boolean;

@@ -27,7 +27,9 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization</a>&quot;&gt;See the article about Multi-phase initialization.)</p>
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization</a>&quot;&gt;See the article about Multi-phase initialization.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">https://docs.python.org/3/c-api/structures.html#c.PyMethodDef</a>&quot;&gt;See the article about PyMethodDef.)</p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TObject</li>
 <li class="thisitem">TPyModuleDef</li></ul><h2 class="overview">Overview</h2>
@@ -36,6 +38,10 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Init-PyModuleDef-">Init</a></strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Init2-PyModuleDef-">Init2</a></strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -52,6 +58,26 @@ body { margin: 0.5em; }
 <p>Ensure a module definition is a properly initialized Python object that correctly reports its type and a reference count.
 
 <p>Return def cast to PPyObject, or nil if an error occurred.
+
+<p>Calling this function is required for Multi-phase initialization. It should not be used in other contexts.
+
+<p>Note that Python assumes that PyModuleDef structures are statically allocated. This function may return either a new reference or a borrowed one; this reference must not be released.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Init2-PyModuleDef-"></span><code>class function <strong>Init2</strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Ensure a module definition is a properly initialized Python object that correctly reports its type and a reference count.
+
+<p>Return def wrapped as IPyObject, or nil if an error occurred.
 
 <p>Calling this function is required for Multi-phase initialization. It should not be used in other contexts.
 

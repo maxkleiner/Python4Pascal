@@ -367,8 +367,6 @@ begin
 end;
 
 class function TPyNumber.Power(const o1, o2, o3: IPyObject): IPyObject;
-var
-  TempNone : IPyObject;
 begin
   Result := nil;
 
@@ -381,11 +379,7 @@ begin
       if assigned(o3) and o3.Initialized then
         Result := TPyObject.Wrap(PyNumber_Power(o1.PyObject, o2.PyObject, o3.PyObject))
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := TPyObject.Wrap(PyNumber_Power(o1.PyObject, o2.PyObject, TempNone.PyObject));
-          TempNone := nil;
-        end;
+        Result := TPyObject.Wrap(PyNumber_Power(o1.PyObject, o2.PyObject, TPyNone.ReturnNone));
     end;
 end;
 
@@ -616,8 +610,6 @@ begin
 end;
 
 class function TPyNumber.InPlacePower(const o1, o2, o3: IPyObject): IPyObject;
-var
-  TempNone : IPyObject;
 begin
   Result := nil;
 
@@ -630,11 +622,7 @@ begin
       if assigned(o3) and o3.Initialized then
         Result := TPyObject.Wrap(PyNumber_InPlacePower(o1.PyObject, o2.PyObject, o3.PyObject))
        else
-        begin
-          TempNone := TPyNone.New;
-          Result   := TPyObject.Wrap(PyNumber_InPlacePower(o1.PyObject, o2.PyObject, TempNone.PyObject));
-          TempNone := nil;
-        end;
+        Result := TPyObject.Wrap(PyNumber_InPlacePower(o1.PyObject, o2.PyObject, TPyNone.ReturnNone));
     end;
 end;
 

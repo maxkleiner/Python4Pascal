@@ -32,12 +32,16 @@ type
       /// object.</para>
       /// </summary>
       class function New: IPyObject;
+      /// <summary>
+      /// <para>Return a valid Py_NotImplemented pointer.</para>
+      /// </summary>
+      class function ReturnNotImplemented: PPyObject;
   end;
 
 implementation
 
 uses
-  uP4P.Engine;
+  uP4P.Engine, uP4P.Py;
 
 class function TPyNotImplemented.New: IPyObject;
 begin
@@ -45,6 +49,14 @@ begin
     Result := TPyObject.Wrap(Py_NotImplemented, False)
    else
     Result := TPyObject.Wrap(Py_NotImplemented, True, True);
+end;
+
+class function TPyNotImplemented.ReturnNotImplemented: PPyObject;
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    Result := Py_NotImplemented
+   else
+    Result := TPy.NewRef(Py_NotImplemented);
 end;
 
 end.
