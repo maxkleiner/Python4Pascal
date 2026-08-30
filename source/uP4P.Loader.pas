@@ -1253,7 +1253,7 @@ end;
 
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
-  {$IFDEF MSWINDOWS}TempLibPath, TempPackagesPath,{$ENDIF} TempPath : string;
+  {$IFDEF MSWINDOWS}TempLibPath, TempDLLPath, TempPackagesPath,{$ENDIF} TempPath : string;
   TempValidPath : boolean;
 begin
   Result            := False;
@@ -1272,11 +1272,17 @@ begin
   if (length(FModuleSearchPaths) = 0) and (length(FHome) > 0) then
     begin
       TempLibPath      := IncludeTrailingPathDelimiter(FHome) + 'Lib';
+      TempDLLPath      := IncludeTrailingPathDelimiter(FHome) + 'DLLs';
       TempPackagesPath := IncludeTrailingPathDelimiter(TempLibPath) + 'site-packages';
 
       if DirectoryExists(TempLibPath) and
          DirectoryExists(TempPackagesPath) then
-        FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath;
+        begin
+          if DirectoryExists(TempDLLPath) then
+            FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath + PathSep + TempDLLPath
+           else
+            FModuleSearchPaths := TempLibPath + PathSep + TempPackagesPath;
+        end;
     end;   
   {$ENDIF}
 
