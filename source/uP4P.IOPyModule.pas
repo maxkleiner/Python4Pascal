@@ -115,7 +115,8 @@ begin
   if TPyTuple.Check(TempArgs) then
     begin
       TempItem := TPyTuple.GetItem(TempArgs, 0);
-      GlobalP4PEngine.doOnOutputMessage(TempItem.AsString);
+      if assigned(TempItem) then
+        GlobalP4PEngine.doOnOutputMessage(TempItem.AsString);
     end;
 
   Result := TPyNone.ReturnNone;
@@ -125,8 +126,11 @@ function TIOPyModule.Read(args: PPyObject): PPyObject;
 var
   TempResult : IPyObject;
 begin
+  TempResult := nil;
+
   if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.doOnInputMessage(TempResult) then
+     GlobalP4PEngine.doOnInputMessage(TempResult) and
+     assigned(TempResult) then
     Result := TempResult.UnWrap
    else
     Result := TPyNone.ReturnNone;
