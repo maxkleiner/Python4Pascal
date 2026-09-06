@@ -529,7 +529,9 @@ begin
 
       if assigned(FModule) then
         begin
-          // Execute the module (triggers Py_mod_exec slot)
+          // TPyModule.ExecDef executes the module.
+          // It triggers Py_mod_exec slot, which triggers
+          // the TCustomPyModule.OnAfterInitialization event.
           if TPyModule.ExecDef(FModule, @FModuleDef) then
             Result := GlobalP4PEngine.AddModuleToSys(self);
         end

@@ -107,7 +107,7 @@ type
       /// <summary>
       /// <para>Add an object to module as name. This is a convenience function
       /// which can be used from the module's initialization function.
-      /// <para>On success, return 0. On error, raise an exception and return
+      /// <para>On success, return True. On error, raise an exception and return
       /// False.</para>
       /// <para>Example usage:</para>
       /// <code>
@@ -164,7 +164,7 @@ type
       class function Add(const module_: IPyObject; const name_: string; const value: IPyObject): boolean;
       /// <summary>
       /// <para>Similar to TPyModule.AddObjectRef(), but steals a reference to
-      /// value on success (if it returns 0).
+      /// value on success (if it returns True).
       /// <para>The new TPyModule.Add() or TPyModule.AddObjectRef() functions
       /// are recommended, since it is easy to introduce reference leaks by
       /// misusing the TPyModule.AddObject() function.</para>
@@ -242,12 +242,18 @@ type
       /// <summary>
       /// <para>Process any execution slots (Py_mod_exec) given in def.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_ExecDef">See the article about PyModule_ExecDef.</see></para>
+      /// </remarks>
       class function ExecDef(const module_: IPyObject; def: PPyModuleDef): boolean;
       /// <summary>
       /// <para>Create a new module object, given the definition in def.
       /// This function calls TPyModule.Create2() with module_api_version set
       /// to PYTHON_API_VERSION.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_Create">See the article about PyModule_Create.</see></para>
+      /// </remarks>
       class function Create(def: PPyModuleDef): IPyObject;
       /// <summary>
       /// <para>Create a new module object, given the definition in def,
@@ -261,11 +267,18 @@ type
       /// TPyModule.Create() instead; only use this if you are sure you need
       /// it.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_Create2">See the article about PyModule_Create2.</see></para>
+      /// </remarks>
       class function Create2(def: PPyModuleDef; module_api_version: integer): IPyObject;
       /// <summary>
       /// <para>This macro calls TPyModule.FromDefAndSpec2() with
       /// module_api_version set to PYTHON_API_VERSION.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec">See the article about PyModule_FromDefAndSpec.</see></para>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2">See the article about PyModule_FromDefAndSpec2.</see></para>
+      /// </remarks>
       class function FromDefAndSpec(def: PPyModuleDef; const spec: IPyObject): IPyObject;
       /// <summary>
       /// <para>Create a new module object, given the definition in def and the
@@ -280,6 +293,9 @@ type
       /// TPyModule.FromDefAndSpec() instead; only use this if you are sure you
       /// need it.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2">See the article about PyModule_FromDefAndSpec2.</see></para>
+      /// </remarks>
       class function FromDefAndSpec2(def: PPyModuleDef; const spec: IPyObject; module_api_version: integer): IPyObject;       
   end;
 
