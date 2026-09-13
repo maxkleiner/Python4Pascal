@@ -26,7 +26,7 @@ const
   CRLF            = CR+LF;
 
   SUPPORTED_MAJOR_VERSION     = 3;
-  MAX_SUPPORTED_MINOR_VERSION = 14;
+  MAX_SUPPORTED_MINOR_VERSION = 15;
   MIN_SUPPORTED_MINOR_VERSION = 10;
 
   HOURS_IN_A_DAY        = 24;
@@ -90,6 +90,7 @@ const
   PYINITCONFIGOPTION_INT_MAX_STR_DIGITS         = 'int_max_str_digits';
   PYINITCONFIGOPTION_INTERACTIVE                = 'interactive';
   PYINITCONFIGOPTION_ISOLATED                   = 'isolated';
+  //PYINITCONFIGOPTION_LAZY_IMPORTS               = 'lazy_imports';           //****** 3.15.0
   {$IFDEF MSWINDOWS}
   PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING = 'legacy_windows_fs_encoding';
   PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO       = 'legacy_windows_stdio';
@@ -106,6 +107,7 @@ const
   PYINITCONFIGOPTION_PREFIX                     = 'prefix';
   PYINITCONFIGOPTION_PROGRAM_NAME               = 'program_name';
   PYINITCONFIGOPTION_PYCACHE_PREFIX             = 'pycache_prefix';
+  //PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES         = 'pymalloc_hugepages';     //****** 3.15.0
   PYINITCONFIGOPTION_QUIET                      = 'quiet';
   PYINITCONFIGOPTION_RUN_COMMAND                = 'run_command';
   PYINITCONFIGOPTION_RUN_FILENAME               = 'run_filename';
@@ -133,6 +135,7 @@ const
 
 
   {* include/pyport.h *}
+  {* include/exports.h *}
   {* include/pymacro.h *}
   {* include/pymath.h *}
 
@@ -219,7 +222,7 @@ const
 
   {* include/pystats.h *}
   {* include/pyatomic.h *}
-  {* include/lock.h *}
+  {* include/lock.h  include/cpython/lock.h  include/cpython/pylock.h *}
   {* include/critical_section.h *}
   {* include/object.h  include/cpython/object.h *}
   Py_PRINT_RAW    = 1;
@@ -278,7 +281,12 @@ const
 
   {* include/refcount.h *}
   {* include/objimpl.h *}
-  {* include/typeslots.h *}
+  {* include/typeslots.h  include/slots.h  include/slots_generated.h *}
+  PySlot_OPTIONAL  = $0001;
+  PySlot_STATIC    = $0002;
+  PySlot_INTPTR    = $0004;
+  Py_slot_invalid  = $ffff;
+
   Py_bf_getbuffer = 1;
   Py_bf_releasebuffer = 2;
   Py_mp_ass_subscript = 3;
@@ -372,7 +380,7 @@ const
 
   {* include/cpython/pydebug.h *}
   {* include/bytearrayobject.h *}
-  {* include/bytesobject.h *}
+  {* include/bytesobject.h  include/cpython/bytesobject.h  include/internal/pycore_bytesobject.h  *}
   {* include/unicodeobject.h *}
   {* include/pyerrors.h  include/cpython/pyerrors.h *}
   {* include/longobject.h *}
@@ -525,7 +533,7 @@ const
   /// </summary>
   Py_MOD_GIL_NOT_USED                         : Pointer = Pointer(1);
 
-  {* include/monitoring.h *}
+  {* include/monitoring.h  include/cpython/monitoring.h *}
   PY_MONITORING_EVENT_PY_START          = 0;
   PY_MONITORING_EVENT_PY_RESUME         = 1;
   PY_MONITORING_EVENT_PY_RETURN         = 2;
@@ -582,7 +590,7 @@ const
 
   {* include/pyframe.h *}
   {* include/traceback.h *}
-  {* include/sliceobject.h *}
+  {* include/sliceobject.h  include/cpython/sliceobject.h *}
   {* include/cpython/cellobject.h *}
   {* include/iterobject.h *}
   {* include/cpython/initconfig.h *}
@@ -619,10 +627,11 @@ const
   Py_T_PYSSIZET         = 19;
   _Py_T_NONE            = 20; // Deprecated. Value is always None.
 
-  Py_READONLY           = 1;
-  Py_AUDIT_READ         = 2; // Added in 3.10, harmless no-op before that
-  _Py_WRITE_RESTRICTED  = 4; // Deprecated, no-op. Do not reuse the value.
-  Py_RELATIVE_OFFSET    = 8;
+  Py_READONLY           = 1 shl 0;
+  Py_AUDIT_READ         = 1 shl 1; // Added in 3.10, harmless no-op before that
+  _Py_WRITE_RESTRICTED  = 1 shl 2; // Deprecated, no-op. Do not reuse the value.
+  Py_RELATIVE_OFFSET    = 1 shl 3;
+  _Py_AFTER_ITEMS       = 1 shl 4;
 
   /// <summary>
   /// Flag for wrapperbase.
@@ -631,9 +640,10 @@ const
   PyWrapperFlag_KEYWORDS = 1;
 
   {* include/genericaliasobject.h *}
+  {* include/cpython/sentinelobject.h *}
   {* include/warnings.h *}
   {* include/weakrefobject.h *}
-  {* include/structseq.h *}
+  {* include/structseq.h  include/cpython/structseq.h *}
   {* include/cpython/picklebufobject.h *}
   {* include/cpython/pytime.h *}
 
@@ -678,6 +688,44 @@ const
   PYTHON_API_STRING    = '1013';
   PYTHON_ABI_VERSION   = 3;
   PYTHON_ABI_STRING    = '3';
+
+  /// <summary>
+  /// Specifies that Stable ABI is used.
+  /// </summary>
+  PyABIInfo_STABLE                 = $0001;
+  /// <summary>
+  /// Specifies ABI compatible with non-free-threaded builds of CPython
+  /// (ones compiled without --disable-gil).
+  /// </summary>
+  PyABIInfo_GIL                    = $0002;
+  /// <summary>
+  /// Specifies ABI compatible with free-threaded builds of CPython.
+  /// (That is, ones compiled with --disable-gil; with t in sys.abiflags).
+  /// </summary>
+  PyABIInfo_FREETHREADED           = $0004;
+  /// <summary>
+  /// Specifies ABI specific to a particular build of CPython. Internal use only.
+  /// </summary>
+  PyABIInfo_INTERNAL               = $0008;
+  /// <summary>
+  /// Specifies ABI compatible with both free-threaded and non-free-threaded
+  /// builds of CPython, that is, both abi3 and abi3t.
+  /// </summary>
+  PyABIInfo_FREETHREADING_AGNOSTIC = PyABIInfo_GIL or PyABIInfo_FREETHREADED;
+
+  _PyABIInfo_DEFAULT_FLAG_STABLE   = 0;
+  _PyABIInfo_DEFAULT_FLAG_FT       = PyABIInfo_GIL;
+  _PyABIInfo_DEFAULT_FLAG_INTERNAL = 0;
+
+  /// <summary>
+  /// Default flags, based on current values of macros such as Py_LIMITED_API
+  /// and Py_GIL_DISABLED.
+  /// </summary>
+  PyABIInfo_DEFAULT_FLAGS = _PyABIInfo_DEFAULT_FLAG_STABLE or
+                            _PyABIInfo_DEFAULT_FLAG_FT or
+                            _PyABIInfo_DEFAULT_FLAG_INTERNAL;
+
+
 
   {* include/compile.h  include/cpython/compile.h *}
   Py_single_input    = 256;

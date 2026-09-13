@@ -77,6 +77,7 @@ type
       function Get_int_max_str_digits: integer; virtual;
       function Get_interactive: boolean; virtual;
       function Get_isolated: boolean; virtual;
+      function Get_lazy_imports: TPyLazyImports; virtual;               //****** 3.15.0
       {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; virtual;
       {$ENDIF}
@@ -93,6 +94,7 @@ type
       function Get_prefix: string; virtual;
       function Get_program_name: string; virtual;
       function Get_pycache_prefix: string; virtual;
+      function Get_pymalloc_hugepages: boolean; virtual;                //****** 3.15.0
       function Get_pythonpath_env: string; virtual;
       function Get_quiet: boolean; virtual;
       function Get_remote_debug: boolean; virtual;
@@ -149,6 +151,7 @@ type
       procedure Set_int_max_str_digits(aValue: integer); virtual;
       procedure Set_interactive(aValue: boolean); virtual;
       procedure Set_isolated(aValue: boolean); virtual;
+      procedure Set_lazy_imports(aValue: TPyLazyImports); virtual;                //****** 3.15.0
       {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); virtual;
       {$ENDIF}
@@ -165,6 +168,7 @@ type
       procedure Set_prefix(const aValue: string); virtual;
       procedure Set_program_name(const aValue: string); virtual;
       procedure Set_pycache_prefix(const aValue: string); virtual;
+      procedure Set_pymalloc_hugepages(aValue: boolean); virtual;                //****** 3.15.0
       procedure Set_pythonpath_env(const aValue: string); virtual;
       procedure Set_quiet(aValue: boolean); virtual;
       procedure Set_remote_debug(aValue: boolean); virtual;
@@ -580,6 +584,18 @@ type
       /// <para><see href="https://docs.python.org/3/c-api/init_config.html#isolated-configuration">See the article about Isolated Configuration.</see></para>
       /// </remarks>
       property isolated                  : boolean              read Get_isolated                     write Set_isolated;
+      /// <summary>
+      /// <para>Controls lazy import behavior. Accepts two values:</para>
+      /// <code>
+      /// - li_all makes all imports lazy by default.
+      /// - li_normal (the default) respects the lazy keyword in source code.
+      /// </code>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      property lazy_imports              : TPyLazyImports       read Get_lazy_imports                 write Set_lazy_imports;
       {$IFDEF MSWINDOWS}
       /// <summary>
       /// <para>If True, use io.FileIO instead of io._WindowsConsoleIO for
@@ -775,6 +791,33 @@ type
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys.pycache_prefix">See the article about sys.pycache_prefix.</see></para>
       /// </remarks>
       property pycache_prefix            : string               read Get_pycache_prefix               write Set_pycache_prefix;
+      /// <summary>
+      /// <para>Enable huge page support for pymalloc arenas (disabled by
+      /// default). When enabled, the arena size on 64-bit platforms is increased
+      /// to 2 MiB and arena allocation uses MAP_HUGETLB (Linux) or
+      /// MEM_LARGE_PAGES (Windows) with automatic fallback to regular
+      /// pages.</para>
+      /// <para>Even when compiled with this option, huge pages are not used at
+      /// runtime unless the PYTHON_PYMALLOC_HUGEPAGES environment variable is set
+      /// to 1. This opt-in is required because huge pages</para>
+      /// <code>
+      /// - carry risks on Linux: if the huge-page pool is exhausted, page faults
+      /// (including copy-on-write faults after os.fork()) deliver SIGBUS and kill
+      /// the process.
+      /// - need a special privilege on Windows. See the Windows documentation for
+      /// large pages for details. Python will fail on startup if the required
+      /// privilege SeLockMemoryPrivilege is not held by the user.
+      /// </code>
+      /// <para>The configure script checks that the platform supports MAP_HUGETLB
+      /// and emits a warning if it is not available.</para>
+      /// <para>On Windows, use the --pymalloc-hugepages flag with build.bat or
+      /// set the UsePymallocHugepages MSBuild property.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/using/configure.html#cmdoption-with-pymalloc-hugepages">See the article about --with-pymalloc-hugepages.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      property pymalloc_hugepages        : boolean              read Get_pymalloc_hugepages           write Set_pymalloc_hugepages;
       /// <summary>
       /// <para>Set by the PYTHONPATH environment variable.</para>
       /// <para>Default: Empty.</para>
@@ -1061,6 +1104,159 @@ type
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys._xoptions">See the article about sys._xoptions.</see></para>
       /// </remarks>
       property xoptions                  : TStringDynArray      read Get_xoptions                     write Set_xoptions;
+  end;
+
+  TPyConfig315 = class(TPyConfigBase)
+    protected
+      FConfig : PyConfig315;
+      function GetConfig: Pointer; override;
+      function Get_argv: TStringDynArray; override;
+      function Get_base_exec_prefix: string; override;
+      function Get_base_executable: string; override;
+      function Get_base_prefix: string; override;
+      function Get_buffered_stdio: boolean; override;
+      function Get_bytes_warning: integer; override;
+      function Get_check_hash_pycs_mode: string; override;
+      function Get_code_debug_ranges: boolean; override;
+      function Get_configure_c_stdio: boolean; override;
+      function Get_context_aware_warnings: boolean; override;
+      {$IFDEF APPLE}
+      function Get_use_system_logger: boolean; override;
+      {$ENDIF}
+      function Get_cpu_count: integer; override;
+      function Get_dev_mode: boolean; override;
+      function Get_dump_refs: boolean; override;
+      function Get_dump_refs_file: string; override;
+      function Get_exec_prefix: string; override;
+      function Get_executable: string; override;
+      function Get_faulthandler: integer; override;
+      function Get_filesystem_encoding: string; override;
+      function Get_filesystem_errors: string; override;
+      function Get_hash_seed: uint64; override;
+      function Get_home: string; override;
+      function Get_import_time: integer; override;
+      function Get_inspect: boolean; override;
+      function Get_install_signal_handlers: boolean; override;
+      function Get_int_max_str_digits: integer; override;
+      function Get_interactive: boolean; override;
+      function Get_isolated: boolean; override;
+      function Get_lazy_imports: TPyLazyImports; override;             //****** 3.15.0
+      {$IFDEF MSWINDOWS}
+      function Get_legacy_windows_stdio: boolean; override;
+      {$ENDIF}
+      function Get_malloc_stats: boolean; override;
+      function Get_module_search_paths: string; override;
+      function Get_module_search_paths_set: boolean; override;
+      function Get_optimization_level: TPyOptimizationLevel; override;
+      function Get_orig_argv: TStringDynArray; override;
+      function Get_parse_argv: boolean; override;
+      function Get_parser_debug: boolean; override;
+      function Get_pathconfig_warnings: boolean; override;
+      function Get_perf_profiling: integer; override;
+      function Get_platlibdir: string; override;
+      function Get_prefix: string; override;
+      function Get_program_name: string; override;
+      function Get_pycache_prefix: string; override;
+      function Get_pymalloc_hugepages: boolean; override;              //****** 3.15.0
+      function Get_pythonpath_env: string; override;
+      function Get_quiet: boolean; override;
+      function Get_remote_debug: boolean; override;
+      function Get_run_command: string; override;
+      function Get_run_filename: string; override;
+      function Get_run_module: string; override;
+      function Get_safe_path: boolean; override;
+      function Get_show_ref_count: boolean; override;
+      function Get_site_import: boolean; override;
+      function Get_skip_source_first_line: boolean; override;
+      function Get_stdio_encoding: string; override;
+      function Get_stdio_errors: string; override;
+      function Get_stdlib_dir: string; override;
+      function Get_sys_path_0: string; override;
+      function Get_thread_inherit_context: boolean; override;
+      function Get_tracemalloc: boolean; override;
+      function Get_use_environment: boolean; override;
+      function Get_use_frozen_modules: boolean; override;
+      function Get_use_hash_seed: boolean; override;
+      function Get_user_site_directory: boolean; override;
+      function Get_verbose: TPyVerboseMode; override;
+      function Get_warn_default_encoding: boolean; override;
+      function Get_warnoptions: TStringDynArray; override;
+      function Get_write_bytecode: boolean; override;
+      function Get_xoptions: TStringDynArray; override;
+
+      procedure Set_argv(const aValue: TStringDynArray); override;
+      procedure Set_base_exec_prefix(const aValue: string); override;
+      procedure Set_base_executable(const aValue: string); override;
+      procedure Set_base_prefix(const aValue: string); override;
+      procedure Set_buffered_stdio(aValue: boolean); override;
+      procedure Set_bytes_warning(aValue: integer); override;
+      procedure Set_check_hash_pycs_mode(const aValue: string); override;
+      procedure Set_code_debug_ranges(aValue: boolean); override;
+      procedure Set_configure_c_stdio(aValue: boolean); override;
+      procedure Set_context_aware_warnings(aValue: boolean); override;
+      {$IFDEF APPLE}
+      procedure Set_use_system_logger(aValue: boolean); override;
+      {$ENDIF}
+      procedure Set_cpu_count(aValue: integer); override;
+      procedure Set_dev_mode(aValue: boolean); override;
+      procedure Set_dump_refs(aValue: boolean); override;
+      procedure Set_dump_refs_file(const aValue: string); override;
+      procedure Set_exec_prefix(const aValue: string); override;
+      procedure Set_executable(const aValue: string); override;
+      procedure Set_faulthandler(aValue: integer); override;
+      procedure Set_filesystem_encoding(const aValue: string); override;
+      procedure Set_filesystem_errors(const aValue: string); override;
+      procedure Set_hash_seed(aValue: uint64); override;
+      procedure Set_home(const aValue: string); override;
+      procedure Set_import_time(aValue: integer); override;
+      procedure Set_inspect(aValue: boolean); override;
+      procedure Set_install_signal_handlers(aValue: boolean); override;
+      procedure Set_int_max_str_digits(aValue: integer); override;
+      procedure Set_interactive(aValue: boolean); override;
+      procedure Set_isolated(aValue: boolean); override;
+      procedure Set_lazy_imports(aValue: TPyLazyImports); override;      //****** 3.15.0
+      {$IFDEF MSWINDOWS}
+      procedure Set_legacy_windows_stdio(aValue: boolean); override;
+      {$ENDIF}
+      procedure Set_malloc_stats(aValue: boolean); override;
+      procedure Set_module_search_paths(const aValue: string); override;
+      procedure Set_module_search_paths_set(aValue: boolean); override;
+      procedure Set_optimization_level(aValue: TPyOptimizationLevel); override;
+      procedure Set_orig_argv(const aValue: TStringDynArray); override;
+      procedure Set_parse_argv(aValue: boolean); override;
+      procedure Set_parser_debug(aValue: boolean); override;
+      procedure Set_pathconfig_warnings(aValue: boolean); override;
+      procedure Set_perf_profiling(aValue: integer); override;
+      procedure Set_platlibdir(const aValue: string); override;
+      procedure Set_prefix(const aValue: string); override;
+      procedure Set_program_name(const aValue: string); override;
+      procedure Set_pycache_prefix(const aValue: string); override;
+      procedure Set_pymalloc_hugepages(aValue: boolean); override;       //****** 3.15.0
+      procedure Set_pythonpath_env(const aValue: string); override;
+      procedure Set_quiet(aValue: boolean); override;
+      procedure Set_remote_debug(aValue: boolean); override;
+      procedure Set_run_command(const aValue: string); override;
+      procedure Set_run_filename(const aValue: string); override;
+      procedure Set_run_module(const aValue: string); override;
+      procedure Set_safe_path(aValue: boolean); override;
+      procedure Set_show_ref_count(aValue: boolean); override;
+      procedure Set_site_import(aValue: boolean); override;
+      procedure Set_skip_source_first_line(aValue: boolean); override;
+      procedure Set_stdio_encoding(const aValue: string); override;
+      procedure Set_stdio_errors(const aValue: string); override;
+      procedure Set_stdlib_dir(const aValue: string); override;
+      procedure Set_sys_path_0(const aValue: string); override;
+      procedure Set_thread_inherit_context(aValue: boolean); override;
+      procedure Set_tracemalloc(aValue: boolean); override;
+      procedure Set_use_environment(aValue: boolean); override;
+      procedure Set_use_frozen_modules(aValue: boolean); override;
+      procedure Set_use_hash_seed(aValue: boolean); override;
+      procedure Set_user_site_directory(aValue: boolean); override;
+      procedure Set_verbose(aValue: TPyVerboseMode); override;
+      procedure Set_warn_default_encoding(aValue: boolean); override;
+      procedure Set_warnoptions(const aValue: TStringDynArray); override;
+      procedure Set_write_bytecode(aValue: boolean); override;
+      procedure Set_xoptions(const aValue: TStringDynArray); override;
   end;
 
   TPyConfig314 = class(TPyConfigBase)
@@ -1977,6 +2173,11 @@ begin
   Result := False;
 end;
 
+function TPyConfigBase.Get_lazy_imports: TPyLazyImports;
+begin
+  Result := li_normal;
+end;
+
 {$IFDEF MSWINDOWS}
 function TPyConfigBase.Get_legacy_windows_stdio: boolean;
 begin
@@ -2047,6 +2248,11 @@ end;
 function TPyConfigBase.Get_pycache_prefix: string;
 begin
   Result := '';
+end;
+
+function TPyConfigBase.Get_pymalloc_hugepages: boolean;
+begin
+  Result := False;
 end;
 
 function TPyConfigBase.Get_pythonpath_env: string;
@@ -2487,6 +2693,11 @@ begin
   //
 end;
 
+procedure TPyConfigBase.Set_lazy_imports(aValue: TPyLazyImports);
+begin
+  //
+end;
+
 {$IFDEF MSWINDOWS}
 procedure TPyConfigBase.Set_legacy_windows_stdio(aValue: boolean);
 begin
@@ -2555,6 +2766,11 @@ begin
 end;
 
 procedure TPyConfigBase.Set_pycache_prefix(const aValue: string);
+begin
+  //
+end;
+
+procedure TPyConfigBase.Set_pymalloc_hugepages(aValue: boolean);
 begin
   //
 end;
@@ -2682,6 +2898,751 @@ end;
 procedure TPyConfigBase.Set_xoptions(const aValue: TStringDynArray);
 begin
   //
+end;
+
+function TPyConfig315.GetConfig: Pointer;
+begin
+  Result := @FConfig;
+end;
+
+function TPyConfig315.Get_argv: TStringDynArray;
+begin
+  PyWideStringListToStringDynArray(FConfig.argv, Result);
+end;
+
+function TPyConfig315.Get_base_exec_prefix: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.base_exec_prefix));
+end;
+
+function TPyConfig315.Get_base_executable: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.base_executable));
+end;
+
+function TPyConfig315.Get_base_prefix: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.base_prefix));
+end;
+
+function TPyConfig315.Get_buffered_stdio: boolean;
+begin
+  Result := (FConfig.buffered_stdio <> 0);
+end;
+
+function TPyConfig315.Get_bytes_warning: integer;
+begin
+  Result := FConfig.bytes_warning;
+end;
+
+function TPyConfig315.Get_check_hash_pycs_mode: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.check_hash_pycs_mode));
+end;
+
+function TPyConfig315.Get_code_debug_ranges: boolean;
+begin
+  Result := (FConfig.code_debug_ranges <> 0);
+end;
+
+function TPyConfig315.Get_configure_c_stdio: boolean;
+begin
+  Result := (FConfig.configure_c_stdio <> 0);
+end;
+
+function TPyConfig315.Get_context_aware_warnings: boolean;
+begin
+  Result := (FConfig.context_aware_warnings <> 0);
+end;
+
+{$IFDEF APPLE}
+function TPyConfig315.Get_use_system_logger: boolean;
+begin
+  Result := (FConfig.use_system_logger <> 0);
+end;
+{$ENDIF}
+
+function TPyConfig315.Get_cpu_count: integer;
+begin
+  Result := FConfig.cpu_count;
+end;
+
+function TPyConfig315.Get_dev_mode: boolean;
+begin
+  Result := (FConfig.dev_mode <> 0);
+end;
+
+function TPyConfig315.Get_dump_refs: boolean;
+begin
+  Result := (FConfig.dump_refs <> 0);
+end;
+
+function TPyConfig315.Get_dump_refs_file: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.dump_refs_file));
+end;
+
+function TPyConfig315.Get_exec_prefix: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.exec_prefix));
+end;
+
+function TPyConfig315.Get_executable: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.executable));
+end;
+
+function TPyConfig315.Get_faulthandler: integer;
+begin
+  Result := FConfig.faulthandler;
+end;
+
+function TPyConfig315.Get_filesystem_encoding: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.filesystem_encoding));
+end;
+
+function TPyConfig315.Get_filesystem_errors: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.filesystem_errors));
+end;
+
+function TPyConfig315.Get_hash_seed: uint64;
+begin
+  Result := FConfig.hash_seed;
+end;
+
+function TPyConfig315.Get_home: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.home));
+end;
+
+function TPyConfig315.Get_import_time: integer;
+begin
+  Result := FConfig.import_time;
+end;
+
+function TPyConfig315.Get_inspect: boolean;
+begin
+  Result := (FConfig.inspect <> 0);
+end;
+
+function TPyConfig315.Get_install_signal_handlers: boolean;
+begin
+  Result := (FConfig.install_signal_handlers <> 0);
+end;
+
+function TPyConfig315.Get_int_max_str_digits: integer;
+begin
+  Result := FConfig.int_max_str_digits;
+end;
+
+function TPyConfig315.Get_interactive: boolean;
+begin
+  Result := (FConfig.interactive <> 0);
+end;
+
+function TPyConfig315.Get_isolated: boolean;
+begin
+  Result := (FConfig.isolated <> 0);
+end;
+
+function TPyConfig315.Get_lazy_imports: TPyLazyImports;
+begin
+  if (FConfig.lazy_imports > 0) then
+    Result := li_all
+   else
+    Result := li_normal;
+end;
+
+{$IFDEF MSWINDOWS}
+function TPyConfig315.Get_legacy_windows_stdio: boolean;
+begin
+  Result := (FConfig.legacy_windows_stdio <> 0);
+end;
+{$ENDIF}
+
+function TPyConfig315.Get_malloc_stats: boolean;
+begin
+  Result := (FConfig.malloc_stats <> 0);
+end;
+
+function TPyConfig315.Get_module_search_paths: string;
+var
+  TempSL : TStringList;
+  i      : integer;
+begin
+  TempSL := TStringList.Create;
+
+  if PyWideStringListToStringList(FConfig.module_search_paths, TempSL) then
+    begin
+      i := 0;
+      while (i < TempSL.Count) do
+        begin
+          if (i = 0) then
+            Result := TempSL[i]
+           else
+            Result := Result + PathSep + TempSL[i];
+
+          inc(i);
+        end;
+    end
+   else
+    Result := '';
+
+  TempSL.Free;
+end;
+
+function TPyConfig315.Get_module_search_paths_set: boolean;
+begin
+  Result := (FConfig.module_search_paths_set <> 0);
+end;
+
+function TPyConfig315.Get_optimization_level: TPyOptimizationLevel;
+begin
+  Result := TPyOptimizationLevel(FConfig.optimization_level);
+end;
+
+function TPyConfig315.Get_orig_argv: TStringDynArray;
+begin
+  PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
+end;
+
+function TPyConfig315.Get_parse_argv: boolean;
+begin
+  Result := (FConfig.parse_argv <> 0);
+end;
+
+function TPyConfig315.Get_parser_debug: boolean;
+begin
+  Result := (FConfig.parser_debug <> 0);
+end;
+
+function TPyConfig315.Get_pathconfig_warnings: boolean;
+begin
+  Result := (FConfig.pathconfig_warnings <> 0);
+end;
+
+function TPyConfig315.Get_perf_profiling: integer;
+begin
+  Result := FConfig.perf_profiling;
+end;
+
+function TPyConfig315.Get_platlibdir: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.platlibdir));
+end;
+
+function TPyConfig315.Get_prefix: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.prefix));
+end;
+
+function TPyConfig315.Get_program_name: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.program_name));
+end;
+
+function TPyConfig315.Get_pycache_prefix: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.pycache_prefix));
+end;
+
+function TPyConfig315.Get_pymalloc_hugepages: boolean;
+begin
+  Result := (FConfig.pymalloc_hugepages <> 0);
+end;
+
+function TPyConfig315.Get_pythonpath_env: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.pythonpath_env));
+end;
+
+function TPyConfig315.Get_quiet: boolean;
+begin
+  Result := (FConfig.quiet <> 0);
+end;
+
+function TPyConfig315.Get_remote_debug: boolean;
+begin
+  Result := (FConfig.remote_debug <> 0);
+end;
+
+function TPyConfig315.Get_run_command: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.run_command));
+end;
+
+function TPyConfig315.Get_run_filename: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.run_filename));
+end;
+
+function TPyConfig315.Get_run_module: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.run_module));
+end;
+
+function TPyConfig315.Get_safe_path: boolean;
+begin
+  Result := (FConfig.safe_path <> 0);
+end;
+
+function TPyConfig315.Get_show_ref_count: boolean;
+begin
+  Result := (FConfig.show_ref_count <> 0);
+end;
+
+function TPyConfig315.Get_site_import: boolean;
+begin
+  Result := (FConfig.site_import <> 0);
+end;
+
+function TPyConfig315.Get_skip_source_first_line: boolean;
+begin
+  Result := (FConfig.skip_source_first_line <> 0);
+end;
+
+function TPyConfig315.Get_stdio_encoding: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.stdio_encoding));
+end;
+
+function TPyConfig315.Get_stdio_errors: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.stdio_errors));
+end;
+
+function TPyConfig315.Get_stdlib_dir: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.stdlib_dir));
+end;
+
+function TPyConfig315.Get_sys_path_0: string;
+begin
+  Result := PyWCharTStringToString(WCharTString(FConfig.sys_path_0));
+end;
+
+function TPyConfig315.Get_thread_inherit_context: boolean;
+begin
+  Result := (FConfig.thread_inherit_context <> 0);
+end;
+
+function TPyConfig315.Get_tracemalloc: boolean;
+begin
+  Result := (FConfig.tracemalloc <> 0);
+end;
+
+function TPyConfig315.Get_use_environment: boolean;
+begin
+  Result := (FConfig.use_environment <> 0);
+end;
+
+function TPyConfig315.Get_use_frozen_modules: boolean;
+begin
+  Result := (FConfig.use_frozen_modules <> 0);
+end;
+
+function TPyConfig315.Get_use_hash_seed: boolean;
+begin
+  Result := (FConfig.use_hash_seed <> 0);
+end;
+
+function TPyConfig315.Get_user_site_directory: boolean;
+begin
+  Result := (FConfig.user_site_directory <> 0);
+end;
+
+function TPyConfig315.Get_verbose: TPyVerboseMode;
+begin
+  Result := TPyVerboseMode(FConfig.verbose);
+end;
+
+function TPyConfig315.Get_warn_default_encoding: boolean;
+begin
+  Result := (FConfig.warn_default_encoding <> 0);
+end;
+
+function TPyConfig315.Get_warnoptions: TStringDynArray;
+begin
+  PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
+end;
+
+function TPyConfig315.Get_write_bytecode: boolean;
+begin
+  Result := (FConfig.write_bytecode <> 0);
+end;
+
+function TPyConfig315.Get_xoptions: TStringDynArray;
+begin
+  PyWideStringListToStringDynArray(FConfig.xoptions, Result);
+end;
+
+procedure TPyConfig315.Set_argv(const aValue: TStringDynArray);
+begin
+  SetArgv(aValue);
+end;
+
+procedure TPyConfig315.Set_base_exec_prefix(const aValue: string);
+begin
+  SetWCharT(FConfig.base_exec_prefix, aValue);
+end;
+
+procedure TPyConfig315.Set_base_executable(const aValue: string);
+begin
+  SetWCharT(FConfig.base_executable, aValue);
+end;
+
+procedure TPyConfig315.Set_base_prefix(const aValue: string);
+begin
+  SetWCharT(FConfig.base_prefix, aValue);
+end;
+
+procedure TPyConfig315.Set_buffered_stdio(aValue: boolean);
+begin
+  FConfig.buffered_stdio := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_bytes_warning(aValue: integer);
+begin
+  FConfig.bytes_warning := aValue;
+end;
+
+procedure TPyConfig315.Set_check_hash_pycs_mode(const aValue: string);
+begin
+  SetWCharT(FConfig.check_hash_pycs_mode, aValue);
+end;
+
+procedure TPyConfig315.Set_code_debug_ranges(aValue: boolean);
+begin
+  FConfig.code_debug_ranges := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_configure_c_stdio(aValue: boolean);
+begin
+  FConfig.configure_c_stdio := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_context_aware_warnings(aValue: boolean);
+begin
+  FConfig.context_aware_warnings := ord(aValue);
+end;
+
+{$IFDEF APPLE}
+procedure TPyConfig315.Set_use_system_logger(aValue: boolean);
+begin
+  FConfig.use_system_logger := ord(aValue);
+end;
+{$ENDIF}
+
+procedure TPyConfig315.Set_cpu_count(aValue: integer);
+begin
+  FConfig.cpu_count := aValue;
+end;
+
+procedure TPyConfig315.Set_dev_mode(aValue: boolean);
+begin
+  if aValue then
+    FConfig.dev_mode := -1
+   else
+    FConfig.dev_mode := 0;
+end;
+
+procedure TPyConfig315.Set_dump_refs(aValue: boolean);
+begin
+  FConfig.dump_refs := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_dump_refs_file(const aValue: string);
+begin
+  SetWCharT(FConfig.dump_refs_file, aValue);
+end;
+
+procedure TPyConfig315.Set_exec_prefix(const aValue: string);
+begin
+  SetWCharT(FConfig.exec_prefix, aValue);
+end;
+
+procedure TPyConfig315.Set_executable(const aValue: string);
+begin
+  SetWCharT(FConfig.executable, aValue);
+end;
+
+procedure TPyConfig315.Set_faulthandler(aValue: integer);
+begin
+  FConfig.faulthandler := aValue;
+end;
+
+procedure TPyConfig315.Set_filesystem_encoding(const aValue: string);
+begin
+  SetWCharT(FConfig.filesystem_encoding, aValue);
+end;
+
+procedure TPyConfig315.Set_filesystem_errors(const aValue: string);
+begin
+  SetWCharT(FConfig.filesystem_errors, aValue);
+end;
+
+procedure TPyConfig315.Set_hash_seed(aValue: uint64);
+begin
+  FConfig.hash_seed := aValue;
+end;
+
+procedure TPyConfig315.Set_home(const aValue: string);
+begin
+  SetWCharT(FConfig.home, aValue);
+end;
+
+procedure TPyConfig315.Set_import_time(aValue: integer);
+begin
+  FConfig.import_time := aValue;
+end;
+
+procedure TPyConfig315.Set_inspect(aValue: boolean);
+begin
+  FConfig.inspect := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_install_signal_handlers(aValue: boolean);
+begin
+  FConfig.install_signal_handlers := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_int_max_str_digits(aValue: integer);
+begin
+  FConfig.int_max_str_digits := aValue;
+end;
+
+procedure TPyConfig315.Set_interactive(aValue: boolean);
+begin
+  FConfig.interactive := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_isolated(aValue: boolean);
+begin
+  FConfig.isolated := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_lazy_imports(aValue: TPyLazyImports);
+begin
+  case aValue of
+    li_all     : FConfig.lazy_imports := 1;
+    li_normal  : FConfig.lazy_imports := -1;
+  end;
+end;
+
+{$IFDEF MSWINDOWS}
+procedure TPyConfig315.Set_legacy_windows_stdio(aValue: boolean);
+begin
+  FConfig.legacy_windows_stdio := ord(aValue);
+end;
+{$ENDIF}
+
+procedure TPyConfig315.Set_malloc_stats(aValue: boolean);
+begin
+  FConfig.malloc_stats := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_module_search_paths(const aValue: string);
+var
+  TempPaths : TStringDynArray;
+begin
+  if (length(aValue) > 0) then
+    begin
+      TempPaths := CustomSplitString(aValue, PathSep);
+      SetWideStringList(FConfig.module_search_paths, TempPaths);
+    end;
+end;
+
+procedure TPyConfig315.Set_module_search_paths_set(aValue: boolean);
+begin
+  FConfig.module_search_paths_set := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_optimization_level(aValue: TPyOptimizationLevel);
+begin
+  FConfig.optimization_level := integer(aValue);
+end;
+
+procedure TPyConfig315.Set_orig_argv(const aValue: TStringDynArray);
+begin
+  SetWideStringList(FConfig.orig_argv, aValue);
+end;
+
+procedure TPyConfig315.Set_parse_argv(aValue: boolean);
+begin
+  FConfig.parse_argv := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_parser_debug(aValue: boolean);
+begin
+  FConfig.parser_debug := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_pathconfig_warnings(aValue: boolean);
+begin
+  FConfig.pathconfig_warnings := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_perf_profiling(aValue: integer);
+begin
+  FConfig.perf_profiling := aValue;
+end;
+
+procedure TPyConfig315.Set_platlibdir(const aValue: string);
+begin
+  SetWCharT(FConfig.platlibdir, aValue);
+end;
+
+procedure TPyConfig315.Set_prefix(const aValue: string);
+begin
+  SetWCharT(FConfig.prefix, aValue);
+end;
+
+procedure TPyConfig315.Set_program_name(const aValue: string);
+begin
+  SetWCharT(FConfig.program_name, aValue);
+end;
+
+procedure TPyConfig315.Set_pycache_prefix(const aValue: string);
+begin
+  SetWCharT(FConfig.pycache_prefix, aValue);
+end;
+
+procedure TPyConfig315.Set_pymalloc_hugepages(aValue: boolean);
+begin
+  FConfig.pymalloc_hugepages := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_pythonpath_env(const aValue: string);
+begin
+  SetWCharT(FConfig.pythonpath_env, aValue);
+end;
+
+procedure TPyConfig315.Set_quiet(aValue: boolean);
+begin
+  FConfig.quiet := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_remote_debug(aValue: boolean);
+begin
+  FConfig.remote_debug := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_run_command(const aValue: string);
+begin
+  SetWCharT(FConfig.run_command, aValue);
+end;
+
+procedure TPyConfig315.Set_run_filename(const aValue: string);
+begin
+  SetWCharT(FConfig.run_filename, aValue);
+end;
+
+procedure TPyConfig315.Set_run_module(const aValue: string);
+begin
+  SetWCharT(FConfig.run_module, aValue);
+end;
+
+procedure TPyConfig315.Set_safe_path(aValue: boolean);
+begin
+  FConfig.safe_path := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_show_ref_count(aValue: boolean);
+begin
+  FConfig.show_ref_count := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_site_import(aValue: boolean);
+begin
+  FConfig.site_import := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_skip_source_first_line(aValue: boolean);
+begin
+  FConfig.skip_source_first_line := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_stdio_encoding(const aValue: string);
+begin
+  SetWCharT(FConfig.stdio_encoding, aValue);
+end;
+
+procedure TPyConfig315.Set_stdio_errors(const aValue: string);
+begin
+  SetWCharT(FConfig.stdio_errors, aValue);
+end;
+
+procedure TPyConfig315.Set_stdlib_dir(const aValue: string);
+begin
+  SetWCharT(FConfig.stdlib_dir, aValue);
+end;
+
+procedure TPyConfig315.Set_sys_path_0(const aValue: string);
+begin
+  SetWCharT(FConfig.sys_path_0, aValue);
+end;
+
+procedure TPyConfig315.Set_thread_inherit_context(aValue: boolean);
+begin
+  FConfig.thread_inherit_context := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_tracemalloc(aValue: boolean);
+begin
+  if aValue then
+    FConfig.tracemalloc := -1
+   else
+    FConfig.tracemalloc := 0;
+end;
+
+procedure TPyConfig315.Set_use_environment(aValue: boolean);
+begin
+  FConfig.use_environment := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_use_frozen_modules(aValue: boolean);
+begin
+  FConfig.use_frozen_modules := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_use_hash_seed(aValue: boolean);
+begin
+  if aValue then
+    FConfig.use_hash_seed := -1
+   else
+    FConfig.use_hash_seed := 0;
+end;
+
+procedure TPyConfig315.Set_user_site_directory(aValue: boolean);
+begin
+  FConfig.user_site_directory := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_verbose(aValue: TPyVerboseMode);
+begin
+  FConfig.verbose := integer(aValue);
+end;
+
+procedure TPyConfig315.Set_warn_default_encoding(aValue: boolean);
+begin
+  FConfig.warn_default_encoding := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_warnoptions(const aValue: TStringDynArray);
+begin
+  SetWideStringList(FConfig.warnoptions, aValue);
+end;
+
+procedure TPyConfig315.Set_write_bytecode(aValue: boolean);
+begin
+  FConfig.write_bytecode := ord(aValue);
+end;
+
+procedure TPyConfig315.Set_xoptions(const aValue: TStringDynArray);
+begin
+  SetWideStringList(FConfig.xoptions, aValue);
 end;
 
 function TPyConfig314.GetConfig: Pointer;
@@ -5959,6 +6920,7 @@ begin
   case aMajor of
     SUPPORTED_MAJOR_VERSION:
       case aMinor of
+        15: Result := TPyConfig315.Create;
         14: Result := TPyConfig314.Create;
         13: Result := TPyConfig313.Create;
         12: Result := TPyConfig312.Create;

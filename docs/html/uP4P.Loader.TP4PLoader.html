@@ -127,6 +127,10 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FLazyImports">FLazyImports</a></strong>: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a></strong>: <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>;</code></td>
 </tr>
 </table>
@@ -697,6 +701,10 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#LazyImports">LazyImports</a></strong>                       : <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>                               read <a href="uP4P.Loader.TP4PLoader.html#FLazyImports">FLazyImports</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FLazyImports">FLazyImports</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.Loader.TP4PLoader.html#OnBeforeInitialization">OnBeforeInitialization</a></strong>            : <a href="uP4P.Loader.html#TOnBeforeInitializationEvent">TOnBeforeInitializationEvent</a>                 read <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>            write <a href="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">FOnBeforeInitialization</a>;</code></td>
 </tr>
 </table>
@@ -882,6 +890,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FModuleSearchPaths"></span><code><strong>FModuleSearchPaths</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FLazyImports"></span><code><strong>FLazyImports</strong>: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -2309,6 +2325,32 @@ body { margin: 0.5em; }
 <p>&lt;see href=&quot;<a href="https://docs.python.org/3/library/sys.html#sys.path">https://docs.python.org/3/library/sys.html#sys.path</a>&quot;&gt;See the article about sys.path.)
 
 <p>&lt;see href=&quot;<a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH</a>&quot;&gt;See the article about PYTHONPATH.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="LazyImports"></span><code>property <strong>LazyImports</strong>                       : <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>                               read <a href="uP4P.Loader.TP4PLoader.html#FLazyImports">FLazyImports</a>                       write <a href="uP4P.Loader.TP4PLoader.html#FLazyImports">FLazyImports</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Controls lazy import behavior. Accepts two values:
+
+<p></p>
+
+<pre class="preformatted">
+- li_all makes all imports lazy by default.
+- li_normal (the default) respects the lazy keyword in source code.</pre>
+
+<p> </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS</a>&quot;&gt;See the article about PYTHON_LAZY_IMPORTS.)
+
+<p>Added in version 3.15.</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

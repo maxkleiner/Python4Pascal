@@ -69,9 +69,5 @@ object MainForm: TMainForm
         '.")'
       'print(mytest.read())')
     TabOrder = 2
-    ExplicitLeft = 176
-    ExplicitTop = 144
-    ExplicitWidth = 185
-    ExplicitHeight = 89
   end
 end

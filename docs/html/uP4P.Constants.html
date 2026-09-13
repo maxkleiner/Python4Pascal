@@ -35,7 +35,7 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#SUPPORTED_MAJOR_VERSION">SUPPORTED_MAJOR_VERSION</a></strong>     = 3;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#MAX_SUPPORTED_MINOR_VERSION">MAX_SUPPORTED_MINOR_VERSION</a></strong> = 14;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#MAX_SUPPORTED_MINOR_VERSION">MAX_SUPPORTED_MINOR_VERSION</a></strong> = 15;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#MIN_SUPPORTED_MINOR_VERSION">MIN_SUPPORTED_MINOR_VERSION</a></strong> = 10;</code></td>
@@ -510,6 +510,18 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_GE">Py_GE</a></strong> = 5;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PySlot_OPTIONAL">PySlot_OPTIONAL</a></strong>  = $0001;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PySlot_STATIC">PySlot_STATIC</a></strong>    = $0002;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PySlot_INTPTR">PySlot_INTPTR</a></strong>    = $0004;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_slot_invalid">Py_slot_invalid</a></strong>  = $ffff;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_bf_getbuffer">Py_bf_getbuffer</a></strong> = 1;</code></td>
@@ -1058,58 +1070,90 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#_Py_T_NONE">_Py_T_NONE</a></strong>            = 20;</code></td>
 </tr>
 <tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_READONLY">Py_READONLY</a></strong>           = 1;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_READONLY">Py_READONLY</a></strong>           = 1 shl 0;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_AUDIT_READ">Py_AUDIT_READ</a></strong>         = 2;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_AUDIT_READ">Py_AUDIT_READ</a></strong>         = 1 shl 1;</code></td>
 </tr>
 <tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_Py_WRITE_RESTRICTED">_Py_WRITE_RESTRICTED</a></strong>  = 4;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_Py_WRITE_RESTRICTED">_Py_WRITE_RESTRICTED</a></strong>  = 1 shl 2;</code></td>
 </tr>
 <tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_RELATIVE_OFFSET">Py_RELATIVE_OFFSET</a></strong>    = 8;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_RELATIVE_OFFSET">Py_RELATIVE_OFFSET</a></strong>    = 1 shl 3;</code></td>
 </tr>
 <tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_Py_AFTER_ITEMS">_Py_AFTER_ITEMS</a></strong>       = 1 shl 4;</code></td>
+</tr>
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyWrapperFlag_KEYWORDS">PyWrapperFlag_KEYWORDS</a></strong> = 1;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyTime_MIN">PyTime_MIN</a></strong> = low(int64);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyTime_MAX">PyTime_MAX</a></strong> = high(int64);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#WAIT_LOCK">WAIT_LOCK</a></strong>             = 1;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#NOWAIT_LOCK">NOWAIT_LOCK</a></strong>           = 0;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#LLONG_MAX">LLONG_MAX</a></strong>             = high(int64);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PY_TIMEOUT_MAX_VALUE">PY_TIMEOUT_MAX_VALUE</a></strong> = $3E7FFFFF830;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PY_TIMEOUT_MAX">PY_TIMEOUT_MAX</a></strong>        = <a href="uP4P.Constants.html#PY_TIMEOUT_MAX_VALUE">PY_TIMEOUT_MAX_VALUE</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYTHREAD_INVALID_THREAD_ID">PYTHREAD_INVALID_THREAD_ID</a></strong> = Cardinal(-1);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_CLEANUP_SUPPORTED">Py_CLEANUP_SUPPORTED</a></strong> = $20000;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYTHON_API_VERSION">PYTHON_API_VERSION</a></strong>   = 1013;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYTHON_API_STRING">PYTHON_API_STRING</a></strong>    = '1013';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYTHON_ABI_VERSION">PYTHON_ABI_VERSION</a></strong>   = 3;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYTHON_ABI_STRING">PYTHON_ABI_STRING</a></strong>    = '3';</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_STABLE">PyABIInfo_STABLE</a></strong>                 = $0001;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a></strong>                    = $0002;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_FREETHREADED">PyABIInfo_FREETHREADED</a></strong>           = $0004;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_INTERNAL">PyABIInfo_INTERNAL</a></strong>               = $0008;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_FREETHREADING_AGNOSTIC">PyABIInfo_FREETHREADING_AGNOSTIC</a></strong> = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a> or <a href="uP4P.Constants.html#PyABIInfo_FREETHREADED">PyABIInfo_FREETHREADED</a>;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a></strong>   = 0;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a></strong>       = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a>;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a></strong> = 0;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">PyABIInfo_DEFAULT_FLAGS</a></strong> = <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a> or
+                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a> or
+                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a>;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_single_input">Py_single_input</a></strong>    = 256;</code></td>
@@ -1300,7 +1344,7 @@ body { margin: 0.5em; }
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="MAX_SUPPORTED_MINOR_VERSION"></span><code><strong>MAX_SUPPORTED_MINOR_VERSION</strong> = 14;</code></td>
+<td class="itemcode"><span id="MAX_SUPPORTED_MINOR_VERSION"></span><code><strong>MAX_SUPPORTED_MINOR_VERSION</strong> = 15;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -1608,7 +1652,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING"></span><code><strong>PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING</strong> = 'legacy_windows_fs_encoding';</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+PYINITCONFIGOPTION_LAZY_IMPORTS = 'lazy_imports'; //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -1706,7 +1752,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="PYINITCONFIGOPTION_QUIET"></span><code><strong>PYINITCONFIGOPTION_QUIET</strong>                      = 'quiet';</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES = 'pymalloc_hugepages'; //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -2441,12 +2489,40 @@ body { margin: 0.5em; }
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="Py_bf_getbuffer"></span><code><strong>Py_bf_getbuffer</strong> = 1;</code></td>
+<td class="itemcode"><span id="PySlot_OPTIONAL"></span><code><strong>PySlot_OPTIONAL</strong>  = $0001;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
-* include/typeslots.h *</p>
+* include/typeslots.h include/slots.h include/slots_generated.h *</p>
 </td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PySlot_STATIC"></span><code><strong>PySlot_STATIC</strong>    = $0002;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PySlot_INTPTR"></span><code><strong>PySlot_INTPTR</strong>    = $0004;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="Py_slot_invalid"></span><code><strong>Py_slot_invalid</strong>  = $ffff;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="Py_bf_getbuffer"></span><code><strong>Py_bf_getbuffer</strong> = 1;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -3379,7 +3455,7 @@ $0100;</p>
 </tr>
 <tr><td colspan="1">
 <p>
-* include/monitoring.h *</p>
+* include/monitoring.h include/cpython/monitoring.h *</p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -3861,7 +3937,7 @@ Deprecated, use Py_T_OBJECT_EX instead</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="Py_READONLY"></span><code><strong>Py_READONLY</strong>           = 1;</code></td>
+<td class="itemcode"><span id="Py_READONLY"></span><code><strong>Py_READONLY</strong>           = 1 shl 0;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
@@ -3870,14 +3946,14 @@ Deprecated. Value is always None.</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="Py_AUDIT_READ"></span><code><strong>Py_AUDIT_READ</strong>         = 2;</code></td>
+<td class="itemcode"><span id="Py_AUDIT_READ"></span><code><strong>Py_AUDIT_READ</strong>         = 1 shl 1;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="_Py_WRITE_RESTRICTED"></span><code><strong>_Py_WRITE_RESTRICTED</strong>  = 4;</code></td>
+<td class="itemcode"><span id="_Py_WRITE_RESTRICTED"></span><code><strong>_Py_WRITE_RESTRICTED</strong>  = 1 shl 2;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
@@ -3886,12 +3962,19 @@ Added in 3.10, harmless no-op before that</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="Py_RELATIVE_OFFSET"></span><code><strong>Py_RELATIVE_OFFSET</strong>    = 8;</code></td>
+<td class="itemcode"><span id="Py_RELATIVE_OFFSET"></span><code><strong>Py_RELATIVE_OFFSET</strong>    = 1 shl 3;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
 Deprecated, no-op. Do not reuse the value.</p>
 </td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="_Py_AFTER_ITEMS"></span><code><strong>_Py_AFTER_ITEMS</strong>       = 1 shl 4;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -4004,6 +4087,83 @@ int64($FFFFFFFE) * 1000;</p>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_STABLE"></span><code><strong>PyABIInfo_STABLE</strong>                 = $0001;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Specifies that Stable ABI is used. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_GIL"></span><code><strong>PyABIInfo_GIL</strong>                    = $0002;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Specifies ABI compatible with non-free-threaded builds of CPython (ones compiled without &ndash;disable-gil). </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_FREETHREADED"></span><code><strong>PyABIInfo_FREETHREADED</strong>           = $0004;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Specifies ABI compatible with free-threaded builds of CPython. (That is, ones compiled with &ndash;disable-gil; with t in sys.abiflags). </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_INTERNAL"></span><code><strong>PyABIInfo_INTERNAL</strong>               = $0008;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Specifies ABI specific to a particular build of CPython. Internal use only. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_FREETHREADING_AGNOSTIC"></span><code><strong>PyABIInfo_FREETHREADING_AGNOSTIC</strong> = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a> or <a href="uP4P.Constants.html#PyABIInfo_FREETHREADED">PyABIInfo_FREETHREADED</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Specifies ABI compatible with both free-threaded and non-free-threaded builds of CPython, that is, both abi3 and abi3t. </p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_STABLE"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_STABLE</strong>   = 0;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_FT"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_FT</strong>       = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_INTERNAL"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_INTERNAL</strong> = 0;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyABIInfo_DEFAULT_FLAGS"></span><code><strong>PyABIInfo_DEFAULT_FLAGS</strong> = <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a> or
+                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a> or
+                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Default flags, based on current values of macros such as Py_LIMITED_API and Py_GIL_DISABLED. </p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">

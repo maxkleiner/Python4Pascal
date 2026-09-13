@@ -56,6 +56,7 @@ type
       FExecutable                        : string;
       FProgramName                       : string;
       FModuleSearchPaths                 : string;
+      FLazyImports                       : TPyLazyImports;
       FOnBeforeInitialization            : TOnBeforeInitializationEvent;
 
       function GetInitialized: boolean;
@@ -440,6 +441,18 @@ type
       /// </remarks>
       property ModuleSearchPaths                 : string                                       read FModuleSearchPaths                 write FModuleSearchPaths;
       /// <summary>
+      /// <para>Controls lazy import behavior. Accepts two values:</para>
+      /// <code>
+      /// - li_all makes all imports lazy by default.
+      /// - li_normal (the default) respects the lazy keyword in source code.
+      /// </code>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      property LazyImports                       : TPyLazyImports                               read FLazyImports                       write FLazyImports;
+      /// <summary>
       /// Event triggered right before the Python initialization. It's used to change the configuration properties.
       /// </summary>
       property OnBeforeInitialization            : TOnBeforeInitializationEvent                 read FOnBeforeInitialization            write FOnBeforeInitialization;
@@ -478,6 +491,7 @@ begin
   FExecutable             := '';
   FProgramName            := '';
   FModuleSearchPaths      := '';
+  FLazyImports            := li_normal;
 
   {$IFDEF ANDROID}
   FIsolated               := True;
@@ -1423,6 +1437,7 @@ begin
     TempConfig.program_name            := FProgramName;
     TempConfig.module_search_paths     := FModuleSearchPaths;
     TempConfig.module_search_paths_set := (length(FModuleSearchPaths) > 0);
+    TempConfig.lazy_imports            := FLazyImports;
 
     SetProgramArgs_PEP587(TempConfig);
 

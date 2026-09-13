@@ -335,6 +335,36 @@ body { margin: 0.5em; }
 <td class="itemdesc"><p> These contants are declared in the &quot;Windows&quot; unit but some old Delphi versions don't have them. We have to add &quot;P4P_&quot; to be compatible with C++ Builder. </p></td>
 </tr>
 <tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">PyABIInfo_DEFAULT_FLAGS</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Default flags, based on current values of macros such as Py_LIMITED_API and Py_GIL_DISABLED. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_FREETHREADED">PyABIInfo_FREETHREADED</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Specifies ABI compatible with free-threaded builds of CPython. (That is, ones compiled with &ndash;disable-gil; with t in sys.abiflags). </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_FREETHREADING_AGNOSTIC">PyABIInfo_FREETHREADING_AGNOSTIC</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Specifies ABI compatible with both free-threaded and non-free-threaded builds of CPython, that is, both abi3 and abi3t. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Specifies ABI compatible with non-free-threaded builds of CPython (ones compiled without &ndash;disable-gil). </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_INTERNAL">PyABIInfo_INTERNAL</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Specifies ABI specific to a particular build of CPython. Internal use only. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PyABIInfo_STABLE">PyABIInfo_STABLE</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p> Specifies that Stable ABI is used. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyBUF_ANY_CONTIGUOUS">PyBUF_ANY_CONTIGUOUS</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
@@ -637,7 +667,7 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING">PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>PYINITCONFIGOPTION_LAZY_IMPORTS = 'lazy_imports'; //****** 3.15.0</p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO">PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO</a></td>
@@ -707,7 +737,7 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYINITCONFIGOPTION_QUIET">PYINITCONFIGOPTION_QUIET</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES = 'pymalloc_hugepages'; //****** 3.15.0</p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYINITCONFIGOPTION_RUN_COMMAND">PYINITCONFIGOPTION_RUN_COMMAND</a></td>
@@ -840,226 +870,241 @@ body { margin: 0.5em; }
 <td class="itemdesc"><p> Use (share) the main interpreter's GIL. Used in PyInterpreterConfig.gil </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PySlot_INTPTR">PySlot_INTPTR</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PySlot_OPTIONAL">PySlot_OPTIONAL</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>* include/typeslots.h include/slots.h include/slots_generated.h *</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#PySlot_STATIC">PySlot_STATIC</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHON_ABI_STRING">PYTHON_ABI_STRING</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHON_ABI_VERSION">PYTHON_ABI_VERSION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHON_API_STRING">PYTHON_API_STRING</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHON_API_VERSION">PYTHON_API_VERSION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHON_LIB_EXT">PYTHON_LIB_EXT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PYTHREAD_INVALID_THREAD_ID">PYTHREAD_INVALID_THREAD_ID</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* #define PYTHREAD_INVALID_THREAD_ID ((unsigned long)-1) *</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTime_MAX">PyTime_MAX</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> Maximum value of PyTime_t. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTime_MIN">PyTime_MIN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> Minimum value of PyTime_t. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_CALL">PyTrace_CALL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/pystate.h *</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_C_CALL">PyTrace_C_CALL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_C_EXCEPTION">PyTrace_C_EXCEPTION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_C_RETURN">PyTrace_C_RETURN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_EXCEPTION">PyTrace_EXCEPTION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_LINE">PyTrace_LINE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_OPCODE">PyTrace_OPCODE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyTrace_RETURN">PyTrace_RETURN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PyWrapperFlag_KEYWORDS">PyWrapperFlag_KEYWORDS</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> Flag for wrapperbase. The wrapper function takes keyword args. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_am_aiter">Py_am_aiter</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_am_anext">Py_am_anext</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_am_await">Py_am_await</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_am_send">Py_am_send</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_ALLOW_INDEX">Py_ASNATIVEBYTES_ALLOW_INDEX</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_BIG_ENDIAN">Py_ASNATIVEBYTES_BIG_ENDIAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_DEFAULTS">Py_ASNATIVEBYTES_DEFAULTS</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/longobject.h *</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_LITTLE_ENDIAN">Py_ASNATIVEBYTES_LITTLE_ENDIAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_NATIVE_ENDIAN">Py_ASNATIVEBYTES_NATIVE_ENDIAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_REJECT_NEGATIVE">Py_ASNATIVEBYTES_REJECT_NEGATIVE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_ASNATIVEBYTES_UNSIGNED_BUFFER">Py_ASNATIVEBYTES_UNSIGNED_BUFFER</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_AUDIT_READ">Py_AUDIT_READ</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_bf_getbuffer">Py_bf_getbuffer</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>* include/typeslots.h *</p></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_bf_releasebuffer">Py_bf_releasebuffer</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CLEANUP_SUPPORTED">Py_CLEANUP_SUPPORTED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/modsupport.h include/cpython/modsupport.h *</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_ELLIPSIS">Py_CONSTANT_ELLIPSIS</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_EMPTY_BYTES">Py_CONSTANT_EMPTY_BYTES</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_EMPTY_STR">Py_CONSTANT_EMPTY_STR</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_EMPTY_TUPLE">Py_CONSTANT_EMPTY_TUPLE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_FALSE">Py_CONSTANT_FALSE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_FIRST">Py_CONSTANT_FIRST</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_LAST">Py_CONSTANT_LAST</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_NONE">Py_CONSTANT_NONE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_NOT_IMPLEMENTED">Py_CONSTANT_NOT_IMPLEMENTED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_ONE">Py_CONSTANT_ONE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_TRUE">Py_CONSTANT_TRUE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_CONSTANT_ZERO">Py_CONSTANT_ZERO</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTSF_ADD_DOT_0">Py_DTSF_ADD_DOT_0</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1068,7 +1113,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTSF_ALT">Py_DTSF_ALT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1077,7 +1122,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTSF_NO_NEG_0">Py_DTSF_NO_NEG_0</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1086,7 +1131,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTSF_SIGN">Py_DTSF_SIGN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1095,7 +1140,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTST_FINITE">Py_DTST_FINITE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1104,7 +1149,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTST_INFINITE">Py_DTST_INFINITE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1113,7 +1158,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_DTST_NAN">Py_DTST_NAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1122,112 +1167,112 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_EQ">Py_EQ</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_eval_input">Py_eval_input</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_file_input">Py_file_input</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_func_type_input">Py_func_type_input</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_GE">Py_GE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_GT">Py_GT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HASH_CUTOFF">Py_HASH_CUTOFF</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/pyhash.h *</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HASH_EXTERNAL">Py_HASH_EXTERNAL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HASH_FNV">Py_HASH_FNV</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HASH_SIPHASH13">Py_HASH_SIPHASH13</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HASH_SIPHASH24">Py_HASH_SIPHASH24</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HUGE_VAL">Py_HUGE_VAL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> Equivalent to INFINITY. Deprecated since version 3.14: The macro is soft deprecated. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_INFINITY">Py_INFINITY</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> This macro expands to a constant expression of type double, that represents the positive infinity. On most platforms, this is equivalent to the INFINITY macro from the C11 standard &lt;math.h&gt; header. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_INVALID_STACK_EFFECT">PY_INVALID_STACK_EFFECT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_LE">Py_LE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_LT">Py_LT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MATH_E">Py_MATH_E</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> The definition (accurate for a double type) of the math.e constant. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MATH_El">Py_MATH_El</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> High precision (long double) definition of e constant. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MATH_PI">Py_MATH_PI</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> The definition (accurate for a double type) of the math.pi constant. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MATH_PIl">Py_MATH_PIl</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> High precision (long double) definition of pi constant. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MATH_TAU">Py_MATH_TAU</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> The definition (accurate for a double type) of the math.tau constant. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mod_create">Py_mod_create</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1252,7 +1297,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mod_exec">Py_mod_exec</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1269,7 +1314,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mod_gil">Py_mod_gil</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1290,7 +1335,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MOD_GIL_NOT_USED">Py_MOD_GIL_NOT_USED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1299,7 +1344,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MOD_GIL_USED">Py_MOD_GIL_USED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1308,7 +1353,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mod_multiple_interpreters">Py_mod_multiple_interpreters</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1329,7 +1374,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED">Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1338,7 +1383,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED">Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1347,7 +1392,7 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_MOD_PER_INTERPRETER_GIL_SUPPORTED">Py_MOD_PER_INTERPRETER_GIL_SUPPORTED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>
@@ -1356,320 +1401,325 @@ body { margin: 0.5em; }
 
 <p></p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_BRANCH">PY_MONITORING_EVENT_BRANCH</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_BRANCH_LEFT">PY_MONITORING_EVENT_BRANCH_LEFT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_BRANCH_RIGHT">PY_MONITORING_EVENT_BRANCH_RIGHT</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_CALL">PY_MONITORING_EVENT_CALL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_C_RAISE">PY_MONITORING_EVENT_C_RAISE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_C_RETURN">PY_MONITORING_EVENT_C_RETURN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_EXCEPTION_HANDLED">PY_MONITORING_EVENT_EXCEPTION_HANDLED</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_INSTRUCTION">PY_MONITORING_EVENT_INSTRUCTION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_JUMP">PY_MONITORING_EVENT_JUMP</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_LINE">PY_MONITORING_EVENT_LINE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_RESUME">PY_MONITORING_EVENT_PY_RESUME</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_RETURN">PY_MONITORING_EVENT_PY_RETURN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_START">PY_MONITORING_EVENT_PY_START</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>* include/monitoring.h *</p></td>
+<td class="itemdesc"><p>* include/monitoring.h include/cpython/monitoring.h *</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_THROW">PY_MONITORING_EVENT_PY_THROW</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_UNWIND">PY_MONITORING_EVENT_PY_UNWIND</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_PY_YIELD">PY_MONITORING_EVENT_PY_YIELD</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_RAISE">PY_MONITORING_EVENT_RAISE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_RERAISE">PY_MONITORING_EVENT_RERAISE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_MONITORING_EVENT_STOP_ITERATION">PY_MONITORING_EVENT_STOP_ITERATION</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mp_ass_subscript">Py_mp_ass_subscript</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mp_length">Py_mp_length</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_mp_subscript">Py_mp_subscript</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_NAN">Py_NAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> This macro expands to a constant expression of type double, that represents a quiet not-a-number (qNaN) value. On most platforms, this is equivalent to the NAN macro from the C11 standard &lt;math.h&gt; header. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_absolute">Py_nb_absolute</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_add">Py_nb_add</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_and">Py_nb_and</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_bool">Py_nb_bool</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_divmod">Py_nb_divmod</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_float">Py_nb_float</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_floor_divide">Py_nb_floor_divide</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_index">Py_nb_index</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_add">Py_nb_inplace_add</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_and">Py_nb_inplace_and</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_floor_divide">Py_nb_inplace_floor_divide</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_lshift">Py_nb_inplace_lshift</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_matrix_multiply">Py_nb_inplace_matrix_multiply</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_multiply">Py_nb_inplace_multiply</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_or">Py_nb_inplace_or</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_power">Py_nb_inplace_power</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_remainder">Py_nb_inplace_remainder</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_rshift">Py_nb_inplace_rshift</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_subtract">Py_nb_inplace_subtract</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_true_divide">Py_nb_inplace_true_divide</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_inplace_xor">Py_nb_inplace_xor</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_int">Py_nb_int</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_invert">Py_nb_invert</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_lshift">Py_nb_lshift</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_matrix_multiply">Py_nb_matrix_multiply</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_multiply">Py_nb_multiply</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_negative">Py_nb_negative</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_or">Py_nb_or</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_positive">Py_nb_positive</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_power">Py_nb_power</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_remainder">Py_nb_remainder</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_rshift">Py_nb_rshift</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_subtract">Py_nb_subtract</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_true_divide">Py_nb_true_divide</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_xor">Py_nb_xor</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_NE">Py_NE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_PRINT_RAW">Py_PRINT_RAW</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/object.h include/cpython/object.h *</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_READONLY">Py_READONLY</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>Deprecated.</p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_RELATIVE_OFFSET">Py_RELATIVE_OFFSET</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>Deprecated, no-op.</p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_single_input">Py_single_input</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p>* include/compile.h include/cpython/compile.h *</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_slot_invalid">Py_slot_invalid</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_sq_ass_item">Py_sq_ass_item</a></td>
@@ -2142,19 +2192,39 @@ body { margin: 0.5em; }
 <td class="itemdesc"><p>* include/pythread.h *</p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyDateTime_DATETIME_DATASIZE">_PyDateTime_DATETIME_DATASIZE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> # of bytes for year, month, day, hour, minute, second, and usecond. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyDateTime_DATE_DATASIZE">_PyDateTime_DATE_DATASIZE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> # of bytes for year, month, and day. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#_PyDateTime_TIME_DATASIZE">_PyDateTime_TIME_DATASIZE</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
 <td class="itemdesc"><p> of bytes for hour, minute, second, and usecond. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Constants.html#_Py_AFTER_ITEMS">_Py_AFTER_ITEMS</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#_Py_TPFLAGS_MATCH_SELF">_Py_TPFLAGS_MATCH_SELF</a></td>

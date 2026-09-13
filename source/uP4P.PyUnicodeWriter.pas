@@ -82,7 +82,7 @@ type
       /// <para>On success, return True. On error, set an exception, leave the
       /// writer unchanged, and return False.</para>
       /// </summary>
-      function  WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
+      function  WriteUCS4(const str: PPy_UCS4; size_: Py_ssize_t): boolean;
       /// <summary>
       /// <para>Call TPyObject.Str() on obj and write the output into
       /// writer.</para>
@@ -227,7 +227,7 @@ begin
             (PyUnicodeWriter_WriteWideChar(FWriter, str, size_) = 0);
 end;
 
-function TPyUnicodeWriter.WriteUCS4(str: PPy_UCS4; size_: Py_ssize_t): boolean;
+function TPyUnicodeWriter.WriteUCS4(const str: PPy_UCS4; size_: Py_ssize_t): boolean;
 begin
   Result := Initialized and
             assigned(PyUnicodeWriter_WriteUCS4) and

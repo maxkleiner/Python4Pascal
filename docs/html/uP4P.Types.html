@@ -60,48 +60,56 @@ body { margin: 0.5em; }
 <td class="itemdesc"> An extension of PyObject that adds the ob_size field. This is intended for objects that have some notion of length. </td>
 </tr>
 <tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyObjectIndexPair.html"><code>_PyObjectIndexPair</code></a></td>
+<td class="itemdesc">&nbsp;</td>
+</tr>
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyType_Slot.html"><code>PyType_Slot</code></a></td>
 <td class="itemdesc"> Record defining optional functionality of a type, containing a slot ID and a value pointer. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyType_Spec.html"><code>PyType_Spec</code></a></td>
 <td class="itemdesc"> Record defining a type's behavior. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyNumberMethods.html"><code>PyNumberMethods</code></a></td>
 <td class="itemdesc"> This structure holds pointers to the functions which an object uses to implement the number protocol. Each function is used by the function of similar name documented in the Number Protocol section. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PySequenceMethods.html"><code>PySequenceMethods</code></a></td>
 <td class="itemdesc"> This structure holds pointers to the functions which an object uses to implement the sequence protocol. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyMappingMethods.html"><code>PyMappingMethods</code></a></td>
 <td class="itemdesc"> This structure holds pointers to the functions which an object uses to implement the mapping protocol. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyAsyncMethods.html"><code>PyAsyncMethods</code></a></td>
 <td class="itemdesc"> This structure holds pointers to the functions required to implement awaitable and asynchronous iterator objects. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyBufferProcs.html"><code>PyBufferProcs</code></a></td>
 <td class="itemdesc"> This structure holds pointers to the functions required by the Buffer protocol. The protocol defines how an exporter object can expose its internal data to consumer objects. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._typeobject.html"><code>_typeobject</code></a></td>
 <td class="itemdesc"> Internal record that represents a PyTypeObject. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._specialization_cache.html"><code>_specialization_cache</code></a></td>
 <td class="itemdesc"> This struct is used by the specializer. It should be treated as an opaque blob by code other than the specializer and interpreter. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyHeapTypeObject.html"><code>PyHeapTypeObject</code></a></td>
 <td class="itemdesc"> Layout of a type object when allocated on the heap. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyObjectArenaAllocator.html"><code>PyObjectArenaAllocator</code></a></td>
 <td class="itemdesc"> Record used to describe an arena allocator. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PySlot.html"><code>PySlot</code></a></td>
+<td class="itemdesc">* include/typeslots.h include/slots.h include/slots_generated.h *</td>
 </tr>
 <tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyHash_FuncDef.html"><code>PyHash_FuncDef</code></a></td>
@@ -112,152 +120,160 @@ body { margin: 0.5em; }
 <td class="itemdesc"> This subtype of PyObject represents a Python bytearray object. </td>
 </tr>
 <tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyBytesWriter.html"><code>PyBytesWriter</code></a></td>
+<td class="itemdesc"> A bytes writer record. </td>
+</tr>
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyBytesObject.html"><code>PyBytesObject</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python bytes object. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyBaseExceptionObject.html"><code>PyBaseExceptionObject</code></a></td>
 <td class="itemdesc">* include/pyerrors.h include/cpython/pyerrors.h *</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyBaseExceptionGroupObject.html"><code>PyBaseExceptionGroupObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PySyntaxErrorObject.html"><code>PySyntaxErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyImportErrorObject.html"><code>PyImportErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyUnicodeErrorObject.html"><code>PyUnicodeErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PySystemExitObject.html"><code>PySystemExitObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyOSErrorObject.html"><code>PyOSErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyStopIterationObject.html"><code>PyStopIterationObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyNameErrorObject.html"><code>PyNameErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyAttributeErrorObject.html"><code>PyAttributeErrorObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyLongValue.html"><code>_PyLongValue</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._longobject.html"><code>_longobject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyLongLayout.html"><code>PyLongLayout</code></a></td>
 <td class="itemdesc"> Layout of an array of &quot;digits&quot; (&quot;limbs&quot; in the GMP terminology), used to represent absolute value for arbitrary precision integers. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyLongExport.html"><code>PyLongExport</code></a></td>
 <td class="itemdesc"> Export of a Python int object. There are two cases: If digits is nil, only use the value member. If digits is not nil, use negative, ndigits and digits members. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyFloatObject.html"><code>PyFloatObject</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python floating-point object. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.Py_complex.html"><code>Py_complex</code></a></td>
 <td class="itemdesc"> The structure which corresponds to the value portion of a Python complex number object. Most of the functions for dealing with complex number objects use structures of this type as input or output values, as appropriate. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyComplexObject.html"><code>PyComplexObject</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python complex number object. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDictObject.html"><code>PyDictObject</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python dictionary object. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyMethodDef.html"><code>PyMethodDef</code></a></td>
 <td class="itemdesc"> Record used to describe a method of an extension type. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyCFunctionObject.html"><code>PyCFunctionObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyCMethodObject.html"><code>PyCMethodObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyModuleDef_Base.html"><code>PyModuleDef_Base</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyModuleDef_Slot.html"><code>PyModuleDef_Slot</code></a></td>
 <td class="itemdesc"> Module slot definition. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyModuleDef.html"><code>PyModuleDef</code></a></td>
 <td class="itemdesc"> The module definition struct, which holds all information needed to create a module object. This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist). Usually, there is only one variable of this type for each extension module. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyMonitoringState.html"><code>PyMonitoringState</code></a></td>
 <td class="itemdesc"> Representation of the state of an event type. It is allocated by the user while its contents are maintained by the monitoring API functions described below. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyFunctionObject.html"><code>PyFunctionObject</code></a></td>
 <td class="itemdesc"> The structure used for functions. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyMethodObject.html"><code>PyMethodObject</code></a></td>
 <td class="itemdesc">* include/cpython/classobject.h *</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyInstanceMethodObject.html"><code>PyInstanceMethodObject</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyCoCached.html"><code>_PyCoCached</code></a></td>
 <td class="itemdesc">* include/cpython/code.h *</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyExecutorArray.html"><code>_PyExecutorArray</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyCodeObject.html"><code>PyCodeObject</code></a></td>
 <td class="itemdesc"> The structure of the objects used to describe code objects. The fields of this type are subject to change at any time. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._traceback.html"><code>_traceback</code></a></td>
 <td class="itemdesc">* include/traceback.h include/cpython/traceback.h *</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PySliceObject.html"><code>PySliceObject</code></a></td>
 <td class="itemdesc"> A slice object containing start, stop, and step data members (the names are from range). Py_None stands for omitted values. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyStatus.html"><code>PyStatus</code></a></td>
 <td class="itemdesc"> Record to store an initialization function status: success, error or exit. For an error, it can store the function name which created the error. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyWideStringList.html"><code>PyWideStringList</code></a></td>
 <td class="itemdesc"> List of wchar_t* strings. If length is non-zero, items must be non-nil and all strings must be non-nil. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyPreConfig.html"><code>PyPreConfig</code></a></td>
 <td class="itemdesc"> Record used to preinitialize Python. </td>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyConfig315.html"><code>PyConfig315</code></a></td>
+<td class="itemdesc"> Record containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory. </td>
 </tr>
 <tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyConfig314.html"><code>PyConfig314</code></a></td>
@@ -324,62 +340,66 @@ body { margin: 0.5em; }
 <td class="itemdesc"> Contains the meta information of a struct sequence type to create. </td>
 </tr>
 <tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyABIInfo.html"><code>PyABIInfo</code></a></td>
+<td class="itemdesc"> Record used to store ABI information. </td>
+</tr>
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyCompilerFlags.html"><code>PyCompilerFlags</code></a></td>
 <td class="itemdesc"> This is the structure used to hold compiler flags. In cases where code is only being compiled, it is passed as int flags, and in cases where code is being executed, it is passed as PyCompilerFlags *flags. In this case, from __future__ import can modify flags. Whenever PyCompilerFlags *flags is nil, cf_flags is treated as equal to 0, and any modification due to from __future__ import is discarded. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyInterpreterConfig.html"><code>PyInterpreterConfig</code></a></td>
 <td class="itemdesc"> Record containing most parameters to configure a sub-interpreter. Its values are used only in Py_NewInterpreterFromConfig() and never modified by the runtime. Added in version 3.12. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._inittab.html"><code>_inittab</code></a></td>
 <td class="itemdesc"> Record describing a single entry in the list of built-in modules. Programs which embed Python may use an array of these structures in conjunction with PyImport_ExtendInittab() to provide additional built-in modules. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._frozen.html"><code>_frozen</code></a></td>
 <td class="itemdesc"> This is the structure type definition for frozen module descriptors, as generated by the freeze utility (see Tools/freeze/ in the Python source distribution). </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyFrameLocalsProxyObject.html"><code>PyFrameLocalsProxyObject</code></a></td>
 <td class="itemdesc">* include/frameobject.h include/cpython/frameobject.h *</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_Delta.html"><code>PyDateTime_Delta</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents the difference between two datetime values. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_TZInfo.html"><code>PyDateTime_TZInfo</code></a></td>
 <td class="itemdesc"> PyDateTime_TZInfo is a pure abstract base class. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyDateTime_BaseTZInfo.html"><code>_PyDateTime_BaseTZInfo</code></a></td>
 <td class="itemdesc"> No _PyDateTime_BaseTZInfo is allocated; it's just to have something convenient to cast to, when getting at the hastzinfo member of objects starting with _PyTZINFO_HEAD. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyDateTime_BaseTime.html"><code>_PyDateTime_BaseTime</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_Time.html"><code>PyDateTime_Time</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python time object. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_Date.html"><code>PyDateTime_Date</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python date object. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._PyDateTime_BaseDateTime.html"><code>_PyDateTime_BaseDateTime</code></a></td>
 <td class="itemdesc">&nbsp;</td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_DateTime.html"><code>PyDateTime_DateTime</code></a></td>
 <td class="itemdesc"> This subtype of PyObject represents a Python datetime object. </td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types.PyDateTime_CAPI.html"><code>PyDateTime_CAPI</code></a></td>
 <td class="itemdesc"> Record containing the fields for the datetime C API. The fields of this structure are private and subject to change. Do not use this directly; prefer PyDateTime_* APIs instead. </td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname">Record&nbsp;<a class="bold" href="uP4P.Types._frame.html"><code>_frame</code></a></td>
 <td class="itemdesc">* Include/internal/pycore_frame.h *</td>
 </tr>
@@ -444,640 +464,670 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#TPyStartSymbols">TPyStartSymbols</a></strong> = (...);</code></td>
 </tr>
 <tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a></strong> = (...);</code></td>
+</tr>
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_ssize_t">PPy_ssize_t</a></strong>                     = &circ;<a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a></strong>                   = &circ;<a href="uP4P.Types.html#PyTypeObject">PyTypeObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPPyTypeObject">PPPyTypeObject</a></strong>                  = &circ;<a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyModuleDef_Base">PPyModuleDef_Base</a></strong>               = &circ;<a href="uP4P.Types.PyModuleDef_Base.html">PyModuleDef_Base</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyObject">PPyObject</a></strong>                       = &circ;<a href="uP4P.Types.html#PyObject">PyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPPyObject">PPPyObject</a></strong>                      = &circ;<a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyModuleDef_Slot">PPyModuleDef_Slot</a></strong>               = &circ;<a href="uP4P.Types.PyModuleDef_Slot.html">PyModuleDef_Slot</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a></strong>                    = &circ;<a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyVarObject">PPyVarObject</a></strong>                    = &circ;<a href="uP4P.Types.PyVarObject.html">PyVarObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyAsyncMethods">PPyAsyncMethods</a></strong>                 = &circ;<a href="uP4P.Types.PyAsyncMethods.html">PyAsyncMethods</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a></strong>                    = &circ;<a href="uP4P.Types.PyType_Slot.html">PyType_Slot</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyNumberMethods">PPyNumberMethods</a></strong>                = &circ;<a href="uP4P.Types.PyNumberMethods.html">PyNumberMethods</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPySequenceMethods">PPySequenceMethods</a></strong>              = &circ;<a href="uP4P.Types.PySequenceMethods.html">PySequenceMethods</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMappingMethods">PPyMappingMethods</a></strong>               = &circ;<a href="uP4P.Types.PyMappingMethods.html">PyMappingMethods</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBufferProcs">PPyBufferProcs</a></strong>                  = &circ;<a href="uP4P.Types.PyBufferProcs.html">PyBufferProcs</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_buffer">PPy_buffer</a></strong>                      = &circ;<a href="uP4P.Types.Py_buffer.html">Py_Buffer</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a></strong>                    = &circ;<a href="uP4P.Types.PyMethodDef.html">PyMethodDef</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMemberDef">PPyMemberDef</a></strong>                    = &circ;<a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyGetSetDef">PPyGetSetDef</a></strong>                    = &circ;<a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_PyCoCached">P_PyCoCached</a></strong>                    = &circ;<a href="uP4P.Types._PyCoCached.html">_PyCoCached</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_PyExecutorArray">P_PyExecutorArray</a></strong>               = &circ;<a href="uP4P.Types._PyExecutorArray.html">_PyExecutorArray</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyFrameObject">PPyFrameObject</a></strong>                  = &circ;<a href="uP4P.Types.html#PyFrameObject">PyFrameObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInterpreterState">PPyInterpreterState</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyThreadState">PPyThreadState</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a></strong>                    = &circ;<a href="uP4P.Types.PyType_Spec.html">PyType_Spec</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_UCS4">PPy_UCS4</a></strong>                        = &circ;<a href="uP4P.Types.html#Py_UCS4">Py_UCS4</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_UCS2">PPy_UCS2</a></strong>                        = &circ;<a href="uP4P.Types.html#Py_UCS2">Py_UCS2</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_UCS1">PPy_UCS1</a></strong>                        = &circ;<a href="uP4P.Types.html#Py_UCS1">Py_UCS1</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyLongLayout">PPyLongLayout</a></strong>                   = &circ;<a href="uP4P.Types.PyLongLayout.html">PyLongLayout</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyLongExport">PPyLongExport</a></strong>                   = &circ;<a href="uP4P.Types.PyLongExport.html">PyLongExport</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyLongWriter">PPyLongWriter</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyFunctionObject">PPyFunctionObject</a></strong>               = &circ;<a href="uP4P.Types.PyFunctionObject.html">PyFunctionObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMethodObject">PPyMethodObject</a></strong>                 = &circ;<a href="uP4P.Types.PyMethodObject.html">PyMethodObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInstanceMethodObject">PPyInstanceMethodObject</a></strong>         = &circ;<a href="uP4P.Types.PyInstanceMethodObject.html">PyInstanceMethodObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCodeObject">PPyCodeObject</a></strong>                   = &circ;<a href="uP4P.Types.PyCodeObject.html">PyCodeObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyStatus">PPyStatus</a></strong>                       = &circ;<a href="uP4P.Types.PyStatus.html">PyStatus</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyWideStringList">PPyWideStringList</a></strong>               = &circ;<a href="uP4P.Types.PyWideStringList.html">PyWideStringList</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyPreConfig">PPyPreConfig</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyConfig">PPyConfig</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInitConfig">PPyInitConfig</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyGenObject">PPyGenObject</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCoroObject">PPyCoroObject</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyAsyncGenObject">PPyAsyncGenObject</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyWeakReference">PPyWeakReference</a></strong>                = &circ;<a href="uP4P.Types.html#PyWeakReference">PyWeakReference</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyStructSequence_Field">PPyStructSequence_Field</a></strong>         = &circ;<a href="uP4P.Types.PyStructSequence_Field.html">PyStructSequence_Field</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyStructSequence_Desc">PPyStructSequence_Desc</a></strong>          = &circ;<a href="uP4P.Types.PyStructSequence_Desc.html">PyStructSequence_Desc</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyTime_t">PPyTime_t</a></strong>                       = &circ;<a href="uP4P.Types.html#PyTime_t">PyTime_t</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyThread_type_lock">PyThread_type_lock</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_tss_t">PPy_tss_t</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyContext">PPyContext</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyContextVar">PPyContextVar</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyContextToken">PPyContextToken</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyODictObject">PPyODictObject</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDictObject">PPyDictObject</a></strong>                   = &circ;<a href="uP4P.Types.PyDictObject.html">PyDictObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDictKeysObject">PPyDictKeysObject</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDictValues">PPyDictValues</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMutex">PPyMutex</a></strong>                        = &circ;<a href="uP4P.Types.PyMutex.html">PyMutex</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCriticalSection">PPyCriticalSection</a></strong>              = &circ;<a href="uP4P.Types.PyCriticalSection.html">PyCriticalSection</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCriticalSection2">PPyCriticalSection2</a></strong>             = &circ;<a href="uP4P.Types.PyCriticalSection2.html">PyCriticalSection2</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMonitoringState">PPyMonitoringState</a></strong>              = &circ;<a href="uP4P.Types.PyMonitoringState.html">PyMonitoringState</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBytesObject">PPyBytesObject</a></strong>                  = &circ;<a href="uP4P.Types.PyBytesObject.html">PyBytesObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a></strong>                = &circ;<a href="uP4P.Types.PyCompilerFlags.html">PyCompilerFlags</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPy_complex">PPy_complex</a></strong>                     = &circ;<a href="uP4P.Types.Py_complex.html">Py_complex</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyComplexObject">PPyComplexObject</a></strong>                = &circ;<a href="uP4P.Types.PyComplexObject.html">PyComplexObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDescrObject">PPyDescrObject</a></strong>                  = &circ;<a href="uP4P.Types.PyDescrObject.html">PyDescrObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMethodDescrObject">PPyMethodDescrObject</a></strong>            = &circ;<a href="uP4P.Types.PyMethodDescrObject.html">PyMethodDescrObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMemberDescrObject">PPyMemberDescrObject</a></strong>            = &circ;<a href="uP4P.Types.PyMemberDescrObject.html">PyMemberDescrObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyGetSetDescrObject">PPyGetSetDescrObject</a></strong>            = &circ;<a href="uP4P.Types.PyGetSetDescrObject.html">PyGetSetDescrObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Pwrapperbase">Pwrapperbase</a></strong>                    = &circ;<a href="uP4P.Types.wrapperbase.html">wrapperbase</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyWrapperDescrObject">PPyWrapperDescrObject</a></strong>           = &circ;<a href="uP4P.Types.PyWrapperDescrObject.html">PyWrapperDescrObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyFloatObject">PPyFloatObject</a></strong>                  = &circ;<a href="uP4P.Types.PyFloatObject.html">PyFloatObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyFrameLocalsProxyObject">PPyFrameLocalsProxyObject</a></strong>       = &circ;<a href="uP4P.Types.PyFrameLocalsProxyObject.html">PyFrameLocalsProxyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_inittab">P_inittab</a></strong>                       = &circ;<a href="uP4P.Types._inittab.html">_inittab</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_frozen">P_frozen</a></strong>                        = &circ;<a href="uP4P.Types._frozen.html">_frozen</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCFunctionObject">PPyCFunctionObject</a></strong>              = &circ;<a href="uP4P.Types.PyCFunctionObject.html">PyCFunctionObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyCMethodObject">PPyCMethodObject</a></strong>                = &circ;<a href="uP4P.Types.PyCMethodObject.html">PyCMethodObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyHeapTypeObject">PPyHeapTypeObject</a></strong>               = &circ;<a href="uP4P.Types.PyHeapTypeObject.html">PyHeapTypeObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyObjectArenaAllocator">PPyObjectArenaAllocator</a></strong>         = &circ;<a href="uP4P.Types.PyObjectArenaAllocator.html">PyObjectArenaAllocator</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBaseExceptionObject">PPyBaseExceptionObject</a></strong>          = &circ;<a href="uP4P.Types.PyBaseExceptionObject.html">PyBaseExceptionObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBaseExceptionGroupObject">PPyBaseExceptionGroupObject</a></strong>     = &circ;<a href="uP4P.Types.PyBaseExceptionGroupObject.html">PyBaseExceptionGroupObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPySyntaxErrorObject">PPySyntaxErrorObject</a></strong>            = &circ;<a href="uP4P.Types.PySyntaxErrorObject.html">PySyntaxErrorObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyImportErrorObject">PPyImportErrorObject</a></strong>            = &circ;<a href="uP4P.Types.PyImportErrorObject.html">PyImportErrorObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyUnicodeErrorObject">PPyUnicodeErrorObject</a></strong>           = &circ;<a href="uP4P.Types.PyUnicodeErrorObject.html">PyUnicodeErrorObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPySystemExitObject">PPySystemExitObject</a></strong>             = &circ;<a href="uP4P.Types.PySystemExitObject.html">PySystemExitObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyOSErrorObject">PPyOSErrorObject</a></strong>                = &circ;<a href="uP4P.Types.PyOSErrorObject.html">PyOSErrorObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyStopIterationObject">PPyStopIterationObject</a></strong>          = &circ;<a href="uP4P.Types.PyStopIterationObject.html">PyStopIterationObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyNameErrorObject">PPyNameErrorObject</a></strong>              = &circ;<a href="uP4P.Types.PyNameErrorObject.html">PyNameErrorObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyAttributeErrorObject">PPyAttributeErrorObject</a></strong>         = &circ;<a href="uP4P.Types.PyAttributeErrorObject.html">PyAttributeErrorObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyHash_FuncDef">PPyHash_FuncDef</a></strong>                 = &circ;<a href="uP4P.Types.PyHash_FuncDef.html">PyHash_FuncDef</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInterpreterConfig">PPyInterpreterConfig</a></strong>            = &circ;<a href="uP4P.Types.PyInterpreterConfig.html">PyInterpreterConfig</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyUnicodeWriter">PPyUnicodeWriter</a></strong> = type Pointer;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyByteArrayObject">PPyByteArrayObject</a></strong>              = &circ;<a href="uP4P.Types.PyByteArrayObject.html">PyByteArrayObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_Delta">PPyDateTime_Delta</a></strong>               = &circ;<a href="uP4P.Types.PyDateTime_Delta.html">PyDateTime_Delta</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_TZInfo">PPyDateTime_TZInfo</a></strong>              = &circ;<a href="uP4P.Types.PyDateTime_TZInfo.html">PyDateTime_TZInfo</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_PyDateTime_BaseTZInfo">P_PyDateTime_BaseTZInfo</a></strong>         = &circ;<a href="uP4P.Types._PyDateTime_BaseTZInfo.html">_PyDateTime_BaseTZInfo</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_PyDateTime_BaseTime">P_PyDateTime_BaseTime</a></strong>           = &circ;<a href="uP4P.Types._PyDateTime_BaseTime.html">_PyDateTime_BaseTime</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_Time">PPyDateTime_Time</a></strong>                = &circ;<a href="uP4P.Types.PyDateTime_Time.html">PyDateTime_Time</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_Date">PPyDateTime_Date</a></strong>                = &circ;<a href="uP4P.Types.PyDateTime_Date.html">PyDateTime_Date</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#P_PyDateTime_BaseDateTime">P_PyDateTime_BaseDateTime</a></strong>       = &circ;<a href="uP4P.Types._PyDateTime_BaseDateTime.html">_PyDateTime_BaseDateTime</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_DateTime">PPyDateTime_DateTime</a></strong>            = &circ;<a href="uP4P.Types.PyDateTime_DateTime.html">PyDateTime_DateTime</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyDateTime_CAPI">PPyDateTime_CAPI</a></strong>                = &circ;<a href="uP4P.Types.PyDateTime_CAPI.html">PyDateTime_CAPI</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPySliceObject">PPySliceObject</a></strong>                  = &circ;<a href="uP4P.Types.PySliceObject.html">PySliceObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyLongObject">PPyLongObject</a></strong>                   = &circ;<a href="uP4P.Types.html#PyLongObject">PyLongObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyMemAllocatorEx">PPyMemAllocatorEx</a></strong>               = &circ;<a href="uP4P.Types.PyMemAllocatorEx.html">PyMemAllocatorEx</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PC_ULong">PC_ULong</a></strong>                        = &circ;<a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBiteOrder">PPyBiteOrder</a></strong>                    = &circ;<a href="uP4P.Types.html#TPyBiteOrder">TPyBiteOrder</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyTracebackObject">PPyTracebackObject</a></strong>              = &circ;<a href="uP4P.Types.html#PyTracebackObject">PyTracebackObject</a>;</code></td>
 </tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyABIInfo">PPyABIInfo</a></strong>                      = &circ;<a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>;</code></td>
+</tr>
 <tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a></strong> = type Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a></strong> = type Pointer;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyThreadStateToken">PPyThreadStateToken</a></strong> = type Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPySlot">PPySlot</a></strong>                         = &circ;<a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a></strong>                  = &circ;<a href="uP4P.Types.PyBytesWriter.html">PyBytesWriter</a>;</code></td>
+</tr>
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PPyObjectArray">PPyObjectArray</a></strong> = array of <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_uintptr_t">Py_uintptr_t</a></strong> = type NativeUInt;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_intptr_t">Py_intptr_t</a></strong> = type NativeInt;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a></strong> = type <a href="uP4P.Types.html#Py_intptr_t">Py_intptr_t</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a></strong> = type <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_uhash_t">Py_uhash_t</a></strong> = type NativeUInt;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_ssize_clean_t">Py_ssize_clean_t</a></strong> = type <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_ssize_t_array">Py_ssize_t_array</a></strong>   = array of <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorDomain">PyMemAllocatorDomain</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorName">PyMemAllocatorName</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorEx_malloc">PyMemAllocatorEx_malloc</a></strong> = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorEx_calloc">PyMemAllocatorEx_calloc</a></strong> = function(ctx: Pointer; nelem, elsize: NativeUInt): Pointer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorEx_realloc">PyMemAllocatorEx_realloc</a></strong> = function(ctx, ptr: Pointer; new_size: NativeUInt): Pointer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMemAllocatorEx_free">PyMemAllocatorEx_free</a></strong> = procedure(ctx, ptr: Pointer); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#getbufferproc">getbufferproc</a></strong> = function(exporter: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; view: <a href="uP4P.Types.html#PPy_buffer">PPy_buffer</a>; flags: Integer): Integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#releasebufferproc">releasebufferproc</a></strong> = procedure(exporter: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; view: <a href="uP4P.Types.html#PPy_buffer">PPy_buffer</a>); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyObject">PyObject</a></strong> = type <a href="uP4P.Types._object.html">_object</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PySendResult">PySendResult</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#unaryfunc">unaryfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#binaryfunc">binaryfunc</a></strong> = function(ob1, ob2: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a></strong> = function(ob1, ob2, ob3: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#inquiry">inquiry</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#lenfunc">lenfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#ssizeargfunc">ssizeargfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; i: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#ssizessizeargfunc">ssizessizeargfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; i, j: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#ssizeobjargproc">ssizeobjargproc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; i: NativeInt; ob2 : <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#ssizessizeobjargproc">ssizessizeobjargproc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; i, j: NativeInt; ob2 : <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#objobjargproc">objobjargproc</a></strong> = function(ob1, ob2, ob3 : <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#objobjproc">objobjproc</a></strong> = function(ob1, ob2 : <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#visitproc">visitproc</a></strong> = function(ob: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; p: Pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#traverseproc">traverseproc</a></strong> = function(ob: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; v: <a href="uP4P.Types.html#visitproc">visitproc</a>; p: Pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#freefunc">freefunc</a></strong> = procedure(p: Pointer); cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#destructor_">destructor_</a></strong> = procedure(ob: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#getattrfunc">getattrfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; name: PAnsiChar): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#getattrofunc">getattrofunc</a></strong> = function(ob1, ob2: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#setattrfunc">setattrfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; name: PAnsiChar; ob2: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#setattrofunc">setattrofunc</a></strong> = function(ob1, ob2, ob3: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#reprfunc">reprfunc</a></strong> = function(ob: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#hashfunc">hashfunc</a></strong> = function(ob: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#richcmpfunc">richcmpfunc</a></strong> = function(ob1, ob2: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; i: Integer): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#getiterfunc">getiterfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>) : <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#iternextfunc">iternextfunc</a></strong> = function(ob1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#descrgetfunc">descrgetfunc</a></strong> = function(ob1, ob2, ob3: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#descrsetfunc">descrsetfunc</a></strong> = function(ob1, ob2, ob3: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): Integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#initproc">initproc</a></strong> = function(self, args, kwds: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): Integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#newfunc">newfunc</a></strong> = function(subtype: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; args, kwds: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#allocfunc">allocfunc</a></strong> = function(self: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; nitems: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a></strong> = function(callable, args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; nargsf: NativeUInt; kwnames: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#sendfunc">sendfunc</a></strong> = function(iter, value: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; result: <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>): <a href="uP4P.Types.html#PySendResult">PySendResult</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a></strong> = function(spec: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a></strong> = function(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
+<tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#_Py_funcptr_t">_Py_funcptr_t</a></strong> = procedure(); cdecl;</code></td>
+</tr>
 <tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#_Py_iteritemfunc">_Py_iteritemfunc</a></strong> = function(object_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; index_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types._PyObjectIndexPair.html">_PyObjectIndexPair</a>; cdecl;</code></td>
+</tr>
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyTypeObject">PyTypeObject</a></strong> = type <a href="uP4P.Types._typeobject.html">_typeobject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyRefTracerEvent">PyRefTracerEvent</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyType_WatchCallback">PyType_WatchCallback</a></strong> = function(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyRefTracer">PyRefTracer</a></strong> = function(obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; event: <a href="uP4P.Types.html#PyRefTracerEvent">PyRefTracerEvent</a>; ptr: Pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyObjectArenaAllocator_alloc">PyObjectArenaAllocator_alloc</a></strong> = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyObjectArenaAllocator_free">PyObjectArenaAllocator_free</a></strong> = procedure(ctx, ptr: Pointer; size_: NativeUInt); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyHash_FuncDef_hash">PyHash_FuncDef_hash</a></strong> = function(ptr: Pointer; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_UCS4">Py_UCS4</a></strong> = type cardinal;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_UCS2">Py_UCS2</a></strong> = type word;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_UCS1">Py_UCS1</a></strong> = type byte;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyUnicode_Kind_Result">PyUnicode_Kind_Result</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyEnvironmentErrorObject">PyEnvironmentErrorObject</a></strong> = type <a href="uP4P.Types.PyOSErrorObject.html">PyOSErrorObject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyWindowsErrorObject">PyWindowsErrorObject</a></strong> = type <a href="uP4P.Types.PyOSErrorObject.html">PyOSErrorObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#digit">digit</a></strong> = type cardinal;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#sdigit">sdigit</a></strong> = type integer;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#twodigits">twodigits</a></strong> = type uint64;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#stwodigits">stwodigits</a></strong> = type int64;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyLongObject">PyLongObject</a></strong> = type <a href="uP4P.Types._longobject.html">_longobject</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyDict_WatchEvent">PyDict_WatchEvent</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyDict_WatchCallback">PyDict_WatchCallback</a></strong> = function(event: <a href="uP4P.Types.html#PyDict_WatchEvent">PyDict_WatchEvent</a>; dict, key, new_value: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCFunction">PyCFunction</a></strong> = function(self, args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCFunctionFast">PyCFunctionFast</a></strong> = function(self: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const args: <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>; nargs: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCFunctionWithKeywords">PyCFunctionWithKeywords</a></strong> = function(self, args, kwargs: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCFunctionFastWithKeywords">PyCFunctionFastWithKeywords</a></strong> = function(self: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const args : <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>; nargs: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; kwnames: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCMethod">PyCMethod</a></strong> = function(self: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; defining_class: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const args: <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>; nargs: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; kwnames: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyMethodDefArray">PyMethodDefArray</a></strong> = array of <a href="uP4P.Types.html#PPyMethodDef">PPyMethodDef</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyModuleDef_Base_m_init">PyModuleDef_Base_m_init</a></strong> = function(): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyFunction_WatchEvent">PyFunction_WatchEvent</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyFunction_WatchCallback">PyFunction_WatchCallback</a></strong> = function(event: <a href="uP4P.Types.html#PyFunction_WatchEvent">PyFunction_WatchEvent</a>; func: <a href="uP4P.Types.html#PPyFunctionObject">PPyFunctionObject</a>; new_value: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_OpenCodeHookFunction">Py_OpenCodeHookFunction</a></strong> = function(obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; ptr: Pointer): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCapsule_Destructor">PyCapsule_Destructor</a></strong> = procedure(obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCodeEvent">PyCodeEvent</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyCode_WatchCallback">PyCode_WatchCallback</a></strong> = function(event: <a href="uP4P.Types.html#PyCodeEvent">PyCodeEvent</a>; co: <a href="uP4P.Types.html#PPyCodeObject">PPyCodeObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyTracebackObject">PyTracebackObject</a></strong> = type <a href="uP4P.Types._traceback.html">_traceback</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#TPyStatus_Type">TPyStatus_Type</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyGILState_STATE">PyGILState_STATE</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_tracefunc">Py_tracefunc</a></strong> = function(obj1: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; frame: <a href="uP4P.Types.html#PPyFrameObject">PPyFrameObject</a>; i: integer; obj2: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#getter">getter</a></strong> = function(obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; context: Pointer): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#setter">setter</a></strong> = function(obj, value: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; context: Pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#wrapperfunc">wrapperfunc</a></strong> = function(self, args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; wrapped: Pointer): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#wrapperfunc_kwds">wrapperfunc_kwds</a></strong> = function(self, args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; wrapped: Pointer; kwds: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyWeakReference">PyWeakReference</a></strong> = type <a href="uP4P.Types._PyWeakReference.html">_PyWeakReference</a>;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyTime_t">PyTime_t</a></strong> = type int64;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyThread_start_new_thread_func">PyThread_start_new_thread_func</a></strong> = procedure(arg: Pointer); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PY_TIMEOUT_T">PY_TIMEOUT_T</a></strong> = type int64;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyLockStatus">PyLockStatus</a></strong> = (...);</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyContextEvent">PyContextEvent</a></strong> = (...);</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyContext_WatchCallback">PyContext_WatchCallback</a></strong> = function(event: <a href="uP4P.Types.html#PyContextEvent">PyContextEvent</a>; obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#AtExitProc">AtExitProc</a></strong> = procedure(); cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyOS_sighandler_t">PyOS_sighandler_t</a></strong> = procedure(i: Integer); cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_AddPendingCall_func">Py_AddPendingCall_func</a></strong> = function(ptr: pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#Py_AuditHookFunction">Py_AuditHookFunction</a></strong> = function(const str: PAnsiChar; obj: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; ptr: Pointer): integer; cdecl;</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#initfunc">initfunc</a></strong> = function(): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a></strong> = (...);</code></td>
 </tr>
 <tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Types.html#PyDateTime_CAPI_Date_FromDate_func">PyDateTime_CAPI_Date_FromDate_func</a></strong> = function(i1, i2, i3: integer; type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>; cdecl;</code></td>
@@ -1404,10 +1454,44 @@ body { margin: 0.5em; }
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
+<td class="itemcode"><span id="TPyLazyImports"></span><code><strong>TPyLazyImports</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+
+
+<p>Controls lazy import behavior. Accepts two values:
+
+<p></p>
+
+<pre class="preformatted">
+- li_all makes all imports lazy by default.
+- li_normal (the default) respects the lazy keyword in source code.</pre>
+
+<p> </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS</a>&quot;&gt;See the article about PYTHON_LAZY_IMPORTS.)
+
+<p>Added in version 3.15.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="li_normal">li_normal</span></li>
+<li>
+<span id="li_all">li_all</span>: -1</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
 <td class="itemcode"><span id="PPy_ssize_t"></span><code><strong>PPy_ssize_t</strong>                     = &circ;<a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+1</p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -2187,6 +2271,54 @@ opaque</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
+<td class="itemcode"><span id="PPyABIInfo"></span><code><strong>PPyABIInfo</strong>                      = &circ;<a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PPyInterpreterGuard"></span><code><strong>PPyInterpreterGuard</strong> = type Pointer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PPyInterpreterView"></span><code><strong>PPyInterpreterView</strong> = type Pointer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+opaque</p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PPyThreadStateToken"></span><code><strong>PPyThreadStateToken</strong> = type Pointer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+opaque</p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PPySlot"></span><code><strong>PPySlot</strong>                         = &circ;<a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+opaque</p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PPyBytesWriter"></span><code><strong>PPyBytesWriter</strong>                  = &circ;<a href="uP4P.Types.PyBytesWriter.html">PyBytesWriter</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
 <td class="itemcode"><span id="PPyObjectArray"></span><code><strong>PPyObjectArray</strong> = array of <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
 <tr><td colspan="1">
@@ -2639,6 +2771,20 @@ opaque</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
+<td class="itemcode"><span id="_Py_funcptr_t"></span><code><strong>_Py_funcptr_t</strong> = procedure(); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="_Py_iteritemfunc"></span><code><strong>_Py_iteritemfunc</strong> = function(object_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; index_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types._PyObjectIndexPair.html">_PyObjectIndexPair</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
 <td class="itemcode"><span id="PyTypeObject"></span><code><strong>PyTypeObject</strong> = type <a href="uP4P.Types._typeobject.html">_typeobject</a>;</code></td>
 </tr>
 <tr><td colspan="1">
@@ -2661,6 +2807,8 @@ opaque</p>
 <span id="PyRefTracer_CREATE">PyRefTracer_CREATE = 0</span></li>
 <li>
 <span id="PyRefTracer_DESTROY">PyRefTracer_DESTROY = 1</span></li>
+<li>
+<span id="PyRefTracer_TRACKER_REMOVED">PyRefTracer_TRACKER_REMOVED = 2</span></li>
 </ul>
 </td></tr>
 </table>
@@ -2669,7 +2817,9 @@ opaque</p>
 <td class="itemcode"><span id="PyType_WatchCallback"></span><code><strong>PyType_WatchCallback</strong> = function(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer; cdecl;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -2910,6 +3060,8 @@ opaque</p>
 <span id="PyFunction_EVENT_MODIFY_DEFAULTS">PyFunction_EVENT_MODIFY_DEFAULTS</span></li>
 <li>
 <span id="PyFunction_EVENT_MODIFY_KWDEFAULTS">PyFunction_EVENT_MODIFY_KWDEFAULTS</span></li>
+<li>
+<span id="PyFunction_EVENT_MODIFY_QUALNAME">PyFunction_EVENT_MODIFY_QUALNAME</span></li>
 </ul>
 </td></tr>
 </table>
@@ -2918,7 +3070,9 @@ opaque</p>
 <td class="itemcode"><span id="PyFunction_WatchCallback"></span><code><strong>PyFunction_WatchCallback</strong> = function(event: <a href="uP4P.Types.html#PyFunction_WatchEvent">PyFunction_WatchEvent</a>; func: <a href="uP4P.Types.html#PPyFunctionObject">PPyFunctionObject</a>; new_value: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; cdecl;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -3177,6 +3331,28 @@ opaque</p>
 <tr><td colspan="1">
 <p>
 * include/import.h *</p>
+</td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
+<td class="itemcode"><span id="PyImport_LazyImportsMode"></span><code><strong>PyImport_LazyImportsMode</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Enumeration of possible lazy import modes. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/import.html#c.PyImport_LazyImportsMode">https://docs.python.org/3.15/c-api/import.html#c.PyImport_LazyImportsMode</a>&quot;&gt;See the article about Importing Modules.)
+
+<p>Added in version 3.15.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="PyImport_LAZY_NORMAL">PyImport_LAZY_NORMAL</span>:  Respect the lazy keyword in source code. This is the default mode. </li>
+<li>
+<span id="PyImport_LAZY_ALL">PyImport_LAZY_ALL</span>:  Make all imports lazy by default. </li>
+</ul>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">

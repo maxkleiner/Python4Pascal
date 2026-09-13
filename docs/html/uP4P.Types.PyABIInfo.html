@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Types: Record PyABIInfo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="PyABIInfo"></span><h1 class="cio">Record PyABIInfo</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Types.html">uP4P.Types</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type PyABIInfo = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Record used to store ABI information. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/stable.html#abi-checking">https://docs.python.org/3.15/c-api/stable.html#abi-checking</a>&quot;&gt;See the article about ABI Checking.)
+
+<p>Added in version 3.15.</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyABIInfo.html#abiinfo_major_version">abiinfo_major_version</a></strong>: byte;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyABIInfo.html#abiinfo_minor_version">abiinfo_minor_version</a></strong>: byte;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyABIInfo.html#flags">flags</a></strong>: word;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyABIInfo.html#build_version">build_version</a></strong>: cardinal;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Types.PyABIInfo.html#abi_version">abi_version</a></strong>: cardinal;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="abiinfo_major_version"></span><code><strong>abiinfo_major_version</strong>: byte;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The major version of PyABIInfo. Can be set to: </p>
+
+<pre class="preformatted">
+0 to skip all checking, or
+1 to specify this version of PyABIInfo.</pre>
+
+<p> </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="abiinfo_minor_version"></span><code><strong>abiinfo_minor_version</strong>: byte;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The minor version of PyABIInfo. Must be set to 0; larger values are reserved for backwards-compatible future versions of PyABIInfo. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="flags"></span><code><strong>flags</strong>: word;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This field is usually set to the following macro: PyABIInfo_DEFAULT_FLAGS.
+
+<p>Alternately, the field can be set to the following flags, combined by bitwise OR. Unused bits must be set to zero. ABI variant – one of: PyABIInfo_STABLE, PyABIInfo_INTERNAL
+
+<p>Free-threading compatibility – one of: PyABIInfo_FREETHREADED, PyABIInfo_GIL, PyABIInfo_FREETHREADING_AGNOSTIC.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="build_version"></span><code><strong>build_version</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The version of the Python headers used to build the code, in the format used by PY_VERSION_HEX.
+
+<p>This can be set to 0 to skip any checks related to this field. This option is meant mainly for projects that do not use the CPython headers directly, and do not emulate a specific version of them.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="abi_version"></span><code><strong>abi_version</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

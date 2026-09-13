@@ -682,6 +682,22 @@
 <param name="Local" value="uP4P.Constants.html#Py_GE">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PySlot_OPTIONAL">
+<param name="Local" value="uP4P.Constants.html#PySlot_OPTIONAL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PySlot_STATIC">
+<param name="Local" value="uP4P.Constants.html#PySlot_STATIC">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PySlot_INTPTR">
+<param name="Local" value="uP4P.Constants.html#PySlot_INTPTR">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_slot_invalid">
+<param name="Local" value="uP4P.Constants.html#Py_slot_invalid">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_bf_getbuffer">
 <param name="Local" value="uP4P.Constants.html#Py_bf_getbuffer">
 </object>
@@ -1426,6 +1442,10 @@
 <param name="Local" value="uP4P.Constants.html#Py_RELATIVE_OFFSET">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="_Py_AFTER_ITEMS">
+<param name="Local" value="uP4P.Constants.html#_Py_AFTER_ITEMS">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PyWrapperFlag_KEYWORDS">
 <param name="Local" value="uP4P.Constants.html#PyWrapperFlag_KEYWORDS">
 </object>
@@ -1480,6 +1500,42 @@
 <li><object type="text/sitemap">
 <param name="Name" value="PYTHON_ABI_STRING">
 <param name="Local" value="uP4P.Constants.html#PYTHON_ABI_STRING">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_STABLE">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_STABLE">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_GIL">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_GIL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_FREETHREADED">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_FREETHREADED">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_INTERNAL">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_INTERNAL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_FREETHREADING_AGNOSTIC">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_FREETHREADING_AGNOSTIC">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_STABLE">
+<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_FT">
+<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_INTERNAL">
+<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo_DEFAULT_FLAGS">
+<param name="Local" value="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_single_input">
@@ -4762,6 +4818,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#legacy_windows_stdio">
 </object>
@@ -4816,6 +4876,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="pythonpath_env">
@@ -5036,6 +5100,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">
 </object>
@@ -5090,6 +5158,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pythonpath_env">
@@ -5300,6 +5372,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio">
 </object>
@@ -5354,6 +5430,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pythonpath_env">
@@ -5814,6 +5894,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FModuleSearchPaths">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FLazyImports">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FLazyImports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FOnBeforeInitialization">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FOnBeforeInitialization">
 </object>
@@ -5950,6 +6034,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ModuleSearchPaths">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#ModuleSearchPaths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="LazyImports">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#LazyImports">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="OnBeforeInitialization">
@@ -7966,6 +8054,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#legacy_windows_stdio">
 </object>
@@ -8020,6 +8112,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="pythonpath_env">
@@ -8240,6 +8336,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_legacy_windows_stdio">
 </object>
@@ -8294,6 +8394,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pythonpath_env">
@@ -8504,6 +8608,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_legacy_windows_stdio">
 </object>
@@ -8558,6 +8666,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pythonpath_env">
@@ -8714,6 +8826,576 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Read">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Read">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyConfig315">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FConfig">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#FConfig">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="GetConfig">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#GetConfig">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_buffered_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_bytes_warning">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_check_hash_pycs_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_code_debug_ranges">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_configure_c_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_context_aware_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_cpu_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dev_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dump_refs">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dump_refs_file">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_faulthandler">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_filesystem_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_filesystem_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_home">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_import_time">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_inspect">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_install_signal_handlers">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_int_max_str_digits">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_interactive">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_isolated">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_legacy_windows_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_malloc_stats">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_module_search_paths">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_module_search_paths_set">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_optimization_level">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_orig_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_parse_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_parser_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pathconfig_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_perf_profiling">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_platlibdir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_program_name">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pycache_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pythonpath_env">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_quiet">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_remote_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_command">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_filename">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_module">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_safe_path">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_show_ref_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_site_import">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_skip_source_first_line">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdio_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdio_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdlib_dir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_sys_path_0">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_thread_inherit_context">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_tracemalloc">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_environment">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_frozen_modules">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_user_site_directory">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_verbose">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_warn_default_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_warnoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_write_bytecode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_xoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_xoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_buffered_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_bytes_warning">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_check_hash_pycs_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_code_debug_ranges">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_configure_c_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_context_aware_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_cpu_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dev_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dump_refs">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dump_refs_file">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_faulthandler">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_filesystem_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_filesystem_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_home">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_import_time">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_inspect">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_install_signal_handlers">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_int_max_str_digits">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_interactive">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_isolated">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_legacy_windows_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_malloc_stats">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_module_search_paths">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_module_search_paths_set">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_optimization_level">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_orig_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_parse_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_parser_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pathconfig_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_perf_profiling">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_platlibdir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_program_name">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pycache_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pythonpath_env">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_quiet">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_remote_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_command">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_filename">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_module">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_safe_path">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_show_ref_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_site_import">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_skip_source_first_line">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdio_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdio_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdlib_dir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_sys_path_0">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_thread_inherit_context">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_tracemalloc">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_environment">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_frozen_modules">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_user_site_directory">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_verbose">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_warn_default_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_warnoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_write_bytecode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_xoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_xoptions">
 </object>
 </ul>
 </ul>
@@ -20112,6 +20794,26 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="_PyObjectIndexPair">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="object_">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#object_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="index_">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#index_">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyType_Slot">
 <param name="Local" value="uP4P.Types.PyType_Slot.html">
 </object>
@@ -20657,6 +21359,10 @@
 <param name="Name" value="tp_versions_used">
 <param name="Local" value="uP4P.Types._typeobject.html#tp_versions_used">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="_tp_iteritem">
+<param name="Local" value="uP4P.Types._typeobject.html#_tp_iteritem">
+</object>
 </ul>
 </ul>
 <li><object type="text/sitemap">
@@ -20776,6 +21482,50 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PySlot">
+<param name="Local" value="uP4P.Types.PySlot.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PySlot.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_id">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_flags">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_flags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_reserved">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_reserved">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_ptr">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_ptr">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_func">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_func">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_size">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_size">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_int64">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_int64">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_uint64">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_uint64">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyHash_FuncDef">
 <param name="Local" value="uP4P.Types.PyHash_FuncDef.html">
 </object>
@@ -20832,6 +21582,42 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ob_exports">
 <param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_exports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ob_bytes_object">
+<param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_bytes_object">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="PyBytesWriter">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="small_buffer">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#small_buffer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="obj">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#obj">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="size">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#size">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_bytearray">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#use_bytearray">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="overallocate">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#overallocate">
 </object>
 </ul>
 </ul>
@@ -22296,6 +23082,306 @@
 <li><object type="text/sitemap">
 <param name="Name" value="allocator">
 <param name="Local" value="uP4P.Types.PyPreConfig.html#allocator">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="PyConfig315">
+<param name="Local" value="uP4P.Types.PyConfig315.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyConfig315.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="_config_init">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_config_init">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="isolated">
+<param name="Local" value="uP4P.Types.PyConfig315.html#isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_environment">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dev_mode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="install_signal_handlers">
+<param name="Local" value="uP4P.Types.PyConfig315.html#install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_hash_seed">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="hash_seed">
+<param name="Local" value="uP4P.Types.PyConfig315.html#hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="faulthandler">
+<param name="Local" value="uP4P.Types.PyConfig315.html#faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="tracemalloc">
+<param name="Local" value="uP4P.Types.PyConfig315.html#tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="perf_profiling">
+<param name="Local" value="uP4P.Types.PyConfig315.html#perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="remote_debug">
+<param name="Local" value="uP4P.Types.PyConfig315.html#remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="import_time">
+<param name="Local" value="uP4P.Types.PyConfig315.html#import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="code_debug_ranges">
+<param name="Local" value="uP4P.Types.PyConfig315.html#code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="show_ref_count">
+<param name="Local" value="uP4P.Types.PyConfig315.html#show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dump_refs">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dump_refs_file">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="malloc_stats">
+<param name="Local" value="uP4P.Types.PyConfig315.html#malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="filesystem_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="filesystem_errors">
+<param name="Local" value="uP4P.Types.PyConfig315.html#filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pycache_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="parse_argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="orig_argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="xoptions">
+<param name="Local" value="uP4P.Types.PyConfig315.html#xoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="warnoptions">
+<param name="Local" value="uP4P.Types.PyConfig315.html#warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="site_import">
+<param name="Local" value="uP4P.Types.PyConfig315.html#site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="bytes_warning">
+<param name="Local" value="uP4P.Types.PyConfig315.html#bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="warn_default_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="inspect">
+<param name="Local" value="uP4P.Types.PyConfig315.html#inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="interactive">
+<param name="Local" value="uP4P.Types.PyConfig315.html#interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="optimization_level">
+<param name="Local" value="uP4P.Types.PyConfig315.html#optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="parser_debug">
+<param name="Local" value="uP4P.Types.PyConfig315.html#parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="write_bytecode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="verbose">
+<param name="Local" value="uP4P.Types.PyConfig315.html#verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="quiet">
+<param name="Local" value="uP4P.Types.PyConfig315.html#quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="user_site_directory">
+<param name="Local" value="uP4P.Types.PyConfig315.html#user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="configure_c_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="buffered_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdio_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdio_errors">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="legacy_windows_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="check_hash_pycs_mode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_frozen_modules">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="safe_path">
+<param name="Local" value="uP4P.Types.PyConfig315.html#safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="int_max_str_digits">
+<param name="Local" value="uP4P.Types.PyConfig315.html#int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="thread_inherit_context">
+<param name="Local" value="uP4P.Types.PyConfig315.html#thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="context_aware_warnings">
+<param name="Local" value="uP4P.Types.PyConfig315.html#context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="cpu_count">
+<param name="Local" value="uP4P.Types.PyConfig315.html#cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Types.PyConfig315.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pathconfig_warnings">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="program_name">
+<param name="Local" value="uP4P.Types.PyConfig315.html#program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pythonpath_env">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="home">
+<param name="Local" value="uP4P.Types.PyConfig315.html#home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="platlibdir">
+<param name="Local" value="uP4P.Types.PyConfig315.html#platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="module_search_paths_set">
+<param name="Local" value="uP4P.Types.PyConfig315.html#module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="module_search_paths">
+<param name="Local" value="uP4P.Types.PyConfig315.html#module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdlib_dir">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="executable">
+<param name="Local" value="uP4P.Types.PyConfig315.html#executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_executable">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="exec_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_exec_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="skip_source_first_line">
+<param name="Local" value="uP4P.Types.PyConfig315.html#skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_command">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_module">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_filename">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sys_path_0">
+<param name="Local" value="uP4P.Types.PyConfig315.html#sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_install_importlib">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_install_importlib">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_init_main">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_init_main">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_is_python_build">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_is_python_build">
 </object>
 </ul>
 </ul>
@@ -23964,6 +25050,38 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo">
+<param name="Local" value="uP4P.Types.PyABIInfo.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="abiinfo_major_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abiinfo_major_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="abiinfo_minor_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abiinfo_minor_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="flags">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#flags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="build_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#build_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="abi_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abi_version">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyCompilerFlags">
 <param name="Local" value="uP4P.Types.PyCompilerFlags.html">
 </object>
@@ -24530,6 +25648,10 @@
 <param name="Local" value="uP4P.Types.html#TPyStartSymbols">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="TPyLazyImports">
+<param name="Local" value="uP4P.Types.html#TPyLazyImports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PPy_ssize_t">
 <param name="Local" value="uP4P.Types.html#PPy_ssize_t">
 </object>
@@ -24958,6 +26080,30 @@
 <param name="Local" value="uP4P.Types.html#PPyTracebackObject">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PPyABIInfo">
+<param name="Local" value="uP4P.Types.html#PPyABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPyInterpreterGuard">
+<param name="Local" value="uP4P.Types.html#PPyInterpreterGuard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPyInterpreterView">
+<param name="Local" value="uP4P.Types.html#PPyInterpreterView">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPyThreadStateToken">
+<param name="Local" value="uP4P.Types.html#PPyThreadStateToken">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPySlot">
+<param name="Local" value="uP4P.Types.html#PPySlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPyBytesWriter">
+<param name="Local" value="uP4P.Types.html#PPyBytesWriter">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PPyObjectArray">
 <param name="Local" value="uP4P.Types.html#PPyObjectArray">
 </object>
@@ -25164,6 +26310,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="exec_modulefunc">
 <param name="Local" value="uP4P.Types.html#exec_modulefunc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_Py_funcptr_t">
+<param name="Local" value="uP4P.Types.html#_Py_funcptr_t">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_Py_iteritemfunc">
+<param name="Local" value="uP4P.Types.html#_Py_iteritemfunc">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="PyTypeObject">
@@ -25378,6 +26532,10 @@
 <param name="Local" value="uP4P.Types.html#initfunc">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PyImport_LazyImportsMode">
+<param name="Local" value="uP4P.Types.html#PyImport_LazyImportsMode">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PyDateTime_CAPI_Date_FromDate_func">
 <param name="Local" value="uP4P.Types.html#PyDateTime_CAPI_Date_FromDate_func">
 </object>
@@ -25552,6 +26710,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#legacy_windows_stdio">
 </object>
@@ -25606,6 +26768,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="pythonpath_env">
@@ -25826,6 +26992,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">
 </object>
@@ -25880,6 +27050,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pythonpath_env">
@@ -26142,6 +27316,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio">
 </object>
@@ -26196,6 +27374,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pythonpath_env">
@@ -28784,6 +29966,38 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PyABIInfo">
+<param name="Local" value="uP4P.Types.PyABIInfo.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="abiinfo_major_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abiinfo_major_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="abiinfo_minor_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abiinfo_minor_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="abi_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#abi_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="build_version">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#build_version">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="flags">
+<param name="Local" value="uP4P.Types.PyABIInfo.html#flags">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyAsyncMethods">
 <param name="Local" value="uP4P.Types.PyAsyncMethods.html">
 </object>
@@ -29002,6 +30216,10 @@
 <param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_bytes">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ob_bytes_object">
+<param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_bytes_object">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ob_exports">
 <param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_exports">
 </object>
@@ -29028,6 +30246,38 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ob_sval">
 <param name="Local" value="uP4P.Types.PyBytesObject.html#ob_sval">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="PyBytesWriter">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="obj">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#obj">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="overallocate">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#overallocate">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="size">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#size">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="small_buffer">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#small_buffer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_bytearray">
+<param name="Local" value="uP4P.Types.PyBytesWriter.html#use_bytearray">
 </object>
 </ul>
 </ul>
@@ -30620,6 +31870,306 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PyConfig315">
+<param name="Local" value="uP4P.Types.PyConfig315.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PyConfig315.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_executable">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_exec_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="base_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="buffered_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="bytes_warning">
+<param name="Local" value="uP4P.Types.PyConfig315.html#bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="check_hash_pycs_mode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="code_debug_ranges">
+<param name="Local" value="uP4P.Types.PyConfig315.html#code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="configure_c_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="context_aware_warnings">
+<param name="Local" value="uP4P.Types.PyConfig315.html#context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="cpu_count">
+<param name="Local" value="uP4P.Types.PyConfig315.html#cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dev_mode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dump_refs">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="dump_refs_file">
+<param name="Local" value="uP4P.Types.PyConfig315.html#dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="executable">
+<param name="Local" value="uP4P.Types.PyConfig315.html#executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="exec_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="faulthandler">
+<param name="Local" value="uP4P.Types.PyConfig315.html#faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="filesystem_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="filesystem_errors">
+<param name="Local" value="uP4P.Types.PyConfig315.html#filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="hash_seed">
+<param name="Local" value="uP4P.Types.PyConfig315.html#hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="home">
+<param name="Local" value="uP4P.Types.PyConfig315.html#home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="import_time">
+<param name="Local" value="uP4P.Types.PyConfig315.html#import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="inspect">
+<param name="Local" value="uP4P.Types.PyConfig315.html#inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="install_signal_handlers">
+<param name="Local" value="uP4P.Types.PyConfig315.html#install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="interactive">
+<param name="Local" value="uP4P.Types.PyConfig315.html#interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="int_max_str_digits">
+<param name="Local" value="uP4P.Types.PyConfig315.html#int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="isolated">
+<param name="Local" value="uP4P.Types.PyConfig315.html#isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Types.PyConfig315.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="legacy_windows_stdio">
+<param name="Local" value="uP4P.Types.PyConfig315.html#legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="malloc_stats">
+<param name="Local" value="uP4P.Types.PyConfig315.html#malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="module_search_paths">
+<param name="Local" value="uP4P.Types.PyConfig315.html#module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="module_search_paths_set">
+<param name="Local" value="uP4P.Types.PyConfig315.html#module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="optimization_level">
+<param name="Local" value="uP4P.Types.PyConfig315.html#optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="orig_argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="parser_debug">
+<param name="Local" value="uP4P.Types.PyConfig315.html#parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="parse_argv">
+<param name="Local" value="uP4P.Types.PyConfig315.html#parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pathconfig_warnings">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="perf_profiling">
+<param name="Local" value="uP4P.Types.PyConfig315.html#perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="platlibdir">
+<param name="Local" value="uP4P.Types.PyConfig315.html#platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="program_name">
+<param name="Local" value="uP4P.Types.PyConfig315.html#program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pycache_prefix">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pythonpath_env">
+<param name="Local" value="uP4P.Types.PyConfig315.html#pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="quiet">
+<param name="Local" value="uP4P.Types.PyConfig315.html#quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="remote_debug">
+<param name="Local" value="uP4P.Types.PyConfig315.html#remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_command">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_filename">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="run_module">
+<param name="Local" value="uP4P.Types.PyConfig315.html#run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="safe_path">
+<param name="Local" value="uP4P.Types.PyConfig315.html#safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="show_ref_count">
+<param name="Local" value="uP4P.Types.PyConfig315.html#show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="site_import">
+<param name="Local" value="uP4P.Types.PyConfig315.html#site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="skip_source_first_line">
+<param name="Local" value="uP4P.Types.PyConfig315.html#skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdio_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdio_errors">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="stdlib_dir">
+<param name="Local" value="uP4P.Types.PyConfig315.html#stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sys_path_0">
+<param name="Local" value="uP4P.Types.PyConfig315.html#sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="thread_inherit_context">
+<param name="Local" value="uP4P.Types.PyConfig315.html#thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="tracemalloc">
+<param name="Local" value="uP4P.Types.PyConfig315.html#tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="user_site_directory">
+<param name="Local" value="uP4P.Types.PyConfig315.html#user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_environment">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_frozen_modules">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="use_hash_seed">
+<param name="Local" value="uP4P.Types.PyConfig315.html#use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="verbose">
+<param name="Local" value="uP4P.Types.PyConfig315.html#verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="warnoptions">
+<param name="Local" value="uP4P.Types.PyConfig315.html#warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="warn_default_encoding">
+<param name="Local" value="uP4P.Types.PyConfig315.html#warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="write_bytecode">
+<param name="Local" value="uP4P.Types.PyConfig315.html#write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="xoptions">
+<param name="Local" value="uP4P.Types.PyConfig315.html#xoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_config_init">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_config_init">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_init_main">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_init_main">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_install_importlib">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_install_importlib">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_is_python_build">
+<param name="Local" value="uP4P.Types.PyConfig315.html#_is_python_build">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyCriticalSection">
 <param name="Local" value="uP4P.Types.PyCriticalSection.html">
 </object>
@@ -32148,6 +33698,50 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PySlot">
+<param name="Local" value="uP4P.Types.PySlot.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types.PySlot.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_flags">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_flags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_func">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_func">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_id">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_int64">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_int64">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_ptr">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_ptr">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_reserved">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_reserved">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_size">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_size">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="sl_uint64">
+<param name="Local" value="uP4P.Types.PySlot.html#sl_uint64">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="PyStatus">
 <param name="Local" value="uP4P.Types.PyStatus.html">
 </object>
@@ -33306,6 +34900,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FLastErrorMessage">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FLazyImports">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FLazyImports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FLibHandle">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FLibHandle">
 </object>
@@ -33426,6 +35024,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="LastErrorMessage">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#LastErrorMessage">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="LazyImports">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#LazyImports">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="LibHandle">
@@ -37690,6 +39292,576 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="TPyConfig315">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FConfig">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#FConfig">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="GetConfig">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#GetConfig">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_base_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_buffered_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_bytes_warning">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_check_hash_pycs_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_code_debug_ranges">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_configure_c_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_context_aware_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_cpu_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dev_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dump_refs">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_dump_refs_file">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_faulthandler">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_filesystem_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_filesystem_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_home">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_import_time">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_inspect">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_install_signal_handlers">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_interactive">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_int_max_str_digits">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_isolated">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_legacy_windows_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_malloc_stats">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_module_search_paths">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_module_search_paths_set">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_optimization_level">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_orig_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_parser_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_parse_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pathconfig_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_perf_profiling">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_platlibdir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_program_name">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pycache_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pythonpath_env">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_quiet">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_remote_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_command">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_filename">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_run_module">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_safe_path">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_show_ref_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_site_import">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_skip_source_first_line">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdio_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdio_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_stdlib_dir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_sys_path_0">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_thread_inherit_context">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_tracemalloc">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_user_site_directory">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_environment">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_frozen_modules">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_use_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_verbose">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_warnoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_warn_default_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_write_bytecode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_xoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Get_xoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_base_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_base_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_buffered_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_buffered_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_bytes_warning">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_bytes_warning">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_check_hash_pycs_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_check_hash_pycs_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_code_debug_ranges">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_code_debug_ranges">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_configure_c_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_configure_c_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_context_aware_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_context_aware_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_cpu_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_cpu_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dev_mode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dev_mode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dump_refs">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dump_refs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_dump_refs_file">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_dump_refs_file">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_executable">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_executable">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_exec_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_exec_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_faulthandler">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_faulthandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_filesystem_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_filesystem_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_filesystem_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_filesystem_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_home">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_import_time">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_import_time">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_inspect">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_inspect">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_install_signal_handlers">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_install_signal_handlers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_interactive">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_interactive">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_int_max_str_digits">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_int_max_str_digits">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_isolated">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_isolated">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_legacy_windows_stdio">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_legacy_windows_stdio">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_malloc_stats">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_malloc_stats">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_module_search_paths">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_module_search_paths">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_module_search_paths_set">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_module_search_paths_set">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_optimization_level">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_optimization_level">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_orig_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_orig_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_parser_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_parser_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_parse_argv">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_parse_argv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pathconfig_warnings">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pathconfig_warnings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_perf_profiling">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_perf_profiling">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_platlibdir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_platlibdir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_program_name">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_program_name">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pycache_prefix">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pymalloc_hugepages">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pythonpath_env">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_pythonpath_env">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_quiet">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_quiet">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_remote_debug">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_remote_debug">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_command">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_command">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_filename">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_filename">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_run_module">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_run_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_safe_path">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_safe_path">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_show_ref_count">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_show_ref_count">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_site_import">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_site_import">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_skip_source_first_line">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_skip_source_first_line">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdio_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdio_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdio_errors">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdio_errors">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_stdlib_dir">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_stdlib_dir">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_sys_path_0">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_sys_path_0">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_thread_inherit_context">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_thread_inherit_context">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_tracemalloc">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_tracemalloc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_user_site_directory">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_user_site_directory">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_environment">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_environment">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_frozen_modules">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_frozen_modules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_use_hash_seed">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_use_hash_seed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_verbose">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_verbose">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_warnoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_warnoptions">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_warn_default_encoding">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_warn_default_encoding">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_write_bytecode">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_write_bytecode">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_xoptions">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_xoptions">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="TPyConfigBase">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html">
 </object>
@@ -37812,6 +39984,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#legacy_windows_stdio">
 </object>
@@ -37866,6 +40042,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="pythonpath_env">
@@ -38094,6 +40274,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_legacy_windows_stdio">
 </object>
@@ -38148,6 +40332,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pythonpath_env">
@@ -38406,6 +40594,10 @@
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_legacy_windows_stdio">
 </object>
@@ -38460,6 +40652,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pythonpath_env">
@@ -46232,6 +48428,26 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="_PyObjectIndexPair">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="index_">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#index_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="object_">
+<param name="Local" value="uP4P.Types._PyObjectIndexPair.html#object_">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="_PyWeakReference">
 <param name="Local" value="uP4P.Types._PyWeakReference.html">
 </object>
@@ -46540,6 +48756,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="tp_weaklistoffset">
 <param name="Local" value="uP4P.Types._typeobject.html#tp_weaklistoffset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="_tp_iteritem">
+<param name="Local" value="uP4P.Types._typeobject.html#_tp_iteritem">
 </object>
 </ul>
 </ul>

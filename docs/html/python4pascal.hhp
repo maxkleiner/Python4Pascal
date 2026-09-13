@@ -99,6 +99,7 @@ uP4P.PyComplex.TPyComplex.html
 uP4P.PyConfig.html
 uP4P.PyConfig.TPyConfig.html
 uP4P.PyConfig.TPyConfigBase.html
+uP4P.PyConfig.TPyConfig315.html
 uP4P.PyConfig.TPyConfig314.html
 uP4P.PyConfig.TPyConfig313.html
 uP4P.PyConfig.TPyConfig312.html
@@ -309,6 +310,7 @@ uP4P.Types.PyCriticalSection.html
 uP4P.Types.PyCriticalSection2.html
 uP4P.Types._object.html
 uP4P.Types.PyVarObject.html
+uP4P.Types._PyObjectIndexPair.html
 uP4P.Types.PyType_Slot.html
 uP4P.Types.PyType_Spec.html
 uP4P.Types.PyNumberMethods.html
@@ -320,8 +322,10 @@ uP4P.Types._typeobject.html
 uP4P.Types._specialization_cache.html
 uP4P.Types.PyHeapTypeObject.html
 uP4P.Types.PyObjectArenaAllocator.html
+uP4P.Types.PySlot.html
 uP4P.Types.PyHash_FuncDef.html
 uP4P.Types.PyByteArrayObject.html
+uP4P.Types.PyBytesWriter.html
 uP4P.Types.PyBytesObject.html
 uP4P.Types.PyBaseExceptionObject.html
 uP4P.Types.PyBaseExceptionGroupObject.html
@@ -359,6 +363,7 @@ uP4P.Types.PySliceObject.html
 uP4P.Types.PyStatus.html
 uP4P.Types.PyWideStringList.html
 uP4P.Types.PyPreConfig.html
+uP4P.Types.PyConfig315.html
 uP4P.Types.PyConfig314.html
 uP4P.Types.PyConfig313.html
 uP4P.Types.PyConfig312.html
@@ -375,6 +380,7 @@ uP4P.Types.PyWrapperDescrObject.html
 uP4P.Types._PyWeakReference.html
 uP4P.Types.PyStructSequence_Field.html
 uP4P.Types.PyStructSequence_Desc.html
+uP4P.Types.PyABIInfo.html
 uP4P.Types.PyCompilerFlags.html
 uP4P.Types.PyInterpreterConfig.html
 uP4P.Types._inittab.html

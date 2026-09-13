@@ -1241,7 +1241,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Get_legacy_windows_fs_encoding"></span><code>function <strong>Get_legacy_windows_fs_encoding</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+function Get_lazy_imports: TPyLazyImports; //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -1353,7 +1355,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Get_quiet"></span><code>function <strong>Get_quiet</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+function Get_pymalloc_hugepages: boolean; //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -1785,7 +1789,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Set_legacy_windows_fs_encoding-boolean-"></span><code>procedure <strong>Set_legacy_windows_fs_encoding</strong>(aValue: boolean);</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+procedure Set_lazy_imports(aValue: TPyLazyImports); //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -1897,7 +1903,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Set_quiet-boolean-"></span><code>procedure <strong>Set_quiet</strong>(aValue: boolean);</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+procedure Set_pymalloc_hugepages(aValue: boolean); //****** 3.15.0</p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -3062,6 +3070,14 @@ body { margin: 0.5em; }
 <p>Default: False.
 
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS</a>&quot;&gt;See the article about PYTHON_LAZY_IMPORTS.)
+
+<p>Added in version 3.15.
+
+<p>property lazy_imports : TPyLazyImports read Get_lazy_imports write Set_lazy_imports; </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -3415,6 +3431,14 @@ body { margin: 0.5em; }
 <p>Default: False.
 
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/using/configure.html#cmdoption-with-pymalloc-hugepages">https://docs.python.org/3.15/using/configure.html#cmdoption-with-pymalloc-hugepages</a>&quot;&gt;See the article about &ndash;with-pymalloc-hugepages.)
+
+<p>Added in version 3.15.
+
+<p>property pymalloc_hugepages : boolean read Get_pymalloc_hugepages write Set_pymalloc_hugepages; </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

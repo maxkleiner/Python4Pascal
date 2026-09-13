@@ -61,6 +61,7 @@ type
       function Get_int_max_str_digits: int64;
       function Get_interactive: boolean;
       function Get_isolated: boolean;
+      //function Get_lazy_imports: TPyLazyImports;                           //****** 3.15.0
       {$IFDEF MSWINDOWS}
       function Get_legacy_windows_fs_encoding: boolean;
       function Get_legacy_windows_stdio: boolean;
@@ -77,6 +78,7 @@ type
       function Get_prefix: string;
       function Get_program_name: string;
       function Get_pycache_prefix: string;
+      //function Get_pymalloc_hugepages: boolean;                           //****** 3.15.0
       function Get_quiet: boolean;
       function Get_run_command: string;
       function Get_run_filename: string;
@@ -132,6 +134,7 @@ type
       procedure Set_int_max_str_digits(aValue: int64);
       procedure Set_interactive(aValue: boolean);
       procedure Set_isolated(aValue: boolean);
+      //procedure Set_lazy_imports(aValue: TPyLazyImports);                 //****** 3.15.0
       {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_fs_encoding(aValue: boolean);
       procedure Set_legacy_windows_stdio(aValue: boolean);
@@ -148,6 +151,7 @@ type
       procedure Set_prefix(const aValue: string);
       procedure Set_program_name(const aValue: string);
       procedure Set_pycache_prefix(const aValue: string);
+      //procedure Set_pymalloc_hugepages(aValue: boolean);                  //****** 3.15.0
       procedure Set_quiet(aValue: boolean);
       procedure Set_run_command(const aValue: string);
       procedure Set_run_filename(const aValue: string);
@@ -600,6 +604,18 @@ type
       /// <para><see href="https://docs.python.org/3/c-api/init_config.html#isolated-configuration">See the article about Isolated Configuration.</see></para>
       /// </remarks>
       property isolated                   : boolean                read Get_isolated                       write Set_isolated;
+      /// <summary>
+      /// <para>Controls lazy import behavior. Accepts two values:</para>
+      /// <code>
+      /// - li_all makes all imports lazy by default.
+      /// - li_normal (the default) respects the lazy keyword in source code.
+      /// </code>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      //property lazy_imports               : TPyLazyImports        read Get_lazy_imports                   write Set_lazy_imports;
       {$IFDEF MSWINDOWS}
       /// <summary>
       /// <para>If True:</para>
@@ -801,6 +817,33 @@ type
       /// <para><see href="https://docs.python.org/3/library/sys.html#sys.pycache_prefix">See the article about sys.pycache_prefix.</see></para>
       /// </remarks>
       property pycache_prefix             : string                 read Get_pycache_prefix                 write Set_pycache_prefix;
+      /// <summary>
+      /// <para>Enable huge page support for pymalloc arenas (disabled by
+      /// default). When enabled, the arena size on 64-bit platforms is increased
+      /// to 2 MiB and arena allocation uses MAP_HUGETLB (Linux) or
+      /// MEM_LARGE_PAGES (Windows) with automatic fallback to regular
+      /// pages.</para>
+      /// <para>Even when compiled with this option, huge pages are not used at
+      /// runtime unless the PYTHON_PYMALLOC_HUGEPAGES environment variable is set
+      /// to 1. This opt-in is required because huge pages</para>
+      /// <code>
+      /// - carry risks on Linux: if the huge-page pool is exhausted, page faults
+      /// (including copy-on-write faults after os.fork()) deliver SIGBUS and kill
+      /// the process.
+      /// - need a special privilege on Windows. See the Windows documentation for
+      /// large pages for details. Python will fail on startup if the required
+      /// privilege SeLockMemoryPrivilege is not held by the user.
+      /// </code>
+      /// <para>The configure script checks that the platform supports MAP_HUGETLB
+      /// and emits a warning if it is not available.</para>
+      /// <para>On Windows, use the --pymalloc-hugepages flag with build.bat or
+      /// set the UsePymallocHugepages MSBuild property.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/using/configure.html#cmdoption-with-pymalloc-hugepages">See the article about --with-pymalloc-hugepages.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      //property pymalloc_hugepages        : boolean                 read Get_pymalloc_hugepages             write Set_pymalloc_hugepages;
       /// <summary>
       /// <para>Quiet mode. If True, don't display the copyright and version at
       /// Python startup in interactive mode.</para>
@@ -1675,6 +1718,16 @@ begin
             (TempResult <> 0);
 end;
 
+{function TPyInitConfig.Get_lazy_imports: TPyLazyImports;
+var
+  TempResult : int64;
+begin
+  if GetInt(PYINITCONFIGOPTION_LAZY_IMPORTS, TempResult) and (TempResult > 0) then
+    Result := li_all
+   else
+    Result := li_normal;
+end; }
+
 {$IFDEF MSWINDOWS}
 function TPyInitConfig.Get_legacy_windows_fs_encoding: boolean;
 var
@@ -1815,6 +1868,14 @@ begin
    else
     Result := '';
 end;
+
+{function TPyInitConfig.Get_pymalloc_hugepages: boolean;
+var
+  TempResult : int64;
+begin
+  Result := GetInt(PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES, TempResult) and
+            (TempResult <> 0);
+end;}
 
 function TPyInitConfig.Get_quiet: boolean;
 var
@@ -2181,6 +2242,14 @@ begin
   SetInt(PYINITCONFIGOPTION_ISOLATED, ord(aValue));
 end;
 
+{procedure TPyInitConfig.Set_lazy_imports(aValue: TPyLazyImports);
+begin
+  case aValue of
+    li_normal : SetInt(PYINITCONFIGOPTION_LAZY_IMPORTS, -1);
+    li_all    : SetInt(PYINITCONFIGOPTION_LAZY_IMPORTS, 1);
+  end;
+end;}
+
 {$IFDEF MSWINDOWS}
 procedure TPyInitConfig.Set_legacy_windows_fs_encoding(aValue: boolean);
 begin
@@ -2260,6 +2329,11 @@ procedure TPyInitConfig.Set_pycache_prefix(const aValue: string);
 begin
   SetStr(PYINITCONFIGOPTION_PYCACHE_PREFIX, aValue);
 end;
+
+{procedure TPyInitConfig.Set_pymalloc_hugepages(aValue: boolean);
+begin
+  SetInt(PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES, ord(aValue));
+end;}
 
 procedure TPyInitConfig.Set_quiet(aValue: boolean);
 begin

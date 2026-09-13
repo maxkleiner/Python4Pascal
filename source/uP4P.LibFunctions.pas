@@ -21,6 +21,7 @@ uses
 
 var
   {* include/pyport.h *}
+  {* include/exports.h *}
   {* include/pymacro.h *}
   Py_PACK_FULL_VERSION                           : function(major, minor, micro, release_level, release_serial: integer): cardinal; cdecl;
   Py_PACK_VERSION                                : function(major, minor: integer): cardinal; cdecl;
@@ -55,7 +56,7 @@ var
 
   {* include/pystats.h *}
   {* include/pyatomic.h *}
-  {* include/lock.h  include/cpython/lock.h *}
+  {* include/lock.h  include/cpython/lock.h  include/cpython/pylock.h *}
   PyMutex_Lock                                   : procedure(m: PPyMutex); cdecl;
   PyMutex_Unlock                                 : procedure(m: PPyMutex); cdecl;
   PyMutex_IsLocked                               : function(m: PPyMutex): integer; cdecl;
@@ -71,6 +72,9 @@ var
   {* include/object.h  include/cpython/object.h *}
   Py_Is                                          : function(x, y: PPyObject): Integer; cdecl;
   Py_TYPE                                        : function(ob: PPyObject): PPyTypeObject; cdecl;
+  Py_SIZE                                        : function(ob: PPyObject): Py_ssize_t; cdecl;                        //****** 3.15.0
+  Py_IS_TYPE                                     : function(ob: PPyObject; type_: PPyTypeObject): integer; cdecl;     //****** 3.15.0
+  Py_SET_SIZE                                    : procedure(ob: PPyVarObject; size: Py_ssize_t); cdecl;              //****** 3.15.0
   PyLong_Type                                    : PPyTypeObject;
   PyBool_Type                                    : PPyTypeObject;
   PyType_FromSpec                                : function(typespec: PPyType_Spec): PPyObject; cdecl;
@@ -87,6 +91,7 @@ var
   PyObject_GetTypeData                           : function(obj: PPyObject; cls: PPyTypeObject): Pointer; cdecl;
   PyType_GetTypeDataSize                         : function(cls: PPyTypeObject): Py_ssize_t; cdecl;
   PyType_GetBaseByToken                          : function(type_: PPyTypeObject; token: Pointer; result_: PPPyTypeObject): integer; cdecl;
+  PyType_FromSlots                               : function(slots: PPySlot): PPyObject; cdecl;                       //****** 3.15.0
   PyType_IsSubtype                               : function(type1, type2: PPyTypeObject): integer; cdecl;
   PyType_Type                                    : PPyTypeObject;
   PyBaseObject_Type                              : PPyTypeObject;
@@ -135,11 +140,19 @@ var
   Py_IsNone                                      : function(x: PPyObject): Integer; cdecl;
   PyType_GetModuleByDef                          : function(type_: PPyTypeObject; def: PPyModuleDef): PPyObject; cdecl;
   PyType_Freeze                                  : function(type_: PPyTypeObject): integer; cdecl;
+  PyType_GetModuleByToken                        : function(type_: PPyTypeObject; const token: Pointer): PPyObject; cdecl;                 //****** 3.15.0
+  PyObject_GetTypeData_DuringGC                  : function(obj: PPyObject; cls: PPyTypeObject): Pointer; cdecl;                           //****** 3.15.0
+  PyType_GetModuleState_DuringGC                 : function(type_: PPyTypeObject): Pointer; cdecl;                                         //****** 3.15.0
+  PyType_GetBaseByToken_DuringGC                 : function(type1_: PPyTypeObject; buf: Pointer; type2_: PPPyTypeObject): integer; cdecl;  //****** 3.15.0
+  PyType_GetModule_DuringGC                      : function(type_: PPyTypeObject): PPyObject; cdecl;                                       //****** 3.15.0
+  PyType_GetModuleByToken_DuringGC               : function(type_: PPyTypeObject; const token: Pointer): PPyObject; cdecl;                 //****** 3.15.0
   PyType_GetDict                                 : function(type_: PPyTypeObject): PPyObject; cdecl;
   PyObject_Print                                 : function(ob: PPyObject; file_: PFILE; i: integer): integer; cdecl;
+  PyObject_Dump                                  : procedure(ob: PPyObject); cdecl;                                                        //****** 3.15.0
   PyObject_CallFinalizer                         : procedure(ob: PPyObject); cdecl;
   PyObject_CallFinalizerFromDealloc              : function(ob: PPyObject): integer; cdecl;
   PyObject_GetItemData                           : function(ob: PPyObject): Pointer; cdecl;
+  PyObject_GetItemData_DuringGC                  : function(ob: PPyObject): Pointer; cdecl;                                                //****** 3.15.0
   PyObject_VisitManagedDict                      : function(obj: PPyObject; visit: visitproc; arg: Pointer): integer; cdecl;
   PyObject_ClearManagedDict                      : procedure(obj: PPyObject); cdecl;
   PyType_AddWatcher                              : function(callback: PyType_WatchCallback): integer; cdecl;
@@ -183,7 +196,7 @@ var
   PyType_SUPPORTS_WEAKREFS                       : function(type_: PPyTypeObject): integer; cdecl;
   PyObject_GET_WEAKREFS_LISTPTR                  : function(op: PPyObject): PPPyObject; cdecl;
 
-  {* include/typeslots.h *}
+  {* include/typeslots.h  include/slots.h  include/slots_generated.h *}
   {* include/pyhash.h  include/cpython/pyhash.h *}
   PyHash_GetFuncDef                              : function(): PPyHash_FuncDef; cdecl;
   Py_HashPointer                                 : function(const ptr: Pointer): Py_hash_t; cdecl;
@@ -203,7 +216,7 @@ var
   PyByteArray_AsString                           : function(ob: PPyObject): PAnsiChar; cdecl;
   PyByteArray_Resize                             : function(ob: PPyObject; size_: Py_ssize_t): integer; cdecl;
 
-  {* include/bytesobject.h  include/cpython/bytesobject.h *}
+  {* include/bytesobject.h  include/cpython/bytesobject.h  include/internal/pycore_bytesobject.h *}
   PyBytes_Type                                   : PPyTypeObject;
   PyBytesIter_Type                               : PPyTypeObject;
   PyBytes_FromStringAndSize                      : function(const str: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
@@ -219,6 +232,19 @@ var
   PyBytes_DecodeEscape                           : function(const s: PAnsiChar; len: Py_ssize_t; const errors: PAnsiChar; unicode: Py_ssize_t; const recode_encoding: PAnsiChar): PPyObject; cdecl;
   PyBytes_AsStringAndSize                        : function(obj: PPyObject; var buffer: PAnsiChar; var length: Py_ssize_t): integer; cdecl;
   PyBytes_Join                                   : function(sep, iterable: PPyObject): PPyObject; cdecl;
+  PyBytesWriter_Create                           : function(size: Py_ssize_t): PPyBytesWriter; cdecl;                                         //****** 3.15.0
+  PyBytesWriter_Discard                          : procedure(writer: PPyBytesWriter); cdecl;                                                  //****** 3.15.0
+  PyBytesWriter_Finish                           : function(writer: PPyBytesWriter): PPyObject; cdecl;                                        //****** 3.15.0
+  PyBytesWriter_FinishWithSize                   : function(writer: PPyBytesWriter; size: Py_ssize_t): PPyObject; cdecl;                      //****** 3.15.0
+  PyBytesWriter_FinishWithPointer                : function(writer: PPyBytesWriter; buf: Pointer): PPyObject; cdecl;                          //****** 3.15.0
+  PyBytesWriter_GetData                          : procedure(writer: PPyBytesWriter); cdecl;                                                  //****** 3.15.0
+  PyBytesWriter_GetSize                          : function(writer: PPyBytesWriter): Py_ssize_t; cdecl;                                       //****** 3.15.0
+  PyBytesWriter_WriteBytes                       : function(writer: PPyBytesWriter; const bytes: Pointer; size: Py_ssize_t): integer; cdecl;  //****** 3.15.0
+  PyBytesWriter_Format                           : function(writer: PPyBytesWriter; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0
+  PyBytesWriter_Resize                           : function(writer: PPyBytesWriter; size: Py_ssize_t): integer; cdecl;                        //****** 3.15.0
+  PyBytesWriter_Grow                             : function(writer: PPyBytesWriter; size: Py_ssize_t): integer; cdecl;                        //****** 3.15.0
+  PyBytesWriter_GrowAndUpdatePointer             : function(writer: PPyBytesWriter; size: Py_ssize_t; buf: Pointer): Pointer; cdecl;          //****** 3.15.0
+
 
   {* include/unicodeobject.h  include/cpython/unicodeobject.h *}
   PyUnicode_Type                                 : PPyTypeObject;
@@ -320,7 +346,7 @@ var
   PyUnicodeWriter_WriteUTF8                      : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
   PyUnicodeWriter_WriteASCII                     : function(writer: PPyUnicodeWriter; const str: PAnsiChar; size_: Py_ssize_t): integer; cdecl;
   PyUnicodeWriter_WriteWideChar                  : function(writer: PPyUnicodeWriter; const str: PWCharT; size_: Py_ssize_t): integer; cdecl;
-  PyUnicodeWriter_WriteUCS4                      : function(writer: PPyUnicodeWriter; str: PPy_UCS4; size_: Py_ssize_t): integer; cdecl;
+  PyUnicodeWriter_WriteUCS4                      : function(writer: PPyUnicodeWriter; const str: PPy_UCS4; size_: Py_ssize_t): integer; cdecl;
   PyUnicodeWriter_WriteStr                       : function(writer: PPyUnicodeWriter; obj: PPyObject): integer; cdecl;
   PyUnicodeWriter_WriteRepr                      : function(writer: PPyUnicodeWriter; obj: PPyObject): integer; cdecl;
   PyUnicodeWriter_WriteSubstring                 : function(writer: PPyUnicodeWriter; str: PPyObject; start, end_: Py_ssize_t): integer; cdecl;
@@ -370,6 +396,7 @@ var
   PyExc_FloatingPointError                       : PPyObject;
   PyExc_OSError                                  : PPyObject;
   PyExc_ImportError                              : PPyObject;
+  PyExc_ImportCycleError                         : PPyObject;    //****** 3.15.0
   PyExc_ModuleNotFoundError                      : PPyObject;
   PyExc_IndexError                               : PPyObject;
   PyExc_KeyError                                 : PPyObject;
@@ -530,7 +557,7 @@ var
   PyLong_IsZero                                  : function(obj: PPyObject): integer; cdecl;
   PyLong_GetSign                                 : function(v: PPyObject; out sign: integer): integer; cdecl;
 
-  {* include/cpython/longintrepr.h *}
+  {* include/longintrepr.h  include/cpython/longintrepr.h *}
   PyLong_GetNativeLayout                         : function(): PPyLongLayout; cdecl;
   PyLong_Export                                  : function(obj: PPyObject; export_long: PPyLongExport): integer; cdecl;
   PyLong_FreeExport                              : procedure(export_long: PPyLongExport); cdecl;
@@ -596,6 +623,7 @@ var
   PyTuple_SetItem                                : function(p: PPyObject; pos: Py_ssize_t; o: PPyObject): integer; cdecl;
   PyTuple_GetSlice                               : function(p: PPyObject; low, high: Py_ssize_t): PPyObject; cdecl;
   PyTuple_Pack                                   : function(n: Py_ssize_t {; ...}): PPyObject; cdecl varargs;
+  PyTuple_FromArray                              : function(array_: PPPyObject; size_: Py_ssize_t): PPyObject; cdecl;   //****** 3.15.0
 
   {* include/listobject.h  include/cpython/listobject.h *}
   PyList_Type                                    : PPyTypeObject;
@@ -658,6 +686,8 @@ var
   PyDict_ClearWatcher                            : function(watcher_id: integer): integer; cdecl;
   PyDict_Watch                                   : function(watcher_id: integer; dict: PPyObject): integer; cdecl;
   PyDict_Unwatch                                 : function(watcher_id: integer; dict: PPyObject): integer; cdecl;
+  PyFrozenDict_New                               : function(iterable: PPyObject): PPyObject; cdecl;                    //****** 3.15.0
+  PyFrozenDict_Type                              : PPyTypeObject;                                                      //****** 3.15.0
 
   {* include/cpython/odictobject.h *}
   PyODict_Type                                   : PPyTypeObject;
@@ -708,6 +738,12 @@ var
   PyModule_GetState                              : function(module_: PPyObject): Pointer; cdecl;
   PyModuleDef_Init                               : function(def: PPyModuleDef): PPyObject; cdecl;
   PyModuleDef_Type                               : PPyTypeObject;
+  PyModule_FromSlotsAndSpec                      : function(const slots: PPySlot; spec: PPyObject): PPyObject; cdecl;          //****** 3.15.0
+  PyModule_Exec                                  : function(module_: PPyObject): integer; cdecl;                               //****** 3.15.0
+  PyModule_GetStateSize                          : function(module_: PPyObject; out result_: Py_ssize_t): integer; cdecl;      //****** 3.15.0
+  PyModule_GetToken                              : function(module_: PPyObject; out result_: Pointer): integer; cdecl;         //****** 3.15.0
+  PyModule_GetState_DuringGC                     : function(ob: PPyObject): Pointer; cdecl;                                    //****** 3.15.0
+  PyModule_GetToken_DuringGC                     : function(module_: PPyObject; out result_: Pointer): integer; cdecl;         //****** 3.15.0
 
   {* include/monitoring.h  include/cpython/monitoring.h *}
   PyMonitoring_EnterScope                        : function(state_array: PPyMonitoringState; version: PUint64; const event_types: PByte; length: Py_ssize_t): integer; cdecl;
@@ -804,7 +840,7 @@ var
   PyTraceBack_Print                              : function(tb, f: PPyObject): integer; cdecl;
   PyTraceBack_Type                               : PPyTypeObject;
 
-  {* include/sliceobject.h *}
+  {* include/sliceobject.h  include/cpython/sliceobject.h *}
   Py_Ellipsis                                    : PPyObject;      // _Py_EllipsisObject
   PySlice_Type                                   : PPyTypeObject;
   PyEllipsis_Type                                : PPyTypeObject;
@@ -890,6 +926,15 @@ var
   PyGILState_Ensure                              : function(): PyGILstate_STATE; cdecl;
   PyGILState_Release                             : procedure(gilstate: PyGILState_STATE); cdecl;
   PyGILState_GetThisThreadState                  : function(): PPyThreadState; cdecl;
+  PyInterpreterGuard_FromCurrent                 : function(): PPyInterpreterGuard; cdecl;                               //****** 3.15.0
+  PyInterpreterGuard_Close                       : procedure(guard: PPyInterpreterGuard); cdecl;                         //****** 3.15.0
+  PyInterpreterGuard_FromView                    : function(view: PPyInterpreterView): PPyInterpreterGuard; cdecl;       //****** 3.15.0
+  PyInterpreterView_FromCurrent                  : function(): PPyInterpreterView; cdecl;                                //****** 3.15.0
+  PyInterpreterView_Close                        : procedure(view: PPyInterpreterView); cdecl;                           //****** 3.15.0
+  PyInterpreterView_FromMain                     : function(): PPyInterpreterView; cdecl;                                //****** 3.15.0
+  PyThreadState_Ensure                           : function(guard: PPyInterpreterGuard): PPyThreadStateToken; cdecl;     //****** 3.15.0
+  PyThreadState_EnsureFromView                   : function(view: PPyInterpreterView): PPyThreadStateToken; cdecl;       //****** 3.15.0
+  PyThreadState_Release                          : procedure(tstate: PPyThreadStateToken); cdecl;                        //****** 3.15.0
   PyThreadState_GetUnchecked                     : function(): PPyThreadState; cdecl;
   PyThreadState_EnterTracing                     : procedure(tstate: PPyThreadState); cdecl;
   PyThreadState_LeaveTracing                     : procedure(tstate: PPyThreadState); cdecl;
@@ -934,6 +979,10 @@ var
   Py_GenericAlias                                : function(origin, args: PPyObject): PPyObject; cdecl;
   Py_GenericAliasType                            : PPyTypeObject;
 
+  {* include/cpython/sentinelobject.h *}
+  PySentinel_Type                                : PPyTypeObject;                                                             //****** 3.15.0
+  PySentinel_New                                 : function(const name_, module_name, repr: PAnsiChar): PPyObject; cdecl;     //****** 3.15.0
+
   {* include/warnings.h  include/cpython/warnings.h*}
   PyErr_WarnEx                                   : function(category: PPyObject; const message_: PAnsiChar; stack_level: Py_ssize_t): integer; cdecl;
   PyErr_WarnFormat                               : function(category: PPyObject; stack_level: Py_ssize_t; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
@@ -951,7 +1000,7 @@ var
   PyWeakref_GetRef                               : function(ref: PPyObject; out pobj: PPyObject): integer; cdecl;
   PyWeakref_IsDead                               : function(ref: PPyObject): integer; cdecl;
 
-  {* include/structseq.h *}
+  {* include/structseq.h  include/cpython/structseq.h *}
   PyStructSequence_InitType                      : procedure(type_: PPyTypeObject; desc: PPyStructSequence_Desc); cdecl;
   PyStructSequence_InitType2                     : function(type_: PPyTypeObject; desc: PPyStructSequence_Desc): integer; cdecl;
   PyStructSequence_NewType                       : function(desc: PPyStructSequence_Desc): PPyTypeObject; cdecl;
@@ -1053,6 +1102,9 @@ var
   PyModule_ExecDef                               : function(module: PPyObject; def: PPyModuleDef): integer; cdecl;
   PyModule_Create2                               : function(def: PPyModuleDef; module_api_version: integer): PPyObject; cdecl;
   PyModule_FromDefAndSpec2                       : function(def: PPyModuleDef; spec: PPyObject; module_api_version: integer): PPyObject; cdecl;
+  PyABIInfo_Check                                : function(info: PPyABIInfo; const module_name: PAnsiChar): integer; cdecl;                                     //****** 3.15.0
+  PyArg_ParseArray                               : function(const args: PPPyObject; nargs: Py_ssize_t; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0
+  PyArg_ParseArrayAndKeywords                    : function(const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject; const format: PAnsiChar; const kwlist: PPAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0
 
   {* include/compile.h  include/cpython/compile.h *}
   PyCompile_OpcodeStackEffect                    : function(opcode, oparg: integer): integer; cdecl;
@@ -1159,6 +1211,10 @@ var
   PyEval_MergeCompilerFlags                      : function(cf: PPyCompilerFlags): integer; cdecl;
 
   {* include/sysmodule.h *}
+  PySys_GetAttr                                  : function(ob: PPyObject): PPyObject; cdecl;                        //****** 3.15.0
+  PySys_GetAttrString                            : function(const str: PAnsiChar): PPyObject; cdecl;                 //****** 3.15.0
+  PySys_GetOptionalAttr                          : function(ob1: PPyObject; ob2: PPPyObject): integer; cdecl;        //****** 3.15.0
+  PySys_GetOptionalAttrString                    : function(const str: PAnsiChar; ob: PPPyObject): integer; cdecl;   //****** 3.15.0
   PySys_GetObject                                : function(const name_: PAnsiChar): PPyObject; cdecl;
   PySys_SetObject                                : function(const name_: PAnsiChar; v: PPyObject): integer; cdecl;
   PySys_WriteStdout                              : procedure(const format: PAnsiChar {; ...}); cdecl varargs;
@@ -1199,8 +1255,13 @@ var
   PyImport_ImportFrozenModuleObject              : function(name_: PPyObject): integer; cdecl;
   PyImport_ImportFrozenModule                    : function(const name_: PAnsiChar): integer; cdecl;
   PyImport_AppendInittab                         : function(const name_: PAnsiChar; initfunc_: initfunc): integer; cdecl;
+  PyImport_SetLazyImportsMode                    : function(mode: PyImport_LazyImportsMode): integer; cdecl;             //****** 3.15.0
+  PyImport_SetLazyImportsFilter                  : function(filter: PPyObject): integer; cdecl;                          //****** 3.15.0
+  PyImport_GetLazyImportsMode                    : function(): PyImport_LazyImportsMode; cdecl;                          //****** 3.15.0
+  PyImport_GetLazyImportsFilter                  : function(): PPyObject; cdecl;                                         //****** 3.15.0
   PyImport_Inittab                               : P_inittab;
   PyImport_ExtendInittab                         : function(newtab: P_inittab): integer; cdecl;
+  PyImport_CreateModuleFromInitfunc              : function(spec: PPyObject; initfunc_: initfunc): PPyObject; cdecl;     //****** 3.15.0
   PyImport_FrozenModules                         : P_frozen;
   PyImport_ImportModuleAttr                      : function(mod_name, attr_name: PPyObject): PPyObject; cdecl;
   PyImport_ImportModuleAttrString                : function(const mod_name, attr_name: PAnsiChar): PPyObject; cdecl;
@@ -1341,6 +1402,9 @@ var
   PyFrame_LocalsToFast                           : procedure(f: PPyFrameObject; clear: integer); cdecl;
   PyFrame_FastToLocalsWithError                  : function(f: PPyFrameObject): integer; cdecl;
   PyFrame_FastToLocals                           : procedure(f: PPyFrameObject); cdecl;
+
+  {* include/internal/PyLazyImport_Type *}
+  PyLazyImport_Type                              : PPyTypeObject;                                                             //****** 3.15.0
 
 implementation
 
