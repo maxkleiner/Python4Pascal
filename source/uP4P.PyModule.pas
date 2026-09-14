@@ -296,7 +296,90 @@ type
       /// <remarks>
       /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2">See the article about PyModule_FromDefAndSpec2.</see></para>
       /// </remarks>
-      class function FromDefAndSpec2(def: PPyModuleDef; const spec: IPyObject; module_api_version: integer): IPyObject;       
+      class function FromDefAndSpec2(def: PPyModuleDef; const spec: IPyObject; module_api_version: integer): IPyObject;
+      /// <summary>
+      /// <para>Create a new module object, given an array of slots and the
+      /// ModuleSpec spec.</para>
+      /// <para>The slots argument must point to an array of PySlot structures,
+      /// terminated by an entry with slot ID of 0 (typically written as
+      /// PySlot_END). The array must include a Py_mod_abi entry.</para>
+      /// <para>The spec argument may be any ModuleSpec-like object, as
+      /// described in Py_mod_create documentation. Currently, the spec must
+      /// have a name attribute.</para>
+      /// <para>On success, return the new module. On error, return nil with
+      /// an exception set.</para>
+      /// <para>Note that this does not process the module’s execution slot
+      /// (Py_mod_exec). Both TPyModule.FromSlotsAndSpec() and TPyModule.Exec()
+      /// must be called to fully initialize a module. (See also Multi-phase
+      /// initialization.)</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_FromSlotsAndSpec">See the article about PyModule_FromSlotsAndSpec.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      class function FromSlotsAndSpec(const slots: PPySlot; const spec: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>Execute the Py_mod_exec slot(s) of module.</para>
+      /// <para>On success, return True. On error, return False with an
+      /// exception set.</para>
+      /// <para>For clarity: If module has no slots, for example if it uses
+      /// legacy single-phase initialization, this function does nothing and
+      /// returns True.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_Exec">See the article about PyModule_Exec.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      class function Exec(const module_: IPyObject): boolean;
+      /// <summary>
+      /// <para>Set result_ to the size of module's state, as specified using
+      /// Py_mod_state_size (or PyModuleDef.m_size), and return True.</para>
+      /// <para>On error, set result_ to -1, and return False with an exception
+      /// set.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetStateSize">See the article about PyModule_GetStateSize.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      class function GetStateSize(const module_: IPyObject; out result_: Py_ssize_t): boolean;
+      /// <summary>
+      /// <para>Set result_ to the module token for module and return True.
+      /// <para>On error, set result_ to nil, and return False with an
+      /// exception set.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken">See the article about PyModule_GetToken.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      class function GetToken(const module_: IPyObject; out result_: Pointer): boolean;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetState_DuringGC(const module_: IPyObject): Pointer;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetToken_DuringGC(const module_: IPyObject; out result_: Pointer): boolean;
   end;
 
 implementation
@@ -392,7 +475,7 @@ end;
 
 class function TPyModule.GetState(const module_: IPyObject): Pointer;
 begin
-                                   if assigned(PyModule_GetState) and
+  if assigned(PyModule_GetState) and
      TPyObject.IsInitialized(module_) then
     Result := PyModule_GetState(module_.PyObject)
    else
@@ -531,13 +614,59 @@ begin
   Result := TPyModule.FromDefAndSpec2(def, spec, PYTHON_API_VERSION); 
 end;
 
-class function TPyModule.FromDefAndSpec2(def: PPyModuleDef; const spec: IPyObject; module_api_version: integer): IPyObject; 
+class function TPyModule.FromDefAndSpec2(def: PPyModuleDef; const spec: IPyObject; module_api_version: integer): IPyObject;
 begin
   if assigned(PyModule_FromDefAndSpec2) and
      TPyObject.IsInitialized(spec) then
     Result := TPyObject.Wrap(PyModule_FromDefAndSpec2(def, spec.PyObject, module_api_version))
-   else 
+   else
     Result := nil;
 end;
- 
+
+class function TPyModule.FromSlotsAndSpec(const slots: PPySlot; const spec: IPyObject): IPyObject;
+begin
+  if assigned(PyModule_FromSlotsAndSpec) and
+     TPyObject.IsInitialized(spec) then
+    Result := TPyObject.Wrap(PyModule_FromSlotsAndSpec(slots, spec.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPyModule.Exec(const module_: IPyObject): boolean;
+begin
+  Result := assigned(PyModule_Exec) and
+            TPyObject.IsInitialized(module_) and
+            (PyModule_Exec(module_.PyObject) = 0);
+end;
+
+class function TPyModule.GetStateSize(const module_: IPyObject; out result_: Py_ssize_t): boolean;
+begin
+  Result := assigned(PyModule_GetStateSize) and
+            TPyObject.IsInitialized(module_) and
+            (PyModule_GetStateSize(module_.PyObject, result_) = 0);
+end;
+
+class function TPyModule.GetToken(const module_: IPyObject; out result_: Pointer): boolean;
+begin
+  Result := assigned(PyModule_GetToken) and
+            TPyObject.IsInitialized(module_) and
+            (PyModule_GetToken(module_.PyObject, result_) = 0);
+end;
+
+class function TPyModule.GetState_DuringGC(const module_: IPyObject): Pointer;
+begin
+  if assigned(PyModule_GetState_DuringGC) and
+     TPyObject.IsInitialized(module_) then
+    Result := PyModule_GetState_DuringGC(module_.PyObject)
+   else
+    Result := nil;
+end;
+
+class function TPyModule.GetToken_DuringGC(const module_: IPyObject; out result_: Pointer): boolean;
+begin
+  Result := assigned(PyModule_GetToken_DuringGC) and
+            TPyObject.IsInitialized(module_) and
+            (PyModule_GetToken_DuringGC(module_.PyObject, result_) = 0);
+end;
+
 end.

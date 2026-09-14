@@ -26,16 +26,16 @@ type
   TPyAnySet = class
     public
       /// <summary>
-      /// <para>Return true if aPyObject is a set object, a frozenset object,
+      /// <para>Return true if p is a set object, a frozenset object,
       /// or an instance of a subtype. This function always succeeds.</para>
       /// </summary>
-      class function Check(const aPyObject: IPyObject): boolean;
+      class function Check(const p: IPyObject): boolean;
       /// <summary>
-      /// <para>Return true if aPyObject is a set object or a frozenset object
+      /// <para>Return true if p is a set object or a frozenset object
       /// but not an instance of a subtype. This function always
       /// succeeds.</para>
       /// </summary>
-      class function CheckExact(const aPyObject: IPyObject): boolean;
+      class function CheckExact(const p: IPyObject): boolean;
   end;
 
 implementation
@@ -43,16 +43,16 @@ implementation
 uses
   uP4P.PySet, uP4P.PyFrozenSet;
 
-class function TPyAnySet.Check(const aPyObject: IPyObject): boolean;
+class function TPyAnySet.Check(const p: IPyObject): boolean;
 begin
-  Result := TPySet.Check(aPyObject) or
-            TPyFrozenSet.Check(aPyObject);
+  Result := TPySet.Check(p) or
+            TPyFrozenSet.Check(p);
 end;
 
-class function TPyAnySet.CheckExact(const aPyObject: IPyObject): boolean;
+class function TPyAnySet.CheckExact(const p: IPyObject): boolean;
 begin
-  Result := TPySet.CheckExact(aPyObject) or
-            TPyFrozenSet.CheckExact(aPyObject);
+  Result := TPySet.CheckExact(p) or
+            TPyFrozenSet.CheckExact(p);
 end;
 
 end.

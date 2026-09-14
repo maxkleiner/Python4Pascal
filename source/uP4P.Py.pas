@@ -128,9 +128,10 @@ type
       /// </summary>
       class function  Type_(const aPyObject: IPyObject): PPyTypeObject;
       /// <summary>
-      /// <para>Return True if aPyObject's type is aPyTypeObject.</para>
+      /// <para>Return non-zero if the object o type is aPyTypeObject.
+      /// Return zero otherwise.</para>
       /// </summary>
-      class function  IsType(const aPyObject: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+      class function  IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
       /// <summary>
       /// <para>Get the reference count of the Python object aPyObject.</para>
       /// <para>Note that the returned value may not actually reflect how many
@@ -1088,6 +1089,14 @@ type
       /// <para>Added in version 3.14.</para>
       /// </summary>
       class function  HashBuffer(const ptr: Pointer; len: Py_ssize_t): Py_hash_t;
+      /// <summary>
+      /// <para>Get the ob_size field of o.</para>
+      /// </summary>
+      class function  Size(const o: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Set the ob_size field of o to size_.</para>
+      /// </summary>
+      class procedure SetSize(const o: IPyObject; size_: Py_ssize_t);
   end;
 
 implementation
@@ -1200,9 +1209,18 @@ begin
     end;
 end;
 
-class function TPy.IsType(const aPyObject: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+class function TPy.IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
 begin
-  Result := assigned(aPyTypeObject) and (Type_(aPyObject) = aPyTypeObject);
+  if TPyObject.IsInitialized(o) and
+     assigned(aPyTypeObject) then
+    begin
+      if assigned(Py_IS_TYPE) then
+        Result := (Py_IS_TYPE(o.PyObject, aPyTypeObject) <> 0)
+       else
+        Result := (Type_(o) = aPyTypeObject);
+    end
+   else
+    Result := False;
 end;
 
 class function TPy.RefCnt(const aPyObject: IPyObject): integer;
@@ -1758,6 +1776,22 @@ begin
     Result := Py_HashBuffer(ptr, len)
    else
     Result := -1;
+end;
+
+class function TPy.Size(const o: IPyObject): Py_ssize_t;
+begin
+  if assigned(Py_SIZE) and
+     TPyObject.IsInitialized(o) then
+    Result := Py_SIZE(o.PyObject)
+   else
+    Result := 0;
+end;
+
+class procedure TPy.SetSize(const o: IPyObject; size_: Py_ssize_t);
+begin
+  if assigned(Py_SET_SIZE) and
+     TPyObject.IsInitialized(o) then
+    Py_SET_SIZE(PPyVarObject(o.PyObject), size_);
 end;
 
 end.

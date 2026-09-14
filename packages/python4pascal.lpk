@@ -523,6 +523,30 @@
         <Filename Value="..\source\uP4P.PyGenericAlias.pas"/>
         <UnitName Value="uP4P.PyGenericAlias"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyAnyDict.pas"/>
+        <UnitName Value="uP4P.PyAnyDict"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyBytesWriter.pas"/>
+        <UnitName Value="uP4P.PyBytesWriter"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyFrozenDict.pas"/>
+        <UnitName Value="uP4P.PyFrozenDict"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInterpreterGuard.pas"/>
+        <UnitName Value="uP4P.PyInterpreterGuard"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyInterpreterView.pas"/>
+        <UnitName Value="uP4P.PyInterpreterView"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyTimeStruct.pas"/>
+        <UnitName Value="uP4P.PyTimeStruct"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

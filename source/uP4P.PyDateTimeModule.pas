@@ -406,7 +406,7 @@ begin
      assigned(GlobalP4PEngine.DateTimeModule.DateTimeType) and
      assigned(PyObject_Call) then
     begin
-      TempArgs := TPyTuple.FromArray([year, month, day, hour, minute, second, msecond * 1000]);
+      TempArgs := TPyTuple.FromVarRecArray([year, month, day, hour, minute, second, msecond * 1000]);
       Result   := TPyObject.Wrap(PyObject_Call(PPyObject(GlobalP4PEngine.DateTimeModule), TempArgs.PyObject, nil));
     end;
 end;

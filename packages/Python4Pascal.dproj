@@ -219,6 +219,11 @@
         <DCCReference Include="..\source\uP4P.ImportedPyModule.pas"/>
         <DCCReference Include="..\source\uP4P.PyTimeStruct.pas"/>
         <DCCReference Include="..\source\uP4P.PyGenericAlias.pas"/>
+        <DCCReference Include="..\source\uP4P.PyBytesWriter.pas"/>
+        <DCCReference Include="..\source\uP4P.PyFrozenDict.pas"/>
+        <DCCReference Include="..\source\uP4P.PyAnyDict.pas"/>
+        <DCCReference Include="..\source\uP4P.PyInterpreterGuard.pas"/>
+        <DCCReference Include="..\source\uP4P.PyInterpreterView.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -39,7 +39,9 @@ uses
   uP4P.PyUnicodeWriter, uP4P.PyVectorcall, uP4P.PyWeakref, 
   uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, uP4P.PyDateTimeModule, 
   uP4P.PyObjectVariantType, uP4P.PyTimeModule, uP4P.Thread, 
-  uP4P.ImportedPyModule, uP4P.PyGenericAlias, LazarusPackageIntf;
+  uP4P.ImportedPyModule, uP4P.PyGenericAlias, uP4P.PyAnyDict, 
+  uP4P.PyBytesWriter, uP4P.PyFrozenDict, uP4P.PyInterpreterGuard, 
+  uP4P.PyInterpreterView, uP4P.PyTimeStruct, LazarusPackageIntf;
 
 implementation
 

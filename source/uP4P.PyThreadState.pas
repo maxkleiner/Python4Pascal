@@ -150,9 +150,86 @@ type
       /// </summary>
       class function  IsInitialized(const tstate: IPyThreadState): boolean;
       /// <summary>
-      /// <para></para>
+      /// <para>Detach the attached thread state (which must have been reset
+      /// with a previous call to TPyThreadState.Clear()) and then destroy
+      /// it.</para>
+      /// <para>No thread state will be attached upon returning.</para>
       /// </summary>
       class procedure DeleteCurrent;
+      /// <summary>
+      /// <para>Ensure that the thread has an attached thread state for the
+      /// interpreter protected by guard, and thus can safely invoke that
+      /// interpreter.</para>
+      /// <para>It is OK to call this function if the thread already has an
+      /// attached thread state, as long as there is a subsequent call to
+      /// TPyThreadState.Release() that matches this one (meaning that "nested"
+      /// calls to this function are permitted).</para>
+      /// <para>The function's effect (if any) will be reversed by the matching
+      /// call to TPyThreadState.Release().</para>
+      /// <para>On error, this function returns NULL without an exception set.
+      /// Do not call TPyThreadState.Release() in this case.</para>
+      /// <para>On success, this function returns a pointer value that must be
+      /// passed to the matching call to TPyThreadState.Release().</para>
+      /// <para>The conditions in which this function creates a new thread
+      /// state are considered unstable and implementation-dependent. If you
+      /// need to control the exact lifetime of a thread state, consider using
+      /// TPyThreadState.New(). However, do not avoid this function solely on
+      /// the basis that the lifetime of the thread state may be inconsistent
+      /// across versions; changes to this function will be done with caution
+      /// and in a backwards-compatible manner. In particular, the saving of
+      /// thread-local variables and similar state will be retained across
+      /// Python versions.</para>
+      /// <para>CPython implementation detail: The exact behavior of whether
+      /// this function creates a new thread state is described below, but be
+      /// aware that this may change in the future.</para>
+      /// <para>First, this function checks if an attached thread state is
+      /// present. If there is, this function then checks if the interpreter of
+      /// that thread state matches the interpreter guarded by guard. If that
+      /// is the case, this function simply marks the thread state as being
+      /// used by a TPyThreadState.Ensure call and returns.</para>
+      /// <para>If there is no attached thread state, then this function checks
+      /// if any thread state has been used by the current OS thread. (This is
+      /// returned by TPyGILState.GetThisThreadState().) If there was, then
+      /// this function checks if that thread state's interpreter matches guard.
+      /// If it does, it is re-attached and marked as used.</para>
+      /// <para>Otherwise, if both of the above cases fail, a new thread state
+      /// is created for guard. It is then attached and marked as owned by
+      /// TPyThreadState.Ensure.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function Ensure(const aGuard: IPyInterpreterGuard): PPyThreadStateToken;
+      /// <summary>
+      /// <para>Get an attached thread state for the interpreter referenced by
+      /// view.</para>
+      /// <para>The behavior and return value are the same as for
+      /// TPyThreadState.Ensure(); additionally, if the function succeeds, the
+      /// interpreter referenced by view will be implicitly guarded. The guard
+      /// will be released upon the corresponding TPyThreadState.Release()
+      /// call.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function EnsureFromView(const aView: IPyInterpreterView): PPyThreadStateToken;
+      /// <summary>
+      /// <para>Undo a TPyThreadState.Ensure() or
+      /// TPyThreadState.EnsureFromView() call.</para>
+      /// <para>This must be called exactly once for each successful Ensure
+      /// call, with token set to that call's return value.</para>
+      /// <para>The state that was attached before the corresponding Ensure
+      /// call (if any) will be attached when TPyThreadState.Release()
+      /// returns.</para>
+      /// <para>The exact behavior of whether this function deletes a thread
+      /// state is considered unstable and implementation-dependent.</para>
+      /// <para>CPython implementation detail: Currently, this function will
+      /// decrement an internal counter on the attached thread state. If this
+      /// counter ever reaches below zero, this function emits a fatal error
+      /// (via TPy.FatalError()).</para>
+      /// <para>If the attached thread state is owned by TPyThreadState.Ensure,
+      /// then the attached thread state will be deallocated and deleted upon
+      /// the internal counter reaching zero. Otherwise, nothing happens when
+      /// the counter reaches zero.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class procedure Release(tstate: PPyThreadStateToken);
 
       /// <summary>
       /// <para>Returns true if the class is fully initialized.</para>
@@ -196,7 +273,7 @@ type
 implementation
 
 uses
-  uP4P.PyInterpreterState;
+  uP4P.PyInterpreterState, uP4P.PyInterpreterGuard, uP4P.PyInterpreterView;
 
 constructor TPyThreadState.Create(aPyThreadState: PPyThreadState);
 begin
@@ -370,6 +447,31 @@ class procedure TPyThreadState.DeleteCurrent;
 begin
   if assigned(PyThreadState_DeleteCurrent) then
     PyThreadState_DeleteCurrent();
+end;
+
+class function TPyThreadState.Ensure(const aGuard: IPyInterpreterGuard): PPyThreadStateToken;
+begin
+  if assigned(PyThreadState_Ensure) and
+     TPyInterpreterGuard.IsInitialized(aGuard) then
+    Result := PyThreadState_Ensure(aGuard.Guard)
+   else
+    Result := nil;
+end;
+
+class function TPyThreadState.EnsureFromView(const aView: IPyInterpreterView): PPyThreadStateToken;
+begin
+  if assigned(PyThreadState_EnsureFromView) and
+     TPyInterpreterView.IsInitialized(aView) then
+    Result := PyThreadState_EnsureFromView(aView.View)
+   else
+    Result := nil;
+end;
+
+class procedure TPyThreadState.Release(tstate: PPyThreadStateToken);
+begin
+  if assigned(PyThreadState_Release) and
+     assigned(tstate) then
+    PyThreadState_Release(tstate);
 end;
 
 end.

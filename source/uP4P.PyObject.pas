@@ -39,7 +39,29 @@ type
       function  GetRefCnt: integer;
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
+      /// <summary>
+      /// <para>Get a pointer to subclass-specific data reserved for cls.</para>
+      /// <para>The object o must be an instance of cls, and cls must have been
+      /// created using negative PyType_Spec.basicsize. Python does not check
+      /// this.</para>
+      /// <para>On error, set an exception and return nil.</para>
+      /// <para>Added in version 3.12.</para>
+      /// </summary>
       function  GetTypeData(const cls: PyTypeObject): Pointer;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      function  GetTypeData_DuringGC(const cls: PyTypeObject): Pointer;
       function  GetAsString: string;
       function  GetAsAnsiString: AnsiString;
       function  GetAsWideString: WideString;
@@ -821,6 +843,48 @@ type
       /// to a function that steals the PyObject reference.</para>
       /// </summary>
       function  UnWrap: Pointer;
+      /// <summary>
+      /// <para>Dump this object to stderr. This should only be used for
+      /// debugging.</para>
+      /// <para>The output is intended to try dumping objects even after memory
+      /// corruption:</para>
+      /// <code>
+      /// - Information is written starting with fields that are the least
+      ///   likely to crash when accessed.
+      /// - This function can be called without an attached thread state, but
+      ///   it's not recommended to do so: it can cause deadlocks.
+      /// - An object that does not belong to the current interpreter may be
+      ///   dumped, but this may also cause crashes or unintended behavior.
+      /// - Implement a heuristic to detect if the object memory has been
+      ///   freed. Don't display the object contents in this case, only its
+      ///   memory address.
+      /// - The output format may change at any time.
+      /// </code>
+      /// <para>Example of output:</para>
+      /// <code>
+      /// object address  : 0x7f80124702c0
+      /// object refcount : 2
+      /// object type     : 0x9902e0
+      /// object type name: str
+      /// object repr     : 'abcdef'
+      /// </code>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      procedure Dump;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      function  GetItemData_DuringGC: Pointer;
 
       /// <summary>
       /// <para>Helper function used to wrap a PyObject pointer with a
@@ -1392,9 +1456,23 @@ begin
   FObjRefOwner := False;
 end;
 
+procedure TPyObject.Dump;
+begin
+  if Initialized and assigned(PyObject_Dump) then
+    PyObject_Dump(PyObject);
+end;
+
+function TPyObject.GetItemData_DuringGC: Pointer;
+begin
+  if Initialized and assigned(PyObject_GetItemData_DuringGC) then
+    Result := PyObject_GetItemData_DuringGC(PyObject)
+   else
+    Result := nil;
+end;
+
 function TPyObject.IsType(aPyTypeObject: PPyTypeObject): boolean;
 begin
-  Result := (aPyTypeObject <> nil) and (GetPyTypeObject = aPyTypeObject);
+  Result := TPy.IsType(self, aPyTypeObject);
 end;
 
 function TPyObject.TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
@@ -2374,6 +2452,14 @@ function TPyObject.GetTypeData(const cls: PyTypeObject): Pointer;
 begin
   if Initialized and assigned(PyObject_GetTypeData) then
     Result := PyObject_GetTypeData(PyObject, @cls)
+   else
+    Result := nil;
+end;
+
+function TPyObject.GetTypeData_DuringGC(const cls: PyTypeObject): Pointer;
+begin
+  if Initialized and assigned(PyObject_GetTypeData_DuringGC) then
+    Result := PyObject_GetTypeData_DuringGC(PyObject, @cls)
    else
     Result := nil;
 end;

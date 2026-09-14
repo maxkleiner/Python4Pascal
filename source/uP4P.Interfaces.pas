@@ -57,7 +57,29 @@ type
     function  GetRefCnt: integer;
     function  GetObjRefOwner: boolean;
     function  GetPyTypeObject: PPyTypeObject;
+    /// <summary>
+    /// <para>Get a pointer to subclass-specific data reserved for cls.</para>
+    /// <para>The object o must be an instance of cls, and cls must have been
+    /// created using negative PyType_Spec.basicsize. Python does not check
+    /// this.</para>
+    /// <para>On error, set an exception and return nil.</para>
+    /// <para>Added in version 3.12.</para>
+    /// </summary>
     function  GetTypeData(const cls: PyTypeObject): Pointer;
+    /// <summary>
+    /// <para>The following function should only be used in a tp_traverse
+    /// handler; calling them in other contexts may have unintended
+    /// consequences.</para>
+    /// <para>This function act like their counterpart without the _DuringGC
+    /// suffix, but it's guaranteed to not have side effects, it doesn't set
+    /// an exception on failure, and it returns/sets borrowed references as
+    /// detailed in the individual documentation.</para>
+    /// <para>Note that this function may fail, but as it doesn't set an
+    /// exception, no error information is available. In some cases, failure
+    /// is not distinguishable from a successful nil result.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    function  GetTypeData_DuringGC(const cls: PyTypeObject): Pointer;
     function  GetAsString: string;
     function  GetAsAnsiString: AnsiString;
     function  GetAsWideString: WideString;
@@ -833,6 +855,48 @@ type
     /// to a function that steals the PyObject reference.</para>
     /// </summary>
     function  UnWrap: Pointer;
+    /// <summary>
+    /// <para>Dump this object to stderr. This should only be used for
+    /// debugging.</para>
+    /// <para>The output is intended to try dumping objects even after memory
+    /// corruption:</para>
+    /// <code>
+    /// - Information is written starting with fields that are the least
+    ///   likely to crash when accessed.
+    /// - This function can be called without an attached thread state, but
+    ///   it's not recommended to do so: it can cause deadlocks.
+    /// - An object that does not belong to the current interpreter may be
+    ///   dumped, but this may also cause crashes or unintended behavior.
+    /// - Implement a heuristic to detect if the object memory has been
+    ///   freed. Don't display the object contents in this case, only its
+    ///   memory address.
+    /// - The output format may change at any time.
+    /// </code>
+    /// <para>Example of output:</para>
+    /// <code>
+    /// object address  : 0x7f80124702c0
+    /// object refcount : 2
+    /// object type     : 0x9902e0
+    /// object type name: str
+    /// object repr     : 'abcdef'
+    /// </code>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    procedure Dump;
+    /// <summary>
+    /// <para>The following function should only be used in a tp_traverse
+    /// handler; calling them in other contexts may have unintended
+    /// consequences.</para>
+    /// <para>This function act like their counterpart without the _DuringGC
+    /// suffix, but it's guaranteed to not have side effects, it doesn't set
+    /// an exception on failure, and it returns/sets borrowed references as
+    /// detailed in the individual documentation.</para>
+    /// <para>Note that this function may fail, but as it doesn't set an
+    /// exception, no error information is available. In some cases, failure
+    /// is not distinguishable from a successful nil result.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    function  GetItemData_DuringGC: Pointer;
 
     /// <summary>
     /// Returns true if this class is fully initialized.
@@ -1362,6 +1426,88 @@ type
     /// <para>Added in version 3.8.</para>
     /// </summary>
     property Dict         : IPyObject             read GetDict;
+  end;
+
+  /// <summary>
+  /// <para>An interpreter guard class.</para>
+  /// <para>By holding an interpreter guard, the caller can ensure that the
+  /// interpreter will not finalize until the guard is closed (through
+  /// TPyInterpreterGuard.Close()).</para>
+  /// <para>When a guard is held, a thread attempting to finalize the
+  /// interpreter will block until the guard is closed before starting
+  /// finalization. After finalization has started, threads are forever unable
+  /// to acquire guards for that interpreter. This means that if you forget to
+  /// close an interpreter guard, the process will permanently hang during
+  /// finalization!</para>
+  /// <para>Holding a guard for an interpreter is similar to holding a strong reference to a Python object, except finalization does not happen automatically after all guards are released: it requires an explicit Py_EndInterpreter() call.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization">See the Python article about Cautions regarding interpreter finalization.</see></para>
+  /// <para>Added in version 3.15.</para>
+  /// </remarks>
+  IPyInterpreterGuard = interface
+    ['{71EB6F44-DA48-4F86-81E4-5DECA9620DCA}']
+    function  GetInitialized: boolean;
+    function  GetGuard: PPyInterpreterGuard;
+    procedure SetGuard(aValue: PPyInterpreterGuard);
+    /// <summary>
+    /// <para>Close an interpreter guard, allowing the interpreter to start
+    /// finalization if no other guards remain. If an interpreter guard is
+    /// never closed, the interpreter will infinitely wait when trying to
+    /// enter finalization!</para>
+    /// <para>After an interpreter guard is closed, it may not be used in
+    /// TPyThreadState.Ensure(). Doing so will result in undefined
+    /// behavior.</para>
+    /// <para>This function cannot fail, and the caller doesn't need to hold
+    /// an attached thread state.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    procedure Close;
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
+    property Initialized  : boolean               read GetInitialized;
+    /// <summary>
+    /// <para>Pointer to PyInterpreterGuard</para>
+    /// </summary>
+    property Guard        : PPyInterpreterGuard   read GetGuard         write SetGuard;
+  end;
+
+  /// <summary>
+  /// <para>A view of an interpreter.</para>
+  /// <para>In some cases, it may be necessary to access an interpreter that
+  /// may have been deleted. This can be done using interpreter views.</para>
+  /// <para>This is a thread-safe way to access an interpreter that may have
+  /// be finalizing or already destroyed.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization">See the Python article about Cautions regarding interpreter finalization.</see></para>
+  /// <para>Added in version 3.15.</para>
+  /// </remarks>
+  IPyInterpreterView = interface
+    ['{C10F577D-3290-4C2A-91E3-9D41A67C7AFB}']
+    function  GetInitialized: boolean;
+    function  GetView: PPyInterpreterView;
+    procedure SetView(aValue: PPyInterpreterView);
+    /// <summary>
+    /// <para>Close an interpreter view.</para>
+    /// <para>If an interpreter view is never closed, the view's memory will
+    /// never be freed, but there are no other consequences. (In contrast,
+    /// forgetting to close a guard will infinitely hang the main thread
+    /// during finalization.)</para>
+    /// <para>This function cannot fail, and the caller doesn't need to hold
+    /// an attached thread state.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    procedure Close;
+    /// <summary>
+    /// <para>Returns true if the class is fully initialized.</para>
+    /// </summary>
+    property Initialized  : boolean               read GetInitialized;
+    /// <summary>
+    /// <para>Pointer to PyInterpreterView</para>
+    /// </summary>
+    property View         : PPyInterpreterView    read GetView         write SetView;
   end;
 
   /// <summary>
@@ -4075,6 +4221,7 @@ type
     /// </summary>
     property PyCriticalSection : Pointer read GetPyCriticalSection;
   end;
+
 
 implementation
 

@@ -71,7 +71,8 @@ type
       constructor Create(aState: PPyInterpreterState);
 
       /// <summary>
-      /// <para></para>
+      /// <para>Helper function used to wrap a PyInterpreterState pointer with a
+      /// TPyInterpreterState instance.</para>
       /// </summary>
       class function Wrap(aState: PPyInterpreterState): IPyInterpreterState; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
       /// <summary>

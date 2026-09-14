@@ -48,9 +48,6 @@ type
 
 implementation
 
-uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
-
 class function TPyFrozenSet.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
@@ -65,9 +62,13 @@ end;
 
 class function TPyFrozenSet.New(const iterable: IPyObject): IPyObject;
 begin
-  if assigned(PyFrozenSet_New) and
-     TPyObject.IsInitialized(iterable) then
-    Result := TPyObject.Wrap(PyFrozenSet_New(iterable.PyObject))
+  if assigned(PyFrozenSet_New) then
+    begin
+      if TPyObject.IsInitialized(iterable) then
+        Result := TPyObject.Wrap(PyFrozenSet_New(iterable.PyObject))
+       else
+        Result := TPyObject.Wrap(PyFrozenSet_New(nil));
+    end
    else
     Result := nil;
 end;

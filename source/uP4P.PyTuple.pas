@@ -101,7 +101,7 @@ type
       /// <para>Custom function that creates a new tuple object and populates
       /// the new tuple with the aItems array.</para>
       /// </summary>
-      class function FromArray(const aItems: array of const): IPyObject;
+      class function FromVarRecArray(const aItems: array of const): IPyObject; overload;
       /// <summary>
       /// <para>Custom function that creates a new tuple object and populates
       /// the new tuple with the aStringList string list.</para>
@@ -143,6 +143,24 @@ type
       /// <para>Convert the items in this tuple to a TStringList.</para>
       /// </summary>
       class function AsStrings(const aPyObject: IPyObject; var aStringList: TStringList): boolean;
+      /// <summary>
+      /// <para>Create a tuple of size items and copy references from array
+      /// to the new tuple.</para>
+      /// <para>array can be nil if size is 0.</para>
+      /// <para>On success, return a new reference. On error, set an exception
+      /// and return nil.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function FromArray(array_: PPPyObject; size_: Py_ssize_t): IPyObject; overload;
+      /// <summary>
+      /// <para>Create a tuple of size items and copy references from array
+      /// to the new tuple.</para>
+      /// <para>array can be empty.</para>
+      /// <para>On success, return a new reference. On error, set an exception
+      /// and return nil.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function FromArray(const array_: IPyObjectArray): IPyObject; overload;
   end;
 
 implementation
@@ -203,7 +221,7 @@ begin
             aPyObject.IsType(PyTuple_Type);
 end;
 
-class function TPyTuple.FromArray(const aItems: array of const): IPyObject;
+class function TPyTuple.FromVarRecArray(const aItems: array of const): IPyObject;
 var
   i, TempLen : integer;
 begin
@@ -408,6 +426,34 @@ begin
 
       Result := (aStringList.Count > 0);
     end;
+end;
+
+class function TPyTuple.FromArray(array_: PPPyObject; size_: Py_ssize_t): IPyObject;
+begin
+  if assigned(PyTuple_FromArray) then
+    Result := TPyObject.Wrap(PyTuple_FromArray(array_, size_))
+   else
+    Result := nil;
+end;
+
+class function TPyTuple.FromArray(const array_: IPyObjectArray): IPyObject;
+var
+  TempArray : PPyObjectArray;
+  TempLen, i : integer;
+begin
+  TempLen := length(array_);
+
+  if (TempLen > 0) then
+    begin
+      SetLength(TempArray, TempLen);
+
+      for i := 0 to pred(TempLen) do
+        TempArray[i] := array_[i].PyObject;
+
+      Result := FromArray(@TempArray[0], TempLen);
+    end
+   else
+    Result := FromArray(nil, 0);
 end;
 
 class function TPyTuple.Size(const p: IPyObject): Py_ssize_t;

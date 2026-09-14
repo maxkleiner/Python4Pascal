@@ -383,6 +383,118 @@ type
       /// function always succeeds.</para>
       /// </summary>
       class function CheckExact(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>Create and return a heap type from a PySlot array. See
+      /// Definition slots for general information on slots, and Type slot IDs
+      /// for slots specific to type creation.</para>
+      /// <para>This function calls TPyType.Ready() on the new type.</para>
+      /// <para>Note that this function does not fully match the behavior of
+      /// calling type() or using the class statement. With user-provided base
+      /// types or metaclasses, prefer calling type (or the metaclass) over
+      /// TPyType.From* functions. Specifically:</para>
+      /// <code>
+      /// - __new__() is not called on the new class (and it must be set to
+      ///   type.__new__).
+      /// - __init__() is not called on the new class.
+      /// - __init_subclass__() is not called on any bases.
+      /// - __set_name__() is not called on new descriptors.
+      /// </code>
+      /// <para>Slots are typically defined as a global static constant arrays.
+      /// However, sometimes slot values are not statically known at compile
+      /// time. For example, slots like Py_tp_bases, Py_tp_metaclass and
+      /// Py_tp_module require live Python objects. In this case, it is
+      /// recommended to put such slots on the stack, and use Py_slot_subslots
+      /// to refer to an array of static slots. For example:</para>
+      /// <code>
+      /// static const PySlot my_slots[] = {
+      ///    PySlot_STATIC_DATA(Py_tp_name, "MyClass"),
+      ///    PySlot_FUNC(Py_tp_repr, my_repr_func),
+      ///    ...
+      ///    PySlot_END
+      /// };
+      ///
+      /// PyObject *make_my_class(PyObject *module) {
+      ///    PySlot all_slots[] = {
+      ///       PySlot_STATIC_DATA(Py_slot_subslots, my_slots),
+      ///       PySlot_DATA(Py_tp_module, module),
+      ///       PySlot_END
+      ///    };
+      ///    return PyType_FromSlots(all_slots);
+      /// }
+      /// </code>
+      /// </summary>
+      class function FromSlots(slots: PPySlot): IPyObject;
+      /// <summary>
+      /// <para>Find the first superclass whose module has the given module
+      /// token, and return that module.</para>
+      /// <para>If no module is found, raises a TypeError and returns
+      /// nil.</para>
+      /// <para>This function is intended to be used together with
+      /// TPyModule.GetState() to get module state from slot methods (such as
+      /// tp_init or nb_add) and other places where a method's defining class
+      /// cannot be passed using the PyCMethod calling convention.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetModuleByToken(type_: PPyTypeObject; const mod_token: Pointer): IPyObject;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetModuleState_DuringGC(type_: PPyTypeObject): Pointer;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Sets result_ to a borrowed reference rather than a strong one.
+      /// The reference is valid for the duration of the tp_traverse handler
+      /// call.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetBaseByToken_DuringGC(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetModule_DuringGC(type_: PPyTypeObject): IPyObject;
+      /// <summary>
+      /// <para>The following function should only be used in a tp_traverse
+      /// handler; calling them in other contexts may have unintended
+      /// consequences.</para>
+      /// <para>This function act like their counterpart without the _DuringGC
+      /// suffix, but it's guaranteed to not have side effects, it doesn't set
+      /// an exception on failure, and it returns/sets borrowed references as
+      /// detailed in the individual documentation.</para>
+      /// <para>Note that this function may fail, but as it doesn't set an
+      /// exception, no error information is available. In some cases, failure
+      /// is not distinguishable from a successful nil result.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetModuleByToken_DuringGC(type_: PPyTypeObject; const mod_token: Pointer): IPyObject;
   end;
 
 implementation
@@ -655,6 +767,58 @@ end;
 class function TPyTypeObject.CheckExact(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and aPyObject.IsType(PyType_Type);
+end;
+
+class function TPyTypeObject.FromSlots(slots: PPySlot): IPyObject;
+begin
+  if assigned(PyType_FromSlots) and assigned(slots) then
+    Result := TPyObject.Wrap(PyType_FromSlots(slots))
+   else
+    Result := nil;
+end;
+
+class function TPyTypeObject.GetModuleByToken(type_: PPyTypeObject; const mod_token: Pointer): IPyObject;
+begin
+  if assigned(PyType_GetModuleByToken) and
+     assigned(type_) and
+     assigned(mod_token) then
+    Result := TPyObject.Wrap(PyType_GetModuleByToken(type_, mod_token))
+   else
+    Result := nil;
+end;
+
+class function TPyTypeObject.GetModuleState_DuringGC(type_: PPyTypeObject): Pointer;
+begin
+  if assigned(PyType_GetModuleState_DuringGC) then
+    Result := PyType_GetModuleState_DuringGC(type_)
+   else
+    Result := nil;
+end;
+
+class function TPyTypeObject.GetBaseByToken_DuringGC(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
+begin
+  if assigned(PyType_GetBaseByToken_DuringGC) then
+    Result := PyType_GetBaseByToken_DuringGC(type_, token, @result_)
+   else
+    Result := -1;
+end;
+
+class function TPyTypeObject.GetModule_DuringGC(type_: PPyTypeObject): IPyObject;
+begin
+  if assigned(PyType_GetModule_DuringGC) then
+    Result := TPyObject.Wrap(PyType_GetModule_DuringGC(type_), False)
+   else
+    Result := nil;
+end;
+
+class function TPyTypeObject.GetModuleByToken_DuringGC(type_: PPyTypeObject; const mod_token: Pointer): IPyObject;
+begin
+  if assigned(PyType_GetModuleByToken_DuringGC) and
+     assigned(type_) and
+     assigned(mod_token) then
+    Result := TPyObject.Wrap(PyType_GetModuleByToken_DuringGC(type_, mod_token))
+   else
+    Result := nil;
 end;
 
 end.

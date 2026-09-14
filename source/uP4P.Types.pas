@@ -391,6 +391,11 @@ type
   /// </summary>
   PPyObjectArray = array of PPyObject;
 
+  /// <summary>
+  /// Custom PPySlot open array.
+  /// </summary>
+  PPySlotArray = array of PPySlot;
+
 
   {* include/pyport.h *}
   Py_uintptr_t       = type NativeUInt;

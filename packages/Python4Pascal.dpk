@@ -157,6 +157,11 @@ contains
   uP4P.PyDateTimeModule in '..\source\uP4P.PyDateTimeModule.pas',
   uP4P.ImportedPyModule in '..\source\uP4P.ImportedPyModule.pas',
   uP4P.PyTimeStruct in '..\source\uP4P.PyTimeStruct.pas',
-  uP4P.PyGenericAlias in '..\source\uP4P.PyGenericAlias.pas';
+  uP4P.PyGenericAlias in '..\source\uP4P.PyGenericAlias.pas',
+  uP4P.PyBytesWriter in '..\source\uP4P.PyBytesWriter.pas',
+  uP4P.PyFrozenDict in '..\source\uP4P.PyFrozenDict.pas',
+  uP4P.PyAnyDict in '..\source\uP4P.PyAnyDict.pas',
+  uP4P.PyInterpreterGuard in '..\source\uP4P.PyInterpreterGuard.pas',
+  uP4P.PyInterpreterView in '..\source\uP4P.PyInterpreterView.pas';
 
 end.
