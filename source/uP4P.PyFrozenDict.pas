@@ -22,6 +22,7 @@ type
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3.15/c-api/dict.html#frozen-dictionary-objects">See the article about Frozen dictionary objects.</see></para>
+  /// <para>Added in version 3.15.</para>
   /// </remarks>
   TPyFrozenDict = class
     public

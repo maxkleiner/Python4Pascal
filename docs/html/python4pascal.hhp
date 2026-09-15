@@ -40,6 +40,8 @@ uP4P.Interfaces.IPyUnicodeWriter.html
 uP4P.Interfaces.IPyStatus.html
 uP4P.Interfaces.IPyInterpreterConfig.html
 uP4P.Interfaces.IPyInterpreterState.html
+uP4P.Interfaces.IPyInterpreterGuard.html
+uP4P.Interfaces.IPyInterpreterView.html
 uP4P.Interfaces.IPyThreadState.html
 uP4P.Interfaces.IPyGILState.html
 uP4P.Interfaces.IPyThreadLock.html

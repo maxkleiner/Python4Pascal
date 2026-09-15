@@ -164,6 +164,7 @@ var
 
   {* include/refcount.h *}
   Py_REFCNT                                      : function(ob: PPyObject): Py_ssize_t; cdecl;
+  Py_SET_REFCNT                                  : procedure(ob: PPyObject; refcnt: Py_ssize_t);                             // _Py_SetRefcnt
   Py_IncRef                                      : procedure(obj: PPyObject); cdecl;
   Py_DecRef                                      : procedure(obj: PPyObject); cdecl;
   Py_NewRef                                      : function(obj: PPyObject): PPyObject; cdecl;
@@ -240,7 +241,7 @@ var
   PyBytesWriter_GetData                          : function(writer: PPyBytesWriter): Pointer; cdecl;                                           //****** 3.15.0 ******
   PyBytesWriter_GetSize                          : function(writer: PPyBytesWriter): Py_ssize_t; cdecl;                                        //****** 3.15.0 ******
   PyBytesWriter_WriteBytes                       : function(writer: PPyBytesWriter; const bytes_: Pointer; size_: Py_ssize_t): integer; cdecl; //****** 3.15.0 ******
-  PyBytesWriter_Format                           : function(writer: PPyBytesWriter; const format: PAnsiChar {; ...}): integer; cdecl varargs;  //****** 3.15.0 *** ***
+  PyBytesWriter_Format                           : function(writer: PPyBytesWriter; const format: PAnsiChar {; ...}): integer; cdecl varargs;  //****** 3.15.0 *
   PyBytesWriter_Resize                           : function(writer: PPyBytesWriter; size_: Py_ssize_t): integer; cdecl;                        //****** 3.15.0 ******
   PyBytesWriter_Grow                             : function(writer: PPyBytesWriter; size_: Py_ssize_t): integer; cdecl;                        //****** 3.15.0 ******
   PyBytesWriter_GrowAndUpdatePointer             : function(writer: PPyBytesWriter; size_: Py_ssize_t; buf: Pointer): Pointer; cdecl;          //****** 3.15.0 ******
@@ -396,7 +397,7 @@ var
   PyExc_FloatingPointError                       : PPyObject;
   PyExc_OSError                                  : PPyObject;
   PyExc_ImportError                              : PPyObject;
-  PyExc_ImportCycleError                         : PPyObject;    //****** 3.15.0
+  PyExc_ImportCycleError                         : PPyObject;    //****** 3.15.0 ******
   PyExc_ModuleNotFoundError                      : PPyObject;
   PyExc_IndexError                               : PPyObject;
   PyExc_KeyError                                 : PPyObject;
@@ -980,8 +981,8 @@ var
   Py_GenericAliasType                            : PPyTypeObject;
 
   {* include/cpython/sentinelobject.h *}
-  PySentinel_Type                                : PPyTypeObject;                                                             //****** 3.15.0
-  PySentinel_New                                 : function(const name_, module_name, repr: PAnsiChar): PPyObject; cdecl;     //****** 3.15.0
+  PySentinel_Type                                : PPyTypeObject;                                                             //****** 3.15.0 ******
+  PySentinel_New                                 : function(const name_, module_name, repr: PAnsiChar): PPyObject; cdecl;     //****** 3.15.0 ******
 
   {* include/warnings.h  include/cpython/warnings.h*}
   PyErr_WarnEx                                   : function(category: PPyObject; const message_: PAnsiChar; stack_level: Py_ssize_t): integer; cdecl;
@@ -1102,9 +1103,9 @@ var
   PyModule_ExecDef                               : function(module: PPyObject; def: PPyModuleDef): integer; cdecl;
   PyModule_Create2                               : function(def: PPyModuleDef; module_api_version: integer): PPyObject; cdecl;
   PyModule_FromDefAndSpec2                       : function(def: PPyModuleDef; spec: PPyObject; module_api_version: integer): PPyObject; cdecl;
-  PyABIInfo_Check                                : function(info: PPyABIInfo; const module_name: PAnsiChar): integer; cdecl;                                     //****** 3.15.0
-  PyArg_ParseArray                               : function(const args: PPPyObject; nargs: Py_ssize_t; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0
-  PyArg_ParseArrayAndKeywords                    : function(const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject; const format: PAnsiChar; const kwlist: PPAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0
+  PyABIInfo_Check                                : function(info: PPyABIInfo; const module_name: PAnsiChar): integer; cdecl;                                     //****** 3.15.0 ******
+  PyArg_ParseArray                               : function(const args: PPPyObject; nargs: Py_ssize_t; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 *
+  PyArg_ParseArrayAndKeywords                    : function(const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject; const format: PAnsiChar; const kwlist: PPAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 *
 
   {* include/compile.h  include/cpython/compile.h *}
   PyCompile_OpcodeStackEffect                    : function(opcode, oparg: integer): integer; cdecl;
@@ -1211,10 +1212,10 @@ var
   PyEval_MergeCompilerFlags                      : function(cf: PPyCompilerFlags): integer; cdecl;
 
   {* include/sysmodule.h *}
-  PySys_GetAttr                                  : function(ob: PPyObject): PPyObject; cdecl;                        //****** 3.15.0
-  PySys_GetAttrString                            : function(const str: PAnsiChar): PPyObject; cdecl;                 //****** 3.15.0
-  PySys_GetOptionalAttr                          : function(ob1: PPyObject; ob2: PPPyObject): integer; cdecl;        //****** 3.15.0
-  PySys_GetOptionalAttrString                    : function(const str: PAnsiChar; ob: PPPyObject): integer; cdecl;   //****** 3.15.0
+  PySys_GetAttr                                  : function(name_: PPyObject): PPyObject; cdecl;                               //****** 3.15.0 ******
+  PySys_GetAttrString                            : function(const name_: PAnsiChar): PPyObject; cdecl;                         //****** 3.15.0 ******
+  PySys_GetOptionalAttr                          : function(name_: PPyObject; out result_: PPyObject): integer; cdecl;         //****** 3.15.0 ******
+  PySys_GetOptionalAttrString                    : function(const name_: PAnsiChar; out result_: PPyObject): integer; cdecl;   //****** 3.15.0 ******
   PySys_GetObject                                : function(const name_: PAnsiChar): PPyObject; cdecl;
   PySys_SetObject                                : function(const name_: PAnsiChar; v: PPyObject): integer; cdecl;
   PySys_WriteStdout                              : procedure(const format: PAnsiChar {; ...}); cdecl varargs;
@@ -1255,13 +1256,13 @@ var
   PyImport_ImportFrozenModuleObject              : function(name_: PPyObject): integer; cdecl;
   PyImport_ImportFrozenModule                    : function(const name_: PAnsiChar): integer; cdecl;
   PyImport_AppendInittab                         : function(const name_: PAnsiChar; initfunc_: initfunc): integer; cdecl;
-  PyImport_SetLazyImportsMode                    : function(mode: PyImport_LazyImportsMode): integer; cdecl;             //****** 3.15.0
-  PyImport_SetLazyImportsFilter                  : function(filter: PPyObject): integer; cdecl;                          //****** 3.15.0
-  PyImport_GetLazyImportsMode                    : function(): PyImport_LazyImportsMode; cdecl;                          //****** 3.15.0
-  PyImport_GetLazyImportsFilter                  : function(): PPyObject; cdecl;                                         //****** 3.15.0
+  PyImport_SetLazyImportsMode                    : function(mode: PyImport_LazyImportsMode): integer; cdecl;             //****** 3.15.0 ******
+  PyImport_SetLazyImportsFilter                  : function(filter: PPyObject): integer; cdecl;                          //****** 3.15.0 ******
+  PyImport_GetLazyImportsMode                    : function(): PyImport_LazyImportsMode; cdecl;                          //****** 3.15.0 ******
+  PyImport_GetLazyImportsFilter                  : function(): PPyObject; cdecl;                                         //****** 3.15.0 ******
   PyImport_Inittab                               : P_inittab;
   PyImport_ExtendInittab                         : function(newtab: P_inittab): integer; cdecl;
-  PyImport_CreateModuleFromInitfunc              : function(spec: PPyObject; initfunc_: initfunc): PPyObject; cdecl;     //****** 3.15.0
+  PyImport_CreateModuleFromInitfunc              : function(spec: PPyObject; initfunc_: initfunc): PPyObject; cdecl;     //****** 3.15.0 ******
   PyImport_FrozenModules                         : P_frozen;
   PyImport_ImportModuleAttr                      : function(mod_name, attr_name: PPyObject): PPyObject; cdecl;
   PyImport_ImportModuleAttrString                : function(const mod_name, attr_name: PAnsiChar): PPyObject; cdecl;
@@ -1402,9 +1403,6 @@ var
   PyFrame_LocalsToFast                           : procedure(f: PPyFrameObject; clear: integer); cdecl;
   PyFrame_FastToLocalsWithError                  : function(f: PPyFrameObject): integer; cdecl;
   PyFrame_FastToLocals                           : procedure(f: PPyFrameObject); cdecl;
-
-  {* include/internal/PyLazyImport_Type *}
-  PyLazyImport_Type                              : PPyTypeObject;                                                             //****** 3.15.0
 
 implementation
 

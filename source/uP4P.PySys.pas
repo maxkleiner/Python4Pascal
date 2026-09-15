@@ -26,6 +26,43 @@ type
   TPySys = class
     public
       /// <summary>
+      /// <para>Get the attribute name of the sys module. Return a strong
+      /// reference. Raise RuntimeError and return nil if it does not exist
+      /// or if the sys module cannot be found.</para>
+      /// <para>If the non-existing object should not be treated as a failure,
+      /// you can use TPySys.GetOptionalAttr() instead.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetAttr(const name_: IPyObject): IPyObject;
+      /// <summary>
+      /// <para>This is the same as TPySys.GetAttr(), but name is specified as
+      /// a string, rather than a IPyObject.</para>
+      /// <para>If the non-existing object should not be treated as a failure,
+      /// you can use TPySys.GetOptionalAttrString() instead.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetAttrString(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>Variant of TPySys.GetAttr() which doesn't raise exception if
+      /// the object does not exist.</para>
+      /// <code>
+      /// - Set result_ to a new strong reference to the object and return
+      ///   1 if the object exists.
+      /// - Set result_ to nil and return 0 without setting an
+      ///   exception if the object does not exist.
+      /// - Set an exception, set result_ to nil, and return -1, if an
+      ///   error occurred.
+      /// </code>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetOptionalAttr(const name_: IPyObject; var result_: IPyObject): integer;
+      /// <summary>
+      /// <para>This is the same as TPySys.GetOptionalAttr(), but name is
+      /// specified as a string, rather than a IPyObject.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetOptionalAttrString(const name_: string; var result_: IPyObject): integer;
+      /// <summary>
       /// <para>Return the object name_ from the sys module or nil if it does
       /// not exist, without setting an exception.</para>
       /// </summary>
@@ -119,6 +156,64 @@ implementation
 
 uses
   uP4P.MiscFunctions;
+
+class function TPySys.GetAttr(const name_: IPyObject): IPyObject;
+begin
+  if assigned(PySys_GetAttr) and
+     TPyObject.isInitialized(name_) then
+    Result := TPyObject.Wrap(PySys_GetAttr(name_.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPySys.GetAttrString(const name_: string): IPyObject;
+var
+  TempName : AnsiString;
+begin
+  if assigned(PySys_GetAttrString) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := TPyObject.Wrap(PySys_GetAttrString(PAnsiChar(TempName)));
+    end
+   else
+    Result := nil;
+end;
+
+class function TPySys.GetOptionalAttr(const name_: IPyObject; var result_: IPyObject): integer;
+var
+  TempResult : PPyObject;
+begin
+  result_ := nil;
+  Result  := 0;
+
+  if assigned(PySys_GetOptionalAttr) and
+     TPyObject.isInitialized(name_) then
+    begin
+      Result := PySys_GetOptionalAttr(name_.PyObject, TempResult);
+
+      if assigned(TempResult) then
+        result_ := TPyObject.Wrap(TempResult);
+    end;
+end;
+
+class function TPySys.GetOptionalAttrString(const name_: string; var result_: IPyObject): integer;
+var
+  TempName   : AnsiString;
+  TempResult : PPyObject;
+begin
+  result_ := nil;
+  Result  := 0;
+
+  if assigned(PySys_GetOptionalAttrString) and
+     (length(name_) > 0) then
+    begin
+      TempName := StringToPyUTF8(name_);
+      Result   := PySys_GetOptionalAttrString(PAnsiChar(TempName), TempResult);
+
+      if assigned(TempResult) then
+        result_ := TPyObject.Wrap(TempResult);
+    end;
+end;
 
 class function TPySys.GetObject(const name_: string): IPyObject;
 var

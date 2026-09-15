@@ -255,21 +255,6 @@ type
     ssFuncType
   );
 
-  /// <summary>
-  /// <para>Controls lazy import behavior. Accepts two values:</para>
-  /// <code>
-  /// - li_all makes all imports lazy by default.
-  /// - li_normal (the default) respects the lazy keyword in source code.
-  /// </code>
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
-  /// <para>Added in version 3.15.</para>
-  /// </remarks>
-  TPyLazyImports = (
-    li_normal,     // -1
-    li_all         // 1
-  );
 
   PPy_ssize_t                     = ^Py_ssize_t;
   PPyTypeObject                   = ^PyTypeObject;
@@ -934,8 +919,26 @@ type
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyMappingMethods">See the article about PyMappingMethods.</see></para>
   /// </remarks>
   PyMappingMethods = record
+    /// <summary>
+    /// <para>This function is used by TPyMapping.Size() and TPyObject.Size(),
+    /// and has the same signature. This slot may be set to nil if the object
+    /// has no defined length.</para>
+    /// </summary>
     mp_length	       : lenfunc;
+    /// <summary>
+    /// <para>This function is used by TPyObject.GetItem() and
+    /// TPySequence.GetSlice(), and has the same signature as
+    /// TPyObject.GetItem(). This slot must be filled for the TPyMapping.Check()
+    /// function to return 1, it can be NULL otherwise.</para>
+    /// </summary>
     mp_subscript     : binaryfunc;
+    /// <summary>
+    /// <para>This function is used by TPyObject.SetItem(), TPyObject.DelItem(),
+    /// TPySequence.SetSlice() and TPySequence.DelSlice(). It has the same
+    /// signature as TPyObject.SetItem(), but v can also be set to nil to
+    /// delete an item. If this slot is nil, the object does not support item
+    /// assignment and deletion.</para>
+    /// </summary>
     mp_ass_subscript : objobjargproc;
   end;
 
@@ -963,7 +966,83 @@ type
   /// <para><see href="https://docs.python.org/3/c-api/typeobj.html#c.PyBufferProcs">See the article about PyBufferProcs.</see></para>
   /// </remarks>
   PyBufferProcs = record
+    /// <summary>
+    /// <para>The signature of this function is:</para>
+    /// <code>int (PyObject *exporter, Py_buffer *view, int flags);</code>
+    /// <para>Handle a request to exporter to fill in view as specified by
+    /// flags. Except for point (3), an implementation of this function MUST
+    /// take these steps:</para>
+    /// <code>
+    /// - Check if the request can be met. If not, raise BufferError,
+    ///   set view->obj to nil and return -1.
+    /// - Fill in the requested fields.
+    /// - Increment an internal counter for the number of exports.
+    /// - Set view->obj to exporter and increment view->obj.
+    /// - Return 0.
+    /// </code>
+    /// <para>Thread safety:</para>
+    /// <para>In the free-threaded build, implementations must ensure:</para>
+    /// <code>
+    /// - The export counter increment in step (3) is atomic.
+    /// - The underlying buffer data remains valid and at a stable memory
+    ///   location for the lifetime of all exports.
+    /// - For objects that support resizing or reallocation (such as bytearray),
+    ///   the export counter is checked atomically before such operations, and
+    ///   BufferError is raised if exports exist.
+    /// - The function is safe to call concurrently from multiple threads.
+    /// </code>
+    /// <para>See also Thread safety for memoryview objects for the Python-level
+    /// thread safety guarantees of memoryview objects.</para>
+    /// <para>If exporter is part of a chain or tree of buffer providers, two
+    /// main schemes can be used:</para>
+    /// <code>
+    /// - Re-export: Each member of the tree acts as the exporting object and
+    ///   sets view->obj to a new reference to itself.
+    /// - Redirect: The buffer request is redirected to the root object of the
+    ///   tree. Here, view->obj will be a new reference to the root object.
+    /// </code>
+    /// <para>The individual fields of view are described in section Buffer
+    /// structure, the rules how an exporter must react to specific requests
+    /// are in section Buffer request types.</para>
+    /// <para>All memory pointed to in the Py_buffer structure belongs to the
+    /// exporter and must remain valid until there are no consumers left.
+    /// format, shape, strides, suboffsets and internal are read-only for the
+    /// consumer.</para>
+    /// <para>TPyBuffer.FillInfo() provides an easy way of exposing a simple
+    /// bytes buffer while dealing correctly with all request types.</para>
+    /// <para>TPyObject.GetBuffer() is the interface for the consumer that wraps
+    /// this function.</para>
+    /// </summary>
     bf_getbuffer     : getbufferproc;
+    /// <summary>
+    /// <para>The signature of this function is:</para>
+    /// <code>void (PyObject *exporter, Py_buffer *view);</code>
+    /// <para>Handle a request to release the resources of the buffer. If no
+    /// resources need to be released, PyBufferProcs.bf_releasebuffer may be
+    /// nil. Otherwise, a standard implementation of this function will take
+    /// these optional steps:</para>
+    /// <code>
+    /// - Decrement an internal counter for the number of exports.
+    /// - If the counter is 0, free all memory associated with view.
+    /// </code>
+    /// <para>Thread safety:</para>
+    /// <para>In the free-threaded build:</para>
+    /// <code>
+    /// - The export counter decrement in step (1) must be atomic.
+    /// - Resource cleanup when the counter reaches zero must be done
+    ///   atomically, as the final release may race with concurrent releases
+    ///   from other threads and deallocation must only happen once.
+    /// </code>
+    /// <para>The exporter MUST use the internal field to keep track of
+    /// buffer-specific resources. This field is guaranteed to remain constant,
+    /// while a consumer MAY pass a copy of the original buffer as the view
+    /// argument.</para>
+    /// <para>This function MUST NOT decrement view->obj, since that is done
+    /// automatically in TPyBuffer.Release() (this scheme is useful for
+    /// breaking reference cycles).</para>
+    /// <para>TPyBuffer.Release() is the interface for the consumer that wraps
+    /// this function.</para>
+    /// </summary>
     bf_releasebuffer : releasebufferproc;
   end;
 
@@ -3828,7 +3907,13 @@ type
     /// </summary>
     build_version         : cardinal;
     /// <summary>
-    ///
+    /// <para>The ABI version.</para>
+    /// <para>For Stable ABI, this field should be the value of Py_LIMITED_API
+    /// or Py_TARGET_ABI3T. If both are defined, use the smaller value.
+    /// (If Py_LIMITED_API is 3; use Py_PACK_VERSION(3, 2) instead of 3.)</para>
+    /// <para>Otherwise, it should be set to PY_VERSION_HEX.</para>
+    /// <para>It can also be set to 0 to skip any checks related to this
+    /// field.</para>
     /// </summary>
     abi_version           : cardinal;
   end;

@@ -36,7 +36,7 @@ type
 
       function  GetPyObject: PPyObject;
       function  GetInitialized: boolean;
-      function  GetRefCnt: integer;
+      function  GetRefCnt: Py_ssize_t;
       function  GetObjRefOwner: boolean;
       function  GetPyTypeObject: PPyTypeObject;
       /// <summary>
@@ -84,6 +84,7 @@ type
       function  GetIsBytes: boolean;
 
       procedure SetObjRefOwner(aValue: boolean);
+      procedure SetRefCnt(aValue: Py_ssize_t);
       procedure SetPyObject(aValue: PPyObject);
 
     public
@@ -1126,7 +1127,7 @@ type
       /// <remarks>
       /// <para>See the TPy.RefCnt function for more details.</see></para>
       /// </remarks>
-      property RefCnt        : integer         read GetRefCnt;
+      property RefCnt        : Py_ssize_t      read GetRefCnt          write SetRefCnt;
       /// <summary>
       /// <para>Get the type of the Python object.</para>
       /// </summary>
@@ -2418,7 +2419,7 @@ begin
   Result := FPyObject;
 end;
 
-function TPyObject.GetRefCnt: integer;
+function TPyObject.GetRefCnt: Py_ssize_t;
 begin
   Result := TPy.RefCnt(self);
 end;
@@ -2662,6 +2663,11 @@ end;
 procedure TPyObject.SetObjRefOwner(aValue: boolean);
 begin
   FObjRefOwner := aValue;
+end;
+
+procedure TPyObject.SetRefCnt(aValue: Py_ssize_t);
+begin
+  TPy.Set_RefCnt(self, aValue);
 end;
 
 procedure TPyObject.SetPyObject(aValue: PPyObject);

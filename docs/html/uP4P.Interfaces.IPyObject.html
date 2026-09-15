@@ -52,7 +52,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a></strong>: integer;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -68,87 +68,95 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsString">GetAsString</a></strong>: string;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetTypeData_DuringGC-PyTypeObject-">GetTypeData_DuringGC</a></strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a>): Pointer;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsString">GetAsString</a></strong>: string;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsAnsiString">GetAsAnsiString</a></strong>: AnsiString;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsWideString">GetAsWideString</a></strong>: WideString;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsInteger">GetAsInteger</a></strong>: <a href="uP4P.Types.html#C_Long">C_Long</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsCardinal">GetAsCardinal</a></strong>: <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsInt64">GetAsInt64</a></strong>: Int64;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsUInt64">GetAsUInt64</a></strong>: uint64;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsDouble">GetAsDouble</a></strong>: double;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsDateTime">GetAsDateTime</a></strong>: TDateTime;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetAsVariant">GetAsVariant</a></strong>: Variant;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsCallable">GetIsCallable</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsTuple">GetIsTuple</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsList">GetIsList</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsSequence">GetIsSequence</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsMapping">GetIsMapping</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsFloat">GetIsFloat</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsLong">GetIsLong</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsBool">GetIsBool</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsUnicode">GetIsUnicode</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetIsBytes">GetIsBytes</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#SetObjRefOwner-boolean-">SetObjRefOwner</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#SetRefCnt-Py_ssize_t-">SetRefCnt</a></strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -522,6 +530,14 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#UnWrap">UnWrap</a></strong>: Pointer;</code></td>
 </tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyObject.html#Dump">Dump</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyObject.html#GetItemData_DuringGC">GetItemData_DuringGC</a></strong>: Pointer;</code></td>
+</tr>
 </table>
 <span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
 <table class="summary wide_list">
@@ -539,7 +555,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#RefCnt">RefCnt</a></strong>        : integer         read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyObject.html#RefCnt">RefCnt</a></strong>        : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>      read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>          write <a href="uP4P.Interfaces.IPyObject.html#SetRefCnt-Py_ssize_t-">SetRefCnt</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -647,7 +663,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="GetRefCnt"></span><code>function <strong>GetRefCnt</strong>: integer;</code></td>
+<td class="itemcode"><span id="GetRefCnt"></span><code>function <strong>GetRefCnt</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -674,7 +690,39 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="GetTypeData-PyTypeObject-"></span><code>function <strong>GetTypeData</strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a>): Pointer;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Get a pointer to subclass-specific data reserved for cls.
+
+<p>The object o must be an instance of cls, and cls must have been created using negative PyType_Spec.basicsize. Python does not check this.
+
+<p>On error, set an exception and return nil.
+
+<p>Added in version 3.12.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetTypeData_DuringGC-PyTypeObject-"></span><code>function <strong>GetTypeData_DuringGC</strong>(const cls: <a href="uP4P.Interfaces.IPyObject.html#PyTypeObject">PyTypeObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -840,6 +888,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetObjRefOwner-boolean-"></span><code>procedure <strong>SetObjRefOwner</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetRefCnt-Py_ssize_t-"></span><code>procedure <strong>SetRefCnt</strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -2316,6 +2372,73 @@ body { margin: 0.5em; }
 <p></p>
 </td></tr>
 </table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Dump"></span><code>procedure <strong>Dump</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Dump this object to stderr. This should only be used for debugging.
+
+<p>The output is intended to try dumping objects even after memory corruption:
+
+<p></p>
+
+<pre class="preformatted">
+- Information is written starting with fields that are the least
+  likely to crash when accessed.
+- This function can be called without an attached thread state, but
+  it's not recommended to do so: it can cause deadlocks.
+- An object that does not belong to the current interpreter may be
+  dumped, but this may also cause crashes or unintended behavior.
+- Implement a heuristic to detect if the object memory has been
+  freed. Don't display the object contents in this case, only its
+  memory address.
+- The output format may change at any time.</pre>
+
+<p>
+
+<p>Example of output:
+
+<p></p>
+
+<pre class="preformatted">
+object address  : 0x7f80124702c0
+object refcount : 2
+object type     : 0x9902e0
+object type name: str
+object repr     : 'abcdef'</pre>
+
+<p>
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemData_DuringGC"></span><code>function <strong>GetItemData_DuringGC</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
 <h3 class="detail">Properties</h3>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -2358,7 +2481,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="RefCnt"></span><code>property <strong>RefCnt</strong>        : integer         read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>;</code></td>
+<td class="itemcode"><span id="RefCnt"></span><code>property <strong>RefCnt</strong>        : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>      read <a href="uP4P.Interfaces.IPyObject.html#GetRefCnt">GetRefCnt</a>          write <a href="uP4P.Interfaces.IPyObject.html#SetRefCnt-Py_ssize_t-">SetRefCnt</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

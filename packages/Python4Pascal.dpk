@@ -162,6 +162,11 @@ contains
   uP4P.PyFrozenDict in '..\source\uP4P.PyFrozenDict.pas',
   uP4P.PyAnyDict in '..\source\uP4P.PyAnyDict.pas',
   uP4P.PyInterpreterGuard in '..\source\uP4P.PyInterpreterGuard.pas',
-  uP4P.PyInterpreterView in '..\source\uP4P.PyInterpreterView.pas';
+  uP4P.PyInterpreterView in '..\source\uP4P.PyInterpreterView.pas',
+  uP4P.PySentinel in '..\source\uP4P.PySentinel.pas',
+  uP4P.PyABIInfo in '..\source\uP4P.PyABIInfo.pas',
+  uP4P.Py_mod in '..\source\uP4P.Py_mod.pas',
+  uP4P.Py_mp in '..\source\uP4P.Py_mp.pas',
+  uP4P.Py_bf in '..\source\uP4P.Py_bf.pas';
 
 end.

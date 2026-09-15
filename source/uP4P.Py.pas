@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.SysUtils,
   {$ELSE}
-    Classes,
+    Classes, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
@@ -139,7 +139,7 @@ type
       /// are immortal and have a very high refcount that does not reflect the
       /// actual number of references. Consequently, do not rely on the returned
       /// value to be accurate, other than a value of 0 or 1.</para>
-      /// <para>Use the TPy.SET_REFCNT() function to set an object reference
+      /// <para>Use the TPy.SetRefcnt() procedure to set an object reference
       /// count.</para>
       /// <para>Note On free-threaded builds of Python, returning 1 isn't
       /// sufficient to determine if it's safe to treat o as having no access
@@ -150,7 +150,14 @@ type
       /// <para>Changed in version 3.11: The parameter type is no longer const
       /// PyObject*.</para>
       /// </summary>
-      class function  RefCnt(const aPyObject: IPyObject): integer;
+      class function  RefCnt(const aPyObject: IPyObject): Py_ssize_t;
+      /// <summary>
+      /// <para>Set the object o reference counter to refcnt.</para>
+      /// <para>On Python build with Free Threading, if refcnt is larger than
+      /// UINT32_MAX, the object is made immortal.</para>
+      /// <para>This function has no effect on immortal objects.</para>
+      /// </summary>
+      class procedure Set_RefCnt(const aPyObject: IPyObject; refcnt_: Py_ssize_t);
       /// <summary>
       /// <para>Indicate taking a new strong reference to object aPyObject,
       /// indicating it is in use and should not be destroyed.</para>
@@ -1097,6 +1104,36 @@ type
       /// <para>Set the ob_size field of o to size_.</para>
       /// </summary>
       class procedure SetSize(const o: IPyObject; size_: Py_ssize_t);
+      /// <summary>
+      /// <para>Return the given version, encoded as an unsigned 32-bit integer.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
+      /// </remarks>
+      class function PACK_FULL_VERSION(major, minor, micro, release_level, release_serial: integer): cardinal;
+      /// <summary>
+      /// <para>Equivalent to Py_PACK_FULL_VERSION(major, minor, 0, 0, 0).</para>
+      /// <para>The result does not correspond to any Python release, but is
+      /// useful in numeric comparisons.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
+      /// </remarks>
+      class function PACK_VERSION(major, minor: integer): cardinal;
+      /// <summary>
+      /// <para>The Python version as a string.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
+      /// </remarks>
+      class function VERSION(major, minor, micro, release_level, release_serial: integer): string;
+      /// <summary>
+      /// <para>The Python version as an hexadecimal.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
+      /// </remarks>
+      class function VERSION_HEX(major, minor, micro, release_level, release_serial: integer): cardinal;
   end;
 
 implementation
@@ -1223,7 +1260,7 @@ begin
     Result := False;
 end;
 
-class function TPy.RefCnt(const aPyObject: IPyObject): integer;
+class function TPy.RefCnt(const aPyObject: IPyObject): Py_ssize_t;
 begin
   Result := 0;
 
@@ -1233,6 +1270,17 @@ begin
         Result := Py_REFCNT(aPyObject.PyObject)
        else
         Result := aPyObject.PyObject^.ob_refcnt;
+    end;
+end;
+
+class procedure TPy.Set_RefCnt(const aPyObject: IPyObject; refcnt_: Py_ssize_t);
+begin
+  if TPyObject.IsInitialized(aPyObject) then
+    begin
+      if assigned(Py_SET_REFCNT) then
+        Py_SET_REFCNT(aPyObject.PyObject, refcnt_)
+       else
+        aPyObject.PyObject^.ob_refcnt := refcnt_;
     end;
 end;
 
@@ -1792,6 +1840,38 @@ begin
   if assigned(Py_SET_SIZE) and
      TPyObject.IsInitialized(o) then
     Py_SET_SIZE(PPyVarObject(o.PyObject), size_);
+end;
+
+class function TPy.PACK_FULL_VERSION(major, minor, micro, release_level, release_serial: integer): cardinal;
+begin
+  Result := ((major          and $FF) shl 24) or
+            ((minor          and $FF) shl 16) or
+            ((micro          and $FF) shl 8) or
+            ((release_level  and $0F) shl 4) or
+            ((release_serial and $0F));
+end;
+
+class function TPy.PACK_VERSION(major, minor: integer): cardinal;
+begin
+  Result := PACK_FULL_VERSION(major, minor, 0, 0, 0);
+end;
+
+class function TPy.VERSION(major, minor, micro, release_level, release_serial: integer): string;
+begin
+  Result := IntToStr(major) + '.' +
+            IntToStr(minor) + '.' +
+            IntToStr(minor);
+
+  case release_level of
+    PY_RELEASE_LEVEL_ALPHA : Result := Result + 'a'  + IntToStr(release_serial);
+    PY_RELEASE_LEVEL_BETA  : Result := Result + 'b'  + IntToStr(release_serial);
+    PY_RELEASE_LEVEL_GAMMA : Result := Result + 'rc' + IntToStr(release_serial);
+  end;
+end;
+
+class function TPy.VERSION_HEX(major, minor, micro, release_level, release_serial: integer): cardinal;
+begin
+  Result := PACK_FULL_VERSION(major, minor, micro, release_level, release_serial);
 end;
 
 end.

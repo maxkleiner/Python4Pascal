@@ -129,6 +129,26 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#ImportModuleAttrString-string-string-">ImportModuleAttrString</a></strong>(const mod_name, attr_name: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyImport.TPyImport.html#SetLazyImportsMode-PyImport_LazyImportsMode-">SetLazyImportsMode</a></strong>(mode: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#SetLazyImportsFilter-IPyObject-">SetLazyImportsFilter</a></strong>(const filter: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetLazyImportsMode">GetLazyImportsMode</a></strong>(): <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#GetLazyImportsFilter">GetLazyImportsFilter</a></strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyImport.TPyImport.html#CreateModuleFromInitfunc-IPyObject-initfunc-">CreateModuleFromInitfunc</a></strong>(const spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; initfunc_: <a href="uP4P.Types.html#initfunc">initfunc</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
@@ -500,6 +520,96 @@ body { margin: 0.5em; }
 <p>Similar to TPyImport.ImportModuleAttr(), but names are strings instead of Python str objects.
 
 <p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetLazyImportsMode-PyImport_LazyImportsMode-"></span><code>class procedure <strong>SetLazyImportsMode</strong>(mode: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the lazy imports mode.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetLazyImportsFilter-IPyObject-"></span><code>class function <strong>SetLazyImportsFilter</strong>(const filter: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Sets the current lazy imports filter. The filter should be a callable that will receive (importing_module_name, imported_module_name, [fromlist]) when an import can potentially be lazy. The imported_module_name value is the resolved module name, so lazy from .spam import eggs passes package.spam. The callable must return True if the import should be lazy and False otherwise.
+
+<p>Return True on success and False with an exception set otherwise.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLazyImportsMode"></span><code>class function <strong>GetLazyImportsMode</strong>(): <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Gets the current lazy imports mode.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetLazyImportsFilter"></span><code>class function <strong>GetLazyImportsFilter</strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return a strong reference to the current lazy imports filter, or nil if none exists. This function always succeeds.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateModuleFromInitfunc-IPyObject-initfunc-"></span><code>class function <strong>CreateModuleFromInitfunc</strong>(const spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; initfunc_: <a href="uP4P.Types.html#initfunc">initfunc</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function is a building block that enables embedders to implement the create_module() step of custom static extension importers (e.g. of statically-linked extensions).
+
+<p>spec must be a ModuleSpec object.
+
+<p>initfunc must be an initialization function, the same as for TPyImport.AppendInittab().
+
+<p>On success, create and return a module object. This module will not be initialized; call TPyModule.Exec() to initialize it. (Custom importers should do this in their exec_module() method.)
+
+<p>On error, return nil with an exception set.
+
+<p>Added in version 3.15.
 
 <p></p>
 </td></tr>

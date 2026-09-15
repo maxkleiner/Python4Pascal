@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces: Interface IPyInterpreterView</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="IPyInterpreterView"></span><h1 class="cio">Interface IPyInterpreterView</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Interfaces.html">uP4P.Interfaces</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IPyInterpreterView = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>A view of an interpreter.
+
+<p>In some cases, it may be necessary to access an interpreter that may have been deleted. This can be done using interpreter views.
+
+<p>This is a thread-safe way to access an interpreter that may have be finalizing or already destroyed.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization">https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization</a>&quot;&gt;See the Python article about Cautions regarding interpreter finalization.)
+
+<p>Added in version 3.15.</p>
+<h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{C10F577D-3290-4C2A-91E3-9D41A67C7AFB}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IPyInterpreterView</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#GetView">GetView</a></strong>: <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#SetView-PPyInterpreterView-">SetView</a></strong>(aValue: <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#Close">Close</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#Initialized">Initialized</a></strong>  : boolean               read <a href="uP4P.Interfaces.IPyInterpreterView.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyInterpreterView.html#View">View</a></strong>         : <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>    read <a href="uP4P.Interfaces.IPyInterpreterView.html#GetView">GetView</a>         write <a href="uP4P.Interfaces.IPyInterpreterView.html#SetView-PPyInterpreterView-">SetView</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetView"></span><code>function <strong>GetView</strong>: <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetView-PPyInterpreterView-"></span><code>procedure <strong>SetView</strong>(aValue: <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Close"></span><code>procedure <strong>Close</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Close an interpreter view.
+
+<p>If an interpreter view is never closed, the view's memory will never be freed, but there are no other consequences. (In contrast, forgetting to close a guard will infinitely hang the main thread during finalization.)
+
+<p>This function cannot fail, and the caller doesn't need to hold an attached thread state.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean               read <a href="uP4P.Interfaces.IPyInterpreterView.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="View"></span><code>property <strong>View</strong>         : <a href="uP4P.Types.html#PPyInterpreterView">PPyInterpreterView</a>    read <a href="uP4P.Interfaces.IPyInterpreterView.html#GetView">GetView</a>         write <a href="uP4P.Interfaces.IPyInterpreterView.html#SetView-PPyInterpreterView-">SetView</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyInterpreterView
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

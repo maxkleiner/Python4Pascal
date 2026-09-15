@@ -35,6 +35,22 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySys.TPySys.html#GetAttr-IPyObject-">GetAttr</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySys.TPySys.html#GetAttrString-string-">GetAttrString</a></strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySys.TPySys.html#GetOptionalAttr-IPyObject-IPyObject-">GetOptionalAttr</a></strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySys.TPySys.html#GetOptionalAttrString-string-IPyObject-">GetOptionalAttrString</a></strong>(const name_: string; var result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PySys.TPySys.html#GetObject-string-">GetObject</a></strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
@@ -72,6 +88,86 @@ body { margin: 0.5em; }
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttr-IPyObject-"></span><code>class function <strong>GetAttr</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the attribute name of the sys module. Return a strong reference. Raise RuntimeError and return nil if it does not exist or if the sys module cannot be found.
+
+<p>If the non-existing object should not be treated as a failure, you can use TPySys.GetOptionalAttr() instead.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetAttrString-string-"></span><code>class function <strong>GetAttrString</strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPySys.GetAttr(), but name is specified as a string, rather than a IPyObject.
+
+<p>If the non-existing object should not be treated as a failure, you can use TPySys.GetOptionalAttrString() instead.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttr-IPyObject-IPyObject-"></span><code>class function <strong>GetOptionalAttr</strong>(const name_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Variant of TPySys.GetAttr() which doesn't raise exception if the object does not exist.
+
+<p></p>
+
+<pre class="preformatted">
+- Set result_ to a new strong reference to the object and return
+  1 if the object exists.
+- Set result_ to nil and return 0 without setting an
+  exception if the object does not exist.
+- Set an exception, set result_ to nil, and return -1, if an
+  error occurred.</pre>
+
+<p>
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetOptionalAttrString-string-IPyObject-"></span><code>class function <strong>GetOptionalAttrString</strong>(const name_: string; var result_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the same as TPySys.GetOptionalAttr(), but name is specified as a string, rather than a IPyObject.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>

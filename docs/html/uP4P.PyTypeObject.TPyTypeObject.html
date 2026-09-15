@@ -171,6 +171,30 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#FromSlots-PPySlot-">FromSlots</a></strong>(slots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleByToken-PPyTypeObject-Pointer-">GetModuleByToken</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleState_DuringGC-PPyTypeObject-">GetModuleState_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetBaseByToken_DuringGC-PPyTypeObject-Pointer-PPyTypeObject-">GetBaseByToken_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetModule_DuringGC-PPyTypeObject-">GetModule_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleByToken_DuringGC-PPyTypeObject-Pointer-">GetModuleByToken_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
@@ -781,6 +805,158 @@ body { margin: 0.5em; }
 
 
 <p>Return True if aPyObject is a type object, but not a subtype of the standard type object. Return False in all other cases. This function always succeeds.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromSlots-PPySlot-"></span><code>class function <strong>FromSlots</strong>(slots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create and return a heap type from a PySlot array. See Definition slots for general information on slots, and Type slot IDs for slots specific to type creation.
+
+<p>This function calls TPyType.Ready() on the new type.
+
+<p>Note that this function does not fully match the behavior of calling type() or using the class statement. With user-provided base types or metaclasses, prefer calling type (or the metaclass) over TPyType.From* functions. Specifically:
+
+<p></p>
+
+<pre class="preformatted">
+- __new__() is not called on the new class (and it must be set to
+  type.__new__).
+- __init__() is not called on the new class.
+- __init_subclass__() is not called on any bases.
+- __set_name__() is not called on new descriptors.</pre>
+
+<p>
+
+<p>Slots are typically defined as a global static constant arrays. However, sometimes slot values are not statically known at compile time. For example, slots like Py_tp_bases, Py_tp_metaclass and Py_tp_module require live Python objects. In this case, it is recommended to put such slots on the stack, and use Py_slot_subslots to refer to an array of static slots. For example:
+
+<p></p>
+
+<pre class="preformatted">
+static const PySlot my_slots[] = {
+   PySlot_STATIC_DATA(Py_tp_name, &quot;MyClass&quot;),
+   PySlot_FUNC(Py_tp_repr, my_repr_func),
+   ...
+   PySlot_END
+};
+
+PyObject *make_my_class(PyObject *module) {
+   PySlot all_slots[] = {
+      PySlot_STATIC_DATA(Py_slot_subslots, my_slots),
+      PySlot_DATA(Py_tp_module, module),
+      PySlot_END
+   };
+   return PyType_FromSlots(all_slots);
+}</pre>
+
+<p> </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModuleByToken-PPyTypeObject-Pointer-"></span><code>class function <strong>GetModuleByToken</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Find the first superclass whose module has the given module token, and return that module.
+
+<p>If no module is found, raises a TypeError and returns nil.
+
+<p>This function is intended to be used together with TPyModule.GetState() to get module state from slot methods (such as tp_init or nb_add) and other places where a method's defining class cannot be passed using the PyCMethod calling convention.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModuleState_DuringGC-PPyTypeObject-"></span><code>class function <strong>GetModuleState_DuringGC</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBaseByToken_DuringGC-PPyTypeObject-Pointer-PPyTypeObject-"></span><code>class function <strong>GetBaseByToken_DuringGC</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Sets result_ to a borrowed reference rather than a strong one. The reference is valid for the duration of the tp_traverse handler call.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModule_DuringGC-PPyTypeObject-"></span><code>class function <strong>GetModule_DuringGC</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModuleByToken_DuringGC-PPyTypeObject-Pointer-"></span><code>class function <strong>GetModuleByToken_DuringGC</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
 
 <p></p>
 </td></tr>

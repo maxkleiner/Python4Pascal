@@ -308,7 +308,7 @@ type
       /// have a name attribute.</para>
       /// <para>On success, return the new module. On error, return nil with
       /// an exception set.</para>
-      /// <para>Note that this does not process the module’s execution slot
+      /// <para>Note that this does not process the module's execution slot
       /// (Py_mod_exec). Both TPyModule.FromSlotsAndSpec() and TPyModule.Exec()
       /// must be called to fully initialize a module. (See also Multi-phase
       /// initialization.)</para>

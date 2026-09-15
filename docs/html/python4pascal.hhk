@@ -962,7 +962,7 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_lazy_imports">
-<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-TPyLazyImports-">
+<param name="Local" value="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-PyImport_LazyImportsMode-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
@@ -2281,6 +2281,34 @@
 <param name="Local" value="uP4P.Interfaces.IPyInterpreterConfig.html#use_main_obmalloc">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="IPyInterpreterGuard">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Close">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#Close">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGuard">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#GetGuard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetInitialized">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#GetInitialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Guard">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#Guard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialized">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#Initialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGuard">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterGuard.html#SetGuard-PPyInterpreterGuard-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="IPyInterpreterState">
 <param name="Local" value="uP4P.Interfaces.IPyInterpreterState.html">
 </object>
@@ -2335,6 +2363,34 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ThreadHead">
 <param name="Local" value="uP4P.Interfaces.IPyInterpreterState.html#ThreadHead">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IPyInterpreterView">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Close">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#Close">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetInitialized">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#GetInitialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetView">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#GetView">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialized">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#Initialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetView">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#SetView-PPyInterpreterView-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="View">
+<param name="Local" value="uP4P.Interfaces.IPyInterpreterView.html#View">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IPyLongExport">
@@ -2559,6 +2615,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#Dir">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Dump">
+<param name="Local" value="uP4P.Interfaces.IPyObject.html#Dump">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Format">
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#Format-IPyObject-">
 </object>
@@ -2741,6 +2801,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#GetItemData">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetItemData_DuringGC">
+<param name="Local" value="uP4P.Interfaces.IPyObject.html#GetItemData_DuringGC">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetIter">
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#GetIter">
 </object>
@@ -2779,6 +2843,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetTypeData">
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#GetTypeData-PyTypeObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetTypeData_DuringGC">
+<param name="Local" value="uP4P.Interfaces.IPyObject.html#GetTypeData_DuringGC-PyTypeObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasAttr">
@@ -2999,6 +3067,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPyObject">
 <param name="Local" value="uP4P.Interfaces.IPyObject.html#SetPyObject-PPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetRefCnt">
+<param name="Local" value="uP4P.Interfaces.IPyObject.html#SetRefCnt-Py_ssize_t-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Size">
@@ -3931,6 +4003,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="PPySlot">
 <param name="Local" value="uP4P.Types.html#PPySlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PPySlotArray">
+<param name="Local" value="uP4P.Types.html#PPySlotArray">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="PPyStatus">
@@ -9209,10 +9285,6 @@
 <param name="Local" value="uP4P.LibFunctions.html#PyIter_Send">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="PyLazyImport_Type">
-<param name="Local" value="uP4P.LibFunctions.html#PyLazyImport_Type">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="PyListIter_Type">
 <param name="Local" value="uP4P.LibFunctions.html#PyListIter_Type">
 </object>
@@ -12989,14 +13061,6 @@
 <param name="Local" value="uP4P.Constants.html#Py_AUDIT_READ">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="Py_bf_getbuffer">
-<param name="Local" value="uP4P.Constants.html#Py_bf_getbuffer">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_bf_releasebuffer">
-<param name="Local" value="uP4P.Constants.html#Py_bf_releasebuffer">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="Py_buffer">
 <param name="Local" value="uP4P.Types.Py_buffer.html">
 </object>
@@ -13429,6 +13493,10 @@
 <param name="Local" value="uP4P.LibFunctions.html#Py_Main">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PY_MAJOR_VERSION">
+<param name="Local" value="uP4P.Constants.html#PY_MAJOR_VERSION">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_MakePendingCalls">
 <param name="Local" value="uP4P.LibFunctions.html#Py_MakePendingCalls">
 </object>
@@ -13453,16 +13521,12 @@
 <param name="Local" value="uP4P.Constants.html#Py_MATH_TAU">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="Py_mod_create">
-<param name="Local" value="uP4P.Constants.html#Py_mod_create">
+<param name="Name" value="PY_MICRO_VERSION">
+<param name="Local" value="uP4P.Constants.html#PY_MICRO_VERSION">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="Py_mod_exec">
-<param name="Local" value="uP4P.Constants.html#Py_mod_exec">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_mod_gil">
-<param name="Local" value="uP4P.Constants.html#Py_mod_gil">
+<param name="Name" value="PY_MINOR_VERSION">
+<param name="Local" value="uP4P.Constants.html#PY_MINOR_VERSION">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_MOD_GIL_NOT_USED">
@@ -13471,10 +13535,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Py_MOD_GIL_USED">
 <param name="Local" value="uP4P.Constants.html#Py_MOD_GIL_USED">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_mod_multiple_interpreters">
-<param name="Local" value="uP4P.Constants.html#Py_mod_multiple_interpreters">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED">
@@ -13563,18 +13623,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="PY_MONITORING_EVENT_STOP_ITERATION">
 <param name="Local" value="uP4P.Constants.html#PY_MONITORING_EVENT_STOP_ITERATION">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_mp_ass_subscript">
-<param name="Local" value="uP4P.Constants.html#Py_mp_ass_subscript">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_mp_length">
-<param name="Local" value="uP4P.Constants.html#Py_mp_length">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Py_mp_subscript">
-<param name="Local" value="uP4P.Constants.html#Py_mp_subscript">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_NAN">
@@ -13785,6 +13833,30 @@
 <param name="Local" value="uP4P.Constants.html#Py_RELATIVE_OFFSET">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_LEVEL">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_LEVEL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_LEVEL_ALPHA">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_LEVEL_ALPHA">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_LEVEL_BETA">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_LEVEL_BETA">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_LEVEL_FINAL">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_LEVEL_FINAL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_LEVEL_GAMMA">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_LEVEL_GAMMA">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PY_RELEASE_SERIAL">
+<param name="Local" value="uP4P.Constants.html#PY_RELEASE_SERIAL">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_ReprEnter">
 <param name="Local" value="uP4P.LibFunctions.html#Py_ReprEnter">
 </object>
@@ -13809,6 +13881,10 @@
 <param name="Local" value="uP4P.LibFunctions.html#Py_SetRecursionLimit">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_SET_REFCNT">
+<param name="Local" value="uP4P.LibFunctions.html#Py_SET_REFCNT">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_SET_SIZE">
 <param name="Local" value="uP4P.LibFunctions.html#Py_SET_SIZE">
 </object>
@@ -13821,8 +13897,16 @@
 <param name="Local" value="uP4P.LibFunctions.html#Py_SIZE">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_slot_end">
+<param name="Local" value="uP4P.Constants.html#Py_slot_end">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_slot_invalid">
 <param name="Local" value="uP4P.Constants.html#Py_slot_invalid">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_slot_subslots">
+<param name="Local" value="uP4P.Constants.html#Py_slot_subslots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_sq_ass_item">
@@ -14009,6 +14093,10 @@
 <param name="Local" value="uP4P.Constants.html#Py_tp_bases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_tp_basicsize">
+<param name="Local" value="uP4P.Constants.html#Py_tp_basicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_tp_call">
 <param name="Local" value="uP4P.Constants.html#Py_tp_call">
 </object>
@@ -14037,8 +14125,16 @@
 <param name="Local" value="uP4P.Constants.html#Py_tp_doc">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_tp_extra_basicsize">
+<param name="Local" value="uP4P.Constants.html#Py_tp_extra_basicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_tp_finalize">
 <param name="Local" value="uP4P.Constants.html#Py_tp_finalize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_tp_flags">
+<param name="Local" value="uP4P.Constants.html#Py_tp_flags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_tp_free">
@@ -14069,6 +14165,10 @@
 <param name="Local" value="uP4P.Constants.html#Py_tp_is_gc">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_tp_itemsize">
+<param name="Local" value="uP4P.Constants.html#Py_tp_itemsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_tp_iter">
 <param name="Local" value="uP4P.Constants.html#Py_tp_iter">
 </object>
@@ -14081,8 +14181,20 @@
 <param name="Local" value="uP4P.Constants.html#Py_tp_members">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Py_tp_metaclass">
+<param name="Local" value="uP4P.Constants.html#Py_tp_metaclass">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Py_tp_methods">
 <param name="Local" value="uP4P.Constants.html#Py_tp_methods">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_tp_module">
+<param name="Local" value="uP4P.Constants.html#Py_tp_module">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_tp_name">
+<param name="Local" value="uP4P.Constants.html#Py_tp_name">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_tp_new">
@@ -14103,6 +14215,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Py_tp_setattro">
 <param name="Local" value="uP4P.Constants.html#Py_tp_setattro">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Py_tp_slots">
+<param name="Local" value="uP4P.Constants.html#Py_tp_slots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Py_tp_str">
@@ -15389,6 +15505,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#Load_refcount">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Load_sentinelobject">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#Load_sentinelobject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Load_setobject">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#Load_setobject">
 </object>
@@ -15931,6 +16051,14 @@
 </object>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="PACK_FULL_VERSION">
+<param name="Local" value="uP4P.Py.TPy.html#PACK_FULL_VERSION-integer-integer-integer-integer-integer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PACK_VERSION">
+<param name="Local" value="uP4P.Py.TPy.html#PACK_VERSION-integer-integer-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PreInitialize">
 <param name="Local" value="uP4P.Py.TPy.html#PreInitialize-IPyPreConfig-">
 </object>
@@ -15971,12 +16099,32 @@
 <param name="Local" value="uP4P.Py.TPy.html#SetRecursionLimit-Integer-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetSize">
+<param name="Local" value="uP4P.Py.TPy.html#SetSize-IPyObject-Py_ssize_t-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_RefCnt">
+<param name="Local" value="uP4P.Py.TPy.html#Set_RefCnt-IPyObject-Py_ssize_t-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Size">
+<param name="Local" value="uP4P.Py.TPy.html#Size-IPyObject-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Type_">
 <param name="Local" value="uP4P.Py.TPy.html#Type_-IPyObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="UniversalNewlineFgets">
 <param name="Local" value="uP4P.Py.TPy.html#UniversalNewlineFgets-PByte-integer-PFILE-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="VERSION">
+<param name="Local" value="uP4P.Py.TPy.html#VERSION-integer-integer-integer-integer-integer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="VERSION_HEX">
+<param name="Local" value="uP4P.Py.TPy.html#VERSION_HEX-integer-integer-integer-integer-integer-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="XNewRef">
@@ -19486,7 +19634,7 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_lazy_imports">
-<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_lazy_imports-TPyLazyImports-">
+<param name="Local" value="uP4P.PyConfig.TPyConfig315.html#Set_lazy_imports-PyImport_LazyImportsMode-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
@@ -20310,7 +20458,7 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_lazy_imports">
-<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_lazy_imports-TPyLazyImports-">
+<param name="Local" value="uP4P.PyConfig.TPyConfigBase.html#Set_lazy_imports-PyImport_LazyImportsMode-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_stdio">
@@ -21903,6 +22051,10 @@
 <param name="Local" value="uP4P.PyImport.TPyImport.html#AppendInittab-string-initfunc-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="CreateModuleFromInitfunc">
+<param name="Local" value="uP4P.PyImport.TPyImport.html#CreateModuleFromInitfunc-IPyObject-initfunc-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ExecCodeModule">
 <param name="Local" value="uP4P.PyImport.TPyImport.html#ExecCodeModule-string-IPyObject-">
 </object>
@@ -21925,6 +22077,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetImporter">
 <param name="Local" value="uP4P.PyImport.TPyImport.html#GetImporter-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetLazyImportsFilter">
+<param name="Local" value="uP4P.PyImport.TPyImport.html#GetLazyImportsFilter">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetLazyImportsMode">
+<param name="Local" value="uP4P.PyImport.TPyImport.html#GetLazyImportsMode">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetMagicNumber">
@@ -21977,6 +22137,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ReloadModule">
 <param name="Local" value="uP4P.PyImport.TPyImport.html#ReloadModule-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetLazyImportsFilter">
+<param name="Local" value="uP4P.PyImport.TPyImport.html#SetLazyImportsFilter-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetLazyImportsMode">
+<param name="Local" value="uP4P.PyImport.TPyImport.html#SetLazyImportsMode-PyImport_LazyImportsMode-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TPyIndex">
@@ -23151,10 +23319,6 @@
 <param name="Local" value="uP4P.PyIter.TPyIter.html#Send-IPyObject-IPyObject-IPyObject-">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="TPyLazyImports">
-<param name="Local" value="uP4P.Types.html#TPyLazyImports">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="TPyList">
 <param name="Local" value="uP4P.PyList.TPyList.html">
 </object>
@@ -23847,6 +24011,10 @@
 <param name="Local" value="uP4P.PyModule.TPyModule.html#Create2-PPyModuleDef-integer-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Exec">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#Exec-IPyObject-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ExecDef">
 <param name="Local" value="uP4P.PyModule.TPyModule.html#ExecDef-IPyObject-PPyModuleDef-">
 </object>
@@ -23857,6 +24025,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FromDefAndSpec2">
 <param name="Local" value="uP4P.PyModule.TPyModule.html#FromDefAndSpec2-PPyModuleDef-IPyObject-integer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FromSlotsAndSpec">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#FromSlotsAndSpec-PPySlot-IPyObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetDef">
@@ -23893,6 +24065,22 @@
 <param name="Local" value="uP4P.PyModule.TPyModule.html#GetState-IPyObject-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetStateSize">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetStateSize-IPyObject-Py_ssize_t-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetState_DuringGC">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetState_DuringGC-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken-IPyObject-Pointer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken_DuringGC">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken_DuringGC-IPyObject-Pointer-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="New">
 <param name="Local" value="uP4P.PyModule.TPyModule.html#New-string-">
 </object>
@@ -23911,10 +24099,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Init">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init-PyModuleDef-">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="Init2">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init2-PyModuleDef-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TPyModuleSpecHelper">
@@ -24301,6 +24485,10 @@
 <param name="Local" value="uP4P.PyObject.TPyObject.html#Dir">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Dump">
+<param name="Local" value="uP4P.PyObject.TPyObject.html#Dump">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FObjRefOwner">
 <param name="Local" value="uP4P.PyObject.TPyObject.html#FObjRefOwner">
 </object>
@@ -24527,6 +24715,10 @@
 <param name="Local" value="uP4P.PyObject.TPyObject.html#GetItemData">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetItemData_DuringGC">
+<param name="Local" value="uP4P.PyObject.TPyObject.html#GetItemData_DuringGC">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetIter">
 <param name="Local" value="uP4P.PyObject.TPyObject.html#GetIter">
 </object>
@@ -24565,6 +24757,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetTypeData">
 <param name="Local" value="uP4P.PyObject.TPyObject.html#GetTypeData-PyTypeObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetTypeData_DuringGC">
+<param name="Local" value="uP4P.PyObject.TPyObject.html#GetTypeData_DuringGC-PyTypeObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasAttr">
@@ -24821,6 +25017,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPyObject">
 <param name="Local" value="uP4P.PyObject.TPyObject.html#SetPyObject-PPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetRefCnt">
+<param name="Local" value="uP4P.PyObject.TPyObject.html#SetRefCnt-Py_ssize_t-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Size">
@@ -25845,8 +26045,24 @@
 <param name="Local" value="uP4P.PySys.TPySys.html#AuditTuple-string-IPyObject-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetAttr">
+<param name="Local" value="uP4P.PySys.TPySys.html#GetAttr-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAttrString">
+<param name="Local" value="uP4P.PySys.TPySys.html#GetAttrString-string-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetObject">
 <param name="Local" value="uP4P.PySys.TPySys.html#GetObject-string-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetOptionalAttr">
+<param name="Local" value="uP4P.PySys.TPySys.html#GetOptionalAttr-IPyObject-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetOptionalAttrString">
+<param name="Local" value="uP4P.PySys.TPySys.html#GetOptionalAttrString-string-IPyObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetXOptions">
@@ -25997,6 +26213,14 @@
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Dict">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Ensure">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Ensure-IPyInterpreterGuard-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="EnsureFromView">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#EnsureFromView-IPyInterpreterView-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="EnterTracing">
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#EnterTracing">
 </object>
@@ -26067,6 +26291,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Next">
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Next">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Release">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Release-PPyThreadStateToken-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetAsyncExc">
@@ -26308,8 +26536,18 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FromArray">
-<param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromArray-arrayof-">
+<param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromArray-IPyObjectArray-">
 </object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyTuple - uP4P.PyTuple Unit">
+<param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromArray-IPyObjectArray-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyTuple - uP4P.PyTuple Unit">
+<param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromArray-PPPyObject-Py_ssize_t-">
+</object>
+</ul>
 <li><object type="text/sitemap">
 <param name="Name" value="FromDateTime">
 <param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromDateTime-integer-integer-integer-integer-integer-integer-integer-integer-TPyDaylightSavingTime-">
@@ -26346,6 +26584,10 @@
 <param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromVariant-Variant-TVarType-">
 </object>
 </ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FromVarRecArray">
+<param name="Local" value="uP4P.PyTuple.TPyTuple.html#FromVarRecArray-arrayof-">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetItem">
 <param name="Local" value="uP4P.PyTuple.TPyTuple.html#GetItem-IPyObject-Py_ssize_t-">
@@ -26431,6 +26673,10 @@
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#FromModuleAndSpec-IPyObject-PPyType_Spec-IPyObject-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FromSlots">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#FromSlots-PPySlot-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FromSpec">
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#FromSpec-PPyType_Spec-">
 </object>
@@ -26449,6 +26695,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetBaseByToken">
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetBaseByToken_DuringGC">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetBaseByToken_DuringGC-PPyTypeObject-Pointer-PPyTypeObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetDict">
@@ -26471,12 +26721,28 @@
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleByDef-PPyTypeObject-PPyModuleDef-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetModuleByToken">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleByToken-PPyTypeObject-Pointer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetModuleByToken_DuringGC">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleByToken_DuringGC-PPyTypeObject-Pointer-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetModuleName">
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleName-PPyTypeObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetModuleState">
 <param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleState-PPyTypeObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetModuleState_DuringGC">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModuleState_DuringGC-PPyTypeObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetModule_DuringGC">
+<param name="Local" value="uP4P.PyTypeObject.TPyTypeObject.html#GetModule_DuringGC-PPyTypeObject-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetName">

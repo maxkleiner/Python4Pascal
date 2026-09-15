@@ -75,7 +75,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromArray-arrayof-">FromArray</a></strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromVarRecArray-arrayof-">FromVarRecArray</a></strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -112,6 +112,14 @@ body { margin: 0.5em; }
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#AsStrings-IPyObject-TStringList-">AsStrings</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; var aStringList: TStringList): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromArray-PPPyObject-Py_ssize_t-">FromArray</a></strong>(array_: <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTuple.TPyTuple.html#FromArray-IPyObjectArray-">FromArray</a></strong>(const array_: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -269,7 +277,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="FromArray-arrayof-"></span><code>class function <strong>FromArray</strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><span id="FromVarRecArray-arrayof-"></span><code>class function <strong>FromVarRecArray</strong>(const aItems: array of const): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -402,6 +410,46 @@ body { margin: 0.5em; }
 
 
 <p>Convert the items in this tuple to a TStringList.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromArray-PPPyObject-Py_ssize_t-"></span><code>class function <strong>FromArray</strong>(array_: <a href="uP4P.Types.html#PPPyObject">PPPyObject</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a tuple of size items and copy references from array to the new tuple.
+
+<p>array can be nil if size is 0.
+
+<p>On success, return a new reference. On error, set an exception and return nil.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromArray-IPyObjectArray-"></span><code>class function <strong>FromArray</strong>(const array_: <a href="uP4P.Interfaces.html#IPyObjectArray">IPyObjectArray</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a tuple of size items and copy references from array to the new tuple.
+
+<p>array can be empty.
+
+<p>On success, return a new reference. On error, set an exception and return nil.
+
+<p>Added in version 3.15.
 
 <p></p>
 </td></tr>

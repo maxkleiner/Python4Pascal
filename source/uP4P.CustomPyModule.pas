@@ -166,8 +166,8 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict;
-
+  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyModuleSpecHelper, uP4P.PyModule,
+  uP4P.PyImport, uP4P.PyDict, uP4P.PyModuleDef, uP4P.Py_mod;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var
@@ -238,7 +238,7 @@ begin
 
   FillChar(FModuleDef, SizeOf(FModuleDef), 0);
 
-  FModuleDef.m_base.ob_base.ob_refcnt := 1;
+  TPyModuleDef.Init(FModuleDef);
 
   if (length(aName) > 0) then
     FModuleDef.m_name := PAnsiChar(FName)
@@ -323,18 +323,18 @@ end;
 function TCustomPyModule.AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
 begin
   {$IFDEF FPC}
-  Result := AddSlot(Py_mod_create, Pointer(aCreateFunction));
+  Result := AddSlot(TPy_mod.create, Pointer(aCreateFunction));
   {$ELSE}
-  Result := AddSlot(Py_mod_create, @aCreateFunction);
+  Result := AddSlot(TPy_mod.create, @aCreateFunction);
   {$ENDIF}
 end;
 
 function TCustomPyModule.AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
 begin
   {$IFDEF FPC}
-  Result := AddSlot(Py_mod_exec, Pointer(aExecFunction));
+  Result := AddSlot(TPy_mod.exec, Pointer(aExecFunction));
   {$ELSE}
-  Result := AddSlot(Py_mod_exec, @aExecFunction);
+  Result := AddSlot(TPy_mod.exec, @aExecFunction);
   {$ENDIF}
 end;
 
@@ -342,9 +342,9 @@ function TCustomPyModule.AddMultipleInterpretersSlot(aSupport: TMultIntprSupport
 begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     case aSupport of
-      miUnsupported  : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
-      piGilSupported : Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
-      else             Result := AddSlot(Py_mod_multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
+      miUnsupported  : Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
+      piGilSupported : Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
+      else             Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
     end
    else
     Result := False;
@@ -355,9 +355,9 @@ begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 13, 0) then
     begin
       if aGILUsed then
-        Result := AddSlot(Py_mod_gil, Py_MOD_GIL_USED)
+        Result := AddSlot(TPy_mod.gil, Py_MOD_GIL_USED)
        else
-        Result := AddSlot(Py_mod_gil, Py_MOD_GIL_NOT_USED);
+        Result := AddSlot(TPy_mod.gil, Py_MOD_GIL_NOT_USED);
     end
    else
     Result := False;

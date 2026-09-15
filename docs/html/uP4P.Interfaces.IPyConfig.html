@@ -152,7 +152,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a></strong>: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a></strong>: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -424,7 +424,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-TPyLazyImports-">Set_lazy_imports</a></strong>(aValue: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-PyImport_LazyImportsMode-">Set_lazy_imports</a></strong>(aValue: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -643,279 +643,279 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#Config">Config</a></strong>                    : Pointer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#GetConfig">GetConfig</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#Config">Config</a></strong>                    : Pointer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#GetConfig">GetConfig</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#argv">argv</a></strong>                      : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_argv">Get_argv</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_argv-TStringDynArray-">Set_argv</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#argv">argv</a></strong>                      : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_argv">Get_argv</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_argv-TStringDynArray-">Set_argv</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_exec_prefix">base_exec_prefix</a></strong>          : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_exec_prefix">Get_base_exec_prefix</a>             write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_exec_prefix-string-">Set_base_exec_prefix</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_exec_prefix">base_exec_prefix</a></strong>          : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_exec_prefix">Get_base_exec_prefix</a>             write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_exec_prefix-string-">Set_base_exec_prefix</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_executable">base_executable</a></strong>           : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_executable">Get_base_executable</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_executable-string-">Set_base_executable</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_executable">base_executable</a></strong>           : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_executable">Get_base_executable</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_executable-string-">Set_base_executable</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_prefix">base_prefix</a></strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_prefix">Get_base_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_prefix-string-">Set_base_prefix</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#base_prefix">base_prefix</a></strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_prefix">Get_base_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_prefix-string-">Set_base_prefix</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#buffered_stdio">buffered_stdio</a></strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_buffered_stdio">Get_buffered_stdio</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_buffered_stdio-boolean-">Set_buffered_stdio</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#buffered_stdio">buffered_stdio</a></strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_buffered_stdio">Get_buffered_stdio</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_buffered_stdio-boolean-">Set_buffered_stdio</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#bytes_warning">bytes_warning</a></strong>             : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_bytes_warning">Get_bytes_warning</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_bytes_warning-integer-">Set_bytes_warning</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#bytes_warning">bytes_warning</a></strong>             : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_bytes_warning">Get_bytes_warning</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_bytes_warning-integer-">Set_bytes_warning</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#check_hash_pycs_mode">check_hash_pycs_mode</a></strong>      : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_check_hash_pycs_mode">Get_check_hash_pycs_mode</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_check_hash_pycs_mode-string-">Set_check_hash_pycs_mode</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#check_hash_pycs_mode">check_hash_pycs_mode</a></strong>      : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_check_hash_pycs_mode">Get_check_hash_pycs_mode</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_check_hash_pycs_mode-string-">Set_check_hash_pycs_mode</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#code_debug_ranges">code_debug_ranges</a></strong>         : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_code_debug_ranges">Get_code_debug_ranges</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_code_debug_ranges-boolean-">Set_code_debug_ranges</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#code_debug_ranges">code_debug_ranges</a></strong>         : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_code_debug_ranges">Get_code_debug_ranges</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_code_debug_ranges-boolean-">Set_code_debug_ranges</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#configure_c_stdio">configure_c_stdio</a></strong>         : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_configure_c_stdio">Get_configure_c_stdio</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_configure_c_stdio-boolean-">Set_configure_c_stdio</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#configure_c_stdio">configure_c_stdio</a></strong>         : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_configure_c_stdio">Get_configure_c_stdio</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_configure_c_stdio-boolean-">Set_configure_c_stdio</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#context_aware_warnings">context_aware_warnings</a></strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_context_aware_warnings">Get_context_aware_warnings</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_context_aware_warnings-boolean-">Set_context_aware_warnings</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#context_aware_warnings">context_aware_warnings</a></strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_context_aware_warnings">Get_context_aware_warnings</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_context_aware_warnings-boolean-">Set_context_aware_warnings</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#cpu_count">cpu_count</a></strong>                 : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_cpu_count">Get_cpu_count</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_cpu_count-integer-">Set_cpu_count</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#cpu_count">cpu_count</a></strong>                 : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_cpu_count">Get_cpu_count</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_cpu_count-integer-">Set_cpu_count</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dev_mode">dev_mode</a></strong>                  : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dev_mode">Get_dev_mode</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_dev_mode-boolean-">Set_dev_mode</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dev_mode">dev_mode</a></strong>                  : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dev_mode">Get_dev_mode</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_dev_mode-boolean-">Set_dev_mode</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dump_refs">dump_refs</a></strong>                 : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs">Get_dump_refs</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs-boolean-">Set_dump_refs</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dump_refs">dump_refs</a></strong>                 : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs">Get_dump_refs</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs-boolean-">Set_dump_refs</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dump_refs_file">dump_refs_file</a></strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs_file">Get_dump_refs_file</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs_file-string-">Set_dump_refs_file</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#dump_refs_file">dump_refs_file</a></strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs_file">Get_dump_refs_file</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs_file-string-">Set_dump_refs_file</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#exec_prefix">exec_prefix</a></strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_exec_prefix">Get_exec_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_exec_prefix-string-">Set_exec_prefix</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#exec_prefix">exec_prefix</a></strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_exec_prefix">Get_exec_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_exec_prefix-string-">Set_exec_prefix</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#executable">executable</a></strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_executable">Get_executable</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_executable-string-">Set_executable</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#executable">executable</a></strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_executable">Get_executable</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_executable-string-">Set_executable</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#faulthandler">faulthandler</a></strong>              : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_faulthandler">Get_faulthandler</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_faulthandler-integer-">Set_faulthandler</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#faulthandler">faulthandler</a></strong>              : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_faulthandler">Get_faulthandler</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_faulthandler-integer-">Set_faulthandler</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#filesystem_encoding">filesystem_encoding</a></strong>       : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_encoding">Get_filesystem_encoding</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_encoding-string-">Set_filesystem_encoding</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#filesystem_encoding">filesystem_encoding</a></strong>       : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_encoding">Get_filesystem_encoding</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_encoding-string-">Set_filesystem_encoding</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#filesystem_errors">filesystem_errors</a></strong>         : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_errors">Get_filesystem_errors</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_errors-string-">Set_filesystem_errors</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#filesystem_errors">filesystem_errors</a></strong>         : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_errors">Get_filesystem_errors</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_errors-string-">Set_filesystem_errors</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#hash_seed">hash_seed</a></strong>                 : uint64               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_hash_seed">Get_hash_seed</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_hash_seed-uint64-">Set_hash_seed</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#hash_seed">hash_seed</a></strong>                 : uint64                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_hash_seed">Get_hash_seed</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_hash_seed-uint64-">Set_hash_seed</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#home">home</a></strong>                      : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_home">Get_home</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_home-string-">Set_home</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#home">home</a></strong>                      : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_home">Get_home</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_home-string-">Set_home</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#import_time">import_time</a></strong>               : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_import_time">Get_import_time</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_import_time-integer-">Set_import_time</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#import_time">import_time</a></strong>               : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_import_time">Get_import_time</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_import_time-integer-">Set_import_time</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#inspect">inspect</a></strong>                   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_inspect">Get_inspect</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_inspect-boolean-">Set_inspect</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#inspect">inspect</a></strong>                   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_inspect">Get_inspect</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_inspect-boolean-">Set_inspect</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#install_signal_handlers">install_signal_handlers</a></strong>   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_install_signal_handlers">Get_install_signal_handlers</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_install_signal_handlers-boolean-">Set_install_signal_handlers</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#install_signal_handlers">install_signal_handlers</a></strong>   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_install_signal_handlers">Get_install_signal_handlers</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_install_signal_handlers-boolean-">Set_install_signal_handlers</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#int_max_str_digits">int_max_str_digits</a></strong>        : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_int_max_str_digits">Get_int_max_str_digits</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_int_max_str_digits-integer-">Set_int_max_str_digits</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#int_max_str_digits">int_max_str_digits</a></strong>        : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_int_max_str_digits">Get_int_max_str_digits</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_int_max_str_digits-integer-">Set_int_max_str_digits</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#interactive">interactive</a></strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_interactive">Get_interactive</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_interactive-boolean-">Set_interactive</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#interactive">interactive</a></strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_interactive">Get_interactive</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_interactive-boolean-">Set_interactive</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#isolated">isolated</a></strong>                  : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_isolated">Get_isolated</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_isolated-boolean-">Set_isolated</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#isolated">isolated</a></strong>                  : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_isolated">Get_isolated</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_isolated-boolean-">Set_isolated</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#lazy_imports">lazy_imports</a></strong>              : <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>       <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-TPyLazyImports-">Set_lazy_imports</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#lazy_imports">lazy_imports</a></strong>              : <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a> <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-PyImport_LazyImportsMode-">Set_lazy_imports</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#legacy_windows_stdio">legacy_windows_stdio</a></strong>      : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">Get_legacy_windows_stdio</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio-boolean-">Set_legacy_windows_stdio</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#legacy_windows_stdio">legacy_windows_stdio</a></strong>      : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">Get_legacy_windows_stdio</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio-boolean-">Set_legacy_windows_stdio</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#malloc_stats">malloc_stats</a></strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_malloc_stats">Get_malloc_stats</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_malloc_stats-boolean-">Set_malloc_stats</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#malloc_stats">malloc_stats</a></strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_malloc_stats">Get_malloc_stats</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_malloc_stats-boolean-">Set_malloc_stats</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#module_search_paths">module_search_paths</a></strong>       : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths">Get_module_search_paths</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths-string-">Set_module_search_paths</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#module_search_paths">module_search_paths</a></strong>       : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths">Get_module_search_paths</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths-string-">Set_module_search_paths</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#module_search_paths_set">module_search_paths_set</a></strong>   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths_set">Get_module_search_paths_set</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths_set-boolean-">Set_module_search_paths_set</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#module_search_paths_set">module_search_paths_set</a></strong>   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths_set">Get_module_search_paths_set</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths_set-boolean-">Set_module_search_paths_set</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#optimization_level">optimization_level</a></strong>        : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a> <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_optimization_level">Get_optimization_level</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_optimization_level-TPyOptimizationLevel-">Set_optimization_level</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#optimization_level">optimization_level</a></strong>        : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>     <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_optimization_level">Get_optimization_level</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_optimization_level-TPyOptimizationLevel-">Set_optimization_level</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#orig_argv">orig_argv</a></strong>                 : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_orig_argv">Get_orig_argv</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_orig_argv-TStringDynArray-">Set_orig_argv</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#orig_argv">orig_argv</a></strong>                 : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_orig_argv">Get_orig_argv</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_orig_argv-TStringDynArray-">Set_orig_argv</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#parse_argv">parse_argv</a></strong>                : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parse_argv">Get_parse_argv</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_parse_argv-boolean-">Set_parse_argv</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#parse_argv">parse_argv</a></strong>                : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parse_argv">Get_parse_argv</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_parse_argv-boolean-">Set_parse_argv</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#parser_debug">parser_debug</a></strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parser_debug">Get_parser_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_parser_debug-boolean-">Set_parser_debug</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#parser_debug">parser_debug</a></strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parser_debug">Get_parser_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_parser_debug-boolean-">Set_parser_debug</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pathconfig_warnings">pathconfig_warnings</a></strong>       : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pathconfig_warnings">Get_pathconfig_warnings</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_pathconfig_warnings-boolean-">Set_pathconfig_warnings</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pathconfig_warnings">pathconfig_warnings</a></strong>       : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pathconfig_warnings">Get_pathconfig_warnings</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_pathconfig_warnings-boolean-">Set_pathconfig_warnings</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#perf_profiling">perf_profiling</a></strong>            : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_perf_profiling">Get_perf_profiling</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_perf_profiling-integer-">Set_perf_profiling</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#perf_profiling">perf_profiling</a></strong>            : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_perf_profiling">Get_perf_profiling</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_perf_profiling-integer-">Set_perf_profiling</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#platlibdir">platlibdir</a></strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_platlibdir">Get_platlibdir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_platlibdir-string-">Set_platlibdir</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#platlibdir">platlibdir</a></strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_platlibdir">Get_platlibdir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_platlibdir-string-">Set_platlibdir</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#prefix">prefix</a></strong>                    : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_prefix">Get_prefix</a>                       write <a href="uP4P.Interfaces.IPyConfig.html#Set_prefix-string-">Set_prefix</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#prefix">prefix</a></strong>                    : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_prefix">Get_prefix</a>                       write <a href="uP4P.Interfaces.IPyConfig.html#Set_prefix-string-">Set_prefix</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#program_name">program_name</a></strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_program_name">Get_program_name</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_program_name-string-">Set_program_name</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#program_name">program_name</a></strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_program_name">Get_program_name</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_program_name-string-">Set_program_name</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pycache_prefix">pycache_prefix</a></strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">Get_pycache_prefix</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix-string-">Set_pycache_prefix</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pycache_prefix">pycache_prefix</a></strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">Get_pycache_prefix</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix-string-">Set_pycache_prefix</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pymalloc_hugepages">pymalloc_hugepages</a></strong>         : boolean             <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">Get_pymalloc_hugepages</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages-boolean-">Set_pymalloc_hugepages</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pymalloc_hugepages">pymalloc_hugepages</a></strong>         : boolean                 <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">Get_pymalloc_hugepages</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages-boolean-">Set_pymalloc_hugepages</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pythonpath_env">pythonpath_env</a></strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pythonpath_env">Get_pythonpath_env</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pythonpath_env-string-">Set_pythonpath_env</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#pythonpath_env">pythonpath_env</a></strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pythonpath_env">Get_pythonpath_env</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pythonpath_env-string-">Set_pythonpath_env</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#quiet">quiet</a></strong>                     : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_quiet">Get_quiet</a>                        write <a href="uP4P.Interfaces.IPyConfig.html#Set_quiet-boolean-">Set_quiet</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#quiet">quiet</a></strong>                     : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_quiet">Get_quiet</a>                        write <a href="uP4P.Interfaces.IPyConfig.html#Set_quiet-boolean-">Set_quiet</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#remote_debug">remote_debug</a></strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_remote_debug">Get_remote_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_remote_debug-boolean-">Set_remote_debug</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#remote_debug">remote_debug</a></strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_remote_debug">Get_remote_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_remote_debug-boolean-">Set_remote_debug</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_command">run_command</a></strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_command">Get_run_command</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_command-string-">Set_run_command</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_command">run_command</a></strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_command">Get_run_command</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_command-string-">Set_run_command</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_filename">run_filename</a></strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_filename">Get_run_filename</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_filename-string-">Set_run_filename</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_filename">run_filename</a></strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_filename">Get_run_filename</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_filename-string-">Set_run_filename</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_module">run_module</a></strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_module">Get_run_module</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_module-string-">Set_run_module</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#run_module">run_module</a></strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_module">Get_run_module</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_module-string-">Set_run_module</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#safe_path">safe_path</a></strong>                 : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_safe_path">Get_safe_path</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_safe_path-boolean-">Set_safe_path</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#safe_path">safe_path</a></strong>                 : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_safe_path">Get_safe_path</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_safe_path-boolean-">Set_safe_path</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#show_ref_count">show_ref_count</a></strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_show_ref_count">Get_show_ref_count</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_show_ref_count-boolean-">Set_show_ref_count</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#show_ref_count">show_ref_count</a></strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_show_ref_count">Get_show_ref_count</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_show_ref_count-boolean-">Set_show_ref_count</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#site_import">site_import</a></strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_site_import">Get_site_import</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_site_import-boolean-">Set_site_import</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#site_import">site_import</a></strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_site_import">Get_site_import</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_site_import-boolean-">Set_site_import</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#skip_source_first_line">skip_source_first_line</a></strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_skip_source_first_line">Get_skip_source_first_line</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_skip_source_first_line-boolean-">Set_skip_source_first_line</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#skip_source_first_line">skip_source_first_line</a></strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_skip_source_first_line">Get_skip_source_first_line</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_skip_source_first_line-boolean-">Set_skip_source_first_line</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdio_encoding">stdio_encoding</a></strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_encoding">Get_stdio_encoding</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_encoding-string-">Set_stdio_encoding</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdio_encoding">stdio_encoding</a></strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_encoding">Get_stdio_encoding</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_encoding-string-">Set_stdio_encoding</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdio_errors">stdio_errors</a></strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_errors">Get_stdio_errors</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_errors-string-">Set_stdio_errors</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdio_errors">stdio_errors</a></strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_errors">Get_stdio_errors</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_errors-string-">Set_stdio_errors</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdlib_dir">stdlib_dir</a></strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdlib_dir">Get_stdlib_dir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdlib_dir-string-">Set_stdlib_dir</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#stdlib_dir">stdlib_dir</a></strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdlib_dir">Get_stdlib_dir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdlib_dir-string-">Set_stdlib_dir</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#sys_path_0">sys_path_0</a></strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_sys_path_0">Get_sys_path_0</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_sys_path_0-string-">Set_sys_path_0</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#sys_path_0">sys_path_0</a></strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_sys_path_0">Get_sys_path_0</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_sys_path_0-string-">Set_sys_path_0</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#thread_inherit_context">thread_inherit_context</a></strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_thread_inherit_context">Get_thread_inherit_context</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_thread_inherit_context-boolean-">Set_thread_inherit_context</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#thread_inherit_context">thread_inherit_context</a></strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_thread_inherit_context">Get_thread_inherit_context</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_thread_inherit_context-boolean-">Set_thread_inherit_context</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#tracemalloc">tracemalloc</a></strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_tracemalloc">Get_tracemalloc</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_tracemalloc-boolean-">Set_tracemalloc</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#tracemalloc">tracemalloc</a></strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_tracemalloc">Get_tracemalloc</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_tracemalloc-boolean-">Set_tracemalloc</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_environment">use_environment</a></strong>           : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_environment">Get_use_environment</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_environment-boolean-">Set_use_environment</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_environment">use_environment</a></strong>           : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_environment">Get_use_environment</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_environment-boolean-">Set_use_environment</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_frozen_modules">use_frozen_modules</a></strong>        : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_frozen_modules">Get_use_frozen_modules</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_frozen_modules-boolean-">Set_use_frozen_modules</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_frozen_modules">use_frozen_modules</a></strong>        : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_frozen_modules">Get_use_frozen_modules</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_frozen_modules-boolean-">Set_use_frozen_modules</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_hash_seed">use_hash_seed</a></strong>             : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_hash_seed">Get_use_hash_seed</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_hash_seed-boolean-">Set_use_hash_seed</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#use_hash_seed">use_hash_seed</a></strong>             : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_hash_seed">Get_use_hash_seed</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_hash_seed-boolean-">Set_use_hash_seed</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#user_site_directory">user_site_directory</a></strong>       : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_user_site_directory">Get_user_site_directory</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_user_site_directory-boolean-">Set_user_site_directory</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#user_site_directory">user_site_directory</a></strong>       : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_user_site_directory">Get_user_site_directory</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_user_site_directory-boolean-">Set_user_site_directory</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#verbose">verbose</a></strong>                   : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>       <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_verbose">Get_verbose</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_verbose-TPyVerboseMode-">Set_verbose</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#verbose">verbose</a></strong>                   : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>           <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_verbose">Get_verbose</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_verbose-TPyVerboseMode-">Set_verbose</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#warn_default_encoding">warn_default_encoding</a></strong>     : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warn_default_encoding">Get_warn_default_encoding</a>        write <a href="uP4P.Interfaces.IPyConfig.html#Set_warn_default_encoding-boolean-">Set_warn_default_encoding</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#warn_default_encoding">warn_default_encoding</a></strong>     : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warn_default_encoding">Get_warn_default_encoding</a>        write <a href="uP4P.Interfaces.IPyConfig.html#Set_warn_default_encoding-boolean-">Set_warn_default_encoding</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#warnoptions">warnoptions</a></strong>               : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warnoptions">Get_warnoptions</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_warnoptions-TStringDynArray-">Set_warnoptions</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#warnoptions">warnoptions</a></strong>               : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warnoptions">Get_warnoptions</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_warnoptions-TStringDynArray-">Set_warnoptions</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#write_bytecode">write_bytecode</a></strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_write_bytecode">Get_write_bytecode</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_write_bytecode-boolean-">Set_write_bytecode</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#write_bytecode">write_bytecode</a></strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_write_bytecode">Get_write_bytecode</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_write_bytecode-boolean-">Set_write_bytecode</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#xoptions">xoptions</a></strong>                  : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_xoptions">Get_xoptions</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_xoptions-TStringDynArray-">Set_xoptions</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyConfig.html#xoptions">xoptions</a></strong>                  : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_xoptions">Get_xoptions</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_xoptions-TStringDynArray-">Set_xoptions</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -1147,7 +1147,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Get_lazy_imports"></span><code>function <strong>Get_lazy_imports</strong>: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>;</code></td>
+<td class="itemcode"><span id="Get_lazy_imports"></span><code>function <strong>Get_lazy_imports</strong>: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -1695,7 +1695,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Set_lazy_imports-TPyLazyImports-"></span><code>procedure <strong>Set_lazy_imports</strong>(aValue: <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>);</code></td>
+<td class="itemcode"><span id="Set_lazy_imports-PyImport_LazyImportsMode-"></span><code>procedure <strong>Set_lazy_imports</strong>(aValue: <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a>);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -2172,7 +2172,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Config"></span><code>property <strong>Config</strong>                    : Pointer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#GetConfig">GetConfig</a>;</code></td>
+<td class="itemcode"><span id="Config"></span><code>property <strong>Config</strong>                    : Pointer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#GetConfig">GetConfig</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2182,7 +2182,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="argv"></span><code>property <strong>argv</strong>                      : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_argv">Get_argv</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_argv-TStringDynArray-">Set_argv</a>;</code></td>
+<td class="itemcode"><span id="argv"></span><code>property <strong>argv</strong>                      : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_argv">Get_argv</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_argv-TStringDynArray-">Set_argv</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2204,7 +2204,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="base_exec_prefix"></span><code>property <strong>base_exec_prefix</strong>          : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_exec_prefix">Get_base_exec_prefix</a>             write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_exec_prefix-string-">Set_base_exec_prefix</a>;</code></td>
+<td class="itemcode"><span id="base_exec_prefix"></span><code>property <strong>base_exec_prefix</strong>          : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_exec_prefix">Get_base_exec_prefix</a>             write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_exec_prefix-string-">Set_base_exec_prefix</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2228,7 +2228,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="base_executable"></span><code>property <strong>base_executable</strong>           : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_executable">Get_base_executable</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_executable-string-">Set_base_executable</a>;</code></td>
+<td class="itemcode"><span id="base_executable"></span><code>property <strong>base_executable</strong>           : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_executable">Get_base_executable</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_executable-string-">Set_base_executable</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2252,7 +2252,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="base_prefix"></span><code>property <strong>base_prefix</strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_prefix">Get_base_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_prefix-string-">Set_base_prefix</a>;</code></td>
+<td class="itemcode"><span id="base_prefix"></span><code>property <strong>base_prefix</strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_base_prefix">Get_base_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_base_prefix-string-">Set_base_prefix</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2276,7 +2276,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="buffered_stdio"></span><code>property <strong>buffered_stdio</strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_buffered_stdio">Get_buffered_stdio</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_buffered_stdio-boolean-">Set_buffered_stdio</a>;</code></td>
+<td class="itemcode"><span id="buffered_stdio"></span><code>property <strong>buffered_stdio</strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_buffered_stdio">Get_buffered_stdio</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_buffered_stdio-boolean-">Set_buffered_stdio</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2296,7 +2296,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="bytes_warning"></span><code>property <strong>bytes_warning</strong>             : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_bytes_warning">Get_bytes_warning</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_bytes_warning-integer-">Set_bytes_warning</a>;</code></td>
+<td class="itemcode"><span id="bytes_warning"></span><code>property <strong>bytes_warning</strong>             : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_bytes_warning">Get_bytes_warning</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_bytes_warning-integer-">Set_bytes_warning</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2316,7 +2316,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="check_hash_pycs_mode"></span><code>property <strong>check_hash_pycs_mode</strong>      : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_check_hash_pycs_mode">Get_check_hash_pycs_mode</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_check_hash_pycs_mode-string-">Set_check_hash_pycs_mode</a>;</code></td>
+<td class="itemcode"><span id="check_hash_pycs_mode"></span><code>property <strong>check_hash_pycs_mode</strong>      : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_check_hash_pycs_mode">Get_check_hash_pycs_mode</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_check_hash_pycs_mode-string-">Set_check_hash_pycs_mode</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2349,7 +2349,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="code_debug_ranges"></span><code>property <strong>code_debug_ranges</strong>         : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_code_debug_ranges">Get_code_debug_ranges</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_code_debug_ranges-boolean-">Set_code_debug_ranges</a>;</code></td>
+<td class="itemcode"><span id="code_debug_ranges"></span><code>property <strong>code_debug_ranges</strong>         : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_code_debug_ranges">Get_code_debug_ranges</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_code_debug_ranges-boolean-">Set_code_debug_ranges</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2367,7 +2367,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="configure_c_stdio"></span><code>property <strong>configure_c_stdio</strong>         : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_configure_c_stdio">Get_configure_c_stdio</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_configure_c_stdio-boolean-">Set_configure_c_stdio</a>;</code></td>
+<td class="itemcode"><span id="configure_c_stdio"></span><code>property <strong>configure_c_stdio</strong>         : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_configure_c_stdio">Get_configure_c_stdio</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_configure_c_stdio-boolean-">Set_configure_c_stdio</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2395,7 +2395,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="context_aware_warnings"></span><code>property <strong>context_aware_warnings</strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_context_aware_warnings">Get_context_aware_warnings</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_context_aware_warnings-boolean-">Set_context_aware_warnings</a>;</code></td>
+<td class="itemcode"><span id="context_aware_warnings"></span><code>property <strong>context_aware_warnings</strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_context_aware_warnings">Get_context_aware_warnings</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_context_aware_warnings-boolean-">Set_context_aware_warnings</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2428,7 +2428,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="cpu_count"></span><code>property <strong>cpu_count</strong>                 : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_cpu_count">Get_cpu_count</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_cpu_count-integer-">Set_cpu_count</a>;</code></td>
+<td class="itemcode"><span id="cpu_count"></span><code>property <strong>cpu_count</strong>                 : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_cpu_count">Get_cpu_count</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_cpu_count-integer-">Set_cpu_count</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2446,7 +2446,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="dev_mode"></span><code>property <strong>dev_mode</strong>                  : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dev_mode">Get_dev_mode</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_dev_mode-boolean-">Set_dev_mode</a>;</code></td>
+<td class="itemcode"><span id="dev_mode"></span><code>property <strong>dev_mode</strong>                  : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dev_mode">Get_dev_mode</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_dev_mode-boolean-">Set_dev_mode</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2468,7 +2468,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="dump_refs"></span><code>property <strong>dump_refs</strong>                 : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs">Get_dump_refs</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs-boolean-">Set_dump_refs</a>;</code></td>
+<td class="itemcode"><span id="dump_refs"></span><code>property <strong>dump_refs</strong>                 : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs">Get_dump_refs</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs-boolean-">Set_dump_refs</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2490,7 +2490,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="dump_refs_file"></span><code>property <strong>dump_refs_file</strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs_file">Get_dump_refs_file</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs_file-string-">Set_dump_refs_file</a>;</code></td>
+<td class="itemcode"><span id="dump_refs_file"></span><code>property <strong>dump_refs_file</strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_dump_refs_file">Get_dump_refs_file</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_dump_refs_file-string-">Set_dump_refs_file</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2504,7 +2504,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="exec_prefix"></span><code>property <strong>exec_prefix</strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_exec_prefix">Get_exec_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_exec_prefix-string-">Set_exec_prefix</a>;</code></td>
+<td class="itemcode"><span id="exec_prefix"></span><code>property <strong>exec_prefix</strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_exec_prefix">Get_exec_prefix</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_exec_prefix-string-">Set_exec_prefix</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2522,7 +2522,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="executable"></span><code>property <strong>executable</strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_executable">Get_executable</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_executable-string-">Set_executable</a>;</code></td>
+<td class="itemcode"><span id="executable"></span><code>property <strong>executable</strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_executable">Get_executable</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_executable-string-">Set_executable</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2540,7 +2540,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="faulthandler"></span><code>property <strong>faulthandler</strong>              : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_faulthandler">Get_faulthandler</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_faulthandler-integer-">Set_faulthandler</a>;</code></td>
+<td class="itemcode"><span id="faulthandler"></span><code>property <strong>faulthandler</strong>              : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_faulthandler">Get_faulthandler</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_faulthandler-integer-">Set_faulthandler</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2560,7 +2560,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="filesystem_encoding"></span><code>property <strong>filesystem_encoding</strong>       : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_encoding">Get_filesystem_encoding</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_encoding-string-">Set_filesystem_encoding</a>;</code></td>
+<td class="itemcode"><span id="filesystem_encoding"></span><code>property <strong>filesystem_encoding</strong>       : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_encoding">Get_filesystem_encoding</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_encoding-string-">Set_filesystem_encoding</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2597,7 +2597,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="filesystem_errors"></span><code>property <strong>filesystem_errors</strong>         : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_errors">Get_filesystem_errors</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_errors-string-">Set_filesystem_errors</a>;</code></td>
+<td class="itemcode"><span id="filesystem_errors"></span><code>property <strong>filesystem_errors</strong>         : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_filesystem_errors">Get_filesystem_errors</a>            write <a href="uP4P.Interfaces.IPyConfig.html#Set_filesystem_errors-string-">Set_filesystem_errors</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2628,7 +2628,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="hash_seed"></span><code>property <strong>hash_seed</strong>                 : uint64               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_hash_seed">Get_hash_seed</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_hash_seed-uint64-">Set_hash_seed</a>;</code></td>
+<td class="itemcode"><span id="hash_seed"></span><code>property <strong>hash_seed</strong>                 : uint64                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_hash_seed">Get_hash_seed</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_hash_seed-uint64-">Set_hash_seed</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2642,7 +2642,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="home"></span><code>property <strong>home</strong>                      : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_home">Get_home</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_home-string-">Set_home</a>;</code></td>
+<td class="itemcode"><span id="home"></span><code>property <strong>home</strong>                      : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_home">Get_home</a>                         write <a href="uP4P.Interfaces.IPyConfig.html#Set_home-string-">Set_home</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2664,7 +2664,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="import_time"></span><code>property <strong>import_time</strong>               : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_import_time">Get_import_time</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_import_time-integer-">Set_import_time</a>;</code></td>
+<td class="itemcode"><span id="import_time"></span><code>property <strong>import_time</strong>               : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_import_time">Get_import_time</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_import_time-integer-">Set_import_time</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2684,7 +2684,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="inspect"></span><code>property <strong>inspect</strong>                   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_inspect">Get_inspect</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_inspect-boolean-">Set_inspect</a>;</code></td>
+<td class="itemcode"><span id="inspect"></span><code>property <strong>inspect</strong>                   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_inspect">Get_inspect</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_inspect-boolean-">Set_inspect</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2704,7 +2704,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="install_signal_handlers"></span><code>property <strong>install_signal_handlers</strong>   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_install_signal_handlers">Get_install_signal_handlers</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_install_signal_handlers-boolean-">Set_install_signal_handlers</a>;</code></td>
+<td class="itemcode"><span id="install_signal_handlers"></span><code>property <strong>install_signal_handlers</strong>   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_install_signal_handlers">Get_install_signal_handlers</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_install_signal_handlers-boolean-">Set_install_signal_handlers</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2720,7 +2720,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="int_max_str_digits"></span><code>property <strong>int_max_str_digits</strong>        : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_int_max_str_digits">Get_int_max_str_digits</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_int_max_str_digits-integer-">Set_int_max_str_digits</a>;</code></td>
+<td class="itemcode"><span id="int_max_str_digits"></span><code>property <strong>int_max_str_digits</strong>        : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_int_max_str_digits">Get_int_max_str_digits</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_int_max_str_digits-integer-">Set_int_max_str_digits</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2740,7 +2740,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="interactive"></span><code>property <strong>interactive</strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_interactive">Get_interactive</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_interactive-boolean-">Set_interactive</a>;</code></td>
+<td class="itemcode"><span id="interactive"></span><code>property <strong>interactive</strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_interactive">Get_interactive</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_interactive-boolean-">Set_interactive</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2758,7 +2758,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="isolated"></span><code>property <strong>isolated</strong>                  : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_isolated">Get_isolated</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_isolated-boolean-">Set_isolated</a>;</code></td>
+<td class="itemcode"><span id="isolated"></span><code>property <strong>isolated</strong>                  : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_isolated">Get_isolated</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_isolated-boolean-">Set_isolated</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2794,7 +2794,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="lazy_imports"></span><code>property <strong>lazy_imports</strong>              : <a href="uP4P.Types.html#TPyLazyImports">TPyLazyImports</a>       <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-TPyLazyImports-">Set_lazy_imports</a>;</code></td>
+<td class="itemcode"><span id="lazy_imports"></span><code>property <strong>lazy_imports</strong>              : <a href="uP4P.Types.html#PyImport_LazyImportsMode">PyImport_LazyImportsMode</a> <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_lazy_imports">Get_lazy_imports</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_lazy_imports-PyImport_LazyImportsMode-">Set_lazy_imports</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2820,7 +2820,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="legacy_windows_stdio"></span><code>property <strong>legacy_windows_stdio</strong>      : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">Get_legacy_windows_stdio</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio-boolean-">Set_legacy_windows_stdio</a>;</code></td>
+<td class="itemcode"><span id="legacy_windows_stdio"></span><code>property <strong>legacy_windows_stdio</strong>      : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_legacy_windows_stdio">Get_legacy_windows_stdio</a>         write <a href="uP4P.Interfaces.IPyConfig.html#Set_legacy_windows_stdio-boolean-">Set_legacy_windows_stdio</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2844,7 +2844,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="malloc_stats"></span><code>property <strong>malloc_stats</strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_malloc_stats">Get_malloc_stats</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_malloc_stats-boolean-">Set_malloc_stats</a>;</code></td>
+<td class="itemcode"><span id="malloc_stats"></span><code>property <strong>malloc_stats</strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_malloc_stats">Get_malloc_stats</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_malloc_stats-boolean-">Set_malloc_stats</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2864,7 +2864,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="module_search_paths"></span><code>property <strong>module_search_paths</strong>       : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths">Get_module_search_paths</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths-string-">Set_module_search_paths</a>;</code></td>
+<td class="itemcode"><span id="module_search_paths"></span><code>property <strong>module_search_paths</strong>       : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths">Get_module_search_paths</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths-string-">Set_module_search_paths</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2892,7 +2892,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="module_search_paths_set"></span><code>property <strong>module_search_paths_set</strong>   : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths_set">Get_module_search_paths_set</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths_set-boolean-">Set_module_search_paths_set</a>;</code></td>
+<td class="itemcode"><span id="module_search_paths_set"></span><code>property <strong>module_search_paths_set</strong>   : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_module_search_paths_set">Get_module_search_paths_set</a>      write <a href="uP4P.Interfaces.IPyConfig.html#Set_module_search_paths_set-boolean-">Set_module_search_paths_set</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2908,7 +2908,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="optimization_level"></span><code>property <strong>optimization_level</strong>        : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a> <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_optimization_level">Get_optimization_level</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_optimization_level-TPyOptimizationLevel-">Set_optimization_level</a>;</code></td>
+<td class="itemcode"><span id="optimization_level"></span><code>property <strong>optimization_level</strong>        : <a href="uP4P.Types.html#TPyOptimizationLevel">TPyOptimizationLevel</a>     <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_optimization_level">Get_optimization_level</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_optimization_level-TPyOptimizationLevel-">Set_optimization_level</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2939,7 +2939,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="orig_argv"></span><code>property <strong>orig_argv</strong>                 : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_orig_argv">Get_orig_argv</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_orig_argv-TStringDynArray-">Set_orig_argv</a>;</code></td>
+<td class="itemcode"><span id="orig_argv"></span><code>property <strong>orig_argv</strong>                 : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_orig_argv">Get_orig_argv</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_orig_argv-TStringDynArray-">Set_orig_argv</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2961,7 +2961,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="parse_argv"></span><code>property <strong>parse_argv</strong>                : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parse_argv">Get_parse_argv</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_parse_argv-boolean-">Set_parse_argv</a>;</code></td>
+<td class="itemcode"><span id="parse_argv"></span><code>property <strong>parse_argv</strong>                : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parse_argv">Get_parse_argv</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_parse_argv-boolean-">Set_parse_argv</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -2983,7 +2983,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="parser_debug"></span><code>property <strong>parser_debug</strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parser_debug">Get_parser_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_parser_debug-boolean-">Set_parser_debug</a>;</code></td>
+<td class="itemcode"><span id="parser_debug"></span><code>property <strong>parser_debug</strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_parser_debug">Get_parser_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_parser_debug-boolean-">Set_parser_debug</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3007,7 +3007,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="pathconfig_warnings"></span><code>property <strong>pathconfig_warnings</strong>       : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pathconfig_warnings">Get_pathconfig_warnings</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_pathconfig_warnings-boolean-">Set_pathconfig_warnings</a>;</code></td>
+<td class="itemcode"><span id="pathconfig_warnings"></span><code>property <strong>pathconfig_warnings</strong>       : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pathconfig_warnings">Get_pathconfig_warnings</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_pathconfig_warnings-boolean-">Set_pathconfig_warnings</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3029,7 +3029,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="perf_profiling"></span><code>property <strong>perf_profiling</strong>            : integer              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_perf_profiling">Get_perf_profiling</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_perf_profiling-integer-">Set_perf_profiling</a>;</code></td>
+<td class="itemcode"><span id="perf_profiling"></span><code>property <strong>perf_profiling</strong>            : integer                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_perf_profiling">Get_perf_profiling</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_perf_profiling-integer-">Set_perf_profiling</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3061,7 +3061,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="platlibdir"></span><code>property <strong>platlibdir</strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_platlibdir">Get_platlibdir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_platlibdir-string-">Set_platlibdir</a>;</code></td>
+<td class="itemcode"><span id="platlibdir"></span><code>property <strong>platlibdir</strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_platlibdir">Get_platlibdir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_platlibdir-string-">Set_platlibdir</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3091,7 +3091,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="prefix"></span><code>property <strong>prefix</strong>                    : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_prefix">Get_prefix</a>                       write <a href="uP4P.Interfaces.IPyConfig.html#Set_prefix-string-">Set_prefix</a>;</code></td>
+<td class="itemcode"><span id="prefix"></span><code>property <strong>prefix</strong>                    : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_prefix">Get_prefix</a>                       write <a href="uP4P.Interfaces.IPyConfig.html#Set_prefix-string-">Set_prefix</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3117,7 +3117,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="program_name"></span><code>property <strong>program_name</strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_program_name">Get_program_name</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_program_name-string-">Set_program_name</a>;</code></td>
+<td class="itemcode"><span id="program_name"></span><code>property <strong>program_name</strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_program_name">Get_program_name</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_program_name-string-">Set_program_name</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3147,7 +3147,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="pycache_prefix"></span><code>property <strong>pycache_prefix</strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">Get_pycache_prefix</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix-string-">Set_pycache_prefix</a>;</code></td>
+<td class="itemcode"><span id="pycache_prefix"></span><code>property <strong>pycache_prefix</strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pycache_prefix">Get_pycache_prefix</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pycache_prefix-string-">Set_pycache_prefix</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3171,7 +3171,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="pymalloc_hugepages"></span><code>property <strong>pymalloc_hugepages</strong>         : boolean             <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">Get_pymalloc_hugepages</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages-boolean-">Set_pymalloc_hugepages</a>;</code></td>
+<td class="itemcode"><span id="pymalloc_hugepages"></span><code>property <strong>pymalloc_hugepages</strong>         : boolean                 <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pymalloc_hugepages">Get_pymalloc_hugepages</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_pymalloc_hugepages-boolean-">Set_pymalloc_hugepages</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3209,7 +3209,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="pythonpath_env"></span><code>property <strong>pythonpath_env</strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pythonpath_env">Get_pythonpath_env</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pythonpath_env-string-">Set_pythonpath_env</a>;</code></td>
+<td class="itemcode"><span id="pythonpath_env"></span><code>property <strong>pythonpath_env</strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_pythonpath_env">Get_pythonpath_env</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_pythonpath_env-string-">Set_pythonpath_env</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3231,7 +3231,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="quiet"></span><code>property <strong>quiet</strong>                     : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_quiet">Get_quiet</a>                        write <a href="uP4P.Interfaces.IPyConfig.html#Set_quiet-boolean-">Set_quiet</a>;</code></td>
+<td class="itemcode"><span id="quiet"></span><code>property <strong>quiet</strong>                     : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_quiet">Get_quiet</a>                        write <a href="uP4P.Interfaces.IPyConfig.html#Set_quiet-boolean-">Set_quiet</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3249,7 +3249,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="remote_debug"></span><code>property <strong>remote_debug</strong>              : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_remote_debug">Get_remote_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_remote_debug-boolean-">Set_remote_debug</a>;</code></td>
+<td class="itemcode"><span id="remote_debug"></span><code>property <strong>remote_debug</strong>              : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_remote_debug">Get_remote_debug</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_remote_debug-boolean-">Set_remote_debug</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3273,7 +3273,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="run_command"></span><code>property <strong>run_command</strong>               : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_command">Get_run_command</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_command-string-">Set_run_command</a>;</code></td>
+<td class="itemcode"><span id="run_command"></span><code>property <strong>run_command</strong>               : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_command">Get_run_command</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_command-string-">Set_run_command</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3291,7 +3291,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="run_filename"></span><code>property <strong>run_filename</strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_filename">Get_run_filename</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_filename-string-">Set_run_filename</a>;</code></td>
+<td class="itemcode"><span id="run_filename"></span><code>property <strong>run_filename</strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_filename">Get_run_filename</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_filename-string-">Set_run_filename</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3313,7 +3313,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="run_module"></span><code>property <strong>run_module</strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_module">Get_run_module</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_module-string-">Set_run_module</a>;</code></td>
+<td class="itemcode"><span id="run_module"></span><code>property <strong>run_module</strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_run_module">Get_run_module</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_run_module-string-">Set_run_module</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3331,7 +3331,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="safe_path"></span><code>property <strong>safe_path</strong>                 : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_safe_path">Get_safe_path</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_safe_path-boolean-">Set_safe_path</a>;</code></td>
+<td class="itemcode"><span id="safe_path"></span><code>property <strong>safe_path</strong>                 : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_safe_path">Get_safe_path</a>                    write <a href="uP4P.Interfaces.IPyConfig.html#Set_safe_path-boolean-">Set_safe_path</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3367,7 +3367,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="show_ref_count"></span><code>property <strong>show_ref_count</strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_show_ref_count">Get_show_ref_count</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_show_ref_count-boolean-">Set_show_ref_count</a>;</code></td>
+<td class="itemcode"><span id="show_ref_count"></span><code>property <strong>show_ref_count</strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_show_ref_count">Get_show_ref_count</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_show_ref_count-boolean-">Set_show_ref_count</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3387,7 +3387,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="site_import"></span><code>property <strong>site_import</strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_site_import">Get_site_import</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_site_import-boolean-">Set_site_import</a>;</code></td>
+<td class="itemcode"><span id="site_import"></span><code>property <strong>site_import</strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_site_import">Get_site_import</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_site_import-boolean-">Set_site_import</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3411,7 +3411,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="skip_source_first_line"></span><code>property <strong>skip_source_first_line</strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_skip_source_first_line">Get_skip_source_first_line</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_skip_source_first_line-boolean-">Set_skip_source_first_line</a>;</code></td>
+<td class="itemcode"><span id="skip_source_first_line"></span><code>property <strong>skip_source_first_line</strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_skip_source_first_line">Get_skip_source_first_line</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_skip_source_first_line-boolean-">Set_skip_source_first_line</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3431,7 +3431,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="stdio_encoding"></span><code>property <strong>stdio_encoding</strong>            : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_encoding">Get_stdio_encoding</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_encoding-string-">Set_stdio_encoding</a>;</code></td>
+<td class="itemcode"><span id="stdio_encoding"></span><code>property <strong>stdio_encoding</strong>            : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_encoding">Get_stdio_encoding</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_encoding-string-">Set_stdio_encoding</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3461,7 +3461,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="stdio_errors"></span><code>property <strong>stdio_errors</strong>              : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_errors">Get_stdio_errors</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_errors-string-">Set_stdio_errors</a>;</code></td>
+<td class="itemcode"><span id="stdio_errors"></span><code>property <strong>stdio_errors</strong>              : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdio_errors">Get_stdio_errors</a>                 write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdio_errors-string-">Set_stdio_errors</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3493,7 +3493,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="stdlib_dir"></span><code>property <strong>stdlib_dir</strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdlib_dir">Get_stdlib_dir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdlib_dir-string-">Set_stdlib_dir</a>;</code></td>
+<td class="itemcode"><span id="stdlib_dir"></span><code>property <strong>stdlib_dir</strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_stdlib_dir">Get_stdlib_dir</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_stdlib_dir-string-">Set_stdlib_dir</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3511,7 +3511,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="sys_path_0"></span><code>property <strong>sys_path_0</strong>                : string               <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_sys_path_0">Get_sys_path_0</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_sys_path_0-string-">Set_sys_path_0</a>;</code></td>
+<td class="itemcode"><span id="sys_path_0"></span><code>property <strong>sys_path_0</strong>                : string                   <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_sys_path_0">Get_sys_path_0</a>                   write <a href="uP4P.Interfaces.IPyConfig.html#Set_sys_path_0-string-">Set_sys_path_0</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3540,7 +3540,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="thread_inherit_context"></span><code>property <strong>thread_inherit_context</strong>    : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_thread_inherit_context">Get_thread_inherit_context</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_thread_inherit_context-boolean-">Set_thread_inherit_context</a>;</code></td>
+<td class="itemcode"><span id="thread_inherit_context"></span><code>property <strong>thread_inherit_context</strong>    : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_thread_inherit_context">Get_thread_inherit_context</a>       write <a href="uP4P.Interfaces.IPyConfig.html#Set_thread_inherit_context-boolean-">Set_thread_inherit_context</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3558,7 +3558,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="tracemalloc"></span><code>property <strong>tracemalloc</strong>               : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_tracemalloc">Get_tracemalloc</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_tracemalloc-boolean-">Set_tracemalloc</a>;</code></td>
+<td class="itemcode"><span id="tracemalloc"></span><code>property <strong>tracemalloc</strong>               : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_tracemalloc">Get_tracemalloc</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_tracemalloc-boolean-">Set_tracemalloc</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3584,7 +3584,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="use_environment"></span><code>property <strong>use_environment</strong>           : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_environment">Get_use_environment</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_environment-boolean-">Set_use_environment</a>;</code></td>
+<td class="itemcode"><span id="use_environment"></span><code>property <strong>use_environment</strong>           : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_environment">Get_use_environment</a>              write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_environment-boolean-">Set_use_environment</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3608,7 +3608,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="use_frozen_modules"></span><code>property <strong>use_frozen_modules</strong>        : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_frozen_modules">Get_use_frozen_modules</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_frozen_modules-boolean-">Set_use_frozen_modules</a>;</code></td>
+<td class="itemcode"><span id="use_frozen_modules"></span><code>property <strong>use_frozen_modules</strong>        : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_frozen_modules">Get_use_frozen_modules</a>           write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_frozen_modules-boolean-">Set_use_frozen_modules</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3630,7 +3630,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="use_hash_seed"></span><code>property <strong>use_hash_seed</strong>             : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_hash_seed">Get_use_hash_seed</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_hash_seed-boolean-">Set_use_hash_seed</a>;</code></td>
+<td class="itemcode"><span id="use_hash_seed"></span><code>property <strong>use_hash_seed</strong>             : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_use_hash_seed">Get_use_hash_seed</a>                write <a href="uP4P.Interfaces.IPyConfig.html#Set_use_hash_seed-boolean-">Set_use_hash_seed</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3654,7 +3654,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="user_site_directory"></span><code>property <strong>user_site_directory</strong>       : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_user_site_directory">Get_user_site_directory</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_user_site_directory-boolean-">Set_user_site_directory</a>;</code></td>
+<td class="itemcode"><span id="user_site_directory"></span><code>property <strong>user_site_directory</strong>       : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_user_site_directory">Get_user_site_directory</a>          write <a href="uP4P.Interfaces.IPyConfig.html#Set_user_site_directory-boolean-">Set_user_site_directory</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3678,7 +3678,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="verbose"></span><code>property <strong>verbose</strong>                   : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>       <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_verbose">Get_verbose</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_verbose-TPyVerboseMode-">Set_verbose</a>;</code></td>
+<td class="itemcode"><span id="verbose"></span><code>property <strong>verbose</strong>                   : <a href="uP4P.Types.html#TPyVerboseMode">TPyVerboseMode</a>           <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_verbose">Get_verbose</a>                      write <a href="uP4P.Interfaces.IPyConfig.html#Set_verbose-TPyVerboseMode-">Set_verbose</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3704,7 +3704,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="warn_default_encoding"></span><code>property <strong>warn_default_encoding</strong>     : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warn_default_encoding">Get_warn_default_encoding</a>        write <a href="uP4P.Interfaces.IPyConfig.html#Set_warn_default_encoding-boolean-">Set_warn_default_encoding</a>;</code></td>
+<td class="itemcode"><span id="warn_default_encoding"></span><code>property <strong>warn_default_encoding</strong>     : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warn_default_encoding">Get_warn_default_encoding</a>        write <a href="uP4P.Interfaces.IPyConfig.html#Set_warn_default_encoding-boolean-">Set_warn_default_encoding</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3726,7 +3726,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="warnoptions"></span><code>property <strong>warnoptions</strong>               : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warnoptions">Get_warnoptions</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_warnoptions-TStringDynArray-">Set_warnoptions</a>;</code></td>
+<td class="itemcode"><span id="warnoptions"></span><code>property <strong>warnoptions</strong>               : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_warnoptions">Get_warnoptions</a>                  write <a href="uP4P.Interfaces.IPyConfig.html#Set_warnoptions-TStringDynArray-">Set_warnoptions</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3752,7 +3752,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="write_bytecode"></span><code>property <strong>write_bytecode</strong>            : boolean              <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_write_bytecode">Get_write_bytecode</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_write_bytecode-boolean-">Set_write_bytecode</a>;</code></td>
+<td class="itemcode"><span id="write_bytecode"></span><code>property <strong>write_bytecode</strong>            : boolean                  <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_write_bytecode">Get_write_bytecode</a>               write <a href="uP4P.Interfaces.IPyConfig.html#Set_write_bytecode-boolean-">Set_write_bytecode</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -3776,7 +3776,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="xoptions"></span><code>property <strong>xoptions</strong>                  : TStringDynArray      <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_xoptions">Get_xoptions</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_xoptions-TStringDynArray-">Set_xoptions</a>;</code></td>
+<td class="itemcode"><span id="xoptions"></span><code>property <strong>xoptions</strong>                  : TStringDynArray          <a href="uP4P.Interfaces.IPyConfig.html#Read">read</a> <a href="uP4P.Interfaces.IPyConfig.html#Get_xoptions">Get_xoptions</a>                     write <a href="uP4P.Interfaces.IPyConfig.html#Set_xoptions-TStringDynArray-">Set_xoptions</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

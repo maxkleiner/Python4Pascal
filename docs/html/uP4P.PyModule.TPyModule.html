@@ -135,6 +135,30 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#FromDefAndSpec2-PPyModuleDef-IPyObject-integer-">FromDefAndSpec2</a></strong>(def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>; const spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; module_api_version: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#FromSlotsAndSpec-PPySlot-IPyObject-">FromSlotsAndSpec</a></strong>(const slots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>; const spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#Exec-IPyObject-">Exec</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetStateSize-IPyObject-Py_ssize_t-">GetStateSize</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken-IPyObject-Pointer-">GetToken</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetState_DuringGC-IPyObject-">GetState_DuringGC</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken_DuringGC-IPyObject-Pointer-">GetToken_DuringGC</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
@@ -610,6 +634,142 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 
 
 <p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2">https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2</a>&quot;&gt;See the article about PyModule_FromDefAndSpec2.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromSlotsAndSpec-PPySlot-IPyObject-"></span><code>class function <strong>FromSlotsAndSpec</strong>(const slots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>; const spec: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a new module object, given an array of slots and the ModuleSpec spec.
+
+<p>The slots argument must point to an array of PySlot structures, terminated by an entry with slot ID of 0 (typically written as PySlot_END). The array must include a Py_mod_abi entry.
+
+<p>The spec argument may be any ModuleSpec-like object, as described in Py_mod_create documentation. Currently, the spec must have a name attribute.
+
+<p>On success, return the new module. On error, return nil with an exception set.
+
+<p>Note that this does not process the module's execution slot (Py_mod_exec). Both TPyModule.FromSlotsAndSpec() and TPyModule.Exec() must be called to fully initialize a module. (See also Multi-phase initialization.)
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_FromSlotsAndSpec">https://docs.python.org/3.15/c-api/module.html#c.PyModule_FromSlotsAndSpec</a>&quot;&gt;See the article about PyModule_FromSlotsAndSpec.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Exec-IPyObject-"></span><code>class function <strong>Exec</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Execute the Py_mod_exec slot(s) of module.
+
+<p>On success, return True. On error, return False with an exception set.
+
+<p>For clarity: If module has no slots, for example if it uses legacy single-phase initialization, this function does nothing and returns True.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_Exec">https://docs.python.org/3.15/c-api/module.html#c.PyModule_Exec</a>&quot;&gt;See the article about PyModule_Exec.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetStateSize-IPyObject-Py_ssize_t-"></span><code>class function <strong>GetStateSize</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set result_ to the size of module's state, as specified using Py_mod_state_size (or PyModuleDef.m_size), and return True.
+
+<p>On error, set result_ to -1, and return False with an exception set.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetStateSize">https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetStateSize</a>&quot;&gt;See the article about PyModule_GetStateSize.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetToken-IPyObject-Pointer-"></span><code>class function <strong>GetToken</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set result_ to the module token for module and return True.
+
+<p>On error, set result_ to nil, and return False with an exception set.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken">https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken</a>&quot;&gt;See the article about PyModule_GetToken.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetState_DuringGC-IPyObject-"></span><code>class function <strong>GetState_DuringGC</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetToken_DuringGC-IPyObject-Pointer-"></span><code>class function <strong>GetToken_DuringGC</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The following function should only be used in a tp_traverse handler; calling them in other contexts may have unintended consequences.
+
+<p>This function act like their counterpart without the _DuringGC suffix, but it's guaranteed to not have side effects, it doesn't set an exception on failure, and it returns/sets borrowed references as detailed in the individual documentation.
+
+<p>Note that this function may fail, but as it doesn't set an exception, no error information is available. In some cases, failure is not distinguishable from a successful nil result.
+
+<p>Added in version 3.15.
+
+<p></p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>

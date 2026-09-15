@@ -38,18 +38,6 @@ type
       /// or a borrowed one; this reference must not be released.</para>
       /// </summary>
       class function Init(const def: PyModuleDef): PPyObject;
-      /// <summary>
-      /// <para>Ensure a module definition is a properly initialized Python
-      /// object that correctly reports its type and a reference count.</para>
-      /// <para>Return def wrapped as IPyObject, or nil if an error
-      /// occurred.</para>
-      /// <para>Calling this function is required for Multi-phase
-      /// initialization. It should not be used in other contexts.</para>
-      /// <para>Note that Python assumes that PyModuleDef structures are
-      /// statically allocated. This function may return either a new reference
-      /// or a borrowed one; this reference must not be released.</para>
-      /// </summary>
-      class function Init2(const def: PyModuleDef): IPyObject;
   end;
 
 implementation
@@ -60,11 +48,6 @@ begin
     Result := PyModuleDef_Init(@def)
    else
     Result := nil;
-end;
-
-class function TPyModuleDef.Init2(const def: PyModuleDef): IPyObject;
-begin
-  Result := TPyObject.Wrap(Init(def));
 end;
 
 end.

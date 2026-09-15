@@ -224,6 +224,11 @@
         <DCCReference Include="..\source\uP4P.PyAnyDict.pas"/>
         <DCCReference Include="..\source\uP4P.PyInterpreterGuard.pas"/>
         <DCCReference Include="..\source\uP4P.PyInterpreterView.pas"/>
+        <DCCReference Include="..\source\uP4P.PySentinel.pas"/>
+        <DCCReference Include="..\source\uP4P.PyABIInfo.pas"/>
+        <DCCReference Include="..\source\uP4P.Py_mod.pas"/>
+        <DCCReference Include="..\source\uP4P.Py_mp.pas"/>
+        <DCCReference Include="..\source\uP4P.Py_bf.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -39,10 +39,6 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Init-PyModuleDef-">Init</a></strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Init2-PyModuleDef-">Init2</a></strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
-</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
@@ -58,26 +54,6 @@ body { margin: 0.5em; }
 <p>Ensure a module definition is a properly initialized Python object that correctly reports its type and a reference count.
 
 <p>Return def cast to PPyObject, or nil if an error occurred.
-
-<p>Calling this function is required for Multi-phase initialization. It should not be used in other contexts.
-
-<p>Note that Python assumes that PyModuleDef structures are statically allocated. This function may return either a new reference or a borrowed one; this reference must not be released.
-
-<p></p>
-</td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Init2-PyModuleDef-"></span><code>class function <strong>Init2</strong>(const def: <a href="uP4P.Types.PyModuleDef.html">PyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p>
-
-
-<p>Ensure a module definition is a properly initialized Python object that correctly reports its type and a reference count.
-
-<p>Return def wrapped as IPyObject, or nil if an error occurred.
 
 <p>Calling this function is required for Multi-phase initialization. It should not be used in other contexts.
 

@@ -547,6 +547,26 @@
         <Filename Value="..\source\uP4P.PyTimeStruct.pas"/>
         <UnitName Value="uP4P.PyTimeStruct"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Py_bf.pas"/>
+        <UnitName Value="uP4P.Py_bf"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Py_mod.pas"/>
+        <UnitName Value="uP4P.Py_mod"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.Py_mp.pas"/>
+        <UnitName Value="uP4P.Py_mp"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyABIInfo.pas"/>
+        <UnitName Value="uP4P.PyABIInfo"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySentinel.pas"/>
+        <UnitName Value="uP4P.PySentinel"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

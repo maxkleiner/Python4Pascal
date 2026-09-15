@@ -236,6 +236,49 @@ type
       /// <para>Added in version 3.14.</para>
       /// </summary>
       class function ImportModuleAttrString(const mod_name, attr_name: string): IPyObject;
+      /// <summary>
+      /// <para>Set the lazy imports mode.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class procedure SetLazyImportsMode(mode: PyImport_LazyImportsMode);
+      /// <summary>
+      /// <para>Sets the current lazy imports filter. The filter should be
+      /// a callable that will receive (importing_module_name,
+      /// imported_module_name, [fromlist]) when an import can potentially
+      /// be lazy. The imported_module_name value is the resolved module name,
+      /// so lazy from .spam import eggs passes package.spam. The callable
+      /// must return True if the import should be lazy and False otherwise.
+      /// <para>Return True on success and False with an exception set
+      /// otherwise.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function SetLazyImportsFilter(const filter: IPyObject): boolean;
+      /// <summary>
+      /// <para>Gets the current lazy imports mode.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetLazyImportsMode(): PyImport_LazyImportsMode;
+      /// <summary>
+      /// <para>Return a strong reference to the current lazy imports filter,
+      /// or nil if none exists. This function always succeeds.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function GetLazyImportsFilter(): IPyObject;
+      /// <summary>
+      /// <para>This function is a building block that enables embedders to
+      /// implement the create_module() step of custom static extension
+      /// importers (e.g. of statically-linked extensions).</para>
+      /// <para>spec must be a ModuleSpec object.</para>
+      /// <para>initfunc must be an initialization function, the same as
+      /// for TPyImport.AppendInittab().</para>
+      /// <para>On success, create and return a module object. This module
+      /// will not be initialized; call TPyModule.Exec() to initialize it.
+      /// (Custom importers should do this in their exec_module()
+      /// method.)</para>
+      /// <para>On error, return nil with an exception set.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      class function CreateModuleFromInitfunc(const spec: IPyObject; initfunc_: initfunc): IPyObject;
   end;
 
 implementation
@@ -530,6 +573,44 @@ begin
       TempAttrName := StringToPyUTF8(attr_name);
       Result       := TPyObject.Wrap(PyImport_ImportModuleAttrString(PAnsiChar(TempModName), PAnsiChar(TempAttrName)));
     end
+   else
+    Result := nil;
+end;
+
+class procedure TPyImport.SetLazyImportsMode(mode: PyImport_LazyImportsMode);
+begin
+  if assigned(PyImport_SetLazyImportsMode) then
+    PyImport_SetLazyImportsMode(mode);
+end;
+
+class function TPyImport.SetLazyImportsFilter(const filter: IPyObject): boolean;
+begin
+  Result := assigned(PyImport_SetLazyImportsFilter) and
+            TPyObject.IsInitialized(filter) and
+            (PyImport_SetLazyImportsFilter(filter.PyObject) = 0);
+end;
+
+class function TPyImport.GetLazyImportsMode(): PyImport_LazyImportsMode;
+begin
+  if assigned(PyImport_GetLazyImportsMode) then
+    Result := PyImport_GetLazyImportsMode()
+   else
+    Result := PyImport_LAZY_NORMAL;
+end;
+
+class function TPyImport.GetLazyImportsFilter(): IPyObject;
+begin
+  if assigned(PyImport_GetLazyImportsFilter) then
+    Result := TPyObject.Wrap(PyImport_GetLazyImportsFilter())
+   else
+    Result := nil;
+end;
+
+class function TPyImport.CreateModuleFromInitfunc(const spec: IPyObject; initfunc_: initfunc): IPyObject;
+begin
+  if assigned(PyImport_CreateModuleFromInitfunc) and
+     TPyObject.IsInitialized(spec) then
+    Result := TPyObject.Wrap(PyImport_CreateModuleFromInitfunc(spec.PyObject, initfunc_))
    else
     Result := nil;
 end;

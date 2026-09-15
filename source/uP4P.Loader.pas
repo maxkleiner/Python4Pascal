@@ -56,7 +56,7 @@ type
       FExecutable                        : string;
       FProgramName                       : string;
       FModuleSearchPaths                 : string;
-      FLazyImports                       : TPyLazyImports;
+      FLazyImports                       : PyImport_LazyImportsMode;
       FOnBeforeInitialization            : TOnBeforeInitializationEvent;
 
       function GetInitialized: boolean;
@@ -139,6 +139,7 @@ type
       procedure Load_genobject;
       procedure Load_descrobject;
       procedure Load_genericaliasobject;
+      procedure Load_sentinelobject;
       procedure Load_warnings;
       procedure Load_weakrefobject;
       procedure Load_structseq;
@@ -451,7 +452,7 @@ type
       /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
       /// <para>Added in version 3.15.</para>
       /// </remarks>
-      property LazyImports                       : TPyLazyImports                               read FLazyImports                       write FLazyImports;
+      property LazyImports                       : PyImport_LazyImportsMode                     read FLazyImports                       write FLazyImports;
       /// <summary>
       /// Event triggered right before the Python initialization. It's used to change the configuration properties.
       /// </summary>
@@ -491,7 +492,7 @@ begin
   FExecutable             := '';
   FProgramName            := '';
   FModuleSearchPaths      := '';
-  FLazyImports            := li_normal;
+  FLazyImports            := PyImport_LAZY_NORMAL;
 
   {$IFDEF ANDROID}
   FIsolated               := True;
@@ -1636,6 +1637,7 @@ begin
   Load_genobject;
   Load_descrobject;
   Load_genericaliasobject;
+  Load_sentinelobject;
   Load_warnings;
   Load_weakrefobject;
   Load_structseq;
@@ -1720,6 +1722,9 @@ procedure TP4PLoader.Load_object;
 begin
   {$IFDEF FPC}Pointer({$ENDIF}Py_Is{$IFDEF FPC}){$ENDIF}                             := GetProcAddress(FLibHandle, 'Py_Is');
   {$IFDEF FPC}Pointer({$ENDIF}Py_TYPE{$IFDEF FPC}){$ENDIF}                           := GetProcAddress(FLibHandle, 'Py_TYPE');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_SIZE{$IFDEF FPC}){$ENDIF}                           := GetProcAddress(FLibHandle, 'Py_SIZE');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_IS_TYPE{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'Py_IS_TYPE');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_SET_SIZE{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'Py_SET_SIZE');
   {$IFDEF FPC}Pointer({$ENDIF}PyLong_Type{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'PyLong_Type');
   {$IFDEF FPC}Pointer({$ENDIF}PyBool_Type{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'PyBool_Type');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_FromSpec{$IFDEF FPC}){$ENDIF}                   := GetProcAddress(FLibHandle, 'PyType_FromSpec');
@@ -1736,6 +1741,7 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_GetTypeData{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyObject_GetTypeData');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_GetTypeDataSize{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyType_GetTypeDataSize');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_GetBaseByToken{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyType_GetBaseByToken');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_FromSlots{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyType_FromSlots');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_IsSubtype{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyType_IsSubtype');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_Type{$IFDEF FPC}){$ENDIF}                       := GetProcAddress(FLibHandle, 'PyType_Type');
   {$IFDEF FPC}Pointer({$ENDIF}PyBaseObject_Type{$IFDEF FPC}){$ENDIF}                 := GetProcAddress(FLibHandle, 'PyBaseObject_Type');
@@ -1784,11 +1790,19 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}Py_IsNone{$IFDEF FPC}){$ENDIF}                         := GetProcAddress(FLibHandle, 'Py_IsNone');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_GetModuleByDef{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyType_GetModuleByDef');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_Freeze{$IFDEF FPC}){$ENDIF}                     := GetProcAddress(FLibHandle, 'PyType_Freeze');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_GetModuleByToken{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyType_GetModuleByToken');
+  {$IFDEF FPC}Pointer({$ENDIF}PyObject_GetTypeData_DuringGC{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyObject_GetTypeData_DuringGC');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_GetModuleState_DuringGC{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyType_GetModuleState_DuringGC');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_GetBaseByToken_DuringGC{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyType_GetBaseByToken_DuringGC');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_GetModule_DuringGC{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyType_GetModule_DuringGC');
+  {$IFDEF FPC}Pointer({$ENDIF}PyType_GetModuleByToken_DuringGC{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyType_GetModuleByToken_DuringGC');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_GetDict{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'PyType_GetDict');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_Print{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'PyObject_Print');
+  {$IFDEF FPC}Pointer({$ENDIF}PyObject_Dump{$IFDEF FPC}){$ENDIF}                     := GetProcAddress(FLibHandle, 'PyObject_Dump');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_CallFinalizer{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyObject_CallFinalizer');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_CallFinalizerFromDealloc{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyObject_CallFinalizerFromDealloc');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_GetItemData{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyObject_GetItemData');
+  {$IFDEF FPC}Pointer({$ENDIF}PyObject_GetItemData_DuringGC{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyObject_GetItemData_DuringGC');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_VisitManagedDict{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyObject_VisitManagedDict');
   {$IFDEF FPC}Pointer({$ENDIF}PyObject_ClearManagedDict{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyObject_ClearManagedDict');
   {$IFDEF FPC}Pointer({$ENDIF}PyType_AddWatcher{$IFDEF FPC}){$ENDIF}                 := GetProcAddress(FLibHandle, 'PyType_AddWatcher');
@@ -1801,11 +1815,12 @@ end;
 
 procedure TP4PLoader.Load_refcount;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}Py_REFCNT{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'Py_REFCNT');
-  {$IFDEF FPC}Pointer({$ENDIF}Py_IncRef{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'Py_IncRef');
-  {$IFDEF FPC}Pointer({$ENDIF}Py_DecRef{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'Py_DecRef');
-  {$IFDEF FPC}Pointer({$ENDIF}Py_NewRef{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'Py_NewRef');
-  {$IFDEF FPC}Pointer({$ENDIF}Py_XNewRef{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'Py_XNewRef');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_REFCNT{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_REFCNT');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_SET_REFCNT{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, '_Py_SetRefcnt');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_IncRef{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_IncRef');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_DecRef{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_DecRef');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_NewRef{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_NewRef');
+  {$IFDEF FPC}Pointer({$ENDIF}Py_XNewRef{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'Py_XNewRef');
 end;
 
 procedure TP4PLoader.Load_objimpl;
@@ -1864,20 +1879,32 @@ end;
 
 procedure TP4PLoader.Load_bytesobject;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Type{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyBytes_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytesIter_Type{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyBytesIter_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromStringAndSize{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyBytes_FromStringAndSize');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromString{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyBytes_FromString');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromObject{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyBytes_FromObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromFormat{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyBytes_FromFormat');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Size{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyBytes_Size');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_AsString{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyBytes_AsString');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Repr{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyBytes_Repr');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Concat{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyBytes_Concat');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_ConcatAndDel{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyBytes_ConcatAndDel');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_DecodeEscape{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyBytes_DecodeEscape');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_AsStringAndSize{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyBytes_AsStringAndSize');
-  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Join{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyBytes_Join');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Type{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyBytes_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesIter_Type{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'PyBytesIter_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromStringAndSize{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyBytes_FromStringAndSize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromString{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyBytes_FromString');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromObject{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyBytes_FromObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_FromFormat{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyBytes_FromFormat');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Size{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyBytes_Size');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_AsString{$IFDEF FPC}){$ENDIF}                    := GetProcAddress(FLibHandle, 'PyBytes_AsString');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Repr{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyBytes_Repr');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Concat{$IFDEF FPC}){$ENDIF}                      := GetProcAddress(FLibHandle, 'PyBytes_Concat');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_ConcatAndDel{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytes_ConcatAndDel');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_DecodeEscape{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytes_DecodeEscape');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_AsStringAndSize{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyBytes_AsStringAndSize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytes_Join{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyBytes_Join');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Create{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytesWriter_Create');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Discard{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyBytesWriter_Discard');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Finish{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytesWriter_Finish');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_FinishWithSize{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyBytesWriter_FinishWithSize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_FinishWithPointer{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyBytesWriter_FinishWithPointer');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_GetData{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyBytesWriter_GetData');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_GetSize{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyBytesWriter_GetSize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_WriteBytes{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyBytesWriter_WriteBytes');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Format{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytesWriter_Format');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Resize{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyBytesWriter_Resize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_Grow{$IFDEF FPC}){$ENDIF}                  := GetProcAddress(FLibHandle, 'PyBytesWriter_Grow');
+  {$IFDEF FPC}Pointer({$ENDIF}PyBytesWriter_GrowAndUpdatePointer{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyBytesWriter_GrowAndUpdatePointer');
 end;
 
 procedure TP4PLoader.Load_unicodeobject;
@@ -2032,6 +2059,7 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_FloatingPointError{$IFDEF FPC}){$ENDIF}                      := GetProcAddress(FLibHandle, 'PyExc_FloatingPointError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_OSError{$IFDEF FPC}){$ENDIF}                                 := GetProcAddress(FLibHandle, 'PyExc_OSError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_ImportError{$IFDEF FPC}){$ENDIF}                             := GetProcAddress(FLibHandle, 'PyExc_ImportError');
+  {$IFDEF FPC}Pointer({$ENDIF}PyExc_ImportCycleError{$IFDEF FPC}){$ENDIF}                        := GetProcAddress(FLibHandle, 'PyExc_ImportCycleError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_ModuleNotFoundError{$IFDEF FPC}){$ENDIF}                     := GetProcAddress(FLibHandle, 'PyExc_ModuleNotFoundError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_IndexError{$IFDEF FPC}){$ENDIF}                              := GetProcAddress(FLibHandle, 'PyExc_IndexError');
   {$IFDEF FPC}Pointer({$ENDIF}PyExc_KeyError{$IFDEF FPC}){$ENDIF}                                := GetProcAddress(FLibHandle, 'PyExc_KeyError');
@@ -2257,14 +2285,15 @@ end;
 
 procedure TP4PLoader.Load_tupleobject;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Type{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyTuple_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTupleIter_Type{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyTupleIter_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_New{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyTuple_New');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Size{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyTuple_Size');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_GetItem{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyTuple_GetItem');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_SetItem{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyTuple_SetItem');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_GetSlice{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyTuple_GetSlice');
-  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Pack{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyTuple_Pack');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Type{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyTuple_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTupleIter_Type{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyTupleIter_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_New{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyTuple_New');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Size{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyTuple_Size');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_GetItem{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyTuple_GetItem');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_SetItem{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyTuple_SetItem');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_GetSlice{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyTuple_GetSlice');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_Pack{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyTuple_Pack');
+  {$IFDEF FPC}Pointer({$ENDIF}PyTuple_FromArray{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyTuple_FromArray');
 end;
 
 procedure TP4PLoader.Load_listobject;
@@ -2331,6 +2360,8 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyDict_ClearWatcher{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyDict_ClearWatcher');
   {$IFDEF FPC}Pointer({$ENDIF}PyDict_Watch{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyDict_Watch');
   {$IFDEF FPC}Pointer({$ENDIF}PyDict_Unwatch{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyDict_Unwatch');
+  {$IFDEF FPC}Pointer({$ENDIF}PyFrozenDict_New{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyFrozenDict_New');
+  {$IFDEF FPC}Pointer({$ENDIF}PyFrozenDict_Type{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyFrozenDict_Type');
 end;
 
 procedure TP4PLoader.Load_odictobject;
@@ -2380,23 +2411,29 @@ end;
 
 procedure TP4PLoader.Load_moduleobject;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_Type{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyModule_Type');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_NewObject{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyModule_NewObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_New{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyModule_New');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetDict{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyModule_GetDict');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetNameObject{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyModule_GetNameObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetName{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyModule_GetName');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetFilenameObject{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyModule_GetFilenameObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetDef{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyModule_GetDef');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetState{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyModule_GetState');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModuleDef_Init{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyModuleDef_Init');
-  {$IFDEF FPC}Pointer({$ENDIF}PyModuleDef_Type{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyModuleDef_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_Type{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyModule_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_NewObject{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyModule_NewObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_New{$IFDEF FPC}){$ENDIF}                 := GetProcAddress(FLibHandle, 'PyModule_New');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetDict{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyModule_GetDict');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetNameObject{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyModule_GetNameObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetName{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyModule_GetName');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetFilenameObject{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyModule_GetFilenameObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetDef{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyModule_GetDef');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetState{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyModule_GetState');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModuleDef_Init{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyModuleDef_Init');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModuleDef_Type{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyModuleDef_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_FromSlotsAndSpec{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyModule_FromSlotsAndSpec');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_Exec{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyModule_Exec');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetStateSize{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyModule_GetStateSize');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetToken{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyModule_GetToken');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetState_DuringGC{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyModule_GetState_DuringGC');
+  {$IFDEF FPC}Pointer({$ENDIF}PyModule_GetToken_DuringGC{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyModule_GetToken_DuringGC');
 end;
 
 procedure TP4PLoader.Load_monitoring;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PyMonitoring_EnterScope{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyMonitoring_EnterScope');
-  {$IFDEF FPC}Pointer({$ENDIF}PyMonitoring_ExitScope{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyMonitoring_ExitScope');
+  {$IFDEF FPC}Pointer({$ENDIF}PyMonitoring_EnterScope{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyMonitoring_EnterScope');
+  {$IFDEF FPC}Pointer({$ENDIF}PyMonitoring_ExitScope{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyMonitoring_ExitScope');
 end;
 
 procedure TP4PLoader.Load_funcobject;
@@ -2577,38 +2614,47 @@ end;
 
 procedure TP4PLoader.Load_pystate;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_New{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterState_New');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Clear{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyInterpreterState_Clear');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Delete{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyInterpreterState_Delete');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Get{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterState_Get');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_GetDict{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyInterpreterState_GetDict');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_GetID{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyInterpreterState_GetID');
-  {$IFDEF FPC}Pointer({$ENDIF}PyState_AddModule{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyState_AddModule');
-  {$IFDEF FPC}Pointer({$ENDIF}PyState_RemoveModule{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyState_RemoveModule');
-  {$IFDEF FPC}Pointer({$ENDIF}PyState_FindModule{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyState_FindModule');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_New{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyThreadState_New');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Clear{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyThreadState_Clear');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Delete{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyThreadState_Delete');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Get{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyThreadState_Get');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Swap{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyThreadState_Swap');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetDict{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyThreadState_GetDict');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_SetAsyncExc{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyThreadState_SetAsyncExc');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetInterpreter{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyThreadState_GetInterpreter');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetFrame{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyThreadState_GetFrame');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetID{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyThreadState_GetID');
-  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Ensure{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyGILState_Ensure');
-  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Release{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyGILState_Release');
-  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_GetThisThreadState{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyGILState_GetThisThreadState');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetUnchecked{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyThreadState_GetUnchecked');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_EnterTracing{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyThreadState_EnterTracing');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_LeaveTracing{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyThreadState_LeaveTracing');
-  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Check{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyGILState_Check');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Main{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterState_Main');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Head{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterState_Head');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Next{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterState_Next');
-  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_ThreadHead{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyInterpreterState_ThreadHead');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Next{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyThreadState_Next');
-  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_DeleteCurrent{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyThreadState_DeleteCurrent');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_New{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyInterpreterState_New');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Clear{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterState_Clear');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Delete{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyInterpreterState_Delete');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Get{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyInterpreterState_Get');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_GetDict{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyInterpreterState_GetDict');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_GetID{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterState_GetID');
+  {$IFDEF FPC}Pointer({$ENDIF}PyState_AddModule{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyState_AddModule');
+  {$IFDEF FPC}Pointer({$ENDIF}PyState_RemoveModule{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyState_RemoveModule');
+  {$IFDEF FPC}Pointer({$ENDIF}PyState_FindModule{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyState_FindModule');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_New{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyThreadState_New');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Clear{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyThreadState_Clear');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Delete{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyThreadState_Delete');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Get{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyThreadState_Get');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Swap{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyThreadState_Swap');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetDict{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyThreadState_GetDict');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_SetAsyncExc{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyThreadState_SetAsyncExc');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetInterpreter{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyThreadState_GetInterpreter');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetFrame{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PyThreadState_GetFrame');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetID{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyThreadState_GetID');
+  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Ensure{$IFDEF FPC}){$ENDIF}              := GetProcAddress(FLibHandle, 'PyGILState_Ensure');
+  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Release{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyGILState_Release');
+  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_GetThisThreadState{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyGILState_GetThisThreadState');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterGuard_FromCurrent{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PyInterpreterGuard_FromCurrent');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterGuard_Close{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyInterpreterGuard_Close');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterGuard_FromView{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyInterpreterGuard_FromView');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterView_FromCurrent{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyInterpreterView_FromCurrent');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterView_Close{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterView_Close');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterView_FromMain{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyInterpreterView_FromMain');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Ensure{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PyThreadState_Ensure');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_EnsureFromView{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, 'PyThreadState_EnsureFromView');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Release{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyThreadState_Release');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetUnchecked{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyThreadState_GetUnchecked');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_EnterTracing{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyThreadState_EnterTracing');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_LeaveTracing{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PyThreadState_LeaveTracing');
+  {$IFDEF FPC}Pointer({$ENDIF}PyGILState_Check{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyGILState_Check');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Main{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterState_Main');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Head{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterState_Head');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_Next{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyInterpreterState_Next');
+  {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_ThreadHead{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyInterpreterState_ThreadHead');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Next{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyThreadState_Next');
+  {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_DeleteCurrent{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyThreadState_DeleteCurrent');
 end;
 
 procedure TP4PLoader.Load_genobject;
@@ -2648,6 +2694,12 @@ procedure TP4PLoader.Load_genericaliasobject;
 begin
   {$IFDEF FPC}Pointer({$ENDIF}Py_GenericAlias{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'Py_GenericAlias');
   {$IFDEF FPC}Pointer({$ENDIF}Py_GenericAliasType{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'Py_GenericAliasType');
+end;
+
+procedure TP4PLoader.Load_sentinelobject;
+begin
+  {$IFDEF FPC}Pointer({$ENDIF}PySentinel_Type{$IFDEF FPC}){$ENDIF}     := GetProcAddress(FLibHandle, 'PySentinel_Type');
+  {$IFDEF FPC}Pointer({$ENDIF}PySentinel_New{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PySentinel_New');
 end;
 
 procedure TP4PLoader.Load_warnings;
@@ -2783,6 +2835,9 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyModule_ExecDef{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyModule_ExecDef');
   {$IFDEF FPC}Pointer({$ENDIF}PyModule_Create2{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyModule_Create2');
   {$IFDEF FPC}Pointer({$ENDIF}PyModule_FromDefAndSpec2{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PyModule_FromDefAndSpec2');
+  {$IFDEF FPC}Pointer({$ENDIF}PyABIInfo_Check{$IFDEF FPC}){$ENDIF}                := GetProcAddress(FLibHandle, 'PyABIInfo_Check');
+  {$IFDEF FPC}Pointer({$ENDIF}PyArg_ParseArray{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyArg_ParseArray');
+  {$IFDEF FPC}Pointer({$ENDIF}PyArg_ParseArrayAndKeywords{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyArg_ParseArrayAndKeywords');
 end;
 
 procedure TP4PLoader.Load_compile;
@@ -2899,13 +2954,17 @@ end;
 
 procedure TP4PLoader.Load_sysmodule;
 begin
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetObject{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PySys_GetObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_SetObject{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PySys_SetObject');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_WriteStdout{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PySys_WriteStdout');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_WriteStderr{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PySys_WriteStderr');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_FormatStdout{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PySys_FormatStdout');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_FormatStderr{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PySys_FormatStderr');
-  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetXOptions{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PySys_GetXOptions');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetAttr{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PySys_GetAttr');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetAttrString{$IFDEF FPC}){$ENDIF}         := GetProcAddress(FLibHandle, 'PySys_GetAttrString');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetOptionalAttr{$IFDEF FPC}){$ENDIF}       := GetProcAddress(FLibHandle, 'PySys_GetOptionalAttr');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetOptionalAttrString{$IFDEF FPC}){$ENDIF} := GetProcAddress(FLibHandle, 'PySys_GetOptionalAttrString');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetObject{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PySys_GetObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_SetObject{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PySys_SetObject');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_WriteStdout{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PySys_WriteStdout');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_WriteStderr{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PySys_WriteStderr');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_FormatStdout{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PySys_FormatStdout');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_FormatStderr{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PySys_FormatStderr');
+  {$IFDEF FPC}Pointer({$ENDIF}PySys_GetXOptions{$IFDEF FPC}){$ENDIF}           := GetProcAddress(FLibHandle, 'PySys_GetXOptions');
 end;
 
 procedure TP4PLoader.Load_audit;
@@ -2947,8 +3006,13 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_ImportFrozenModuleObject{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyImport_ImportFrozenModuleObject');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_ImportFrozenModule{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyImport_ImportFrozenModule');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_AppendInittab{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyImport_AppendInittab');
+  {$IFDEF FPC}Pointer({$ENDIF}PyImport_SetLazyImportsMode{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyImport_SetLazyImportsMode');
+  {$IFDEF FPC}Pointer({$ENDIF}PyImport_SetLazyImportsFilter{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyImport_SetLazyImportsFilter');
+  {$IFDEF FPC}Pointer({$ENDIF}PyImport_GetLazyImportsMode{$IFDEF FPC}){$ENDIF}          := GetProcAddress(FLibHandle, 'PyImport_GetLazyImportsMode');
+  {$IFDEF FPC}Pointer({$ENDIF}PyImport_GetLazyImportsFilter{$IFDEF FPC}){$ENDIF}        := GetProcAddress(FLibHandle, 'PyImport_GetLazyImportsFilter');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_Inittab{$IFDEF FPC}){$ENDIF}                     := GetProcAddress(FLibHandle, 'PyImport_Inittab');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_ExtendInittab{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyImport_ExtendInittab');
+  {$IFDEF FPC}Pointer({$ENDIF}PyImport_CreateModuleFromInitfunc{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyImport_CreateModuleFromInitfunc');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_FrozenModules{$IFDEF FPC}){$ENDIF}               := GetProcAddress(FLibHandle, 'PyImport_FrozenModules');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_ImportModuleAttr{$IFDEF FPC}){$ENDIF}            := GetProcAddress(FLibHandle, 'PyImport_ImportModuleAttr');
   {$IFDEF FPC}Pointer({$ENDIF}PyImport_ImportModuleAttrString{$IFDEF FPC}){$ENDIF}      := GetProcAddress(FLibHandle, 'PyImport_ImportModuleAttrString');

@@ -64,6 +64,21 @@ body { margin: 0.5em; }
 <p></p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Interfaces.html">uP4P.Interfaces</a></td>
+<td class="itemdesc"><p>
+
+<p>An interpreter guard class.
+
+<p>By holding an interpreter guard, the caller can ensure that the interpreter will not finalize until the guard is closed (through TPyInterpreterGuard.Close()).
+
+<p>When a guard is held, a thread attempting to finalize the interpreter will block until the guard is closed before starting finalization. After finalization has started, threads are forever unable to acquire guards for that interpreter. This means that if you forget to close an interpreter guard, the process will permanently hang during finalization!
+
+<p>Holding a guard for an interpreter is similar to holding a strong reference to a Python object, except finalization does not happen automatically after all guards are released: it requires an explicit Py_EndInterpreter() call.
+
+<p></p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Interfaces.html">uP4P.Interfaces</a></td>
 <td class="itemdesc"><p>
@@ -73,6 +88,19 @@ body { margin: 0.5em; }
 <p>Threads belonging to different interpreters initially share nothing, except process state like available memory, open file descriptors and such. The global interpreter lock is also shared by all threads, regardless of to which interpreter they belong.
 
 <p>Changed in version 3.12: PEP 684 introduced the possibility of a per-interpreter GIL. See TPy.NewInterpreterFromConfig().
+
+<p></p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uP4P.Interfaces.IPyInterpreterView.html">IPyInterpreterView</a></td>
+<td class="itemunit"><a class="bold" href="uP4P.Interfaces.html">uP4P.Interfaces</a></td>
+<td class="itemdesc"><p>
+
+<p>A view of an interpreter.
+
+<p>In some cases, it may be necessary to access an interpreter that may have been deleted. This can be done using interpreter views.
+
+<p>This is a thread-safe way to access an interpreter that may have be finalizing or already destroyed.
 
 <p></p></td>
 </tr>

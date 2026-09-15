@@ -77,7 +77,7 @@ type
       function Get_int_max_str_digits: integer; virtual;
       function Get_interactive: boolean; virtual;
       function Get_isolated: boolean; virtual;
-      function Get_lazy_imports: TPyLazyImports; virtual;               //****** 3.15.0
+      function Get_lazy_imports: PyImport_LazyImportsMode; virtual;              //****** 3.15.0
       {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; virtual;
       {$ENDIF}
@@ -94,7 +94,7 @@ type
       function Get_prefix: string; virtual;
       function Get_program_name: string; virtual;
       function Get_pycache_prefix: string; virtual;
-      function Get_pymalloc_hugepages: boolean; virtual;                //****** 3.15.0
+      function Get_pymalloc_hugepages: boolean; virtual;                         //****** 3.15.0
       function Get_pythonpath_env: string; virtual;
       function Get_quiet: boolean; virtual;
       function Get_remote_debug: boolean; virtual;
@@ -151,7 +151,7 @@ type
       procedure Set_int_max_str_digits(aValue: integer); virtual;
       procedure Set_interactive(aValue: boolean); virtual;
       procedure Set_isolated(aValue: boolean); virtual;
-      procedure Set_lazy_imports(aValue: TPyLazyImports); virtual;                //****** 3.15.0
+      procedure Set_lazy_imports(aValue: PyImport_LazyImportsMode); virtual;     //****** 3.15.0
       {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); virtual;
       {$ENDIF}
@@ -595,7 +595,7 @@ type
       /// <para><see href="https://docs.python.org/3.15/using/cmdline.html#envvar-PYTHON_LAZY_IMPORTS">See the article about PYTHON_LAZY_IMPORTS.</see></para>
       /// <para>Added in version 3.15.</para>
       /// </remarks>
-      property lazy_imports              : TPyLazyImports       read Get_lazy_imports                 write Set_lazy_imports;
+      property lazy_imports              : PyImport_LazyImportsMode read Get_lazy_imports                 write Set_lazy_imports;
       {$IFDEF MSWINDOWS}
       /// <summary>
       /// <para>If True, use io.FileIO instead of io._WindowsConsoleIO for
@@ -1140,7 +1140,7 @@ type
       function Get_int_max_str_digits: integer; override;
       function Get_interactive: boolean; override;
       function Get_isolated: boolean; override;
-      function Get_lazy_imports: TPyLazyImports; override;             //****** 3.15.0
+      function Get_lazy_imports: PyImport_LazyImportsMode; override;             //****** 3.15.0
       {$IFDEF MSWINDOWS}
       function Get_legacy_windows_stdio: boolean; override;
       {$ENDIF}
@@ -1157,7 +1157,7 @@ type
       function Get_prefix: string; override;
       function Get_program_name: string; override;
       function Get_pycache_prefix: string; override;
-      function Get_pymalloc_hugepages: boolean; override;              //****** 3.15.0
+      function Get_pymalloc_hugepages: boolean; override;                        //****** 3.15.0
       function Get_pythonpath_env: string; override;
       function Get_quiet: boolean; override;
       function Get_remote_debug: boolean; override;
@@ -1214,7 +1214,7 @@ type
       procedure Set_int_max_str_digits(aValue: integer); override;
       procedure Set_interactive(aValue: boolean); override;
       procedure Set_isolated(aValue: boolean); override;
-      procedure Set_lazy_imports(aValue: TPyLazyImports); override;      //****** 3.15.0
+      procedure Set_lazy_imports(aValue: PyImport_LazyImportsMode); override;    //****** 3.15.0
       {$IFDEF MSWINDOWS}
       procedure Set_legacy_windows_stdio(aValue: boolean); override;
       {$ENDIF}
@@ -1231,7 +1231,7 @@ type
       procedure Set_prefix(const aValue: string); override;
       procedure Set_program_name(const aValue: string); override;
       procedure Set_pycache_prefix(const aValue: string); override;
-      procedure Set_pymalloc_hugepages(aValue: boolean); override;       //****** 3.15.0
+      procedure Set_pymalloc_hugepages(aValue: boolean); override;               //****** 3.15.0
       procedure Set_pythonpath_env(const aValue: string); override;
       procedure Set_quiet(aValue: boolean); override;
       procedure Set_remote_debug(aValue: boolean); override;
@@ -2173,9 +2173,9 @@ begin
   Result := False;
 end;
 
-function TPyConfigBase.Get_lazy_imports: TPyLazyImports;
+function TPyConfigBase.Get_lazy_imports: PyImport_LazyImportsMode;
 begin
-  Result := li_normal;
+  Result := PyImport_LAZY_NORMAL;
 end;
 
 {$IFDEF MSWINDOWS}
@@ -2693,7 +2693,7 @@ begin
   //
 end;
 
-procedure TPyConfigBase.Set_lazy_imports(aValue: TPyLazyImports);
+procedure TPyConfigBase.Set_lazy_imports(aValue: PyImport_LazyImportsMode);
 begin
   //
 end;
@@ -3047,12 +3047,12 @@ begin
   Result := (FConfig.isolated <> 0);
 end;
 
-function TPyConfig315.Get_lazy_imports: TPyLazyImports;
+function TPyConfig315.Get_lazy_imports: PyImport_LazyImportsMode;
 begin
   if (FConfig.lazy_imports > 0) then
-    Result := li_all
+    Result := PyImport_LAZY_ALL
    else
-    Result := li_normal;
+    Result := PyImport_LAZY_NORMAL;
 end;
 
 {$IFDEF MSWINDOWS}
@@ -3423,11 +3423,11 @@ begin
   FConfig.isolated := ord(aValue);
 end;
 
-procedure TPyConfig315.Set_lazy_imports(aValue: TPyLazyImports);
+procedure TPyConfig315.Set_lazy_imports(aValue: PyImport_LazyImportsMode);
 begin
   case aValue of
-    li_all     : FConfig.lazy_imports := 1;
-    li_normal  : FConfig.lazy_imports := -1;
+    PyImport_LAZY_ALL     : FConfig.lazy_imports := 1;
+    PyImport_LAZY_NORMAL  : FConfig.lazy_imports := -1;
   end;
 end;
 
