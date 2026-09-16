@@ -57,8 +57,10 @@ type
       /// </summary>
       class procedure SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject);
       /// <summary>
-      /// <para>Return the object at position pos in the struct sequence pointed
-      /// to by p.</para>
+      /// <para>Return the object at position pos in the struct sequence
+      /// pointed to by p. The returned reference is borrowed from the struct
+      /// sequence p (that is: it is only valid as long as you hold a reference
+      /// to p).</para>
       /// <para>Bounds checking is performed as an assertion if Python is built
       /// in debug mode or with assertions.</para>
       /// </summary>

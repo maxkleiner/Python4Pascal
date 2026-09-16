@@ -229,11 +229,15 @@ body { margin: 0.5em; }
 
 <p>Return a borrowed reference to the object from dictionary mp which has a key key. Return nil if the key key is missing without setting an exception.
 
+<p>The first argument can be a dict or a frozendict.
+
 <p>Note: Exceptions that occur while this calls __hash__() and __eq__() methods are silently ignored. Prefer the TPyDict.GetItemWithError() function instead.
 
 <p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemRef(), which returns a strong reference.
 
 <p>Changed in version 3.10: Calling this API without an attached thread state had been allowed for historical reason. It is no longer allowed.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -250,6 +254,8 @@ body { margin: 0.5em; }
 <p>Variant of TPyDict.GetItem() that does not suppress exceptions. Return nil with an exception set if an exception occurred. Return nil without an exception set if the key wasn't present.
 
 <p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemRef(), which returns a strong reference.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -313,6 +319,8 @@ body { margin: 0.5em; }
 
 <p>Empty an existing dictionary of all key-value pairs.
 
+<p>Do nothing if the argument is not a dict or a dict subclass.
+
 <p></p>
 </td></tr>
 </table>
@@ -326,6 +334,8 @@ body { margin: 0.5em; }
 
 
 <p>Iterate over all key-value pairs in the dictionary p. The Py_ssize_t referred to by ppos must be initialized to 0 prior to the first call to this function to start the iteration; the function returns true for each pair in the dictionary, and false once all pairs have been reported. The parameters pkey and pvalue should either point to PyObject variables that will be filled in with each key and value, respectively, or may be nil. Any references returned through them are borrowed. ppos should not be altered during iteration. Its value represents offsets within the internal dictionary structure, and since the structure is sparse, the offsets are not consecutive.
+
+<p>The first argument can be a dict or a frozendict.
 
 <p>For example:
 
@@ -367,7 +377,7 @@ while (PyDict_Next(self-&gt;dict, &amp;pos, &amp;key, &amp;value)) {
 
 <p>
 
-<p>The function is not thread-safe in the free-threaded build without external synchronization. You can use Py_BEGIN_CRITICAL_SECTION to lock the dictionary while iterating over it:
+<p>The function is not thread-safe in the free-threaded build without external synchronization for a mutable dict. You can use Py_BEGIN_CRITICAL_SECTION to lock the dictionary while iterating over it:
 
 <p></p>
 
@@ -380,7 +390,11 @@ Py_END_CRITICAL_SECTION();</pre>
 
 <p>
 
+<p>The function is thread-safe on a frozendict.
+
 <p>Note On the free-threaded build, this function can be used safely inside a critical section. However, the references returned for pkey and pvalue are borrowed and are only valid while the critical section is held. If you need to use these objects outside the critical section or when the critical section can be suspended, create a strong reference (for example, using TPy.NewRef()).
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -396,6 +410,10 @@ Py_END_CRITICAL_SECTION();</pre>
 
 <p>Return a PyListObject containing all the keys from the dictionary.
 
+<p>The first argument can be a dict or a frozendict.
+
+<p>Changed in version 3.15: Also accept frozendict.
+
 <p></p>
 </td></tr>
 </table>
@@ -409,6 +427,10 @@ Py_END_CRITICAL_SECTION();</pre>
 
 
 <p>Return a PyListObject containing all the values from the dictionary mp.
+
+<p>The first argument can be a dict or a frozendict.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -424,6 +446,10 @@ Py_END_CRITICAL_SECTION();</pre>
 
 <p>Return a PyListObject containing all the items from the dictionary.
 
+<p>The first argument can be a dict or a frozendict.
+
+<p>Changed in version 3.15: Also accept frozendict.
+
 <p></p>
 </td></tr>
 </table>
@@ -437,6 +463,10 @@ Py_END_CRITICAL_SECTION();</pre>
 
 
 <p>Return the number of items in the dictionary. This is equivalent to len(mp) on a dictionary.
+
+<p>The first argument can be a dict or a frozendict.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -467,6 +497,10 @@ Py_END_CRITICAL_SECTION();</pre>
 <p>Determine if dictionary p contains key. If an item in p matches key, return 1, otherwise return 0. On error, return -1. This is equivalent to the Python expression key in p.
 
 <p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
+
+<p>The first argument can be a dict or a frozendict.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -544,6 +578,8 @@ def PyDict_MergeFromSeq2(a, seq2, override):
 
 <p>Note: In the free-threaded build, the returned borrowed reference may become invalid if another thread modifies the dictionary concurrently. Prefer TPyDict.GetItemStringRef(), which returns a strong reference.
 
+<p>Changed in version 3.15: Also accept frozendict.
+
 <p></p>
 </td></tr>
 </table>
@@ -596,9 +632,13 @@ def PyDict_MergeFromSeq2(a, seq2, override):
 
 <p>
 
+<p>The first argument can be a dict or a frozendict.
+
 <p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
 
 <p>Added in version 3.13.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p>See also the TPyObject.GetItem() function.
 
@@ -617,6 +657,8 @@ def PyDict_MergeFromSeq2(a, seq2, override):
 <p>Similar to TPyDict.GetItemRef(), but key is specified as a string, rather than a IPyObject.
 
 <p>Added in version 3.13.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>
@@ -701,7 +743,11 @@ def PyDict_MergeFromSeq2(a, seq2, override):
 
 <p>Note: The operation is atomic on free threading when key is str, int, float, bool or bytes.
 
+<p>The first argument can be a dict or a frozendict.
+
 <p>Added in version 3.13.
+
+<p>Changed in version 3.15: Also accept frozendict.
 
 <p></p>
 </td></tr>

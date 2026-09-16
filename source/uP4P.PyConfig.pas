@@ -28,12 +28,78 @@ uses
 *}
 
 type
+  /// <summary>
+  /// <para>Helper class for all the PyConfig_* methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/init_config.html#runtime-python-configuration-api">See the article about Runtime Python configuration API.</see></para>
+  /// </remarks>
   TPyConfig = class
     public
+      /// <summary>
+      /// <para>Get all configuration option names as a frozenset.</para>
+      /// <code>
+      /// - Return a new reference on success.
+      /// - Set an exception and return NULL on error.
+      /// </code>
+      /// <para>The caller must have an attached thread state. The function
+      /// cannot be called before Python initialization nor after Python
+      /// finalization.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function Names: IPyObject;
+      /// <summary>
+      /// <para>Similar to TPyConfig.Get(), but get the value as a C int.</para>
+      /// <para>Return True on success. Set an exception and return False on
+      /// error.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function GetInt(const name_: string; var value: integer): boolean;
+      /// <summary>
+      /// <para>Similar to TPyConfig.Get(), but get the value as a
+      /// boolean.</para>
+      /// <para>Return True on success. Set an exception and return False on
+      /// error.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function GetBoolean(const name_: string; var value: boolean): boolean;
+      /// <summary>
+      /// <para>Get the current runtime value of a configuration option as a
+      /// Python object.</para>
+      /// <para>Return a new reference on success.</para>
+      /// <para>Set an exception and return NULL on error.</para>
+      /// <para>The object type depends on the configuration option. It can
+      /// be:</para>
+      /// <code>
+      /// - bool
+      /// - int
+      /// - str
+      /// - list[str]
+      /// - dict[str, str]
+      /// </code>
+      /// <para>The caller must have an attached thread state. The function
+      /// cannot be called before Python initialization nor after Python
+      /// finalization.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
       class function Get(const name_: string): IPyObject;
+      /// <summary>
+      /// <para>Set the current runtime value of a configuration option.</para>
+      /// <code>
+      /// - Raise a ValueError if there is no option name.
+      /// - Raise a ValueError if value is an invalid value.
+      /// - Raise a ValueError if the option is read-only (cannot be set).
+      /// - Raise a TypeError if value has not the proper type.
+      /// </code>
+      /// <para>The caller must have an attached thread state. The function
+      /// cannot be called before Python initialization nor after Python
+      /// finalization.</para>
+      /// <para>Raises an auditing event cpython.PyConfig_Set with arguments
+      /// name, value.</para>
+      /// <para>Added in version 3.14.</para>
+      /// <para>Changed in version 3.15: The function now replaces sys.flags
+      /// (create a new object), instead of modifying sys.flags in-place.</para>
+      /// </summary>
       class function Set_(const name_: string; const value: IPyObject): boolean;
   end;
 

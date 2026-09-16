@@ -305,6 +305,9 @@ type
     /// specified as a string, rather than a IPyObject.</para>
     /// <para>If value is nil, the attribute is deleted, but this feature is
     /// deprecated in favour of using TPyObject.DelAttrString().</para>
+    /// <para>The function must not be called with a nil value and an
+    /// exception set. This case can arise from forgetting nil checks and
+    /// would delete the attribute.</para>
     /// <para>The number of different attribute names passed to this function
     /// should be kept small, usually by using a statically allocated string
     /// as attr_name. For attribute names that aren't known at compile time,
@@ -312,6 +315,8 @@ type
     /// directly. For more details, see TPyUnicode.InternFromString(), which
     /// may be used internally to create a key object.</para>
     /// <para>This function uses a IPyObject for the value parameter.</para>
+    /// <para>Changed in version 3.15: Must not be called with nil value if
+    /// an exception is set.</para>
     /// </summary>
     function  SetAttrString(const attr_name: string; const value: IPyObject): boolean;
     /// <summary>
@@ -319,6 +324,9 @@ type
     /// specified as a string, rather than a IPyObject.</para>
     /// <para>If value is nil, the attribute is deleted, but this feature is
     /// deprecated in favour of using TPyObject.DelAttrString().</para>
+    /// <para>The function must not be called with a nil value and an
+    /// exception set. This case can arise from forgetting nil checks and
+    /// would delete the attribute.</para>
     /// <para>The number of different attribute names passed to this function
     /// should be kept small, usually by using a statically allocated string
     /// as attr_name. For attribute names that aren't known at compile time,
@@ -327,6 +335,8 @@ type
     /// may be used internally to create a key object.</para>
     /// <para>This function uses a PPyObject pointer for the value
     /// parameter.</para>
+    /// <para>Changed in version 3.15: Must not be called with nil value if
+    /// an exception is set.</para>
     /// </summary>
     function  SetAttrString2(const attr_name: string; value: Pointer): boolean;
     /// <summary>
@@ -424,7 +434,11 @@ type
     /// <para>If value is nil, the attribute is deleted. This behaviour is
     /// deprecated in favour of using TPyObject.DelAttr(), but there are
     /// currently no plans to remove it.</para>
-    /// <para>This function uses a IPyObject value.</para>
+    /// <para>The function must not be called with a nil value and an
+    /// exception set. This case can arise from forgetting nil checks and
+    /// would delete the attribute.</para>
+    /// <para>Changed in version 3.15: Must not be called with nil value if
+    /// an exception is set.</para>
     /// </summary>
     function  SetAttr(const attr_name, value: IPyObject): boolean;
     /// <summary>
@@ -435,6 +449,11 @@ type
     /// <para>If value is nil, the attribute is deleted. This behaviour is
     /// deprecated in favour of using TPyObject.DelAttr(), but there are
     /// currently no plans to remove it.</para>
+    /// <para>The function must not be called with a nil value and an
+    /// exception set. This case can arise from forgetting nil checks and
+    /// would delete the attribute.</para>
+    /// <para>Changed in version 3.15: Must not be called with nil value if
+    /// an exception is set.</para>
     /// <para>This function uses a PPyObject pointer in the value.</para>
     /// </summary>
     function  SetAttr2(const attr_name: IPyObject; value: Pointer): boolean;

@@ -257,8 +257,8 @@ type
       /// <para>Return a new PyLongObject object from v, or nil on
       /// failure.</para>
       /// <para>CPython implementation detail: CPython keeps an array of integer
-      /// objects for all integers between -5 and 256. When you create an int in
-      /// that range you actually just get back a reference to the existing
+      /// objects for all integers between -5 and 1024. When you create an int
+      /// in that range you actually just get back a reference to the existing
       /// object.</para>
       /// </summary>
       class function FromLong(v: C_Long): IPyObject;

@@ -83,17 +83,21 @@ type
       /// <para>Return True when the Python interpreter has been initialized,
       /// False if not. After TPy.FinalizeEx() is called, this returns False
       /// until TPy.Initialize() is called again.</para>
+      /// <para>Changed in version 3.15: This function no longer returns true
+      /// until initialization has fully completed, including import of the site
+      /// module. Previously it could return true while TPy.Initialize() was
+      /// still running.</para>
       /// </summary>
       class function  IsIntialized: boolean;
       /// <summary>
       /// <para>Create a GenericAlias object. Equivalent to calling the Python
       /// class types.GenericAlias. The origin and args arguments set the
-      /// GenericAlias‘s __origin__ and __args__ attributes respectively.
+      /// GenericAlias's __origin__ and __args__ attributes respectively.
       /// origin should be a PyTypeObject*, and args can be a PyTupleObject* or
       /// any PyObject*. If args passed is not a tuple, a 1-tuple is
       /// automatically constructed and __args__ is set to (args,).
       /// Minimal checking is done for the arguments, so the function will
-      /// succeed even if origin is not a type. The GenericAlias‘s
+      /// succeed even if origin is not a type. The GenericAlias's
       /// __parameters__ attribute is constructed lazily from __args__.</para>
       /// </summary>
       /// <remarks>

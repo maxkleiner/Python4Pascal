@@ -37,6 +37,7 @@ type
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
       FMultIntprSupport      : TMultIntprSupport;
+      FInitializedModuleDef  : boolean;
 
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
@@ -47,6 +48,7 @@ type
       procedure DestroyMethods;
       procedure CreateSlotArray;
       procedure CreateMethodArray;
+      function  InitializeModuleDef(const aName, aDocStrings: string) : boolean;
       function  AddSentinelMethod: boolean;
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
       function  AddSentinelSlot: boolean;
@@ -102,6 +104,10 @@ type
       /// Multiple interpreter support in a module.
       /// </summary>
       property MultIntprSupport              : TMultIntprSupport   read FMultIntprSupport         write FMultIntprSupport;
+      /// <summary>
+      /// ModuleDef was initialized correctly.
+      /// </summary>
+      property InitializedModuleDef          : boolean             read FInitializedModuleDef;
       /// <summary>
       /// <para>Event triggered after the module has been initialized.</para>
       /// </summary>
@@ -235,20 +241,7 @@ begin
   FOnAfterInitialization := nil;
   FMultIntprSupport      := miSupported;
   FIsExtension           := aIsExtension;
-
-  FillChar(FModuleDef, SizeOf(FModuleDef), 0);
-
-  TPyModuleDef.Init(FModuleDef);
-
-  if (length(aName) > 0) then
-    FModuleDef.m_name := PAnsiChar(FName)
-   else
-    FModuleDef.m_name := nil;
-
-  if (length(aDocStrings) > 0) then
-    FModuleDef.m_doc := PAnsiChar(FDocStrings)
-   else
-    FModuleDef.m_doc := nil;
+  FInitializedModuleDef  := InitializeModuleDef(aName, aDocStrings);
 end;
 
 destructor TCustomPyModule.Destroy;
@@ -272,16 +265,43 @@ begin
   FSlotList   := TList.Create;
   FMethodList := TList.Create;
 
-  if (GlobalP4PEngine <> nil) then
+  if FInitializedModuleDef and (GlobalP4PEngine <> nil) then
     GlobalP4PEngine.AddModule(self);
 end;
 
 procedure TCustomPyModule.BeforeDestruction;
 begin
-  if (GlobalP4PEngine <> nil) then
+  if FInitializedModuleDef and (GlobalP4PEngine <> nil) then
     GlobalP4PEngine.RemoveModule(self);
 
   inherited BeforeDestruction;
+end;
+
+function TCustomPyModule.InitializeModuleDef(const aName, aDocStrings: string) : boolean;
+begin
+  Result := False;
+
+  try
+    FillChar(FModuleDef, SizeOf(FModuleDef), 0);
+
+    if assigned(TPyModuleDef.Init(FModuleDef)) then
+      begin
+        if (length(aName) > 0) then
+          FModuleDef.m_name := PAnsiChar(FName)
+         else
+          FModuleDef.m_name := nil;
+
+        if (length(aDocStrings) > 0) then
+          FModuleDef.m_doc := PAnsiChar(FDocStrings)
+         else
+          FModuleDef.m_doc := nil;
+
+        Result := True;
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TCustomPyModule.InitializeModuleDef', e) then raise;
+  end;
 end;
 
 function TCustomPyModule.AddSentinelMethod: boolean;
@@ -501,7 +521,7 @@ var
   TempSpec : IPyObject;
 begin
   Result := False;
-  if assigned(FModule) or (GlobalP4PEngine = nil) then exit;
+  if assigned(FModule) or not(FInitializedModuleDef) then exit;
 
   AddAllSlots;
   AddAllMethods;

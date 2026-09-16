@@ -38,6 +38,8 @@ type
       /// tp_new is deprecated.</para>
       /// <para>Changed in version 3.14: Creating classes whose metaclass
       /// overrides tp_new is no longer allowed.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer TPyType.FromSlots()
+      /// in new code.</para>
       /// </summary>
       class function FromSpec(spec: PPyType_Spec): IPyObject;
       /// <summary>
@@ -52,6 +54,8 @@ type
       /// tp_new is deprecated.</para>
       /// <para>Changed in version 3.14: Creating classes whose metaclass
       /// overrides tp_new is no longer allowed.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer TPyType.FromSlots()
+      /// in new code.</para>
       /// </summary>
       class function FromSpecWithBases(spec: PPyType_Spec; const bases: IPyObject): IPyObject;
       /// <summary>
@@ -77,6 +81,8 @@ type
       /// tp_new is deprecated.</para>
       /// <para>Changed in version 3.14: Creating classes whose metaclass
       /// overrides tp_new is no longer allowed.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer TPyType.FromSlots()
+      /// in new code.</para>
       /// </summary>
       class function FromModuleAndSpec(const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
       /// <summary>
@@ -93,8 +99,8 @@ type
       /// result. TPy.TYPE(self) may be a subclass of the intended class, and
       /// subclasses are not necessarily defined in the same module as their
       /// superclass. See PyCMethod to get the class that defines the method.
-      /// See TPyTypeObject.GetModuleByDef() for cases when PyCMethod cannot be
-      /// used.</para>
+      /// See TPyTypeObject.GetModuleByToken() for cases when PyCMethod cannot
+      /// be used.</para>
       /// </summary>
       class function GetModule(type_: PPyTypeObject): IPyObject;
       /// <summary>
@@ -163,6 +169,8 @@ type
       /// <para>__init_subclass__() is not called on any bases.</para>
       /// <para>__set_name__() is not called on new descriptors.</para>
       /// <para>Added in version 3.12.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer TPyType.FromSlots()
+      /// in new code.</para>
       /// </summary>
       class function FromMetaclass(metaclass: PPyTypeObject; const module: IPyObject; spec: PPyType_Spec; const bases: IPyObject): IPyObject;
       /// <summary>
@@ -178,7 +186,7 @@ type
       class function GetTypeDataSize(cls: PPyTypeObject): Py_ssize_t;
       /// <summary>
       /// <para>Find the first superclass in type's method resolution order
-      /// whose Py_tp_token token is equal to the given one.</para>
+      /// whose Py_tp_token tp_token is equal to the given one.</para>
       /// <code>
       /// - If found, set result_ to a new strong reference to it and return 1.
       /// - If not found, set result_ to nil and return 0.
@@ -186,10 +194,10 @@ type
       /// </code>
       /// <para>The result_ argument may be nil, in which case result_ is not
       /// set. Use this if you need only the return value.</para>
-      /// <para>The token argument may not be nil.</para>
+      /// <para>The tp_token argument may not be nil.</para>
       /// <para>Added in version 3.14.</para>
       /// </summary>
-      class function GetBaseByToken(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
+      class function GetBaseByToken(type_: PPyTypeObject; tp_token: Pointer; var result_: PPyTypeObject): integer;
       /// <summary>
       /// <para>Return true if type1 is a subtype of type2.</para>
       /// <para>This function only checks for actual subtypes, which means that
@@ -262,13 +270,15 @@ type
       class procedure Modified(aPyTypeObject: PPyTypeObject);
       /// <summary>
       /// <para>Find the first superclass whose module was created from the
-      /// given PyModuleDef def, and return that module.</para>
-      /// <para>If no module is found, raises a TypeError and returns
-      /// nil.</para>
-      /// <para>This function is intended to be used together with
-      /// TPyModule.GetState() to get module state from slot methods (such as
-      /// tp_init or nb_add) and other places where a method's defining class
-      /// cannot be passed using the PyCMethod calling convention.</para>
+      /// given PyModuleDef def, or whose module token is equal to def, and
+      /// return that module.</para>
+      /// <para>Note that modules created from a PyModuleDef always have their
+      /// token set to the PyModuleDef's address. In other words, this function
+      /// is equivalent to TPyType.GetModuleByToken(), except that it:</para>
+      /// <code>
+      /// - returns a borrowed reference, and
+      /// - has a non-void* argument type (which is a cosmetic difference in C).
+      /// </code>
       /// <para>The returned reference is borrowed from type, and will be valid
       /// as long as you hold a reference to type. Do not release it with
       /// TPy.DECREF() or similar.</para>
@@ -329,10 +339,14 @@ type
       /// be called only once for a series of consecutive modifications to type,
       /// if _PyType_Lookup() is not called on type between the modifications;
       /// this is an implementation detail and subject to change.)</para>
+      /// <para>The callback is also invoked when a watched heap type is
+      /// deallocated.</para>
       /// <para>An extension should never call TPyTypeObject.Watch with a
       /// watcher_id that was not returned to it by a previous call to
       /// TPyTypeObject.AddWatcher().</para>
       /// <para>Added in version 3.12.</para>
+      /// <para>Changed in version 3.15: The callback is now also invoked when
+      /// a watched heap type is deallocated.</para>
       /// </summary>
       class function Watch(watcher_id: integer; const type_: IPyObject): boolean;
       /// <summary>
@@ -624,10 +638,11 @@ begin
     Result := 0;
 end;
 
-class function TPyTypeObject.GetBaseByToken(type_: PPyTypeObject; token: Pointer; var result_: PPyTypeObject): integer;
+class function TPyTypeObject.GetBaseByToken(type_: PPyTypeObject; tp_token: Pointer; var result_: PPyTypeObject): integer;
 begin
-  if assigned(PyType_GetBaseByToken) then
-    Result := PyType_GetBaseByToken(type_, token, @result_)
+  if assigned(PyType_GetBaseByToken) and
+     assigned(tp_token) then
+    Result := PyType_GetBaseByToken(type_, tp_token, @result_)
    else
     Result := -1;
 end;

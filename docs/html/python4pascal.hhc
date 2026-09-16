@@ -1823,6 +1823,10 @@
 <param name="Name" value="FMultIntprSupport">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FMultIntprSupport">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FInitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FInitializedModuleDef">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -1848,6 +1852,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="MultIntprSupport">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializedModuleDef">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="OnAfterInitialization">
@@ -1890,6 +1898,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="CreateMethodArray">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#CreateMethodArray">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializeModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializeModuleDef">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMethod">
@@ -34704,6 +34716,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FInitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FInitializedModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FIsExtension">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FIsExtension">
 </object>
@@ -34756,6 +34772,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#HasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializedModuleDef">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Module">
@@ -34838,6 +34858,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelSlot">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetHasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializeModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializeModuleDef">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">

@@ -42,11 +42,12 @@ type
       /// </summary>
       class function  start_new_thread(func_: PyThread_start_new_thread_func; arg: Pointer): C_ULong;
       /// <summary>
-      /// <para>Return the identifier of the current thread, which will never be
-      /// zero.</para>
+      /// <para>Return the identifier of the current thread, which will never
+      /// be zero.</para>
       /// <para>This function cannot fail, and the caller does not need to hold
       /// an attached thread state.</para>
-      /// <para>See also threading.get_ident()</para>
+      /// <para>See also threading.get_ident() and threading.Thread.ident
+      /// expose this identifier to Python.</para>
       /// </summary>
       class function  get_thread_ident: C_ULong;
       /// <summary>

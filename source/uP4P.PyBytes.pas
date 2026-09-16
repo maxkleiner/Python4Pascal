@@ -55,6 +55,8 @@ type
       /// just created using TPyBytes.FromStringAndSize(nil, size).</para>
       /// <para>It must not be deallocated. If o is not a bytes object at all,
       /// returns nil and raises TypeError.</para>
+      /// <para>soft-deprecated:: 3.15 Use the PyBytesWriter API instead of
+      /// TPyBytes.FromStringAndSize(nil, len).</para>
       /// </summary>
       class function AsBuffer(const ob: IPyObject): PByte;
       /// <summary>

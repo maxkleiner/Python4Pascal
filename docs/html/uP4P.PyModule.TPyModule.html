@@ -543,6 +543,8 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 
 <p>Process any execution slots (Py_mod_exec) given in def.
 
+<p>Soft deprecated since version 3.15: To run a module's own execution slots, prefer TPyModule.Exec(), which works on modules that were not created from a PyModuleDef structure.
+
 <p></p>
 <p>
 
@@ -603,6 +605,8 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 
 <p>This macro calls TPyModule.FromDefAndSpec2() with module_api_version set to PYTHON_API_VERSION.
 
+<p>Soft deprecated since version 3.15: Prefer TPyModule.FromSlotsAndSpec() in new code.
+
 <p></p>
 <p>
 
@@ -628,6 +632,8 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 <p>Note that this does not process execution slots (Py_mod_exec). Both TPyModule.FromDefAndSpec and TPyModule.ExecDef must be called to fully initialize a module.
 
 <p>Note: Most uses of this function should be using TPyModule.FromDefAndSpec() instead; only use this if you are sure you need it.
+
+<p>Soft deprecated since version 3.15: Prefer TPyModule.FromSlotsAndSpec() in new code.
 
 <p></p>
 <p>

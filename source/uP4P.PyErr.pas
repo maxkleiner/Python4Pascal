@@ -384,6 +384,7 @@ type
       ///    the only way to interrupt the interpreter.)
       /// - Running the garbage collector, if necessary.
       /// - Executing a pending remote debugger script.
+      /// - Raise the exception set by TPyThreadState.SetAsyncExc().
       /// </code>
       /// <para>If any handler raises an exception, immediately return False
       /// with that exception set. Any remaining interruptions are left to be
@@ -395,6 +396,8 @@ type
       /// garbage collector.</para>
       /// <para>Changed in version 3.14: This function may now execute a remote
       /// debugger script, if remote debugging is enabled.</para>
+      /// <para>Changed in version 3.15: The exception set by
+      /// TPyThreadState.SetAsyncExc() is now raised.</para>
       /// </summary>
       class function CheckSignals(): boolean;
       /// <summary>

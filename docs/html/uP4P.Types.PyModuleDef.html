@@ -23,7 +23,15 @@ body { margin: 0.5em; }
 <code>type PyModuleDef = record</code></p>
 <h2 class="description">Description</h2>
 <p>
- The module definition struct, which holds all information needed to create a module object. This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist). Usually, there is only one variable of this type for each extension module. </p>
+
+
+<p>The module definition struct, which holds all information needed to create a module object.
+
+<p>This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist).
+
+<p>Usually, there is only one variable of this type for each extension module.
+
+<p></p>
 <p>
 
 
@@ -107,7 +115,21 @@ body { margin: 0.5em; }
 </tr>
 <tr><td colspan="2">
 <p>
- Module state may be kept in a per-module memory area that can be retrieved with PyModule_GetState(), rather than in static globals. This makes modules safe for use in multiple sub-interpreters. This memory area is allocated based on m_size on module creation, and freed when the module object is deallocated, after the m_free function has been called, if present. Setting it to a non-negative value means that the module can be re-initialized and specifies the additional amount of memory it requires for its state. Setting m_size to -1 means that the module does not support sub-interpreters, because it has global state. Negative m_size is only allowed when using legacy single-phase initialization or when creating modules dynamically. See PEP 3121 for more details. </p>
+
+
+<p>Module state may be kept in a per-module memory area that can be retrieved with TPyModule.GetState(), rather than in static globals.
+
+<p>This makes modules safe for use in multiple sub-interpreters.
+
+<p>This memory area is allocated based on m_size on module creation, and freed when the module object is deallocated, after the m_free function has been called, if present.
+
+<p>Setting it to a non-negative value means that the module can be re-initialized and specifies the additional amount of memory it requires for its state.
+
+<p>Setting m_size to -1 means that the module does not support sub-interpreters, because it has global state. Negative m_size is only allowed when using legacy single-phase initialization or when creating modules dynamically.
+
+<p>See PEP 3121 for more details.
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -137,7 +159,17 @@ body { margin: 0.5em; }
 </tr>
 <tr><td colspan="2">
 <p>
- A traversal function to call during GC traversal of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Changed in version 3.9: No longer called before the module state is allocated. </p>
+
+
+<p>A traversal function to call during GC traversal of the module object, or nil if not needed.
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function).
+
+<p>More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Changed in version 3.9: No longer called before the module state is allocated.
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -147,7 +179,19 @@ body { margin: 0.5em; }
 </tr>
 <tr><td colspan="2">
 <p>
- A clear function to call during GC clearing of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Like PyTypeObject.tp_clear, this function is not always called before a module is deallocated. For example, when reference counting is enough to determine that an object is no longer used, the cyclic garbage collector is not involved and m_free is called directly. Changed in version 3.9: No longer called before the module state is allocated. </p>
+
+
+<p>A clear function to call during GC clearing of the module object, or nil if not needed.
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function).
+
+<p>More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Like PyTypeObject.tp_clear, this function is not always called before a module is deallocated. For example, when reference counting is enough to determine that an object is no longer used, the cyclic garbage collector is not involved and m_free is called directly.
+
+<p>Changed in version 3.9: No longer called before the module state is allocated.
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -157,7 +201,17 @@ body { margin: 0.5em; }
 </tr>
 <tr><td colspan="2">
 <p>
- A function to call during deallocation of the module object, or nil if not needed. This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by PyModule_GetState()) is nil. Changed in version 3.9: No longer called before the module state is allocated. </p>
+
+
+<p>A function to call during deallocation of the module object, or nil if not needed.
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function).
+
+<p>More precisely, this function is not called if m_size is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Changed in version 3.9: No longer called before the module state is allocated.
+
+<p></p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>

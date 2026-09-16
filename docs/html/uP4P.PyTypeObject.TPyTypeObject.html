@@ -89,7 +89,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-">GetBaseByToken</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyTypeObject.TPyTypeObject.html#GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-">GetBaseByToken</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; tp_token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -215,6 +215,8 @@ body { margin: 0.5em; }
 
 <p>Changed in version 3.14: Creating classes whose metaclass overrides tp_new is no longer allowed.
 
+<p>Soft deprecated since version 3.15: Prefer TPyType.FromSlots() in new code.
+
 <p></p>
 </td></tr>
 </table>
@@ -236,6 +238,8 @@ body { margin: 0.5em; }
 <p>The tp_new of the metaclass is ignored. which may result in incomplete initialization. Creating classes whose metaclass overrides tp_new is deprecated.
 
 <p>Changed in version 3.14: Creating classes whose metaclass overrides tp_new is no longer allowed.
+
+<p>Soft deprecated since version 3.15: Prefer TPyType.FromSlots() in new code.
 
 <p></p>
 </td></tr>
@@ -277,6 +281,8 @@ body { margin: 0.5em; }
 
 <p>Changed in version 3.14: Creating classes whose metaclass overrides tp_new is no longer allowed.
 
+<p>Soft deprecated since version 3.15: Prefer TPyType.FromSlots() in new code.
+
 <p></p>
 </td></tr>
 </table>
@@ -295,7 +301,7 @@ body { margin: 0.5em; }
 
 <p>If no module is associated with the given type, sets TypeError and returns nil.
 
-<p>This function is usually used to get the module in which a method is defined. Note that in such a method, TPyTypeObject.GetModule(TPy.TYPE(self)) may not return the intended result. TPy.TYPE(self) may be a subclass of the intended class, and subclasses are not necessarily defined in the same module as their superclass. See PyCMethod to get the class that defines the method. See TPyTypeObject.GetModuleByDef() for cases when PyCMethod cannot be used.
+<p>This function is usually used to get the module in which a method is defined. Note that in such a method, TPyTypeObject.GetModule(TPy.TYPE(self)) may not return the intended result. TPy.TYPE(self) may be a subclass of the intended class, and subclasses are not necessarily defined in the same module as their superclass. See PyCMethod to get the class that defines the method. See TPyTypeObject.GetModuleByToken() for cases when PyCMethod cannot be used.
 
 <p></p>
 </td></tr>
@@ -415,6 +421,8 @@ body { margin: 0.5em; }
 
 <p>Added in version 3.12.
 
+<p>Soft deprecated since version 3.15: Prefer TPyType.FromSlots() in new code.
+
 <p></p>
 </td></tr>
 </table>
@@ -443,13 +451,13 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-"></span><code>class function <strong>GetBaseByToken</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
+<td class="itemcode"><span id="GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-"></span><code>class function <strong>GetBaseByToken</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; tp_token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
 
 
-<p>Find the first superclass in type's method resolution order whose Py_tp_token token is equal to the given one.
+<p>Find the first superclass in type's method resolution order whose Py_tp_token tp_token is equal to the given one.
 
 <p></p>
 
@@ -462,7 +470,7 @@ body { margin: 0.5em; }
 
 <p>The result_ argument may be nil, in which case result_ is not set. Use this if you need only the return value.
 
-<p>The token argument may not be nil.
+<p>The tp_token argument may not be nil.
 
 <p>Added in version 3.14.
 
@@ -600,11 +608,17 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>Find the first superclass whose module was created from the given PyModuleDef def, and return that module.
+<p>Find the first superclass whose module was created from the given PyModuleDef def, or whose module token is equal to def, and return that module.
 
-<p>If no module is found, raises a TypeError and returns nil.
+<p>Note that modules created from a PyModuleDef always have their token set to the PyModuleDef's address. In other words, this function is equivalent to TPyType.GetModuleByToken(), except that it:
 
-<p>This function is intended to be used together with TPyModule.GetState() to get module state from slot methods (such as tp_init or nb_add) and other places where a method's defining class cannot be passed using the PyCMethod calling convention.
+<p></p>
+
+<pre class="preformatted">
+- returns a borrowed reference, and
+- has a non-void* argument type (which is a cosmetic difference in C).</pre>
+
+<p>
 
 <p>The returned reference is borrowed from type, and will be valid as long as you hold a reference to type. Do not release it with TPy.DECREF() or similar.
 
@@ -702,9 +716,13 @@ body { margin: 0.5em; }
 
 <p>Mark type as watched. The callback granted watcher_id by TPyTypeObject.AddWatcher() will be called whenever TPyTypeObject.Modified() reports a change to type. (The callback may be called only once for a series of consecutive modifications to type, if _PyType_Lookup() is not called on type between the modifications; this is an implementation detail and subject to change.)
 
+<p>The callback is also invoked when a watched heap type is deallocated.
+
 <p>An extension should never call TPyTypeObject.Watch with a watcher_id that was not returned to it by a previous call to TPyTypeObject.AddWatcher().
 
 <p>Added in version 3.12.
+
+<p>Changed in version 3.15: The callback is now also invoked when a watched heap type is deallocated.
 
 <p></p>
 </td></tr>

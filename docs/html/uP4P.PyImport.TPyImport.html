@@ -195,7 +195,7 @@ body { margin: 0.5em; }
 
 <p>The module's __spec__ and __loader__ will be set, if not set already, with the appropriate values. The spec's loader will be set to the module's __loader__ (if set) and to an instance of SourceFileLoader otherwise.
 
-<p>The module's __file__ attribute will be set to the code object's co_filename. If applicable, __cached__ will also be set.
+<p>The module's __file__ attribute will be set to the code object's co_filename.
 
 <p>This function will reload the module if it was already imported. See TPyImport.ReloadModule() for the intended way to reload a module.
 
@@ -204,6 +204,8 @@ body { margin: 0.5em; }
 <p>See also TPyImport.ExecCodeModuleEx() and TPyImport.ExecCodeModuleWithPathnames().
 
 <p>Changed in version 3.12: The setting of __cached__ and __loader__ is deprecated. See ModuleSpec for alternatives.
+
+<p>Changed in version 3.15: The __cached__ attribute is no longer set.
 
 <p></p>
 </td></tr>
@@ -241,6 +243,8 @@ body { margin: 0.5em; }
 
 <p>Changed in version 3.12: No longer uses the removed imp module.
 
+<p>Changed in version 3.15: The __cached__ attribute no longer set.
+
 <p></p>
 </td></tr>
 </table>
@@ -253,7 +257,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>Like TPyImport.ExecCodeModuleEx(), but the __cached__ attribute of the module object is set to cpathname if it is non-nil. Of the three functions, this is the preferred one to use.
+<p>Like TPyImport.ExecCodeModuleEx(), but the path to any compiled file via cpathname is used appropriately when non-NULL. Of the three functions, this is the preferred one to use.
 
 <p>Added in version 3.3.
 

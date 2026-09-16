@@ -43,6 +43,7 @@ type
       /// <para>Return a borrowed reference to the object from dictionary mp
       /// which has a key key. Return nil if the key key is missing without
       /// setting an exception.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
       /// <para>Note: Exceptions that occur while this calls __hash__() and
       /// __eq__() methods are silently ignored. Prefer the
       /// TPyDict.GetItemWithError() function instead.</para>
@@ -53,6 +54,7 @@ type
       /// <para>Changed in version 3.10: Calling this API without an attached
       /// thread state had been allowed for historical reason. It is no longer
       /// allowed.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function GetItem(const mp, key: IPyObject): IPyObject;
       /// <summary>
@@ -63,6 +65,7 @@ type
       /// reference may become invalid if another thread modifies the dictionary
       /// concurrently. Prefer TPyDict.GetItemRef(), which returns a strong
       /// reference.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function GetItemWithError(const mp, key: IPyObject): IPyObject;
       /// <summary>
@@ -94,6 +97,8 @@ type
       class function DelItem(const mp, key: IPyObject): boolean;
       /// <summary>
       /// <para>Empty an existing dictionary of all key-value pairs.</para>
+      /// <para>Do nothing if the argument is not a dict or a dict
+      /// subclass.</para>
       /// </summary>
       class procedure Clear(const mp: IPyObject);
       /// <summary>
@@ -108,6 +113,7 @@ type
       /// iteration. Its value represents offsets within the internal dictionary
       /// structure, and since the structure is sparse, the offsets are not
       /// consecutive.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
       /// <para>For example:</para>
       /// <code>
       /// PyObject *key, *value;
@@ -142,7 +148,7 @@ type
       /// }
       /// </code>
       /// <para>The function is not thread-safe in the free-threaded build
-      /// without external synchronization. You can use
+      /// without external synchronization for a mutable dict. You can use
       /// Py_BEGIN_CRITICAL_SECTION to lock the dictionary while iterating
       /// over it:</para>
       /// <code>
@@ -152,32 +158,42 @@ type
       /// }
       /// Py_END_CRITICAL_SECTION();
       /// </code>
+      /// <para>The function is thread-safe on a frozendict.</para>
       /// <para>Note On the free-threaded build, this function can be used
       /// safely inside a critical section. However, the references returned for
       /// pkey and pvalue are borrowed and are only valid while the critical
       /// section is held. If you need to use these objects outside the critical
       /// section or when the critical section can be suspended, create a strong
       /// reference (for example, using TPy.NewRef()).</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Next(const p: IPyObject; var pos: Py_ssize_t; out key, val: IPyObject): boolean;
       /// <summary>
       /// <para>Return a PyListObject containing all the keys from the
       /// dictionary.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Keys(const mp: IPyObject): IPyObject;
       /// <summary>
       /// <para>Return a PyListObject containing all the values from the
       /// dictionary mp.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Values(const mp: IPyObject): IPyObject;
       /// <summary>
       /// <para>Return a PyListObject containing all the items from the
       /// dictionary.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Items(const mp: IPyObject): IPyObject;
       /// <summary>
       /// <para>Return the number of items in the dictionary. This is equivalent
       /// to len(mp) on a dictionary.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Size(const mp: IPyObject): Py_ssize_t;
       /// <summary>
@@ -191,6 +207,8 @@ type
       /// equivalent to the Python expression key in p.</para>
       /// <para>Note: The operation is atomic on free threading when key is
       /// str, int, float, bool or bytes.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Contains(const p, key: IPyObject): integer;
       /// <summary>
@@ -247,6 +265,7 @@ type
       /// reference may become invalid if another thread modifies the dictionary
       /// concurrently. Prefer TPyDict.GetItemStringRef(), which returns a
       /// strong reference.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function GetItemString(const dp: IPyObject; const key: string): IPyObject; overload;
       {$IFDEF DELPHI12_UP}
@@ -261,6 +280,7 @@ type
       /// reference may become invalid if another thread modifies the dictionary
       /// concurrently. Prefer TPyDict.GetItemStringRef(), which returns a
       /// strong reference.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function GetItemString(const dp: IPyObject; const key: AnsiString): IPyObject; overload;
       {$ENDIF}
@@ -297,9 +317,11 @@ type
       /// - If the key is missing, set result_ to nil and return 0.
       /// - On error, raise an exception, set result_ to nil and return -1.
       /// </code>
+      /// <para>The first argument can be a dict or a frozendict.</para>
       /// <para>Note: The operation is atomic on free threading when key is str,
       /// int, float, bool or bytes.</para>
       /// <para>Added in version 3.13.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// <para>See also the TPyObject.GetItem() function.</para>
       /// </summary>
       class function GetItemRef(const p, key: IPyObject; out result_: IPyObject): integer;
@@ -307,6 +329,7 @@ type
       /// <para>Similar to TPyDict.GetItemRef(), but key is specified as a
       /// string, rather than a IPyObject.</para>
       /// <para>Added in version 3.13.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function GetItemStringRef(const mp: IPyObject; const key: string; out result_: IPyObject): integer;
       /// <summary>
@@ -362,7 +385,9 @@ type
       /// raising KeyError if the key is missing.</para>
       /// <para>Note: The operation is atomic on free threading when key is str,
       /// int, float, bool or bytes.</para>
+      /// <para>The first argument can be a dict or a frozendict.</para>
       /// <para>Added in version 3.13.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function Pop(const p, key: IPyObject; out result_: IPyObject): integer;
       /// <summary>

@@ -23,7 +23,7 @@ body { margin: 0.5em; }
 <code>type PyConfig315 = record</code></p>
 <h2 class="description">Description</h2>
 <p>
- Record containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory. </p>
+ Record containing most parameters to configure Python. When done, the TPyConfig.Clear() function must be used to release the configuration memory. </p>
 <p>
 
 
@@ -623,7 +623,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 </tr>
 <tr><td colspan="2">
 <p>
- If equals to 1, issue a warning when comparing bytes or bytearray with str, or comparing bytes with int. If equal or greater to 2, raise a BytesWarning exception in these cases. Incremented by the -b command line option. Default: 0. </p>
+ If equals to 1, issue a warning when comparing bytes or bytearray with str, or comparing bytes with int. If equal or greater to 2, raise a BytesWarning exception in these cases. Incremented by the -b command line option. Default: 0. Deprecated since version 3.15, will be removed in version 3.17: The -b and -bb options will become no-op in 3.17. bytes_warning member will be removed in 3.17. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -773,7 +773,7 @@ privilege SeLockMemoryPrivilege is not held by the user.</pre>
 </tr>
 <tr><td colspan="2">
 <p>
- Control the validation behavior of hash-based .pyc files: value of the &ndash;check-hash-based-pycs command line option. Valid values: &quot;always&quot;: Hash the source file for invalidation regardless of value of the ‘check_source' flag. &quot;never&quot;: Assume that hash-based pycs always are valid. &quot;default&quot;: The ‘check_source' flag in hash-based pycs determines invalidation. Default: &quot;default&quot;. See also PEP 552 &quot;Deterministic pycs&quot;. </p>
+ Control the validation behavior of hash-based .pyc files: value of the &ndash;check-hash-based-pycs command line option. Valid values: &quot;always&quot;: Hash the source file for invalidation regardless of value of the 'check_source' flag. &quot;never&quot;: Assume that hash-based pycs always are valid. &quot;default&quot;: The 'check_source' flag in hash-based pycs determines invalidation. Default: &quot;default&quot;. See also PEP 552 &quot;Deterministic pycs&quot;. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

@@ -42,7 +42,7 @@ type
       /// actually iterable. The constructor is also useful for copying a set
       /// (c=set(s)).</para>
       /// <para>Note: The operation is atomic on free threading when iterable
-      /// is a set, frozenset or dict.</para>
+      /// is a set, frozenset, dict or frozendict.</para>
       /// </summary>
       class function New(const iterable: IPyObject): IPyObject;
       /// <summary>

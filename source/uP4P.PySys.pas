@@ -63,8 +63,9 @@ type
       /// </summary>
       class function GetOptionalAttrString(const name_: string; var result_: IPyObject): integer;
       /// <summary>
-      /// <para>Return the object name_ from the sys module or nil if it does
-      /// not exist, without setting an exception.</para>
+      /// <para>Similar to TPySys.GetAttrString(), but return a borrowed
+      /// reference and return nil without setting exception on failure.</para>
+      /// <para>Preserves exception that was set before the call.</para>
       /// </summary>
       class function GetObject(const name_: string): IPyObject;
       /// <summary>

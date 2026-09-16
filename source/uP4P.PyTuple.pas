@@ -53,7 +53,9 @@ type
       /// <summary>
       /// <para>Insert a reference to object o at position pos of the tuple
       /// pointed to by p. Return True on success. If pos is out of bounds,
-      /// return False and set an IndexError exception.</para>
+      /// return False and set an IndexError exception. This function should
+      /// only be used to fill in brand new tuples; using it on an existing
+      /// tuple is thread-unsafe.</para>
       /// <para>Note: This function "steals" a reference to o and discards a
       /// reference to an item already in the tuple at the affected position
       /// (unless it was nil).</para>
@@ -62,7 +64,9 @@ type
       /// <summary>
       /// <para>Insert a reference to object o at position pos of the tuple
       /// pointed to by p. Return True on success. If pos is out of bounds,
-      /// return False and set an IndexError exception.</para>
+      /// return False and set an IndexError exception. This function should
+      /// only be used to fill in brand new tuples; using it on an existing
+      /// tuple is thread-unsafe.</para>
       /// <para>Note: This function "steals" a reference to o and discards a
       /// reference to an item already in the tuple at the affected position
       /// (unless it was nil).</para>

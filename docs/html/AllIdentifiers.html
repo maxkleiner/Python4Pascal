@@ -2194,12 +2194,12 @@ body { margin: 0.5em; }
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Types.PyConfig314.html">PyConfig314</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Types.html">uP4P.Types</a></td>
-<td class="itemdesc"><p> Record containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory. </p></td>
+<td class="itemdesc"><p>&nbsp;</p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Types.PyConfig315.html">PyConfig315</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Types.html">uP4P.Types</a></td>
-<td class="itemdesc"><p> Record containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory. </p></td>
+<td class="itemdesc"><p> Record containing most parameters to configure Python. When done, the TPyConfig.Clear() function must be used to release the configuration memory. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.LibFunctions.html#PyConfig_Clear">PyConfig_Clear</a></td>
@@ -5274,7 +5274,15 @@ body { margin: 0.5em; }
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Types.PyModuleDef.html">PyModuleDef</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Types.html">uP4P.Types</a></td>
-<td class="itemdesc"><p> The module definition struct, which holds all information needed to create a module object. This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist). Usually, there is only one variable of this type for each extension module. </p></td>
+<td class="itemdesc"><p>
+
+<p>The module definition struct, which holds all information needed to create a module object.
+
+<p>This structure must be statically allocated (or be otherwise guaranteed to be valid while any modules created from it exist).
+
+<p>Usually, there is only one variable of this type for each extension module.
+
+<p></p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Types.PyModuleDef_Base.html">PyModuleDef_Base</a></td>
@@ -10261,7 +10269,11 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.PyConfig.TPyConfig.html">TPyConfig</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.PyConfig.html">uP4P.PyConfig</a></td>
-<td class="itemdesc"><p>* Update the SUPPORTED_MAJOR_VERSION, MAX_SUPPORTED_MINOR_VERSION and MIN_SUPPORTED_MINOR_VERSION constant values and also the TPyConfigBuilder.New function after creating a new TPyConfigXY class.</p></td>
+<td class="itemdesc"><p>
+
+<p>Helper class for all the PyConfig_* methods.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.PyConfig.TPyConfig310.html">TPyConfig310</a></td>

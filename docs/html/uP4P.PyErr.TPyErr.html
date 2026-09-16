@@ -816,7 +816,8 @@ if (tb != NULL) {
   (This is where the function got the name: originally, signals were
    the only way to interrupt the interpreter.)
 - Running the garbage collector, if necessary.
-- Executing a pending remote debugger script.</pre>
+- Executing a pending remote debugger script.
+- Raise the exception set by TPyThreadState.SetAsyncExc().</pre>
 
 <p>
 
@@ -827,6 +828,8 @@ if (tb != NULL) {
 <p>Changed in version 3.12: This function may now invoke the garbage collector.
 
 <p>Changed in version 3.14: This function may now execute a remote debugger script, if remote debugging is enabled.
+
+<p>Changed in version 3.15: The exception set by TPyThreadState.SetAsyncExc() is now raised.
 
 <p></p>
 </td></tr>

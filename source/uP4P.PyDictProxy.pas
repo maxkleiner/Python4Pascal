@@ -30,6 +30,9 @@ type
       /// enforces read-only behavior. This is normally used to create a view
       /// to prevent modification of the dictionary for non-dynamic class
       /// types.</para>
+      /// <para>The first argument can be a dict, a frozendict, or a
+      /// mapping.</para>
+      /// <para>Changed in version 3.15: Also accept frozendict.</para>
       /// </summary>
       class function New(const mapping: IPyObject): IPyObject;
   end;

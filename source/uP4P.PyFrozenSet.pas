@@ -40,8 +40,8 @@ type
       /// iterable. The iterable may be nil to create a new empty frozenset.
       /// Return the new set on success or nil on failure. Raise TypeError if
       /// iterable is not actually iterable.</para>
-      /// <para>Note: The operation is atomic on free threading when iterable is
-      /// a set, frozenset or dict.</para>
+      /// <para>Note: The operation is atomic on free threading when iterable
+      /// is a set, frozenset, dict or frozendict.</para>
       /// </summary>
       class function New(const iterable: IPyObject): IPyObject;
   end;

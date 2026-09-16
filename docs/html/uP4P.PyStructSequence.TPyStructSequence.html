@@ -147,7 +147,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>Return the object at position pos in the struct sequence pointed to by p.
+<p>Return the object at position pos in the struct sequence pointed to by p. The returned reference is borrowed from the struct sequence p (that is: it is only valid as long as you hold a reference to p).
 
 <p>Bounds checking is performed as an assertion if Python is built in debug mode or with assertions.
 

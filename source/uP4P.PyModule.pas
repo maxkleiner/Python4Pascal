@@ -241,6 +241,9 @@ type
       class function AddFunctions(const module_: IPyObject; functions: PPyMethodDef): boolean;
       /// <summary>
       /// <para>Process any execution slots (Py_mod_exec) given in def.</para>
+      /// <para>Soft deprecated since version 3.15: To run a module's own
+      /// execution slots, prefer TPyModule.Exec(), which works on modules that
+      /// were not created from a PyModuleDef structure.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_ExecDef">See the article about PyModule_ExecDef.</see></para>
@@ -274,6 +277,8 @@ type
       /// <summary>
       /// <para>This macro calls TPyModule.FromDefAndSpec2() with
       /// module_api_version set to PYTHON_API_VERSION.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer
+      /// TPyModule.FromSlotsAndSpec() in new code.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec">See the article about PyModule_FromDefAndSpec.</see></para>
@@ -292,6 +297,8 @@ type
       /// <para>Note: Most uses of this function should be using
       /// TPyModule.FromDefAndSpec() instead; only use this if you are sure you
       /// need it.</para>
+      /// <para>Soft deprecated since version 3.15: Prefer
+      /// TPyModule.FromSlotsAndSpec() in new code.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModule_FromDefAndSpec2">See the article about PyModule_FromDefAndSpec2.</see></para>

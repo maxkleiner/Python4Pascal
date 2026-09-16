@@ -14593,6 +14593,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FInitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FInitializedModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FIsExtension">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FIsExtension">
 </object>
@@ -14651,6 +14655,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Initialize">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Initialize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializedModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializedModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InitializeModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#InitializeModuleDef-string-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Module">

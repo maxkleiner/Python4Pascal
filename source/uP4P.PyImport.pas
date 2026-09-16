@@ -56,8 +56,7 @@ type
       /// to the module's __loader__ (if set) and to an instance of
       /// SourceFileLoader otherwise.</para>
       /// <para>The module's __file__ attribute will be set to the code
-      /// object's co_filename. If applicable, __cached__ will also be
-      /// set.</para>
+      /// object's co_filename.</para>
       /// <para>This function will reload the module if it was already imported.
       /// See TPyImport.ReloadModule() for the intended way to reload a
       /// module.</para>
@@ -68,6 +67,8 @@ type
       /// TPyImport.ExecCodeModuleWithPathnames().</para>
       /// <para>Changed in version 3.12: The setting of __cached__ and
       /// __loader__ is deprecated. See ModuleSpec for alternatives.</para>
+      /// <para>Changed in version 3.15: The __cached__ attribute is no longer
+      /// set.</para>
       /// </summary>
       class function ExecCodeModule(const name_: string; const co: IPyObject): IPyObject;
       /// <summary>
@@ -87,12 +88,14 @@ type
       /// provided.</para>
       /// <para>Changed in version 3.12: No longer uses the removed imp
       /// module.</para>
+      /// <para>Changed in version 3.15: The __cached__ attribute no longer
+      /// set.</para>
       /// </summary>
       class function ExecCodeModuleWithPathnames(const name_: string; const co: IPyObject; const pathname, cpathname: string): IPyObject;
       /// <summary>
-      /// <para>Like TPyImport.ExecCodeModuleEx(), but the __cached__ attribute
-      /// of the module object is set to cpathname if it is non-nil. Of the
-      /// three functions, this is the preferred one to use.</para>
+      /// <para>Like TPyImport.ExecCodeModuleEx(), but the path to any compiled
+      /// file via cpathname is used appropriately when non-NULL. Of the three
+      /// functions, this is the preferred one to use.</para>
       /// <para>Added in version 3.3.</para>
       /// <para>Changed in version 3.12: Setting __cached__ is deprecated.
       /// See ModuleSpec for alternatives.</para>

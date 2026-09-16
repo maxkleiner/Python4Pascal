@@ -23,7 +23,15 @@ body { margin: 0.5em; }
 <code>type TPyConfig = class(TObject)</code></p>
 <h2 class="description">Description</h2>
 <p>
-* Update the SUPPORTED_MAJOR_VERSION, MAX_SUPPORTED_MINOR_VERSION and MIN_SUPPORTED_MINOR_VERSION constant values and also the TPyConfigBuilder.New function after creating a new TPyConfigXY class. *</p>
+
+
+<p>Helper class for all the PyConfig_* methods.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/init_config.html#runtime-python-configuration-api">https://docs.python.org/3.15/c-api/init_config.html#runtime-python-configuration-api</a>&quot;&gt;See the article about Runtime Python configuration API.)</p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TObject</li>
 <li class="thisitem">TPyConfig</li></ul><h2 class="overview">Overview</h2>
@@ -58,7 +66,25 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Names"></span><code>class function <strong>Names</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Get all configuration option names as a frozenset.
+
+<p></p>
+
+<pre class="preformatted">
+- Return a new reference on success.
+- Set an exception and return NULL on error.</pre>
+
+<p>
+
+<p>The caller must have an attached thread state. The function cannot be called before Python initialization nor after Python finalization.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -66,7 +92,17 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="GetInt-string-integer-"></span><code>class function <strong>GetInt</strong>(const name_: string; var value: integer): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Similar to TPyConfig.Get(), but get the value as a C int.
+
+<p>Return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -74,7 +110,17 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="GetBoolean-string-boolean-"></span><code>class function <strong>GetBoolean</strong>(const name_: string; var value: boolean): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Similar to TPyConfig.Get(), but get the value as a boolean.
+
+<p>Return True on success. Set an exception and return False on error.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -82,7 +128,34 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Get-string-"></span><code>class function <strong>Get</strong>(const name_: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Get the current runtime value of a configuration option as a Python object.
+
+<p>Return a new reference on success.
+
+<p>Set an exception and return NULL on error.
+
+<p>The object type depends on the configuration option. It can be:
+
+<p></p>
+
+<pre class="preformatted">
+- bool
+- int
+- str
+- list[str]
+- dict[str, str]</pre>
+
+<p>
+
+<p>The caller must have an attached thread state. The function cannot be called before Python initialization nor after Python finalization.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -90,7 +163,31 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="Set_-string-IPyObject-"></span><code>class function <strong>Set_</strong>(const name_: string; const value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Set the current runtime value of a configuration option.
+
+<p></p>
+
+<pre class="preformatted">
+- Raise a ValueError if there is no option name.
+- Raise a ValueError if value is an invalid value.
+- Raise a ValueError if the option is read-only (cannot be set).
+- Raise a TypeError if value has not the proper type.</pre>
+
+<p>
+
+<p>The caller must have an attached thread state. The function cannot be called before Python initialization nor after Python finalization.
+
+<p>Raises an auditing event cpython.PyConfig_Set with arguments name, value.
+
+<p>Added in version 3.14.
+
+<p>Changed in version 3.15: The function now replaces sys.flags (create a new object), instead of modifying sys.flags in-place.
+
+<p></p>
+</td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
 </span>

@@ -1454,9 +1454,13 @@ body { margin: 0.5em; }
 
 <p>If value is nil, the attribute is deleted, but this feature is deprecated in favour of using TPyObject.DelAttrString().
 
+<p>The function must not be called with a nil value and an exception set. This case can arise from forgetting nil checks and would delete the attribute.
+
 <p>The number of different attribute names passed to this function should be kept small, usually by using a statically allocated string as attr_name. For attribute names that aren't known at compile time, prefer calling TPyUnicode.FromString() and TPyObject.SetAttr() directly. For more details, see TPyUnicode.InternFromString(), which may be used internally to create a key object.
 
 <p>This function uses a IPyObject for the value parameter.
+
+<p>Changed in version 3.15: Must not be called with nil value if an exception is set.
 
 <p></p>
 </td></tr>
@@ -1474,9 +1478,13 @@ body { margin: 0.5em; }
 
 <p>If value is nil, the attribute is deleted, but this feature is deprecated in favour of using TPyObject.DelAttrString().
 
+<p>The function must not be called with a nil value and an exception set. This case can arise from forgetting nil checks and would delete the attribute.
+
 <p>The number of different attribute names passed to this function should be kept small, usually by using a statically allocated string as attr_name. For attribute names that aren't known at compile time, prefer calling TPyUnicode.FromString() and TPyObject.SetAttr() directly. For more details, see TPyUnicode.InternFromString(), which may be used internally to create a key object.
 
 <p>This function uses a PPyObject pointer for the value parameter.
+
+<p>Changed in version 3.15: Must not be called with nil value if an exception is set.
 
 <p></p>
 </td></tr>
@@ -1666,7 +1674,9 @@ body { margin: 0.5em; }
 
 <p>If value is nil, the attribute is deleted. This behaviour is deprecated in favour of using TPyObject.DelAttr(), but there are currently no plans to remove it.
 
-<p>This function uses a IPyObject value.
+<p>The function must not be called with a nil value and an exception set. This case can arise from forgetting nil checks and would delete the attribute.
+
+<p>Changed in version 3.15: Must not be called with nil value if an exception is set.
 
 <p></p>
 </td></tr>
@@ -1683,6 +1693,10 @@ body { margin: 0.5em; }
 <p>Set the value of the attribute named attr_name, for this object, to the value. Raise an exception and return False on failure; return True on success. This is the equivalent of the Python statement o.attr_name = v.
 
 <p>If value is nil, the attribute is deleted. This behaviour is deprecated in favour of using TPyObject.DelAttr(), but there are currently no plans to remove it.
+
+<p>The function must not be called with a nil value and an exception set. This case can arise from forgetting nil checks and would delete the attribute.
+
+<p>Changed in version 3.15: Must not be called with nil value if an exception is set.
 
 <p>This function uses a PPyObject pointer in the value.
 

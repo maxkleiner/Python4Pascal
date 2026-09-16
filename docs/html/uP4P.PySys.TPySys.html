@@ -177,7 +177,9 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>Return the object name_ from the sys module or nil if it does not exist, without setting an exception.
+<p>Similar to TPySys.GetAttrString(), but return a borrowed reference and return nil without setting exception on failure.
+
+<p>Preserves exception that was set before the call.
 
 <p></p>
 </td></tr>

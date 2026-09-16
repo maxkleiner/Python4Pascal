@@ -1638,7 +1638,7 @@ type
   /// </remarks>
   PyMethodDef = record
     /// <summary>
-    /// Name of the method.
+    /// Name of the method. A nil ml_name marks the end of a PyMethodDef array.
     /// </summary>
      ml_name  : PAnsiChar;
     /// <summary>
@@ -1734,10 +1734,12 @@ type
   end;
 
   /// <summary>
-  /// The module definition struct, which holds all information needed to create
-  /// a module object. This structure must be statically allocated (or be
-  /// otherwise guaranteed to be valid while any modules created from it exist).
-  /// Usually, there is only one variable of this type for each extension module.
+  /// <para>The module definition struct, which holds all information needed
+  /// to create a module object.</para>
+  /// <para>This structure must be statically allocated (or be otherwise
+  /// guaranteed to be valid while any modules created from it exist).</para>
+  /// <para>Usually, there is only one variable of this type for each extension
+  /// module.</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
@@ -1757,20 +1759,22 @@ type
     /// </summary>
     m_doc      : PAnsiChar;
     /// <summary>
-    /// Module state may be kept in a per-module memory area that can be
-    /// retrieved with PyModule_GetState(), rather than in static globals.
-    /// This makes modules safe for use in multiple sub-interpreters.
-    /// This memory area is allocated based on m_size on module creation, and
-    /// freed when the module object is deallocated, after the m_free function
-    /// has been called, if present.
-    /// Setting it to a non-negative value means that the module can be
+    /// <para>Module state may be kept in a per-module memory area that can be
+    /// retrieved with TPyModule.GetState(), rather than in static
+    /// globals.</para>
+    /// <para>This makes modules safe for use in multiple
+    /// sub-interpreters.</para>
+    /// <para>This memory area is allocated based on m_size on module creation,
+    /// and freed when the module object is deallocated, after the m_free
+    /// function has been called, if present.</para>
+    /// <para>Setting it to a non-negative value means that the module can be
     /// re-initialized and specifies the additional amount of memory it requires
-    /// for its state.
-    /// Setting m_size to -1 means that the module does not support
+    /// for its state.</para>
+    /// <para>Setting m_size to -1 means that the module does not support
     /// sub-interpreters, because it has global state. Negative m_size is only
     /// allowed when using legacy single-phase initialization or when creating
-    /// modules dynamically.
-    /// See PEP 3121 for more details.
+    /// modules dynamically.</para>
+    /// <para>See PEP 3121 for more details.</para>
     /// </summary>
     m_size     : Py_ssize_t;
     /// <summary>
@@ -1779,45 +1783,53 @@ type
     /// </summary>
     m_methods  : PPyMethodDef;
     /// <summary>
-    /// An array of slot definitions for multi-phase initialization, terminated by a {0, nil} entry. When using legacy single-phase initialization, m_slots must be nil.
+    /// An array of slot definitions for multi-phase initialization, terminated
+    /// by a {0, nil} entry. When using legacy single-phase initialization,
+    /// m_slots must be nil.
     /// </summary>
     m_slots    : PPyModuleDef_Slot;
     /// <summary>
-    /// A traversal function to call during GC traversal of the module object,
-    /// or nil if not needed.
-    /// This function is not called if the module state was requested but is not
-    /// allocated yet. This is the case immediately after the module is created
-    /// and before the module is executed (Py_mod_exec function). More precisely,
-    /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is nil.
-    /// Changed in version 3.9: No longer called before the module state is
-    /// allocated.
+    /// <para>A traversal function to call during GC traversal of the module
+    /// object, or nil if not needed.</para>
+    /// <para>This function is not called if the module state was requested but
+    /// is not allocated yet. This is the case immediately after the module is
+    /// created and before the module is executed (Py_mod_exec function).</para>
+    /// <para>More precisely, this function is not called if m_size is greater
+    /// than 0 and the module state (as returned by TPyModule.GetState()) is
+    /// nil.</para>
+    /// <para>Changed in version 3.9: No longer called before the module state
+    /// is allocated.</para>
     /// </summary>
     m_traverse : traverseproc;
     /// <summary>
-    /// A clear function to call during GC clearing of the module object, or
-    /// nil if not needed.
-    /// This function is not called if the module state was requested but is not
-    /// allocated yet. This is the case immediately after the module is created
-    /// and before the module is executed (Py_mod_exec function). More precisely,
-    /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is nil.
-    /// Like PyTypeObject.tp_clear, this function is not always called before a
-    /// module is deallocated. For example, when reference counting is enough to
-    /// determine that an object is no longer used, the cyclic garbage collector
-    /// is not involved and m_free is called directly.
-    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// <para>A clear function to call during GC clearing of the module object,
+    /// or nil if not needed.</para>
+    /// <para>This function is not called if the module state was requested but
+    /// is not allocated yet. This is the case immediately after the module is
+    /// created and before the module is executed (Py_mod_exec function).</para>
+    /// <para>More precisely, this function is not called if m_size is greater
+    /// than 0 and the module state (as returned by TPyModule.GetState()) is
+    /// nil.</para>
+    /// <para>Like PyTypeObject.tp_clear, this function is not always called
+    /// before a module is deallocated. For example, when reference counting is
+    /// enough to determine that an object is no longer used, the cyclic
+    /// garbage collector is not involved and m_free is called directly.</para>
+    /// <para>Changed in version 3.9: No longer called before the module state
+    /// is allocated.</para>
     /// </summary>
     m_clear    : inquiry;
     /// <summary>
-    /// A function to call during deallocation of the module object, or nil if
-    /// not needed.
-    /// This function is not called if the module state was requested but is not
-    /// allocated yet. This is the case immediately after the module is created
-    /// and before the module is executed (Py_mod_exec function). More precisely,
-    /// this function is not called if m_size is greater than 0 and the module
-    /// state (as returned by PyModule_GetState()) is nil.
-    /// Changed in version 3.9: No longer called before the module state is allocated.
+    /// <para>A function to call during deallocation of the module object,
+    /// or nil if not needed.</para>
+    /// <para>This function is not called if the module state was requested
+    /// but is not allocated yet. This is the case immediately after the module
+    /// is created and before the module is executed
+    /// (Py_mod_exec function).</para>
+    /// <para>More precisely, this function is not called if m_size is greater
+    /// than 0 and the module state (as returned by TPyModule.GetState()) is
+    /// nil.</para>
+    /// <para>Changed in version 3.9: No longer called before the module state
+    /// is allocated.</para>
     /// </summary>
     m_free     : inquiry;
   end;
@@ -2163,8 +2175,7 @@ type
     /// <summary>
     /// If non-zero, enable the Python UTF-8 Mode.
     /// Set to 0 or 1 by the -X utf8 command line option and the PYTHONUTF8 environment variable.
-    /// Also set to 1 if the LC_CTYPE locale is C or POSIX.
-    /// Default: -1 in Python config and 0 in isolated config.
+    /// Default: 1.
     /// </summary>
     utf8_mode                  : integer;
     /// <summary>
@@ -2180,7 +2191,8 @@ type
 
   /// <summary>
   /// Record containing most parameters to configure Python.
-  /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
+  /// When done, the TPyConfig.Clear() function must be used to release the
+  /// configuration memory.
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pyconfig">See the article about PyConfig.</see></para>
@@ -2408,6 +2420,9 @@ type
     /// If equal or greater to 2, raise a BytesWarning exception in these cases.
     /// Incremented by the -b command line option.
     /// Default: 0.
+    /// Deprecated since version 3.15, will be removed in version 3.17:
+    /// The -b and -bb options will become no-op in 3.17. bytes_warning member
+    /// will be removed in 3.17.
     /// </summary>
     bytes_warning            : integer;
     /// <summary>
@@ -2521,9 +2536,9 @@ type
     /// <summary>
     /// Control the validation behavior of hash-based .pyc files: value of the --check-hash-based-pycs command line option.
     /// Valid values:
-    /// "always": Hash the source file for invalidation regardless of value of the ‘check_source' flag.
+    /// "always": Hash the source file for invalidation regardless of value of the 'check_source' flag.
     /// "never": Assume that hash-based pycs always are valid.
-    /// "default": The ‘check_source' flag in hash-based pycs determines invalidation.
+    /// "default": The 'check_source' flag in hash-based pycs determines invalidation.
     /// Default: "default".
     /// See also PEP 552 "Deterministic pycs".
     /// </summary>
@@ -2735,531 +2750,81 @@ type
     _is_python_build         : integer;
   end;
 
-  /// <summary>
-  /// Record containing most parameters to configure Python.
-  /// When done, the PyConfig_Clear() function must be used to release the configuration memory.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/init_config.html#pyconfig">See the article about PyConfig.</see></para>
-  /// </remarks>
   PyConfig314 = record
-    /// <summary>
-    /// _PyConfigInitEnum value
-    /// </summary>
     _config_init             : integer;
-    /// <summary>
-    /// If greater than 0, enable isolated mode:
-    /// - Set safe_path to 1: don't prepend a potentially unsafe path to sys.path at Python startup, such as the current directory, the script's directory or an empty string.
-    /// - Set use_environment to 0: ignore PYTHON environment variables.
-    /// - Set user_site_directory to 0: don't add the user site directory to sys.path.
-    /// - Python REPL doesn't import readline nor enable default readline configuration on interactive prompts.
-    /// Set to 1 by the -I command line option.
-    /// Default: 0 in Python mode, 1 in isolated mode.
-    /// See also the Isolated Configuration and PyPreConfig.isolated.
-    /// </summary>
     isolated                 : integer;
-    /// <summary>
-    /// Use environment variables?
-    /// If equals to zero, ignore the environment variables.
-    /// Set to 0 by the -E environment variable.
-    /// Default: 1 in Python config and 0 in isolated config.
-    /// </summary>
     use_environment          : integer;
-    /// <summary>
-    /// If non-zero, enable the Python Development Mode.
-    /// Set to 1 by the -X dev option and the PYTHONDEVMODE environment variable.
-    /// Default: -1 in Python mode, 0 in isolated mode.
-    /// </summary>
     dev_mode                 : integer;
-    /// <summary>
-    /// Install Python signal handlers?
-    /// Default: 1 in Python mode, 0 in isolated mode.
-    /// </summary>
     install_signal_handlers  : integer;
-    /// <summary>
-    /// Randomized hash function seed.
-    /// If use_hash_seed is zero, a seed is chosen randomly at Python startup, and hash_seed is ignored.
-    /// Set by the PYTHONHASHSEED environment variable.
-    /// Default use_hash_seed value: -1 in Python mode, 0 in isolated mode.
-    /// </summary>
     use_hash_seed            : integer;
-    /// <summary>
-    /// Hash seed
-    /// </summary>
     hash_seed                : C_ULong;
-    /// <summary>
-    /// Enable faulthandler?
-    /// If non-zero, call faulthandler.enable() at startup.
-    /// Set to 1 by -X faulthandler and the PYTHONFAULTHANDLER environment variable.
-    /// Default: -1 in Python mode, 0 in isolated mode.
-    /// </summary>
     faulthandler             : integer;
-    /// <summary>
-    /// Enable tracemalloc?
-    /// If non-zero, call tracemalloc.start() at startup.
-    /// Set by -X tracemalloc=N command line option and by the PYTHONTRACEMALLOC environment variable.
-    /// Default: -1 in Python mode, 0 in isolated mode.
-    /// </summary>
     tracemalloc              : integer;
-    /// <summary>
-    /// Enable the Linux perf profiler support?
-    /// If equals to 1, enable support for the Linux perf profiler.
-    /// If equals to 2, enable support for the Linux perf profiler with DWARF JIT support.
-    /// Set to 1 by -X perf command-line option and the PYTHONPERFSUPPORT environment variable.
-    /// Set to 2 by the -X perf_jit command-line option and the PYTHON_PERF_JIT_SUPPORT environment variable.
-    /// Default: -1.
-    /// See also See Python support for the Linux perf profiler for more information.
-    /// Added in version 3.12.
-    /// </summary>
     perf_profiling           : integer;
-    /// <summary>
-    /// Safe external debugger interface for CPython. Default: True.
-    /// </summary>
     remote_debug             : integer;
-    /// <summary>
-    /// If 1, profile import time. If 2, include additional output that indicates when an imported module has already been loaded.
-    /// Set by the -X importtime option and the PYTHONPROFILEIMPORTTIME environment variable.
-    /// Default: 0.
-    /// Changed in version 3.14: Added support for import_time = 2
-    /// </summary>
     import_time              : integer;
-    /// <summary>
-    /// If equals to 0, disables the inclusion of the end line and column mappings in code objects. Also disables traceback printing carets to specific error locations.
-    /// Set to 0 by the PYTHONNODEBUGRANGES environment variable and by the -X no_debug_ranges command line option.
-    /// Default: 1.
-    /// Added in version 3.11.
-    /// </summary>
     code_debug_ranges        : integer;
-    /// <summary>
-    /// Show total reference count at exit (excluding immortal objects)?
-    /// Set to 1 by -X showrefcount command line option.
-    /// Needs a debug build of Python (the Py_REF_DEBUG macro must be defined).
-    /// Default: 0.
-    /// </summary>
     show_ref_count           : integer;
-    /// <summary>
-    /// Dump Python references?
-    /// If non-zero, dump all objects which are still alive at exit.
-    /// Set to 1 by the PYTHONDUMPREFS environment variable.
-    /// Needs a special build of Python with the Py_TRACE_REFS macro defined: see the configure --with-trace-refs option.
-    /// Default: 0.
-    /// </summary>
     dump_refs                : integer;
-    /// <summary>
-    /// Filename where to dump Python references.
-    /// Set by the PYTHONDUMPREFSFILE environment variable.
-    /// Default: nil.
-    /// Added in version 3.11.
-    /// </summary>
     dump_refs_file           : PWCharT;
-    /// <summary>
-    /// If non-zero, dump statistics on Python pymalloc memory allocator at exit.
-    /// Set to 1 by the PYTHONMALLOCSTATS environment variable.
-    /// The option is ignored if Python is configured using the --without-pymalloc option.
-    /// Default: 0.
-    /// </summary>
     malloc_stats             : integer;
-    /// <summary>
-    /// Filesystem encoding: sys.getfilesystemencoding().
-    /// On macOS, Android and VxWorks: use "utf-8" by default.
-    /// On Windows: use "utf-8" by default, or "mbcs" if legacy_windows_fs_encoding of PyPreConfig is non-zero.
-    /// Default encoding on other platforms:
-    /// - "utf-8" if PyPreConfig.utf8_mode is non-zero.
-    /// - "ascii" if Python detects that nl_langinfo(CODESET) announces the ASCII encoding, whereas the mbstowcs() function decodes from a different encoding (usually Latin1).
-    /// - "utf-8" if nl_langinfo(CODESET) returns an empty string.
-    /// Otherwise, use the locale encoding: nl_langinfo(CODESET) result.
-    /// At Python startup, the encoding name is normalized to the Python codec name. For example, "ANSI_X3.4-1968" is replaced with "ascii".
-    /// See also the filesystem_errors member.
-    /// </summary>
     filesystem_encoding      : PWCharT;
-    /// <summary>
-    /// Filesystem error handler: sys.getfilesystemencodeerrors().
-    /// On Windows: use "surrogatepass" by default, or "replace" if legacy_windows_fs_encoding of PyPreConfig is non-zero.
-    /// On other platforms: use "surrogateescape" by default.
-    /// Supported error handlers:
-    /// - "strict"
-    /// - "surrogateescape"
-    /// - "surrogatepass" (only supported with the UTF-8 encoding)
-    /// See also the filesystem_encoding member.
-    /// </summary>
     filesystem_errors        : PWCharT;
-    /// <summary>
-    /// Directory where cached .pyc files are written: sys.pycache_prefix.
-    /// Set by the -X pycache_prefix=PATH command line option and the PYTHONPYCACHEPREFIX environment variable. The command-line option takes precedence.
-    /// If nil, sys.pycache_prefix is set to None.
-    /// Default: nil.
-    /// </summary>
     pycache_prefix           : PWCharT;
-    /// <summary>
-    /// Parse command line arguments?
-    /// If equals to 1, parse argv the same way the regular Python parses command line arguments, and strip Python arguments from argv.
-    /// The PyConfig_Read() function only parses PyConfig.argv arguments once: PyConfig.parse_argv is set to 2 after arguments are parsed. Since Python arguments are stripped from PyConfig.argv, parsing arguments twice would parse the application options as Python options.
-    /// Default: 1 in Python mode, 0 in isolated mode.
-    /// Changed in version 3.10: The PyConfig.argv arguments are now only parsed if PyConfig.parse_argv equals to 1.
-    /// </summary>
     parse_argv               : integer;
-    /// <summary>
-    /// The list of the original command line arguments passed to the Python executable: sys.orig_argv.
-    /// If orig_argv list is empty and argv is not a list only containing an empty string, PyConfig_Read() copies argv into orig_argv before modifying argv (if parse_argv is non-zero).
-    /// See also the argv member and the Py_GetArgcArgv() function.
-    /// Default: empty list.
-    /// Added in version 3.10.
-    /// </summary>
     orig_argv                : PyWideStringList;
-    /// <summary>
-    /// Set sys.argv command line arguments based on argv. These parameters are similar to those passed to the program's main() function with the difference that the first entry should refer to the script file to be executed rather than the executable hosting the Python interpreter. If there isn't a script that will be run, the first entry in argv can be an empty string.
-    /// Set parse_argv to 1 to parse argv the same way the regular Python parses Python command line arguments and then to strip Python arguments from argv.
-    /// If argv is empty, an empty string is added to ensure that sys.argv always exists and is never empty.
-    /// Default: nil.
-    /// See also the orig_argv member.
-    /// </summary>
     argv                     : PyWideStringList;
-    /// <summary>
-    /// Values of the -X command line options: sys._xoptions.
-    /// Default: empty list.
-    /// </summary>
     xoptions                 : PyWideStringList;
-    /// <summary>
-    /// Options of the warnings module to build warnings filters, lowest to highest priority: sys.warnoptions.
-    /// The warnings module adds sys.warnoptions in the reverse order: the last PyConfig.warnoptions item becomes the first item of warnings.filters which is checked first (highest priority).
-    /// The -W command line options adds its value to warnoptions, it can be used multiple times.
-    /// The PYTHONWARNINGS environment variable can also be used to add warning options. Multiple options can be specified, separated by commas (,).
-    /// Default: empty list.
-    /// </summary>
     warnoptions              : PyWideStringList;
-    /// <summary>
-    /// Import the site module at startup?
-    /// If equal to zero, disable the import of the module site and the site-dependent manipulations of sys.path that it entails.
-    /// Also disable these manipulations if the site module is explicitly imported later (call site.main() if you want them to be triggered).
-    /// Set to 0 by the -S command line option.
-    /// sys.flags.no_site is set to the inverted value of site_import.
-    /// Default: 1.
-    /// </summary>
     site_import              : integer;
-    /// <summary>
-    /// If equals to 1, issue a warning when comparing bytes or bytearray with str, or comparing bytes with int.
-    /// If equal or greater to 2, raise a BytesWarning exception in these cases.
-    /// Incremented by the -b command line option.
-    /// Default: 0.
-    /// </summary>
     bytes_warning            : integer;
-    /// <summary>
-    /// If non-zero, emit a EncodingWarning warning when io.TextIOWrapper uses its default encoding. See Opt-in EncodingWarning for details.
-    /// Default: 0.
-    /// Added in version 3.10.
-    /// </summary>
     warn_default_encoding    : integer;
-    /// <summary>
-    /// Enter interactive mode after executing a script or a command.
-    /// If greater than 0, enable inspect: when a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command, even when sys.stdin does not appear to be a terminal.
-    /// Incremented by the -i command line option. Set to 1 if the PYTHONINSPECT environment variable is non-empty.
-    /// Default: 0.
-    /// </summary>
     inspect                  : integer;
-    /// <summary>
-    /// If greater than 0, enable the interactive mode (REPL).
-    /// Incremented by the -i command line option.
-    /// Default: 0.
-    /// </summary>
     interactive              : integer;
-    /// <summary>
-    /// Compilation optimization level:
-    /// 0: Peephole optimizer, set __debug__ to True.
-    /// 1: Level 0, remove assertions, set __debug__ to False.
-    /// 2: Level 1, strip docstrings.
-    /// Incremented by the -O command line option. Set to the PYTHONOPTIMIZE environment variable value.
-    /// Default: 0.
-    /// See TPyOptimizationLevel
-    /// </summary>
     optimization_level       : integer;
-    /// <summary>
-    /// Parser debug mode. If greater than 0, turn on parser debugging output (for expert only, depending on compilation options).
-    /// Incremented by the -d command line option. Set to the PYTHONDEBUG environment variable value.
-    /// Needs a debug build of Python (the Py_DEBUG macro must be defined).
-    /// Default: 0.
-    /// </summary>
     parser_debug             : integer;
-    /// <summary>
-    /// If equal to 0, Python won't try to write .pyc files on the import of source modules.
-    /// Set to 0 by the -B command line option and the PYTHONDONTWRITEBYTECODE environment variable.
-    /// sys.dont_write_bytecode is initialized to the inverted value of write_bytecode.
-    /// Default: 1.
-    /// </summary>
     write_bytecode           : integer;
-    /// <summary>
-    /// Verbose mode. If greater than 0, print a message each time a module is imported, showing the place (filename or built-in module) from which it is loaded.
-    /// If greater than or equal to 2, print a message for each file that is checked for when searching for a module. Also provides information on module cleanup at exit.
-    /// Incremented by the -v command line option.
-    /// Set by the PYTHONVERBOSE environment variable value.
-    /// Default: 0.
-    /// </summary>
     verbose                  : integer;
-    /// <summary>
-    /// Quiet mode. If greater than 0, don't display the copyright and version at Python startup in interactive mode.
-    /// Incremented by the -q command line option.
-    /// Default: 0.
-    /// </summary>
     quiet                    : integer;
-    /// <summary>
-    /// If non-zero, add the user site directory to sys.path.
-    /// Set to 0 by the -s and -I command line options.
-    /// Set to 0 by the PYTHONNOUSERSITE environment variable.
-    /// Default: 1 in Python mode, 0 in isolated mode.
-    /// </summary>
     user_site_directory      : integer;
-    /// <summary>
-    /// If non-zero, configure C standard streams:
-    /// On Windows, set the binary mode (O_BINARY) on stdin, stdout and stderr.
-    /// If buffered_stdio equals zero, disable buffering of stdin, stdout and stderr streams.
-    /// If interactive is non-zero, enable stream buffering on stdin and stdout (only stdout on Windows).
-    /// Default: 1 in Python config, 0 in isolated config.
-    /// </summary>
     configure_c_stdio        : integer;
-    /// <summary>
-    /// If equals to 0 and configure_c_stdio is non-zero, disable buffering on the C streams stdout and stderr.
-    /// Set to 0 by the -u command line option and the PYTHONUNBUFFERED environment variable.
-    /// stdin is always opened in buffered mode.
-    /// Default: 1.
-    /// </summary>
     buffered_stdio           : integer;
-    /// <summary>
-    /// Encoding of sys.stdin, sys.stdout and sys.stderr (but sys.stderr always uses "backslashreplace" error handler).
-    /// Use the PYTHONIOENCODING environment variable if it is non-empty.
-    /// Default encoding:
-    /// - "UTF-8" if PyPreConfig.utf8_mode is non-zero.
-    /// - Otherwise, use the locale encoding.
-    /// See also PyConfig.legacy_windows_stdio.
-    /// </summary>
     stdio_encoding           : PWCharT;
-    /// <summary>
-    /// Encoding errors of sys.stdin, sys.stdout and sys.stderr (but sys.stderr always uses "backslashreplace" error handler).
-    /// Use the PYTHONIOENCODING environment variable if it is non-empty.
-    /// Default error handler:
-    /// - On Windows: use "surrogateescape".
-    /// - "surrogateescape" if PyPreConfig.utf8_mode is non-zero, or if the LC_CTYPE locale is "C" or "POSIX".
-    /// - "strict" otherwise.
-    /// See also PyConfig.legacy_windows_stdio.
-    /// </summary>
     stdio_errors             : PWCharT;
     {$IFDEF MSWINDOWS}
-    /// <summary>
-    /// If non-zero, use io.FileIO instead of io._WindowsConsoleIO for sys.stdin, sys.stdout and sys.stderr.
-    /// Set to 1 if the PYTHONLEGACYWINDOWSSTDIO environment variable is set to a non-empty string.
-    /// Only available on Windows. #ifdef MS_WINDOWS macro can be used for Windows specific code.
-    /// Default: 0.
-    /// See also the PEP 528 (Change Windows console encoding to UTF-8).
-    /// </summary>
     legacy_windows_stdio     : integer;
     {$ENDIF}
-    /// <summary>
-    /// Control the validation behavior of hash-based .pyc files: value of the --check-hash-based-pycs command line option.
-    /// Valid values:
-    /// "always": Hash the source file for invalidation regardless of value of the ‘check_source' flag.
-    /// "never": Assume that hash-based pycs always are valid.
-    /// "default": The ‘check_source' flag in hash-based pycs determines invalidation.
-    /// Default: "default".
-    /// See also PEP 552 "Deterministic pycs".
-    /// </summary>
     check_hash_pycs_mode     : PWCharT;
-    /// <summary>
-    /// If non-zero, use frozen modules.
-    /// Set by the PYTHON_FROZEN_MODULES environment variable.
-    /// Default: 1 in a release build, or 0 in a debug build.
-    /// </summary>
     use_frozen_modules       : integer;
-    /// <summary>
-    /// If equals to zero, Py_RunMain() prepends a potentially unsafe path to sys.path at startup:
-    /// If argv[0] is equal to L"-m" (python -m module), prepend the current working directory.
-    /// If running a script (python script.py), prepend the script's directory. If it's a symbolic link, resolve symbolic links.
-    /// Otherwise (python -c code and python), prepend an empty string, which means the current working directory.
-    /// Set to 1 by the -P command line option and the PYTHONSAFEPATH environment variable.
-    /// Default: 0 in Python config, 1 in isolated config.
-    /// Added in version 3.11.
-    /// </summary>
     safe_path                : integer;
-    /// <summary>
-    /// Configures the integer string conversion length limitation. An initial value of -1 means the value will be taken from the command line or environment or otherwise default to 4300 (sys.int_info.default_max_str_digits). A value of 0 disables the limitation. Values greater than zero but less than 640 (sys.int_info.str_digits_check_threshold) are unsupported and will produce an error.
-    /// Configured by the -X int_max_str_digits command line flag or the PYTHONINTMAXSTRDIGITS environment variable.
-    /// Default: -1 in Python mode. 4300 (sys.int_info.default_max_str_digits) in isolated mode.
-    /// Added in version 3.12.
-    /// </summary>
     int_max_str_digits       : integer;
-    /// <summary>
-    /// Whether the new thread should inherit the current "execution context" from the thread that created it.
-    /// If thread_inherit_context is true, the new thread starts with that same context (so things like trace IDs, user IDs, request-scoped metadata, etc. propagate).
-    /// If it's false, the new thread runs with a fresh/default context (so context doesn't automatically carry over).
-    /// </summary>
     thread_inherit_context   : integer;
-    /// <summary>
-    /// The 'context_aware_warnings' field exists to control whether the 'warnings.catch_warnings()' context manager behaves *concurrently safely*.
-    /// - When 'context_aware_warnings' is **true**, 'catch_warnings' uses a 'ContextVar' to store the temporarily-established warning filter state, so using it is safe across **threads and asyncio tasks**.
-    /// - When 'context_aware_warnings' is **false**, 'catch_warnings' falls back to modifying **global state** in the 'warnings' module, which is **not safe** in concurrent programs (thread/async behavior can become undefined).
-    /// It can also be set via the '-X context_aware_warnings' command-line option or the 'PYTHON_CONTEXT_AWARE_WARNINGS' environment variable. '<citation src="1"></citation>'
-    /// </summary>
     context_aware_warnings   : integer;
     {$IFDEF APPLE}
-    /// <summary>
-    /// If non-zero, stdout and stderr will be redirected to the system log.
-    /// Only available on macOS 10.12 and later, and on iOS.
-    /// Default: 0 (don't use the system log) on macOS; 1 on iOS (use the system log).
-    /// Added in version 3.14.
-    /// </summary>
     use_system_logger        : integer;
     {$ENDIF}
-    /// <summary>
-    /// If the value of cpu_count is not -1 then it will override the return values of os.cpu_count(), os.process_cpu_count(), and multiprocessing.cpu_count().
-    /// Configured by the -X cpu_count=n|default command line flag or the PYTHON_CPU_COUNT environment variable.
-    /// Default: -1.
-    /// Added in version 3.13.
-    /// </summary>
     cpu_count                : integer;
-    /// <summary>
-    /// If non-zero, calculation of path configuration is allowed to log warnings into stderr. If equals to 0, suppress these warnings.
-    /// Default: 1 in Python mode, 0 in isolated mode.
-    /// Part of the Python Path Configuration input.
-    /// Changed in version 3.11: Now also applies on Windows.
-    /// </summary>
     pathconfig_warnings      : integer;
-    /// <summary>
-    /// Program name used to initialize executable and in early error messages during Python initialization.
-    /// On macOS, use PYTHONEXECUTABLE environment variable if set.
-    /// If the WITH_NEXT_FRAMEWORK macro is defined, use __PYVENV_LAUNCHER__ environment variable if set.
-    /// Use argv[0] of argv if available and non-empty.
-    /// Otherwise, use L"python" on Windows, or L"python3" on other platforms.
-    /// Default: nil.
-    /// Part of the Python Path Configuration input.
-    /// </summary>
     program_name             : PWCharT;
-    /// <summary>
-    /// Set by the PYTHONPATH environment variable.
-    /// Default: nil.
-    /// Part of the Python Path Configuration input.
-    /// </summary>
     pythonpath_env           : PWCharT;
-    /// <summary>
-    /// Set the default Python "home" directory, that is, the location of the standard Python libraries (see PYTHONHOME).
-    /// Set by the PYTHONHOME environment variable.
-    /// Default: nil.
-    /// Part of the Python Path Configuration input.
-    /// </summary>
     home                     : PWCharT;
-    /// <summary>
-    /// Platform library directory name: sys.platlibdir.
-    /// Set by the PYTHONPLATLIBDIR environment variable.
-    /// Default: value of the PLATLIBDIR macro which is set by the configure --with-platlibdir option (default: "lib", or "DLLs" on Windows).
-    /// Part of the Python Path Configuration input.
-    /// Added in version 3.9.
-    /// Changed in version 3.11: This macro is now used on Windows to locate the standard library extension modules, typically under DLLs. However, for compatibility, note that this value is ignored for any non-standard layouts, including in-tree builds and virtual environments.
-    /// </summary>
     platlibdir               : PWCharT;
-    /// <summary>
-    /// Module search paths: sys.path.
-    /// If module_search_paths_set is equal to 0, Py_InitializeFromConfig() will replace module_search_paths and sets module_search_paths_set to 1.
-    /// Default: empty list (module_search_paths) and 0 (module_search_paths_set).
-    /// Part of the Python Path Configuration output.
-    /// </summary>
     module_search_paths_set  : integer;
-    /// <summary>
-    /// Module search paths (sys.path) as a string separated by DELIM (os.pathsep).
-    /// </summary>
     module_search_paths      : PyWideStringList;
-    /// <summary>
-    /// Directory of the Python standard library.
-    /// Default: nil.
-    /// Added in version 3.11.
-    /// </summary>
     stdlib_dir               : PWCharT;
-    /// <summary>
-    /// The absolute path of the executable binary for the Python interpreter: sys.executable.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.base_executable.
-    /// </summary>
     executable               : PWCharT;
-    /// <summary>
-    /// Python base executable: sys._base_executable.
-    /// Set by the __PYVENV_LAUNCHER__ environment variable.
-    /// Set from PyConfig.executable if nil.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.executable.
-    /// </summary>
     base_executable          : PWCharT;
-    /// <summary>
-    /// The site-specific directory prefix where the platform independent Python files are installed: sys.prefix.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.base_prefix.
-    /// </summary>
     prefix                   : PWCharT;
-    /// <summary>
-    /// sys.base_exec_prefix.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.exec_prefix.
-    /// </summary>
     base_prefix              : PWCharT;
-    /// <summary>
-    /// The site-specific directory prefix where the platform-dependent Python files are installed: sys.exec_prefix.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.base_exec_prefix.
-    /// </summary>
     exec_prefix              : PWCharT;
-    /// <summary>
-    /// sys.base_exec_prefix.
-    /// Default: nil.
-    /// Part of the Python Path Configuration output.
-    /// See also PyConfig.exec_prefix.
-    /// </summary>
     base_exec_prefix         : PWCharT;
-    /// <summary>
-    /// If non-zero, skip the first line of the PyConfig.run_filename source.
-    /// It allows the usage of non-Unix forms of #!cmd. This is intended for a DOS specific hack only.
-    /// Set to 1 by the -x command line option.
-    /// Default: 0.
-    /// </summary>
     skip_source_first_line   : integer;
-    /// <summary>
-    /// Value of the -c command line option.
-    /// Used by Py_RunMain().
-    /// Default: nil.
-    /// </summary>
     run_command              : PWCharT;
-    /// <summary>
-    /// Value of the -m command line option.
-    /// Used by Py_RunMain().
-    /// Default: nil.
-    /// </summary>
     run_module               : PWCharT;
-    /// <summary>
-    /// Filename passed on the command line: trailing command line argument without -c or -m. It is used by the Py_RunMain() function.
-    /// For example, it is set to script.py by the python3 script.py arg command line.
-    /// See also the PyConfig.skip_source_first_line option.
-    /// Default: nil.
-    /// </summary>
     run_filename             : PWCharT;
-    /// <summary>
-    /// PyConfig.sys_path_0 is the value that Python uses as the first entry in sys.path (sys.path[0]) when the interpreter runs.
-    /// In particular, it determines what sys.path[0] becomes for different invocation styles, for example:
-    /// - for python -m module, sys.path[0] is set to include the current working directory,
-    /// - for python script.py, it's set to the script's directory,
-    /// - for python -c code / plain python, it's set to an "empty string" meaning the current working directory.
-    /// So, when embedding Python via the C-API, setting PyConfig.sys_path_0 lets you control that first sys.path entry explicitly (instead of letting Python compute it).
-    /// </summary>
     sys_path_0               : PWCharT;
-    /// <summary>
-    /// Install importlib? If equals to 0, importlib is not initialized at all. Needed by freeze_importlib.
-    /// This is needed for some embedding/bootstrapping setups (e.g., "freeze_importlib"), where the embedding application wants to take control of how/when importlib gets installed.
-    /// </summary>
     _install_importlib       : integer;
-    /// <summary>
-    /// If equal to 0, stop Python initialization before the "main" phase.
-    /// </summary>
     _init_main               : integer;
-    /// <summary>
-    /// If non-zero, we believe we're running from a source tree.
-    /// </summary>
     _is_python_build         : integer;
   end;
 
