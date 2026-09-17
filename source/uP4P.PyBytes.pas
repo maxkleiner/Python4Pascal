@@ -195,7 +195,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyBytes.FromStringAndSize(const str: string; len: Py_ssize_t): IPyObject;
 var
@@ -291,7 +291,7 @@ end;
 class function TPyBytes.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_BYTES_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_BYTES_SUBCLASS));
 end;
 
 class function TPyBytes.CheckExact(const aPyObject: IPyObject): boolean;

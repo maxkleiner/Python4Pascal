@@ -45,7 +45,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyFrame, uP4P.PyCode;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyFrame, uP4P.PyCode;
 
 class function TPyAsyncGen.CheckExact(const aPyObject: IPyObject): boolean;
 begin

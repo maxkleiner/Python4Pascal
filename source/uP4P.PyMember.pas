@@ -42,7 +42,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyMember.GetOne(const obj_addr: string; const m: PyMemberDef): IPyObject;
 var

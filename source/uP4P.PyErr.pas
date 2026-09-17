@@ -534,7 +534,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyUnicode;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyUnicode;
 
 class procedure TPyErr.SetNone(const type_: IPyObject);
 begin

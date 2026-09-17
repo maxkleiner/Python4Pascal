@@ -80,7 +80,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyUnicodeEncodeError.GetEncoding(const exc: IPyObject): IPyObject;
 begin

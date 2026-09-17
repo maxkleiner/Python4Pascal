@@ -35,12 +35,12 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyExceptionInstance.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_BASE_EXC_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_BASE_EXC_SUBCLASS));
 end;
 
 end.

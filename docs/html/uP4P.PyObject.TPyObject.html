@@ -2712,7 +2712,7 @@ object repr     : 'abcdef'</pre>
 
 <p>Initialize a newly allocated object op with its type and initial reference. Returns the initialized object. Other fields of the object are not initialized. Despite its name, this function is unrelated to the object's __init__() method (tp_init slot). Specifically, this function does not call the object's __init__() method.
 
-<p>In general, consider this function to be a low-level routine. Use tp_alloc where possible. For implementing tp_alloc for your type, prefer TPyTypeObject.GenericAlloc() or TPyObject.New().
+<p>In general, consider this function to be a low-level routine. Use tp_alloc where possible. For implementing tp_alloc for your type, prefer TPyType.GenericAlloc() or TPyObject.New().
 
 <p>Note This function only initializes the object's memory corresponding to the initial PyObject structure. It does not zero the rest.
 
@@ -2748,7 +2748,7 @@ object repr     : 'abcdef'</pre>
 
 <p>Avoid calling this directly to allocate memory for an object; call the type's tp_alloc slot instead.
 
-<p>When populating a type's tp_alloc slot, TPyTypeObject.GenericAlloc() is preferred over a custom function that simply calls this function.
+<p>When populating a type's tp_alloc slot, TPyType.GenericAlloc() is preferred over a custom function that simply calls this function.
 
 <p>This function does not call tp_alloc, tp_new (__new__()), or tp_init (__init__()).
 
@@ -2802,7 +2802,7 @@ object repr     : 'abcdef'</pre>
 
 <p>Avoid calling this directly to allocate memory for an object; call the type's tp_alloc slot instead.
 
-<p>When populating a type's tp_alloc slot, TPyTypeObject.GenericAlloc() is preferred over a custom function that simply calls this macro.
+<p>When populating a type's tp_alloc slot, TPyType.GenericAlloc() is preferred over a custom function that simply calls this macro.
 
 <p>This cannot be used for objects with Py_TPFLAGS_HAVE_GC set in tp_flags; use PyObject_GC_NewVar instead.
 
@@ -2862,7 +2862,7 @@ object repr     : 'abcdef'</pre>
 
 <p>Do not call this directly to allocate memory for an object; call the type's tp_alloc slot instead.
 
-<p>When populating a type's tp_alloc slot, TPyTypeObject.GenericAlloc() is preferred over a custom function that simply calls this macro.
+<p>When populating a type's tp_alloc slot, TPyType.GenericAlloc() is preferred over a custom function that simply calls this macro.
 
 <p>Memory allocated by this macro must be freed with TPyObject.GC_Del() (usually called via the object's tp_free slot).
 
@@ -2882,7 +2882,7 @@ object repr     : 'abcdef'</pre>
 
 <p>Do not call this directly to allocate memory for an object; call the type's tp_alloc slot instead.
 
-<p>When populating a type's tp_alloc slot, TPyTypeObject.GenericAlloc() is preferred over a custom function that simply calls this macro.
+<p>When populating a type's tp_alloc slot, TPyType.GenericAlloc() is preferred over a custom function that simply calls this macro.
 
 <p>Memory allocated by this macro must be freed with TPyObject.GC_Del() (usually called via the object's tp_free slot).
 

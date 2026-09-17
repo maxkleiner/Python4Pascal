@@ -134,7 +134,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyFrame.Check(const aPyObject: IPyObject): boolean;
 begin

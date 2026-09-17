@@ -1143,7 +1143,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyStatus, uP4P.PyThreadState,
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyStatus, uP4P.PyThreadState,
   uP4P.PyInitConfig, uP4P.PyPreConfig;
 
 class procedure TPy.FatalError(const message_: string);

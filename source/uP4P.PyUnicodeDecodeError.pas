@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyUnicodeDecodeError.Create(const encoding, object_: string; length, start, end_: Py_ssize_t; const reason: string): IPyObject;
 var

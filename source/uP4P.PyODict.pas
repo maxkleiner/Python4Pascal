@@ -61,7 +61,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyList;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyList;
 
 class function TPyODict.New: IPyObject;
 begin

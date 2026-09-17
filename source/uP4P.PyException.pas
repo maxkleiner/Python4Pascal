@@ -79,7 +79,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyNone;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyNone;
 
 class function TPyException.SetTraceback(const ex, tb: IPyObject): boolean;
 begin

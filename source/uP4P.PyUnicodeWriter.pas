@@ -149,7 +149,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 constructor TPyUnicodeWriter.Create(length: Py_ssize_t);
 begin

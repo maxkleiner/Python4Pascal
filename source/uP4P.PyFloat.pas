@@ -121,7 +121,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyFloat.FromDouble(v: double): IPyObject;
 begin

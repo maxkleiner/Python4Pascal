@@ -139,7 +139,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyCapsule.CheckExact(const aPyObject: IPyObject): boolean;
 begin

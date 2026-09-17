@@ -110,7 +110,7 @@
         <DCCReference Include="..\source\uP4P.PyCriticalSection.pas"/>
         <DCCReference Include="..\source\uP4P.PyNone.pas"/>
         <DCCReference Include="..\source\uP4P.PyNotImplemented.pas"/>
-        <DCCReference Include="..\source\uP4P.PyTypeObject.pas"/>
+        <DCCReference Include="..\source\uP4P.PyType.pas"/>
         <DCCReference Include="..\source\uP4P.PyLong.pas"/>
         <DCCReference Include="..\source\uP4P.PyLongExport.pas"/>
         <DCCReference Include="..\source\uP4P.PyFloat.pas"/>

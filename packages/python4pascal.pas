@@ -34,7 +34,7 @@ uses
   uP4P.PyState, uP4P.PyStaticMethod, uP4P.PyStatus, uP4P.PyStructSequence, 
   uP4P.PySys, uP4P.PyThread, uP4P.PyThreadLock, uP4P.PyThreadState, 
   uP4P.PyThreadTSS, uP4P.PyTime, uP4P.PyTraceBack, uP4P.PyTraceMalloc, 
-  uP4P.PyTuple, uP4P.PyTypeObject, uP4P.PyUnicode, uP4P.PyUnicodeDecodeError, 
+  uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyUnicodeDecodeError, 
   uP4P.PyUnicodeEncodeError, uP4P.PyUnicodeTranslateError, 
   uP4P.PyUnicodeWriter, uP4P.PyVectorcall, uP4P.PyWeakref, 
   uP4P.PyWideStringList, uP4P.PyWrapper, uP4P.Types, uP4P.PyDateTimeModule, 
@@ -42,7 +42,7 @@ uses
   uP4P.ImportedPyModule, uP4P.PyGenericAlias, uP4P.PyAnyDict, 
   uP4P.PyBytesWriter, uP4P.PyFrozenDict, uP4P.PyInterpreterGuard, 
   uP4P.PyInterpreterView, uP4P.PyTimeStruct, uP4P.Py_bf, uP4P.Py_mod, 
-  uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, LazarusPackageIntf;
+  uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, LazarusPackageIntf;
 
 implementation
 

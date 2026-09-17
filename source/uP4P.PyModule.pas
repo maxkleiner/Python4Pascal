@@ -209,7 +209,7 @@ type
       class function AddStringConstant(const module_: IPyObject; const name_, value: string): boolean;
       /// <summary>
       /// <para>Add a type object to module. The type object is finalized by
-      /// calling internally TPyTypeObject.Ready(). The name of the type object
+      /// calling internally TPyType.Ready(). The name of the type object
       /// is taken from the last component of tp_name after dot.
       /// Return False with an exception set on error, True on success.</para>
       /// </summary>
@@ -392,7 +392,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyModule.Check(const aPyObject: IPyObject): boolean;
 begin

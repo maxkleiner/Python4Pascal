@@ -184,7 +184,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyOS.strtoul(const str: string; base: integer): C_ULong;
 var

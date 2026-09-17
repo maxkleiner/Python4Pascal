@@ -35,7 +35,7 @@ type
 implementation
 
 uses
-  uP4P.PyTypeObject;
+  uP4P.PyType;
 
 class function TPyDictKeys.Check(const aPyObject: IPyObject): boolean;
 begin

@@ -135,7 +135,7 @@ body { margin: 0.5em; }
 
 <p>Return a weak reference object for the object ob. This will always return a new reference, but is not guaranteed to create a new object; an existing reference object may be returned. The second parameter, callback, can be a callable object that receives notification when ob is garbage collected; it should accept a single parameter, which will be the weak reference object itself. callback may also be None or nil. If ob is not a weakly referenceable object, this will raise TypeError and return nil.
 
-<p>See also TPyTypeObject.SUPPORTS_WEAKREFS() for checking if ob is weakly referenceable.
+<p>See also TPyType.SUPPORTS_WEAKREFS() for checking if ob is weakly referenceable.
 
 <p></p>
 </td></tr>
@@ -151,7 +151,7 @@ body { margin: 0.5em; }
 
 <p>Return a weak reference proxy object for the object ob. This will always return a new reference, but is not guaranteed to create a new object; an existing proxy object may be returned. The second parameter, callback, can be a callable object that receives notification when ob is garbage collected; it should accept a single parameter, which will be the weak reference object itself. callback may also be None or nil. If ob weakly referenceable object, this will raise TypeError and return nil.
 
-<p>See also TPyTypeObject.SUPPORTS_WEAKREFS() for checking if ob is weakly referenceable.
+<p>See also TPyType.SUPPORTS_WEAKREFS() for checking if ob is weakly referenceable.
 
 <p></p>
 </td></tr>

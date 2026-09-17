@@ -881,7 +881,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyUnicode.FromStringAndSize(const str: string; size_: Py_ssize_t): IPyObject;
 var
@@ -1369,7 +1369,7 @@ end;
 class function TPyUnicode.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_UNICODE_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_UNICODE_SUBCLASS));
 end;
 
 class function TPyUnicode.CheckExact(const aPyObject: IPyObject): boolean;

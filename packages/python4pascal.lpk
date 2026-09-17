@@ -456,10 +456,6 @@
         <UnitName Value="uP4P.PyTuple"/>
       </Item>
       <Item>
-        <Filename Value="..\source\uP4P.PyTypeObject.pas"/>
-        <UnitName Value="uP4P.PyTypeObject"/>
-      </Item>
-      <Item>
         <Filename Value="..\source\uP4P.PyUnicode.pas"/>
         <UnitName Value="uP4P.PyUnicode"/>
       </Item>
@@ -566,6 +562,10 @@
       <Item>
         <Filename Value="..\source\uP4P.PySentinel.pas"/>
         <UnitName Value="uP4P.PySentinel"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyType.pas"/>
+        <UnitName Value="uP4P.PyType"/>
       </Item>
     </Files>
     <RequiredPkgs>

@@ -447,7 +447,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyList, uP4P.PyUnicode;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyList, uP4P.PyUnicode;
 
 class function TPyDict.New: IPyObject;
 begin
@@ -460,7 +460,7 @@ end;
 class function TPyDict.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_DICT_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_DICT_SUBCLASS));
 end;
 
 class function TPyDict.CheckExact(const aPyObject: IPyObject): boolean;

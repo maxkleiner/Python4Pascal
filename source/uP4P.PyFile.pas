@@ -110,7 +110,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyFile.FromFd(fd: integer; const mode: string; buffering: integer; const encoding, errors, newline: string; closefd: boolean): IPyObject;
 var

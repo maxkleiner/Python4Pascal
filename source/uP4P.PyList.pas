@@ -213,7 +213,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyTuple, uP4P.PyUnicode;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyTuple, uP4P.PyUnicode;
 
 class function TPyList.New(len: Py_ssize_t): IPyObject;
 begin
@@ -226,7 +226,7 @@ end;
 class function TPyList.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_LIST_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_LIST_SUBCLASS));
 end;
 
 class function TPyList.CheckExact(const aPyObject: IPyObject): boolean;

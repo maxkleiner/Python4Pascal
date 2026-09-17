@@ -971,7 +971,7 @@ type
       /// method.</para>
       /// <para>In general, consider this function to be a low-level routine.
       /// Use tp_alloc where possible. For implementing tp_alloc for your type,
-      /// prefer TPyTypeObject.GenericAlloc() or TPyObject.New().</para>
+      /// prefer TPyType.GenericAlloc() or TPyObject.New().</para>
       /// <para>Note This function only initializes the object's memory
       /// corresponding to the initial PyObject structure. It does not zero
       /// the rest.</para>
@@ -993,7 +993,7 @@ type
       /// <para>Avoid calling this directly to allocate memory for an object;
       /// call the type's tp_alloc slot instead.</para>
       /// <para>When populating a type's tp_alloc slot,
-      /// TPyTypeObject.GenericAlloc() is preferred over a custom function that
+      /// TPyType.GenericAlloc() is preferred over a custom function that
       /// simply calls this function.</para>
       /// <para>This function does not call tp_alloc, tp_new (__new__()), or
       /// tp_init (__init__()).</para>
@@ -1030,7 +1030,7 @@ type
       /// <para>Avoid calling this directly to allocate memory for an object;
       /// call the type's tp_alloc slot instead.</para>
       /// <para>When populating a type's tp_alloc slot,
-      /// TPyTypeObject.GenericAlloc() is preferred over a custom function that
+      /// TPyType.GenericAlloc() is preferred over a custom function that
       /// simply calls this macro.</para>
       /// <para>This cannot be used for objects with Py_TPFLAGS_HAVE_GC set in
       /// tp_flags; use PyObject_GC_NewVar instead.</para>
@@ -1074,7 +1074,7 @@ type
       /// <para>Do not call this directly to allocate memory for an object;
       /// call the type's tp_alloc slot instead.</para>
       /// <para>When populating a type's tp_alloc slot,
-      /// TPyTypeObject.GenericAlloc() is preferred over a custom function
+      /// TPyType.GenericAlloc() is preferred over a custom function
       /// that simply calls this macro.</para>
       /// <para>Memory allocated by this macro must be freed with
       /// TPyObject.GC_Del() (usually called via the object's tp_free
@@ -1087,7 +1087,7 @@ type
       /// <para>Do not call this directly to allocate memory for an object;
       /// call the type's tp_alloc slot instead.</para>
       /// <para>When populating a type's tp_alloc slot,
-      /// TPyTypeObject.GenericAlloc() is preferred over a custom function that
+      /// TPyType.GenericAlloc() is preferred over a custom function that
       /// simply calls this macro.</para>
       /// <para>Memory allocated by this macro must be freed with
       /// TPyObject.GC_Del() (usually called via the object's tp_free
@@ -1247,7 +1247,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.Py, uP4P.PyUnicode, uP4P.PyBytes,
   uP4P.PyLong, uP4P.PyFloat, uP4P.PyBool, uP4P.PyTimeStruct, uP4P.PyDateTimeModule,
   uP4P.PySequence, uP4P.PyList, uP4P.PyTuple, uP4P.PyNone,
   uP4P.PyObjectVariantType, uP4P.PyCallable, uP4P.PyMapping;
@@ -1498,7 +1498,7 @@ end;
 function TPyObject.TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
 begin
   Result := IsType(aPyTypeObject) or
-            TPyTypeObject.IsSubtype(GetPyTypeObject, aPyTypeObject);
+            TPyType.IsSubtype(GetPyTypeObject, aPyTypeObject);
 end;
 
 procedure TPyObject.InitPyObject;

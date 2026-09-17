@@ -54,7 +54,7 @@ type
       /// parameter, which will be the weak reference object itself. callback
       /// may also be None or nil. If ob is not a weakly referenceable object,
       /// this will raise TypeError and return nil.</para>
-      /// <para>See also TPyTypeObject.SUPPORTS_WEAKREFS() for checking if ob
+      /// <para>See also TPyType.SUPPORTS_WEAKREFS() for checking if ob
       /// is weakly referenceable.</para>
       /// </summary>
       class function NewRef(const ob, callback: IPyObject): IPyObject;
@@ -67,7 +67,7 @@ type
       /// parameter, which will be the weak reference object itself. callback
       /// may also be None or nil. If ob weakly referenceable object, this will
       /// raise TypeError and return nil.</para>
-      /// <para>See also TPyTypeObject.SUPPORTS_WEAKREFS() for checking if ob
+      /// <para>See also TPyType.SUPPORTS_WEAKREFS() for checking if ob
       /// is weakly referenceable.</para>
       /// </summary>
       class function NewProxy(const ob, callback: IPyObject): IPyObject;

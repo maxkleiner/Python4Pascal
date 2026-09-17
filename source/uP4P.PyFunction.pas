@@ -139,7 +139,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyNone;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyNone;
 
 class function TPyFunction.Check(const aPyObject: IPyObject): boolean;
 begin

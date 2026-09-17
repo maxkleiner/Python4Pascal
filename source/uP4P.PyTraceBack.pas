@@ -50,7 +50,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject, uP4P.PyFrame;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyFrame;
 
 class function TPyTraceBack.Here(const frame: IPyObject): boolean;
 begin

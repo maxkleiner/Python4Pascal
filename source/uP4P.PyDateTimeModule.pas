@@ -152,7 +152,7 @@ type
 implementation
 
 uses
-  uP4P.Engine, uP4P.PyTuple, uP4P.PyLong, uP4P.PyImport, uP4P.PyTypeObject;
+  uP4P.Engine, uP4P.PyTuple, uP4P.PyLong, uP4P.PyImport, uP4P.PyType;
 
 procedure TPyDateTimeModule.Initialize;
 begin
@@ -239,43 +239,43 @@ end;
 function TPyDateTimeModule.CheckDate(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactDate(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FDateType);
+            TPyType.IsSubtype(aPyObject, FDateType);
 end;
 
 function TPyDateTimeModule.CheckDateTime(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactDateTime(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FDateTimeType);
+            TPyType.IsSubtype(aPyObject, FDateTimeType);
 end;
 
 function TPyDateTimeModule.CheckDelta(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactDelta(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FDeltaType);
+            TPyType.IsSubtype(aPyObject, FDeltaType);
 end;
 
 function TPyDateTimeModule.CheckTime(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactTime(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FTimeType);
+            TPyType.IsSubtype(aPyObject, FTimeType);
 end;
 
 function TPyDateTimeModule.CheckTZInfo(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactTZInfo(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FTZInfoType);
+            TPyType.IsSubtype(aPyObject, FTZInfoType);
 end;
 
 function TPyDateTimeModule.CheckTimeTZ(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactTimeTZ(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FTimeTZType);
+            TPyType.IsSubtype(aPyObject, FTimeTZType);
 end;
 
 function TPyDateTimeModule.CheckDateTimeTZ(const aPyObject: IPyObject): boolean;
 begin
   Result := CheckExactDateTimeTZ(aPyObject) or
-            TPyTypeObject.IsSubtype(aPyObject, FDateTimeTZType);
+            TPyType.IsSubtype(aPyObject, FDateTimeTZType);
 end;
 
 class function TPyDateTimeModule.AsDate(const aPyObject: IPyObject; var year, month, day: integer): boolean;

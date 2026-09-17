@@ -425,7 +425,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyTypeObject;
+  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyLong.FromLong(v: C_Long): IPyObject;
 begin
@@ -618,7 +618,7 @@ end;
 class function TPyLong.Check(const aPyObject: IPyObject): boolean;
 begin
   Result := TPyObject.IsInitialized(aPyObject) and
-            TPyTypeObject.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_LONG_SUBCLASS));
+            TPyType.FastSubclass(aPyObject.PyTypeObject, C_ULong(Py_TPFLAGS_LONG_SUBCLASS));
 end;
 
 class function TPyLong.CheckExact(const aPyObject: IPyObject): boolean;

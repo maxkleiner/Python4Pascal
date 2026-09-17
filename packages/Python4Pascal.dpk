@@ -49,7 +49,7 @@ contains
   uP4P.PyCriticalSection in '..\source\uP4P.PyCriticalSection.pas',
   uP4P.PyNone in '..\source\uP4P.PyNone.pas',
   uP4P.PyNotImplemented in '..\source\uP4P.PyNotImplemented.pas',
-  uP4P.PyTypeObject in '..\source\uP4P.PyTypeObject.pas',
+  uP4P.PyType in '..\source\uP4P.PyType.pas',
   uP4P.PyLong in '..\source\uP4P.PyLong.pas',
   uP4P.PyLongExport in '..\source\uP4P.PyLongExport.pas',
   uP4P.PyFloat in '..\source\uP4P.PyFloat.pas',
