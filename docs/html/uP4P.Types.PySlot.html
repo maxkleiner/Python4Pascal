@@ -23,7 +23,11 @@ body { margin: 0.5em; }
 <code>type PySlot = record</code></p>
 <h2 class="description">Description</h2>
 <p>
-* include/typeslots.h include/slots.h include/slots_generated.h *</p>
+ An entry in a slots array. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/slots.html#c.PySlot">https://docs.python.org/3.15/c-api/slots.html#c.PySlot</a>&quot;&gt;See the article about PySlot.)</p>
 <h2 class="overview">Overview</h2>
 <span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
 <table class="summary wide_list">
@@ -68,7 +72,24 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="sl_id"></span><code><strong>sl_id</strong>: word;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>A slot ID, chosen from:
+
+<p></p>
+
+<pre class="preformatted">
+- Py_slot_* values documented in Common slot IDs below;
+- Py_mod_* values for modules, as documented in Module definition;
+- Values for types, as documented in Type slot IDs.</pre>
+
+<p>
+
+<p>A sl_id of zero (Py_slot_end) marks the end of a slots array.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -76,7 +97,13 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="sl_flags"></span><code><strong>sl_flags</strong>: word;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Zero or more of the following flags, OR-ed together: PySlot_STATIC, PySlot_INTPTR, PySlot_OPTIONAL.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -84,7 +111,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="sl_reserved"></span><code><strong>sl_reserved</strong>: cardinal;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Must be 0. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">

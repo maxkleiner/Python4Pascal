@@ -69,7 +69,7 @@ type
       /// <summary>
       /// <para>Convenience function to mark the end of a PySlot array.</para>
       /// </summary>
-      class function END_: Pointer;
+      class function END_: PySlot;
   end;
 
 implementation
@@ -138,9 +138,12 @@ begin
   Result.sl_ptr      := value_;
 end;
 
-class function TPySlot.END_: Pointer;
+class function TPySlot.END_: PySlot;
 begin
-  Result := nil;
+  Result.sl_id       := Py_slot_end;
+  Result.sl_flags    := 0;
+  Result.sl_reserved := 0;
+  Result.sl_ptr      := nil;
 end;
 
 end.

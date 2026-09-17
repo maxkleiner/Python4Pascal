@@ -1180,9 +1180,33 @@ type
   end;
 
   {* include/typeslots.h  include/slots.h  include/slots_generated.h *}
+
+  /// <summary>
+  /// An entry in a slots array.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/slots.html#c.PySlot">See the article about PySlot.</see></para>
+  /// </remarks>
   PySlot = record
+    /// <summary>
+    /// <para>A slot ID, chosen from:</para>
+    /// <code>
+    /// - Py_slot_* values documented in Common slot IDs below;
+    /// - Py_mod_* values for modules, as documented in Module definition;
+    /// - Values for types, as documented in Type slot IDs.
+    /// </code>
+    /// <para>A sl_id of zero (Py_slot_end) marks the end of a slots
+    /// array.</para>
+    /// </summary>
     sl_id       : word;
+    /// <summary>
+    /// <para>Zero or more of the following flags, OR-ed together:
+    /// PySlot_STATIC, PySlot_INTPTR, PySlot_OPTIONAL.</para>
+    /// </summary>
     sl_flags    : word;
+    /// <summary>
+    /// Must be 0.
+    /// </summary>
     sl_reserved : cardinal;
     case integer of
       0 : (sl_ptr    : Pointer);

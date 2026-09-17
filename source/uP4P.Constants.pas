@@ -391,7 +391,26 @@ const
   Py_sq_length = 45;
   Py_sq_repeat = 46;
   Py_tp_alloc = 47;
+  /// <summary>
+  /// <para>Equivalent to Py_tp_bases (with s at the end). If both are
+  /// specified, Py_tp_bases takes priority and this slot is ignored.</para>
+  /// <para>Changed in version 3.15: Previously, Py_tp_base required a single
+  /// type, not a tuple.</para>
+  /// <para>Soft deprecated since version 3.15: When not targeting older Python
+  /// versions, prefer Py_tp_bases.</para>
+  /// </summary>
   Py_tp_base = 48;
+  /// <summary>
+  /// <para>Slot ID for type flags, used to set PyTypeObject.tp_bases.</para>
+  /// <para>The slot can be set to a tuple of type objects which the newly
+  /// created type should inherit from, like the "positional arguments" of a
+  /// Python class definition.</para>
+  /// <para>Alternately, the slot can be set to a single type object to specify
+  /// a single base. The effect is the same as specifying a one-element
+  /// tuple.</para>
+  /// <para>Changed in version 3.15: Previously, Py_tp_bases required a tuple
+  /// of types.</para>
+  /// </summary>
   Py_tp_bases = 49;
   Py_tp_call = 50;
   Py_tp_clear = 51;
@@ -426,6 +445,30 @@ const
   Py_tp_finalize = 80;
   Py_am_send = 81;
   Py_tp_vectorcall = 82;
+  /// <summary>
+  /// <para>Slot ID for recording a static memory layout ID for a class.</para>
+  /// <para>If the class is defined using a PyType_Spec, and that spec is
+  /// statically allocated, the token can be set to the spec using the special
+  /// value Py_TP_USE_SPEC:</para>
+  /// <code>
+  /// static PyType_Slot foo_slots[] = {
+  ///    {Py_tp_token, Py_TP_USE_SPEC},
+  /// </code>
+  /// <para>It can also be set to an arbitrary pointer, but you must ensure
+  /// that:</para>
+  /// <code>
+  /// - The pointer outlives the class, so it's not reused for something else
+  ///   while the class exists.
+  /// - It "belongs" to the extension module where the class lives, so it will
+  ///   not clash with other extensions.
+  /// </code>
+  /// <para>Use TPyType.GetBaseByToken() to check if a class's superclass has
+  /// a given token - that is, check whether the memory layout is
+  /// compatible.</para>
+  /// <para>To get the token for a given class (without considering
+  /// superclasses), use TPyType.GetSlot() with Py_tp_token.</para>
+  /// <para>Added in version 3.14.</para>
+  /// </summary>
   Py_tp_token = 83;
   /// <summary>
   /// <para>Nested slots array.</para>
@@ -438,13 +481,118 @@ const
   /// <para>Added in version 3.15.</para>
   /// </summary>
   Py_slot_subslots = 92;
+  /// <summary>
+  /// <para>Slot ID that works like Py_slot_subslots, except it specifies an
+  /// array of PyType_Slot structures.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_slots = 93;
+  /// <summary>
+  /// <para>Slot ID for the name of the type, used to set
+  /// PyTypeObject.tp_name.</para>
+  /// <para>This slot (or PyType_Spec.name) is required to create a type.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use PyType_Spec.name
+  /// instead.</para>
+  /// <para>CPython implementation detail: CPython processes slots in order.
+  /// It is recommended to put Py_tp_name at the beginning of the slots array,
+  /// so that if processing of a later slots fails, error messages can include
+  /// the name.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_name = 95;
+  /// <summary>
+  /// <para>Slot ID for the size of the instance in bytes. It is used to set
+  /// PyTypeObject.tp_basicsize.</para>
+  /// <para>The value must be positive.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use
+  /// PyType_Spec.basicsize instead.</para>
+  /// <para>This slot may not be used with TPyType.GetSlot(). Use
+  /// PyTypeObject.tp_basicsize instead if needed, but be aware that a type's
+  /// size is often considered an implementation detail.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_basicsize = 96;
+  /// <summary>
+  /// <para>Slot ID for type data size in bytes, that is, how much space
+  /// instances of the class need in addition to space needed for
+  /// superclasses.</para>
+  /// <para>The value is used, together with the size of superclasses, to set
+  /// PyTypeObject.tp_basicsize. Python will insert padding as needed to meet
+  /// tp_basicsize's alignment requirements.</para>
+  /// <para>Use TPyObject.GetTypeData() to get a pointer to subclass-specific
+  /// memory reserved this way.</para>
+  /// <para>The value must be positive. To specify that instances need no
+  /// additional size (that is, size should be inherited), omit the
+  /// Py_tp_extra_basicsize slot rather than set it to zero.</para>
+  /// <para>Specifying both Py_tp_basicsize and Py_tp_extra_basicsize is an
+  /// error.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use negative
+  /// PyType_Spec.basicsize instead.</para>
+  /// <para>This slot may not be used with TPyType.GetSlot().</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_extra_basicsize = 97;
+  /// <summary>
+  /// <para>Slot ID for the size of one element of a variable-size type, in
+  /// bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize
+  /// documentation for caveats.</para>
+  /// <para>The value must be positive.</para>
+  /// <para>If this slot is missing, tp_itemsize is inherited. Extending
+  /// arbitrary variable-sized classes is dangerous, since some types use a
+  /// fixed offset for variable-sized memory, which can then overlap
+  /// fixed-sized memory used by a subclass. To help prevent mistakes,
+  /// inheriting itemsize is only possible in the following situations:</para>
+  /// <code>
+  /// - The base is not variable-sized (its tp_itemsize is zero).
+  /// - The requested PyType_Spec.basicsize is positive, suggesting that the
+  ///   memory layout of the base class is known.
+  /// - The requested PyType_Spec.basicsize is zero, suggesting that the
+  ///   subclass does not access the instance's memory directly.
+  /// - With the Py_TPFLAGS_ITEMS_AT_END flag.
+  /// </code>
+  /// <para>This may not be used in PyType_Spec.slots. Use PyType_Spec.itemsize
+  /// instead.</para>
+  /// <para>This slot may not be used with TPyType.GetSlot().</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_itemsize = 98;
+  /// <summary>
+  /// <para>Slot ID for type flags, used to set PyTypeObject.tp_flags.</para>
+  /// <para>The Py_TPFLAGS_HEAPTYPE flag is not set, TPyType.FromSpecWithBases()
+  /// sets it automatically.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use negative
+  /// PyType_Spec.basicsize instead.</para>
+  /// <para>This slot may not be used with PyType_GetSlot(). Use
+  /// TPyType.GetFlags() instead.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_flags = 99;
+  /// <summary>
+  /// <para>Slot ID for the metaclass used to construct the resulting type
+  /// object. When omitted the metaclass is derived from bases (Py_tp_bases or
+  /// the bases argument of TPyType.FromMetaclass()).</para>
+  /// <para>Metaclasses that override tp_new are not supported, except if
+  /// tp_new is nil.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use
+  /// TPyType.FromMetaclass() to specify a metaclass with PyType_Spec.</para>
+  /// <para>This slot may not be used with TPyType.GetSlot(). Use TPy.TYPE_()
+  /// on the type object instead.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_metaclass = 107;
+  /// <summary>
+  /// <para>Slot ID for recording the module in which the new class is
+  /// defined.</para>
+  /// <para>The value must be a module object. The module is associated with
+  /// the new type and can later be retrieved with TPyType.GetModule().
+  /// The associated module is not inherited by subclasses; it must be
+  /// specified for each class individually.</para>
+  /// <para>This may not be used in PyType_Spec.slots. Use
+  /// TPyType.FromMetaclass() to specify a module with PyType_Spec.</para>
+  /// <para>This slot may not be used with TPyType.GetSlot(). Use
+  /// TPyType.GetModule() instead.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_tp_module = 108;
 
 

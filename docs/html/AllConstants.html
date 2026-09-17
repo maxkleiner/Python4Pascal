@@ -1917,17 +1917,47 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_base">Py_tp_base</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Equivalent to Py_tp_bases (with s at the end). If both are specified, Py_tp_bases takes priority and this slot is ignored.
+
+<p>Changed in version 3.15: Previously, Py_tp_base required a single type, not a tuple.
+
+<p>Soft deprecated since version 3.15: When not targeting older Python versions, prefer Py_tp_bases.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_bases">Py_tp_bases</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for type flags, used to set PyTypeObject.tp_bases.
+
+<p>The slot can be set to a tuple of type objects which the newly created type should inherit from, like the “positional arguments” of a Python class definition.
+
+<p>Alternately, the slot can be set to a single type object to specify a single base. The effect is the same as specifying a one-element tuple.
+
+<p>Changed in version 3.15: Previously, Py_tp_bases required a tuple of types.
+
+<p></p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_basicsize">Py_tp_basicsize</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for the size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize.
+
+<p>The value must be positive.
+
+<p>This may not be used in PyType_Spec.slots. Use PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot(). Use PyTypeObject.tp_basicsize instead if needed, but be aware that a type's size is often considered an implementation detail.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_call">Py_tp_call</a></td>
@@ -1967,7 +1997,25 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_extra_basicsize">Py_tp_extra_basicsize</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for type data size in bytes, that is, how much space instances of the class need in addition to space needed for superclasses.
+
+<p>The value is used, together with the size of superclasses, to set PyTypeObject.tp_basicsize. Python will insert padding as needed to meet tp_basicsize's alignment requirements.
+
+<p>Use TPyObject.GetTypeData() to get a pointer to subclass-specific memory reserved this way.
+
+<p>The value must be positive. To specify that instances need no additional size (that is, size should be inherited), omit the Py_tp_extra_basicsize slot rather than set it to zero.
+
+<p>Specifying both Py_tp_basicsize and Py_tp_extra_basicsize is an error.
+
+<p>This may not be used in PyType_Spec.slots. Use negative PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot().
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_finalize">Py_tp_finalize</a></td>
@@ -1977,7 +2025,19 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_flags">Py_tp_flags</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for type flags, used to set PyTypeObject.tp_flags.
+
+<p>The Py_TPFLAGS_HEAPTYPE flag is not set, TPyType.FromSpecWithBases() sets it automatically.
+
+<p>This may not be used in PyType_Spec.slots. Use negative PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with PyType_GetSlot(). Use TPyType.GetFlags() instead.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_free">Py_tp_free</a></td>
@@ -2017,7 +2077,33 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_itemsize">Py_tp_itemsize</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for the size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
+
+<p>The value must be positive.
+
+<p>If this slot is missing, tp_itemsize is inherited. Extending arbitrary variable-sized classes is dangerous, since some types use a fixed offset for variable-sized memory, which can then overlap fixed-sized memory used by a subclass. To help prevent mistakes, inheriting itemsize is only possible in the following situations:
+
+<p></p>
+
+<pre class="preformatted">
+- The base is not variable-sized (its tp_itemsize is zero).
+- The requested PyType_Spec.basicsize is positive, suggesting that the
+  memory layout of the base class is known.
+- The requested PyType_Spec.basicsize is zero, suggesting that the
+  subclass does not access the instance's memory directly.
+- With the Py_TPFLAGS_ITEMS_AT_END flag.</pre>
+
+<p>
+
+<p>This may not be used in PyType_Spec.slots. Use PyType_Spec.itemsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot().
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_iter">Py_tp_iter</a></td>
@@ -2037,7 +2123,19 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_metaclass">Py_tp_metaclass</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for the metaclass used to construct the resulting type object. When omitted the metaclass is derived from bases (Py_tp_bases or the bases argument of TPyType.FromMetaclass()).
+
+<p>Metaclasses that override tp_new are not supported, except if tp_new is nil.
+
+<p>This may not be used in PyType_Spec.slots. Use TPyType.FromMetaclass() to specify a metaclass with PyType_Spec.
+
+<p>This slot may not be used with TPyType.GetSlot(). Use TPy.TYPE_() on the type object instead.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_methods">Py_tp_methods</a></td>
@@ -2047,12 +2145,36 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_module">Py_tp_module</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for recording the module in which the new class is defined.
+
+<p>The value must be a module object. The module is associated with the new type and can later be retrieved with TPyType.GetModule(). The associated module is not inherited by subclasses; it must be specified for each class individually.
+
+<p>This may not be used in PyType_Spec.slots. Use TPyType.FromMetaclass() to specify a module with PyType_Spec.
+
+<p>This slot may not be used with TPyType.GetSlot(). Use TPyType.GetModule() instead.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_name">Py_tp_name</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for the name of the type, used to set PyTypeObject.tp_name.
+
+<p>This slot (or PyType_Spec.name) is required to create a type.
+
+<p>This may not be used in PyType_Spec.slots. Use PyType_Spec.name instead.
+
+<p>CPython implementation detail: CPython processes slots in order. It is recommended to put Py_tp_name at the beginning of the slots array, so that if processing of a later slots fails, error messages can include the name.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_new">Py_tp_new</a></td>
@@ -2082,7 +2204,13 @@ body { margin: 0.5em; }
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_slots">Py_tp_slots</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID that works like Py_slot_subslots, except it specifies an array of PyType_Slot structures.
+
+<p>Added in version 3.15.
+
+<p></p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_str">Py_tp_str</a></td>
@@ -2092,7 +2220,39 @@ body { margin: 0.5em; }
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_token">Py_tp_token</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p>&nbsp;</p></td>
+<td class="itemdesc"><p>
+
+<p>Slot ID for recording a static memory layout ID for a class.
+
+<p>If the class is defined using a PyType_Spec, and that spec is statically allocated, the token can be set to the spec using the special value Py_TP_USE_SPEC:
+
+<p></p>
+
+<pre class="preformatted">
+static PyType_Slot foo_slots[] = {
+   {Py_tp_token, Py_TP_USE_SPEC},</pre>
+
+<p>
+
+<p>It can also be set to an arbitrary pointer, but you must ensure that:
+
+<p></p>
+
+<pre class="preformatted">
+- The pointer outlives the class, so it’s not reused for something else
+  while the class exists.
+- It &quot;belongs&quot; to the extension module where the class lives, so it will
+  not clash with other extensions.</pre>
+
+<p>
+
+<p>Use TPyType.GetBaseByToken() to check if a class's superclass has a given token - that is, check whether the memory layout is compatible.
+
+<p>To get the token for a given class (without considering superclasses), use TPyType.GetSlot() with Py_tp_token.
+
+<p>Added in version 3.14.
+
+<p></p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_tp_traverse">Py_tp_traverse</a></td>
