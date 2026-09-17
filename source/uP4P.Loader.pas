@@ -1378,6 +1378,7 @@ begin
         TempConfig.executable          := FExecutable;
         TempConfig.program_name        := FProgramName;
         TempConfig.module_search_paths := FModuleSearchPaths;
+        TempConfig.lazy_imports        := FLazyImports;
 
         SetProgramArgs_PEP741(TempConfig);
 
