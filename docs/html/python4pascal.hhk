@@ -4259,10 +4259,6 @@
 <param name="Local" value="uP4P.LibFunctions.html#PyABIInfo_Check">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="PyABIInfo_DEFAULT_FLAGS">
-<param name="Local" value="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="PyABIInfo_FREETHREADED">
 <param name="Local" value="uP4P.Constants.html#PyABIInfo_FREETHREADED">
 </object>
@@ -16250,7 +16246,7 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="VERSION_HEX">
-<param name="Local" value="uP4P.Py.TPy.html#VERSION_HEX-integer-integer-integer-integer-integer-">
+<param name="Local" value="uP4P.Py.TPy.html#VERSION_HEX">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="XNewRef">
@@ -27627,18 +27623,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ob_type">
 <param name="Local" value="uP4P.Types._object.html#ob_type">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_FT">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_INTERNAL">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_STABLE">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="_PyCoCached">

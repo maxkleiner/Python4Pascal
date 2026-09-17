@@ -1570,22 +1570,6 @@
 <param name="Local" value="uP4P.Constants.html#PyABIInfo_FREETHREADING_AGNOSTIC">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_STABLE">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_FT">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_PyABIInfo_DEFAULT_FLAG_INTERNAL">
-<param name="Local" value="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="PyABIInfo_DEFAULT_FLAGS">
-<param name="Local" value="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="Py_single_input">
 <param name="Local" value="uP4P.Constants.html#Py_single_input">
 </object>

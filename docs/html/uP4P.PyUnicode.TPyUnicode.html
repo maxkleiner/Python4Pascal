@@ -1353,7 +1353,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>PyArg_Parse* converter: encode str objects - obtained directly or through the os.PathLike interface – to bytes using TPyUnicode.EncodeFSDefault(); bytes objects are output as-is. result_ must be an address of a C variable of type PPyObject (or PPyBytesObject). On success, set the variable to a new strong reference to a bytes object which must be released when it is no longer used and return True (TPy.CLEANUP_SUPPORTED). Embedded nil bytes are not allowed in the result. On failure, return False with an exception set.
+<p>PyArg_Parse* converter: encode str objects - obtained directly or through the os.PathLike interface - to bytes using TPyUnicode.EncodeFSDefault(); bytes objects are output as-is. result_ must be an address of a C variable of type PPyObject (or PPyBytesObject). On success, set the variable to a new strong reference to a bytes object which must be released when it is no longer used and return True (TPy.CLEANUP_SUPPORTED). Embedded nil bytes are not allowed in the result. On failure, return False with an exception set.
 
 <p>If obj is nil, the function releases a strong reference stored in the variable referred by result and returns True.
 
@@ -1369,7 +1369,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>PyArg_Parse* converter: decode bytes objects – obtained either directly or indirectly through the os.PathLike interface – to str using TPyUnicode.DecodeFSDefaultAndSize(); str objects are output as-is. result must be an address of a C variable of type PyObject* (or PyUnicodeObject*). On success, set the variable to a new strong reference to a Unicode object which must be released when it is no longer used and return True (Py_CLEANUP_SUPPORTED). Embedded nil characters are not allowed in the result. On failure, return False with an exception set.
+<p>PyArg_Parse* converter: decode bytes objects - obtained either directly or indirectly through the os.PathLike interface - to str using TPyUnicode.DecodeFSDefaultAndSize(); str objects are output as-is. result must be an address of a C variable of type PyObject* (or PyUnicodeObject*). On success, set the variable to a new strong reference to a Unicode object which must be released when it is no longer used and return True (Py_CLEANUP_SUPPORTED). Embedded nil characters are not allowed in the result. On failure, return False with an exception set.
 
 <p>If obj is nil, release the strong reference to the object referred to by result and return True.
 

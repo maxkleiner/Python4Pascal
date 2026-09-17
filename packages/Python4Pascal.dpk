@@ -167,6 +167,7 @@ contains
   uP4P.PyABIInfo in '..\source\uP4P.PyABIInfo.pas',
   uP4P.Py_mod in '..\source\uP4P.Py_mod.pas',
   uP4P.Py_mp in '..\source\uP4P.Py_mp.pas',
-  uP4P.Py_bf in '..\source\uP4P.Py_bf.pas';
+  uP4P.Py_bf in '..\source\uP4P.Py_bf.pas',
+  uP4P.PySlot in '..\source\uP4P.PySlot.pas';
 
 end.

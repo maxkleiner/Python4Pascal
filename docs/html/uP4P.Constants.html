@@ -566,7 +566,7 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PySlot_INTPTR">PySlot_INTPTR</a></strong>    = $0004;</code></td>
 </tr>
 <tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_slot_invalid">Py_slot_invalid</a></strong>  = $ffff;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_slot_invalid">Py_slot_invalid</a></strong>  = $FFFF;</code></td>
 </tr>
 <tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_slot_end">Py_slot_end</a></strong> = 0;</code></td>
@@ -1176,20 +1176,6 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_FREETHREADING_AGNOSTIC">PyABIInfo_FREETHREADING_AGNOSTIC</a></strong> = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a> or <a href="uP4P.Constants.html#PyABIInfo_FREETHREADED">PyABIInfo_FREETHREADED</a>;</code></td>
-</tr>
-<tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a></strong>   = 0;</code></td>
-</tr>
-<tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a></strong>       = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a>;</code></td>
-</tr>
-<tr class="list visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a></strong> = 0;</code></td>
-</tr>
-<tr class="list2 visibility-published">
-<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PyABIInfo_DEFAULT_FLAGS">PyABIInfo_DEFAULT_FLAGS</a></strong> = <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a> or
-                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a> or
-                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a>;</code></td>
 </tr>
 <tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#Py_single_input">Py_single_input</a></strong>    = 256;</code></td>
@@ -2638,7 +2624,11 @@ For release candidates</p>
 </tr>
 <tr><td colspan="1">
 <p>
-* include/typeslots.h include/slots.h include/slots_generated.h *</p>
+
+
+<p>If the slot ID is unknown, the interpreter should ignore the slot entirely. (For example, if nb_matrix_multiply was being added to CPython now, your type could use this.)
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -2646,21 +2636,49 @@ For release candidates</p>
 <td class="itemcode"><span id="PySlot_STATIC"></span><code><strong>PySlot_STATIC</strong>    = $0002;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>All data the slot points to is statically allocated and constant. Thus, the interpreter does not need to copy the information. This flag is implied for function pointers.
+
+<p>The flag applies even to data the slot points to &quot;indirectly&quot;, except for nested slots - see Nested slot tables below - which can have their own PySlot_STATIC flag. For example, if applied to a Py_tp_members slot that points to an array of PyMemberDef structures, then the entire array, as well as the name and doc strings in its elements, must be static and constant.
+
+<p>This flag will be required for slots that need static data (Py_mod_methods, Py_tp_methods, Py_tp_members, Py_tp_getset).
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
 <td class="itemcode"><span id="PySlot_INTPTR"></span><code><strong>PySlot_INTPTR</strong>    = $0004;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>The data is stored in sl_ptr, and must be cast to the appropriate type.
+
+<p>This flag simplifies porting from the existing PyType_Slot and PyModuleDef_Slot, where all slots work this way.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
-<td class="itemcode"><span id="Py_slot_invalid"></span><code><strong>Py_slot_invalid</strong>  = $ffff;</code></td>
+<td class="itemcode"><span id="Py_slot_invalid"></span><code><strong>Py_slot_invalid</strong>  = $FFFF;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Reserved; will always be treated as an unknown slot ID. Defined as UINT16_MAX (0xFFFF).
+
+<p>When used with the PySlot_OPTIONAL flag, defines a slot with no effect. Without the flag, processing a slot with this ID will fail.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -2668,7 +2686,13 @@ For release candidates</p>
 </tr>
 <tr><td colspan="1">
 <p>
-* WARNING: &mdash;&mdash;&ndash; Due to changes in recent Python versions the Py_mp_*, Py_bf_* and Py_mod_* constants are defined by the TPy_mp, TPy_bf and TPy_mod class helpers. *</p>
+
+
+<p>Marks the end of a slots array. Defined as zero.
+
+<p>Added in version 3.15.
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -3222,7 +3246,19 @@ For release candidates</p>
 <td class="itemcode"><span id="Py_slot_subslots"></span><code><strong>Py_slot_subslots</strong> = 92;</code></td>
 </tr>
 <tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+
+
+<p>Nested slots array.
+
+<p>The value (sl_ptr) should point to an array of PySlot structures. The slots in the array (up to but not including the zero-ID terminator) will be treated as if they were inserted if the current slot array, at the point Py_slot_subslots appears.
+
+<p>Slot nesting depth is limited to 5 levels. This restriction may be lifted in the future.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
@@ -4169,38 +4205,6 @@ int64($FFFFFFFE) * 1000;</p>
 <tr><td colspan="1">
 <p>
  Specifies ABI compatible with both free-threaded and non-free-threaded builds of CPython, that is, both abi3 and abi3t. </p>
-</td></tr>
-</table>
-<table class="detail visibility-published wide_list">
-<tr class="list visibility-published">
-<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_STABLE"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_STABLE</strong>   = 0;</code></td>
-</tr>
-<tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-published wide_list">
-<tr class="list visibility-published">
-<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_FT"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_FT</strong>       = <a href="uP4P.Constants.html#PyABIInfo_GIL">PyABIInfo_GIL</a>;</code></td>
-</tr>
-<tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-published wide_list">
-<tr class="list visibility-published">
-<td class="itemcode"><span id="_PyABIInfo_DEFAULT_FLAG_INTERNAL"></span><code><strong>_PyABIInfo_DEFAULT_FLAG_INTERNAL</strong> = 0;</code></td>
-</tr>
-<tr><td colspan="1">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-published wide_list">
-<tr class="list visibility-published">
-<td class="itemcode"><span id="PyABIInfo_DEFAULT_FLAGS"></span><code><strong>PyABIInfo_DEFAULT_FLAGS</strong> = <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_STABLE">_PyABIInfo_DEFAULT_FLAG_STABLE</a> or
-                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_FT">_PyABIInfo_DEFAULT_FLAG_FT</a> or
-                            <a href="uP4P.Constants.html#_PyABIInfo_DEFAULT_FLAG_INTERNAL">_PyABIInfo_DEFAULT_FLAG_INTERNAL</a>;</code></td>
-</tr>
-<tr><td colspan="1">
-<p>
- Default flags, based on current values of macros such as Py_LIMITED_API and Py_GIL_DISABLED. </p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">

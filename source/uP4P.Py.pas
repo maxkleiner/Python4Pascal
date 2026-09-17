@@ -1137,7 +1137,7 @@ type
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
       /// </remarks>
-      class function VERSION_HEX(major, minor, micro, release_level, release_serial: integer): cardinal;
+      class function VERSION_HEX: cardinal;
   end;
 
 implementation
@@ -1848,16 +1848,22 @@ end;
 
 class function TPy.PACK_FULL_VERSION(major, minor, micro, release_level, release_serial: integer): cardinal;
 begin
-  Result := ((major          and $FF) shl 24) or
-            ((minor          and $FF) shl 16) or
-            ((micro          and $FF) shl 8) or
-            ((release_level  and $0F) shl 4) or
-            ((release_serial and $0F));
+  if assigned(Py_PACK_FULL_VERSION) then
+    Result := Py_PACK_FULL_VERSION(major, minor, micro, release_level, release_serial)
+   else
+    Result := ((major          and $FF) shl 24) or
+              ((minor          and $FF) shl 16) or
+              ((micro          and $FF) shl 8) or
+              ((release_level  and $0F) shl 4) or
+              ((release_serial and $0F));
 end;
 
 class function TPy.PACK_VERSION(major, minor: integer): cardinal;
 begin
-  Result := PACK_FULL_VERSION(major, minor, 0, 0, 0);
+  if assigned(Py_PACK_VERSION) then
+    Result := Py_PACK_VERSION(major, minor)
+   else
+    Result := PACK_FULL_VERSION(major, minor, 0, 0, 0);
 end;
 
 class function TPy.VERSION(major, minor, micro, release_level, release_serial: integer): string;
@@ -1873,9 +1879,13 @@ begin
   end;
 end;
 
-class function TPy.VERSION_HEX(major, minor, micro, release_level, release_serial: integer): cardinal;
+class function TPy.VERSION_HEX: cardinal;
 begin
-  Result := PACK_FULL_VERSION(major, minor, micro, release_level, release_serial);
+  Result := PACK_FULL_VERSION(PY_MAJOR_VERSION,
+                              PY_MINOR_VERSION,
+                              PY_MICRO_VERSION,
+                              PY_RELEASE_LEVEL,
+                              PY_RELEASE_SERIAL);
 end;
 
 end.

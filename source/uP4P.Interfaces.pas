@@ -1790,7 +1790,7 @@ type
     /// <para>Return True on successful initialization of a TSS key.</para>
     /// <para>The behavior is undefined if the value pointed to by the key
     /// argument is not initialized by Py_tss_NEEDS_INIT. This function can
-    /// be called repeatedly on the same key – calling it on an already
+    /// be called repeatedly on the same key - calling it on an already
     /// initialized key is a no-op and immediately returns success.</para>
     /// </summary>
     function    TSSCreate: boolean;
@@ -1799,7 +1799,7 @@ type
     /// across all threads, and change the key's initialization state to
     /// uninitialized. A destroyed key is able to be initialized again by
     /// TSSCreate(). This function can be called repeatedly on the same
-    /// key – calling it on an already destroyed key is a no-op.</para>
+    /// key - calling it on an already destroyed key is a no-op.</para>
     /// </summary>
     procedure   TSSDelete;
 

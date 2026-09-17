@@ -91,7 +91,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>This field is usually set to the following macro: PyABIInfo_DEFAULT_FLAGS.
+<p>This field is usually set to the following value: TPyABIInfo.DEFAULT_FLAGS.
 
 <p>Alternately, the field can be set to the following flags, combined by bitwise OR. Unused bits must be set to zero. ABI variant – one of: PyABIInfo_STABLE, PyABIInfo_INTERNAL
 
@@ -109,7 +109,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>The version of the Python headers used to build the code, in the format used by PY_VERSION_HEX.
+<p>The version of the Python headers used to build the code, in the format used by TPy.VERSION_HEX.
 
 <p>This can be set to 0 to skip any checks related to this field. This option is meant mainly for projects that do not use the CPython headers directly, and do not emulate a specific version of them.
 
@@ -127,9 +127,9 @@ body { margin: 0.5em; }
 
 <p>The ABI version.
 
-<p>For Stable ABI, this field should be the value of Py_LIMITED_API or Py_TARGET_ABI3T. If both are defined, use the smaller value. (If Py_LIMITED_API is 3; use Py_PACK_VERSION(3, 2) instead of 3.)
+<p>For Stable ABI, this field should be the value of Py_LIMITED_API or Py_TARGET_ABI3T. If both are defined, use the smaller value. (If Py_LIMITED_API is 3; use TPy.PACK_VERSION(3, 2) instead of 3.)
 
-<p>Otherwise, it should be set to PY_VERSION_HEX.
+<p>Otherwise, it should be set to TPy.VERSION_HEX.
 
 <p>It can also be set to 0 to skip any checks related to this field.
 

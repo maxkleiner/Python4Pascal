@@ -532,7 +532,7 @@ type
       class function EncodeLocale(const unicode: IPyObject; errors: TPyCodecErrors): IPyObject;
       /// <summary>
       /// <para>PyArg_Parse* converter: encode str objects - obtained directly
-      /// or through the os.PathLike interface – to bytes using
+      /// or through the os.PathLike interface - to bytes using
       /// TPyUnicode.EncodeFSDefault(); bytes objects are output as-is.
       /// result_ must be an address of a C variable of type PPyObject
       /// (or PPyBytesObject). On success, set the variable to a new strong
@@ -545,8 +545,8 @@ type
       /// </summary>
       class function FSConverter(const obj: IPyObject; result_: Pointer): boolean;
       /// <summary>
-      /// <para>PyArg_Parse* converter: decode bytes objects – obtained either
-      /// directly or indirectly through the os.PathLike interface – to str
+      /// <para>PyArg_Parse* converter: decode bytes objects - obtained either
+      /// directly or indirectly through the os.PathLike interface - to str
       /// using TPyUnicode.DecodeFSDefaultAndSize(); str objects are output
       /// as-is. result must be an address of a C variable of type PyObject*
       /// (or PyUnicodeObject*). On success, set the variable to a new strong

@@ -117,7 +117,7 @@ type
       /// <para>Write the output string described by format to sys.stdout.
       /// No exceptions are raised, even if truncation occurs.</para>
       /// <para>format should limit the total size of the formatted output
-      /// string to 1000 bytes or less – after 1000 bytes, the output string is
+      /// string to 1000 bytes or less - after 1000 bytes, the output string is
       /// truncated. In particular, this means that no unrestricted "%s" formats
       /// should occur; these should be limited using "%.<N>s" where <N> is a
       /// decimal number calculated so that <N> plus the maximum size of other
@@ -131,7 +131,7 @@ type
       /// <para>Write the output string described by format to sys.stdout.
       /// No exceptions are raised, even if truncation occurs.</para>
       /// <para>format should limit the total size of the formatted output
-      /// string to 1000 bytes or less – after 1000 bytes, the output string is
+      /// string to 1000 bytes or less - after 1000 bytes, the output string is
       /// truncated. In particular, this means that no unrestricted "%s" formats
       /// should occur; these should be limited using "%.<N>s" where <N> is a
       /// decimal number calculated so that <N> plus the maximum size of other

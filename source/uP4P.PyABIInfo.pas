@@ -41,12 +41,28 @@ type
       /// the raised exception.</para>
       /// </summary>
       class function Check(const info: PyABIInfo; const module_name: string): boolean;
+      /// <summary>
+      /// Default flags, based on current values of macros such as Py_LIMITED_API
+      /// and Py_GIL_DISABLED.
+      /// </summary>
+      class function DEFAULT_FLAGS: word;
+      /// <summary>
+      /// <para>The value that should be used for PyABIInfo.abi_version, based
+      /// on current values of macros such as Py_LIMITED_API, TPy.VERSION_HEX
+      /// and Py_GIL_DISABLED.</para>
+      /// </summary>
+      class function DEFAULT_ABI_VERSION: cardinal;
+      /// <summary>
+      /// <para>Define a PyABIInfo variable that describes the ABI that the
+      /// current code will use.</para>
+      /// </summary>
+      class procedure VAR_(var info: PyABIInfo);
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions;
+  uP4P.MiscFunctions, uP4P.Py;
 
 class function TPyABIInfo.Check(const info: PyABIInfo; const module_name: string): boolean;
 var
@@ -62,6 +78,31 @@ begin
     end
    else
     Result := (PyABIInfo_Check(@info, nil) = 0);
+end;
+
+class function TPyABIInfo.DEFAULT_FLAGS: word;
+const
+  _PyABIInfo_DEFAULT_FLAG_STABLE   = 0;
+  _PyABIInfo_DEFAULT_FLAG_FT       = PyABIInfo_GIL;
+  _PyABIInfo_DEFAULT_FLAG_INTERNAL = 0;
+begin
+  Result := _PyABIInfo_DEFAULT_FLAG_STABLE or
+            _PyABIInfo_DEFAULT_FLAG_FT or
+            _PyABIInfo_DEFAULT_FLAG_INTERNAL;
+end;
+
+class function TPyABIInfo.DEFAULT_ABI_VERSION: cardinal;
+begin
+  Result := TPy.VERSION_HEX;
+end;
+
+class procedure TPyABIInfo.VAR_(var info: PyABIInfo);
+begin
+  info.abiinfo_major_version := 1;
+  info.abiinfo_minor_version := 0;
+  info.flags                 := DEFAULT_FLAGS;
+  info.build_version         := TPy.VERSION_HEX;
+  info.abi_version           := DEFAULT_ABI_VERSION;
 end;
 
 end.

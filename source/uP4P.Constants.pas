@@ -300,10 +300,42 @@ const
   {* include/refcount.h *}
   {* include/objimpl.h *}
   {* include/typeslots.h  include/slots.h  include/slots_generated.h *}
+
+  /// <summary>
+  /// <para>If the slot ID is unknown, the interpreter should ignore the slot
+  /// entirely. (For example, if nb_matrix_multiply was being added to CPython
+  /// now, your type could use this.)</para>
+  /// </summary>
   PySlot_OPTIONAL  = $0001;
+  /// <summary>
+  /// <para>All data the slot points to is statically allocated and constant.
+  /// Thus, the interpreter does not need to copy the information. This flag
+  /// is implied for function pointers.</para>
+  /// <para>The flag applies even to data the slot points to "indirectly",
+  /// except for nested slots - see Nested slot tables below - which can have
+  /// their own PySlot_STATIC flag. For example, if applied to a Py_tp_members
+  /// slot that points to an array of PyMemberDef structures, then the entire
+  /// array, as well as the name and doc strings in its elements, must be
+  /// static and constant.</para>
+  /// <para>This flag will be required for slots that need static data
+  /// (Py_mod_methods, Py_tp_methods, Py_tp_members, Py_tp_getset).</para>
+  /// </summary>
   PySlot_STATIC    = $0002;
+  /// <summary>
+  /// <para>The data is stored in sl_ptr, and must be cast to the appropriate
+  /// type.</para>
+  /// <para>This flag simplifies porting from the existing PyType_Slot and
+  /// PyModuleDef_Slot, where all slots work this way.</para>
+  /// </summary>
   PySlot_INTPTR    = $0004;
-  Py_slot_invalid  = $ffff;
+  /// <summary>
+  /// <para>Reserved; will always be treated as an unknown slot ID. Defined as
+  /// UINT16_MAX (0xFFFF).</para>
+  /// <para>When used with the PySlot_OPTIONAL flag, defines a slot with no
+  /// effect. Without the flag, processing a slot with this ID will fail.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
+  Py_slot_invalid  = $FFFF;
 
   {*
      WARNING:
@@ -312,6 +344,10 @@ const
      and Py_mod_* constants are defined by the TPy_mp, TPy_bf and TPy_mod
      class helpers.
   *}
+  /// <summary>
+  /// <para>Marks the end of a slots array. Defined as zero.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_slot_end = 0;
   Py_nb_absolute = 6;
   Py_nb_add = 7;
@@ -391,6 +427,16 @@ const
   Py_am_send = 81;
   Py_tp_vectorcall = 82;
   Py_tp_token = 83;
+  /// <summary>
+  /// <para>Nested slots array.</para>
+  /// <para>The value (sl_ptr) should point to an array of PySlot structures.
+  /// The slots in the array (up to but not including the zero-ID terminator)
+  /// will be treated as if they were inserted if the current slot array, at
+  /// the point Py_slot_subslots appears.</para>
+  /// <para>Slot nesting depth is limited to 5 levels. This restriction may be
+  /// lifted in the future.</para>
+  /// <para>Added in version 3.15.</para>
+  /// </summary>
   Py_slot_subslots = 92;
   Py_tp_slots = 93;
   Py_tp_name = 95;
@@ -657,19 +703,6 @@ const
   /// builds of CPython, that is, both abi3 and abi3t.
   /// </summary>
   PyABIInfo_FREETHREADING_AGNOSTIC = PyABIInfo_GIL or PyABIInfo_FREETHREADED;
-
-  _PyABIInfo_DEFAULT_FLAG_STABLE   = 0;
-  _PyABIInfo_DEFAULT_FLAG_FT       = PyABIInfo_GIL;
-  _PyABIInfo_DEFAULT_FLAG_INTERNAL = 0;
-
-  /// <summary>
-  /// Default flags, based on current values of macros such as Py_LIMITED_API
-  /// and Py_GIL_DISABLED.
-  /// </summary>
-  PyABIInfo_DEFAULT_FLAGS = _PyABIInfo_DEFAULT_FLAG_STABLE or
-                            _PyABIInfo_DEFAULT_FLAG_FT or
-                            _PyABIInfo_DEFAULT_FLAG_INTERNAL;
-
 
 
   {* include/compile.h  include/cpython/compile.h *}

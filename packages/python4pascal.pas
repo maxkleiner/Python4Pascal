@@ -42,7 +42,8 @@ uses
   uP4P.ImportedPyModule, uP4P.PyGenericAlias, uP4P.PyAnyDict, 
   uP4P.PyBytesWriter, uP4P.PyFrozenDict, uP4P.PyInterpreterGuard, 
   uP4P.PyInterpreterView, uP4P.PyTimeStruct, uP4P.Py_bf, uP4P.Py_mod, 
-  uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, LazarusPackageIntf;
+  uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, uP4P.PySlot, 
+  LazarusPackageIntf;
 
 implementation
 

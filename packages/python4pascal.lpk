@@ -567,6 +567,10 @@
         <Filename Value="..\source\uP4P.PyType.pas"/>
         <UnitName Value="uP4P.PyType"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PySlot.pas"/>
+        <UnitName Value="uP4P.PySlot"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

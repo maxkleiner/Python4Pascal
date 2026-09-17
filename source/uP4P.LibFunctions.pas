@@ -241,7 +241,7 @@ var
   PyBytesWriter_GetData                          : function(writer: PPyBytesWriter): Pointer; cdecl;                                           //****** 3.15.0 ******
   PyBytesWriter_GetSize                          : function(writer: PPyBytesWriter): Py_ssize_t; cdecl;                                        //****** 3.15.0 ******
   PyBytesWriter_WriteBytes                       : function(writer: PPyBytesWriter; const bytes_: Pointer; size_: Py_ssize_t): integer; cdecl; //****** 3.15.0 ******
-  PyBytesWriter_Format                           : function(writer: PPyBytesWriter; const format: PAnsiChar {; ...}): integer; cdecl varargs;  //****** 3.15.0 *
+  PyBytesWriter_Format                           : function(writer: PPyBytesWriter; const format: PAnsiChar {; ...}): integer; cdecl varargs;  //****** 3.15.0 ******
   PyBytesWriter_Resize                           : function(writer: PPyBytesWriter; size_: Py_ssize_t): integer; cdecl;                        //****** 3.15.0 ******
   PyBytesWriter_Grow                             : function(writer: PPyBytesWriter; size_: Py_ssize_t): integer; cdecl;                        //****** 3.15.0 ******
   PyBytesWriter_GrowAndUpdatePointer             : function(writer: PPyBytesWriter; size_: Py_ssize_t; buf: Pointer): Pointer; cdecl;          //****** 3.15.0 ******
@@ -1104,8 +1104,8 @@ var
   PyModule_Create2                               : function(def: PPyModuleDef; module_api_version: integer): PPyObject; cdecl;
   PyModule_FromDefAndSpec2                       : function(def: PPyModuleDef; spec: PPyObject; module_api_version: integer): PPyObject; cdecl;
   PyABIInfo_Check                                : function(info: PPyABIInfo; const module_name: PAnsiChar): integer; cdecl;                                     //****** 3.15.0 ******
-  PyArg_ParseArray                               : function(const args: PPPyObject; nargs: Py_ssize_t; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 *
-  PyArg_ParseArrayAndKeywords                    : function(const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject; const format: PAnsiChar; const kwlist: PPAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 *
+  PyArg_ParseArray                               : function(const args: PPPyObject; nargs: Py_ssize_t; const format: PAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 ******
+  PyArg_ParseArrayAndKeywords                    : function(const args: PPPyObject; nargs: Py_ssize_t; kwnames: PPyObject; const format: PAnsiChar; const kwlist: PPAnsiChar {; ...}): integer; cdecl varargs; //****** 3.15.0 ******
 
   {* include/compile.h  include/cpython/compile.h *}
   PyCompile_OpcodeStackEffect                    : function(opcode, oparg: integer): integer; cdecl;
