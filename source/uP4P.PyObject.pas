@@ -948,7 +948,7 @@ type
       /// <para>If the request fails, TPyObject.Realloc() returns nil and p
       /// remains a valid pointer to the previous memory area.</para>
       /// </summary>
-      class function  Realloc(ptr: pointer; new_size: NativeUInt): pointer;
+      class function  Realloc(p: pointer; n: NativeUInt): pointer;
       /// <summary>
       /// <para>Frees the memory block pointed to by p, which must have been
       /// returned by a previous call to TPyObject.Malloc(),
@@ -961,7 +961,7 @@ type
       /// <para>Do not use this for memory allocated by TPyObject.GC_New or
       /// TPyObject.GC_NewVar; use TPyObject.GC_Del() instead.</para>
       /// </summary>
-      class procedure Free_(ptr: pointer);
+      class procedure Free_(p: pointer);
       /// <summary>
       /// <para>Initialize a newly allocated object op with its type and
       /// initial reference. Returns the initialized object. Other fields of
@@ -1307,18 +1307,18 @@ begin
     Result := nil;
 end;
 
-class function TPyObject.Realloc(ptr: pointer; new_size: NativeUInt): pointer;
+class function TPyObject.Realloc(p: pointer; n: NativeUInt): pointer;
 begin
   if assigned(PyObject_Realloc) then
-    Result := PyObject_Realloc(ptr, new_size)
+    Result := PyObject_Realloc(p, n)
    else
     Result := nil;
 end;
 
-class procedure TPyObject.Free_(ptr: pointer);
+class procedure TPyObject.Free_(p: pointer);
 begin
   if assigned(PyObject_Free) then
-    PyObject_Free(ptr);
+    PyObject_Free(p);
 end;
 
 class function TPyObject.Init(const ob: IPyObject; typeobj: PPyTypeObject): IPyObject;
@@ -1956,9 +1956,13 @@ end;
 
 function TPyObject.Dir: IPyObject;
 begin
-  if Initialized and
-     assigned(PyObject_Dir) then
-    Result := Wrap(PyObject_Dir(PyObject))
+  if assigned(PyObject_Dir) then
+    begin
+      if Initialized then
+        Result := Wrap(PyObject_Dir(PyObject))
+       else
+        Result := Wrap(PyObject_Dir(nil));
+    end
    else
     Result := nil;
 end;

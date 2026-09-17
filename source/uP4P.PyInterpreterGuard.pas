@@ -143,7 +143,7 @@ end;
 
 procedure TPyInterpreterGuard.Close;
 begin
-  if initialized and
+  if Initialized and
      assigned(PyInterpreterGuard_Close) then
     begin
       PyInterpreterGuard_Close(FPyInterpreterGuard);

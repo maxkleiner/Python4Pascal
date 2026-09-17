@@ -52,6 +52,7 @@ uP4P.Interfaces.IPyConfig.html
 uP4P.Interfaces.IPyMutex.html
 uP4P.Interfaces.IPyCriticalSection.html
 uP4P.Interfaces.IPyCriticalSection2.html
+uP4P.Interfaces.IPyBytesWriter.html
 uP4P.IOPyModule.html
 uP4P.IOPyModule.TIOPyModule.html
 uP4P.LibFunctions.html

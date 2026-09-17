@@ -108,7 +108,7 @@ const
   PYINITCONFIGOPTION_INT_MAX_STR_DIGITS         = 'int_max_str_digits';
   PYINITCONFIGOPTION_INTERACTIVE                = 'interactive';
   PYINITCONFIGOPTION_ISOLATED                   = 'isolated';
-  //PYINITCONFIGOPTION_LAZY_IMPORTS               = 'lazy_imports';           //****** 3.15.0
+  PYINITCONFIGOPTION_LAZY_IMPORTS               = 'lazy_imports';           //****** 3.15.0
   {$IFDEF MSWINDOWS}
   PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING = 'legacy_windows_fs_encoding';
   PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO       = 'legacy_windows_stdio';
@@ -125,7 +125,7 @@ const
   PYINITCONFIGOPTION_PREFIX                     = 'prefix';
   PYINITCONFIGOPTION_PROGRAM_NAME               = 'program_name';
   PYINITCONFIGOPTION_PYCACHE_PREFIX             = 'pycache_prefix';
-  //PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES         = 'pymalloc_hugepages';     //****** 3.15.0
+  PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES         = 'pymalloc_hugepages';     //****** 3.15.0
   PYINITCONFIGOPTION_QUIET                      = 'quiet';
   PYINITCONFIGOPTION_RUN_COMMAND                = 'run_command';
   PYINITCONFIGOPTION_RUN_FILENAME               = 'run_filename';

@@ -270,6 +270,10 @@
 <param name="Local" value="uP4P.Constants.html#PYINITCONFIGOPTION_ISOLATED">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="PYINITCONFIGOPTION_LAZY_IMPORTS">
+<param name="Local" value="uP4P.Constants.html#PYINITCONFIGOPTION_LAZY_IMPORTS">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING">
 <param name="Local" value="uP4P.Constants.html#PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING">
 </object>
@@ -324,6 +328,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="PYINITCONFIGOPTION_PYCACHE_PREFIX">
 <param name="Local" value="uP4P.Constants.html#PYINITCONFIGOPTION_PYCACHE_PREFIX">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES">
+<param name="Local" value="uP4P.Constants.html#PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="PYINITCONFIGOPTION_QUIET">
@@ -3926,6 +3934,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#legacy_windows_fs_encoding">
 </object>
@@ -3980,6 +3992,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="quiet">
@@ -4220,6 +4236,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_legacy_windows_fs_encoding">
 </object>
@@ -4274,6 +4294,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_quiet">
@@ -4492,6 +4516,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_legacy_windows_fs_encoding">
 </object>
@@ -4546,6 +4574,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_quiet">
@@ -5852,6 +5884,96 @@
 <li><object type="text/sitemap">
 <param name="Name" value="End_">
 <param name="Local" value="uP4P.Interfaces.IPyCriticalSection2.html#End_">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="IPyBytesWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialized">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Initialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Writer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Writer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Data">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Data">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Size">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Size">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="GetInitialized">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetInitialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetWriter">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetData">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetData">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#SetWriter">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Discard">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Discard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Finish">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Finish">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FinishWithSize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#FinishWithSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FinishWithPointer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#FinishWithPointer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="WriteBytes">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#WriteBytes">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="WriteBytes">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#WriteBytes">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Resize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Resize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Grow">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Grow">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GrowAndUpdatePointer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GrowAndUpdatePointer">
 </object>
 </ul>
 </ul>
@@ -14442,6 +14564,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#legacy_windows_fs_encoding">
 </object>
@@ -14496,6 +14622,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="quiet">
@@ -14736,6 +14866,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_legacy_windows_fs_encoding">
 </object>
@@ -14790,6 +14924,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_quiet">
@@ -15008,6 +15146,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_legacy_windows_fs_encoding">
 </object>
@@ -15062,6 +15204,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_quiet">
@@ -26888,6 +27034,96 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="IPyBytesWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Data">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Data">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialized">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Initialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Size">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Size">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Writer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Writer">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Finish">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Finish">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FinishWithPointer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#FinishWithPointer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FinishWithSize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#FinishWithSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetData">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetData">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetInitialized">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetInitialized">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GetWriter">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Grow">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Grow">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GrowAndUpdatePointer">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#GrowAndUpdatePointer">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Resize">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Resize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="WriteBytes">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#WriteBytes">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="WriteBytes">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#WriteBytes">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Discard">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#Discard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetWriter">
+<param name="Local" value="uP4P.Interfaces.IPyBytesWriter.html#SetWriter">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="IPyConfig">
 <param name="Local" value="uP4P.Interfaces.IPyConfig.html">
 </object>
@@ -28050,6 +28286,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#legacy_windows_fs_encoding">
 </object>
@@ -28104,6 +28344,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="quiet">
@@ -28364,6 +28608,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_legacy_windows_fs_encoding">
 </object>
@@ -28418,6 +28666,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_quiet">
@@ -28656,6 +28908,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_legacy_windows_fs_encoding">
 </object>
@@ -28710,6 +28966,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.Interfaces.IPyInitConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_quiet">
@@ -43100,6 +43360,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#legacy_windows_fs_encoding">
 </object>
@@ -43154,6 +43418,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="quiet">
@@ -43430,6 +43698,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Get_lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Get_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_legacy_windows_fs_encoding">
 </object>
@@ -43484,6 +43756,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Get_pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Get_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Get_quiet">
@@ -43726,6 +44002,10 @@
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_isolated">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Set_lazy_imports">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_lazy_imports">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Set_legacy_windows_fs_encoding">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_legacy_windows_fs_encoding">
 </object>
@@ -43780,6 +44060,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Set_pycache_prefix">
 <param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_pycache_prefix">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_pymalloc_hugepages">
+<param name="Local" value="uP4P.PyInitConfig.TPyInitConfig.html#Set_pymalloc_hugepages">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Set_quiet">

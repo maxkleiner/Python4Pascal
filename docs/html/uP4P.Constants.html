@@ -203,46 +203,52 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_ISOLATED">PYINITCONFIGOPTION_ISOLATED</a></strong>                   = 'isolated';</code></td>
 </tr>
 <tr class="list2 visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_LAZY_IMPORTS">PYINITCONFIGOPTION_LAZY_IMPORTS</a></strong>               = 'lazy_imports';</code></td>
+</tr>
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING">PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING</a></strong> = 'legacy_windows_fs_encoding';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO">PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO</a></strong>       = 'legacy_windows_stdio';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_MALLOC_STATS">PYINITCONFIGOPTION_MALLOC_STATS</a></strong>               = 'malloc_stats';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_MODULE_SEARCH_PATHS">PYINITCONFIGOPTION_MODULE_SEARCH_PATHS</a></strong>        = 'module_search_paths';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_OPTIMIZATION_LEVEL">PYINITCONFIGOPTION_OPTIMIZATION_LEVEL</a></strong>         = 'optimization_level';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_ORIG_ARGV">PYINITCONFIGOPTION_ORIG_ARGV</a></strong>                  = 'orig_argv';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PARSE_ARGV">PYINITCONFIGOPTION_PARSE_ARGV</a></strong>                 = 'parse_argv';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PARSER_DEBUG">PYINITCONFIGOPTION_PARSER_DEBUG</a></strong>               = 'parser_debug';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PATHCONFIG_WARNINGS">PYINITCONFIGOPTION_PATHCONFIG_WARNINGS</a></strong>        = 'pathconfig_warnings';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PERF_PROFILING">PYINITCONFIGOPTION_PERF_PROFILING</a></strong>             = 'perf_profiling';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PLATLIBDIR">PYINITCONFIGOPTION_PLATLIBDIR</a></strong>                 = 'platlibdir';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PREFIX">PYINITCONFIGOPTION_PREFIX</a></strong>                     = 'prefix';</code></td>
 </tr>
-<tr class="list2 visibility-published">
+<tr class="list visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PROGRAM_NAME">PYINITCONFIGOPTION_PROGRAM_NAME</a></strong>               = 'program_name';</code></td>
 </tr>
-<tr class="list visibility-published">
+<tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PYCACHE_PREFIX">PYINITCONFIGOPTION_PYCACHE_PREFIX</a></strong>             = 'pycache_prefix';</code></td>
+</tr>
+<tr class="list visibility-published">
+<td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES">PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES</a></strong>         = 'pymalloc_hugepages';</code></td>
 </tr>
 <tr class="list2 visibility-published">
 <td class="itemcode"><code><strong><a href="uP4P.Constants.html#PYINITCONFIGOPTION_QUIET">PYINITCONFIGOPTION_QUIET</a></strong>                      = 'quiet';</code></td>
@@ -1774,11 +1780,18 @@ For release candidates</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
+<td class="itemcode"><span id="PYINITCONFIGOPTION_LAZY_IMPORTS"></span><code><strong>PYINITCONFIGOPTION_LAZY_IMPORTS</strong>               = 'lazy_imports';</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
 <td class="itemcode"><span id="PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING"></span><code><strong>PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING</strong> = 'legacy_windows_fs_encoding';</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
-PYINITCONFIGOPTION_LAZY_IMPORTS = 'lazy_imports'; //****** 3.15.0</p>
+****** 3.15.0</p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -1874,11 +1887,18 @@ PYINITCONFIGOPTION_LAZY_IMPORTS = 'lazy_imports'; //****** 3.15.0</p>
 </table>
 <table class="detail visibility-published wide_list">
 <tr class="list visibility-published">
+<td class="itemcode"><span id="PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES"></span><code><strong>PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES</strong>         = 'pymalloc_hugepages';</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-published wide_list">
+<tr class="list visibility-published">
 <td class="itemcode"><span id="PYINITCONFIGOPTION_QUIET"></span><code><strong>PYINITCONFIGOPTION_QUIET</strong>                      = 'quiet';</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
-PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES = 'pymalloc_hugepages'; //****** 3.15.0</p>
+****** 3.15.0</p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
