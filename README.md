@@ -6,7 +6,7 @@ Python4Pascal is based in the [Python4Delphi project](https://github.com/lmbelo/
 
 Python4Pascal supports Windows, Linux, macOS and Android.
 
-Python4Pascal was developed and tested on Delphi 13.1, Delphi XE2, Delphi 7 and Lazarus 4.8/FPC 3.2.2. 
+Python4Pascal was developed and tested on Delphi 13.2, Delphi XE2, Delphi 7 and Lazarus 4.8/FPC 3.2.2. 
 
 ## Links
 * [Developer Forums](https://www.briskbard.com/forum)
