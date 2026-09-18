@@ -2,14 +2,20 @@ unit uTestModule;
 
 {$IFDEF FPC}
   {$MODE OBJFPC}{$H+}
-{$ENDIF}
+{$ENDIF}           
+
+{$I ..\..\..\source\p4p.inc}
 
 interface
 
 uses
-  Classes, Forms,
+  {$IFDEF DELPHI16_UP}
+    System.Classes, Vcl.Forms,
+  {$ELSE}
+    Classes, Forms,
+  {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef;
 
 const
   TEST_MODULE_NAME = 'mytest';
@@ -19,12 +25,17 @@ type
     protected
       FMainForm : TForm;
 
-      procedure AddAllMethods; override;
+      procedure CreateModuleDef(const aName, aDocStrings: string); override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
 
     public
       property MainForm : TForm  read FMainForm  write FMainForm;
+  end;
+
+  TPyTestModuleDef = class(TPyModuleDef)
+    protected
+      procedure AddAllMethods; override;
   end;
 
 implementation
@@ -62,12 +73,17 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
-procedure TTestModule.AddAllMethods;
+procedure TPyTestModuleDef.AddAllMethods;
 begin
   inherited AddAllMethods;
 
   AddMethod('write', '', @mytest_write, METH_VARARGS);
   AddMethod('read', '', @mytest_read, METH_VARARGS);
+end;
+
+procedure TTestModule.CreateModuleDef(const aName, aDocStrings: string);
+begin
+  FModuleDef := TPyTestModuleDef.Create(aName, aDocStrings);
 end;
 
 function TTestModule.Write(args: PPyObject): PPyObject;

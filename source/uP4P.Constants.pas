@@ -178,20 +178,20 @@ const
   /// </summary>
   Py_MATH_TAU = 6.2831853071795864769252867665590057683943;
   /// <summary>
-  /// This macro expands to a constant expression of type double, that
-  /// represents the positive infinity. On most platforms, this is equivalent
-  /// to the INFINITY macro from the C11 standard <math.h> header.
+  /// This constant represents the positive infinity. On most platforms,
+  /// this is equivalent to the INFINITY macro from the C11 standard <math.h>
+  /// header.
   /// </summary>
   Py_INFINITY = INFINITY;
   /// <summary>
-  /// Equivalent to INFINITY. Deprecated since version 3.14: The macro is soft
+  /// Equivalent to INFINITY. Deprecated since version 3.14: This is soft
   /// deprecated.
   /// </summary>
   Py_HUGE_VAL = Py_INFINITY;
   /// <summary>
-  /// This macro expands to a constant expression of type double, that
-  /// represents a quiet not-a-number (qNaN) value. On most platforms, this is
-  /// equivalent to the NAN macro from the C11 standard <math.h> header.
+  /// This constant represents a quiet not-a-number (qNaN) value. On most
+  /// platforms, this is equivalent to the NAN macro from the C11 standard
+  /// <math.h> header.
   /// </summary>
   Py_NAN      = NAN;
 

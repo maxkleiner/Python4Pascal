@@ -26,8 +26,6 @@ AllIdentifiers.html
 uP4P.Constants.html
 uP4P.CustomPyModule.html
 uP4P.CustomPyModule.TCustomPyModule.html
-uP4P.CustomPyModule.TCustomPyModuleDefSlot.html
-uP4P.CustomPyModule.TCustomPyMethodDef.html
 uP4P.Engine.html
 uP4P.Engine.TP4PEngine.html
 uP4P.ImportedPyModule.html
@@ -53,8 +51,10 @@ uP4P.Interfaces.IPyMutex.html
 uP4P.Interfaces.IPyCriticalSection.html
 uP4P.Interfaces.IPyCriticalSection2.html
 uP4P.Interfaces.IPyBytesWriter.html
+uP4P.Interfaces.IPyModuleDef.html
 uP4P.IOPyModule.html
 uP4P.IOPyModule.TIOPyModule.html
+uP4P.IOPyModule.TPyIOModuleDef.html
 uP4P.LibFunctions.html
 uP4P.Loader.html
 uP4P.Loader.TP4PLoader.html

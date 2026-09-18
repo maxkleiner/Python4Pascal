@@ -51,7 +51,7 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 var
   TempLibPath : string;
-  //TempBit : string;
+  TempBit : string;
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
@@ -64,18 +64,18 @@ begin
       GlobalP4PEngine.SetCurrentDir := True;
 
       {$IFDEF TARGET_32BITS}
-      //TempBit := 'win32';
+      TempBit := 'win32';
       {$ELSE}
-      //TempBit := 'win64';
+      TempBit := 'amd64';
       {$ENDIF}
 
-      //TempLibPath := 'R:\python-3.14.6-embed-' + TempBit + '\python314.dll';
-      //TempLibPath := 'R:\python-3.13.13-embed-' + TempBit + '\python313.dll';
-      //TempLibPath := 'R:\python-3.12.10-embed-' + TempBit + '\python312.dll';
-      //TempLibPath := 'R:\python-3.11.9-embed-' + TempBit + '\python311.dll';
-      //TempLibPath := 'R:\python-3.10.11-embed-' + TempBit + '\python310.dll';
-
-      TempLibPath := '';
+      TempLibPath := 'Q:\python-3.15.0rc2-embed-' + TempBit + '\python315.dll';
+      //TempLibPath := 'Q:\python-3.14.6-embed-' + TempBit + '\python314.dll';
+      //TempLibPath := 'Q:\python-3.13.13-embed-' + TempBit + '\python313.dll';
+      //TempLibPath := 'Q:\python-3.12.10-embed-' + TempBit + '\python312.dll';
+      //TempLibPath := 'Q:\python-3.11.9-embed-' + TempBit + '\python311.dll';
+      //TempLibPath := 'Q:\python-3.10.11-embed-' + TempBit + '\python310.dll';
+      //TempLibPath := '';
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize and

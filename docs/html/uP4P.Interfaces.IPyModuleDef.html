@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces: Interface IPyModuleDef</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="IPyModuleDef"></span><h1 class="cio">Interface IPyModuleDef</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Interfaces.html">uP4P.Interfaces</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IPyModuleDef = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IPyModuleDef</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Initialize-string-string-">Initialize</a></strong>(const aName, aDocStrings: string) : boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#CreateSlotArray">CreateSlotArray</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#CreateMethodArray">CreateMethodArray</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#DestroySlotList">DestroySlotList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#DestroySlots">DestroySlots</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#DestroyMethodList">DestroyMethodList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#DestroyMethods">DestroyMethods</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetName">GetName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelSlot">GetHasSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelMethod">GetHasSentinelMethod</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">GetModuleDef</a></strong>: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddAllSlots-exec_modulefunc-TMultIntprSupport-">AddAllSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddAllMethods">AddAllMethods</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddSentinelMethod">AddSentinelMethod</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddMethod-string-string-PyCFunction-integer-">AddMethod</a></strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddSlot-integer-Pointer-">AddSlot</a></strong>(aSlot: integer; aValue: Pointer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddCreateSlot-create_modulefunc-">AddCreateSlot</a></strong>(const aCreateFunction: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddExecSlot-exec_modulefunc-">AddExecSlot</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddMultipleInterpretersSlot-TMultIntprSupport-">AddMultipleInterpretersSlot</a></strong>(aSupport: <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddGILSlot-boolean-">AddGILSlot</a></strong>(aGILUsed: boolean): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#CreateMethodsAndSlots-exec_modulefunc-TMultIntprSupport-">CreateMethodsAndSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>);</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Initialized">Initialized</a></strong>            : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Name_">Name_</a></strong>                  : AnsiString     read <a href="uP4P.Interfaces.IPyModuleDef.html#GetName">GetName</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#HasSentinelSlot">HasSentinelSlot</a></strong>        : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelSlot">GetHasSentinelSlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#HasSentinelMethod">HasSentinelMethod</a></strong>      : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelMethod">GetHasSentinelMethod</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#ModuleDef">ModuleDef</a></strong>              : <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>   read <a href="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">GetModuleDef</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialize-string-string-"></span><code>function <strong>Initialize</strong>(const aName, aDocStrings: string) : boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateSlotArray"></span><code>procedure <strong>CreateSlotArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateMethodArray"></span><code>procedure <strong>CreateMethodArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlotList"></span><code>procedure <strong>DestroySlotList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlots"></span><code>procedure <strong>DestroySlots</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethodList"></span><code>procedure <strong>DestroyMethodList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethods"></span><code>procedure <strong>DestroyMethods</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelSlot"></span><code>function <strong>GetHasSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelMethod"></span><code>function <strong>GetHasSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetModuleDef"></span><code>function <strong>GetModuleDef</strong>: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllSlots-exec_modulefunc-TMultIntprSupport-"></span><code>procedure <strong>AddAllSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom slots. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllMethods"></span><code>procedure <strong>AddAllMethods</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom methods. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aValue: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddCreateSlot-create_modulefunc-"></span><code>function <strong>AddCreateSlot</strong>(const aCreateFunction: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddExecSlot-exec_modulefunc-"></span><code>function <strong>AddExecSlot</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMultipleInterpretersSlot-TMultIntprSupport-"></span><code>function <strong>AddMultipleInterpretersSlot</strong>(aSupport: <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGILSlot-boolean-"></span><code>function <strong>AddGILSlot</strong>(aGILUsed: boolean): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateMethodsAndSlots-exec_modulefunc-TMultIntprSupport-"></span><code>procedure <strong>CreateMethodsAndSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>            : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Name_"></span><code>property <strong>Name_</strong>                  : AnsiString     read <a href="uP4P.Interfaces.IPyModuleDef.html#GetName">GetName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Module name.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelSlot"></span><code>property <strong>HasSentinelSlot</strong>        : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelSlot">GetHasSentinelSlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last slot in the list is a sentinel slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelMethod"></span><code>property <strong>HasSentinelMethod</strong>      : boolean        read <a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelMethod">GetHasSentinelMethod</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last method in the list is a sentinel method. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ModuleDef"></span><code>property <strong>ModuleDef</strong>              : <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>   read <a href="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">GetModuleDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a poiter to PyModuleDef. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

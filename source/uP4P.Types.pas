@@ -1678,7 +1678,7 @@ type
     /// </summary>
      ml_doc   : PAnsiChar;
   end;
-  PyMethodDefArray = array of PPyMethodDef;
+  PyMethodDefArray = array of PyMethodDef;
 
   PyCFunctionObject = record
     ob_base       : PyObject; // PyObject_HEAD
@@ -1756,6 +1756,7 @@ type
     /// </summary>
     value : Pointer;
   end;
+  PyModuleDef_SlotArray = array of PyModuleDef_Slot;
 
   /// <summary>
   /// <para>The module definition struct, which holds all information needed

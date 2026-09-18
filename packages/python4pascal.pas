@@ -43,7 +43,7 @@ uses
   uP4P.PyBytesWriter, uP4P.PyFrozenDict, uP4P.PyInterpreterGuard, 
   uP4P.PyInterpreterView, uP4P.PyTimeStruct, uP4P.Py_bf, uP4P.Py_mod, 
   uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, uP4P.PySlot, 
-  LazarusPackageIntf;
+  uP4P.PyMethodDef, uP4P.PyModuleDef_Slot, LazarusPackageIntf;
 
 implementation
 

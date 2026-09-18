@@ -275,7 +275,7 @@ type
       /// </remarks>
       class function Create2(def: PPyModuleDef; module_api_version: integer): IPyObject;
       /// <summary>
-      /// <para>This macro calls TPyModule.FromDefAndSpec2() with
+      /// <para>This function calls TPyModule.FromDefAndSpec2() with
       /// module_api_version set to PYTHON_API_VERSION.</para>
       /// <para>Soft deprecated since version 3.15: Prefer
       /// TPyModule.FromSlotsAndSpec() in new code.</para>

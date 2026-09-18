@@ -15,7 +15,7 @@ uses
     Classes,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef;
 
 const
   IOPyModuleName = 'pyio';
@@ -30,7 +30,7 @@ type
   /// </remarks>
   TIOPyModule = class(TCustomPyModule)
     protected
-      procedure AddAllMethods; override;
+      procedure CreateModuleDef(const aName, aDocStrings: string); override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
 
@@ -45,6 +45,22 @@ type
       /// input and output.
       /// </summary>
       class function RunRestoreCode: boolean;
+  end;
+
+  /// <summary>
+  /// <para>TPyIOModuleDef is a custom PyModuleDef created to capture the input
+  /// and output in Python.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// </remarks>
+  TPyIOModuleDef = class(TPyModuleDef)
+    protected
+      /// <summary>
+      /// This procedure adds the custom write and read methods to PyModuleDef.
+      /// </summary>
+      procedure AddAllMethods; override;
   end;
 
 implementation
@@ -95,7 +111,7 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
-procedure TIOPyModule.AddAllMethods;
+procedure TPyIOModuleDef.AddAllMethods;
 begin
   inherited AddAllMethods;
 
@@ -136,6 +152,11 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
+procedure TIOPyModule.CreateModuleDef(const aName, aDocStrings: string);
+begin
+  FModuleDef := TPyIOModuleDef.Create(aName, aDocStrings);
+end;
+
 class function TIOPyModule.RunInitCode: boolean;
 const
   InitCode = 'import sys' + LF +
@@ -168,6 +189,5 @@ const
 begin
   Result := TPyRun.SimpleString(RestoreCode);
 end;
-
 
 end.

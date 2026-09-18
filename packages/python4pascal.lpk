@@ -571,6 +571,14 @@
         <Filename Value="..\source\uP4P.PySlot.pas"/>
         <UnitName Value="uP4P.PySlot"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMethodDef.pas"/>
+        <UnitName Value="uP4P.PyMethodDef"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyModuleDef_Slot.pas"/>
+        <UnitName Value="uP4P.PyModuleDef_Slot"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

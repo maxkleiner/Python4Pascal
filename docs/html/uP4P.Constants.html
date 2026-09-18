@@ -2099,7 +2099,7 @@ For release candidates</p>
 </tr>
 <tr><td colspan="1">
 <p>
- This macro expands to a constant expression of type double, that represents the positive infinity. On most platforms, this is equivalent to the INFINITY macro from the C11 standard &lt;math.h&gt; header. </p>
+ This constant represents the positive infinity. On most platforms, this is equivalent to the INFINITY macro from the C11 standard &lt;math.h&gt; header. </p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -2108,7 +2108,7 @@ For release candidates</p>
 </tr>
 <tr><td colspan="1">
 <p>
- Equivalent to INFINITY. Deprecated since version 3.14: The macro is soft deprecated. </p>
+ Equivalent to INFINITY. Deprecated since version 3.14: This is soft deprecated. </p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -2117,7 +2117,7 @@ For release candidates</p>
 </tr>
 <tr><td colspan="1">
 <p>
- This macro expands to a constant expression of type double, that represents a quiet not-a-number (qNaN) value. On most platforms, this is equivalent to the NAN macro from the C11 standard &lt;math.h&gt; header. </p>
+ This constant represents a quiet not-a-number (qNaN) value. On most platforms, this is equivalent to the NAN macro from the C11 standard &lt;math.h&gt; header. </p>
 </td></tr>
 </table>
 <table class="detail visibility-published wide_list">
@@ -3016,7 +3016,7 @@ For release candidates</p>
 
 <p>Slot ID for type flags, used to set PyTypeObject.tp_bases.
 
-<p>The slot can be set to a tuple of type objects which the newly created type should inherit from, like the “positional arguments” of a Python class definition.
+<p>The slot can be set to a tuple of type objects which the newly created type should inherit from, like the &quot;positional arguments&quot; of a Python class definition.
 
 <p>Alternately, the slot can be set to a single type object to specify a single base. The effect is the same as specifying a one-element tuple.
 
@@ -3281,7 +3281,7 @@ static PyType_Slot foo_slots[] = {
 <p></p>
 
 <pre class="preformatted">
-- The pointer outlives the class, so it’s not reused for something else
+- The pointer outlives the class, so it's not reused for something else
   while the class exists.
 - It &quot;belongs&quot; to the extension module where the class lives, so it will
   not clash with other extensions.</pre>

@@ -236,7 +236,7 @@ type
       /// <para>Slot ID whose value points to a PyABIInfo structure describing
       /// the ABI that the extension is using.</para>
       /// <para>A suitable PyABIInfo variable can be defined using the
-      /// PyABIInfo_VAR macro, as in:</para>
+      /// TPyABIInfo.VAR method, as in:</para>
       /// <code>
       /// PyABIInfo_VAR(abi_info);
       ///

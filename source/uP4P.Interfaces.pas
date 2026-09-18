@@ -4380,6 +4380,62 @@ type
     property Size         : Py_ssize_t            read GetSize;
   end;
 
+  IPyModuleDef = interface
+    ['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']
+    function  Initialize(const aName, aDocStrings: string) : boolean;
+
+    procedure CreateSlotArray;
+    procedure CreateMethodArray;
+
+    procedure DestroySlotList;
+    procedure DestroySlots;
+    procedure DestroyMethodList;
+    procedure DestroyMethods;
+
+    function  GetInitialized: boolean;
+    function  GetName: AnsiString;
+    function  GetHasSentinelSlot: boolean;
+    function  GetHasSentinelMethod: boolean;
+    function  GetModuleDef: PPyModuleDef;
+
+    /// <summary>
+    /// Override this procedure to add your custom slots.
+    /// </summary>
+    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    /// <summary>
+    /// Override this procedure to add your custom methods.
+    /// </summary>
+    procedure AddAllMethods;
+
+    function  AddSentinelMethod: boolean;
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddSentinelSlot: boolean;
+    function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
+    function  AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
+    function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
+    function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
+    function  AddGILSlot(aGILUsed: boolean): boolean;
+
+    procedure CreateMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+
+    property  Initialized            : boolean        read GetInitialized;
+    /// <summary>
+    /// <para>Module name.</para>
+    /// </summary>
+    property  Name_                  : AnsiString     read GetName;
+    /// <summary>
+    /// Return True if the last slot in the list is a sentinel slot.
+    /// </summary>
+    property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel method.
+    /// </summary>
+    property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+    /// <summary>
+    /// Return a poiter to PyModuleDef.
+    /// </summary>
+    property  ModuleDef              : PPyModuleDef   read GetModuleDef;
+  end;
 
 implementation
 

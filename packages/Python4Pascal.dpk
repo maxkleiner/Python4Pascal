@@ -168,6 +168,8 @@ contains
   uP4P.Py_mod in '..\source\uP4P.Py_mod.pas',
   uP4P.Py_mp in '..\source\uP4P.Py_mp.pas',
   uP4P.Py_bf in '..\source\uP4P.Py_bf.pas',
-  uP4P.PySlot in '..\source\uP4P.PySlot.pas';
+  uP4P.PySlot in '..\source\uP4P.PySlot.pas',
+  uP4P.PyModuleDef_Slot in '..\source\uP4P.PyModuleDef_Slot.pas',
+  uP4P.PyMethodDef in '..\source\uP4P.PyMethodDef.pas';
 
 end.

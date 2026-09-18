@@ -1238,12 +1238,12 @@ body { margin: 0.5em; }
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_HUGE_VAL">Py_HUGE_VAL</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p> Equivalent to INFINITY. Deprecated since version 3.14: The macro is soft deprecated. </p></td>
+<td class="itemdesc"><p> Equivalent to INFINITY. Deprecated since version 3.14: This is soft deprecated. </p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_INFINITY">Py_INFINITY</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p> This macro expands to a constant expression of type double, that represents the positive infinity. On most platforms, this is equivalent to the INFINITY macro from the C11 standard &lt;math.h&gt; header. </p></td>
+<td class="itemdesc"><p> This constant represents the positive infinity. On most platforms, this is equivalent to the INFINITY macro from the C11 standard &lt;math.h&gt; header. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#PY_INVALID_STACK_EFFECT">PY_INVALID_STACK_EFFECT</a></td>
@@ -1443,7 +1443,7 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_NAN">Py_NAN</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.Constants.html">uP4P.Constants</a></td>
-<td class="itemdesc"><p> This macro expands to a constant expression of type double, that represents a quiet not-a-number (qNaN) value. On most platforms, this is equivalent to the NAN macro from the C11 standard &lt;math.h&gt; header. </p></td>
+<td class="itemdesc"><p> This constant represents a quiet not-a-number (qNaN) value. On most platforms, this is equivalent to the NAN macro from the C11 standard &lt;math.h&gt; header. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.Constants.html#Py_nb_absolute">Py_nb_absolute</a></td>
@@ -1934,7 +1934,7 @@ body { margin: 0.5em; }
 
 <p>Slot ID for type flags, used to set PyTypeObject.tp_bases.
 
-<p>The slot can be set to a tuple of type objects which the newly created type should inherit from, like the “positional arguments” of a Python class definition.
+<p>The slot can be set to a tuple of type objects which the newly created type should inherit from, like the &quot;positional arguments&quot; of a Python class definition.
 
 <p>Alternately, the slot can be set to a single type object to specify a single base. The effect is the same as specifying a one-element tuple.
 
@@ -2239,7 +2239,7 @@ static PyType_Slot foo_slots[] = {
 <p></p>
 
 <pre class="preformatted">
-- The pointer outlives the class, so it’s not reused for something else
+- The pointer outlives the class, so it's not reused for something else
   while the class exists.
 - It &quot;belongs&quot; to the extension module where the class lives, so it will
   not clash with other extensions.</pre>
