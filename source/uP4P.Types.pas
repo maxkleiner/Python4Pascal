@@ -1185,7 +1185,8 @@ type
   /// An entry in a slots array.
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://docs.python.org/3.15/c-api/slots.html#c.PySlot">See the article about PySlot.</see></para>
+  /// <para><see href="https://docs.python.org/3.15/c-api/slots.html#definition-slots">See the article about Definition slots.</see></para>
+  /// <para><see href="https://peps.python.org/pep-0820/">See the article for PEP 820.</see></para>
   /// </remarks>
   PySlot = record
     /// <summary>
@@ -1215,6 +1216,7 @@ type
       3 : (sl_int64  : int64);
       4 : (sl_uint64 : uint64);
   end;
+  PySlotArray = array of PySlot;
 
   {* include/pyhash.h *}
   PyHash_FuncDef_hash = function(ptr: Pointer; size_: Py_ssize_t): Py_hash_t; cdecl;

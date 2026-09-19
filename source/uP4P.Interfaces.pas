@@ -4383,21 +4383,11 @@ type
   IPyModuleDef = interface
     ['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']
     function  Initialize(const aName, aDocStrings: string) : boolean;
-
-    procedure CreateSlotArray;
-    procedure CreateMethodArray;
-
-    procedure DestroySlotList;
-    procedure DestroySlots;
-    procedure DestroyMethodList;
-    procedure DestroyMethods;
-
     function  GetInitialized: boolean;
     function  GetName: AnsiString;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
     function  GetModuleDef: PPyModuleDef;
-
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
@@ -4406,7 +4396,6 @@ type
     /// Override this procedure to add your custom methods.
     /// </summary>
     procedure AddAllMethods;
-
     function  AddSentinelMethod: boolean;
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelSlot: boolean;
@@ -4415,8 +4404,7 @@ type
     function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
     function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
     function  AddGILSlot(aGILUsed: boolean): boolean;
-
-    procedure CreateMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
 
     property  Initialized            : boolean        read GetInitialized;
     /// <summary>
@@ -4435,6 +4423,47 @@ type
     /// Return a poiter to PyModuleDef.
     /// </summary>
     property  ModuleDef              : PPyModuleDef   read GetModuleDef;
+  end;
+
+  IPySlotManager = interface
+    ['{BF8F4E05-1947-427F-A3E9-4BF76FBF6AA1}']
+    function  GetName: AnsiString;
+    function  GetHasMethodsSlot: boolean;
+    function  GetHasSentinelSlot: boolean;
+    function  GetHasSentinelMethod: boolean;
+    function  GetSlots: PPySlot;
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddSentinelMethod: boolean;
+    procedure AddSentinelSlot;
+    procedure AddMethodsSlot;
+    /// <summary>
+    /// Override this procedure to add your custom slots.
+    /// </summary>
+    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    /// <summary>
+    /// Override this procedure to add your custom methods.
+    /// </summary>
+    procedure AddAllMethods;
+
+    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    /// <summary>
+    /// <para>Module name.</para>
+    /// </summary>
+    property  Name_                  : AnsiString     read GetName;
+    /// <summary>
+    /// Return True if the slot list has a Py_mod_methods slot.
+    /// </summary>
+    property  HasMethodsSlot         : boolean        read GetHasMethodsSlot;
+    /// <summary>
+    /// Return True if the last slot in the list is a sentinel slot.
+    /// </summary>
+    property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel method.
+    /// </summary>
+    property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+
+    property  Slots                  : PPySlot        read GetSlots;
   end;
 
 implementation

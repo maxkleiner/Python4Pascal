@@ -322,6 +322,8 @@ type
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_FromSlotsAndSpec">See the article about PyModule_FromSlotsAndSpec.</see></para>
+      /// <para><see href="https://docs.python.org/3.15/c-api/slots.html#definition-slots">See the article about Definition slots.</see></para>
+      /// <para><see href="https://peps.python.org/pep-0820/">See the article for PEP 820.</see></para>
       /// <para>Added in version 3.15.</para>
       /// </remarks>
       class function FromSlotsAndSpec(const slots: PPySlot; const spec: IPyObject): IPyObject;

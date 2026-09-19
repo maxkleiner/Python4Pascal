@@ -28,11 +28,14 @@ type
     protected
       FModule                : IPyObject;
       FModuleDef             : IPyModuleDef;
+      FSlotManager           : IPySlotManager;
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
       FMultIntprSupport      : TMultIntprSupport;
+      FUseLegacyAPI          : boolean;
 
       function  GetName: AnsiString;
+      procedure SetUseLegacyAPI(aValue: boolean);
       /// <summary>
       /// <para>Internal function used to trigger the OnAfterInitialization
       /// event.</para>
@@ -42,9 +45,17 @@ type
       /// Override this procedure to create your custom IPyModuleDef instance.
       /// </summary>
       procedure CreateModuleDef(const aName, aDocStrings: string); virtual;
+      /// <summary>
+      /// Override this procedure to create your custom IPySlotManager instance.
+      /// </summary>
+      procedure CreateSlotManager(const aName, aDocStrings: string); virtual;
+
+      function  LegacyInitialization: boolean;
+
+      function  UnifiedSlotInitialization: boolean;
 
     public
-      constructor Create(const aName: string; const aDocStrings: string = ''; aIsExtension : boolean = False);
+      constructor Create(const aName: string; const aDocStrings: string = ''; aUseLegacyAPI: boolean = True; aIsExtension : boolean = False);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       procedure   BeforeDestruction; override;
@@ -79,7 +90,7 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
-  uP4P.PyImport, uP4P.PyDict, uP4P.PyModuleDef, uP4P.Py_mod;
+  uP4P.PyImport, uP4P.PyDict, uP4P.PyModuleDef, uP4P.Py_mod, uP4P.PySlotManager;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var
@@ -94,23 +105,30 @@ begin
   Result := 0;
 end;
 
-constructor TCustomPyModule.Create(const aName, aDocStrings: string; aIsExtension : boolean);
+constructor TCustomPyModule.Create(const aName, aDocStrings: string; aUseLegacyAPI, aIsExtension : boolean);
 begin
   inherited Create;
 
+  FUseLegacyAPI          := aUseLegacyAPI;
   FModule                := nil;
   FModuleDef             := nil;
+  FSlotManager           := nil;
   FOnAfterInitialization := nil;
   FMultIntprSupport      := miSupported;
   FIsExtension           := aIsExtension;
 
-  CreateModuleDef(aName, aDocStrings);
+  if FUseLegacyAPI then
+    CreateModuleDef(aName, aDocStrings)
+   else
+    CreateSlotManager(aName, aDocStrings);
 end;
 
 destructor TCustomPyModule.Destroy;
 begin
-  FModule    := nil;
-  FModuleDef := nil;
+  FModule      := nil;
+  FModuleDef   := nil;
+  FSlotManager := nil;
+
   inherited Destroy;
 end;
 
@@ -135,12 +153,28 @@ begin
   if assigned(FModuleDef) then
     Result := FModuleDef.Name_
    else
-    Result := '';
+    if assigned(FSlotManager) then
+      Result := FSlotManager.Name_
+     else
+      Result := '';
+end;
+
+procedure TCustomPyModule.SetUseLegacyAPI(aValue: boolean);
+begin
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
+    FUseLegacyAPI := aValue
+   else
+    FUseLegacyAPI := True;
 end;
 
 procedure TCustomPyModule.CreateModuleDef(const aName, aDocStrings: string);
 begin
   FModuleDef := TPyModuleDef.Create(aName, aDocStrings);
+end;
+
+procedure TCustomPyModule.CreateSlotManager(const aName, aDocStrings: string);
+begin
+  FSlotManager := TPySlotManager.Create(aName, aDocStrings);
 end;
 
 function TCustomPyModule.doOnAfterInitialization: integer;
@@ -158,14 +192,14 @@ begin
             FModule.SameAs(other);
 end;
 
-function TCustomPyModule.Initialize: boolean;
+function TCustomPyModule.LegacyInitialization: boolean;
 var
   TempSpec : IPyObject;
 begin
   Result := False;
   if assigned(FModule) or not(assigned(FModuleDef)) then exit;
 
-  FModuleDef.CreateMethodsAndSlots(@Exec_Module, FMultIntprSupport);
+  FModuleDef.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport);
 
   if FIsExtension then
     Result := True
@@ -189,6 +223,47 @@ begin
     finally
       TempSpec := nil;
     end;
+end;
+
+function TCustomPyModule.UnifiedSlotInitialization: boolean;
+var
+  TempSpec : IPyObject;
+begin
+  Result := False;
+  if assigned(FModule) or not(assigned(FSlotManager)) then exit;
+
+  FSlotManager.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport);
+
+  if FIsExtension then
+    Result := True
+   else
+    try
+      TempSpec := TPyModuleSpecHelper.FromModuleName(FModuleDef.Name_);
+
+      // Create the module from the definition and spec
+      FModule  := TPyModule.FromSlotsAndSpec(FSlotManager.Slots, TempSpec);
+
+      if assigned(FModule) then
+        begin
+          // TPyModule.Exec executes the module.
+          // It triggers Py_mod_exec slot, which triggers
+          // the TCustomPyModule.OnAfterInitialization event.
+          if TPyModule.Exec(FModule) then
+            Result := GlobalP4PEngine.AddModuleToSys(self);
+        end
+       else
+        GlobalP4PEngine.GetRaisedException;
+    finally
+      TempSpec := nil;
+    end;
+end;
+
+function TCustomPyModule.Initialize: boolean;
+begin
+  if FUseLegacyAPI then
+    Result := LegacyInitialization
+   else
+    Result := UnifiedSlotInitialization;
 end;
 
 end.

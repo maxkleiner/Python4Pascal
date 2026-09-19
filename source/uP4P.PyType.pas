@@ -437,6 +437,11 @@ type
       /// }
       /// </code>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/type.html#c.PyType_FromSlots">See the article about PyType_FromSlots.</see></para>
+      /// <para><see href="https://docs.python.org/3.15/c-api/slots.html#definition-slots">See the article about Definition slots.</see></para>
+      /// <para><see href="https://peps.python.org/pep-0820/">See the article for PEP 820.</see></para>
+      /// </remarks>
       class function FromSlots(slots: PPySlot): IPyObject;
       /// <summary>
       /// <para>Find the first superclass whose module has the given module

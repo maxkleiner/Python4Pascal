@@ -74,7 +74,7 @@ type
       constructor Create(const aName: string; const aDocStrings: string = '');
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
-      procedure   CreateMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport); virtual;
+      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport); virtual;
       /// <summary>
       /// <para>Ensure a module definition is a properly initialized Python
       /// object that correctly reports its type and a reference count.</para>
@@ -146,7 +146,7 @@ begin
   FMethodList := TList.Create;
 end;
 
-procedure TPyModuleDef.CreateMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+procedure TPyModuleDef.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
 begin
   AddAllSlots(aExecFunction, aMultIntprSupport);
   AddAllMethods;
