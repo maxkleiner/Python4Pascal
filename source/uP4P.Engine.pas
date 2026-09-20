@@ -444,21 +444,27 @@ end;
 
 procedure TP4PEngine.SaveThreadState;
 begin
-  if IsMainThread and
-     not(TPyThreadState.IsInitialized(FThreadState)) then
-    begin
-      FThreadState     := TPyEval.SaveThread();
-      SavedThreadState := TPyThreadState.IsInitialized(FThreadState);
+  if IsMainThread and Lock then
+    try
+      if not(TPyThreadState.IsInitialized(FThreadState)) then
+        begin
+          FThreadState      := TPyEval.SaveThread();
+          FSavedThreadState := TPyThreadState.IsInitialized(FThreadState);
+        end;
+    finally
+      Unlock;
     end;
 end;
 
 procedure TP4PEngine.RestoreThreadState;
 begin
-  if IsMainThread then
-    begin
+  if IsMainThread and Lock then
+    try
       TPyEval.RestoreThread(FThreadState);
-      FThreadState     := nil;
-      SavedThreadState := False;
+      FThreadState      := nil;
+      FSavedThreadState := False;
+    finally
+      Unlock;
     end;
 end;
 
