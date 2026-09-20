@@ -28,20 +28,19 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="11" Y="16"/>
+        <CursorPos X="73" Y="18"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="1">
       <Position>
         <Filename Value="uMainForm.pas"/>
-        <Caret TopLine="76"/>
+        <Caret Line="79" TopLine="63"/>
       </Position>
       <Position>
-        <Filename Value="uMainForm.pas"/>
-        <Caret Line="79" TopLine="63"/>
+        <Filename Value="uTestModule.pas"/>
+        <Caret Line="142" Column="5"/>
       </Position>
     </JumpHistory>
     <RunParams>

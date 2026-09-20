@@ -98,10 +98,25 @@ type
       /// </summary>
       class function END_: PySlot;
 
+      /// <summary>
+      /// Returns the PySlot record.
+      /// </summary>
       property Slot      : PySlot    read FPySlot;
+      /// <summary>
+      /// Returns the sl_id value.
+      /// </summary>
       property ID        : word      read GetID          write SetID;
+      /// <summary>
+      /// Returns the sl_flags value.
+      /// </summary>
       property Flags     : word      read GetFlags       write SetFlags;
+      /// <summary>
+      /// Return True if the slot has a Py_slot_end value in the sl_id field.
+      /// </summary>
       property IsEnd     : boolean   read GetIsEnd;
+      /// <summary>
+      /// Return True if the slot has a TPy_mod.methods value in the sl_id field.
+      /// </summary>
       property IsMethods : boolean   read GetIsMethods;
   end;
 

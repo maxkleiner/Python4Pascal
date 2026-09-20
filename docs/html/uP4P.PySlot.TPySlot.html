@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PySlot: Class TPySlot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPySlot"></span><h1 class="cio">Class TPySlot</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PySlot.html">uP4P.PySlot</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPySlot = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>Helper for all the PySlot_* convenience macros.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/slots.html#convenience-macros">https://docs.python.org/3.15/c-api/slots.html#convenience-macros</a>&quot;&gt;See the article about the Convenience macros.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/slots.html#definition-slots">https://docs.python.org/3.15/c-api/slots.html#definition-slots</a>&quot;&gt;See the article about Definition slots.)
+
+<p>&lt;see href=&quot;<a href="https://peps.python.org/pep-0820/">https://peps.python.org/pep-0820/</a>&quot;&gt;See the article for PEP 820.)
+
+<p>Added in version 3.15.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPySlot</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PySlot.TPySlot.html#FPySlot">FPySlot</a></strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PySlot.TPySlot.html#FStringValue">FStringValue</a></strong>: AnsiString;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlot.TPySlot.html#GetID">GetID</a></strong>: word;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlot.TPySlot.html#GetFlags">GetFlags</a></strong>: word;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlot.TPySlot.html#GetIsEnd">GetIsEnd</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlot.TPySlot.html#GetIsMethods">GetIsMethods</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#SetID-word-">SetID</a></strong>(aValue: word);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#SetFlags-word-">SetFlags</a></strong>(aValue: word);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PySlot.TPySlot.html#Create">Create</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_DATA-word-Pointer-">Set_DATA</a></strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_FUNC-word-_Py_funcptr_t-">Set_FUNC</a></strong>(name_: word; value_: <a href="uP4P.Types.html#_Py_funcptr_t">_Py_funcptr_t</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_SIZE-word-Py_ssize_t-">Set_SIZE</a></strong>(name_: word; value_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_INT64-word-int64-">Set_INT64</a></strong>(name_: word; value_: int64);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_UINT64-word-uint64-">Set_UINT64</a></strong>(name_: word; value_: uint64);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STATIC_DATA-word-Pointer-">Set_STATIC_DATA</a></strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_PTR-word-Pointer-">Set_PTR</a></strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_PTR_STATIC-word-Pointer-">Set_PTR_STATIC</a></strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_END">Set_END</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STRING-word-string-">Set_STRING</a></strong>(name_: word; const value_: string);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STATIC_STRING-word-string-">Set_STATIC_STRING</a></strong>(name_: word; const value_: string);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#DATA-word-Pointer-">DATA</a></strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#FUNC-word-_Py_funcptr_t-">FUNC</a></strong>(name_: word; value_: <a href="uP4P.Types.html#_Py_funcptr_t">_Py_funcptr_t</a>): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#SIZE-word-Py_ssize_t-">SIZE</a></strong>(name_: word; value_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#INT64_-word-int64-">INT64_</a></strong>(name_: word; value_: int64): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#UINT64_-word-uint64-">UINT64_</a></strong>(name_: word; value_: uint64): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#STATIC_DATA-word-Pointer-">STATIC_DATA</a></strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#PTR-word-Pointer-">PTR</a></strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#PTR_STATIC-word-Pointer-">PTR_STATIC</a></strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PySlot.TPySlot.html#END_">END_</a></strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PySlot.TPySlot.html#Slot">Slot</a></strong>      : <a href="uP4P.Types.PySlot.html">PySlot</a>    read <a href="uP4P.PySlot.TPySlot.html#FPySlot">FPySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PySlot.TPySlot.html#ID">ID</a></strong>        : word      read <a href="uP4P.PySlot.TPySlot.html#GetID">GetID</a>          write <a href="uP4P.PySlot.TPySlot.html#SetID-word-">SetID</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PySlot.TPySlot.html#Flags">Flags</a></strong>     : word      read <a href="uP4P.PySlot.TPySlot.html#GetFlags">GetFlags</a>       write <a href="uP4P.PySlot.TPySlot.html#SetFlags-word-">SetFlags</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PySlot.TPySlot.html#IsEnd">IsEnd</a></strong>     : boolean   read <a href="uP4P.PySlot.TPySlot.html#GetIsEnd">GetIsEnd</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PySlot.TPySlot.html#IsMethods">IsMethods</a></strong> : boolean   read <a href="uP4P.PySlot.TPySlot.html#GetIsMethods">GetIsMethods</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPySlot"></span><code><strong>FPySlot</strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FStringValue"></span><code><strong>FStringValue</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetID"></span><code>function <strong>GetID</strong>: word;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetFlags"></span><code>function <strong>GetFlags</strong>: word;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsEnd"></span><code>function <strong>GetIsEnd</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsMethods"></span><code>function <strong>GetIsMethods</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetID-word-"></span><code>procedure <strong>SetID</strong>(aValue: word);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetFlags-word-"></span><code>procedure <strong>SetFlags</strong>(aValue: word);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_DATA-word-Pointer-"></span><code>procedure <strong>Set_DATA</strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_FUNC-word-_Py_funcptr_t-"></span><code>procedure <strong>Set_FUNC</strong>(name_: word; value_: <a href="uP4P.Types.html#_Py_funcptr_t">_Py_funcptr_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_SIZE-word-Py_ssize_t-"></span><code>procedure <strong>Set_SIZE</strong>(name_: word; value_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_INT64-word-int64-"></span><code>procedure <strong>Set_INT64</strong>(name_: word; value_: int64);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_UINT64-word-uint64-"></span><code>procedure <strong>Set_UINT64</strong>(name_: word; value_: uint64);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_STATIC_DATA-word-Pointer-"></span><code>procedure <strong>Set_STATIC_DATA</strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_PTR-word-Pointer-"></span><code>procedure <strong>Set_PTR</strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_PTR_STATIC-word-Pointer-"></span><code>procedure <strong>Set_PTR_STATIC</strong>(name_: word; value_: Pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_END"></span><code>procedure <strong>Set_END</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_STRING-word-string-"></span><code>procedure <strong>Set_STRING</strong>(name_: word; const value_: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_STATIC_STRING-word-string-"></span><code>procedure <strong>Set_STATIC_STRING</strong>(name_: word; const value_: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DATA-word-Pointer-"></span><code>class function <strong>DATA</strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_ptr. It also sets the PySlot_INTPTR flag.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FUNC-word-_Py_funcptr_t-"></span><code>class function <strong>FUNC</strong>(name_: word; value_: <a href="uP4P.Types.html#_Py_funcptr_t">_Py_funcptr_t</a>): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_func.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SIZE-word-Py_ssize_t-"></span><code>class function <strong>SIZE</strong>(name_: word; value_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_size.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="INT64_-word-int64-"></span><code>class function <strong>INT64_</strong>(name_: word; value_: int64): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_int64.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UINT64_-word-uint64-"></span><code>class function <strong>UINT64_</strong>(name_: word; value_: uint64): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_uint64.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="STATIC_DATA-word-Pointer-"></span><code>class function <strong>STATIC_DATA</strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_ptr. It also sets the PySlot_STATIC flag.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PTR-word-Pointer-"></span><code>class function <strong>PTR</strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_ptr. It also sets the PySlot_INTPTR flag.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="PTR_STATIC-word-Pointer-"></span><code>class function <strong>PTR_STATIC</strong>(name_: word; value_: Pointer): <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to define a PySlot structure with sl_id and sl_ptr. It also sets the PySlot_INTPTR and PySlot_STATIC flags.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="END_"></span><code>class function <strong>END_</strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Convenience function to mark the end of a PySlot array.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Slot"></span><code>property <strong>Slot</strong>      : <a href="uP4P.Types.PySlot.html">PySlot</a>    read <a href="uP4P.PySlot.TPySlot.html#FPySlot">FPySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the PySlot record. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ID"></span><code>property <strong>ID</strong>        : word      read <a href="uP4P.PySlot.TPySlot.html#GetID">GetID</a>          write <a href="uP4P.PySlot.TPySlot.html#SetID-word-">SetID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the sl_id value. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Flags"></span><code>property <strong>Flags</strong>     : word      read <a href="uP4P.PySlot.TPySlot.html#GetFlags">GetFlags</a>       write <a href="uP4P.PySlot.TPySlot.html#SetFlags-word-">SetFlags</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the sl_flags value. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsEnd"></span><code>property <strong>IsEnd</strong>     : boolean   read <a href="uP4P.PySlot.TPySlot.html#GetIsEnd">GetIsEnd</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the slot has a Py_slot_end value in the sl_id field. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsMethods"></span><code>property <strong>IsMethods</strong> : boolean   read <a href="uP4P.PySlot.TPySlot.html#GetIsMethods">GetIsMethods</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the slot has a TPy_mod.methods value in the sl_id field. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

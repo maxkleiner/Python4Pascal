@@ -40,21 +40,25 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.IOPyModule.TIOPyModule.html#CreateModuleDef-string-string-">CreateModuleDef</a></strong>(const aName, aDocStrings: string); override;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.IOPyModule.TIOPyModule.html#CreateModuleDef">CreateModuleDef</a></strong>; override;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.IOPyModule.TIOPyModule.html#Write-PPyObject-">Write</a></strong>(args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.IOPyModule.TIOPyModule.html#CreateSlotManager">CreateSlotManager</a></strong>; override;</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.IOPyModule.TIOPyModule.html#Write-PPyObject-">Write</a></strong>(args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.IOPyModule.TIOPyModule.html#Read-PPyObject-">Read</a></strong>(args: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.IOPyModule.TIOPyModule.html#RunInitCode">RunInitCode</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.IOPyModule.TIOPyModule.html#RunRestoreCode">RunRestoreCode</a></strong>: boolean;</code></td>
 </tr>
@@ -64,11 +68,21 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="CreateModuleDef-string-string-"></span><code>procedure <strong>CreateModuleDef</strong>(const aName, aDocStrings: string); override;</code></td>
+<td class="itemcode"><span id="CreateModuleDef"></span><code>procedure <strong>CreateModuleDef</strong>; override;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="inheritdescription">This item has no description. Showing description inherited from <a class="normal" href="uP4P.CustomPyModule.TCustomPyModule.html#CreateModuleDef-string-string-">TCustomPyModule.CreateModuleDef</a>.</p><p>
+<p class="inheritdescription">This item has no description. Showing description inherited from <a class="normal" href="uP4P.CustomPyModule.TCustomPyModule.html#CreateModuleDef">TCustomPyModule.CreateModuleDef</a>.</p><p>
  Override this procedure to create your custom IPyModuleDef instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CreateSlotManager"></span><code>procedure <strong>CreateSlotManager</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="inheritdescription">This item has no description. Showing description inherited from <a class="normal" href="uP4P.CustomPyModule.TCustomPyModule.html#CreateSlotManager">TCustomPyModule.CreateSlotManager</a>.</p><p>
+ Override this procedure to create your custom IPySlotManager instance. </p>
 </td></tr>
 </table>
 <table class="detail visibility-protected wide_list">

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyABIInfo: Class TPyABIInfo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyABIInfo"></span><h1 class="cio">Class TPyABIInfo</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyABIInfo.html">uP4P.PyABIInfo</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyABIInfo = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Helper class for all PyABIInfo_* methods. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/stable.html#abi-checking">https://docs.python.org/3.15/c-api/stable.html#abi-checking</a>&quot;&gt;See the article about ABI Checking.)
+
+<p>Added in version 3.15.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyABIInfo</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyABIInfo.TPyABIInfo.html#Check-PyABIInfo-string-">Check</a></strong>(const info: <a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>; const module_name: string): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyABIInfo.TPyABIInfo.html#DEFAULT_FLAGS">DEFAULT_FLAGS</a></strong>: word;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyABIInfo.TPyABIInfo.html#DEFAULT_ABI_VERSION">DEFAULT_ABI_VERSION</a></strong>: cardinal;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyABIInfo.TPyABIInfo.html#VAR_-PyABIInfo-">VAR_</a></strong>(var info: <a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Check-PyABIInfo-string-"></span><code>class function <strong>Check</strong>(const info: <a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>; const module_name: string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Verify that the given info is compatible with the currently running interpreter.
+
+<p>Return True on success. On failure, raise an exception and return False.
+
+<p>If the ABI is incompatible, the raised exception will be ImportError.
+
+<p>The module_name argument can be nil, or point to a NUL-terminated UTF-8-encoded string used for error messages.
+
+<p>Note that if info describes the ABI that the current code uses (as defined by PyABIInfo_VAR, for example), using any other Python C API may lead to crashes. In particular, it is not safe to examine the raised exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DEFAULT_FLAGS"></span><code>class function <strong>DEFAULT_FLAGS</strong>: word;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Default flags, based on current values of macros such as Py_LIMITED_API and Py_GIL_DISABLED. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DEFAULT_ABI_VERSION"></span><code>class function <strong>DEFAULT_ABI_VERSION</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The value that should be used for PyABIInfo.abi_version, based on current values of macros such as Py_LIMITED_API, TPy.VERSION_HEX and Py_GIL_DISABLED.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="VAR_-PyABIInfo-"></span><code>class procedure <strong>VAR_</strong>(var info: <a href="uP4P.Types.PyABIInfo.html">PyABIInfo</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Define a PyABIInfo variable that describes the ABI that the current code will use.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyInterpreterGuard: Class TPyInterpreterGuard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyInterpreterGuard"></span><h1 class="cio">Class TPyInterpreterGuard</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyInterpreterGuard.html">uP4P.PyInterpreterGuard</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyInterpreterGuard = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>An interpreter guard class.
+
+<p>By holding an interpreter guard, the caller can ensure that the interpreter will not finalize until the guard is closed (through TPyInterpreterGuard.Close()).
+
+<p>When a guard is held, a thread attempting to finalize the interpreter will block until the guard is closed before starting finalization. After finalization has started, threads are forever unable to acquire guards for that interpreter. This means that if you forget to close an interpreter guard, the process will permanently hang during finalization!
+
+<p>Holding a guard for an interpreter is similar to holding a strong reference to a Python object, except finalization does not happen automatically after all guards are released: it requires an explicit Py_EndInterpreter() call.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization">https://docs.python.org/3.15/c-api/interp-lifecycle.html#cautions-regarding-interpreter-finalization</a>&quot;&gt;See the Python article about Cautions regarding interpreter finalization.)
+
+<p>Added in version 3.15.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyInterpreterGuard</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#FPyInterpreterGuard">FPyInterpreterGuard</a></strong>: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetGuard">GetGuard</a></strong>: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#SetGuard-PPyInterpreterGuard-">SetGuard</a></strong>(aValue: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Close">Close</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Create-PPyInterpreterGuard-">Create</a></strong>(aGuard: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#IsInitialized-IPyInterpreterGuard-">IsInitialized</a></strong>(const aGuard: <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Wrap-PPyInterpreterGuard-">Wrap</a></strong>(aGuard: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#FromCurrent">FromCurrent</a></strong>(): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#FromView-IPyInterpreterView-">FromView</a></strong>(const aView: <a href="uP4P.Interfaces.IPyInterpreterView.html">IPyInterpreterView</a>): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Initialized">Initialized</a></strong>  : boolean               read <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#Guard">Guard</a></strong>        : <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>   read <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetGuard">GetGuard</a>         write <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#SetGuard-PPyInterpreterGuard-">SetGuard</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPyInterpreterGuard"></span><code><strong>FPyInterpreterGuard</strong>: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetGuard"></span><code>function <strong>GetGuard</strong>: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetGuard-PPyInterpreterGuard-"></span><code>procedure <strong>SetGuard</strong>(aValue: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Close"></span><code>procedure <strong>Close</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Close an interpreter guard, allowing the interpreter to start finalization if no other guards remain. If an interpreter guard is never closed, the interpreter will infinitely wait when trying to enter finalization!
+
+<p>After an interpreter guard is closed, it may not be used in TPyThreadState.Ensure(). Doing so will result in undefined behavior.
+
+<p>This function cannot fail, and the caller doesn't need to hold an attached thread state.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PPyInterpreterGuard-"></span><code>constructor <strong>Create</strong>(aGuard: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInitialized-IPyInterpreterGuard-"></span><code>class function <strong>IsInitialized</strong>(const aGuard: <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Wrap-PPyInterpreterGuard-"></span><code>class function <strong>Wrap</strong>(aGuard: <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Helper function used to wrap a PyInterpreterGuard pointer with a TPyInterpreterGuard instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromCurrent"></span><code>class function <strong>FromCurrent</strong>(): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a finalization guard for the current interpreter. This will prevent finalization until the guard is closed.
+
+<p>For example:
+
+<p></p>
+
+<pre class="preformatted">
+// Temporarily prevent finalization.
+PyInterpreterGuard *guard = PyInterpreterGuard_FromCurrent();
+if (guard == NULL) {
+   // Finalization has already started or we're out of memory.
+   return NULL;
+}
+
+Py_BEGIN_ALLOW_THREADS;
+// Do some critical processing here. For example, we can safely acquire
+// locks that might be acquired by the finalization thread.
+Py_END_ALLOW_THREADS;
+
+// Now that we're done with our critical processing, the interpreter is
+// allowed to finalize again.
+PyInterpreterGuard_Close(guard);</pre>
+
+<p>
+
+<p>On success, this function returns a guard for the current interpreter; on failure, it returns NULL with an exception set.
+
+<p>This function will fail only if the current interpreter has already started finalizing, or if the process is out of memory.
+
+<p>The guard pointer returned by this function must be eventually closed with TPyInterpreterGuard.Close(); failing to do so will result in the Python process infinitely hanging.
+
+<p>The caller must hold an attached thread state.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FromView-IPyInterpreterView-"></span><code>class function <strong>FromView</strong>(const aView: <a href="uP4P.Interfaces.IPyInterpreterView.html">IPyInterpreterView</a>): <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a finalization guard for an interpreter through a view.
+
+<p>On success, this function returns a guard to the interpreter represented by view. The view is still valid after calling this function. The guard must eventually be closed with TPyInterpreterGuard.Close().
+
+<p>If the interpreter no longer exists, is already finalizing, or out of memory, then this function returns NULL without setting an exception.
+
+<p>The caller does not need to hold an attached thread state.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean               read <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Guard"></span><code>property <strong>Guard</strong>        : <a href="uP4P.Types.html#PPyInterpreterGuard">PPyInterpreterGuard</a>   read <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#GetGuard">GetGuard</a>         write <a href="uP4P.PyInterpreterGuard.TPyInterpreterGuard.html#SetGuard-PPyInterpreterGuard-">SetGuard</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyInterpreterGuard
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -9,7 +9,7 @@ interface
 uses
   Classes, Forms,
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
 
 const
   TEST_MODULE_NAME = 'mytest';
@@ -19,12 +19,23 @@ type
     protected
       FMainForm : TForm;
 
-      procedure AddAllMethods; override;
+      procedure CreateModuleDef; override;
+      procedure CreateSlotManager; override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
 
     public
       property MainForm : TForm  read FMainForm  write FMainForm;
+  end;
+
+  TPyTestModuleDef = class(TPyModuleDef)
+    protected
+      procedure AddAllMethods; override;
+  end;
+
+  TPyTestSlotManager = class(TPySlotManager)
+    protected
+      procedure AddAllMethods; override;
   end;
 
 implementation
@@ -62,12 +73,16 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
-procedure TTestModule.AddAllMethods;
-begin
-  inherited AddAllMethods;
+{ TTestModule }
 
-  AddMethod('write', '', @mytest_write, METH_VARARGS);
-  AddMethod('read', '', @mytest_read, METH_VARARGS);
+procedure TTestModule.CreateModuleDef;
+begin
+  FModuleDef := TPyTestModuleDef.Create(FName, FDocStrings);
+end;
+
+procedure TTestModule.CreateSlotManager;
+begin
+  FSlotManager := TPyTestSlotManager.Create(FName, FDocStrings);
 end;
 
 function TTestModule.Write(args: PPyObject): PPyObject;
@@ -96,6 +111,26 @@ begin
     end
    else
     Result := TPyNone.ReturnNone;
+end;
+
+{ TPyTestModuleDef }
+
+procedure TPyTestModuleDef.AddAllMethods;
+begin
+  inherited AddAllMethods;
+
+  AddMethod('write', '', @mytest_write, METH_VARARGS);
+  AddMethod('read', '', @mytest_read, METH_VARARGS);
+end;
+
+{ TPyTestSlotManager }
+
+procedure TPyTestSlotManager.AddAllMethods;
+begin
+  inherited AddAllMethods;
+
+  AddMethod('write', '', @mytest_write, METH_VARARGS);
+  AddMethod('read', '', @mytest_read, METH_VARARGS);
 end;
 
 end.

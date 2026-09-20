@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyBytesWriter: Class TPyBytesWriter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyBytesWriter"></span><h1 class="cio">Class TPyBytesWriter</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyBytesWriter.html">uP4P.PyBytesWriter</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyBytesWriter = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+
+
+<p>A bytes writer instance.
+
+<p>The PyBytesWriter API can be used to create a Python bytes object.
+
+<p>The API is not thread safe: a writer should only be used by a single thread at the same time.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/bytes.html#pybyteswriter">https://docs.python.org/3.15/c-api/bytes.html#pybyteswriter</a>&quot;&gt;See the article about PyBytesWriter.)
+
+<p>Added in version 3.15.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TPyBytesWriter</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#FPyBytesWriter">FPyBytesWriter</a></strong>: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetWriter">GetWriter</a></strong>: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetData">GetData</a></strong>: Pointer;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetSize">GetSize</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#SetWriter-PPyBytesWriter-">SetWriter</a></strong>(aValue: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Discard">Discard</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Create-PPyBytesWriter-">Create</a></strong>(aWriter: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#IsInitialized-IPyBytesWriter-">IsInitialized</a></strong>(const aWriter: <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Wrap-PPyBytesWriter-">Wrap</a></strong>(aWriter: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>): <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Create-Py_ssize_t-">Create</a></strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Finish">Finish</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#FinishWithSize-Py_ssize_t-">FinishWithSize</a></strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#FinishWithPointer-Pointer-">FinishWithPointer</a></strong>(buf: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#WriteBytes-Pointer-Py_ssize_t-">WriteBytes</a></strong>(const bytes_: Pointer; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#WriteBytes-TMemoryStream-">WriteBytes</a></strong>(const aStream: TMemoryStream): boolean; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Resize-Py_ssize_t-">Resize</a></strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Grow-Py_ssize_t-">Grow</a></strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GrowAndUpdatePointer-Py_ssize_t-Pointer-">GrowAndUpdatePointer</a></strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; buf: Pointer): Pointer;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Initialized">Initialized</a></strong>  : boolean               read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Writer">Writer</a></strong>       : <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>        read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetWriter">GetWriter</a>         write <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#SetWriter-PPyBytesWriter-">SetWriter</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Data">Data</a></strong>         : Pointer               read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetData">GetData</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyBytesWriter.TPyBytesWriter.html#Size">Size</a></strong>         : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>            read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetSize">GetSize</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FPyBytesWriter"></span><code><strong>FPyBytesWriter</strong>: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetWriter"></span><code>function <strong>GetWriter</strong>: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetData"></span><code>function <strong>GetData</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the writer data: start of the internal buffer.
+
+<p>The pointer remains valid until a PyBytesWriter function other than TPyBytesWriter.GetData() or TPyBytesWriter.GetSize() is called on writer.
+
+<p>The function cannot fail.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetSize"></span><code>function <strong>GetSize</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the writer size.
+
+<p>The function does not invalidate pointers returned by TPyBytesWriter.GetData().
+
+<p>The function cannot fail.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetWriter-PPyBytesWriter-"></span><code>procedure <strong>SetWriter</strong>(aValue: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="Discard"></span><code>procedure <strong>Discard</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Discard a PyBytesWriter created by TPyBytesWriter.Create().
+
+<p>Do nothing if writer is nil.
+
+<p>The writer instance is invalid after the call. No API can be called on the writer after TPyBytesWriter.Discard().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-PPyBytesWriter-"></span><code>constructor <strong>Create</strong>(aWriter: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsInitialized-IPyBytesWriter-"></span><code>class function <strong>IsInitialized</strong>(const aWriter: <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Wrap-PPyBytesWriter-"></span><code>class function <strong>Wrap</strong>(aWriter: <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>): <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Helper function used to wrap a PyBytesWriter pointer with a TPyBytesWriter instance.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-Py_ssize_t-"></span><code>class function <strong>Create</strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyBytesWriter.html">IPyBytesWriter</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create a PyBytesWriter to write size bytes.
+
+<p>If size is greater than zero, allocate size bytes, and set the writer size to size. The caller is responsible to write size bytes using TPyBytesWriter.GetData(). This function does not overallocate.
+
+<p>On error, set an exception and return nil.
+
+<p>size must be positive or zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Finish"></span><code>function <strong>Finish</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Finish a PyBytesWriter created by TPyBytesWriter.Create().
+
+<p>On success, return a Python bytes object. On error, set an exception and return nil.
+
+<p>The writer instance is invalid after the call in any case.
+
+<p>No API can be called on the writer after TPyBytesWriter.Finish().
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FinishWithSize-Py_ssize_t-"></span><code>function <strong>FinishWithSize</strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyBytesWriter.Finish(), but resize the writer to size bytes before creating the bytes object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="FinishWithPointer-Pointer-"></span><code>function <strong>FinishWithPointer</strong>(buf: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyBytesWriter.Finish(), but resize the writer using buf pointer before creating the bytes object.
+
+<p>Set an exception and return nil if buf pointer is outside the internal buffer bounds.
+
+<p>Function pseudo-code:
+
+<p></p>
+
+<pre class="preformatted">
+Py_ssize_t size = (char*)buf - (char*)PyBytesWriter_GetData(writer);
+return PyBytesWriter_FinishWithSize(writer, size);</pre>
+
+<p> </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="WriteBytes-Pointer-Py_ssize_t-"></span><code>function <strong>WriteBytes</strong>(const bytes_: Pointer; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Grow the writer internal buffer by size_ bytes, write size_ bytes of bytes_ at the writer end, and add size_ to the writer size.
+
+<p>If size is equal to -1, call strlen(bytes) to get the string length.
+
+<p>On success, return True. On error, set an exception and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="WriteBytes-TMemoryStream-"></span><code>function <strong>WriteBytes</strong>(const aStream: TMemoryStream): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Grow the writer internal buffer by aStreamsize.size bytes, write aStream.size bytes at the writer end, and add aStreamsize.size to the writer size.
+
+<p>On success, return True. On error, set an exception and return False.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Resize-Py_ssize_t-"></span><code>function <strong>Resize</strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resize the writer to size bytes. It can be used to enlarge or to shrink the writer. This function typically overallocates to achieve amortized performance when resizing multiple times.
+
+<p>Newly allocated bytes are left uninitialized.
+
+<p>On success, return True. On error, set an exception and return False.
+
+<p>size must be positive or zero.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Grow-Py_ssize_t-"></span><code>function <strong>Grow</strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Resize the writer by adding grow bytes to the current writer size. This function typically overallocates to achieve amortized performance when resizing multiple times.
+
+<p>Newly allocated bytes are left uninitialized.
+
+<p>On success, return True. On error, set an exception and return False.
+
+<p>size can be negative to shrink the writer.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GrowAndUpdatePointer-Py_ssize_t-Pointer-"></span><code>function <strong>GrowAndUpdatePointer</strong>(size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>; buf: Pointer): Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to TPyBytesWriter.Grow(), but update also the buf pointer.
+
+<p>The buf pointer is moved if the internal buffer is moved in memory. The buf relative position within the internal buffer is left unchanged.
+
+<p>On error, set an exception and return nil.
+
+<p>buf must not be nil.
+
+<p>Function pseudo-code:
+
+<p></p>
+
+<pre class="preformatted">
+Py_ssize_t pos = (char*)buf - (char*)PyBytesWriter_GetData(writer);
+if (PyBytesWriter_Grow(writer, size) &lt; 0) {
+    return NULL;
+}
+return (char*)PyBytesWriter_GetData(writer) + pos;</pre>
+
+<p> </p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>  : boolean               read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Returns true if the class is fully initialized.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Writer"></span><code>property <strong>Writer</strong>       : <a href="uP4P.Types.html#PPyBytesWriter">PPyBytesWriter</a>        read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetWriter">GetWriter</a>         write <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#SetWriter-PPyBytesWriter-">SetWriter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Pointer to PyBytesWriter
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Data"></span><code>property <strong>Data</strong>         : Pointer               read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetData">GetData</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the writer data: start of the internal buffer.
+
+<p>The pointer remains valid until a PyBytesWriter function other than TPyBytesWriter.GetData() or TPyBytesWriter.GetSize() is called on writer.
+
+<p>The function cannot fail.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size"></span><code>property <strong>Size</strong>         : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>            read <a href="uP4P.PyBytesWriter.TPyBytesWriter.html#GetSize">GetSize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Get the writer size.
+
+<p>The function does not invalidate pointers returned by TPyBytesWriter.GetData().
+
+<p>The function cannot fail.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Py_mod: Class TPy_mod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.4">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPy_mod"></span><h1 class="cio">Class TPy_mod</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Py_mod.html">uP4P.Py_mod</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPy_mod = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+The complete list of compiler versions is here : <a href="https://docwiki.embarcadero.com/RADStudio/Athens/en/Compiler_Versions">https://docwiki.embarcadero.com/RADStudio/Athens/en/Compiler_Versions</a> Delphi 5 Delphi 6 Delphi 7 Delphi 8 Delphi 2005 Delphi 2009 (Unicode support) Delphi 2010 Delphi XE Delphi XE2 (First FireMonkey and 64bit compiler) Delphi XE3 Delphi XE4 Delphi XE5 Delphi XE6 Delphi XE7 Delphi XE8 Rad Studio 10 - Delphi Seattle Rad Studio 10.1 - Delphi Berlin Rad Studio 10.2 - Delphi Tokyo Rad Studio 10.3 - Delphi Rio Rad Studio 10.4 - Delphi Sydney Rad Studio 11.0 - Delphi Alexandria Rad Studio 12.0 - Delphi Athens Rad Studio 13.0 - Delphi Florence Delphi uses MACOS for the new MacOSX and DARWIN is not defined FPC uses DARWIN for the new MacOSX and MACOS is defined for the classic Macintosh OS (System 7) We define MACOSX to avoid conflicts in both situations OS_POSIX is defined for AIX, ANDROID, ASMJS, CHROMEOS, FREEBSD, IOS, LINUX, MAC, NACL, NETBSD, OPENBSD, QNX and SOLARIS in /include/base/cef_build.h &lt;summary&gt; Helper class to get the correct values of Py_mod_* constants that changed in recent Python versions. &lt;/summary&gt; &lt;remarks&gt; &lt;para&gt;&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#module-objects">https://docs.python.org/3.15/c-api/module.html#module-objects</a>&quot;&gt;See the article about Module Objects.&lt;/see&gt;&lt;/para&gt; &lt;/remarks&gt;</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPy_mod</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#create">create</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#exec">exec</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#multiple_interpreters">multiple_interpreters</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#gil">gil</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#slots">slots</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#name">name</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#doc">doc</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#state_size">state_size</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#methods">methods</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#state_traverse">state_traverse</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#state_clear">state_clear</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#state_free">state_free</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#abi">abi</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py_mod.TPy_mod.html#token">token</a></strong>: integer;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="create"></span><code>class function <strong>create</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_create
+
+<p>Specifies a function that is called to create the module object itself. The value pointer of this slot must point to a function of the signature:
+
+<p></p>
+
+<pre class="preformatted">PyObject *create_module(PyObject *spec, PyModuleDef *def)</pre>
+
+<p>
+
+<p>The function receives a ModuleSpec instance, as defined in PEP 451, and the module definition. It should return a new module object, or set an error and return nil.
+
+<p>This function should be kept minimal. In particular, it should not call arbitrary Python code, as trying to import the same module again may result in an infinite loop.
+
+<p>Multiple Py_mod_create slots may not be specified in one module definition.
+
+<p>If Py_mod_create is not specified, the import machinery will create a normal module object using TPyModule.New(). The name is taken from spec, not the definition, to allow extension modules to dynamically adjust to their place in the module hierarchy and be imported under different names through symlinks, all while sharing a single module definition.
+
+<p>There is no requirement for the returned object to be an instance of PyModule_Type. Any type can be used, as long as it supports setting and getting import-related attributes. However, only PyModule_Type instances may be returned if the PyModuleDef has non-nil m_traverse, m_clear, m_free; non-zero m_size; or slots other than Py_mod_create.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create</a>&quot;&gt;See the article about Py_mod_create.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="exec"></span><code>class function <strong>exec</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_exec
+
+<p>Specifies a function that is called to execute the module. This is equivalent to executing the code of a Python module: typically, this function adds classes and constants to the module. The signature of the function is:
+
+<p></p>
+
+<pre class="preformatted">int exec_module(PyObject *module)</pre>
+
+<p>
+
+<p>If multiple Py_mod_exec slots are specified, they are processed in the order they appear in the m_slots array.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec</a>&quot;&gt;See the article about Py_mod_exec.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="multiple_interpreters"></span><code>class function <strong>multiple_interpreters</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_multiple_interpreters
+
+<p>Specifies one of the following values:
+
+<p>Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED: The module does not support being imported in subinterpreters.
+
+<p>Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED: The module supports being imported in subinterpreters, but only when they share the main interpreter's GIL. (See Isolating Extension Modules.)
+
+<p>Py_MOD_PER_INTERPRETER_GIL_SUPPORTED: The module supports being imported in subinterpreters, even when they have their own GIL. (See Isolating Extension Modules.)
+
+<p>This slot determines whether or not importing this module in a subinterpreter will fail.
+
+<p>Multiple Py_mod_multiple_interpreters slots may not be specified in one module definition.
+
+<p>If Py_mod_multiple_interpreters is not specified, the import machinery defaults to Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_multiple_interpreters">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_multiple_interpreters</a>&quot;&gt;See the article about Py_mod_multiple_interpreters.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="gil"></span><code>class function <strong>gil</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_gil
+
+<p>Specifies one of the following values:
+
+<p>Py_MOD_GIL_USED: The module depends on the presence of the global interpreter lock (GIL), and may access global state without synchronization.
+
+<p>Py_MOD_GIL_NOT_USED: The module is safe to run without an active GIL.
+
+<p>This slot is ignored by Python builds not configured with &ndash;disable-gil. Otherwise, it determines whether or not importing this module will cause the GIL to be automatically enabled. See Free-threaded CPython for more detail.
+
+<p>Multiple Py_mod_gil slots may not be specified in one module definition.
+
+<p>If Py_mod_gil is not specified, the import machinery defaults to Py_MOD_GIL_USED.
+
+<p>Added in version 3.13.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_gil">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_gil</a>&quot;&gt;See the article about Py_mod_gil.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="slots"></span><code>class function <strong>slots</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_slots
+
+<p>Slot ID that works like Py_slot_subslots, except it specifies an array of PyModuleDef_Slot structures.
+
+<p>Added in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_slots">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_slots</a>&quot;&gt;See the article about Py_mod_slots.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="name"></span><code>class function <strong>name</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_name
+
+<p>Slot ID for the name of the new module, as a NUL-terminated UTF8-encoded const char *.
+
+<p>Note that modules are typically created using a ModuleSpec, and when they are, the name from the spec will be used instead of Py_mod_name. However, it is still recommended to include this slot for introspection and debugging purposes.
+
+<p>Added in version 3.15: Use PyModuleDef.m_name instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_name">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_name</a>&quot;&gt;See the article about Py_mod_name.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="doc"></span><code>class function <strong>doc</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_doc
+
+<p>Slot ID for the docstring of the new module, as a NUL-terminated UTF8-encoded const char *.
+
+<p>Usually it is set to a variable created with PyDoc_STRVAR.
+
+<p>Added in version 3.15: Use PyModuleDef.m_doc instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_doc">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_doc</a>&quot;&gt;See the article about Py_mod_doc.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="state_size"></span><code>class function <strong>state_size</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_state_size
+
+<p>Slot ID for the size of the module state, in bytes.
+
+<p>Setting the value to a non-negative value means that the module can be re-initialized and specifies the additional amount of memory it requires for its state.
+
+<p>See PEP 3121 for more details.
+
+<p>Use TPyModule.GetStateSize() to retrieve the size of a given module.
+
+<p>Added in version 3.15: Use PyModuleDef.m_size instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_size">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_size</a>&quot;&gt;See the article about Py_mod_state_size.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="methods"></span><code>class function <strong>methods</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_methods
+
+<p>Added in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_methods">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_methods</a>&quot;&gt;See the article about Py_mod_methods.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="state_traverse"></span><code>class function <strong>state_traverse</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_state_traverse
+
+<p>Slot ID for a traversal function to call during GC traversal of the module object.
+
+<p>The signature of the function, and meanings of the arguments, is similar as for PyTypeObject.tp_traverse:
+
+<p></p>
+
+<pre class="preformatted">int traverse_module_state(PyObject *module, visitproc visit, void *arg)</pre>
+
+<p>
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if the state size (Py_mod_state_size) is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Added in version 3.15: Use PyModuleDef.m_traverse instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_traverse">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_traverse</a>&quot;&gt;See the article about Py_mod_state_traverse.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="state_clear"></span><code>class function <strong>state_clear</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_state_clear
+
+<p>Slot ID for a clear function to call during GC clearing of the module object.
+
+<p>The signature of the function is:
+
+<p></p>
+
+<pre class="preformatted">int clear_module_state(PyObject *module)</pre>
+
+<p>
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if the state size (Py_mod_state_size) is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Like PyTypeObject.tp_clear, this function is not always called before a module is deallocated. For example, when reference counting is enough to determine that an object is no longer used, the cyclic garbage collector is not involved and the Py_mod_state_free function is called directly.
+
+<p>Added in version 3.15: Use PyModuleDef.m_clear instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_clear">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_clear</a>&quot;&gt;See the article about Py_mod_state_clear.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="state_free"></span><code>class function <strong>state_free</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_state_free
+
+<p>Slot ID for a function to call during deallocation of the module object.
+
+<p>The signature of the function is:
+
+<p></p>
+
+<pre class="preformatted">int free_module_state(PyObject *module)</pre>
+
+<p>
+
+<p>This function is not called if the module state was requested but is not allocated yet. This is the case immediately after the module is created and before the module is executed (Py_mod_exec function). More precisely, this function is not called if the state size (Py_mod_state_size) is greater than 0 and the module state (as returned by TPyModule.GetState()) is nil.
+
+<p>Added in version 3.15: Use PyModuleDef.m_free instead to support previous versions.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_free">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_state_free</a>&quot;&gt;See the article about Py_mod_state_free.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="abi"></span><code>class function <strong>abi</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_abi
+
+<p>Slot ID whose value points to a PyABIInfo structure describing the ABI that the extension is using.
+
+<p>A suitable PyABIInfo variable can be defined using the TPyABIInfo.VAR method, as in:
+
+<p></p>
+
+<pre class="preformatted">
+PyABIInfo_VAR(abi_info);
+
+static PySlot mymodule_slots[] = {
+   PySlot_DATA(Py_mod_abi, &amp;abi_info),
+   ...
+};</pre>
+
+<p>
+
+<p>When creating a module, Python checks the value of this slot using TPyABIInfo.Check().
+
+<p>This slot is required, except for modules created from PyModuleDef.
+
+<p>Added in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_abi">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_abi</a>&quot;&gt;See the article about Py_mod_abi.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="token"></span><code>class function <strong>token</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function returns the correct value for Py_mod_token
+
+<p>Slot ID for the module token.
+
+<p>If you use this slot to set the module token (rather than rely on the default), you must ensure that:
+
+<p></p>
+
+<pre class="preformatted">
+- The pointer outlives the class, so it's not reused for something
+  else while the class exists.
+- It &quot;belongs&quot; to the extension module where the class lives, so it
+  will not clash with other extensions.
+- If the token points to a PyModuleDef struct, the module should
+  behave as if it was created from that PyModuleDef. In particular,
+  the module state must have matching layout and semantics.</pre>
+
+<p>
+
+<p>Modules created from PyModuleDef always use the address of the PyModuleDef as the token. This means that Py_mod_token cannot be used in PyModuleDef.m_slots.
+
+<p>Added in version 3.15.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_token">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_token</a>&quot;&gt;See the article about Py_mod_token.)</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+</span>
+</body></html>

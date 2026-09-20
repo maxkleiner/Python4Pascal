@@ -242,6 +242,7 @@
         <DCCReference Include="..\source\uP4P.PySlot.pas"/>
         <DCCReference Include="..\source\uP4P.PyModuleDef_Slot.pas"/>
         <DCCReference Include="..\source\uP4P.PyMethodDef.pas"/>
+        <DCCReference Include="..\source\uP4P.PySlotManager.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

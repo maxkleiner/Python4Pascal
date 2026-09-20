@@ -4382,7 +4382,6 @@ type
 
   IPyModuleDef = interface
     ['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']
-    function  Initialize(const aName, aDocStrings: string) : boolean;
     function  GetInitialized: boolean;
     function  GetName: AnsiString;
     function  GetHasSentinelSlot: boolean;
@@ -4391,7 +4390,7 @@ type
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
-    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
     /// <summary>
     /// Override this procedure to add your custom methods.
     /// </summary>
@@ -4404,8 +4403,13 @@ type
     function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
     function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
     function  AddGILSlot(aGILUsed: boolean): boolean;
-    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
-
+    /// <summary>
+    /// Create the methods and the slots with all the module information.
+    /// </summary>
+    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+    /// <summary>
+    /// Returns true if this class is fully initialized.
+    /// </summary>
     property  Initialized            : boolean        read GetInitialized;
     /// <summary>
     /// <para>Module name.</para>
@@ -4425,6 +4429,10 @@ type
     property  ModuleDef              : PPyModuleDef   read GetModuleDef;
   end;
 
+  /// <summary>
+  /// <para>TPySlotManager is used to store the information about the module
+  /// and to manage the method and slot lists.</para>
+  /// </summary>
   IPySlotManager = interface
     ['{BF8F4E05-1947-427F-A3E9-4BF76FBF6AA1}']
     function  GetName: AnsiString;
@@ -4439,13 +4447,15 @@ type
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
-    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
     /// <summary>
     /// Override this procedure to add your custom methods.
     /// </summary>
     procedure AddAllMethods;
-
-    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+    /// <summary>
+    /// Create the slots with the methods and all the module information.
+    /// </summary>
+    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
     /// <summary>
     /// <para>Module name.</para>
     /// </summary>
@@ -4462,7 +4472,9 @@ type
     /// Return True if the last method in the list is a sentinel method.
     /// </summary>
     property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
-
+    /// <summary>
+    /// Return a pointer to the first slot.
+    /// </summary>
     property  Slots                  : PPySlot        read GetSlots;
   end;
 

@@ -15,7 +15,7 @@ uses
     Classes, Forms,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
 
 const
   TEST_MODULE_NAME = 'mytest';
@@ -25,7 +25,8 @@ type
     protected
       FMainForm : TForm;
 
-      procedure CreateModuleDef(const aName, aDocStrings: string); override;
+      procedure CreateModuleDef; override;
+      procedure CreateSlotManager; override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
 
@@ -34,6 +35,11 @@ type
   end;
 
   TPyTestModuleDef = class(TPyModuleDef)
+    protected
+      procedure AddAllMethods; override;
+  end;
+
+  TPyTestSlotManager = class(TPySlotManager)
     protected
       procedure AddAllMethods; override;
   end;
@@ -73,17 +79,16 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
-procedure TPyTestModuleDef.AddAllMethods;
-begin
-  inherited AddAllMethods;
+{ TTestModule }
 
-  AddMethod('write', '', @mytest_write, METH_VARARGS);
-  AddMethod('read', '', @mytest_read, METH_VARARGS);
+procedure TTestModule.CreateModuleDef;
+begin
+  FModuleDef := TPyTestModuleDef.Create(FName, FDocStrings);
 end;
 
-procedure TTestModule.CreateModuleDef(const aName, aDocStrings: string);
+procedure TTestModule.CreateSlotManager;
 begin
-  FModuleDef := TPyTestModuleDef.Create(aName, aDocStrings);
+  FSlotManager := TPyTestSlotManager.Create(FName, FDocStrings);
 end;
 
 function TTestModule.Write(args: PPyObject): PPyObject;
@@ -112,6 +117,26 @@ begin
     end
    else
     Result := TPyNone.ReturnNone;
+end;
+
+{ TPyTestModuleDef }
+
+procedure TPyTestModuleDef.AddAllMethods;
+begin
+  inherited AddAllMethods;
+
+  AddMethod('write', '', @mytest_write, METH_VARARGS);
+  AddMethod('read', '', @mytest_read, METH_VARARGS);
+end;
+
+{ TPyTestSlotManager }
+
+procedure TPyTestSlotManager.AddAllMethods;
+begin
+  inherited AddAllMethods;
+
+  AddMethod('write', '', @mytest_write, METH_VARARGS);
+  AddMethod('read', '', @mytest_read, METH_VARARGS);
 end;
 
 end.

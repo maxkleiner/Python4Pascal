@@ -15,7 +15,7 @@ uses
     Classes,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
 
 const
   IOPyModuleName = 'pyio';
@@ -30,7 +30,8 @@ type
   /// </remarks>
   TIOPyModule = class(TCustomPyModule)
     protected
-      procedure CreateModuleDef(const aName, aDocStrings: string); override;
+      procedure CreateModuleDef; override;
+      procedure CreateSlotManager; override;
       function  Write(args: PPyObject): PPyObject;
       function  Read(args: PPyObject): PPyObject;
 
@@ -48,8 +49,8 @@ type
   end;
 
   /// <summary>
-  /// <para>TPyIOModuleDef is a custom PyModuleDef created to capture the input
-  /// and output in Python.</para>
+  /// <para>TPyIOModuleDef is a custom PyModuleDef that declares custom write
+  /// and read methods.</para>
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
@@ -58,7 +59,19 @@ type
   TPyIOModuleDef = class(TPyModuleDef)
     protected
       /// <summary>
-      /// This procedure adds the custom write and read methods to PyModuleDef.
+      /// This procedure adds the custom write and read methods.
+      /// </summary>
+      procedure AddAllMethods; override;
+  end;
+
+  /// <summary>
+  /// <para>TPyIOSlotManager is a custom TPySlotManager that declares custom
+  /// write and read methods.</para>
+  /// </summary>
+  TPyIOSlotManager = class(TPySlotManager)
+    protected
+      /// <summary>
+      /// This procedure adds the custom write and read methods.
       /// </summary>
       procedure AddAllMethods; override;
   end;
@@ -122,6 +135,17 @@ begin
   AddMethod('read',  'read() -> string',      @pyio_read,  METH_VARARGS);
 end;
 
+procedure TPyIOSlotManager.AddAllMethods;
+begin
+  inherited AddAllMethods;
+
+  // We add the "read" and "write" methods. The pyio_write and pyio_read
+  // functions will execute the TIOPyModule.Read and TIOPyModule.Write
+  // functions in Delphi.
+  AddMethod('write', 'write(string) -> None', @pyio_write, METH_VARARGS);
+  AddMethod('read',  'read() -> string',      @pyio_read,  METH_VARARGS);
+end;
+
 function TIOPyModule.Write(args: PPyObject): PPyObject;
 var
   TempArgs, TempItem : IPyObject;
@@ -152,9 +176,14 @@ begin
     Result := TPyNone.ReturnNone;
 end;
 
-procedure TIOPyModule.CreateModuleDef(const aName, aDocStrings: string);
+procedure TIOPyModule.CreateModuleDef;
 begin
-  FModuleDef := TPyIOModuleDef.Create(aName, aDocStrings);
+  FModuleDef := TPyIOModuleDef.Create(FName, FDocStrings);
+end;
+
+procedure TIOPyModule.CreateSlotManager;
+begin
+  FSlotManager := TPyIOSlotManager.Create(FName, FDocStrings);
 end;
 
 class function TIOPyModule.RunInitCode: boolean;

@@ -26,12 +26,15 @@ type
   /// </remarks>
   TCustomPyModule = class
     protected
+      FName                  : string;
+      FDocStrings            : string;
       FModule                : IPyObject;
       FModuleDef             : IPyModuleDef;
       FSlotManager           : IPySlotManager;
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
       FMultIntprSupport      : TMultIntprSupport;
+      FGILUsed               : boolean;
       FUseLegacyAPI          : boolean;
 
       function  GetName: AnsiString;
@@ -44,18 +47,18 @@ type
       /// <summary>
       /// Override this procedure to create your custom IPyModuleDef instance.
       /// </summary>
-      procedure CreateModuleDef(const aName, aDocStrings: string); virtual;
+      procedure CreateModuleDef; virtual;
       /// <summary>
       /// Override this procedure to create your custom IPySlotManager instance.
       /// </summary>
-      procedure CreateSlotManager(const aName, aDocStrings: string); virtual;
+      procedure CreateSlotManager; virtual;
 
       function  LegacyInitialization: boolean;
 
       function  UnifiedSlotInitialization: boolean;
 
     public
-      constructor Create(const aName: string; const aDocStrings: string = ''; aUseLegacyAPI: boolean = True; aIsExtension : boolean = False);
+      constructor Create(const aName: string);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       procedure   BeforeDestruction; override;
@@ -77,9 +80,22 @@ type
       /// </summary>
       property Name_                         : AnsiString          read GetName;
       /// <summary>
-      /// Multiple interpreter support in a module.
+      /// <para>the docstring of the new module.</para>
+      /// </summary>
+      property DocStrings                    : string              read FDocStrings               write FDocStrings;
+      /// <summary>
+      /// <para>Use the legacy API to initialize the module.</para>
+      /// </summary>
+      property UseLegacyAPI                  : boolean             read FUseLegacyAPI             write SetUseLegacyAPI;
+      /// <summary>
+      /// <para>Multiple interpreter support in a module.</para>
       /// </summary>
       property MultIntprSupport              : TMultIntprSupport   read FMultIntprSupport         write FMultIntprSupport;
+      /// <summary>
+      /// <para>The module depends on the presence of the global interpreter
+      /// lock (GIL)</para>
+      /// </summary>
+      property GILUsed                       : boolean             read FGILUsed                  write FGILUsed;
       /// <summary>
       /// <para>Event triggered after the module has been initialized.</para>
       /// </summary>
@@ -105,22 +121,21 @@ begin
   Result := 0;
 end;
 
-constructor TCustomPyModule.Create(const aName, aDocStrings: string; aUseLegacyAPI, aIsExtension : boolean);
+constructor TCustomPyModule.Create(const aName: string);
 begin
   inherited Create;
 
-  FUseLegacyAPI          := aUseLegacyAPI;
+  FName                  := aName;
+  FDocStrings            := '';
   FModule                := nil;
   FModuleDef             := nil;
   FSlotManager           := nil;
   FOnAfterInitialization := nil;
   FMultIntprSupport      := miSupported;
-  FIsExtension           := aIsExtension;
-
-  if FUseLegacyAPI then
-    CreateModuleDef(aName, aDocStrings)
-   else
-    CreateSlotManager(aName, aDocStrings);
+  FGILUsed               := True;
+  FIsExtension           := False;
+  FUseLegacyAPI          := not((GlobalP4PEngine <> nil) and
+                                GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0));
 end;
 
 destructor TCustomPyModule.Destroy;
@@ -167,14 +182,15 @@ begin
     FUseLegacyAPI := True;
 end;
 
-procedure TCustomPyModule.CreateModuleDef(const aName, aDocStrings: string);
+
+procedure TCustomPyModule.CreateModuleDef;
 begin
-  FModuleDef := TPyModuleDef.Create(aName, aDocStrings);
+  FModuleDef := TPyModuleDef.Create(FName, FDocStrings);
 end;
 
-procedure TCustomPyModule.CreateSlotManager(const aName, aDocStrings: string);
+procedure TCustomPyModule.CreateSlotManager;
 begin
-  FSlotManager := TPySlotManager.Create(aName, aDocStrings);
+  FSlotManager := TPySlotManager.Create(FName, FDocStrings);
 end;
 
 function TCustomPyModule.doOnAfterInitialization: integer;
@@ -197,9 +213,13 @@ var
   TempSpec : IPyObject;
 begin
   Result := False;
-  if assigned(FModule) or not(assigned(FModuleDef)) then exit;
+  if assigned(FModule) then exit;
 
-  FModuleDef.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport);
+  CreateModuleDef;
+
+  if not(FModuleDef.Initialized) then exit;
+
+  FModuleDef.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
     Result := True
@@ -230,15 +250,17 @@ var
   TempSpec : IPyObject;
 begin
   Result := False;
-  if assigned(FModule) or not(assigned(FSlotManager)) then exit;
+  if assigned(FModule) then exit;
 
-  FSlotManager.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport);
+  CreateSlotManager;
+
+  FSlotManager.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
     Result := True
    else
     try
-      TempSpec := TPyModuleSpecHelper.FromModuleName(FModuleDef.Name_);
+      TempSpec := TPyModuleSpecHelper.FromModuleName(FSlotManager.Name_);
 
       // Create the module from the definition and spec
       FModule  := TPyModule.FromSlotsAndSpec(FSlotManager.Slots, TempSpec);

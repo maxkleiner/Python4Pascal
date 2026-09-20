@@ -55,7 +55,7 @@ type
       /// <summary>
       /// Override this procedure to add your custom slots.
       /// </summary>
-      procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport); virtual;
+      procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean); virtual;
       /// <summary>
       /// Override this procedure to add your custom methods.
       /// </summary>
@@ -74,7 +74,10 @@ type
       constructor Create(const aName: string; const aDocStrings: string = '');
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
-      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport); virtual;
+      /// <summary>
+      /// Create the methods and the slots with all the module information.
+      /// </summary>
+      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean); virtual;
       /// <summary>
       /// <para>Ensure a module definition is a properly initialized Python
       /// object that correctly reports its type and a reference count.</para>
@@ -146,9 +149,9 @@ begin
   FMethodList := TList.Create;
 end;
 
-procedure TPyModuleDef.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+procedure TPyModuleDef.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
 begin
-  AddAllSlots(aExecFunction, aMultIntprSupport);
+  AddAllSlots(aExecFunction, aMultIntprSupport, aGILUsed);
   AddAllMethods;
 
   if not(HasSentinelSlot) then
@@ -164,10 +167,11 @@ begin
   FModuleDef.m_methods := @FMethods[0];
 end;
 
-procedure TPyModuleDef.AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport);
+procedure TPyModuleDef.AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
 begin
   AddExecSlot(aExecFunction);
   AddMultipleInterpretersSlot(aMultIntprSupport);
+  AddGILSlot(aGILUsed);
 end;
 
 procedure TPyModuleDef.AddAllMethods;
@@ -399,7 +403,10 @@ end;
 
 function TPyModuleDef.GetModuleDef: PPyModuleDef;
 begin
-  Result := @FModuleDef;
+  if FInitialized then
+    Result := @FModuleDef
+   else
+    Result := nil;
 end;
 
 class function TPyModuleDef.Init(const def: PyModuleDef): PPyObject;
