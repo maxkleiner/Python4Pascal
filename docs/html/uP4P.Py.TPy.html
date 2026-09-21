@@ -1635,8 +1635,6 @@ Py_RunMain();</pre>
 
 <p>Like all other Python/C API functions, an attached thread state must be present before calling this function, but it might be detached upon returning. On success, the returned thread state will be attached. If the sub-interpreter is created with its own GIL then the attached thread state of the calling interpreter will be detached. When the function returns, the new interpreter's thread state will be attached to the current thread and the previous interpreter's attached thread state will remain detached.
 
-<p>Added in version 3.12.
-
 <p>Sub-interpreters are most effective when isolated from each other, with certain functionality restricted:
 
 <p></p>
@@ -1670,6 +1668,10 @@ if (PyStatus_Exception(status)) {
 <p>Note that this is different from what happens when an extension is imported after the interpreter has been completely re-initialized by calling TPy.FinalizeEx() and TPy.Initialize(); in that case, the extension's initmodule function is called again. As with multi-phase initialization, this means that only C-level static and global variables are shared between these modules.
 
 <p></p>
+<p>
+
+
+<p>Added in version 3.12.</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

@@ -35,30 +35,30 @@ object MainForm: TMainForm
     TabOrder = 0
   end
   object Panel1: TPanel
-    Left = 568
+    Left = 480
     Height = 405
     Top = 0
-    Width = 161
+    Width = 249
     Align = alRight
     BevelOuter = bvNone
     ClientHeight = 405
-    ClientWidth = 161
+    ClientWidth = 249
     ParentBackground = False
     TabOrder = 1
     object RunBtn: TButton
       Left = 5
       Height = 25
       Top = 4
-      Width = 151
+      Width = 239
       Caption = 'Run code'
       TabOrder = 0
       OnClick = RunBtnClick
     end
     object ThreadRunModeRg: TRadioGroup
       Left = 5
-      Height = 105
+      Height = 137
       Top = 39
-      Width = 151
+      Width = 239
       AutoFill = True
       Caption = 'Thread run mode '
       ChildSizing.LeftRightSpacing = 6
@@ -68,13 +68,14 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 85
-      ClientWidth = 147
-      ItemIndex = 1
+      ClientHeight = 117
+      ClientWidth = 235
+      ItemIndex = 0
       Items.Strings = (
         'Legacy API'
         'Shared Interpreter'
-        'Shared GIL'
+        'Subinterpreter with shared GIL'
+        'Subinterpreter with own GIL'
       )
       ParentBackground = False
       TabOrder = 1
@@ -84,7 +85,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 405
     Top = 0
-    Width = 568
+    Width = 480
     Align = alClient
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack

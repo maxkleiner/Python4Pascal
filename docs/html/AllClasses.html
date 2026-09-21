@@ -1023,7 +1023,13 @@ body { margin: 0.5em; }
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uP4P.PyGILState.TPyGILState.html">TPyGILState</a></td>
 <td class="itemunit"><a class="bold" href="uP4P.PyGILState.html">uP4P.PyGILState</a></td>
-<td class="itemdesc"><p> The class represents the GIL state. </p></td>
+<td class="itemdesc"><p>
+
+<p>The class represents the GIL state.
+
+<p>The following APIs are generally not compatible with subinterpreters and will hang the process during interpreter finalization (see Cautions regarding interpreter finalization). As such, these APIs were soft deprecated in Python 3.15 in favor of the new APIs.
+
+<p></p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uP4P.PyHash.TPyHash.html">TPyHash</a></td>

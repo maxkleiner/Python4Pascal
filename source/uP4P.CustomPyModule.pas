@@ -221,7 +221,7 @@ begin
 
   if not(FModuleDef.Initialized) then exit;
 
-  FModuleDef.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport, FGILUsed);
+  FModuleDef.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
     Result := True
@@ -256,7 +256,7 @@ begin
 
   CreateSlotManager;
 
-  FSlotManager.BuildMethodsAndSlots(@Exec_Module, FMultIntprSupport, FGILUsed);
+  FSlotManager.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
     Result := True

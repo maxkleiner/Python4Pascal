@@ -51,7 +51,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uCustomThread;
+  uCustomThread, uP4P.Types;
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -93,7 +93,7 @@ begin
       //TempLibPath := 'Q:\python-3.12.10-embed-' + TempBit + '\python312.dll';
       //TempLibPath := 'Q:\python-3.11.9-embed-' + TempBit + '\python311.dll';
       //TempLibPath := 'Q:\python-3.10.11-embed-' + TempBit + '\python310.dll';
-      //TempLibPath := '';
+      //TempLibPath := ''; 
 
       if GlobalP4PEngine.Load(TempLibPath) and
          GlobalP4PEngine.Initialize then
@@ -140,9 +140,7 @@ begin
   TempThread                   := TCustomThread.Create(True);
   TempThread.Code              := CodeMem.Text;
   TempThread.FreeOnTerminate   := True;
-  TempThread.UseLegacyInit     := (ThreadRunModeRg.ItemIndex = 0);
-  TempThread.SharedInterpreter := (ThreadRunModeRg.ItemIndex = 1);
-  TempThread.SharedGIL         := (ThreadRunModeRg.ItemIndex = 2);
+  TempThread.ThreadInit        := TP4PThreadInit(ThreadRunModeRg.ItemIndex);
   TempThread.OnTerminate       := Thread_OnTerminate;
   TempThread.Start;
 end;

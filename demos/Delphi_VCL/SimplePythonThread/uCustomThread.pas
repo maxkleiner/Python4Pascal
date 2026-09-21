@@ -13,7 +13,7 @@ type
 
     public
       property Code : string read FCode write FCode;
-  end;
+  end; 
 
 implementation
 

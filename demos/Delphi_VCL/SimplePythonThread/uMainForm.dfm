@@ -36,9 +36,9 @@ object MainForm: TMainForm
     TabOrder = 0
   end
   object Panel1: TPanel
-    Left = 568
+    Left = 480
     Top = 0
-    Width = 161
+    Width = 249
     Height = 405
     Align = alRight
     BevelOuter = bvNone
@@ -46,7 +46,7 @@ object MainForm: TMainForm
     object RunBtn: TButton
       Left = 5
       Top = 5
-      Width = 151
+      Width = 236
       Height = 25
       Caption = 'Run code'
       TabOrder = 0
@@ -55,21 +55,22 @@ object MainForm: TMainForm
     object ThreadRunModeRg: TRadioGroup
       Left = 5
       Top = 39
-      Width = 151
-      Height = 105
+      Width = 236
+      Height = 138
       Caption = 'Thread run mode '
-      ItemIndex = 1
+      ItemIndex = 0
       Items.Strings = (
         'Legacy API'
         'Shared Interpreter'
-        'Shared GIL')
+        'Subinterpreter with shared GIL'
+        'Subinterpreter with own GIL')
       TabOrder = 1
     end
   end
   object CodeMem: TMemo
     Left = 0
     Top = 0
-    Width = 568
+    Width = 480
     Height = 405
     Align = alClient
     Font.Charset = ANSI_CHARSET

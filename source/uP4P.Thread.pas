@@ -26,19 +26,9 @@ type
   /// </remarks>
   TP4PThread = class(TThread)
     protected
-      FUseLegacyInit     : boolean;
-      FSharedGIL         : boolean;
-      FSharedInterpreter : boolean;
+      FThreadInit        : TP4PThreadInit;
       FErrorMsg          : string;
       FOnExecutePython   : TNotifyEvent;
-
-      function  GetUseLegacyInit: boolean;
-      function  GetSharedGIL: boolean;
-      function  GetSharedInterpreter: boolean;
-
-      procedure SetSharedGIL(aValue : boolean);
-      procedure SetUseLegacyInit(aValue : boolean);
-      procedure SetSharedInterpreter(aValue : boolean);
 
       procedure Execute; override;
       procedure ExecuteLegacyInit;
@@ -51,29 +41,18 @@ type
     public
       procedure AfterConstruction; override;
       /// <summary>
-      /// Execute the Python code using the legacy API.
+      /// Thread initialization method.
       /// </summary>
-      /// <remarks>
-      /// <para><see href="https://docs.python.org/3/c-api/threads.html#legacy-api">See the article about the Legacy API.</see></para>
-      /// </remarks>
-      property  UseLegacyInit     : boolean       read GetUseLegacyInit      write SetUseLegacyInit;
-      /// <summary>
-      /// Execute the Python code in a subinterpreter with a shared GIL.
-      /// </summary>
-      property  SharedGIL         : boolean       read GetSharedGIL          write SetSharedGIL;
-      /// <summary>
-      /// Execute the Python code using a shared interpreter.
-      /// </summary>
-      property  SharedInterpreter : boolean       read GetSharedInterpreter  write SetSharedInterpreter;
+      property  ThreadInit        : TP4PThreadInit    read FThreadInit           write FThreadInit;
       /// <summary>
       /// Last error message.
       /// </summary>
-      property  ErrorMsg          : string        read FErrorMsg;
+      property  ErrorMsg          : string            read FErrorMsg;
       /// <summary>
       /// Event triggered when the thread is initialized. Use it to execute the
       /// Python code.
       /// </summary>
-      property  OnExecutePython   : TNotifyEvent  read FOnExecutePython      write FOnExecutePython;
+      property  OnExecutePython   : TNotifyEvent      read FOnExecutePython      write FOnExecutePython;
   end;
 
 implementation
@@ -87,48 +66,8 @@ begin
   inherited AfterConstruction;
 
   FOnExecutePython   := nil;
-  FUseLegacyInit     := False;
-  FSharedGIL         := False;
-  FSharedInterpreter := True;
+  FThreadInit        := ti_LegacyAPI;
   FErrorMsg          := '';
-end;
-
-function TP4PThread.GetUseLegacyInit: boolean;
-begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
-    Result := False
-   else
-    Result := FUseLegacyInit;
-end;
-
-function TP4PThread.GetSharedGIL: boolean;
-begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    Result := FSharedGIL
-   else
-    Result := True;
-end;
-
-function TP4PThread.GetSharedInterpreter: boolean;
-begin
-  Result := FSharedInterpreter;
-end;
-
-procedure TP4PThread.SetUseLegacyInit(aValue : boolean);
-begin
-  if (GlobalP4PEngine <> nil) and not(GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0)) then
-    FUseLegacyInit := aValue;
-end;
-
-procedure TP4PThread.SetSharedGIL(aValue : boolean);
-begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    FSharedGIL := aValue;
-end;
-
-procedure TP4PThread.SetSharedInterpreter(aValue : boolean);
-begin
-  FSharedInterpreter := aValue;
 end;
 
 procedure TP4PThread.doOnExecutePython;
@@ -162,7 +101,7 @@ procedure TP4PThread.ExecuteSharedInterpreter;
 var
   TempThreadState : IPyThreadState;
 begin
-  if GlobalP4PEngine.SavedThreadState then
+  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
     begin
       TempThreadState := TPyThreadState.New(GlobalP4PEngine.InterpreterState);
 
@@ -184,9 +123,9 @@ end;
 procedure TP4PThread.ExecuteSubinterpreterSharedGIL;
 var
   TempThreadState : IPyThreadState;
-  TempModule : TIOPyModule;
+  TempModule      : TIOPyModule;
 begin
-  if GlobalP4PEngine.SavedThreadState then
+  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
     begin
       TempModule      := nil;
       TempThreadState := TPy.NewInterpreter();
@@ -218,11 +157,11 @@ end;
 procedure TP4PThread.ExecuteSubinterpreterOwnGIL;
 var
   TempThreadState : IPyThreadState;
-  TempConfig : IPyInterpreterConfig;
-  TempStatus : IPyStatus;
-  TempModule : TIOPyModule;
+  TempConfig      : IPyInterpreterConfig;
+  TempStatus      : IPyStatus;
+  TempModule      : TIOPyModule;
 begin
-  if GlobalP4PEngine.SavedThreadState then
+  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
     try
       TempModule := nil;
       TempConfig := TPyInterpreterConfig.Create;
@@ -230,28 +169,34 @@ begin
 
       TempStatus := TPy.NewInterpreterFromConfig(TempThreadState, TempConfig);
 
-      if TempStatus.IsException then
-        FErrorMsg := TempStatus.ErrMsg + CRLF +
-                     'Exit code: ' + inttostr(TempStatus.ExitCode)
+      if not(assigned(TempStatus)) then
+        FErrorMsg := 'There was a problem creating the new sub-interpreter.'
        else
-        try
-          TempThreadState.Swap;
+        if not(TPyThreadState.IsInitialized(TempThreadState)) then
+          FErrorMsg := 'There was a problem creating the new thread state.'
+         else
+          if TempStatus.IsException then
+            FErrorMsg := TempStatus.ErrMsg + CRLF +
+                         'Exit code: ' + inttostr(TempStatus.ExitCode)
+           else
+            try
+              TempThreadState.Swap;
 
-          TempModule                  := TIOPyModule.Create(IOPyModuleName);
-          TempModule.MultIntprSupport := piGilSupported;
+              TempModule                  := TIOPyModule.Create(IOPyModuleName);
+              TempModule.MultIntprSupport := piGilSupported;
 
-          if TempModule.Initialize and TIOPyModule.RunInitCode then
-            begin
-              doOnExecutePython;
-              TIOPyModule.RunRestoreCode;
+              if TempModule.Initialize and TIOPyModule.RunInitCode then
+                begin
+                  doOnExecutePython;
+                  TIOPyModule.RunRestoreCode;
+                end;
+            finally
+              if assigned(TempModule) then
+                FreeAndNil(TempModule);
+
+              TPy.EndInterpreter(TempThreadState);
+              TempThreadState := nil;
             end;
-        finally
-          if assigned(TempModule) then
-            FreeAndNil(TempModule);
-
-          TPy.EndInterpreter(TempThreadState);
-          TempThreadState := nil;
-        end;
     finally
       TempConfig := nil;
     end
@@ -261,19 +206,13 @@ end;
 
 procedure TP4PThread.Execute;
 begin
-  if not(assigned(GlobalP4PEngine)) then exit;
-
-  if UseLegacyInit or
-     not(GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0)) then
-    ExecuteLegacyInit
-   else
-    if SharedInterpreter then
-      ExecuteSharedInterpreter
-     else
-      if SharedGIL then
-        ExecuteSubinterpreterSharedGIL
-       else
-        ExecuteSubinterpreterOwnGIL;
+  if assigned(GlobalP4PEngine) then
+    case FThreadInit of
+      ti_LegacyAPI                : ExecuteLegacyInit;
+      ti_SharedInterpreter        : ExecuteSharedInterpreter;
+      ti_SubinterpreterSharedGIL  : ExecuteSubinterpreterSharedGIL;
+      else                          ExecuteSubinterpreterOwnGIL;     // ti_SubinterpreterOwnGIL
+    end;
 end;
 
 end.

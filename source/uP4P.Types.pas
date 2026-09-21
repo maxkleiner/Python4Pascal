@@ -255,6 +255,39 @@ type
     ssFuncType
   );
 
+  /// <summary>
+  /// Custom type to select the TP4PThread initialization method.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/threads.html">See the article about Thread states and the global interpreter lock.</see></para>
+  /// <para><see href="https://docs.python.org/3.15/c-api/subinterpreters.html">See the article about Multiple interpreters in a Python process.</see></para>
+  /// <para><see href="https://docs.python.org/3.15/glossary.html#term-global-interpreter-lock">See the article about the GIL (global interpreter lock).</see></para>
+  /// </remarks>
+  TP4PThreadInit = (
+    /// <summary>
+    /// Execute the Python code using the legacy API.
+    /// </summary>
+    /// <remarks>
+    /// <para>Soft deprecated since version 3.15.</para>
+    /// </remarks>
+    ti_LegacyAPI,
+    /// <summary>
+    /// Execute the Python code using a shared interpreter.
+    /// </summary>
+    ti_SharedInterpreter,
+    /// <summary>
+    /// Execute the Python code in a subinterpreter with a shared GIL.
+    /// </summary>
+    ti_SubinterpreterSharedGIL,
+    /// <summary>
+    /// <para>Execute the Python code in a subinterpreter with a new GIL.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para>Added in version 3.12.</para>
+    /// </remarks>
+    ti_SubinterpreterOwnGIL
+  );
+
 
   PPy_ssize_t                     = ^Py_ssize_t;
   PPyTypeObject                   = ^PyTypeObject;

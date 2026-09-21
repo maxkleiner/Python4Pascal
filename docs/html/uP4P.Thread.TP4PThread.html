@@ -36,15 +36,7 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FUseLegacyInit">FUseLegacyInit</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FSharedGIL">FSharedGIL</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FSharedInterpreter">FSharedInterpreter</a></strong>: boolean;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a></strong>: <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -57,30 +49,6 @@ body { margin: 0.5em; }
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Thread.TP4PThread.html#GetUseLegacyInit">GetUseLegacyInit</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Thread.TP4PThread.html#GetSharedGIL">GetSharedGIL</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Thread.TP4PThread.html#GetSharedInterpreter">GetSharedInterpreter</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#SetSharedGIL-boolean-">SetSharedGIL</a></strong>(aValue : boolean);</code></td>
-</tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#SetUseLegacyInit-boolean-">SetUseLegacyInit</a></strong>(aValue : boolean);</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#SetSharedInterpreter-boolean-">SetSharedInterpreter</a></strong>(aValue : boolean);</code></td>
-</tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#Execute">Execute</a></strong>; override;</code></td>
@@ -114,23 +82,15 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#UseLegacyInit">UseLegacyInit</a></strong>     : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetUseLegacyInit">GetUseLegacyInit</a>      write <a href="uP4P.Thread.TP4PThread.html#SetUseLegacyInit-boolean-">SetUseLegacyInit</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#ThreadInit">ThreadInit</a></strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#SharedGIL">SharedGIL</a></strong>         : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetSharedGIL">GetSharedGIL</a>          write <a href="uP4P.Thread.TP4PThread.html#SetSharedGIL-boolean-">SetSharedGIL</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#ErrorMsg">ErrorMsg</a></strong>          : string            read <a href="uP4P.Thread.TP4PThread.html#FErrorMsg">FErrorMsg</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#SharedInterpreter">SharedInterpreter</a></strong> : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetSharedInterpreter">GetSharedInterpreter</a>  write <a href="uP4P.Thread.TP4PThread.html#SetSharedInterpreter-boolean-">SetSharedInterpreter</a>;</code></td>
-</tr>
-<tr class="list2 visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#ErrorMsg">ErrorMsg</a></strong>          : string        read <a href="uP4P.Thread.TP4PThread.html#FErrorMsg">FErrorMsg</a>;</code></td>
-</tr>
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#OnExecutePython">OnExecutePython</a></strong>   : TNotifyEvent  read <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>      write <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#OnExecutePython">OnExecutePython</a></strong>   : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>      write <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -138,23 +98,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="FUseLegacyInit"></span><code><strong>FUseLegacyInit</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="FSharedGIL"></span><code><strong>FSharedGIL</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="FSharedInterpreter"></span><code><strong>FSharedInterpreter</strong>: boolean;</code></td>
+<td class="itemcode"><span id="FThreadInit"></span><code><strong>FThreadInit</strong>: <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -176,54 +120,6 @@ body { margin: 0.5em; }
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <h3 class="detail">Methods</h3>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="GetUseLegacyInit"></span><code>function <strong>GetUseLegacyInit</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="GetSharedGIL"></span><code>function <strong>GetSharedGIL</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="GetSharedInterpreter"></span><code>function <strong>GetSharedInterpreter</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="SetSharedGIL-boolean-"></span><code>procedure <strong>SetSharedGIL</strong>(aValue : boolean);</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="SetUseLegacyInit-boolean-"></span><code>procedure <strong>SetUseLegacyInit</strong>(aValue : boolean);</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="SetSharedInterpreter-boolean-"></span><code>procedure <strong>SetSharedInterpreter</strong>(aValue : boolean);</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -284,41 +180,17 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="UseLegacyInit"></span><code>property <strong>UseLegacyInit</strong>     : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetUseLegacyInit">GetUseLegacyInit</a>      write <a href="uP4P.Thread.TP4PThread.html#SetUseLegacyInit-boolean-">SetUseLegacyInit</a>;</code></td>
+<td class="itemcode"><span id="ThreadInit"></span><code>property <strong>ThreadInit</strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Execute the Python code using the legacy API. </p>
-<p>
-
-
-<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/threads.html#legacy-api">https://docs.python.org/3/c-api/threads.html#legacy-api</a>&quot;&gt;See the article about the Legacy API.)</p>
+ Thread initialization method. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="SharedGIL"></span><code>property <strong>SharedGIL</strong>         : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetSharedGIL">GetSharedGIL</a>          write <a href="uP4P.Thread.TP4PThread.html#SetSharedGIL-boolean-">SetSharedGIL</a>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p>
- Execute the Python code in a subinterpreter with a shared GIL. </p>
-</td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="SharedInterpreter"></span><code>property <strong>SharedInterpreter</strong> : boolean       read <a href="uP4P.Thread.TP4PThread.html#GetSharedInterpreter">GetSharedInterpreter</a>  write <a href="uP4P.Thread.TP4PThread.html#SetSharedInterpreter-boolean-">SetSharedInterpreter</a>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p>
- Execute the Python code using a shared interpreter. </p>
-</td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="ErrorMsg"></span><code>property <strong>ErrorMsg</strong>          : string        read <a href="uP4P.Thread.TP4PThread.html#FErrorMsg">FErrorMsg</a>;</code></td>
+<td class="itemcode"><span id="ErrorMsg"></span><code>property <strong>ErrorMsg</strong>          : string            read <a href="uP4P.Thread.TP4PThread.html#FErrorMsg">FErrorMsg</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -328,7 +200,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="OnExecutePython"></span><code>property <strong>OnExecutePython</strong>   : TNotifyEvent  read <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>      write <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>;</code></td>
+<td class="itemcode"><span id="OnExecutePython"></span><code>property <strong>OnExecutePython</strong>   : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>      write <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

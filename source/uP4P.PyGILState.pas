@@ -18,10 +18,14 @@ uses
 
 type
   /// <summary>
-  /// The class represents the GIL state.
+  /// <para>The class represents the GIL state.</para>
+  /// <para>The following APIs are generally not compatible with
+  /// subinterpreters and will hang the process during interpreter finalization
+  /// (see Cautions regarding interpreter finalization). As such, these APIs
+  /// were soft deprecated in Python 3.15 in favor of the new APIs.</para>
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
+  /// <para><see href="https://docs.python.org/3.15/c-api/threads.html#c.PyGILState_STATE">See the article about PyGILState_STATE.</see></para>
   /// </remarks>
   TPyGILState = class(TInterfacedObject, IPyGILState)
     protected
@@ -41,6 +45,8 @@ type
       /// to the caller, hence the use of the GILState API).</para>
       /// <para>Every call to TPyGILState.Ensure() must be matched by a call to
       /// TPyGILState.Release() on the same thread.</para>
+      /// <para>Soft deprecated since version 3.15: Use TPyThreadState.Release()
+      /// instead.</para>
       /// </summary>
       procedure Release;
 
@@ -73,6 +79,8 @@ type
       /// regarding runtime finalization for more details.</para>
       /// <para>Changed in version 3.14: Hangs the current thread, rather than
       /// terminating it, if called while the interpreter is finalizing.</para>
+      /// <para>Soft deprecated since version 3.15: Use TPyThreadState.Ensure()
+      /// or TPyThreadState.EnsureFromView() instead.</para>
       /// </summary>
       class function Ensure: IPyGILState;
       /// <summary>
@@ -85,6 +93,8 @@ type
       /// is detached. Prefer TPyThreadState.Get() or
       /// TPyThreadState.GetUnchecked() for most cases.</para>
       /// <para>See also TPyThreadState.Get()</para>
+      /// <para>Soft deprecated since version 3.15: Use TPyThreadState.Get() or
+      /// TPyThreadState.GetUnchecked() instead.</para>
       /// </summary>
       class function GetThisThreadState: IPyThreadState;
       /// <summary>
@@ -99,6 +109,8 @@ type
       /// <para>Note If the current Python process has ever created a
       /// subinterpreter, this function will always return True. Prefer
       /// TPyThreadState.GetUnchecked() for most cases.</para>
+      /// <para>Soft deprecated since version 3.15:
+      /// Use TPyThreadState.GetUnchecked() <> nil instead.</para>
       /// </summary>
       class function Check: boolean;
       /// <summary>

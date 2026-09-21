@@ -22206,16 +22206,8 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
-<param name="Name" value="FUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FUseLegacyInit">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="FSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="FSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FSharedInterpreter">
+<param name="Name" value="FThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FThreadInit">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FErrorMsg">
@@ -22232,16 +22224,8 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
-<param name="Name" value="UseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#UseLegacyInit">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SharedInterpreter">
+<param name="Name" value="ThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ThreadInit">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="ErrorMsg">
@@ -22257,30 +22241,6 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#@Methods">
 </object>
 <ul>
-<li><object type="text/sitemap">
-<param name="Name" value="GetUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetUseLegacyInit">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="GetSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="GetSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetSharedInterpreter">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetUseLegacyInit">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetSharedInterpreter">
-</object>
 <li><object type="text/sitemap">
 <param name="Name" value="Execute">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#Execute">
@@ -27404,6 +27364,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="TPyStartSymbols">
 <param name="Local" value="uP4P.Types.html#TPyStartSymbols">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TP4PThreadInit">
+<param name="Local" value="uP4P.Types.html#TP4PThreadInit">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="PPy_ssize_t">
@@ -37604,16 +37568,8 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FOnExecutePython">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="FSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="FSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FSharedInterpreter">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="FUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#FUseLegacyInit">
+<param name="Name" value="FThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FThreadInit">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -37630,16 +37586,8 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#OnExecutePython">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="SharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SharedInterpreter">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="UseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#UseLegacyInit">
+<param name="Name" value="ThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ThreadInit">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -37647,18 +37595,6 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#@Methods">
 </object>
 <ul>
-<li><object type="text/sitemap">
-<param name="Name" value="GetSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="GetSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetSharedInterpreter">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="GetUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#GetUseLegacyInit">
-</object>
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#AfterConstruction">
@@ -37686,18 +37622,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ExecuteSubinterpreterSharedGIL">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetSharedGIL">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetSharedGIL">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetSharedInterpreter">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetSharedInterpreter">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="SetUseLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#SetUseLegacyInit">
 </object>
 </ul>
 </ul>

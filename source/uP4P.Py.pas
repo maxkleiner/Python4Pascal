@@ -852,7 +852,6 @@ type
       /// When the function returns, the new interpreter's thread state will be
       /// attached to the current thread and the previous interpreter's
       /// attached thread state will remain detached.</para>
-      /// <para>Added in version 3.12.</para>
       /// <para>Sub-interpreters are most effective when isolated from each
       /// other, with certain functionality restricted:</para>
       /// <code>
@@ -897,6 +896,9 @@ type
       /// multi-phase initialization, this means that only C-level static and
       /// global variables are shared between these modules.</para>
       /// </summary>
+      /// <remarks>
+      /// <para>Added in version 3.12.</para>
+      /// </remarks>
       class function  NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
       /// <summary>
       /// <para>Schedule a function to be called from the main interpreter

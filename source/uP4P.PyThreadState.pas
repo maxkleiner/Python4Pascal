@@ -339,13 +339,9 @@ end;
 
 class function TPyThreadState.Swap(const tstate: IPyThreadState): IPyThreadState;
 begin
-  if assigned(PyThreadState_Swap) then
-    begin
-      if assigned(tstate) and tstate.Initialized then
-        Result := TPyThreadState.Wrap(PyThreadState_Swap(tstate.ThreadState))
-       else
-        Result := TPyThreadState.Wrap(PyThreadState_Swap(nil));
-    end
+  if assigned(PyThreadState_Swap) and
+     TPyThreadState.IsInitialized(tstate) then
+    Result := TPyThreadState.Wrap(PyThreadState_Swap(tstate.ThreadState))
    else
     Result := nil;
 end;

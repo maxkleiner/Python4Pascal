@@ -23,11 +23,17 @@ body { margin: 0.5em; }
 <code>type TPyGILState = class(TInterfacedObject, <a class="normal" href="uP4P.Interfaces.IPyGILState.html">IPyGILState</a>)</code></p>
 <h2 class="description">Description</h2>
 <p>
- The class represents the GIL state. </p>
+
+
+<p>The class represents the GIL state.
+
+<p>The following APIs are generally not compatible with subinterpreters and will hang the process during interpreter finalization (see Cautions regarding interpreter finalization). As such, these APIs were soft deprecated in Python 3.15 in favor of the new APIs.
+
+<p></p>
 <p>
 
 
-<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE">https://docs.python.org/3/c-api/threads.html#c.PyGILState_STATE</a>&quot;&gt;See the article about PyGILState_STATE.)</p>
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/threads.html#c.PyGILState_STATE">https://docs.python.org/3.15/c-api/threads.html#c.PyGILState_STATE</a>&quot;&gt;See the article about PyGILState_STATE.)</p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
 <li class="thisitem">TPyGILState</li></ul><h2 class="overview">Overview</h2>
@@ -164,6 +170,8 @@ body { margin: 0.5em; }
 
 <p>Every call to TPyGILState.Ensure() must be matched by a call to TPyGILState.Release() on the same thread.
 
+<p>Soft deprecated since version 3.15: Use TPyThreadState.Release() instead.
+
 <p></p>
 </td></tr>
 </table>
@@ -202,6 +210,8 @@ body { margin: 0.5em; }
 
 <p>Changed in version 3.14: Hangs the current thread, rather than terminating it, if called while the interpreter is finalizing.
 
+<p>Soft deprecated since version 3.15: Use TPyThreadState.Ensure() or TPyThreadState.EnsureFromView() instead.
+
 <p></p>
 </td></tr>
 </table>
@@ -220,6 +230,8 @@ body { margin: 0.5em; }
 
 <p>See also TPyThreadState.Get()
 
+<p>Soft deprecated since version 3.15: Use TPyThreadState.Get() or TPyThreadState.GetUnchecked() instead.
+
 <p></p>
 </td></tr>
 </table>
@@ -235,6 +247,8 @@ body { margin: 0.5em; }
 <p>Return True if the current thread is holding the GIL and False otherwise. This function can be called from any thread at any time. Only if it has had its thread state initialized via TPyGILState.Ensure() will it return True. This is mainly a helper/diagnostic function. It can be useful for example in callback contexts or memory allocation functions when knowing that the GIL is locked can allow the caller to perform sensitive actions or otherwise behave differently.
 
 <p>Note If the current Python process has ever created a subinterpreter, this function will always return True. Prefer TPyThreadState.GetUnchecked() for most cases.
+
+<p>Soft deprecated since version 3.15: Use TPyThreadState.GetUnchecked() &lt;&gt; nil instead.
 
 <p></p>
 </td></tr>
