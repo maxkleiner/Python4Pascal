@@ -140,11 +140,13 @@ end;
 
 destructor TCustomPyModule.Destroy;
 begin
-  FModule      := nil;
-  FModuleDef   := nil;
-  FSlotManager := nil;
-
-  inherited Destroy;
+  try
+    FModule      := nil;
+    FModuleDef   := nil;
+    FSlotManager := nil;
+  finally
+    inherited Destroy;
+  end;
 end;
 
 procedure TCustomPyModule.AfterConstruction;
