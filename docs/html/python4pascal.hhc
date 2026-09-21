@@ -20580,6 +20580,10 @@
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#GetUnchecked">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AttachedThreadState">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#AttachedThreadState">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Swap">
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Swap">
 </object>
@@ -49898,6 +49902,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Create">
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Create">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AttachedThreadState">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#AttachedThreadState">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Ensure">

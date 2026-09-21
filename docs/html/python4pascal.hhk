@@ -27183,6 +27183,10 @@
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AttachedThreadState">
+<param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#AttachedThreadState">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Clear">
 <param name="Local" value="uP4P.PyThreadState.TPyThreadState.html#Clear">
 </object>

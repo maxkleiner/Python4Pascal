@@ -2656,6 +2656,9 @@ begin
   {$IFDEF FPC}Pointer({$ENDIF}PyInterpreterState_ThreadHead{$IFDEF FPC}){$ENDIF}  := GetProcAddress(FLibHandle, 'PyInterpreterState_ThreadHead');
   {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_Next{$IFDEF FPC}){$ENDIF}             := GetProcAddress(FLibHandle, 'PyThreadState_Next');
   {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_DeleteCurrent{$IFDEF FPC}){$ENDIF}    := GetProcAddress(FLibHandle, 'PyThreadState_DeleteCurrent');
+
+  if not(assigned(PyThreadState_GetUnchecked)) then
+    {$IFDEF FPC}Pointer({$ENDIF}PyThreadState_GetUnchecked{$IFDEF FPC}){$ENDIF}   := GetProcAddress(FLibHandle, '_PyThreadState_UncheckedGet');
 end;
 
 procedure TP4PLoader.Load_genobject;

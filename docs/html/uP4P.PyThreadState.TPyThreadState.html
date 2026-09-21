@@ -122,25 +122,29 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Swap-IPyThreadState-">Swap</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#AttachedThreadState">AttachedThreadState</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Swap-IPyThreadState-">Swap</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#IsInitialized-IPyThreadState-">IsInitialized</a></strong>(const tstate: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#DeleteCurrent">DeleteCurrent</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Ensure-IPyInterpreterGuard-">Ensure</a></strong>(const aGuard: <a href="uP4P.Interfaces.IPyInterpreterGuard.html">IPyInterpreterGuard</a>): <a href="uP4P.Types.html#PPyThreadStateToken">PPyThreadStateToken</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyThreadState.TPyThreadState.html#EnsureFromView-IPyInterpreterView-">EnsureFromView</a></strong>(const aView: <a href="uP4P.Interfaces.IPyInterpreterView.html">IPyInterpreterView</a>): <a href="uP4P.Types.html#PPyThreadStateToken">PPyThreadStateToken</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyThreadState.TPyThreadState.html#Release-PPyThreadStateToken-">Release</a></strong>(tstate: <a href="uP4P.Types.html#PPyThreadStateToken">PPyThreadStateToken</a>);</code></td>
 </tr>
@@ -441,6 +445,22 @@ body { margin: 0.5em; }
 
 
 <p>Similar to TPyThreadState.Get(), but don't kill the process with a fatal error if it is nil. The caller is responsible to check if the result is nil.
+
+<p>Added in version 3.13.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AttachedThreadState"></span><code>class function <strong>AttachedThreadState</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return true if the curent thread has an attached thread state.
 
 <p>Added in version 3.13.
 

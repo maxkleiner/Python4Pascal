@@ -142,6 +142,12 @@ type
       /// </summary>
       class function  GetUnchecked: IPyThreadState;
       /// <summary>
+      /// <para>Return true if the curent thread has an attached thread
+      /// state.</para>
+      /// <para>Added in version 3.13.</para>
+      /// </summary>
+      class function  AttachedThreadState: boolean;
+      /// <summary>
       /// <para>Set the attached thread state to tstate, and return the thread
       /// state that was attached prior to calling.</para>
       /// <para>This function is safe to call without an attached thread state;
@@ -327,6 +333,12 @@ begin
     Result := TPyThreadState.Wrap(PyThreadState_GetUnchecked())
    else
     Result := nil;
+end;
+
+class function TPyThreadState.AttachedThreadState: boolean;
+begin
+  Result := assigned(PyThreadState_GetUnchecked) and
+            (PyThreadState_GetUnchecked() <> nil);
 end;
 
 function TPyThreadState.Swap: IPyThreadState;
