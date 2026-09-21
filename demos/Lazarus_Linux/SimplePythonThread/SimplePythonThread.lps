@@ -8,11 +8,9 @@
       <Unit>
         <Filename Value="SimplePythonThread.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos Y="20"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.pas"/>
@@ -20,12 +18,13 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="3" Y="8"/>
+        <TopLine Value="94"/>
+        <CursorPos X="77" Y="121"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uCustomThread.pas"/>
@@ -33,7 +32,6 @@
         <EditorIndex Value="2"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>

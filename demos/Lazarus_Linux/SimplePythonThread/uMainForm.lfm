@@ -2,10 +2,10 @@ object MainForm: TMainForm
   Left = 0
   Height = 529
   Top = 0
-  Width = 729
+  Width = 827
   Caption = 'MainForm'
   ClientHeight = 529
-  ClientWidth = 729
+  ClientWidth = 827
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -12
@@ -20,7 +20,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 3
     Top = 405
-    Width = 729
+    Width = 827
     Align = alBottom
     ResizeAnchor = akBottom
   end
@@ -28,37 +28,37 @@ object MainForm: TMainForm
     Left = 0
     Height = 121
     Top = 408
-    Width = 729
+    Width = 827
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
   end
   object Panel1: TPanel
-    Left = 568
+    Left = 586
     Height = 405
     Top = 0
-    Width = 161
+    Width = 241
     Align = alRight
     BevelOuter = bvNone
     ClientHeight = 405
-    ClientWidth = 161
+    ClientWidth = 241
     ParentBackground = False
     TabOrder = 1
     object RunBtn: TButton
       Left = 5
       Height = 25
       Top = 4
-      Width = 151
+      Width = 227
       Caption = 'Run code'
       TabOrder = 0
       OnClick = RunBtnClick
     end
     object ThreadRunModeRg: TRadioGroup
       Left = 5
-      Height = 105
-      Top = 39
-      Width = 151
+      Height = 185
+      Top = 32
+      Width = 227
       AutoFill = True
       Caption = 'Thread run mode '
       ChildSizing.LeftRightSpacing = 6
@@ -68,13 +68,14 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 88
-      ClientWidth = 149
-      ItemIndex = 1
+      ClientHeight = 167
+      ClientWidth = 225
+      ItemIndex = 0
       Items.Strings = (
         'Legacy API'
         'Shared Interpreter'
-        'Shared GIL'
+        'Subinterpreter with shared GIL'
+        'Subinterpreter with own GIL'
       )
       ParentBackground = False
       TabOrder = 1
@@ -84,7 +85,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 405
     Top = 0
-    Width = 568
+    Width = 586
     Align = alClient
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack

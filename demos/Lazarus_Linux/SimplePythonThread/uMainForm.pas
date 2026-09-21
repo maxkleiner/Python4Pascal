@@ -48,7 +48,7 @@ implementation
 {$R *.lfm}
 
 uses
-  uCustomThread;
+  uCustomThread, uP4P.Types;
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -118,9 +118,7 @@ begin
   TempThread                   := TCustomThread.Create(True);
   TempThread.Code              := CodeMem.Text;
   TempThread.FreeOnTerminate   := True;
-  TempThread.UseLegacyInit     := (ThreadRunModeRg.ItemIndex = 0);
-  TempThread.SharedInterpreter := (ThreadRunModeRg.ItemIndex = 1);
-  TempThread.SharedGIL         := (ThreadRunModeRg.ItemIndex = 2);
+  TempThread.ThreadInit        := TP4PThreadInit(ThreadRunModeRg.ItemIndex);
   TempThread.OnTerminate       := Thread_OnTerminate;
   TempThread.Start;
 end;
