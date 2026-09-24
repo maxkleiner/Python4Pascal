@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.SysUtils, System.SyncObjs, System.Types,
+    System.Classes, System.SysUtils, System.SyncObjs,
   {$ELSE}
-    Classes, SysUtils, SyncObjs, Types,
+    Classes, SysUtils, SyncObjs,
   {$ENDIF}
   uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.Loader,
   uP4P.CustomPyModule, uP4P.IOPyModule, uP4P.PyTimeModule, uP4P.PyDateTimeModule;

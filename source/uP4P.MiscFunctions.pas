@@ -133,7 +133,7 @@ implementation
 
 uses
   {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
-  uP4P.Engine, uP4P.LibFunctions, uP4P.PyMem, uP4P.Constants;
+  uP4P.Engine, uP4P.PyMem, uP4P.Constants;
 
 function GetModulePath : string;
 {$IFDEF APPLE}

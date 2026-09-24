@@ -15,9 +15,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.StrUtils, System.Types, System.SysUtils,
+    System.Classes, System.Types, System.SysUtils,
   {$ELSE}
-    Classes, StrUtils, Types, SysUtils,
+    Classes, Types, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces;
 

@@ -1451,6 +1451,8 @@ function TPyInitConfig.Get_allocator: PyMemAllocatorName;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_ALLOCATOR, TempResult) then
     Result := PyMemAllocatorName(TempResult)
    else
