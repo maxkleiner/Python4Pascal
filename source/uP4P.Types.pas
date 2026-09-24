@@ -265,12 +265,12 @@ type
   /// </remarks>
   TP4PThreadInit = (
     /// <summary>
-    /// Execute the Python code using the legacy API.
+    /// Execute the Python code using the GILState API.
     /// </summary>
     /// <remarks>
     /// <para>Soft deprecated since version 3.15.</para>
     /// </remarks>
-    ti_LegacyAPI,
+    ti_GILState,
     /// <summary>
     /// Execute the Python code using a shared interpreter.
     /// </summary>

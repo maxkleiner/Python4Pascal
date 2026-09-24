@@ -31,10 +31,13 @@ type
       FOnExecutePython   : TNotifyEvent;
 
       procedure Execute; override;
-      procedure ExecuteLegacyInit;
+      procedure ExecuteGILState;
       procedure ExecuteSharedInterpreter;
+      procedure ExecuteSharedInterpreterWithView;
       procedure ExecuteSubinterpreterSharedGIL;
+      procedure ExecuteSubinterpreterSharedGILWithGuard;
       procedure ExecuteSubinterpreterOwnGIL;
+      procedure ExecuteSubinterpreterOwnGILWithGuard;
 
       procedure doOnExecutePython; virtual;
 
@@ -59,14 +62,15 @@ implementation
 
 uses
   uP4P.PyGILState, uP4P.PyThreadState, uP4P.Engine, uP4P.Py,
-  uP4P.PyInterpreterConfig, uP4P.IOPyModule;
+  uP4P.PyInterpreterConfig, uP4P.IOPyModule, uP4P.PyEval,
+  uP4P.PyInterpreterGuard, uP4P.PyInterpreterView;
 
 procedure TP4PThread.AfterConstruction;
 begin
   inherited AfterConstruction;
 
   FOnExecutePython   := nil;
-  FThreadInit        := ti_LegacyAPI;
+  FThreadInit        := ti_GILState;
   FErrorMsg          := '';
 end;
 
@@ -76,48 +80,64 @@ begin
     FOnExecutePython(self);
 end;
 
-procedure TP4PThread.ExecuteLegacyInit;
+procedure TP4PThread.ExecuteGILState;
 var
   TempGILState : IPyGILState;
 begin
-  if GlobalP4PEngine.SavedThreadState then
-    begin
-      TempGILState := TPyGILState.Ensure;
+  TempGILState := TPyGILState.Ensure;
 
-      if TPyGILState.IsInitialized(TempGILState) then
-        try
-          doOnExecutePython;
-        finally
-          TempGILState.Release;
-        end
-       else
-        FErrorMsg := 'There was a problem getting the GIL state.';
+  if TPyGILState.IsInitialized(TempGILState) then
+    try
+      doOnExecutePython;
+    finally
+      TempGILState.Release;
     end
    else
-    FErrorMsg := 'There was a problem saving the main thread state.';
+    FErrorMsg := 'There was a problem getting the GIL state.';
 end;
 
 procedure TP4PThread.ExecuteSharedInterpreter;
 var
   TempThreadState : IPyThreadState;
 begin
-  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
-    begin
-      TempThreadState := TPyThreadState.New(GlobalP4PEngine.InterpreterState);
+  TempThreadState := TPyThreadState.New(GlobalP4PEngine.InterpreterState);
 
-      if TPyThreadState.IsInitialized(TempThreadState) then
-        try
-          TempThreadState.Swap;
-          doOnExecutePython;
-        finally
-          TempThreadState.Clear;
-          TPyThreadState.DeleteCurrent;
-        end
-       else
-        FErrorMsg := 'There was a problem creating the new thread state.';
+  if TPyThreadState.IsInitialized(TempThreadState) then
+    try
+      TempThreadState.Swap;
+      doOnExecutePython;
+    finally
+      TempThreadState.Clear;
+      TPyThreadState.DeleteCurrent;
     end
    else
-    FErrorMsg := 'There was a problem saving the main thread state.';
+    FErrorMsg := 'There was a problem creating the new thread state.';
+end;
+
+procedure TP4PThread.ExecuteSharedInterpreterWithView;
+var
+  TempView  : IPyInterpreterView;
+  TempToken : PPyThreadStateToken;
+begin
+  TempView := TPyInterpreterView.FromMain();
+
+  if TPyInterpreterView.IsInitialized(TempView) then
+    try
+      TempToken := TPyThreadState.EnsureFromView(TempView);
+
+      if assigned(TempToken) then
+        try
+          doOnExecutePython;
+        finally
+          TPyThreadState.Release(TempToken);
+        end
+       else
+        FErrorMsg := 'There was a problem getting the thread state token.';
+    finally
+      TempView := nil;
+    end
+   else
+    FErrorMsg := 'There was a problem creating the interpreter view.';
 end;
 
 procedure TP4PThread.ExecuteSubinterpreterSharedGIL;
@@ -125,33 +145,83 @@ var
   TempThreadState : IPyThreadState;
   TempModule      : TIOPyModule;
 begin
-  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
-    begin
-      TempModule      := nil;
-      TempThreadState := TPy.NewInterpreter();
+  TempModule      := nil;
+  TempThreadState := TPy.NewInterpreter();
 
-      if TPyThreadState.IsInitialized(TempThreadState) then
-        try
-          TempThreadState.Swap;
-          TempModule := TIOPyModule.Create(IOPyModuleName);
+  if TPyThreadState.IsInitialized(TempThreadState) then
+    try
+      TempThreadState.Swap;
+      TempModule := TIOPyModule.Create(IOPyModuleName);
 
-          if TempModule.Initialize and TIOPyModule.RunInitCode then
-            begin
-              doOnExecutePython;
-              TIOPyModule.RunRestoreCode;
-            end;
-        finally
-          if assigned(TempModule) then
-            FreeAndNil(TempModule);
+      if TempModule.Initialize and TIOPyModule.RunInitCode then
+        begin
+          doOnExecutePython;
+          TIOPyModule.RunRestoreCode;
+        end;
+    finally
+      if assigned(TempModule) then
+        TempModule.Finalize;
 
-          TPy.EndInterpreter(TempThreadState);
-          TempThreadState := nil;
-        end
-       else
-        FErrorMsg := 'There was a problem creating the new thread state.';
+      TPy.EndInterpreter(TempThreadState);
+      TempThreadState := nil;
+
+      if assigned(TempModule) then
+        FreeAndNil(TempModule);
     end
    else
-    FErrorMsg := 'There was a problem saving the main thread state.';
+    FErrorMsg := 'There was a problem creating the new thread state.';
+end;
+
+procedure TP4PThread.ExecuteSubinterpreterSharedGILWithGuard;
+var
+  TempGuard       : IPyInterpreterGuard;
+  TempThreadState : IPyThreadState;
+  TempModule      : TIOPyModule;
+  TempToken       : PPyThreadStateToken;
+begin
+  TempModule      := nil;
+  TempThreadState := TPy.NewInterpreter();
+
+  if not(TPyThreadState.IsInitialized(TempThreadState)) then
+    FErrorMsg := 'There was a problem creating the new thread state.'
+   else
+    try
+      TempThreadState.Swap;
+      TempGuard := TPyInterpreterGuard.FromCurrent;
+
+      if not(TPyInterpreterGuard.IsInitialized(TempGuard)) then
+        FErrorMsg := 'There was a problem creating the interpreter guard.'
+       else
+        try
+          TempToken := TPyThreadState.Ensure(TempGuard);
+
+          if not(assigned(TempToken)) then
+            FErrorMsg := 'There was a problem getting the thread state token.'
+           else
+            try
+              TempModule := TIOPyModule.Create(IOPyModuleName);
+
+              if TempModule.Initialize and TIOPyModule.RunInitCode then
+                begin
+                  doOnExecutePython;
+                  TIOPyModule.RunRestoreCode;
+                end;
+            finally
+              TPyThreadState.Release(TempToken);
+            end;
+        finally
+          TempGuard := nil;
+        end;
+    finally
+      if assigned(TempModule) then
+        TempModule.Finalize;
+
+      TPy.EndInterpreter(TempThreadState);
+      TempThreadState := nil;
+
+      if assigned(TempModule) then
+        FreeAndNil(TempModule);
+    end;
 end;
 
 procedure TP4PThread.ExecuteSubinterpreterOwnGIL;
@@ -161,57 +231,140 @@ var
   TempStatus      : IPyStatus;
   TempModule      : TIOPyModule;
 begin
-  if GlobalP4PEngine.SavedThreadState and not(Terminated) then
-    try
-      TempModule := nil;
-      TempConfig := TPyInterpreterConfig.Create;
-      TempConfig.Init;
+  try
+    TempModule := nil;
+    TempConfig := TPyInterpreterConfig.Create;
+    TempConfig.Init;
 
-      TempStatus := TPy.NewInterpreterFromConfig(TempThreadState, TempConfig);
+    TempStatus := TPy.NewInterpreterFromConfig(TempThreadState, TempConfig);
 
-      if not(assigned(TempStatus)) then
-        FErrorMsg := 'There was a problem creating the new sub-interpreter.'
+    if not(assigned(TempStatus)) then
+      FErrorMsg := 'There was a problem creating the new sub-interpreter.'
+     else
+      if not(TPyThreadState.IsInitialized(TempThreadState)) then
+        FErrorMsg := 'There was a problem creating the new thread state.'
        else
-        if not(TPyThreadState.IsInitialized(TempThreadState)) then
-          FErrorMsg := 'There was a problem creating the new thread state.'
+        if TempStatus.IsException then
+          FErrorMsg := TempStatus.ErrMsg + CRLF +
+                       'Exit code: ' + inttostr(TempStatus.ExitCode)
          else
-          if TempStatus.IsException then
-            FErrorMsg := TempStatus.ErrMsg + CRLF +
-                         'Exit code: ' + inttostr(TempStatus.ExitCode)
-           else
-            try
-              TempThreadState.Swap;
+          try
+            TempThreadState.Swap;
 
-              TempModule                  := TIOPyModule.Create(IOPyModuleName);
-              TempModule.MultIntprSupport := piGilSupported;
+            TempModule                  := TIOPyModule.Create(IOPyModuleName);
+            TempModule.MultIntprSupport := piGilSupported;
 
-              if TempModule.Initialize and TIOPyModule.RunInitCode then
-                begin
-                  doOnExecutePython;
-                  TIOPyModule.RunRestoreCode;
-                end;
-            finally
-              if assigned(TempModule) then
-                FreeAndNil(TempModule);
+            if TempModule.Initialize and TIOPyModule.RunInitCode then
+              begin
+                doOnExecutePython;
+                TIOPyModule.RunRestoreCode;
+              end;
+          finally
+            if assigned(TempModule) then
+              TempModule.Finalize;
 
-              TPy.EndInterpreter(TempThreadState);
-              TempThreadState := nil;
-            end;
-    finally
-      TempConfig := nil;
-    end
-   else
-    FErrorMsg := 'There was a problem saving the main thread state.';
+            TPy.EndInterpreter(TempThreadState);
+            TempThreadState := nil;
+
+            if assigned(TempModule) then
+              FreeAndNil(TempModule);
+          end;
+  finally
+    TempConfig := nil;
+  end;
+end;
+
+procedure TP4PThread.ExecuteSubinterpreterOwnGILWithGuard;
+var
+  TempThreadState : IPyThreadState;
+  TempConfig      : IPyInterpreterConfig;
+  TempStatus      : IPyStatus;
+  TempModule      : TIOPyModule;
+  TempGuard       : IPyInterpreterGuard;
+  TempToken       : PPyThreadStateToken;
+begin
+  try
+    TempModule := nil;
+    TempConfig := TPyInterpreterConfig.Create;
+    TempConfig.Init;
+
+    TempStatus := TPy.NewInterpreterFromConfig(TempThreadState, TempConfig);
+
+    if not(assigned(TempStatus)) then
+      FErrorMsg := 'There was a problem creating the new sub-interpreter.'
+     else
+      if not(TPyThreadState.IsInitialized(TempThreadState)) then
+        FErrorMsg := 'There was a problem creating the new thread state.'
+       else
+        if TempStatus.IsException then
+          FErrorMsg := TempStatus.ErrMsg + CRLF +
+                       'Exit code: ' + inttostr(TempStatus.ExitCode)
+         else
+          begin
+            TempThreadState.Swap;
+            TempGuard := TPyInterpreterGuard.FromCurrent;
+
+            if not(TPyInterpreterGuard.IsInitialized(TempGuard)) then
+              FErrorMsg := 'There was a problem creating the interpreter guard.'
+             else
+              try
+                TempToken := TPyThreadState.Ensure(TempGuard);
+
+                if not(assigned(TempToken)) then
+                  FErrorMsg := 'There was a problem getting the thread state token.'
+                 else
+                  try
+                    TempModule                  := TIOPyModule.Create(IOPyModuleName);
+                    TempModule.MultIntprSupport := piGilSupported;
+
+                    if TempModule.Initialize and TIOPyModule.RunInitCode then
+                      begin
+                        doOnExecutePython;
+                        TIOPyModule.RunRestoreCode;
+                      end;
+                  finally
+                    TPyThreadState.Release(TempToken);
+                  end;
+              finally
+                TempGuard := nil;
+
+                if assigned(TempModule) then
+                  TempModule.Finalize;
+
+                TPy.EndInterpreter(TempThreadState);
+                TempThreadState := nil;
+
+                if assigned(TempModule) then
+                  FreeAndNil(TempModule);
+              end;
+          end;
+  finally
+    TempConfig := nil;
+  end;
 end;
 
 procedure TP4PThread.Execute;
 begin
-  if assigned(GlobalP4PEngine) then
+  if not(assigned(GlobalP4PEngine)) or
+     not(GlobalP4PEngine.SavedThreadState) then
+    begin
+      FErrorMsg := 'There was a problem saving the main thread state.';
+      exit;
+    end;
+
+  if GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
     case FThreadInit of
-      ti_LegacyAPI                : ExecuteLegacyInit;
+      ti_GILState                 : ExecuteGILState;
+      ti_SharedInterpreter        : ExecuteSharedInterpreterWithView;
+      ti_SubinterpreterSharedGIL  : ExecuteSubinterpreterSharedGILWithGuard;
+      ti_SubinterpreterOwnGIL     : ExecuteSubinterpreterOwnGILWithGuard;
+    end
+   else
+    case FThreadInit of
+      ti_GILState                 : ExecuteGILState;
       ti_SharedInterpreter        : ExecuteSharedInterpreter;
       ti_SubinterpreterSharedGIL  : ExecuteSubinterpreterSharedGIL;
-      else                          ExecuteSubinterpreterOwnGIL;     // ti_SubinterpreterOwnGIL
+      ti_SubinterpreterOwnGIL     : ExecuteSubinterpreterOwnGIL;
     end;
 end;
 

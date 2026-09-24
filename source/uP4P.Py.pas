@@ -1706,14 +1706,14 @@ end;
 
 class function TPy.NewInterpreterFromConfig(out tstate: IPyThreadState; const config: IPyInterpreterConfig): IPyStatus;
 var
-  TempTState : PPyThreadState;
+  TempState : PPyThreadState;
 begin
   if assigned(Py_NewInterpreterFromConfig) and
      assigned(config) then
     begin
-      TempTState := nil;
-      Result     := TPyStatus.Create(Py_NewInterpreterFromConfig(TempTState, config.Config));
-      tstate     := TPyThreadState.Wrap(TempTState);
+      TempState := nil;
+      Result    := TPyStatus.Create(Py_NewInterpreterFromConfig(TempState, config.Config));
+      tstate    := TPyThreadState.Wrap(TempState);
     end
    else
     Result := nil;

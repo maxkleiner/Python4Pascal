@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
-<meta name="GENERATOR" content="PasDoc 1.0.4">
+<meta name="GENERATOR" content="PasDoc 1.0.5.snapshot">
 </head><body>
 <ul>
 <li><object type="text/sitemap">
@@ -14755,10 +14755,6 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AfterConstruction">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="BeforeDestruction">
-<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#BeforeDestruction">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="Create">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-">
 </object>
@@ -14789,6 +14785,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FGILUsed">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Finalize">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Finalize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FIsExtension">
@@ -14991,8 +14991,8 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#AddModule-TCustomPyModule-">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddModuleToSys">
-<param name="Local" value="uP4P.Engine.TP4PEngine.html#AddModuleToSys-TCustomPyModule-">
+<param name="Name" value="AddToSysModules">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#AddToSysModules-TCustomPyModule-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
@@ -15027,12 +15027,24 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroyDateTimeModule">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="DestroyInterpreterState">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroyInterpreterState">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="DestroyIOModule">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroyIOModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="DestroyModules">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroyModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="DestroySyncObj">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroySyncObj">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="DestroyThreadState">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#DestroyThreadState">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="DestroyTimeModule">
@@ -15091,6 +15103,14 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#FTimeModule">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetCurrentInterpreterState">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetCurrentInterpreterState">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetInterpreterState">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetInterpreterState">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetIsMainThread">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#GetIsMainThread">
 </object>
@@ -15137,6 +15157,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="RedirectIO">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#RedirectIO">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="RemoveFromSysModules">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#RemoveFromSysModules-TCustomPyModule-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="RemoveModule">
@@ -15871,20 +15895,36 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#Execute">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="ExecuteLegacyInit">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteLegacyInit">
+<param name="Name" value="ExecuteGILState">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteGILState">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="ExecuteSharedInterpreter">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSharedInterpreter">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ExecuteSharedInterpreterWithView">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSharedInterpreterWithView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ExecuteSubinterpreterOwnGIL">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGIL">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ExecuteSubinterpreterOwnGILWithGuard">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGILWithGuard">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ExecuteSubinterpreterSharedGIL">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGIL">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecuteSubinterpreterSharedGILWithGuard">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGILWithGuard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecuteSubinterpreterWithGuard">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterWithGuard">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FErrorMsg">

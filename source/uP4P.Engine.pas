@@ -44,18 +44,25 @@ type
 
       function  GetIsMainThread: boolean;
       function  GetSavedThreadState: boolean;
+      function  GetInterpreterState: IPyInterpreterState;
 
       procedure SetSavedThreadState(aValue: boolean);
 
-      function  Lock: boolean;
-      procedure UnLock;
       procedure CreateTimeModule;
       procedure CreateDateTimeModule;
+
       procedure DestroyIOModule;
       procedure DestroyTimeModule;
       procedure DestroyDateTimeModule;
       procedure DestroyModules;
+      procedure DestroySyncObj;
+      procedure DestroyInterpreterState;
+      procedure DestroyThreadState;
+
+      function  Lock: boolean;
+      procedure UnLock;
       function  RedirectIO: boolean;
+      procedure GetCurrentInterpreterState;
 
     public
       constructor Create; override;
@@ -65,7 +72,9 @@ type
       /// <summary>
       /// <para>Add the module to sys.modules.</para>
       /// </summary>
-      function    AddModuleToSys(const aModule: TCustomPyModule): boolean;
+      function    AddToSysModules(const aModule: TCustomPyModule): boolean;
+
+      function    RemoveFromSysModules(const aModule: TCustomPyModule): boolean;
       /// <summary>
       /// <para>Add the module to the internal module list.</para>
       /// </summary>
@@ -132,7 +141,7 @@ type
       /// <summary>
       /// <para>The current interpreter.</para>
       /// </summary>
-      property InterpreterState          : IPyInterpreterState      read FInterpreterState;
+      property InterpreterState          : IPyInterpreterState      read GetInterpreterState;
       /// <summary>
       /// <para>Return True if this property runs in the same thread that
       /// created the TP4PEngine instance.</para>
@@ -183,7 +192,7 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun,
   uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes, uP4P.PyNone, uP4P.PyInterpreterState,
-  uP4P.PyEval, uP4P.PyThreadState;
+  uP4P.PyEval, uP4P.PyThreadState, uP4P.PySys, uP4P.PyMapping;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -195,26 +204,24 @@ constructor TP4PEngine.Create;
 begin
   inherited Create;
 
-  FMainThreadID              := TThreadID(0);
-  FSavedThreadState          := False;
-  FModules                   := nil;
-  FSyncObj                   := nil;
-  FIOModule                  := nil;
-  FInterpreterState          := nil;
-  FThreadState               := nil;
-  FTimeModule                := nil;
-  FDateTimeModule            := nil;
-  FOnOutputMessage           := nil;
-  FOnInputMessage            := nil;
+  FMainThreadID      := TThreadID(0);
+  FSavedThreadState  := False;
+  FModules           := nil;
+  FSyncObj           := nil;
+  FIOModule          := nil;
+  FInterpreterState  := nil;
+  FThreadState       := nil;
+  FTimeModule        := nil;
+  FDateTimeModule    := nil;
+  FOnOutputMessage   := nil;
+  FOnInputMessage    := nil;
 end;
 
 destructor TP4PEngine.Destroy;
 begin
   try
     DestroyModules;
-
-    if assigned(FSyncObj) then
-      FreeAndNil(FSyncObj);
+    DestroySyncObj;
   finally
     inherited Destroy;
   end;
@@ -235,9 +242,8 @@ begin
     DestroyIOModule;
     DestroyTimeModule;
     DestroyDateTimeModule;
-
-    FInterpreterState := nil;
-    FThreadState      := nil;
+    DestroyInterpreterState;
+    DestroyThreadState;
   finally
     inherited BeforeDestruction;
   end;
@@ -254,10 +260,36 @@ begin
     end;
 end;
 
+procedure TP4PEngine.DestroySyncObj;
+begin
+  if assigned(FSyncObj) then
+    FreeAndNil(FSyncObj);
+end;
+
 procedure TP4PEngine.DestroyIOModule;
 begin
   if assigned(FIOModule) then
     FreeAndNil(FIOModule);
+end;
+
+procedure TP4PEngine.DestroyInterpreterState;
+begin
+  if Lock then
+    try
+      FInterpreterState := nil;
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TP4PEngine.DestroyThreadState;
+begin
+  if Lock then
+    try
+      FThreadState := nil;
+    finally
+      UnLock;
+    end;
 end;
 
 procedure TP4PEngine.DestroyTimeModule;
@@ -301,6 +333,18 @@ begin
     end;
 end;
 
+function TP4PEngine.GetInterpreterState: IPyInterpreterState;
+begin
+  Result := nil;
+
+  if Lock then
+    try
+      Result := FInterpreterState;
+    finally
+      Unlock;
+    end;
+end;
+
 procedure TP4PEngine.SetSavedThreadState(aValue: boolean);
 begin
   if Lock then
@@ -313,13 +357,13 @@ end;
 
 function TP4PEngine.Lock: boolean;
 begin
+  Result := False;
+
   if assigned(FSyncObj) then
     begin
       FSyncObj.Acquire;
       Result := True;
-    end
-   else
-    Result := False;
+    end;
 end;
 
 procedure TP4PEngine.UnLock;
@@ -328,12 +372,21 @@ begin
     FSyncObj.Release;
 end;
 
-function TP4PEngine.AddModuleToSys(const aModule: TCustomPyModule): boolean;
+function TP4PEngine.AddToSysModules(const aModule: TCustomPyModule): boolean;
 var
   TempModuleDict : IPyObject;
 begin
   TempModuleDict := TPyImport.GetModuleDict;
   Result         := TPyDict.SetItemString(TempModuleDict, aModule.Name_, aModule.Module);
+  TempModuleDict := nil;
+end;
+
+function TP4PEngine.RemoveFromSysModules(const aModule: TCustomPyModule): boolean;
+var
+  TempModuleDict : IPyObject;
+begin
+  TempModuleDict := TPyImport.GetModuleDict;
+  Result         := TPyDict.DelItemString(TempModuleDict, aModule.Name_);
   TempModuleDict := nil;
 end;
 
@@ -403,15 +456,15 @@ function TP4PEngine.doOnInputMessage(var aResultObj: IPyObject): boolean;
 var
   TempMessage: string;
 begin
+  Result := False;
+
   if assigned(FOnInputMessage) then
     begin
       TempMessage := '';
       FOnInputMessage(self, TempMessage);
       aResultObj  := TPyUnicode.FromString(TempMessage);
       Result      := True;
-    end
-   else
-    Result := False;
+    end;
 end;
 
 function TP4PEngine.RedirectIO: boolean;
@@ -427,14 +480,23 @@ begin
   Result := TIOPyModule.RunInitCode;
 end;
 
+procedure TP4PEngine.GetCurrentInterpreterState;
+begin
+  if Lock then
+    try
+      FInterpreterState := TPyInterpreterState.Get();
+    finally
+      UnLock;
+    end;
+end;
+
 function TP4PEngine.Initialize: boolean;
 begin
   Result := False;
 
   if inherited Initialize and RedirectIO then
     begin
-      FInterpreterState := TPyInterpreterState.Get();
-
+      GetCurrentInterpreterState;
       CreateTimeModule;
       CreateDateTimeModule;
 

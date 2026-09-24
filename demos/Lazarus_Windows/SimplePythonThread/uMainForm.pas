@@ -28,7 +28,7 @@ type
 
   private
     FPendingMsg : TStringList;
-    FPendingCS  : TCriticalSection;
+    FPendingCS  : TCriticalSection;    
 
     function  AppendMessage(const aMessage: string): boolean;
     procedure ShowPendingMessages;
@@ -130,7 +130,7 @@ begin
 
   TempThread                   := TCustomThread.Create(True);
   TempThread.Code              := CodeMem.Text;
-  TempThread.FreeOnTerminate   := True;       
+  TempThread.FreeOnTerminate   := True;
   TempThread.ThreadInit        := TP4PThreadInit(ThreadRunModeRg.ItemIndex);
   TempThread.OnTerminate       := Thread_OnTerminate;
   TempThread.Start;

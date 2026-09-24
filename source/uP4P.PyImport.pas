@@ -41,12 +41,12 @@ type
       /// </summary>
       class function GetMagicTag: string;
       /// <summary>
-      /// <para>Given a module name (possibly of the form package.module) and a
+      /// <para>Given a module name_ (possibly of the form package.module) and a
       /// code object read from a Python bytecode file or obtained from the
       /// built-in function compile(), load the module. Return a new reference
       /// to the module object, or nil with an exception set if an error
-      /// occurred. name is removed from sys.modules in error cases, even if
-      /// name was already in sys.modules on entry to
+      /// occurred. name_ is removed from sys.modules in error cases, even if
+      /// name_ was already in sys.modules on entry to
       /// TPyImport.ExecCodeModule(). Leaving incompletely initialized modules
       /// in sys.modules is dangerous, as imports of such modules have no way to
       /// know that the module object is an unknown (and probably damaged with
@@ -60,7 +60,7 @@ type
       /// <para>This function will reload the module if it was already imported.
       /// See TPyImport.ReloadModule() for the intended way to reload a
       /// module.</para>
-      /// <para>If name points to a dotted name of the form package.module,
+      /// <para>If name_ points to a dotted name of the form package.module,
       /// any package structures not already created will still not be
       /// created.</para>
       /// <para>See also TPyImport.ExecCodeModuleEx() and
@@ -78,7 +78,7 @@ type
       /// </summary>
       class function ExecCodeModuleEx(const name_: string; const co: IPyObject; const pathname: string): IPyObject;
       /// <summary>
-      /// <para>Like TPyImport.ExecCodeModuleObject(), but name, pathname and
+      /// <para>Like TPyImport.ExecCodeModuleObject(), but name_, pathname and
       /// cpathname are strings. Attempts are also made to figure
       /// out what the value for pathname should be from cpathname if the former
       /// is set to nil.</para>
@@ -115,7 +115,7 @@ type
       class function GetModule(const name_: IPyObject): IPyObject;
       /// <summary>
       /// <para>Similar to TPyImport.AddModuleRef(), but return a borrowed
-      /// reference and name is a Python str object.</para>
+      /// reference and name_ is a Python str object.</para>
       /// </summary>
       class function AddModuleObject(const name_: IPyObject): IPyObject;
       /// <summary>

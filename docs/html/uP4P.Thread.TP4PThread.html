@@ -3,7 +3,7 @@
 <head>
 <title>python4pascal: uP4P.Thread: Class TP4PThread</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="PasDoc 1.0.4">
+<meta name="generator" content="PasDoc 1.0.5.snapshot">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
 <link rel="StyleSheet" type="text/css" href="pasdoc.css">
@@ -55,7 +55,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteLegacyInit">ExecuteLegacyInit</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteGILState">ExecuteGILState</a></strong>;</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -63,11 +63,27 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSharedInterpreterWithView">ExecuteSharedInterpreterWithView</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGIL">ExecuteSubinterpreterSharedGIL</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGILWithGuard">ExecuteSubinterpreterSharedGILWithGuard</a></strong>;</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGIL">ExecuteSubinterpreterOwnGIL</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGILWithGuard">ExecuteSubinterpreterOwnGILWithGuard</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterWithGuard">ExecuteSubinterpreterWithGuard</a></strong>;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -131,7 +147,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="ExecuteLegacyInit"></span><code>procedure <strong>ExecuteLegacyInit</strong>;</code></td>
+<td class="itemcode"><span id="ExecuteGILState"></span><code>procedure <strong>ExecuteGILState</strong>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -147,6 +163,14 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ExecuteSharedInterpreterWithView"></span><code>procedure <strong>ExecuteSharedInterpreterWithView</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="ExecuteSubinterpreterSharedGIL"></span><code>procedure <strong>ExecuteSubinterpreterSharedGIL</strong>;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -155,7 +179,31 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ExecuteSubinterpreterSharedGILWithGuard"></span><code>procedure <strong>ExecuteSubinterpreterSharedGILWithGuard</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="ExecuteSubinterpreterOwnGIL"></span><code>procedure <strong>ExecuteSubinterpreterOwnGIL</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ExecuteSubinterpreterOwnGILWithGuard"></span><code>procedure <strong>ExecuteSubinterpreterOwnGILWithGuard</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="ExecuteSubinterpreterWithGuard"></span><code>procedure <strong>ExecuteSubinterpreterWithGuard</strong>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -207,6 +255,6 @@ body { margin: 0.5em; }
  Event triggered when the thread is initialized. Use it to execute the Python code. </p>
 </td></tr>
 </table>
-<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.4</a>. </em>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
 </span>
 </body></html>

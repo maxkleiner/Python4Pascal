@@ -117,7 +117,14 @@ type
       /// <para>This is the same as TPyObject.SetItem(), but key is specified
       /// as a string, rather than a IPyObject.</para>
       /// </summary>
-      class function SetItemString(const o: IPyObject; const key: string; const v: IPyObject): integer;
+      class function SetItemString(const o: IPyObject; const key: string; const v: IPyObject): boolean; overload;
+      {$IFDEF DELPHI12_UP}
+      /// <summary>
+      /// <para>This is the same as TPyObject.SetItem(), but key is specified
+      /// as a string, rather than a IPyObject.</para>
+      /// </summary>
+      class function SetItemString(const o: IPyObject; const key: AnsiString; const v: IPyObject): boolean; overload;
+      {$ENDIF}
   end;
 
 implementation
@@ -276,19 +283,29 @@ begin
     end;
 end;
 
-class function TPyMapping.SetItemString(const o: IPyObject; const key: string; const v: IPyObject): integer;
+class function TPyMapping.SetItemString(const o: IPyObject; const key: string; const v: IPyObject): boolean;
 var
   TempKey : AnsiString;
 begin
-  Result := -1;
+  Result := False;
 
   if assigned(PyMapping_SetItemString) and
      TPyObject.IsInitialized(o) and
      TPyObject.IsInitialized(v) then
     begin
       TempKey := StringToPyUTF8(key);
-      Result  := PyMapping_SetItemString(o.PyObject, PAnsiChar(TempKey), v.PyObject);
+      Result  := (PyMapping_SetItemString(o.PyObject, PAnsiChar(TempKey), v.PyObject) = 0);
     end;
 end;
+
+{$IFDEF DELPHI12_UP}
+class function TPyMapping.SetItemString(const o: IPyObject; const key: AnsiString; const v: IPyObject): boolean;
+begin
+  Result := assigned(PyMapping_SetItemString) and
+            TPyObject.IsInitialized(o) and
+            TPyObject.IsInitialized(v) and
+            (PyMapping_SetItemString(o.PyObject, PAnsiChar(key), v.PyObject) = 0);
+end;
+{$ENDIF}
 
 end.

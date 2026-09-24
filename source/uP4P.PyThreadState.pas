@@ -37,8 +37,8 @@ type
       procedure SetThreadState(aThreadState: PPyThreadState);
 
       /// <summary>
-      /// <para>Reset all information in a thread state object. tstate must be
-      /// attached</para>
+      /// <para>Reset all information in a thread state object.
+      /// IPyThreadState.ThreadState must be attached</para>
       /// <para>Changed in version 3.9: This function now calls the
       /// PyThreadState.on_delete callback. Previously, that happened in
       /// TPyThreadState.Delete().</para>
@@ -47,9 +47,9 @@ type
       /// </summary>
       procedure Clear;
       /// <summary>
-      /// <para>Destroy a thread state object. tstate should not be attached to
-      /// any thread. tstate must have been reset with a previous call to
-      /// TPyThreadState.Clear().</para>
+      /// <para>Destroy a thread state object. IPyThreadState.ThreadState should
+      /// not be attached to any thread. IPyThreadState.ThreadState must have
+      /// been reset with a previous call to TPyThreadState.Clear().</para>
       /// </summary>
       procedure Delete;
       /// <summary>
@@ -75,23 +75,24 @@ type
       function  SetAsyncExc(id: C_ULong; const exc: IPyObject): integer;
       /// <summary>
       /// <para>Suspend tracing and profiling in the Python thread state
-      /// tstate.</para>
+      /// IPyThreadState.ThreadState.</para>
       /// <para>Resume them using the TPyThreadState.LeaveTracing()
       /// function.</para>
       /// <para>Added in version 3.11.</para>
       /// </summary>
       procedure EnterTracing;
       /// <summary>
-      /// <para>Resume tracing and profiling in the Python thread state tstate
-      /// suspended by the TPyThreadState.EnterTracing() function.</para>
+      /// <para>Resume tracing and profiling in the Python thread state
+      /// IPyThreadState.ThreadState suspended by the
+      /// TPyThreadState.EnterTracing() function.</para>
       /// <para>See also TPyEval.SetTrace() and TPyEval.SetProfile()
       /// functions.</para>
       /// <para>Added in version 3.11.</para>
       /// </summary>
       procedure LeaveTracing;
       /// <summary>
-      /// <para>Set the attached thread state to tstate, and return the thread
-      /// state that was attached prior to calling.</para>
+      /// <para>Set the attached thread state to IPyThreadState.ThreadState,
+      /// and return the thread state that was attached prior to calling.</para>
       /// <para>This function is safe to call without an attached thread state;
       /// it will simply return nil indicating that there was no prior thread
       /// state.</para>
@@ -101,9 +102,9 @@ type
       /// </summary>
       function  Swap: IPyThreadState; overload;
       /// <summary>
-      /// <para>Return the next thread state object after tstate from the list
-      /// of all such objects belonging to the same PyInterpreterState
-      /// object.</para>
+      /// <para>Return the next thread state object after
+      /// IPyThreadState.ThreadState from the list of all such objects belonging
+      /// to the same PyInterpreterState object.</para>
       /// </summary>
       function  Next: IPyThreadState;
 

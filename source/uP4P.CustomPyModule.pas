@@ -61,7 +61,6 @@ type
       constructor Create(const aName: string);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
-      procedure   BeforeDestruction; override;
       /// <summary>
       /// <para>Test if this module is the same as the "other" module.</para>
       /// </summary>
@@ -70,6 +69,12 @@ type
       /// <para>Create the module and all the slots and methods.</para>
       /// </summary>
       function    Initialize: boolean;
+      /// <summary>
+      /// <para>Destroy the module and remove it from sys.modules and the
+      /// internal modules list in GlobalP4PEngine.</para>
+      /// <para>This is necessary before calling TPy.EndInterpreter.</para>
+      /// </summary>
+      procedure   Finalize;
 
       /// <summary>
       /// <para>PyObject instance of this module.</para>
@@ -141,7 +146,7 @@ end;
 destructor TCustomPyModule.Destroy;
 begin
   try
-    FModule      := nil;
+    Finalize;
     FModuleDef   := nil;
     FSlotManager := nil;
   finally
@@ -157,12 +162,15 @@ begin
     GlobalP4PEngine.AddModule(self);
 end;
 
-procedure TCustomPyModule.BeforeDestruction;
+procedure TCustomPyModule.Finalize;
 begin
-  if (GlobalP4PEngine <> nil) then
-    GlobalP4PEngine.RemoveModule(self);
+  if TPyObject.IsInitialized(FModule) and (GlobalP4PEngine <> nil) then
+    begin
+      GlobalP4PEngine.RemoveFromSysModules(self);
+      GlobalP4PEngine.RemoveModule(self);
+    end;
 
-  inherited BeforeDestruction;
+  FModule := nil;
 end;
 
 function TCustomPyModule.GetName: AnsiString;
@@ -183,7 +191,6 @@ begin
    else
     FUseLegacyAPI := True;
 end;
-
 
 procedure TCustomPyModule.CreateModuleDef;
 begin
@@ -237,8 +244,8 @@ begin
           // TPyModule.ExecDef executes the module.
           // It triggers Py_mod_exec slot, which triggers
           // the TCustomPyModule.OnAfterInitialization event.
-          if TPyModule.ExecDef(FModule, FModuleDef.ModuleDef) then
-            Result := GlobalP4PEngine.AddModuleToSys(self);
+          Result := GlobalP4PEngine.AddToSysModules(self) and
+                    TPyModule.ExecDef(FModule, FModuleDef.ModuleDef);
         end
        else
         GlobalP4PEngine.GetRaisedException;
@@ -272,8 +279,8 @@ begin
           // TPyModule.Exec executes the module.
           // It triggers Py_mod_exec slot, which triggers
           // the TCustomPyModule.OnAfterInitialization event.
-          if TPyModule.Exec(FModule) then
-            Result := GlobalP4PEngine.AddModuleToSys(self);
+          Result := GlobalP4PEngine.AddToSysModules(self) and
+                    TPyModule.Exec(FModule);
         end
        else
         GlobalP4PEngine.GetRaisedException;
