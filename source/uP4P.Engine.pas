@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils, SyncObjs, Types,
   {$ENDIF}
-  uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject, uP4P.Loader,
+  uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.Loader,
   uP4P.CustomPyModule, uP4P.IOPyModule, uP4P.PyTimeModule, uP4P.PyDateTimeModule;
 
 type
@@ -190,9 +190,8 @@ procedure DestroyGlobalP4PEngine;
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyModule, uP4P.PyImport, uP4P.PyDict, uP4P.PyRun,
-  uP4P.PyErr, uP4P.PyUnicode, uP4P.PyBytes, uP4P.PyNone, uP4P.PyInterpreterState,
-  uP4P.PyEval, uP4P.PyThreadState, uP4P.PySys, uP4P.PyMapping;
+  uP4P.MiscFunctions, uP4P.PyImport, uP4P.PyDict, uP4P.PyErr, uP4P.PyUnicode,
+  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState;
 
 procedure DestroyGlobalP4PEngine;
 begin

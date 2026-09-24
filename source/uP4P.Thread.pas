@@ -14,8 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.PyInterpreterState, uP4P.IOPyModule;
+  uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.IOPyModule;
 
 type
   /// <summary>
@@ -64,8 +63,7 @@ implementation
 
 uses
   uP4P.PyGILState, uP4P.PyThreadState, uP4P.Engine, uP4P.Py,
-  uP4P.PyInterpreterConfig, uP4P.PyEval,
-  uP4P.PyInterpreterGuard, uP4P.PyInterpreterView;
+  uP4P.PyInterpreterConfig, uP4P.PyInterpreterGuard, uP4P.PyInterpreterView;
 
 procedure TP4PThread.AfterConstruction;
 begin

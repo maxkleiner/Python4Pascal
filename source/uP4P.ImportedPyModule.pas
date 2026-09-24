@@ -10,11 +10,10 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes;
   {$ELSE}
-    Classes,
+    Classes;
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types;
 
 type
   /// <summary>

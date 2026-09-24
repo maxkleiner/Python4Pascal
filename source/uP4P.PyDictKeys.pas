@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -33,9 +33,6 @@ type
   end;
 
 implementation
-
-uses
-  uP4P.PyType;
 
 class function TPyDictKeys.Check(const aPyObject: IPyObject): boolean;
 begin

@@ -14,8 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.PySlot;
+  uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PySlot;
 
 type
   /// <summary>
@@ -103,8 +102,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyMethodDef, uP4P.Py_mod,
-  uP4P.PyABIInfo;
+  uP4P.MiscFunctions, uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo;
 
 constructor TPySlotManager.Create(const aName: string; const aDocStrings: string = '');
 begin

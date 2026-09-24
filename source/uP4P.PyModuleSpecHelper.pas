@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -43,7 +43,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyUnicode, uP4P.PyTuple, uP4P.PyImport, uP4P.PyNone;
+  uP4P.PyUnicode, uP4P.PyTuple, uP4P.PyImport, uP4P.PyNone;
 
 {$IFDEF DELPHI12_UP}
 class function TPyModuleSpecHelper.FromModuleName(const name_: AnsiString): IPyObject;

@@ -213,7 +213,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyTuple, uP4P.PyUnicode;
+  uP4P.PyType, uP4P.PyUnicode;
 
 class function TPyList.New(len: Py_ssize_t): IPyObject;
 begin

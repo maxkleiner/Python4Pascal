@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -110,8 +110,8 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
-  uP4P.PyImport, uP4P.PyDict, uP4P.PyModuleDef, uP4P.Py_mod, uP4P.PySlotManager;
+  uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
+  uP4P.PyModuleDef, uP4P.PySlotManager;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var

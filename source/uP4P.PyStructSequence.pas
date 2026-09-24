@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -109,7 +109,9 @@ class function TPyStructSequence.GetItem(const p: IPyObject; pos: Py_ssize_t): I
 begin
   if assigned(PyStructSequence_GetItem) and
      TPyObject.IsInitialized(p) then
-    TPyObject.Wrap(PyStructSequence_GetItem(p.PyObject, pos), False);
+    Result := TPyObject.Wrap(PyStructSequence_GetItem(p.PyObject, pos), False)
+   else
+    Result := nil;
 end;
 
 end.

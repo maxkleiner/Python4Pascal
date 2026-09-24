@@ -16,9 +16,9 @@ interface
 uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
-    System.Classes, System.SysUtils, System.SyncObjs, System.IOUtils, System.Types,
+    System.Classes, System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils, SyncObjs,
+    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils,
     Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
     {$IFDEF FPC}dynlibs, FileUtil,{$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
@@ -468,7 +468,7 @@ uses
   Math,
   {$ENDIF}
   uP4P.Constants, uP4P.MiscFunctions, uP4P.PyInitConfig, uP4P.PyConfig,
-  uP4P.PyStatus, uP4P.Py;
+  uP4P.Py;
 
 constructor TP4PLoader.Create;
 begin

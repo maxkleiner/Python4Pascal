@@ -175,7 +175,7 @@ uses
   {$ELSE}
     Math,
   {$ENDIF}
-  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyUnicode, uP4P.PyLong;
+  uP4P.PyType, uP4P.PyUnicode, uP4P.PyLong;
 
 class function TPyTuple.New(len: Py_ssize_t): IPyObject;
 begin

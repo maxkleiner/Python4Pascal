@@ -394,7 +394,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyType;
+  uP4P.MiscFunctions;
 
 class function TPyModule.Check(const aPyObject: IPyObject): boolean;
 begin

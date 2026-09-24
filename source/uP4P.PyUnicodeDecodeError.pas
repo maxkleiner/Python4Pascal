@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyType;
+  uP4P.MiscFunctions;
 
 class function TPyUnicodeDecodeError.Create(const encoding, object_: string; length, start, end_: Py_ssize_t; const reason: string): IPyObject;
 var

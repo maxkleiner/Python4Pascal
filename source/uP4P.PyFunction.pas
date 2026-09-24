@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -139,7 +139,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyNone;
+  uP4P.PyNone;
 
 class function TPyFunction.Check(const aPyObject: IPyObject): boolean;
 begin

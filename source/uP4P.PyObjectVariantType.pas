@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes, Variants, SysUtils, StrUtils,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>

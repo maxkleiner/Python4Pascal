@@ -447,7 +447,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyList, uP4P.PyUnicode;
+  uP4P.MiscFunctions, uP4P.PyType, uP4P.PyUnicode;
 
 class function TPyDict.New: IPyObject;
 begin

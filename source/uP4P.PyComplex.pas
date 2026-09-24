@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -84,9 +84,6 @@ type
   end;
 
 implementation
-
-uses
-  uP4P.MiscFunctions, uP4P.PyType;
 
 class function TPyComplex.FromDoubles(const real, imag: double): IPyObject;
 begin

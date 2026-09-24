@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
+  uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
   uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
 
 const
@@ -79,8 +79,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Engine, uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyBytes,
-  uP4P.PyRun;
+  uP4P.Engine, uP4P.PyTuple, uP4P.PyRun;
 
 function pyio_write(self, args: PPyObject): PPyObject; cdecl;
 var
