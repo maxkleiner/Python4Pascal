@@ -15339,6 +15339,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FStatus">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FUseDebugLib">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FUseDebugLib">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FUseEnvironment">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FUseEnvironment">
 </object>
@@ -15851,6 +15855,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#Status">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="UseDebugLib">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#UseDebugLib">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="UseEnvironment">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#UseEnvironment">
 </object>
@@ -15881,6 +15889,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#AfterConstruction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CreateModuleAndExecute">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#CreateModuleAndExecute-TIOPyModule-boolean-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="doOnExecutePython">
@@ -15921,10 +15933,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ExecuteSubinterpreterSharedGILWithGuard">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGILWithGuard">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="ExecuteSubinterpreterWithGuard">
-<param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterWithGuard">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FErrorMsg">

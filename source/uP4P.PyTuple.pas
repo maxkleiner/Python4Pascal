@@ -340,7 +340,16 @@ var
   year, month, day, hour, minute, second, weekday, yearday : integer;
   DST : TPyDaylightSavingTime;
 begin
-  Result := False;
+  Result  := False;
+  year    := 0;
+  month   := 0;
+  day     := 0;
+  hour    := 0;
+  minute  := 0;
+  second  := 0;
+  weekday := 0;
+  yearday := 0;
+  DST     := dstUnknown;
 
   if AsDateTime(aPyObject, year, month, day, hour, minute, second, weekday, yearday, DST) then
     begin
@@ -445,7 +454,8 @@ var
   TempArray : PPyObjectArray;
   TempLen, i : integer;
 begin
-  TempLen := length(array_);
+  TempLen   := length(array_);
+  TempArray := nil;
 
   if (TempLen > 0) then
     begin

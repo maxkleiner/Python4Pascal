@@ -1386,7 +1386,9 @@ begin
      assigned(aItems) and
      (aItems.Count > 0) then
     begin
-      TempName := StringToPyUTF8(aName);
+      TempName     := StringToPyUTF8(aName);
+      TempItems    := nil;
+      TempItemsPtr := nil;
 
       SetLength(TempItems,    aItems.Count);
       SetLength(TempItemsPtr, aItems.Count);
@@ -1416,8 +1418,10 @@ begin
      assigned(aItems) and
      (length(aItems) > 0) then
     begin
-      TempLen  := length(aItems);
-      TempName := StringToPyUTF8(aName);
+      TempLen      := length(aItems);
+      TempName     := StringToPyUTF8(aName);
+      TempItems    := nil;
+      TempItemsPtr := nil;
 
       SetLength(TempItems,    TempLen);
       SetLength(TempItemsPtr, TempLen);
@@ -1461,6 +1465,7 @@ end;
 
 function TPyInitConfig.Get_argv: TStringDynArray;
 begin
+  Result := nil;
   GetStrList(PYINITCONFIGOPTION_ARGV, Result);
 end;
 
@@ -1468,6 +1473,8 @@ function TPyInitConfig.Get_base_exec_prefix: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_BASE_EXEC_PREFIX, TempResult) then
     Result := TempResult
    else
@@ -1478,6 +1485,8 @@ function TPyInitConfig.Get_base_executable: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_BASE_EXECUTABLE, TempResult) then
     Result := TempResult
    else
@@ -1488,6 +1497,8 @@ function TPyInitConfig.Get_base_prefix: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_BASE_PREFIX, TempResult) then
     Result := TempResult
    else
@@ -1498,14 +1509,17 @@ function TPyInitConfig.Get_buffered_stdio: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_BUFFERED_STDIO, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_BUFFERED_STDIO, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_bytes_warning: int64;
 var
   TempResult : int64;
-begin
+begin                
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_BYTES_WARNING, TempResult) then
     Result := TempResult
    else
@@ -1516,6 +1530,8 @@ function TPyInitConfig.Get_check_hash_pycs_mode: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_CHECK_HASH_PYCS_MODE, TempResult) then
     Result := TempResult
    else
@@ -1525,15 +1541,18 @@ end;
 function TPyInitConfig.Get_code_debug_ranges: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_CODE_DEBUG_RANGES, TempResult) and
-            (TempResult <> 0);
+begin                          
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_CODE_DEBUG_RANGES, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_coerce_c_locale: integer;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_COERCE_C_LOCALE, TempResult) then
     Result := TempResult
    else
@@ -1544,30 +1563,35 @@ function TPyInitConfig.Get_coerce_c_locale_warn: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_COERCE_C_LOCALE_WARN, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_COERCE_C_LOCALE_WARN, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_configure_c_stdio: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_CONFIGURE_C_STDIO, TempResult) and
-            (TempResult <> 0);
+begin              
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_CONFIGURE_C_STDIO, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_configure_locale: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_CONFIGURE_LOCALE, TempResult) and
-            (TempResult <> 0);
+begin               
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_CONFIGURE_LOCALE, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_cpu_count: int64;
 var
   TempResult : int64;
-begin
+begin           
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_CPU_COUNT, TempResult) then
     Result := TempResult
    else
@@ -1577,23 +1601,27 @@ end;
 function TPyInitConfig.Get_dev_mode: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_DEV_MODE, TempResult) and
-            (TempResult <> 0);
+begin             
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_DEV_MODE, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_dump_refs: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_DUMP_REFS, TempResult) and
-            (TempResult <> 0);
+begin               
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_DUMP_REFS, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_dump_refs_file: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_DUMP_REFS_FILE, TempResult) then
     Result := TempResult
    else
@@ -1603,7 +1631,9 @@ end;
 function TPyInitConfig.Get_exec_prefix: string;
 var
   TempResult : string;
-begin
+begin                 
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_EXEC_PREFIX, TempResult) then
     Result := TempResult
    else
@@ -1613,7 +1643,9 @@ end;
 function TPyInitConfig.Get_executable: string;
 var
   TempResult : string;
-begin
+begin                  
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_EXECUTABLE, TempResult) then
     Result := TempResult
    else
@@ -1623,15 +1655,18 @@ end;
 function TPyInitConfig.Get_faulthandler: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_FAULTHANDLER, TempResult) and
-            (TempResult <> 0);
+begin               
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_FAULTHANDLER, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_filesystem_encoding: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_FILESYSTEM_ENCODING, TempResult) then
     Result := TempResult
    else
@@ -1642,6 +1677,8 @@ function TPyInitConfig.Get_filesystem_errors: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_FILESYSTEM_ERRORS, TempResult) then
     Result := TempResult
    else
@@ -1652,6 +1689,8 @@ function TPyInitConfig.Get_hash_seed: int64;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_HASH_SEED, TempResult) then
     Result := TempResult
    else
@@ -1662,6 +1701,8 @@ function TPyInitConfig.Get_home: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_HOME, TempResult) then
     Result := TempResult
    else
@@ -1672,6 +1713,8 @@ function TPyInitConfig.Get_import_time: int64;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_IMPORT_TIME, TempResult) then
     Result := TempResult
    else
@@ -1681,23 +1724,27 @@ end;
 function TPyInitConfig.Get_inspect: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_INSPECT, TempResult) and
-            (TempResult <> 0);
+begin            
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_INSPECT, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_install_signal_handlers: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_INSTALL_SIGNAL_HANDLERS, TempResult) and
-            (TempResult <> 0);
+begin              
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_INSTALL_SIGNAL_HANDLERS, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_int_max_str_digits: int64;
 var
   TempResult : int64;
-begin
+begin                 
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_INT_MAX_STR_DIGITS, TempResult) then
     Result := TempResult
    else
@@ -1707,23 +1754,27 @@ end;
 function TPyInitConfig.Get_interactive: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_INTERACTIVE, TempResult) and
-            (TempResult <> 0);
+begin                   
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_INTERACTIVE, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_isolated: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_ISOLATED, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_ISOLATED, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_lazy_imports: PyImport_LazyImportsMode;
 var
   TempResult : int64;
-begin
+begin                   
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_LAZY_IMPORTS, TempResult) and (TempResult > 0) then
     Result := PyImport_LAZY_ALL
    else
@@ -1734,26 +1785,29 @@ end;
 function TPyInitConfig.Get_legacy_windows_fs_encoding: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING, TempResult) and
-            (TempResult <> 0);
+begin             
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_FS_ENCODING, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_legacy_windows_stdio: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO, TempResult) and
-            (TempResult <> 0);
+begin              
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_LEGACY_WINDOWS_STDIO, TempResult) and
+                (TempResult <> 0);
 end;
 {$ENDIF}
 
 function TPyInitConfig.Get_malloc_stats: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_MALLOC_STATS, TempResult) and
-            (TempResult <> 0);
+begin                        
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_MALLOC_STATS, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_module_search_paths: string;
@@ -1785,7 +1839,9 @@ end;
 function TPyInitConfig.Get_optimization_level: TPyOptimizationLevel;
 var
   TempResult : int64;
-begin
+begin                                    
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_OPTIMIZATION_LEVEL, TempResult) then
     Result := TPyOptimizationLevel(TempResult)
    else
@@ -1794,37 +1850,43 @@ end;
 
 function TPyInitConfig.Get_orig_argv: TStringDynArray;
 begin
+  Result := nil;
   GetStrList(PYINITCONFIGOPTION_ORIG_ARGV, Result);
 end;
 
 function TPyInitConfig.Get_parse_argv: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_PARSE_ARGV, TempResult) and
-            (TempResult <> 0);
+begin                       
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_PARSE_ARGV, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_parser_debug: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_PARSER_DEBUG, TempResult) and
-            (TempResult <> 0);
+begin                                 
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_PARSER_DEBUG, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_pathconfig_warnings: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_PATHCONFIG_WARNINGS, TempResult) and
-            (TempResult <> 0);
+begin                         
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_PATHCONFIG_WARNINGS, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_perf_profiling: int64;
 var
   TempResult : int64;
-begin
+begin           
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_PERF_PROFILING, TempResult) then
     Result := TempResult
    else
@@ -1835,6 +1897,8 @@ function TPyInitConfig.Get_platlibdir: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_PLATLIBDIR, TempResult) then
     Result := TempResult
    else
@@ -1844,7 +1908,9 @@ end;
 function TPyInitConfig.Get_prefix: string;
 var
   TempResult : string;
-begin
+begin            
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_PREFIX, TempResult) then
     Result := TempResult
    else
@@ -1854,7 +1920,9 @@ end;
 function TPyInitConfig.Get_program_name: string;
 var
   TempResult : string;
-begin
+begin           
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_PROGRAM_NAME, TempResult) then
     Result := TempResult
    else
@@ -1864,7 +1932,9 @@ end;
 function TPyInitConfig.Get_pycache_prefix: string;
 var
   TempResult : string;
-begin
+begin                   
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_PYCACHE_PREFIX, TempResult) then
     Result := TempResult
    else
@@ -1875,22 +1945,26 @@ function TPyInitConfig.Get_pymalloc_hugepages: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_PYMALLOC_HUGEPAGES, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_quiet: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_QUIET, TempResult) and
-            (TempResult <> 0);
+begin            
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_QUIET, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_run_command: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_RUN_COMMAND, TempResult) then
     Result := TempResult
    else
@@ -1900,7 +1974,9 @@ end;
 function TPyInitConfig.Get_run_filename: string;
 var
   TempResult : string;
-begin
+begin                          
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_RUN_FILENAME, TempResult) then
     Result := TempResult
    else
@@ -1910,7 +1986,9 @@ end;
 function TPyInitConfig.Get_run_module: string;
 var
   TempResult : string;
-begin
+begin                          
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_RUN_MODULE, TempResult) then
     Result := TempResult
    else
@@ -1920,7 +1998,9 @@ end;
 function TPyInitConfig.Get_run_presite: string;
 var
   TempResult : string;
-begin
+begin                          
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_RUN_PRESITE, TempResult) then
     Result := TempResult
    else
@@ -1930,39 +2010,45 @@ end;
 function TPyInitConfig.Get_safe_path: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_SAFE_PATH, TempResult) and
-            (TempResult <> 0);
+begin                          
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_SAFE_PATH, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_show_ref_count: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_SHOW_REF_COUNT, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_SHOW_REF_COUNT, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_site_import: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_SITE_IMPORT, TempResult) and
-            (TempResult <> 0);
+begin            
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_SITE_IMPORT, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_skip_source_first_line: boolean;
 var
   TempResult : int64;
-begin
-  Result := GetInt(PYINITCONFIGOPTION_SKIP_SOURCE_FIRST_LINE, TempResult) and
-            (TempResult <> 0);
+begin                       
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_SKIP_SOURCE_FIRST_LINE, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_stdio_encoding: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_STDIO_ENCODING, TempResult) then
     Result := TempResult
    else
@@ -1973,6 +2059,8 @@ function TPyInitConfig.Get_stdio_errors: string;
 var
   TempResult : string;
 begin
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_STDIO_ERRORS, TempResult) then
     Result := TempResult
    else
@@ -1982,7 +2070,9 @@ end;
 function TPyInitConfig.Get_stdlib_dir: string;
 var
   TempResult : string;
-begin
+begin          
+  TempResult := '';
+
   if GetStr(PYINITCONFIGOPTION_STDLIB_DIR, TempResult) then
     Result := TempResult
    else
@@ -1993,6 +2083,8 @@ function TPyInitConfig.Get_tracemalloc: int64;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_TRACEMALLOC, TempResult) then
     Result := TempResult
    else
@@ -2003,46 +2095,53 @@ function TPyInitConfig.Get_use_environment: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_USE_ENVIRONMENT, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_USE_ENVIRONMENT, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_use_frozen_modules: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_USE_FROZEN_MODULES, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_USE_FROZEN_MODULES, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_use_hash_seed: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_USE_HASH_SEED, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_USE_HASH_SEED, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_use_system_logger: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_USE_SYSTEM_LOGGER, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_USE_SYSTEM_LOGGER, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_user_site_directory: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_USER_SITE_DIRECTORY, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_USER_SITE_DIRECTORY, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_utf8_mode: integer;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_UTF8_MODE, TempResult) then
     Result := TempResult
    else
@@ -2053,6 +2152,8 @@ function TPyInitConfig.Get_verbose: TPyVerboseMode;
 var
   TempResult : int64;
 begin
+  TempResult := 0;
+
   if GetInt(PYINITCONFIGOPTION_VERBOSE, TempResult) then
     Result := TPyVerboseMode(TempResult)
    else
@@ -2063,12 +2164,14 @@ function TPyInitConfig.Get_warn_default_encoding: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_WARN_DEFAULT_ENCODING, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_WARN_DEFAULT_ENCODING, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_warnoptions: TStringDynArray;
 begin
+  Result := nil;
   GetStrList(PYINITCONFIGOPTION_WARNOPTIONS, Result);
 end;
 
@@ -2076,12 +2179,14 @@ function TPyInitConfig.Get_write_bytecode: boolean;
 var
   TempResult : int64;
 begin
-  Result := GetInt(PYINITCONFIGOPTION_WRITE_BYTECODE, TempResult) and
-            (TempResult <> 0);
+  TempResult := 0;
+  Result     := GetInt(PYINITCONFIGOPTION_WRITE_BYTECODE, TempResult) and
+                (TempResult <> 0);
 end;
 
 function TPyInitConfig.Get_xoptions: TStringDynArray;
-begin
+begin                        
+  Result := nil;
   GetStrList(PYINITCONFIGOPTION_XOPTIONS, Result);
 end;
 

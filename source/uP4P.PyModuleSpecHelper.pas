@@ -88,7 +88,8 @@ var
   TempImportLib, TempSpecFromLoaderFunc, TempName, TempArgs, TempNone : IPyObject;
   TempArray : IPyObjectArray;
 begin
-  Result := nil;
+  Result    := nil;
+  TempArray := nil;
 
   try
     TempImportLib := TPyImport.ImportModule('importlib.util');

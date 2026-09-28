@@ -99,7 +99,7 @@ type
       {$ENDIF}
 
       // Custom
-      function PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject): boolean;
+      function  PyObjectVarDataCreate(var Dest: TVarData; const aObject: IPyObject): boolean;
       procedure PyObjectVariantCreate(var Dest: Variant; const aObject: IPyObject);
   end;
 

@@ -345,6 +345,7 @@ var
   TempLen : integer;
 begin
   TempLen := WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS, PWideChar(aString), length(aString), nil, 0, nil, nil);
+  Result  := '';
 
   if (TempLen > 0) then
     begin
@@ -358,6 +359,7 @@ var
   TempLen : integer;
 begin
   TempLen := MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, @aString[1], -1, nil, 0);
+  Result  := '';
 
   if (TempLen > 0) then
     begin

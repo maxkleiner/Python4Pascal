@@ -52,6 +52,7 @@ type
       FUserSiteDirectory                 : boolean;
       FWriteBytecode                     : boolean;
       FDevMode                           : boolean;
+      FUseDebugLib                       : boolean;
       FHome                              : string;
       FExecutable                        : string;
       FProgramName                       : string;
@@ -392,6 +393,10 @@ type
       /// </remarks>
       property DevMode                           : boolean                                      read FDevMode                           write FDevMode;
       /// <summary>
+      /// <para>Use the debug library if available.</para>
+      /// </summary>
+      property UseDebugLib                       : boolean                                      read FUseDebugLib                       write FUseDebugLib;
+      /// <summary>
       /// <para>Set the default Python "home" directory, that is, the location
       /// of the standard Python libraries.</para>
       /// <para>Set by the PYTHONHOME environment variable.</para>
@@ -488,6 +493,7 @@ begin
   FPathConfigWarnings     := False;
   FWriteBytecode          := False;
   FDevMode                := False;
+  FUseDebugLib            := {$IFDEF DEBUG}True{$ELSE}False{$ENDIF};
   FHome                   := '';
   FExecutable             := '';
   FProgramName            := '';
@@ -673,8 +679,6 @@ end;
                            
 function TP4PLoader.GetOSPythonLibPath: string;
 {$IFDEF MSWINDOWS}
-const
-  CAN_USE_DEBUG_LIB = {$IFDEF DEBUG}True;{$ELSE}False;{$ENDIF}
 var
   TempFiles : TStringList;
   i : integer;
@@ -706,7 +710,7 @@ begin
 
               if (TempMaxSize < TempSize) then
                 begin
-                  if CAN_USE_DEBUG_LIB then
+                  if FUseDebugLib then
                     begin
                       TempMaxSize := TempSize;
                       TempLib     := TempFiles[i];
@@ -983,6 +987,7 @@ begin
   TempBuffer := nil;
   TempHandle := 0;
   TempLen    := 0;
+  TempInfo   := nil;
 
   try
     try
@@ -1229,7 +1234,8 @@ function TP4PLoader.CheckDLLbitness(const aFilename : string): boolean;
 var
   TempMachine : integer;
 begin
-  Result := False;
+  Result      := False;
+  TempMachine := 0;
 
   if GetDLLHeaderMachine(aFilename, TempMachine) then
     case TempMachine of
@@ -1322,6 +1328,7 @@ var
   TempParams : TStringDynArray;
 begin
   aConfig.parse_argv := False;
+  TempParams         := nil;
 
   SetLength(TempParams, succ(ParamCount));
 
@@ -1339,7 +1346,8 @@ var
   i          : integer;
   TempParams : TStringDynArray;
 begin
-  aConfig.parse_argv := False;
+  aConfig.parse_argv := False;  
+  TempParams         := nil;
 
   SetLength(TempParams, succ(ParamCount));
 

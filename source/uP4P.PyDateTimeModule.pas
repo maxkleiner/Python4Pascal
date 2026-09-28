@@ -353,6 +353,14 @@ class function TPyDateTimeModule.AsDateTime(const aPyObject: IPyObject; var aDat
 var
   year, month, day, hour, minute, second, microsecond : integer;
 begin
+  year        := 0;
+  month       := 0;
+  day         := 0;
+  hour        := 0;
+  minute      := 0;
+  second      := 0;
+  microsecond := 0;
+
   if AsDateTime(aPyObject, year, month, day, hour, minute, second, microsecond) then
     begin
       aDateTime := EncodeDate(year, month, day) + EncodeTime(hour, minute, second, microsecond div 1000);

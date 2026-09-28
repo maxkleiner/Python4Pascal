@@ -392,8 +392,10 @@ end;
 
 class function TPyBytes.AsStringAndSize(const ob: IPyObject; var buffer: string; var length: Py_ssize_t): boolean;
 var
-  TempBuffer: PAnsiChar;
+  TempBuffer : PAnsiChar;
 begin
+  TempBuffer := nil;
+
   if assigned(PyBytes_AsStringAndSize) and
      TPyObject.IsInitialized(ob) and
      (PyBytes_AsStringAndSize(ob.PyObject, TempBuffer, length) = 0) then

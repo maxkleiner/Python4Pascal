@@ -69,7 +69,7 @@ Count=1
 Item_0=..\source
 
 [Files]
-Count=142
+Count=141
 Item_0=..\source\uP4P.Constants.pas
 Item_1=..\source\uP4P.CustomPyModule.pas
 Item_2=..\source\uP4P.Engine.pas
@@ -200,18 +200,17 @@ Item_126=..\source\uP4P.PyTraceBack.pas
 Item_127=..\source\uP4P.PyTraceMalloc.pas
 Item_128=..\source\uP4P.PyTuple.pas
 Item_129=..\source\uP4P.PyType.pas
-Item_130=..\source\uP4P.PyTypeObject.pas
-Item_131=..\source\uP4P.PyUnicode.pas
-Item_132=..\source\uP4P.PyUnicodeDecodeError.pas
-Item_133=..\source\uP4P.PyUnicodeEncodeError.pas
-Item_134=..\source\uP4P.PyUnicodeTranslateError.pas
-Item_135=..\source\uP4P.PyUnicodeWriter.pas
-Item_136=..\source\uP4P.PyVectorcall.pas
-Item_137=..\source\uP4P.PyWeakref.pas
-Item_138=..\source\uP4P.PyWideStringList.pas
-Item_139=..\source\uP4P.PyWrapper.pas
-Item_140=..\source\uP4P.Thread.pas
-Item_141=..\source\uP4P.Types.pas
+Item_130=..\source\uP4P.PyUnicode.pas
+Item_131=..\source\uP4P.PyUnicodeDecodeError.pas
+Item_132=..\source\uP4P.PyUnicodeEncodeError.pas
+Item_133=..\source\uP4P.PyUnicodeTranslateError.pas
+Item_134=..\source\uP4P.PyUnicodeWriter.pas
+Item_135=..\source\uP4P.PyVectorcall.pas
+Item_136=..\source\uP4P.PyWeakref.pas
+Item_137=..\source\uP4P.PyWideStringList.pas
+Item_138=..\source\uP4P.PyWrapper.pas
+Item_139=..\source\uP4P.Thread.pas
+Item_140=..\source\uP4P.Types.pas
 
 [AdditionalFiles]
 Count=0

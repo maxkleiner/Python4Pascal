@@ -47,7 +47,18 @@ var
   tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst, tm_gmtoff: integer;
   tm_zone: string;
 begin
-  Result := False;
+  Result    := False;
+  tm_year   := 0;
+  tm_mon    := 0;
+  tm_mday   := 0;
+  tm_hour   := 0;
+  tm_min    := 0;
+  tm_sec    := 0;
+  tm_wday   := 0;
+  tm_yday   := 0;
+  tm_isdst  := 0;
+  tm_gmtoff := 0;
+  tm_zone   := '';
 
   if AsDateTime(aPyObject, tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst, tm_gmtoff, tm_zone) then
     begin

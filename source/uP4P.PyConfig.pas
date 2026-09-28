@@ -2028,7 +2028,8 @@ class function TPyConfig.GetBoolean(const name_: string; var value: boolean): bo
 var
   TempValue: integer;
 begin
-  Result := False;
+  Result    := False;
+  TempValue := 0;
 
   if GetInt(name_, TempValue) then
     begin
@@ -2099,7 +2100,7 @@ end;
 
 function TPyConfigBase.Get_argv: TStringDynArray;
 begin
-  SetLength(Result, 0);
+  Result := nil;
 end;
 
 function TPyConfigBase.Get_base_exec_prefix: string;
@@ -2273,7 +2274,7 @@ end;
 
 function TPyConfigBase.Get_orig_argv: TStringDynArray;
 begin
-  SetLength(Result, 0);
+  Result := nil;
 end;
 
 function TPyConfigBase.Get_parse_argv: boolean;
@@ -2433,7 +2434,7 @@ end;
 
 function TPyConfigBase.Get_warnoptions: TStringDynArray;
 begin
-  SetLength(Result, 0);
+  Result := nil;
 end;
 
 function TPyConfigBase.Get_write_bytecode: boolean;
@@ -2443,7 +2444,7 @@ end;
 
 function TPyConfigBase.Get_xoptions: TStringDynArray;
 begin
-  SetLength(Result, 0);
+  Result := nil;
 end;
 
 function TPyConfigBase.SetWCharT(var DstString: PWCharT; const SrcString: string): boolean;
@@ -2492,9 +2493,12 @@ var
 begin
   Result := False;
   if not(assigned(items)) then exit;
+                                   
+  TempItems    := nil;
+  TempItemsPtr := nil;
 
   if (items.count > 0) then
-    begin
+    begin                   
       SetLength(TempItems,    items.count);
       SetLength(TempItemsPtr, items.count);
 
@@ -2519,7 +2523,9 @@ begin
   Result := False;
   if not(assigned(items)) then exit;
 
-  TempLen := length(items);
+  TempLen      := length(items);
+  TempItems    := nil;
+  TempItemsPtr := nil;
 
   if (TempLen > 0) then
     begin
@@ -2573,6 +2579,9 @@ begin
   Result := False;
   if not(assigned(items)) then exit;
 
+  TempItems    := nil;
+  TempItemsPtr := nil;
+
   if (items.count > 0) then
     begin
       SetLength(TempItems,    items.count);
@@ -2599,7 +2608,9 @@ begin
   Result := False;
   if not(assigned(items)) then exit;
 
-  TempLen := length(items);
+  TempLen      := length(items);
+  TempItems    := nil;
+  TempItemsPtr := nil;
 
   if (TempLen > 0) then
     begin
@@ -2973,6 +2984,7 @@ end;
 
 function TPyConfig315.Get_argv: TStringDynArray;
 begin
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -3170,7 +3182,8 @@ begin
 end;
 
 function TPyConfig315.Get_orig_argv: TStringDynArray;
-begin
+begin                             
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -3330,7 +3343,8 @@ begin
 end;
 
 function TPyConfig315.Get_warnoptions: TStringDynArray;
-begin
+begin                           
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -3340,7 +3354,8 @@ begin
 end;
 
 function TPyConfig315.Get_xoptions: TStringDynArray;
-begin
+begin                          
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
@@ -3717,7 +3732,8 @@ begin
 end;
 
 function TPyConfig314.Get_argv: TStringDynArray;
-begin
+begin                           
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -3907,7 +3923,8 @@ begin
 end;
 
 function TPyConfig314.Get_orig_argv: TStringDynArray;
-begin
+begin                                 
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -4062,7 +4079,8 @@ begin
 end;
 
 function TPyConfig314.Get_warnoptions: TStringDynArray;
-begin
+begin                                       
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -4072,7 +4090,8 @@ begin
 end;
 
 function TPyConfig314.Get_xoptions: TStringDynArray;
-begin
+begin                                      
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
@@ -4436,7 +4455,8 @@ begin
 end;
 
 function TPyConfig313.Get_argv: TStringDynArray;
-begin
+begin                            
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -4614,7 +4634,8 @@ begin
 end;
 
 function TPyConfig313.Get_orig_argv: TStringDynArray;
-begin
+begin                           
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -4759,7 +4780,8 @@ begin
 end;
 
 function TPyConfig313.Get_warnoptions: TStringDynArray;
-begin
+begin                       
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -4769,7 +4791,8 @@ begin
 end;
 
 function TPyConfig313.Get_xoptions: TStringDynArray;
-begin
+begin                           
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
@@ -5111,7 +5134,8 @@ begin
 end;
 
 function TPyConfig312.Get_argv: TStringDynArray;
-begin
+begin                                    
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -5284,7 +5308,8 @@ begin
 end;
 
 function TPyConfig312.Get_orig_argv: TStringDynArray;
-begin
+begin                           
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -5424,7 +5449,8 @@ begin
 end;
 
 function TPyConfig312.Get_warnoptions: TStringDynArray;
-begin
+begin                              
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -5434,7 +5460,8 @@ begin
 end;
 
 function TPyConfig312.Get_xoptions: TStringDynArray;
-begin
+begin                          
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
@@ -5766,7 +5793,8 @@ begin
 end;
 
 function TPyConfig311.Get_argv: TStringDynArray;
-begin
+begin                    
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -5934,7 +5962,8 @@ begin
 end;
 
 function TPyConfig311.Get_orig_argv: TStringDynArray;
-begin
+begin                             
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -6069,7 +6098,8 @@ begin
 end;
 
 function TPyConfig311.Get_warnoptions: TStringDynArray;
-begin
+begin                               
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -6079,7 +6109,8 @@ begin
 end;
 
 function TPyConfig311.Get_xoptions: TStringDynArray;
-begin
+begin                                     
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 
@@ -6401,7 +6432,8 @@ begin
 end;
 
 function TPyConfig310.Get_argv: TStringDynArray;
-begin
+begin                               
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.argv, Result);
 end;
 
@@ -6559,7 +6591,8 @@ begin
 end;
 
 function TPyConfig310.Get_orig_argv: TStringDynArray;
-begin
+begin                             
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.orig_argv, Result);
 end;
 
@@ -6679,7 +6712,8 @@ begin
 end;
 
 function TPyConfig310.Get_warnoptions: TStringDynArray;
-begin
+begin                         
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.warnoptions, Result);
 end;
 
@@ -6689,7 +6723,8 @@ begin
 end;
 
 function TPyConfig310.Get_xoptions: TStringDynArray;
-begin
+begin                    
+  Result := nil;
   PyWideStringListToStringDynArray(FConfig.xoptions, Result);
 end;
 

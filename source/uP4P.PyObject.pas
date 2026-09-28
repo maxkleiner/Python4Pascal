@@ -1409,7 +1409,8 @@ var
   TempArgsLen, i : integer;
   TempKwnames : PPyObject;
 begin
-  Result := nil;
+  Result   := nil;
+  TempArgs := nil;
 
   if Initialized and
      assigned(PyObject_Vectorcall) then
@@ -1443,7 +1444,8 @@ var
   TempArgsLen, i : integer;
   TempKwnames : PPyObject;
 begin
-  Result := nil;
+  Result   := nil;
+  TempArgs := nil;
 
   if assigned(PyObject_VectorcallMethod) and
      TPyObject.IsInitialized(name) then
@@ -2220,7 +2222,8 @@ var
   TempArgsLen, i : integer;
   TempKwargsPtr : PPyObject;
 begin
-  Result := nil;
+  Result   := nil;
+  TempArgs := nil;
 
   if Initialized and
      assigned(PyObject_VectorcallDict) then
@@ -2532,6 +2535,8 @@ var
   TempStr : IPyObject;
   TempSize : Py_ssize_t;
 begin
+  TempSize := 0;
+
   if TPyUnicode.Check(self) then
     Result := WideString(TPyUnicode.AsWideCharString(self, TempSize))
    else
@@ -2592,6 +2597,8 @@ function TPyObject.GetAsDateTime: TDateTime;
 var
   TempDateTime : TDateTime;
 begin
+  TempDateTime := 0;
+
   if TPyTimeStruct.AsDateTime(self, TempDateTime) or
      TPyDateTimeModule.AsDateTime(self, TempDateTime) then
     Result := TempDateTime
@@ -2601,6 +2608,7 @@ end;
 
 function TPyObject.GetAsVariant: Variant;
 begin
+  Result := null;
   PyObjectVariantType.PyObjectVariantCreate(Result, self);
 end;
 
@@ -2608,6 +2616,8 @@ function TPyObject.CastValueAsVariant: Variant;
 var
   TempDateTime : TDateTime;
 begin
+  TempDateTime := 0;
+
   if IsFloat then
     Result := TPyFloat.AsDouble(self)
    else

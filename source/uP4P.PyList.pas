@@ -449,6 +449,7 @@ begin
   if (aVarType = varArray) then
     begin
       TempDimCount := VarArrayDimCount(aVariant);
+      TempIdxArr   := nil;
 
       if (TempDimCount > 0) then
         begin
