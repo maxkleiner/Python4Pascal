@@ -96,7 +96,7 @@ end;
 procedure TMainForm.Run2BtnClick(Sender: TObject);
 var
   TempMainModObj : IPyObject;
-  TempClass, TempMainModVar, TempTuple, TempList, TempDate : Variant;
+  TempClass, TempMainModVar, TempTuple, TempList, TempDate, TempInt, TempFloat, TempBool, TempString : Variant;
 begin
   if TPyRun.SimpleString(CodeMem.Text) then
     begin
@@ -106,10 +106,14 @@ begin
       LogMem.Lines.Add('MyClass.x = ' + inttostr(TempClass.x));
       TempClass.x := TempClass.x * TempClass.x;
       LogMem.Lines.Add('MyClass.x * TempClass.x = ' + inttostr(TempClass.x));
-      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempClass.boolean_test(), True));
-      LogMem.Lines.Add('MyClass.integer_test() = ' + inttostr(TempClass.integer_test()));
-      LogMem.Lines.Add('MyClass.float_test() = ' + floattostr(TempClass.float_test()));
-      LogMem.Lines.Add('MyClass.string_test() = ' + TempClass.string_test());
+      TempBool := TempClass.boolean_test();
+      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempBool, True));
+      TempInt := TempClass.integer_test();
+      LogMem.Lines.Add('MyClass.integer_test() = ' + inttostr(TempInt));
+      TempFloat := TempClass.float_test();
+      LogMem.Lines.Add('MyClass.float_test() = ' + floattostr(TempFloat));
+      TempString := TempClass.string_test();
+      LogMem.Lines.Add('MyClass.string_test() = ' + TempString);
       TempTuple := TempClass.tuple_test();
       LogMem.Lines.Add('MyClass.tuple_test() = ' + TempTuple);
       TempList :=  TempClass.list_test();
