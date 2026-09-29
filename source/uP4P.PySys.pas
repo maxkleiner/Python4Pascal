@@ -281,7 +281,7 @@ begin
   if assigned(PySys_WriteStdout) then
     begin
       TempMsg := StringToPyUTF8(format_);
-      //TODO: Find a better way to call PySys_WriteStdout with a variable number of arguments.
+
       case length(args) of
         05 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3], args[4]);
         04 : PySys_WriteStdout(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3]);
@@ -311,7 +311,7 @@ begin
   if assigned(PySys_WriteStderr) then
     begin
       TempMsg := StringToPyUTF8(format_);
-      //TODO: Find a better way to call PySys_WriteStderr with a variable number of arguments.
+
       case length(args) of
         05 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3], args[4]);
         04 : PySys_WriteStderr(PAnsiChar(TempMsg), args[0], args[1], args[2], args[3]);

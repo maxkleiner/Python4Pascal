@@ -13,6 +13,13 @@ unit uP4P.Loader;
 
 interface
 
+  //TODO: Create a demo of a pascal class wrapping a python class without Variants. It should be able to get property values, call procedures with arguments and get function results.
+  //TODO: Create a demo using some well known python package.
+  //TODO: Create a demo using custom python types.
+  //TODO: Enable FastMM4 in all demos to check if there are memory leaks.
+  //TODO: See if it's possible to debug and fix the FPC issue #39815 -> https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
+  //TODO: Find a better way to call python functions with a variable number of arguments. TPyTuple.Pack, TPySys.WriteStderr, for example.
+
 uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}

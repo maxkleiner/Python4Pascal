@@ -193,8 +193,6 @@ begin
   Result := nil;
   if not(assigned(PyTuple_Pack)) then exit;
 
-  //TODO: Find a way to call PyTuple_Pack with a variable number of arguments using an open array with an arbitrary length.
-
   n := length(objects);
   case n of
     10 : TempObject := PyTuple_Pack(n, objects[0].PyObject, objects[1].PyObject, objects[2].PyObject, objects[3].PyObject, objects[4].PyObject, objects[5].PyObject, objects[6].PyObject, objects[7].PyObject, objects[8].PyObject, objects[9].PyObject);
