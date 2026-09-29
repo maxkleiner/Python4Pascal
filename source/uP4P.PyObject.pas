@@ -2368,7 +2368,7 @@ begin
     vtVariant  : Result := FromVariant(aVarRec.VVariant^);
     vtPointer  : Result := Wrap(aVarRec.VPointer);
     vtInt64    : Result := TPyLong.FromLongLong(aVarRec.VInt64^);
-    vtWideChar : Result := TPyUnicode.FromString(UnicodeString(aVarRec.VWideChar));
+    vtWideChar : Result := TPyUnicode.FromString(WideStringToPyUTF8(aVarRec.VWideChar));
 
     vtString :
       if assigned(aVarRec.VString) then
@@ -2384,20 +2384,20 @@ begin
 
     vtPWideChar :
       if Assigned(aVarRec.VPWideChar) then
-        Result := TPyUnicode.FromString(UnicodeString(aVarRec.VPWideChar))
+        Result := TPyUnicode.FromString(WideStringToPyUTF8(WideString(aVarRec.VPWideChar)))
        else
         Result := TPyUnicode.FromString('');
 
     vtWideString :
       if Assigned(aVarRec.VWideString) then
-        Result := TPyUnicode.FromString(WideString(aVarRec.VWideString))
+        Result := TPyUnicode.FromString(WideStringToPyUTF8(WideString(aVarRec.VWideString)))
        else
         Result := TPyUnicode.FromString('');
 
     {$IFDEF SUPPORTS_VARUSTRING}
     vtUnicodeString :
       if Assigned(aVarRec.VUnicodeString) then
-        Result := TPyUnicode.FromString(UnicodeString(aVarRec.VUnicodeString))
+        Result := TPyUnicode.FromString(UnicodeStringToPyUTF8(UnicodeString(aVarRec.VUnicodeString)))
        else
         Result := TPyUnicode.FromString('');
     {$ENDIF}
@@ -2608,7 +2608,6 @@ end;
 
 function TPyObject.GetAsVariant: Variant;
 begin
-  Result := null;
   PyObjectVariantType.PyObjectVariantCreate(Result, self);
 end;
 

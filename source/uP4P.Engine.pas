@@ -190,6 +190,11 @@ procedure DestroyGlobalP4PEngine;
 implementation
 
 uses
+  {$IFDEF DELPHI16_UP}
+    System.Types,
+  {$ELSE}
+    {$IFNDEF FPC}Types,{$ENDIF}
+  {$ENDIF}
   uP4P.MiscFunctions, uP4P.PyImport, uP4P.PyDict, uP4P.PyErr, uP4P.PyUnicode,
   uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState;
 

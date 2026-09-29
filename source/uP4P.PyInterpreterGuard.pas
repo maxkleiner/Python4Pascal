@@ -89,7 +89,7 @@ type
       /// PyInterpreterGuard_Close(guard);
       /// </code>
       /// <para>On success, this function returns a guard for the current
-      /// interpreter; on failure, it returns NULL with an exception set.</para>
+      /// interpreter; on failure, it returns nil with an exception set.</para>
       /// <para>This function will fail only if the current interpreter has
       /// already started finalizing, or if the process is out of memory.</para>
       /// <para>The guard pointer returned by this function must be eventually

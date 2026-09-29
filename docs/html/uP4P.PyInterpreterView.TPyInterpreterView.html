@@ -214,7 +214,7 @@ body { margin: 0.5em; }
 
 <p>This function is generally meant to be used alongside TPyInterpreterGuard.FromView() or TPyThreadState.EnsureFromView().
 
-<p>On success, this function returns a view to the current interpreter; on failure, it returns NULL with an exception set.
+<p>On success, this function returns a view to the current interpreter; on failure, it returns nil with an exception set.
 
 <p>The caller must hold an attached thread state.
 
@@ -234,7 +234,7 @@ body { margin: 0.5em; }
 
 <p>Create a view for the main interpreter (the first and default interpreter in a Python process; see TPyInterpreterState.Main()).
 
-<p>On success, this function returns a view to the main interpreter; on failure, it returns NULL without an exception set. Failure indicates that the process is out of memory.
+<p>On success, this function returns a view to the main interpreter; on failure, it returns nil without an exception set. Failure indicates that the process is out of memory.
 
 <p>Use this function when an interpreter pointer or view cannot be supplied by the caller, such as when a native threading library does not provide a void *arg parameter that could carry a PyInterpreterGuard or PyInterpreterView. In code that supports subinterpreters, prefer TPyInterpreterView.FromCurrent() so the guard tracks the calling interpreter rather than the main one.
 

@@ -40,7 +40,7 @@ type
       /// <para>Get all configuration option names as a frozenset.</para>
       /// <code>
       /// - Return a new reference on success.
-      /// - Set an exception and return NULL on error.
+      /// - Set an exception and return nil on error.
       /// </code>
       /// <para>The caller must have an attached thread state. The function
       /// cannot be called before Python initialization nor after Python
@@ -67,7 +67,7 @@ type
       /// <para>Get the current runtime value of a configuration option as a
       /// Python object.</para>
       /// <para>Return a new reference on success.</para>
-      /// <para>Set an exception and return NULL on error.</para>
+      /// <para>Set an exception and return nil on error.</para>
       /// <para>The object type depends on the configuration option. It can
       /// be:</para>
       /// <code>

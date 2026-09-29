@@ -65,7 +65,7 @@ type
       /// TPyInterpreterGuard.FromView() or
       /// TPyThreadState.EnsureFromView().</para>
       /// <para>On success, this function returns a view to the current
-      /// interpreter; on failure, it returns NULL with an exception set.</para>
+      /// interpreter; on failure, it returns nil with an exception set.</para>
       /// <para>The caller must hold an attached thread state.</para>
       /// <para>Added in version 3.15.</para>
       /// </summary>
@@ -75,7 +75,7 @@ type
       /// interpreter in a Python process;
       /// see TPyInterpreterState.Main()).</para>
       /// <para>On success, this function returns a view to the main
-      /// interpreter; on failure, it returns NULL without an exception set.
+      /// interpreter; on failure, it returns nil without an exception set.
       /// Failure indicates that the process is out of memory.</para>
       /// <para>Use this function when an interpreter pointer or view cannot be
       /// supplied by the caller, such as when a native threading library does

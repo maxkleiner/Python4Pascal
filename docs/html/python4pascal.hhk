@@ -28607,6 +28607,10 @@
 <param name="Local" value="uP4P.MiscFunctions.html#UnicodeStringToAnsiString-UnicodeString-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="UnicodeStringToPyUTF8">
+<param name="Local" value="uP4P.MiscFunctions.html#UnicodeStringToPyUTF8-UnicodeString-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="vectorcallfunc">
 <param name="Local" value="uP4P.Types.html#vectorcallfunc">
 </object>
@@ -28629,6 +28633,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="WCharTString">
 <param name="Local" value="uP4P.Types.html#WCharTString">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="WideStringToPyUTF8">
+<param name="Local" value="uP4P.MiscFunctions.html#WideStringToPyUTF8-WideString-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="wrapperbase">

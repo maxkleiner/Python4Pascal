@@ -94,7 +94,7 @@ type
       class function ExecCodeModuleWithPathnames(const name_: string; const co: IPyObject; const pathname, cpathname: string): IPyObject;
       /// <summary>
       /// <para>Like TPyImport.ExecCodeModuleEx(), but the path to any compiled
-      /// file via cpathname is used appropriately when non-NULL. Of the three
+      /// file via cpathname is used appropriately when non-nil. Of the three
       /// functions, this is the preferred one to use.</para>
       /// <para>Added in version 3.3.</para>
       /// <para>Changed in version 3.12: Setting __cached__ is deprecated.

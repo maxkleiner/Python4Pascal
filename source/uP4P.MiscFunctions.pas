@@ -57,7 +57,15 @@ function  CharInSet(const aChar: char; const aCharSet: TSysCharSet) : boolean;
 /// <summary>
 /// Convert a UTF8 Python string to a wide string.
 /// </summary>
-function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;
+function PyUTF8ToWideString(aString: PAnsiChar; aFreeMem : boolean = False): WideString;     
+/// <summary>
+/// Convert a wide string to a UTF8 Python string.
+/// </summary>
+function WideStringToPyUTF8(const aWideString: WideString): AnsiString;
+/// <summary>
+/// Convert a unicode string to a UTF8 Python string.
+/// </summary>
+function UnicodeStringToPyUTF8(const aUnicodeString: UnicodeString): AnsiString;
 /// <summary>
 /// Convert a UTF8 Python string to a regular string.
 /// </summary>
@@ -308,6 +316,16 @@ begin
     Result := '';
 end;
 
+function WideStringToPyUTF8(const aWideString: WideString): AnsiString;
+begin
+  Result := UTF8Encode(aWideString) + #0;
+end;
+
+function UnicodeStringToPyUTF8(const aUnicodeString: UnicodeString): AnsiString;
+begin
+  Result := UTF8Encode(aUnicodeString) + #0;
+end;
+
 function PyUTF8ToString(aString: PAnsiChar; aFreeMem : boolean): string;
 begin
   if assigned(aString) then
@@ -391,7 +409,10 @@ begin
   try
     try
       if FileExists(aDLLFile) then
-        begin
+        begin                                    
+          FillChar(TempHeader, SizeOf(TImageDosHeader), 0);
+          FillChar(TempImageNtHeaders, SizeOf(TImageNtHeaders), 0);
+
           TempStream := TFileStream.Create(aDLLFile, fmOpenRead or fmShareDenyWrite);
           TempStream.seek(0, soFromBeginning);
           TempStream.ReadBuffer(TempHeader, SizeOf(TempHeader));

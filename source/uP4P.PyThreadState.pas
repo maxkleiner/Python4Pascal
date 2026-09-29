@@ -58,7 +58,7 @@ type
       /// overwritten.</para>
       /// <para>The id argument is the thread id of the target thread, as
       /// returned by TPyThread.get_thread_ident(). exc is the class of the
-      /// exception to be raised, or NULL to clear the pending exception
+      /// exception to be raised, or nil to clear the pending exception
       /// (if any).</para>
       /// <para>Return the number of affected thread states. This is normally 1
       /// if id is found, even when no change was made (the given exc was
@@ -181,7 +181,7 @@ type
       /// calls to this function are permitted).</para>
       /// <para>The function's effect (if any) will be reversed by the matching
       /// call to TPyThreadState.Release().</para>
-      /// <para>On error, this function returns NULL without an exception set.
+      /// <para>On error, this function returns nil without an exception set.
       /// Do not call TPyThreadState.Release() in this case.</para>
       /// <para>On success, this function returns a pointer value that must be
       /// passed to the matching call to TPyThreadState.Release().</para>
