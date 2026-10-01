@@ -1,0 +1,120 @@
+object MainForm: TMainForm
+  Left = 0
+  Height = 715
+  Top = 0
+  Width = 768
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'MainForm'
+  ClientHeight = 715
+  ClientWidth = 768
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 376
+    Width = 768
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object CodeMem: TMemo
+    Left = 0
+    Height = 342
+    Top = 34
+    Width = 768
+    Align = alClient
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Consolas'
+    Lines.Strings = (
+      'import datetime'
+      ''
+      'class MyClass:'
+      '    x = 5'
+      '    def boolean_test(self):'
+      '        return True'
+      '    def integer_test(self):'
+      '        return 9'
+      '    def float_test(self):'
+      '        return 3.7'
+      '    def string_test(self):'
+      '        return "test result"'
+      '    def tuple_test(self):'
+      '        return (1, 2, 3)'
+      '    def list_test(self):'
+      '        return [1, 2, 3, 4, 5]'
+      '    def datetime_test(self):'
+      '        return datetime.datetime.now()'
+      '    def square_test(self, number):'
+      '        return number**2'
+      '    def uppercase_test(self, mystring):'
+      '        return mystring.upper()'
+    )
+    ParentFont = False
+    ScrollBars = ssBoth
+    TabOrder = 0
+  end
+  object LogMem: TMemo
+    Left = 0
+    Height = 336
+    Top = 379
+    Width = 768
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssBoth
+    TabOrder = 1
+  end
+  object ButtonPnl: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 768
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 34
+    ClientWidth = 768
+    Enabled = False
+    ParentBackground = False
+    TabOrder = 2
+    object RunBtn: TButton
+      Left = 451
+      Height = 24
+      Top = 5
+      Width = 100
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Caption = 'Run code'
+      TabOrder = 0
+      OnClick = RunBtnClick
+    end
+    object WrapClassBtn: TButton
+      Left = 557
+      Height = 24
+      Top = 5
+      Width = 100
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Caption = 'Wrap MyClass'
+      TabOrder = 1
+      OnClick = WrapClassBtnClick
+    end
+    object TestMyClassBtn: TButton
+      Left = 663
+      Height = 24
+      Top = 5
+      Width = 100
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Caption = 'Test MyClass'
+      TabOrder = 2
+      OnClick = TestMyClassBtnClick
+    end
+  end
+end

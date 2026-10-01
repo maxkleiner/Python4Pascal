@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes,
   {$ENDIF}
-  uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -273,7 +273,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyThreadState, uP4P.PyImport, uP4P.PyModule, uP4P.Py;
+  uP4P.MiscFunctions, uP4P.PyThreadState, uP4P.PyModule, uP4P.Py, uP4P.Engine;
 
 class function TPyEval.EvalCode(const co, globals, locals: IPyObject): IPyObject;
 var
@@ -534,8 +534,10 @@ class function TPyEval.EvalString(const code: string): IPyObject;
 var
   TempBytecode, TempGlobals, TempLocals, TempMainModule : IPyObject;
 begin
-  Result         := nil;
-  TempMainModule := TPyImport.AddModule(MAIN_MODULE_NAME);
+  Result := nil;
+  if not(assigned(GlobalP4PEngine)) then exit;
+
+  TempMainModule := GlobalP4PEngine.MainModule;
 
   if TPyObject.IsInitialized(TempMainModule) then
     try

@@ -2531,7 +2531,7 @@ end;
 
 function TPyObject.GetAsWideString: WideString;
 var
-  TempStr : IPyObject;
+  TempStr  : IPyObject;
   TempSize : Py_ssize_t;
 begin
   TempSize := 0;

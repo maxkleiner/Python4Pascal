@@ -45,6 +45,7 @@ type
       function  GetIsMainThread: boolean;
       function  GetSavedThreadState: boolean;
       function  GetInterpreterState: IPyInterpreterState;
+      function  GetMainModule: IPyObject;
 
       procedure SetSavedThreadState(aValue: boolean);
 
@@ -143,6 +144,10 @@ type
       /// </summary>
       property InterpreterState          : IPyInterpreterState      read GetInterpreterState;
       /// <summary>
+      /// <para>The main module.</para>
+      /// </summary>
+      property MainModule                : IPyObject                read GetMainModule;
+      /// <summary>
       /// <para>Return True if this property runs in the same thread that
       /// created the TP4PEngine instance.</para>
       /// </summary>
@@ -196,7 +201,7 @@ uses
     {$IFNDEF FPC}Types,{$ENDIF}
   {$ENDIF}
   uP4P.MiscFunctions, uP4P.PyImport, uP4P.PyDict, uP4P.PyErr, uP4P.PyUnicode,
-  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState;
+  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState, uP4P.Constants;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -346,6 +351,19 @@ begin
       Result := FInterpreterState;
     finally
       Unlock;
+    end;
+end;
+
+function TP4PEngine.GetMainModule: IPyObject;
+begin
+  Result := nil;
+
+  if Initialized then
+    begin
+      Result := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+
+      if not(assigned(Result)) then
+        Result := TPyImport.AddModule(MAIN_MODULE_NAME);
     end;
 end;
 

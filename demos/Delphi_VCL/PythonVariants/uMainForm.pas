@@ -27,10 +27,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Run2BtnClick(Sender: TObject);
   private
-    { Private declarations }
     procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -102,10 +102,7 @@ var
 begin
   if TPyRun.SimpleString(CodeMem.Text) then
     begin
-      TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
-
-      if not(assigned(TempMainModObj)) then
-        TempMainModObj := TPyImport.AddModule(MAIN_MODULE_NAME);
+      TempMainModObj := GlobalP4PEngine.MainModule;
 
       if not(assigned(TempMainModObj)) then exit;
 
