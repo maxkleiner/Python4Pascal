@@ -795,8 +795,7 @@ type
       /// </summary>
       function  LengthHint(defaultvalue: Py_ssize_t): Py_ssize_t;
       /// <summary>
-      /// <para>Call a callable Python object callable without any
-      /// arguments.</para>
+      /// <para>Call this Python object without any arguments.</para>
       /// <para>It is the most efficient way to call a callable Python object
       /// without any argument.</para>
       /// <para>Return the result of the call on success, or raise an exception
@@ -804,7 +803,7 @@ type
       /// </summary>
       function  CallNoArgs: IPyObject;
       /// <summary>
-      /// <para>Call a callable Python object callable, with arguments given by
+      /// <para>Call this Python object, with arguments given by
       /// the tuple args, and named arguments given by the dictionary
       /// kwargs.</para>
       /// <para>args must not be nil; use an empty tuple if no arguments are
@@ -816,7 +815,7 @@ type
       /// </summary>
       function  Call(const args, kwargs: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Call a callable Python object callable, with arguments given by
+      /// <para>Call this object, with arguments given by
       /// the tuple args. If no arguments are needed, then args can be
       /// nil.</para>
       /// <para>Return the result of the call on success, or raise an exception
@@ -826,7 +825,7 @@ type
       /// </summary>
       function  CallObject(const args: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Call a callable Python object callable. The arguments are the
+      /// <para>Call this object. The arguments are the
       /// same as for vectorcallfunc. If callable supports vectorcall, this
       /// directly calls the vectorcall function stored in callable.</para>
       /// <para>Return the result of the call on success, or raise an exception
@@ -834,7 +833,7 @@ type
       /// </summary>
       function  Vectorcall(const args: IPyObjectArray; const kwnames: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Call callable with positional arguments passed exactly as in
+      /// <para>Call this object with positional arguments passed exactly as in
       /// the vectorcall protocol, but with keyword arguments passed as a
       /// dictionary kwdict. The args array contains only the positional
       /// arguments.</para>
@@ -846,7 +845,7 @@ type
       /// </summary>
       function  VectorcallDict(const args: IPyObjectArray; const kwargs: IPyObject): IPyObject;
       /// <summary>
-      /// <para>Call a callable Python object callable with exactly 1
+      /// <para>Call this object callable with exactly 1
       /// positional argument arg and no keyword arguments.</para>
       /// <para>Return the result of the call on success, or raise an
       /// exception and return nil on failure.</para>
@@ -1708,8 +1707,8 @@ begin
 
   if GetOptionalAttr2(attr_name, TempPointer) then
     begin
-      Result  := True;
       result_ := Wrap(TempPointer);
+      Result  := True;
     end;
 end;
 

@@ -76,24 +76,34 @@ end;
 procedure TMainForm.Run2BtnClick(Sender: TObject);
 var
   TempMainModObj : IPyObject;
-  TempClass, TempMainModVar, TempTuple, TempList, TempDate : Variant;
+  TempClass, TempMainModVar, TempTuple, TempList, TempDate, TempInt, TempFloat, TempBool, TempString : Variant;
 begin
   if TPyRun.SimpleString(CodeMem.Text) then
     begin
-      TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
-      TempMainModVar := TempMainModObj.AsVariant;
-      TempClass      := TempMainModVar.MyClass();
       // TODO: Crash in Lazarus. Explicit and Implicit conversion of Custom Variants to simple types fails.
       // See demo 25 in P4D. See FPC tickets #39815 and #20849 :
       // https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
       // https://gitlab.com/freepascal.org/fpc/source/-/work_items/20849
+      // https://github.com/lmbelo/python4delphi/issues/498
+      // https://github.com/lmbelo/python4delphi/wiki/SupportedPlatforms
+      // https://gitlab.com/freepascal.org/fpc/source/-/work_items/41235
+
+      TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+      if not(assigned(TempMainModObj)) then exit;
+
+      TempMainModVar := TempMainModObj.AsVariant;
+      TempClass      := TempMainModVar.MyClass();
       LogMem.Lines.Add('MyClass.x = ' + inttostr(TempClass.x));
       TempClass.x := TempClass.x * TempClass.x;
       LogMem.Lines.Add('MyClass.x * TempClass.x = ' + inttostr(TempClass.x));
-      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempClass.boolean_test(), True));
-      LogMem.Lines.Add('MyClass.integer_test() = ' + inttostr(TempClass.integer_test()));
-      LogMem.Lines.Add('MyClass.float_test() = ' + floattostr(TempClass.float_test()));
-      LogMem.Lines.Add('MyClass.string_test() = ' + TempClass.string_test());
+      TempBool := TempClass.boolean_test();
+      LogMem.Lines.Add('MyClass.boolean_test() = ' + booltostr(TempBool, True));
+      TempInt := TempClass.integer_test();
+      LogMem.Lines.Add('MyClass.integer_test() = ' + inttostr(TempInt));
+      TempFloat := TempClass.float_test();
+      LogMem.Lines.Add('MyClass.float_test() = ' + floattostr(TempFloat));
+      TempString := TempClass.string_test();
+      LogMem.Lines.Add('MyClass.string_test() = ' + TempString);
       TempTuple := TempClass.tuple_test();
       LogMem.Lines.Add('MyClass.tuple_test() = ' + TempTuple);
       TempList :=  TempClass.list_test();

@@ -509,7 +509,7 @@ begin
   if TempContainer.GetOptionalAttrString(AName, TempAttrib) then
     begin
       if TempAttrib.IsCallable then
-        begin
+        try
           if (Length(Arguments) = 1) and VarIsEmptyParam(Variant(Arguments[0])) then
             TempMaxLength := 0
            else
@@ -525,6 +525,9 @@ begin
             Result := TempAttrib.Call(TempArgs, TempKWs)
            else
             Result := TempAttrib.CallNoArgs;
+        finally
+          TempKWs  := nil;
+          TempArgs := nil;
         end
        else
         if (Length(Arguments) = 1) and

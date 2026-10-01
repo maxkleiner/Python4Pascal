@@ -3,7 +3,7 @@ program SimplePythonThread;
 {$I ..\..\..\source\p4p.inc}
 
 uses
-  //FastMM4, 
+  //FastMM4,
   {$IFDEF DELPHI16_UP}
   Vcl.Forms,
   {$ELSE}

@@ -26,7 +26,7 @@ type
   TPyTuple = class
     public
       /// <summary>
-      /// <para>Take a pointer to a tuple object, and return the size of that
+      /// <para>Take a tuple object, and return the size of that
       /// tuple. On error, return -1 with an exception set.</para>
       /// </summary>
       class function Size(const p: IPyObject): Py_ssize_t;
@@ -51,8 +51,8 @@ type
       /// </summary>
       class function GetItem(const p: IPyObject; const pos: TVarData): IPyObject; overload;
       /// <summary>
-      /// <para>Insert a reference to object o at position pos of the tuple
-      /// pointed to by p. Return True on success. If pos is out of bounds,
+      /// <para>Insert a reference to object o at position pos of the tuple p.
+      /// Return True on success. If pos is out of bounds,
       /// return False and set an IndexError exception. This function should
       /// only be used to fill in brand new tuples; using it on an existing
       /// tuple is thread-unsafe.</para>
@@ -62,8 +62,8 @@ type
       /// </summary>
       class function SetItem(const p: IPyObject; pos: Py_ssize_t; const o: IPyObject): boolean; overload;
       /// <summary>
-      /// <para>Insert a reference to object o at position pos of the tuple
-      /// pointed to by p. Return True on success. If pos is out of bounds,
+      /// <para>Insert a reference to object o at position pos of the tuple p.
+      /// Return True on success. If pos is out of bounds,
       /// return False and set an IndexError exception. This function should
       /// only be used to fill in brand new tuples; using it on an existing
       /// tuple is thread-unsafe.</para>
