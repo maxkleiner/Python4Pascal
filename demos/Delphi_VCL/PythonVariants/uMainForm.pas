@@ -103,6 +103,10 @@ begin
   if TPyRun.SimpleString(CodeMem.Text) then
     begin
       TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+
+      if not(assigned(TempMainModObj)) then
+        TempMainModObj := TPyImport.AddModule(MAIN_MODULE_NAME);
+
       if not(assigned(TempMainModObj)) then exit;
 
       TempMainModVar := TempMainModObj.AsVariant;

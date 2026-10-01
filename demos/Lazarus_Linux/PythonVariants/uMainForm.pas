@@ -89,6 +89,10 @@ begin
       // https://gitlab.com/freepascal.org/fpc/source/-/work_items/41235
 
       TempMainModObj := TPyImport.AddModuleRef(MAIN_MODULE_NAME);
+
+      if not(assigned(TempMainModObj)) then
+        TempMainModObj := TPyImport.AddModule(MAIN_MODULE_NAME);
+
       if not(assigned(TempMainModObj)) then exit;
 
       TempMainModVar := TempMainModObj.AsVariant;
