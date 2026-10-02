@@ -221,7 +221,11 @@ begin
   if assigned(FMethodList) then
     begin
       TempMethod := TPyMethodDef.Create(aName, aDocStrings, aMethod, aFlags);
-      Result     := (FMethodList.Add(TempMethod) >= 0);
+
+      if (FMethodList.Add(TempMethod) >= 0) then
+        Result := True
+       else
+        TempMethod.Free;
     end;
 end;
 
