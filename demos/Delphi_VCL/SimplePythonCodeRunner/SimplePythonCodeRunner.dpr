@@ -4,6 +4,7 @@ program SimplePythonCodeRunner;
 
 uses
   //FastMM4,
+  //FastMM5,
   {$IFDEF DELPHI16_UP}
   Vcl.Forms,
   {$ELSE}
