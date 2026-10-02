@@ -73,7 +73,8 @@ begin
   LogMem.Lines.Add('MyClass.list_test() = ' + FMyClass.list_test);
   LogMem.Lines.Add('MyClass.datetime_test() = ' + DateTimeToStr(FMyClass.datetime_test));
   LogMem.Lines.Add('MyClass.square_test(3) = ' + inttostr(FMyClass.square_test(3)));
-  LogMem.Lines.Add('MyClass.uppercase_test("test") = ' + FMyClass.uppercase_test('test'));
+  LogMem.Lines.Add('MyClass.uppercase_test("test") = ' + FMyClass.uppercase_test('test'));  
+  LogMem.Lines.Add('MyClass.dict_test("answer", 42) = ' + FMyClass.dict_test('answer', 42));
 end;
 
 procedure TMainForm.WrapClassBtnClick(Sender: TObject);

@@ -68,7 +68,7 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 167
+      ClientHeight = 168
       ClientWidth = 225
       ItemIndex = 0
       Items.Strings = (

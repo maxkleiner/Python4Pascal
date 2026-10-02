@@ -47,8 +47,6 @@ begin
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
-var
-  TempLibPath : string;
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
@@ -60,9 +58,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      TempLibPath := '';
-
-      if GlobalP4PEngine.Load(TempLibPath) and
+      if GlobalP4PEngine.Load and
          GlobalP4PEngine.Initialize and
          CreateModule then
         LogMem.Lines.Add('Python initialized. ' + GlobalP4PEngine.buildinfo)

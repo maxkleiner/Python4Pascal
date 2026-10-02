@@ -73,7 +73,8 @@ begin
   LogMem.Lines.Add('MyClass.list_test() = ' + FMyClass.list_test);
   LogMem.Lines.Add('MyClass.datetime_test() = ' + DateTimeToStr(FMyClass.datetime_test));
   LogMem.Lines.Add('MyClass.square_test(3) = ' + inttostr(FMyClass.square_test(3)));
-  LogMem.Lines.Add('MyClass.uppercase_test("test") = ' + FMyClass.uppercase_test('test'));
+  LogMem.Lines.Add('MyClass.uppercase_test("test") = ' + FMyClass.uppercase_test('test'));     
+  LogMem.Lines.Add('MyClass.dict_test("answer", 42) = ' + FMyClass.dict_test('answer', 42));
 end;
 
 procedure TMainForm.WrapClassBtnClick(Sender: TObject);
@@ -103,8 +104,6 @@ begin
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
-var
-  TempBit, TempDrive, TempLibPath : string;
 begin
   if not(assigned(GlobalP4PEngine)) then
     begin
@@ -116,24 +115,7 @@ begin
     begin
       GlobalP4PEngine.SetCurrentDir := True;
 
-      {$IFDEF TARGET_32BITS}
-      TempBit := 'win32';
-      {$ELSE}
-      TempBit := 'amd64';
-      {$ENDIF}
-
-      TempDrive := 'Q';
-      //TempDrive := 'S';
-
-      TempLibPath := TempDrive + ':\python-3.15.0rc2-embed-' + TempBit + '\python315.dll';
-      //TempLibPath := TempDrive + ':\python-3.14.8-embed-' + TempBit + '\python314.dll';
-      //TempLibPath := TempDrive + ':\python-3.13.16-embed-' + TempBit + '\python313.dll';
-      //TempLibPath := TempDrive + ':\python-3.12.10-embed-' + TempBit + '\python312.dll';
-      //TempLibPath := TempDrive + ':\python-3.11.9-embed-' + TempBit + '\python311.dll';
-      //TempLibPath := TempDrive + ':\python-3.10.11-embed-' + TempBit + '\python310.dll';
-      //TempLibPath := '';
-
-      if GlobalP4PEngine.Load(TempLibPath) and
+      if GlobalP4PEngine.Load and
          GlobalP4PEngine.Initialize then
         begin
           LogMem.Lines.Add('Python initialized. ' + GlobalP4PEngine.buildinfo);

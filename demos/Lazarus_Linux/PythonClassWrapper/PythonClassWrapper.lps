@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="8"/>
-        <CursorPos X="3" Y="8"/>
+        <TopLine Value="42"/>
+        <CursorPos X="60" Y="119"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,8 +29,11 @@
       <Unit>
         <Filename Value="uMyClass.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="282"/>
+        <CursorPos X="5" Y="320"/>
         <UsageCount Value="20"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -41,16 +44,60 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.MiscFunctions.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="271"/>
         <CursorPos Y="290"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="172"/>
+        <CursorPos X="19" Y="189"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.Py.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="1614"/>
+        <CursorPos X="3" Y="1633"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="7">
       <Position>
         <Filename Value="uMainForm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="8" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="139" Column="51" TopLine="113"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="258" Column="16" TopLine="242"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="76" Column="16" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
+        <Caret Line="610" Column="3" TopLine="606"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.Py.pas"/>
+        <Caret Line="752" Column="23" TopLine="735"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="118" Column="30" TopLine="96"/>
       </Position>
     </JumpHistory>
     <RunParams>

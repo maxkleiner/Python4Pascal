@@ -21,6 +21,7 @@ type
       FDatetimeTestAttrib  : IPyObject;
       FSquareTestAttrib    : IPyObject;
       FUppercaseTestAttrib : IPyObject;
+      FDictTestAttrib      : IPyObject;
 
       function  GetInitialized : boolean;
       function  Get_x : integer;
@@ -44,6 +45,7 @@ type
       function    datetime_test : TDateTime;
       function    square_test(aNumber : integer): integer;
       function    uppercase_test(const aString : string): string;
+      function    dict_test(const aKey: string; aValue: integer): string;
 
       property Initialized : boolean      read  GetInitialized;
       property x           : integer      read  Get_x           write Set_x;
@@ -52,7 +54,7 @@ type
 implementation
 
 uses
-  uP4P.PyLong, uP4P.PyTuple, uP4P.PyUnicode;
+  uP4P.PyLong, uP4P.PyTuple, uP4P.PyUnicode, uP4P.PyDict;
 
 const
   MYCLASS_X_ATTRIB_NAME               = 'x';
@@ -65,6 +67,7 @@ const
   MYCLASS_DATETIME_TEST_ATTRIB_NAME   = 'datetime_test';
   MYCLASS_SQUARE_TEST_ATTRIB_NAME     = 'square_test';
   MYCLASS_UPPERCASE_TEST_ATTRIB_NAME  = 'uppercase_test';
+  MYCLASS_DICT_TEST_ATTRIB_NAME       = 'dict_test';
 
 constructor TMyClass.Create;
 begin
@@ -100,6 +103,7 @@ begin
   FDatetimeTestAttrib  := nil;
   FSquareTestAttrib    := nil;
   FUppercaseTestAttrib := nil;
+  FDictTestAttrib      := nil;
   FMyClass             := nil;
 end;
 
@@ -130,6 +134,7 @@ begin
   FMyClass.GetOptionalAttrString(MYCLASS_DATETIME_TEST_ATTRIB_NAME,  FDatetimeTestAttrib);
   FMyClass.GetOptionalAttrString(MYCLASS_SQUARE_TEST_ATTRIB_NAME,    FSquareTestAttrib);
   FMyClass.GetOptionalAttrString(MYCLASS_UPPERCASE_TEST_ATTRIB_NAME, FUppercaseTestAttrib);
+  FMyClass.GetOptionalAttrString(MYCLASS_DICT_TEST_ATTRIB_NAME,      FDictTestAttrib);
 end;
 
 function TMyClass.GetInitialized: boolean;
@@ -144,7 +149,8 @@ begin
             TPyObject.IsInitialized(FListTestAttrib) and
             TPyObject.IsInitialized(FDatetimeTestAttrib) and
             TPyObject.IsInitialized(FSquareTestAttrib) and
-            TPyObject.IsInitialized(FUppercaseTestAttrib);
+            TPyObject.IsInitialized(FUppercaseTestAttrib) and
+            TPyObject.IsInitialized(FDictTestAttrib);
 end;
 
 function TMyClass.Get_x : integer;
@@ -223,11 +229,14 @@ begin
   Result := 0;
 
   if assigned(FSquareTestAttrib) then
-    begin
+    try
       TempNumber := TPyLong.FromLong(aNumber);
       TempArgs   := TPyTuple.Pack([TempNumber]);
       TempResult := FSquareTestAttrib.CallObject(TempArgs);
       Result     := TempResult.AsInteger;
+    finally
+      TempArgs   := nil;
+      TempNumber := nil;
     end;
 end;
 
@@ -277,11 +286,34 @@ begin
   Result := '';
 
   if assigned(FUppercaseTestAttrib) then
-    begin
+    try
       TempString := TPyUnicode.FromString(aString);
       TempArgs   := TPyTuple.Pack([TempString]);
       TempResult := FUppercaseTestAttrib.CallObject(TempArgs);
       Result     := TempResult.AsString;
+    finally
+      TempArgs   := nil;
+      TempString := nil;
+    end;
+end;
+
+function TMyClass.dict_test(const aKey: string; aValue: integer): string;
+var
+  TempArgs, TempKey, TempValue, TempResult : IPyObject;
+begin
+  Result := '';
+
+  if assigned(FDictTestAttrib) then
+    try
+      TempKey    := TPyUnicode.FromString(aKey);
+      TempValue  := TPyLong.FromLong(aValue);
+      TempArgs   := TPyTuple.Pack([TempKey, TempValue]);
+      TempResult := FDictTestAttrib.CallObject(TempArgs);
+      Result     := TempResult.AsString;
+    finally
+      TempArgs   := nil;
+      TempKey    := nil;
+      TempValue  := nil;
     end;
 end;
 

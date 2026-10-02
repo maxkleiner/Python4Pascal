@@ -641,10 +641,7 @@ begin
        SearchUninstallRegistry(UNINST_PATH_32BIT, True,  TempPath) or
        SearchUninstallRegistry(UNINST_PATH_64BIT, False, TempPath) or
        SearchUninstallRegistry(UNINST_PATH_64BIT, True,  TempPath) then
-      begin
-        Result := TempPath;
-        exit;
-      end;
+      Result := TempPath;
     {$ENDIF}
   except
     on e : exception do
