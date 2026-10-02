@@ -64,7 +64,7 @@ begin
       TempDrive := 'Q';
       //TempDrive := 'S';
 
-      TempLibPath := TempDrive + ':\python-3.15.0rc2-embed-' + TempBit + '\python315.dll';
+      TempLibPath := TempDrive + ':\python-3.15.0rc3-embed-' + TempBit + '\python315.dll';
       //TempLibPath := TempDrive + ':\python-3.14.8-embed-' + TempBit + '\python314.dll';
       //TempLibPath := TempDrive + ':\python-3.13.16-embed-' + TempBit + '\python313.dll';
       //TempLibPath := TempDrive + ':\python-3.12.10-embed-' + TempBit + '\python312.dll';
