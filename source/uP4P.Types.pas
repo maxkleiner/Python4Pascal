@@ -310,7 +310,7 @@ type
   PPyGetSetDef                    = ^PyGetSetDef;
   P_PyCoCached                    = ^_PyCoCached;
   P_PyExecutorArray               = ^_PyExecutorArray;
-  PPyFrameObject                  = ^PyFrameObject;
+  PPyFrameObject                  = type Pointer; // opaque
   PPyInterpreterState             = type Pointer; // opaque
   PPyThreadState                  = type Pointer; // opaque
   PPyType_Spec                    = ^PyType_Spec;
@@ -349,7 +349,7 @@ type
   PPyCriticalSection              = ^PyCriticalSection;
   PPyCriticalSection2             = ^PyCriticalSection2;
   PPyMonitoringState              = ^PyMonitoringState;
-  PPyBytesObject                  = ^PyBytesObject;
+  PPyBytesObject                  = type Pointer; // opaque
   PPyCompilerFlags                = ^PyCompilerFlags;
   PPy_complex                     = ^Py_complex;
   PPyComplexObject                = ^PyComplexObject;
@@ -401,7 +401,7 @@ type
   PPyInterpreterView              = type Pointer; // opaque
   PPyThreadStateToken             = type Pointer; // opaque
   PPySlot                         = ^PySlot;
-  PPyBytesWriter                  = ^PyBytesWriter;
+  PPyBytesWriter                  = type Pointer; // opaque
 
 
   /// <summary>
@@ -443,7 +443,7 @@ type
   {* include/exports.h *}
   {* include/pymacro.h *}
   {* include/pymath.h *}
-  {* include/pymem.h  Include/cpython/pymem.h *}
+  {* include/pymem.h  include/cpython/pymem.h *}
 
   /// <summary>
   /// Enum used to identify an allocator domain.
@@ -685,7 +685,7 @@ type
     _cs_mutex2 : PPyMutex;
   end;
 
-  {* include/object.h *}
+  {* include/object.h  include/cpython/object.h *}
   /// <summary>
   /// Internal PyObject record.
   /// </summary>
@@ -1178,8 +1178,8 @@ type
   end;
 
   PyRefTracerEvent = (
-    PyRefTracer_CREATE  = 0,
-    PyRefTracer_DESTROY = 1,
+    PyRefTracer_CREATE          = 0,
+    PyRefTracer_DESTROY         = 1,
     PyRefTracer_TRACKER_REMOVED = 2   //****** 3.15.0
   );
 
@@ -1187,7 +1187,7 @@ type
   PyRefTracer          = function(obj: PPyObject; event: PyRefTracerEvent; ptr: Pointer): integer; cdecl;
 
   {* include/refcount.h *}
-  {* include/objimpl.h *}
+  {* include/objimpl.h  include/cpython/objimpl.h *}
   PyObjectArenaAllocator_alloc   = function(ctx: Pointer; size_: NativeUInt): Pointer; cdecl;
   PyObjectArenaAllocator_free    = procedure(ctx, ptr: Pointer; size_: NativeUInt); cdecl;
 
@@ -1251,7 +1251,9 @@ type
   end;
   PySlotArray = array of PySlot;
 
-  {* include/pyhash.h *}
+
+  {* include/pyhash.h  include/cpython/pyhash.h *}
+
   PyHash_FuncDef_hash = function(ptr: Pointer; size_: Py_ssize_t): Py_hash_t; cdecl;
 
   /// <summary>
@@ -1297,34 +1299,8 @@ type
     ob_bytes_object      : PPyObject;  //****** 3.15.0
   end;
 
-  {* include/bytesobject.h  include/cpython/bytesobject.h  include/internal/pycore_bytesobject.h *}
-
-  /// <summary>
-  /// A bytes writer record.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3.15/c-api/bytes.html#pybyteswriter">See the article about PyBytesWriter.</see></para>
-  /// </remarks>
-  PyBytesWriter = record
-    small_buffer  : array[0..255] of AnsiChar;
-    obj           : PPyObject;
-    size          : Py_ssize_t;
-    use_bytearray : integer;
-    overallocate  : integer;
-  end;
-
-  /// <summary>
-  /// This subtype of PyObject represents a Python bytes object.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/bytes.html#c.PyBytesObject">See the article about PyBytesObject.</see></para>
-  /// </remarks>
-  PyBytesObject = record
-    ob_base              : PyVarObject; // PyObject_VAR_HEAD
-    ob_sval              : array[0..0] of AnsiChar;
-  end;
-
-  {* include/unicodeobject.h *}
+  {* include/bytesobject.h  include/cpython/bytesobject.h *}
+  {* include/unicodeobject.h  include/cpython/unicodeobject.h *}
 
   /// <summary>
   /// This type is a typedef for unsigned integer types wide enough to contain
@@ -1503,8 +1479,8 @@ type
     name                : PPyObject;
   end;
 
-  {* include/longobject.h *}
-  {* include/cpython/longintrepr.h *}
+  {* include/longobject.h  include/cpython/longobject.h *}
+  {* include/longintrepr.h  include/cpython/longintrepr.h *}
   digit              = type cardinal;
   sdigit             = type integer;
   twodigits          = type uint64;
@@ -1583,7 +1559,7 @@ type
   end;
 
   {* include/boolobject.h *}
-  {* include/floatobject.h *}
+  {* include/floatobject.h  include/cpython/floatobject.h *}
 
   /// <summary>
   /// This subtype of PyObject represents a Python floating-point object.
@@ -1596,7 +1572,7 @@ type
     ob_fval    : double;
   end;
 
-  {* include/complexobject.h *}
+  {* include/complexobject.h  include/cpython/complexobject.h *}
 
   /// <summary>
   /// The structure which corresponds to the value portion of a Python complex
@@ -1626,8 +1602,8 @@ type
   {* include/rangeobject.h *}
   {* include/memoryobject.h *}
   {* include/tupleobject.h *}
-  {* include/listobject.h *}
-  {* include/dictobject.h *}
+  {* include/listobject.h  include/cpython/listobject.h *}
+  {* include/dictobject.h  include/cpython/dictobject.h  *}
 
   /// <summary>
   /// This subtype of PyObject represents a Python dictionary object.
@@ -1681,7 +1657,7 @@ type
 
   {* include/cpython/odictobject.h *}
   {* include/enumobject.h *}
-  {* include/setobject.h *}
+  {* include/setobject.h  include/cpython/setobject.h *}
   {* include/methodobject.h  include/cpython/methodobject.h *}
   PyCFunction                    = function(self, args: PPyObject): PPyObject; cdecl;
   PyCFunctionFast                = function(self: PPyObject; const args: PPPyObject; nargs: Py_ssize_t): PPyObject; cdecl;
@@ -2015,7 +1991,7 @@ type
     func             : PPyObject;
   end;
 
-  {* include/fileobject.h *}
+  {* include/fileobject.h  include/cpython/fileobject.h *}
   Py_OpenCodeHookFunction        = function(obj: PPyObject; ptr: Pointer): PPyObject; cdecl;
 
   {* include/pycapsule.h *}
@@ -2091,7 +2067,7 @@ type
 
   PyCode_WatchCallback           = function(event: PyCodeEvent; co: PPyCodeObject): integer; cdecl;
 
-  {* include/pyframe.h *}
+  {* include/pyframe.h  include/cpython/pyframe.h *}
   {* include/traceback.h   include/cpython/traceback.h *}
   _traceback = record
     ob_base     : PyObject;           // PyObject_HEAD
@@ -3163,7 +3139,7 @@ type
   end;
 
 
-  {* include/pystate.h *}
+  {* include/pystate.h  include/cpython/pystate.h *}
 
   /// <summary>
   /// The type of the value returned by PyGILState_Ensure() and passed to
@@ -3186,7 +3162,7 @@ type
   Py_tracefunc = function(obj1: PPyObject; frame: PPyFrameObject; i: integer; obj2: PPyObject): integer; cdecl;
 
   {* include/cpython/genobject.h *}
-  {* include/descrobject.h *}
+  {* include/descrobject.h  include/cpython/descrobject.h *}
   getter           = function(obj: PPyObject; context: Pointer): PPyObject; cdecl;
   setter           = function(obj, value: PPyObject; context: Pointer): integer; cdecl;
   wrapperfunc      = function(self, args: PPyObject; wrapped: Pointer): PPyObject; cdecl;
@@ -3327,8 +3303,8 @@ type
 
   {* include/genericaliasobject.h *}
   {* include/cpython/sentinelobject.h *}
-  {* include/warnings.h *}
-  {* include/weakrefobject.h *}
+  {* include/warnings.h  include/cpython/warnings.h *}
+  {* include/weakrefobject.h  include/cpython/weakrefobject.h *}
 
   /// <summary>
   /// PyWeakReference is the base struct for the Python ReferenceType,
@@ -3438,7 +3414,7 @@ type
   PyTime_t           = type int64;
 
   {* include/codecs.h *}
-  {* include/pythread.h *}
+  {* include/pythread.h  include/cpython/pythread.h *}
   PyThread_start_new_thread_func = procedure(arg: Pointer); cdecl;
 
   /// <summary>
@@ -3490,7 +3466,7 @@ type
   PyContext_WatchCallback = function(event: PyContextEvent; obj: PPyObject): integer; cdecl;
 
 
-  {* include/modsupport.h *}
+  {* include/modsupport.h  include/cpython/modsupport.h *}
 
   /// <summary>
   /// Record used to store ABI information.
@@ -3543,7 +3519,7 @@ type
     abi_version           : cardinal;
   end;
 
-  {* include/compile.h *}
+  {* include/compile.h  include/cpython/compile.h *}
 
   /// <summary>
   /// This is the structure used to hold compiler flags. In cases where code is
@@ -3569,8 +3545,8 @@ type
     cf_feature_version : integer;
   end;
 
-  {* include/pythonrun.h *}
-  {* include/pylifecycle.h *}
+  {* include/pythonrun.h  include/cpython/pythonrun.h *}
+  {* include/pylifecycle.h  include/cpython/pylifecycle.h *}
   AtExitProc         = procedure(); cdecl;
   PyOS_sighandler_t  = procedure(i: Integer); cdecl;
 
@@ -3635,11 +3611,11 @@ type
     gil                           : Integer;
   end;
 
-  {* include/ceval.h *}
+  {* include/ceval.h  include/cpython/ceval.h *}
   Py_AddPendingCall_func = function(ptr: pointer): integer; cdecl;
 
   {* include/sysmodule.h *}
-  {* include/audit.h *}
+  {* include/audit.h  include/cpython/audit.h *}
   /// <summary>
   /// The type of the hook function. event is the C string event argument passed
   /// to TPySys.Audit() or TPySys.AuditTuple(). args is guaranteed to be a
@@ -3649,7 +3625,7 @@ type
 
   {* include/osmodule.h *}
   {* include/intrcheck.h *}
-  {* include/import.h *}
+  {* include/import.h  include/cpython/import.h *}
   initfunc = function(): PPyObject; cdecl;
 
   /// <summary>
@@ -3708,12 +3684,13 @@ type
     PyImport_LAZY_ALL
   );
 
-  {* include/abstract.h *}
+
+  {* include/abstract.h  include/cpython/abstract.h *}
   {* include/bltinmodule.h *}
   {* include/cpython/pyctype.h *}
   {* include/pystrtod.h *}
   {* include/pystrcmp.h *}
-  {* include/fileutils.h *}
+  {* include/fileutils.h  include/cpython/fileutils.h *}
   {* include/cpython/pyfpe.h *}
   {* include/cpython/tracemalloc.h *}
   {* include/frameobject.h  include/cpython/frameobject.h *}
@@ -3722,6 +3699,7 @@ type
     ob_base    : PyObject; // PyObject_HEAD
     frame      : PPyFrameObject;
   end;
+
 
   {* include/datetime.h *}
 
@@ -3861,70 +3839,6 @@ type
     DateTime_FromDateAndTimeAndFold : PyDateTime_CAPI_DateTime_FromDateAndTimeAndFold_func;
     Time_FromTimeAndFold            : PyDateTime_CAPI_Time_FromTimeAndFold_func;
   end;
-
-
-  {* Include/internal/pycore_frame.h *}
-  _frame  = record
-    ob_base                     : PyObject; // PyObject_HEAD
-    /// <summary>
-    /// previous frame, or nil
-    /// </summary>
-    f_back                      : PPyFrameObject;
-    /// <summary>
-    /// Points to the frame data.
-    /// Not implemented. pointer to _PyInterpreterFrame; /Include/internal/pycore_interpframe_structs.h
-    /// </summary>
-    f_frame                     : Pointer;
-    /// <summary>
-    /// Trace function
-    /// </summary>
-    f_trace                     : PPyObject;
-    /// <summary>
-    /// Current line number. Only valid if non-zero
-    /// </summary>
-    f_lineno                    : integer;
-    /// <summary>
-    /// Emit per-line trace events?
-    /// </summary>
-    f_trace_lines               : AnsiChar;
-    /// <summary>
-    /// Emit per-opcode trace events?
-    /// </summary>
-    f_trace_opcodes             : AnsiChar;
-    /// <summary>
-    /// Dict for locals set by users using f_locals, could be nil
-    /// </summary>
-    f_extra_locals              : PPyObject;
-    /// <summary>
-    /// This is purely for backwards compatibility for PyEval_GetLocals.
-    /// PyEval_GetLocals requires a borrowed reference so the actual reference
-    /// is stored here
-    /// </summary>
-    f_locals_cache              : PPyObject;
-    /// <summary>
-    /// A tuple containing strong references to fast locals that were overwritten
-    /// via f_locals. Borrowed references to these locals may exist in frames
-    /// closer to the top of the stack. The references in this tuple act as
-    /// "support" for the borrowed references, ensuring that they remain valid.
-    /// </summary>
-    f_overwritten_fast_locals   : PPyObject;
-    /// <summary>
-    /// The frame data, if this frame object owns the frame
-    /// </summary>
-    _f_frame_data               : array[0..0] of PPyObject;
-  end;
-  /// <summary>
-  /// Part of the Limited API (as an opaque struct).
-  /// The structure of the objects used to describe frame objects.
-  /// There are no public members in this structure.
-  /// Changed in version 3.11: The members of this structure were removed from
-  /// the public C API. Refer to the What's New entry for details.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://docs.python.org/3/c-api/frame.html#c.PyFrameObject">See the article about PyFrameObject.</see></para>
-  /// </remarks>
-  PyFrameObject = type _frame;
-
 
 
 implementation

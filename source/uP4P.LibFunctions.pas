@@ -217,7 +217,7 @@ var
   PyByteArray_AsString                           : function(ob: PPyObject): PAnsiChar; cdecl;
   PyByteArray_Resize                             : function(ob: PPyObject; size_: Py_ssize_t): integer; cdecl;
 
-  {* include/bytesobject.h  include/cpython/bytesobject.h  include/internal/pycore_bytesobject.h *}
+  {* include/bytesobject.h  include/cpython/bytesobject.h *}
   PyBytes_Type                                   : PPyTypeObject;
   PyBytesIter_Type                               : PPyTypeObject;
   PyBytes_FromStringAndSize                      : function(const str: PAnsiChar; size_: Py_ssize_t): PPyObject; cdecl;
@@ -984,7 +984,7 @@ var
   PySentinel_Type                                : PPyTypeObject;                                                             //****** 3.15.0 ******
   PySentinel_New                                 : function(const name_, module_name, repr: PAnsiChar): PPyObject; cdecl;     //****** 3.15.0 ******
 
-  {* include/warnings.h  include/cpython/warnings.h*}
+  {* include/warnings.h  include/cpython/warnings.h *}
   PyErr_WarnEx                                   : function(category: PPyObject; const message_: PAnsiChar; stack_level: Py_ssize_t): integer; cdecl;
   PyErr_WarnFormat                               : function(category: PPyObject; stack_level: Py_ssize_t; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
   PyErr_ResourceWarning                          : function(source: PPyObject; stack_level: Py_ssize_t; const format_: PAnsiChar {; ...}): integer; cdecl varargs;
@@ -1403,6 +1403,8 @@ var
   PyFrame_LocalsToFast                           : procedure(f: PPyFrameObject; clear: integer); cdecl;
   PyFrame_FastToLocalsWithError                  : function(f: PPyFrameObject): integer; cdecl;
   PyFrame_FastToLocals                           : procedure(f: PPyFrameObject); cdecl;
+
+  {* include/datetime.h *}
 
 implementation
 

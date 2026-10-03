@@ -195,7 +195,7 @@ const
   /// </summary>
   Py_NAN      = NAN;
 
-  {* include/pymem.h *}
+  {* include/pymem.h  include/cpython/pymem.h *}
   {* include/pytypedefs.h *}
   {* include/pybuffer.h *}
 
@@ -241,7 +241,7 @@ const
   {* include/pystats.h *}
   {* include/pyatomic.h *}
   {* include/lock.h  include/cpython/lock.h  include/cpython/pylock.h *}
-  {* include/critical_section.h *}
+  {* include/critical_section.h   include/cpython/critical_section.h *}
   {* include/object.h  include/cpython/object.h *}
   Py_PRINT_RAW    = 1;
 
@@ -298,7 +298,7 @@ const
   Py_GE = 5;
 
   {* include/refcount.h *}
-  {* include/objimpl.h *}
+  {* include/objimpl.h  include/cpython/objimpl.h *}
   {* include/typeslots.h  include/slots.h  include/slots_generated.h *}
 
   /// <summary>
@@ -596,7 +596,7 @@ const
   Py_tp_module = 108;
 
 
-  {* include/pyhash.h *}
+  {* include/pyhash.h  include/cpython/pyhash.h *}
   Py_HASH_CUTOFF    = 0;
   Py_HASH_EXTERNAL  = 0;
   Py_HASH_SIPHASH24 = 1;
@@ -605,10 +605,10 @@ const
 
   {* include/cpython/pydebug.h *}
   {* include/bytearrayobject.h *}
-  {* include/bytesobject.h  include/cpython/bytesobject.h  include/internal/pycore_bytesobject.h  *}
-  {* include/unicodeobject.h *}
+  {* include/bytesobject.h  include/cpython/bytesobject.h *}
+  {* include/unicodeobject.h  include/cpython/unicodeobject.h *}
   {* include/pyerrors.h  include/cpython/pyerrors.h *}
-  {* include/longobject.h *}
+  {* include/longobject.h  include/cpython/longobject.h *}
   Py_ASNATIVEBYTES_DEFAULTS        = -1;
   Py_ASNATIVEBYTES_BIG_ENDIAN      = 0;
   Py_ASNATIVEBYTES_LITTLE_ENDIAN   = 1;
@@ -617,18 +617,18 @@ const
   Py_ASNATIVEBYTES_REJECT_NEGATIVE = 8;
   Py_ASNATIVEBYTES_ALLOW_INDEX     = 16;
 
-  {* include/cpython/longintrepr.h *}
+  {* include/longintrepr.h  include/cpython/longintrepr.h *}
   {* include/boolobject.h *}
-  {* include/floatobject.h *}
-  {* include/complexobject.h *}
+  {* include/floatobject.h  include/cpython/floatobject.h *}
+  {* include/complexobject.h  include/cpython/complexobject.h *}
   {* include/rangeobject.h *}
   {* include/memoryobject.h *}
   {* include/tupleobject.h *}
-  {* include/listobject.h *}
-  {* include/dictobject.h *}
+  {* include/listobject.h  include/cpython/listobject.h *}
+  {* include/dictobject.h  include/cpython/dictobject.h  *}
   {* include/cpython/odictobject.h *}
   {* include/enumobject.h *}
-  {* include/setobject.h *}
+  {* include/setobject.h  include/cpython/setobject.h *}
   {* include/methodobject.h  include/cpython/methodobject.h *}
   METH_VARARGS   = $0001;
   METH_KEYWORDS  = $0002;
@@ -699,7 +699,7 @@ const
 
   {* include/cpython/funcobject.h *}
   {* include/cpython/classobject.h *}
-  {* include/fileobject.h *}
+  {* include/fileobject.h  include/cpython/fileobject.h *}
   {* include/pycapsule.h *}
   {* include/cpython/code.h *}
   CO_OPTIMIZED    = $0001;
@@ -731,13 +731,13 @@ const
 
   CO_MAXBLOCKS               = 21;
 
-  {* include/pyframe.h *}
-  {* include/traceback.h *}
+  {* include/pyframe.h  include/cpython/pyframe.h *}
+  {* include/traceback.h  include/cpython/traceback.h *}
   {* include/sliceobject.h  include/cpython/sliceobject.h *}
   {* include/cpython/cellobject.h *}
   {* include/iterobject.h *}
   {* include/cpython/initconfig.h *}
-  {* include/pystate.h *}
+  {* include/pystate.h  include/cpython/pystate.h *}
   PyTrace_CALL        = 0;
   PyTrace_EXCEPTION   = 1;
   PyTrace_LINE        = 2;
@@ -748,7 +748,7 @@ const
   PyTrace_OPCODE      = 7;
 
   {* include/cpython/genobject.h *}
-  {* include/descrobject.h *}
+  {* include/descrobject.h  include/cpython/descrobject.h *}
   Py_T_SHORT            = 0;
   Py_T_INT              = 1;
   Py_T_LONG             = 2;
@@ -784,8 +784,8 @@ const
 
   {* include/genericaliasobject.h *}
   {* include/cpython/sentinelobject.h *}
-  {* include/warnings.h *}
-  {* include/weakrefobject.h *}
+  {* include/warnings.h  include/cpython/warnings.h *}
+  {* include/weakrefobject.h  include/cpython/weakrefobject.h *}
   {* include/structseq.h  include/cpython/structseq.h *}
   {* include/cpython/picklebufobject.h *}
   {* include/cpython/pytime.h *}
@@ -800,7 +800,7 @@ const
   PyTime_MAX = high(int64);
 
   {* include/codecs.h *}
-  {* include/pythread.h *}
+  {* include/pythread.h  include/cpython/pythread.h *}
   WAIT_LOCK             = 1;
   NOWAIT_LOCK           = 0;
 
@@ -896,8 +896,8 @@ const
 
   PY_INVALID_STACK_EFFECT = high(integer);
 
-  {* include/pythonrun.h *}
-  {* include/pylifecycle.h *}
+  {* include/pythonrun.h  include/cpython/pythonrun.h *}
+  {* include/pylifecycle.h  include/cpython/pylifecycle.h *}
 
   /// <summary>
   /// Use the default selection (PyInterpreterConfig_SHARED_GIL).
@@ -915,7 +915,7 @@ const
   /// </summary>
   PyInterpreterConfig_OWN_GIL     = 2;
 
-  {* include/ceval.h *}
+  {* include/ceval.h  include/cpython/ceval.h *}
   FVC_MASK      = $3;
   FVC_NONE      = $0;
   FVC_STR       = $1;
@@ -925,11 +925,11 @@ const
   FVS_HAVE_SPEC = $4;
 
   {* include/sysmodule.h *}
-  {* include/audit.h *}
+  {* include/audit.h  include/cpython/audit.h *}
   {* include/osmodule.h *}
   {* include/intrcheck.h *}
-  {* include/import.h *}
-  {* include/abstract.h *}
+  {* include/import.h  include/cpython/import.h *}
+  {* include/abstract.h  include/cpython/abstract.h *}
   {* include/bltinmodule.h *}
   {* include/cpython/pyctype.h *}
   {* include/pystrtod.h *}
@@ -969,7 +969,7 @@ const
   Py_DTST_NAN       = 2;
 
   {* include/pystrcmp.h *}
-  {* include/fileutils.h *}
+  {* include/fileutils.h  include/cpython/fileutils.h *}
   {* include/cpython/pyfpe.h *}
   {* include/cpython/tracemalloc.h *}
   {* include/frameobject.h  include/cpython/frameobject.h *}
