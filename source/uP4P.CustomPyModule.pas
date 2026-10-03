@@ -235,18 +235,11 @@ begin
    else
     try
       TempSpec := TPyModuleSpecHelper.FromModuleName(FModuleDef.Name_);
-
-      // Create the module from the definition and spec
       FModule  := TPyModule.FromDefAndSpec(FModuleDef.ModuleDef, TempSpec);
 
       if assigned(FModule) then
-        begin
-          // TPyModule.ExecDef executes the module.
-          // It triggers Py_mod_exec slot, which triggers
-          // the TCustomPyModule.OnAfterInitialization event.
-          Result := GlobalP4PEngine.AddToSysModules(self) and
-                    TPyModule.ExecDef(FModule, FModuleDef.ModuleDef);
-        end
+        Result := GlobalP4PEngine.AddToSysModules(self) and
+                  TPyModule.ExecDef(FModule, FModuleDef.ModuleDef)
        else
         GlobalP4PEngine.GetRaisedException;
     finally
@@ -263,6 +256,8 @@ begin
 
   CreateSlotManager;
 
+  if not(assigned(FSlotManager)) then exit;
+
   FSlotManager.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
@@ -270,18 +265,11 @@ begin
    else
     try
       TempSpec := TPyModuleSpecHelper.FromModuleName(FSlotManager.Name_);
-
-      // Create the module from the definition and spec
       FModule  := TPyModule.FromSlotsAndSpec(FSlotManager.Slots, TempSpec);
 
       if assigned(FModule) then
-        begin
-          // TPyModule.Exec executes the module.
-          // It triggers Py_mod_exec slot, which triggers
-          // the TCustomPyModule.OnAfterInitialization event.
-          Result := GlobalP4PEngine.AddToSysModules(self) and
-                    TPyModule.Exec(FModule);
-        end
+        Result := GlobalP4PEngine.AddToSysModules(self) and
+                  TPyModule.Exec(FModule)
        else
         GlobalP4PEngine.GetRaisedException;
     finally
