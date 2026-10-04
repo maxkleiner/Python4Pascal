@@ -21600,12 +21600,32 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Fetch">
-<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch-PPyObject-IPyObject-IPyObject-">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch-IPyObject-IPyObject-IPyObject-">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch-IPyObject-IPyObject-IPyObject-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch-PPyObject-IPyObject-IPyObject-">
+</object>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="GetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo-IPyObject-IPyObject-IPyObject-">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo-IPyObject-IPyObject-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo-PPyObject-IPyObject-IPyObject-">
 </object>
+</ul>
 <li><object type="text/sitemap">
 <param name="Name" value="GetHandledException">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#GetHandledException">
@@ -21660,8 +21680,18 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Restore">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Restore-IPyObject-IPyObject-IPyObject-">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Restore-IPyObject-IPyObject-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#Restore-PPyObject-IPyObject-IPyObject-">
 </object>
+</ul>
 <li><object type="text/sitemap">
 <param name="Name" value="SetExcFromWindowsErr">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcFromWindowsErr-IPyObject-integer-">
@@ -21680,8 +21710,18 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo-IPyObject-IPyObject-IPyObject-">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo-IPyObject-IPyObject-IPyObject-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo-PPyObject-IPyObject-IPyObject-">
 </object>
+</ul>
 <li><object type="text/sitemap">
 <param name="Name" value="SetFromErrno">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetFromErrno-IPyObject-">
@@ -21728,9 +21768,13 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetNone">
-<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone-PPyObject-">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone-IPyObject-">
 </object>
 <ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone-IPyObject-">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone-PPyObject-">
@@ -21742,9 +21786,13 @@
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="SetObject">
-<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject-PPyObject-IPyObject-">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject-IPyObject-IPyObject-">
 </object>
 <ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject-IPyObject-IPyObject-">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject-PPyObject-IPyObject-">
@@ -21760,9 +21808,13 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetString">
-<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString-PPyObject-string-">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString-IPyObject-string-">
 </object>
 <ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyErr - uP4P.PyErr Unit">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString-IPyObject-string-">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="TPyErr - uP4P.PyErr Unit">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetString-PPyObject-string-">

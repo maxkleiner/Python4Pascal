@@ -26,13 +26,23 @@ type
   TPyErr = class
     public
       /// <summary>
-      /// <para>This is a shorthand for TPyErr.SetObject(type, Py_None).</para>
+      /// <para>This is a shorthand for TPyErr.SetObject(type_, Py_None).</para>
+      /// </summary>
+      class procedure SetNone(const type_: IPyObject); overload;
+      /// <summary>
+      /// <para>This is a shorthand for TPyErr.SetObject(type_, Py_None).</para>
       /// </summary>
       class procedure SetNone(type_: PPyObject); overload;
       /// <summary>
-      /// <para>This is a shorthand for TPyErr.SetObject(type, Py_None).</para>
+      /// <para>This is a shorthand for TPyErr.SetObject(type_, Py_None).</para>
       /// </summary>
       class procedure SetNone(type_: TPyExceptionType); overload;
+      /// <summary>
+      /// <para>This function is similar to TPyErr.SetString() but lets you
+      /// specify an arbitrary Python object for the "value" of the
+      /// exception.</para>
+      /// </summary>
+      class procedure SetObject(const type_, value: IPyObject); overload;
       /// <summary>
       /// <para>This function is similar to TPyErr.SetString() but lets you
       /// specify an arbitrary Python object for the "value" of the
@@ -45,6 +55,14 @@ type
       /// exception.</para>
       /// </summary>
       class procedure SetObject(type_: TPyExceptionType; const value: IPyObject); overload;
+      /// <summary>
+      /// <para>This is the most common way to set the error indicator. The
+      /// first argument specifies the exception type; it is normally one of the
+      /// standard exceptions, e.g. PyExc_RuntimeError. You need not create a
+      /// new strong reference to it (e.g. with TPy.INCREF()). The second
+      /// argument is an error message.</para>
+      /// </summary>
+      class procedure SetString(const type_: IPyObject; const message_: string); overload;
       /// <summary>
       /// <para>This is the most common way to set the error indicator. The
       /// first argument specifies the exception type; it is normally one of the
@@ -104,7 +122,32 @@ type
       /// </code>
       ///</para>
       /// </summary>
-      class procedure Fetch(out ptype: PPyObject; out pvalue, ptraceback: IPyObject);
+      class procedure Fetch(out ptype, pvalue, ptraceback: IPyObject); overload;
+      /// <summary>
+      /// <para>Deprecated since version 3.12: Use TPyErr.GetRaisedException()
+      /// instead.</para>
+      /// <para>Retrieve the error indicator into three variables whose
+      /// addresses are passed. If the error indicator is not set, set all three
+      /// variables to nil. If it is set, it will be cleared and you own a
+      /// reference to each object retrieved. The value and traceback object may
+      /// be nil even when the type object is not.</para>
+      /// <para>Note: This function is normally only used by legacy code that
+      /// needs to catch exceptions or save and restore the error indicator
+      /// temporarily.</para>
+      /// <para>For example:</para>
+      /// <code>
+      /// {
+      ///    PyObject *type, *value, *traceback;
+      ///    PyErr_Fetch(&type, &value, &traceback);
+      ///
+      ///    /* ... code that might produce other errors ... */
+      ///
+      ///    PyErr_Restore(type, value, traceback);
+      /// }
+      /// </code>
+      ///</para>
+      /// </summary>
+      class procedure Fetch(out ptype: PPyObject; out pvalue, ptraceback: IPyObject); overload;
       /// <summary>
       /// <para>Deprecated since version 3.12: Use TPyErr.SetRaisedException()
       /// instead.</para>
@@ -122,7 +165,25 @@ type
       /// needs to save and restore the error indicator temporarily.
       /// Use TPyErr.Fetch() to save the current error indicator.</para>
       /// </summary>
-      class procedure Restore(type_: PPyObject; const value, traceback: IPyObject);
+      class procedure Restore(const type_, value, traceback: IPyObject); overload;
+      /// <summary>
+      /// <para>Deprecated since version 3.12: Use TPyErr.SetRaisedException()
+      /// instead.</para>
+      /// <para>Set the error indicator from the three objects, type, value, and
+      /// traceback, clearing the existing exception if one is set. If the
+      /// objects are nil, the error indicator is cleared. Do not pass a nil
+      /// type and non-nil value or traceback. The exception type should be a
+      /// class. Do not pass an invalid exception type or value. (Violating
+      /// these rules will cause subtle problems later.) This call takes away a
+      /// reference to each object: you must own a reference to each object
+      /// before the call and after the call you no longer own these references.
+      /// (If you don't understand this, don't use this function.
+      /// I warned you.)</para>
+      /// <para>Note: This function is normally only used by legacy code that
+      /// needs to save and restore the error indicator temporarily.
+      /// Use TPyErr.Fetch() to save the current error indicator.</para>
+      /// </summary>
+      class procedure Restore(type_: PPyObject; const value, traceback: IPyObject); overload;
       /// <summary>
       /// <para>Return the exception currently being raised, clearing the error
       /// indicator at the same time. Return nil if the error indicator is
@@ -182,7 +243,21 @@ type
       /// restore the exception state temporarily. Use TPyErr.SetExcInfo() to
       /// restore or clear the exception state.</para>
       /// </summary>
-      class procedure GetExcInfo(out ptype: PPyObject; out pvalue, ptraceback: IPyObject);
+      class procedure GetExcInfo(out ptype, pvalue, ptraceback: IPyObject); overload;
+      /// <summary>
+      /// <para>Retrieve the old-style representation of the exception info, as
+      /// known from sys.exc_info(). This refers to an exception that was
+      /// already caught, not to an exception that was freshly raised.
+      /// Returns new references for the three objects, any of which may be nil.
+      /// Does not modify the exception info state. This function is kept for
+      /// backwards compatibility. Prefer using
+      /// TPyErr.GetHandledException().</para>
+      /// <para>Note This function is not normally used by code that wants to
+      /// handle exceptions. Rather, it can be used when code needs to save and
+      /// restore the exception state temporarily. Use TPyErr.SetExcInfo() to
+      /// restore or clear the exception state.</para>
+      /// </summary>
+      class procedure GetExcInfo(out ptype: PPyObject; out pvalue, ptraceback: IPyObject); overload;
       /// <summary>
       /// <para>Set the exception info, as known from sys.exc_info(). This
       /// refers to an exception that was already caught, not to an exception
@@ -200,7 +275,25 @@ type
       /// the exception instance (the value argument). The function still
       /// "steals" references of all three arguments.</para>
       /// </summary>
-      class procedure SetExcInfo(type_: PPyObject; const value, traceback: IPyObject);
+      class procedure SetExcInfo(const type_, value, traceback: IPyObject); overload;
+      /// <summary>
+      /// <para>Set the exception info, as known from sys.exc_info(). This
+      /// refers to an exception that was already caught, not to an exception
+      /// that was freshly raised. This function "steals" the references of the
+      /// arguments. To clear the exception state, pass nil for all three
+      /// arguments. This function is kept for backwards compatibility. Prefer
+      /// using TPyErr.SetHandledException().</para>
+      /// <para>Note: This function is not normally used by code that wants to
+      /// handle exceptions. Rather, it can be used when code needs to save and
+      /// restore the exception state temporarily. Use TPyErr.GetExcInfo() to
+      /// read the exception state.</para>
+      /// <para>Added in version 3.3.</para>
+      /// <para>Changed in version 3.11: The type and traceback arguments are
+      /// no longer used and can be nil. The interpreter now derives them from
+      /// the exception instance (the value argument). The function still
+      /// "steals" references of all three arguments.</para>
+      /// </summary>
+      class procedure SetExcInfo(type_: PPyObject; const value, traceback: IPyObject); overload;
       /// <summary>
       /// <para>Return true if the given exception matches the exception type
       /// in exc. If exc is a class object, this also returns true when given
@@ -554,6 +647,13 @@ implementation
 uses
   uP4P.MiscFunctions, uP4P.PyException;
 
+class procedure TPyErr.SetNone(const type_: IPyObject);
+begin
+  if assigned(PyErr_SetNone) and
+     TPyObject.IsInitialized(type_) then
+    PyErr_SetNone(type_.PyObject);
+end;
+
 class procedure TPyErr.SetNone(type_: PPyObject);
 begin
   if assigned(PyErr_SetNone) and
@@ -564,6 +664,14 @@ end;
 class procedure TPyErr.SetNone(type_: TPyExceptionType);
 begin
   TPyErr.SetNone(TPyException.GetExceptionType(type_));
+end;
+
+class procedure TPyErr.SetObject(const type_, value: IPyObject);
+begin
+  if assigned(PyErr_SetObject) and
+     TPyObject.IsInitialized(type_) and
+     TPyObject.IsInitialized(value) then
+    PyErr_SetObject(type_.PyObject, value.PyObject);
 end;
 
 class procedure TPyErr.SetObject(type_: PPyObject; const value: IPyObject);
@@ -577,6 +685,18 @@ end;
 class procedure TPyErr.SetObject(type_: TPyExceptionType; const value: IPyObject);
 begin
   TPyErr.SetObject(TPyException.GetExceptionType(type_), value);
+end;
+
+class procedure TPyErr.SetString(const type_: IPyObject; const message_: string);
+var
+  TempMessage : AnsiString;
+begin
+  if assigned(PyErr_SetString) and
+     TPyObject.IsInitialized(type_) then
+    begin
+      TempMessage := StringToPyUTF8(message_);
+      PyErr_SetString(type_.PyObject, PAnsiChar(TempMessage));
+    end;
 end;
 
 class procedure TPyErr.SetString(type_: PPyObject; const message_: string);
@@ -610,6 +730,28 @@ begin
     PyErr_Clear();
 end;
 
+class procedure TPyErr.Fetch(out ptype, pvalue, ptraceback: IPyObject);
+var
+  TempType, TempValue, TempTraceback: PPyObject;
+begin
+  ptype      := nil;
+  pvalue     := nil;
+  ptraceback := nil;
+
+  if assigned(PyErr_Fetch) then
+    begin
+      TempType      := nil;
+      TempValue     := nil;
+      TempTraceback := nil;
+
+      PyErr_Fetch(TempType, TempValue, TempTraceback);
+
+      ptype      := TPyObject.Wrap(TempType);
+      pvalue     := TPyObject.Wrap(TempValue);
+      ptraceback := TPyObject.Wrap(TempTraceback);
+    end;
+end;
+
 class procedure TPyErr.Fetch(out ptype: PPyObject; out pvalue, ptraceback: IPyObject);
 var
   TempValue, TempTraceback: PPyObject;
@@ -627,6 +769,31 @@ begin
 
       pvalue     := TPyObject.Wrap(TempValue);
       ptraceback := TPyObject.Wrap(TempTraceback);
+    end;
+end;
+
+class procedure TPyErr.Restore(const type_, value, traceback: IPyObject);
+var
+  TempType, TempValue, TempTraceback: PPyObject;
+begin
+  if assigned(PyErr_Restore) then
+    begin
+      if TPyObject.IsInitialized(type_) then
+        TempType := type_.UnWrap
+       else
+        TempType := nil;
+
+      if TPyObject.IsInitialized(value) then
+        TempValue := value.UnWrap
+       else
+        TempValue := nil;
+
+      if TPyObject.IsInitialized(traceback) then
+        TempTraceback := traceback.UnWrap
+       else
+        TempTraceback := nil;
+
+      PyErr_Restore(TempType, TempValue, TempTraceback);
     end;
 end;
 
@@ -684,6 +851,28 @@ begin
     end;
 end;
 
+class procedure TPyErr.GetExcInfo(out ptype, pvalue, ptraceback: IPyObject);
+var
+  TempType, TempValue, TempTraceback: PPyObject;
+begin
+  ptype      := nil;
+  pvalue     := nil;
+  ptraceback := nil;
+
+  if assigned(PyErr_GetExcInfo) then
+    begin
+      TempType      := nil;
+      TempValue     := nil;
+      TempTraceback := nil;
+
+      PyErr_GetExcInfo(TempType, TempValue, TempTraceback);
+
+      ptype      := TPyObject.Wrap(TempType);
+      pvalue     := TPyObject.Wrap(TempValue);
+      ptraceback := TPyObject.Wrap(TempTraceback);
+    end;
+end;
+
 class procedure TPyErr.GetExcInfo(out ptype: PPyObject; out pvalue, ptraceback: IPyObject);
 var
   TempValue, TempTraceback: PPyObject;
@@ -701,6 +890,31 @@ begin
 
       pvalue     := TPyObject.Wrap(TempValue);
       ptraceback := TPyObject.Wrap(TempTraceback);
+    end;
+end;
+
+class procedure TPyErr.SetExcInfo(const type_, value, traceback: IPyObject);
+var
+  TempType, TempValue, TempTraceback: PPyObject;
+begin
+  if assigned(PyErr_SetExcInfo) then
+    begin
+      if TPyObject.IsInitialized(type_) then
+        TempType := type_.Unwrap
+       else
+        TempType := nil;
+
+      if TPyObject.IsInitialized(value) then
+        TempValue := value.Unwrap
+       else
+        TempValue := nil;
+
+      if TPyObject.IsInitialized(traceback) then
+        TempTraceback := traceback.Unwrap
+       else
+        TempTraceback := nil;
+
+      PyErr_SetExcInfo(TempType, TempValue, TempTraceback);
     end;
 end;
 

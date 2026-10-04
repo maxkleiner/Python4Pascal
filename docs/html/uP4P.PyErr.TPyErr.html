@@ -39,11 +39,19 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetNone-PPyObject-">SetNone</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetNone-IPyObject-">SetNone</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetNone-PPyObject-">SetNone</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetNone-TPyExceptionType-">SetNone</a></strong>(type_: <a href="uP4P.Types.html#TPyExceptionType">TPyExceptionType</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetObject-IPyObject-IPyObject-">SetObject</a></strong>(const type_, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -55,197 +63,217 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetString-PPyObject-string-">SetString</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const message_: string); overload;</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetString-IPyObject-string-">SetString</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const message_: string); overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetString-PPyObject-string-">SetString</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const message_: string); overload;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetString-TPyExceptionType-string-">SetString</a></strong>(type_: <a href="uP4P.Types.html#TPyExceptionType">TPyExceptionType</a>; const message_: string); overload;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#Occurred">Occurred</a></strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Clear">Clear</a></strong>();</code></td>
 </tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Fetch-IPyObject-IPyObject-IPyObject-">Fetch</a></strong>(out ptype, pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Fetch-PPyObject-IPyObject-IPyObject-">Fetch</a></strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Fetch-PPyObject-IPyObject-IPyObject-">Fetch</a></strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Restore-PPyObject-IPyObject-IPyObject-">Restore</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Restore-IPyObject-IPyObject-IPyObject-">Restore</a></strong>(const type_, value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Restore-PPyObject-IPyObject-IPyObject-">Restore</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#GetRaisedException">GetRaisedException</a></strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetRaisedException-IPyObject-">SetRaisedException</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#GetHandledException">GetHandledException</a></strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetHandledException-IPyObject-">SetHandledException</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#GetExcInfo-IPyObject-IPyObject-IPyObject-">GetExcInfo</a></strong>(out ptype, pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#GetExcInfo-PPyObject-IPyObject-IPyObject-">GetExcInfo</a></strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#GetExcInfo-PPyObject-IPyObject-IPyObject-">GetExcInfo</a></strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetExcInfo-PPyObject-IPyObject-IPyObject-">SetExcInfo</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetExcInfo-IPyObject-IPyObject-IPyObject-">SetExcInfo</a></strong>(const type_, value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetExcInfo-PPyObject-IPyObject-IPyObject-">SetExcInfo</a></strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#GivenExceptionMatches-IPyObject-IPyObject-">GivenExceptionMatches</a></strong>(const given, exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#ExceptionMatches-IPyObject-">ExceptionMatches</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#NormalizeException-IPyObject-IPyObject-IPyObject-">NormalizeException</a></strong>(out exc, val, tb: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#BadArgument">BadArgument</a></strong>(): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#NoMemory">NoMemory</a></strong>(): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromErrno-IPyObject-">SetFromErrno</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromErrnoWithFilenameObject-IPyObject-IPyObject-">SetFromErrnoWithFilenameObject</a></strong>(const type_, filenameObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromErrnoWithFilenameObjects-IPyObject-IPyObject-IPyObject-">SetFromErrnoWithFilenameObjects</a></strong>(const type_, filenameObject, filenameObject2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromErrnoWithFilename-IPyObject-string-">SetFromErrnoWithFilename</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const filename: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromWindowsErrWithFilename-integer-string-">SetFromWindowsErrWithFilename</a></strong>(ierr: integer; const filename: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetFromWindowsErr-integer-">SetFromWindowsErr</a></strong>(ierr: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetExcFromWindowsErrWithFilenameObject-IPyObject-integer-IPyObject-">SetExcFromWindowsErrWithFilenameObject</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; ierr: integer; const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetExcFromWindowsErrWithFilenameObjects-IPyObject-integer-IPyObject-IPyObject-">SetExcFromWindowsErrWithFilenameObjects</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; ierr: integer; const filename, filename2: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetExcFromWindowsErrWithFilename-IPyObject-integer-string-">SetExcFromWindowsErrWithFilename</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; ierr: integer; const filename: string): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetExcFromWindowsErr-IPyObject-integer-">SetExcFromWindowsErr</a></strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; ierr: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetImportErrorSubclass-IPyObject-IPyObject-IPyObject-IPyObject-">SetImportErrorSubclass</a></strong>(const exception, msg, name_, path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetImportError-IPyObject-IPyObject-IPyObject-">SetImportError</a></strong>(const msg, name_, path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#BadInternalCall">BadInternalCall</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#NewException-string-IPyObject-IPyObject-">NewException</a></strong>(const name_: string; const base, dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#NewExceptionWithDoc-string-string-IPyObject-IPyObject-">NewExceptionWithDoc</a></strong>(const name_, doc: string; base, dict: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#WriteUnraisable-IPyObject-">WriteUnraisable</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#CheckSignals">CheckSignals</a></strong>(): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SetInterrupt">SetInterrupt</a></strong>();</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#SetInterruptEx-integer-">SetInterruptEx</a></strong>(signum: integer): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SyntaxLocation-string-integer-">SyntaxLocation</a></strong>(const filename: string; lineno: integer);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SyntaxLocationEx-string-integer-integer-">SyntaxLocationEx</a></strong>(const filename: string; lineno, col_offset: integer);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#ProgramText-string-integer-">ProgramText</a></strong>(const filename: string; lineno: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#SyntaxLocationObject-IPyObject-integer-integer-">SyntaxLocationObject</a></strong>(const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; lineno, col_offset: integer);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#RangedSyntaxLocationObject-IPyObject-integer-integer-integer-integer-">RangedSyntaxLocationObject</a></strong>(const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; lineno, col_offset, end_lineno, end_col_offset: integer);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#ProgramTextObject-IPyObject-integer-">ProgramTextObject</a></strong>(const filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; lineno: integer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#WarnEx-IPyObject-string-Py_ssize_t-">WarnEx</a></strong>(const category: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const message_: string; stack_level: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#WarnExplicit-IPyObject-string-string-integer-string-IPyObject-">WarnExplicit</a></strong>(const category: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const message_, filename: string; lineno: integer; const module_: string; const registry_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyErr.TPyErr.html#WarnExplicitObject-IPyObject-IPyObject-IPyObject-integer-IPyObject-IPyObject-">WarnExplicitObject</a></strong>(const category, message_, filename: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; lineno: integer; const module_, registry_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Print">Print</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#PrintEx-integer-">PrintEx</a></strong>(set_sys_last_vars: integer);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#Display-IPyObject-IPyObject-IPyObject-">Display</a></strong>(const unused, value, tb: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyErr.TPyErr.html#DisplayException-IPyObject-">DisplayException</a></strong>(const exc: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
@@ -255,13 +283,27 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetNone-IPyObject-"></span><code>class procedure <strong>SetNone</strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a shorthand for TPyErr.SetObject(type_, Py_None).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetNone-PPyObject-"></span><code>class procedure <strong>SetNone</strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
 
 
-<p>This is a shorthand for TPyErr.SetObject(type, Py_None).
+<p>This is a shorthand for TPyErr.SetObject(type_, Py_None).
 
 <p></p>
 </td></tr>
@@ -275,7 +317,21 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>This is a shorthand for TPyErr.SetObject(type, Py_None).
+<p>This is a shorthand for TPyErr.SetObject(type_, Py_None).
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetObject-IPyObject-IPyObject-"></span><code>class procedure <strong>SetObject</strong>(const type_, value: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This function is similar to TPyErr.SetString() but lets you specify an arbitrary Python object for the &quot;value&quot; of the exception.
 
 <p></p>
 </td></tr>
@@ -304,6 +360,20 @@ body { margin: 0.5em; }
 
 
 <p>This function is similar to TPyErr.SetString() but lets you specify an arbitrary Python object for the &quot;value&quot; of the exception.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetString-IPyObject-string-"></span><code>class procedure <strong>SetString</strong>(const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const message_: string); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is the most common way to set the error indicator. The first argument specifies the exception type; it is normally one of the standard exceptions, e.g. PyExc_RuntimeError. You need not create a new strong reference to it (e.g. with TPy.INCREF()). The second argument is an error message.
 
 <p></p>
 </td></tr>
@@ -371,7 +441,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Fetch-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Fetch</strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><span id="Fetch-IPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Fetch</strong>(out ptype, pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -405,7 +475,59 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Restore-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Restore</strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><span id="Fetch-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Fetch</strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Deprecated since version 3.12: Use TPyErr.GetRaisedException() instead.
+
+<p>Retrieve the error indicator into three variables whose addresses are passed. If the error indicator is not set, set all three variables to nil. If it is set, it will be cleared and you own a reference to each object retrieved. The value and traceback object may be nil even when the type object is not.
+
+<p>Note: This function is normally only used by legacy code that needs to catch exceptions or save and restore the error indicator temporarily.
+
+<p>For example:
+
+<p></p>
+
+<pre class="preformatted">
+ {
+    PyObject *type, *value, *traceback;
+    PyErr_Fetch(&amp;type, &amp;value, &amp;traceback);
+
+    /* ... code that might produce other errors ... */
+
+    PyErr_Restore(type, value, traceback);
+ }</pre>
+
+<p>
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Restore-IPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Restore</strong>(const type_, value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Deprecated since version 3.12: Use TPyErr.SetRaisedException() instead.
+
+<p>Set the error indicator from the three objects, type, value, and traceback, clearing the existing exception if one is set. If the objects are nil, the error indicator is cleared. Do not pass a nil type and non-nil value or traceback. The exception type should be a class. Do not pass an invalid exception type or value. (Violating these rules will cause subtle problems later.) This call takes away a reference to each object: you must own a reference to each object before the call and after the call you no longer own these references. (If you don't understand this, don't use this function. I warned you.)
+
+<p>Note: This function is normally only used by legacy code that needs to save and restore the error indicator temporarily. Use TPyErr.Fetch() to save the current error indicator.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Restore-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>Restore</strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -497,7 +619,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="GetExcInfo-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>GetExcInfo</strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><span id="GetExcInfo-IPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>GetExcInfo</strong>(out ptype, pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -513,7 +635,43 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="SetExcInfo-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>SetExcInfo</strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+<td class="itemcode"><span id="GetExcInfo-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>GetExcInfo</strong>(out ptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out pvalue, ptraceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Retrieve the old-style representation of the exception info, as known from sys.exc_info(). This refers to an exception that was already caught, not to an exception that was freshly raised. Returns new references for the three objects, any of which may be nil. Does not modify the exception info state. This function is kept for backwards compatibility. Prefer using TPyErr.GetHandledException().
+
+<p>Note This function is not normally used by code that wants to handle exceptions. Rather, it can be used when code needs to save and restore the exception state temporarily. Use TPyErr.SetExcInfo() to restore or clear the exception state.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetExcInfo-IPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>SetExcInfo</strong>(const type_, value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set the exception info, as known from sys.exc_info(). This refers to an exception that was already caught, not to an exception that was freshly raised. This function &quot;steals&quot; the references of the arguments. To clear the exception state, pass nil for all three arguments. This function is kept for backwards compatibility. Prefer using TPyErr.SetHandledException().
+
+<p>Note: This function is not normally used by code that wants to handle exceptions. Rather, it can be used when code needs to save and restore the exception state temporarily. Use TPyErr.GetExcInfo() to read the exception state.
+
+<p>Added in version 3.3.
+
+<p>Changed in version 3.11: The type and traceback arguments are no longer used and can be nil. The interpreter now derives them from the exception instance (the value argument). The function still &quot;steals&quot; references of all three arguments.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetExcInfo-PPyObject-IPyObject-IPyObject-"></span><code>class procedure <strong>SetExcInfo</strong>(type_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; const value, traceback: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

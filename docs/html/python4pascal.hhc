@@ -13454,12 +13454,24 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetNone">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetObject">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetObject">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetObject">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetString">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetString">
@@ -13480,6 +13492,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Fetch">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Fetch">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Restore">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Restore">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Restore">
@@ -13504,6 +13524,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetExcInfo">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetExcInfo">
@@ -43726,6 +43754,14 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Fetch">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Fetch">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetExcInfo">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#GetExcInfo">
 </object>
@@ -43750,6 +43786,14 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#Restore">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Restore">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#Restore">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExcInfo">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetExcInfo">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetExcInfo">
 </object>
@@ -43770,6 +43814,14 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetNone">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetObject">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetObject">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
 </object>
@@ -43780,6 +43832,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetRaisedException">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetRaisedException">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetString">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetString">
