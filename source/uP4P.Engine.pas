@@ -554,7 +554,8 @@ end;
 
 function TP4PEngine.GetRaisedException: boolean;
 var
-  TempType, TempValue, TempTraceback : IPyObject;
+  TempType : PPyObject;
+  TempValue, TempTraceback : IPyObject;
 begin
   if PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     TempValue := TPyErr.GetRaisedException()

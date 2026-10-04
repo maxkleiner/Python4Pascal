@@ -358,8 +358,6 @@ uP4P.Types.PyObjectArenaAllocator.html
 uP4P.Types.PySlot.html
 uP4P.Types.PyHash_FuncDef.html
 uP4P.Types.PyByteArrayObject.html
-uP4P.Types.PyBytesWriter.html
-uP4P.Types.PyBytesObject.html
 uP4P.Types.PyBaseExceptionObject.html
 uP4P.Types.PyBaseExceptionGroupObject.html
 uP4P.Types.PySyntaxErrorObject.html
@@ -428,7 +426,6 @@ uP4P.Types.PyDateTime_Date.html
 uP4P.Types._PyDateTime_BaseDateTime.html
 uP4P.Types.PyDateTime_DateTime.html
 uP4P.Types.PyDateTime_CAPI.html
-uP4P.Types._frame.html
 
 [INFOTYPES]
 

@@ -69,6 +69,10 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyException.TPyException.html#SetArgs-IPyObject-IPyObject-">SetArgs</a></strong>(const ex, args: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
 </tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyException.TPyException.html#GetExceptionType-TPyExceptionType-">GetExceptionType</a></strong>(type_: <a href="uP4P.Types.html#TPyExceptionType">TPyExceptionType</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Methods</h3>
@@ -182,6 +186,20 @@ body { margin: 0.5em; }
 
 
 <p>Set args of exception ex to args.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetExceptionType-TPyExceptionType-"></span><code>class function <strong>GetExceptionType</strong>(type_: <a href="uP4P.Types.html#TPyExceptionType">TPyExceptionType</a>): <a href="uP4P.Types.html#PPyObject">PPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Custom function that returns the right exception type python object using the type_ argument.
 
 <p></p>
 </td></tr>

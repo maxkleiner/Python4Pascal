@@ -288,6 +288,86 @@ type
     ti_SubinterpreterOwnGIL
   );
 
+  /// <summary>
+  /// Custom type to handle standard Python exceptions and warning categories.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/exceptions.html#exception-and-warning-types">See the article about Exception and warning types.</see></para>
+  /// </remarks>
+  TPyExceptionType = (
+    petBaseException,
+    petException,
+    petBaseExceptionGroup,
+    petStopAsyncIteration,
+    petStopIteration,
+    petGeneratorExit,
+    petArithmeticError,
+    petLookupError,
+    petAssertionError,
+    petAttributeError,
+    petBufferError,
+    petEOFError,
+    petFloatingPointError,
+    petOSError,
+    petImportError,
+    petImportCycleError,
+    petModuleNotFoundError,
+    petIndexError,
+    petKeyError,
+    petKeyboardInterrupt,
+    petMemoryError,
+    petNameError,
+    petOverflowError,
+    petRuntimeError,
+    petRecursionError,
+    petNotImplementedError,
+    petSyntaxError,
+    petIndentationError,
+    petTabError,
+    petReferenceError,
+    petSystemError,
+    petSystemExit,
+    petTypeError,
+    petUnboundLocalError,
+    petUnicodeError,
+    petUnicodeEncodeError,
+    petUnicodeDecodeError,
+    petUnicodeTranslateError,
+    petValueError,
+    petZeroDivisionError,
+    petBlockingIOError,
+    petBrokenPipeError,
+    petChildProcessError,
+    petConnectionError,
+    petConnectionAbortedError,
+    petConnectionRefusedError,
+    petConnectionResetError,
+    petFileExistsError,
+    petFileNotFoundError,
+    petInterruptedError,
+    petIsADirectoryError,
+    petNotADirectoryError,
+    petPermissionError,
+    petProcessLookupError,
+    petTimeoutError,
+    petEnvironmentError,
+    petIOError,
+    petWindowsError,
+    petWarning,
+    petUserWarning,
+    petDeprecationWarning,
+    petPendingDeprecationWarning,
+    petSyntaxWarning,
+    petRuntimeWarning,
+    petFutureWarning,
+    petImportWarning,
+    petUnicodeWarning,
+    petBytesWarning,
+    petEncodingWarning,
+    petResourceWarning,
+    pet_Unkown
+  );
+
 
   PPy_ssize_t                     = ^Py_ssize_t;
   PPyTypeObject                   = ^PyTypeObject;

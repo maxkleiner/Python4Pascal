@@ -1986,6 +1986,10 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#InterpreterState">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="MainModule">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#MainModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="IsMainThread">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#IsMainThread">
 </object>
@@ -2026,6 +2030,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetInterpreterState">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#GetInterpreterState">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMainModule">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetMainModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetSavedThreadState">
@@ -13442,8 +13450,20 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetNone">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetObject">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetObject">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetString">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetString">
@@ -13808,6 +13828,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetArgs">
 <param name="Local" value="uP4P.PyException.TPyException.html#SetArgs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExceptionType">
+<param name="Local" value="uP4P.PyException.TPyException.html#GetExceptionType">
 </object>
 </ul>
 </ul>
@@ -23368,58 +23392,6 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
-<param name="Name" value="PyBytesWriter">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="small_buffer">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#small_buffer">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="obj">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#obj">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="size">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#size">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="use_bytearray">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#use_bytearray">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="overallocate">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#overallocate">
-</object>
-</ul>
-</ul>
-<li><object type="text/sitemap">
-<param name="Name" value="PyBytesObject">
-<param name="Local" value="uP4P.Types.PyBytesObject.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_base">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#ob_base">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_sval">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#ob_sval">
-</object>
-</ul>
-</ul>
-<li><object type="text/sitemap">
 <param name="Name" value="PyBaseExceptionObject">
 <param name="Local" value="uP4P.Types.PyBaseExceptionObject.html">
 </object>
@@ -27287,62 +27259,6 @@
 </object>
 </ul>
 </ul>
-<li><object type="text/sitemap">
-<param name="Name" value="_frame">
-<param name="Local" value="uP4P.Types._frame.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types._frame.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_base">
-<param name="Local" value="uP4P.Types._frame.html#ob_base">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_back">
-<param name="Local" value="uP4P.Types._frame.html#f_back">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_frame">
-<param name="Local" value="uP4P.Types._frame.html#f_frame">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace">
-<param name="Local" value="uP4P.Types._frame.html#f_trace">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_lineno">
-<param name="Local" value="uP4P.Types._frame.html#f_lineno">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace_lines">
-<param name="Local" value="uP4P.Types._frame.html#f_trace_lines">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace_opcodes">
-<param name="Local" value="uP4P.Types._frame.html#f_trace_opcodes">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_extra_locals">
-<param name="Local" value="uP4P.Types._frame.html#f_extra_locals">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_locals_cache">
-<param name="Local" value="uP4P.Types._frame.html#f_locals_cache">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_overwritten_fast_locals">
-<param name="Local" value="uP4P.Types._frame.html#f_overwritten_fast_locals">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_f_frame_data">
-<param name="Local" value="uP4P.Types._frame.html#_f_frame_data">
-</object>
-</ul>
-</ul>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Types">
@@ -27428,6 +27344,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="TP4PThreadInit">
 <param name="Local" value="uP4P.Types.html#TP4PThreadInit">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyExceptionType">
+<param name="Local" value="uP4P.Types.html#TPyExceptionType">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="PPy_ssize_t">
@@ -28360,10 +28280,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="PyDateTime_CAPI_Time_FromTimeAndFold_func">
 <param name="Local" value="uP4P.Types.html#PyDateTime_CAPI_Time_FromTimeAndFold_func">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="PyFrameObject">
-<param name="Local" value="uP4P.Types.html#PyFrameObject">
 </object>
 </ul>
 </ul>
@@ -32418,58 +32334,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ob_start">
 <param name="Local" value="uP4P.Types.PyByteArrayObject.html#ob_start">
-</object>
-</ul>
-</ul>
-<li><object type="text/sitemap">
-<param name="Name" value="PyBytesObject">
-<param name="Local" value="uP4P.Types.PyBytesObject.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_base">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#ob_base">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_sval">
-<param name="Local" value="uP4P.Types.PyBytesObject.html#ob_sval">
-</object>
-</ul>
-</ul>
-<li><object type="text/sitemap">
-<param name="Name" value="PyBytesWriter">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="obj">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#obj">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="overallocate">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#overallocate">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="size">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#size">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="small_buffer">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#small_buffer">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="use_bytearray">
-<param name="Local" value="uP4P.Types.PyBytesWriter.html#use_bytearray">
 </object>
 </ul>
 </ul>
@@ -36782,6 +36646,10 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#IsMainThread">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="MainModule">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#MainModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnInputMessage">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#OnInputMessage">
 </object>
@@ -36846,6 +36714,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetIsMainThread">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#GetIsMainThread">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMainModule">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetMainModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetSavedThreadState">
@@ -43894,12 +43766,24 @@
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetNone">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetNone">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetObject">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetObject">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetObject">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetRaisedException">
 <param name="Local" value="uP4P.PyErr.TPyErr.html#SetRaisedException">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetString">
+<param name="Local" value="uP4P.PyErr.TPyErr.html#SetString">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetString">
@@ -44048,6 +43932,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetContext">
 <param name="Local" value="uP4P.PyException.TPyException.html#GetContext">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExceptionType">
+<param name="Local" value="uP4P.PyException.TPyException.html#GetExceptionType">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetTraceback">
@@ -51488,62 +51376,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="wrapper">
 <param name="Local" value="uP4P.Types.wrapperbase.html#wrapper">
-</object>
-</ul>
-</ul>
-<li><object type="text/sitemap">
-<param name="Name" value="_frame">
-<param name="Local" value="uP4P.Types._frame.html">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Fields">
-<param name="Local" value="uP4P.Types._frame.html#@Fields">
-</object>
-<ul>
-<li><object type="text/sitemap">
-<param name="Name" value="f_back">
-<param name="Local" value="uP4P.Types._frame.html#f_back">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_extra_locals">
-<param name="Local" value="uP4P.Types._frame.html#f_extra_locals">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_frame">
-<param name="Local" value="uP4P.Types._frame.html#f_frame">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_lineno">
-<param name="Local" value="uP4P.Types._frame.html#f_lineno">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_locals_cache">
-<param name="Local" value="uP4P.Types._frame.html#f_locals_cache">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_overwritten_fast_locals">
-<param name="Local" value="uP4P.Types._frame.html#f_overwritten_fast_locals">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace">
-<param name="Local" value="uP4P.Types._frame.html#f_trace">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace_lines">
-<param name="Local" value="uP4P.Types._frame.html#f_trace_lines">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="f_trace_opcodes">
-<param name="Local" value="uP4P.Types._frame.html#f_trace_opcodes">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="ob_base">
-<param name="Local" value="uP4P.Types._frame.html#ob_base">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="_f_frame_data">
-<param name="Local" value="uP4P.Types._frame.html#_f_frame_data">
 </object>
 </ul>
 </ul>
