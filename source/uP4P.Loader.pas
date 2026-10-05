@@ -42,6 +42,7 @@ type
       FSetCurrentDir                     : boolean;
       FShowMessageDlg                    : boolean;
       FMustFreeLibrary                   : boolean;
+      FInExtensionModule                 : boolean;
       FStatus                            : TP4PLoaderStatus;
       FLastErrorMessage                  : string;
       FFileVersion                       : TFileVersionInfo;
@@ -73,6 +74,7 @@ type
       function GetBuildInfo: string;
       function GetOSPythonHome: string;
       function GetOSPythonLibPath: string;
+      function GetIsHandleValid: boolean;
 
       procedure FreePythonLibrary;
       function  ReadLibraryVersionInfo(const aLibraryPath: string): boolean;
@@ -97,6 +99,11 @@ type
       function  CheckDLLbitness(const aFilename : string): boolean;
       {$ENDIF}
       function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
+      function  TryLoadFromHostSymbols : boolean;
+      function  TryLoadFromCurrentProcess : boolean;
+      function  HasPythonSymbols : boolean;
+      function  LoadFromSymbols : boolean;
+      function  FindPythonModule: boolean;
 
       procedure LoadAllFunctions;
       procedure Load_pymacro;
@@ -171,6 +178,8 @@ type
       procedure Load_tracemalloc;
       procedure Load_frameobject;
 
+      property  IsHandleValid : boolean read GetIsHandleValid;
+
     public
       constructor Create; virtual;
       destructor  Destroy; override;
@@ -184,6 +193,11 @@ type
       /// Load the Python library.
       /// </summary>
       function    Load(const aLibraryPath: string = '') : boolean;
+      /// <summary>
+      /// Load the Python library in an extension module. This function can only
+      /// be called from a library.
+      /// </summary>
+      function    LoadInExtensionModule : boolean;
       /// <summary>
       /// Initialize the Python interpreter.
       /// </summary>
@@ -463,6 +477,10 @@ type
       /// </remarks>
       property LazyImports                       : PyImport_LazyImportsMode                     read FLazyImports                       write FLazyImports;
       /// <summary>
+      /// <para>Load the Python library from an extension module.</para>
+      /// </summary>
+      property InExtensionModule                 : boolean                                      read FInExtensionModule;
+      /// <summary>
       /// Event triggered right before the Python initialization. It's used to change the configuration properties.
       /// </summary>
       property OnBeforeInitialization            : TOnBeforeInitializationEvent                 read FOnBeforeInitialization            write FOnBeforeInitialization;
@@ -503,6 +521,7 @@ begin
   FProgramName            := '';
   FModuleSearchPaths      := '';
   FLazyImports            := PyImport_LAZY_NORMAL;
+  FInExtensionModule      := False;
 
   {$IFDEF ANDROID}
   FIsolated               := True;
@@ -548,7 +567,7 @@ begin
   try
     if Initialized then
       begin
-        Finalize;
+        if not(FInExtensionModule) then Finalize;
         FStatus := plsFinalized;
       end;
   finally
@@ -560,7 +579,7 @@ procedure TP4PLoader.FreePythonLibrary;
 begin
   try
     try
-      if FMustFreeLibrary and (FLibHandle <> 0) then
+      if FMustFreeLibrary and IsHandleValid then
         FreeLibrary(FLibHandle);
     except
       on e : exception do
@@ -579,7 +598,7 @@ end;
 
 function TP4PLoader.GetLoaded : boolean;
 begin
-  Result := (FLibHandle <> 0);
+  Result := IsHandleValid;
 end;
 
 function TP4PLoader.GetIsFinalizing : boolean;
@@ -677,7 +696,16 @@ begin
       if CustomExceptionHandler('TP4PLoader.FindPythonLib', e) then raise;
   end;
 end;
-                           
+
+function TP4PLoader.GetIsHandleValid: boolean;
+begin
+{$IFDEF MSWINDOWS}
+  Result := (FLibHandle >= 32);
+{$ELSE}
+  Result := FLibHandle <> 0;
+{$ENDIF}
+end;
+
 function TP4PLoader.GetOSPythonLibPath: string;
 {$IFDEF MSWINDOWS}
 var
@@ -847,7 +875,7 @@ var
 begin
   Result := False;
 
-  if (FLibHandle <> 0) then
+  if IsHandleValid then
     FLastErrorMessage := 'The Python library is already loaded.'
    else
     try
@@ -875,7 +903,7 @@ begin
         {$ENDIF}
       {$ENDIF}
 
-      if (FLibHandle <> 0) then
+      if IsHandleValid then
         Result  := True
        else
         begin
@@ -1273,6 +1301,87 @@ begin
 end;
 {$ENDIF}
 
+function TP4PLoader.HasPythonSymbols : boolean;
+begin
+  Load_pylifecycle;
+
+  Result := TPy.IsInitialized and
+            (length(TPy.GetBuildInfo) > 0);
+end;
+
+function TP4PLoader.LoadFromSymbols : boolean;
+begin
+  Result := False;
+
+  if GetFileVersion(FFileVersion) then
+    begin
+      if (FFileVersion.Major = SUPPORTED_MAJOR_VERSION) and
+         (FFileVersion.Minor >= MIN_SUPPORTED_MINOR_VERSION) and
+         (FFileVersion.Minor <= MAX_SUPPORTED_MINOR_VERSION) then
+        begin
+          LoadAllFunctions;
+          FStatus := plsLoaded;
+          Initialize;
+          Result  := True;
+        end
+       else
+        begin
+          FLastErrorMessage := FLastErrorMessage + CRLF + 'Unknown Python library version.';
+          FStatus           := plsErrorDLLVersion;
+        end;
+    end;
+end;
+
+function TP4PLoader.TryLoadFromHostSymbols : boolean;
+begin
+  Result := False;
+
+  {$IFNDEF FPC}
+  FLibHandle := LoadLibrary('');
+  {$ELSE}
+  FLibHandle := 0;
+  {$ENDIF}
+
+  if HasPythonSymbols and
+     LoadFromSymbols then
+    Result := True
+   else
+    FLibHandle := 0;
+end;
+
+function TP4PLoader.FindPythonModule: boolean;
+begin
+  Result := False;
+
+end;
+
+function TP4PLoader.TryLoadFromCurrentProcess : boolean;
+begin
+  Result := False;
+
+  if FindPythonModule and
+     LoadFromSymbols then
+    Result := True
+   else
+    FLibHandle := 0;
+end;
+
+function TP4PLoader.LoadInExtensionModule : boolean;
+begin
+  Result := False;
+
+  if ModuleIsLib then
+    begin
+      FInExtensionModule := True;
+
+      if TryLoadFromHostSymbols or
+         TryLoadFromCurrentProcess then
+        Result := True
+       else
+        Result := Load();
+    end;
+end;
+
 function TP4PLoader.Load(const aLibraryPath: string) : boolean;
 var
   {$IFDEF MSWINDOWS}TempLibPath, TempPackagesPath,{$ENDIF} TempPath : string;
@@ -1394,7 +1503,7 @@ begin
         doOnBeforeInitialization(TempConfig);
 
         if TPy.InitializeFromInitConfig(TempConfig) and
-           TPy.IsIntialized then
+           TPy.IsInitialized then
           begin
             FStatus := plsInitialized;
             Result  := True;
@@ -1464,7 +1573,7 @@ begin
                                  'Exit code: ' + inttostr(TempStatus.ExitCode);
           end
          else
-          if TPy.IsIntialized then
+          if TPy.IsInitialized then
             begin
               FStatus := plsInitialized;
               Result  := True;
@@ -1484,10 +1593,13 @@ begin
   Result := False;
   if (FStatus <> plsLoaded) then exit;
 
-  if PythonLibIsGreaterOrEqualThan(3, 14, 0) then
-    Result := Initialize_PEP741
+  if FInExtensionModule then
+    Result := True
    else
-    Result := Initialize_PEP587;
+    if PythonLibIsGreaterOrEqualThan(3, 14, 0) then
+      Result := Initialize_PEP741
+     else
+      Result := Initialize_PEP587;
 end;
 
 function TP4PLoader.Version(var aMajor, aMinor, aMicro: integer): boolean;
@@ -3181,3 +3293,4 @@ begin
 end;
 
 end.
+

@@ -493,13 +493,18 @@ function TP4PEngine.RedirectIO: boolean;
 begin
   Result := False;
 
-  if not(assigned(FIOModule)) then
+  if FInExtensionModule then
+    Result := True
+   else
     begin
-      FIOModule := TIOPyModule.Create(IOPyModuleName);
-      if not(FIOModule.Initialize) then exit;
-    end;
+      if not(assigned(FIOModule)) then
+        begin
+          FIOModule := TIOPyModule.Create(IOPyModuleName);
+          if not(FIOModule.Initialize) then exit;
+        end;
 
-  Result := TIOPyModule.RunInitCode;
+      Result := TIOPyModule.RunInitCode;
+    end;
 end;
 
 procedure TP4PEngine.GetCurrentInterpreterState;

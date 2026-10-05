@@ -88,7 +88,7 @@ type
       /// module. Previously it could return true while TPy.Initialize() was
       /// still running.</para>
       /// </summary>
-      class function  IsIntialized: boolean;
+      class function  IsInitialized: boolean;
       /// <summary>
       /// <para>Create a GenericAlias object. Equivalent to calling the Python
       /// class types.GenericAlias. The origin and args arguments set the
@@ -1116,7 +1116,7 @@ type
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
       /// </remarks>
-      class function PACK_FULL_VERSION(major, minor, micro, release_level, release_serial: integer): cardinal;
+      class function  PACK_FULL_VERSION(major, minor, micro, release_level, release_serial: integer): cardinal;
       /// <summary>
       /// <para>Equivalent to Py_PACK_FULL_VERSION(major, minor, 0, 0, 0).</para>
       /// <para>The result does not correspond to any Python release, but is
@@ -1125,21 +1125,21 @@ type
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
       /// </remarks>
-      class function PACK_VERSION(major, minor: integer): cardinal;
+      class function  PACK_VERSION(major, minor: integer): cardinal;
       /// <summary>
       /// <para>The Python version as a string.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
       /// </remarks>
-      class function VERSION(major, minor, micro, release_level, release_serial: integer): string;
+      class function  VERSION(major, minor, micro, release_level, release_serial: integer): string;
       /// <summary>
       /// <para>The Python version as an hexadecimal.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/apiabiversion.html#run-time-version">See the article about Run-time version.</see></para>
       /// </remarks>
-      class function VERSION_HEX: cardinal;
+      class function  VERSION_HEX: cardinal;
   end;
 
 implementation
@@ -1202,7 +1202,7 @@ begin
     Result := nil;
 end;
 
-class function TPy.IsIntialized: boolean;
+class function TPy.IsInitialized: boolean;
 begin
   Result := assigned(Py_IsInitialized) and
             (Py_IsInitialized() <> 0);
