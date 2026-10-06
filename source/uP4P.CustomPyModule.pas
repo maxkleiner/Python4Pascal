@@ -38,6 +38,9 @@ type
       FUseLegacyAPI          : boolean;
 
       function  GetName: AnsiString;
+      function  GetModuleDef: PPyModuleDef;
+      function  GetSlots: PPySlot;
+
       procedure SetUseLegacyAPI(aValue: boolean);
       /// <summary>
       /// <para>Internal function used to trigger the OnAfterInitialization
@@ -86,6 +89,14 @@ type
       /// <para>PyObject instance of this module.</para>
       /// </summary>
       property Module                        : IPyObject           read FModule;
+      /// <summary>
+      /// Return a poiter to PyModuleDef.
+      /// </summary>
+      property ModuleDef                     : PPyModuleDef        read GetModuleDef;
+      /// <summary>
+      /// Return a pointer to the first slot.
+      /// </summary>
+      property Slots                         : PPySlot             read GetSlots;
       /// <summary>
       /// <para>Module name.</para>
       /// </summary>
@@ -192,6 +203,22 @@ begin
       Result := FSlotManager.Name_
      else
       Result := '';
+end;
+
+function TCustomPyModule.GetModuleDef: PPyModuleDef;
+begin
+  if assigned(FModuleDef) then
+    Result := FModuleDef.ModuleDef
+   else
+    Result := nil;
+end;
+
+function TCustomPyModule.GetSlots: PPySlot;
+begin
+  if assigned(FSlotManager) then
+    Result := FSlotManager.Slots
+   else
+    Result := nil;
 end;
 
 procedure TCustomPyModule.SetUseLegacyAPI(aValue: boolean);

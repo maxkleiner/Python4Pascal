@@ -86,6 +86,14 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">GetModuleDef</a></strong>: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">GetSlots</a></strong>: <a href="uP4P.Types.html#PPySlot">PPySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a></strong>(aValue: boolean);</code></td>
 </tr>
 <tr class="list visibility-protected">
@@ -138,6 +146,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Module">Module</a></strong>                        : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FModule">FModule</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#ModuleDef">ModuleDef</a></strong>                     : <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>        read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">GetModuleDef</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Slots">Slots</a></strong>                         : <a href="uP4P.Types.html#PPySlot">PPySlot</a>             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">GetSlots</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -255,6 +271,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetModuleDef"></span><code>function <strong>GetModuleDef</strong>: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetSlots"></span><code>function <strong>GetSlots</strong>: <a href="uP4P.Types.html#PPySlot">PPySlot</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -402,6 +434,26 @@ body { margin: 0.5em; }
 <p>PyObject instance of this module.
 
 <p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ModuleDef"></span><code>property <strong>ModuleDef</strong>                     : <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>        read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">GetModuleDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a poiter to PyModuleDef. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Slots"></span><code>property <strong>Slots</strong>                         : <a href="uP4P.Types.html#PPySlot">PPySlot</a>             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">GetSlots</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a pointer to the first slot. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

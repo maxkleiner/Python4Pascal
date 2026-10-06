@@ -1822,6 +1822,14 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Module">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Slots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Slots">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Name_">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Name_">
 </object>
@@ -1858,6 +1866,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSlots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetUseLegacyAPI">
@@ -36438,6 +36454,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Module">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="MultIntprSupport">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#MultIntprSupport">
 </object>
@@ -36448,6 +36468,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="OnAfterInitialization">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#OnAfterInitialization">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Slots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Slots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="UseLegacyAPI">
@@ -36480,8 +36504,16 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#doOnAfterInitialization">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSlots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="LegacyInitialization">

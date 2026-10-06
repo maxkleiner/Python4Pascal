@@ -14783,8 +14783,16 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FUseLegacyAPI">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSlots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GILUsed">
@@ -14807,6 +14815,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Module">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ModuleDef">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ModuleDef">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="MultIntprSupport">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#MultIntprSupport">
 </object>
@@ -14825,6 +14837,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetUseLegacyAPI">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#SetUseLegacyAPI-boolean-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Slots">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Slots">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="UnifiedSlotInitialization">
