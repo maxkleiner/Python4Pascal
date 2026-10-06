@@ -13,13 +13,14 @@ unit uP4P.Loader;
 
 interface
 
+  //TODO: Add support for extension modulues.
   //TODO: Create a demo using custom python types.
   //TODO: See if it's possible to debug and fix the FPC issue #39815 -> https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
   //TODO: Find a better way to call python functions with a variable number of arguments. TPyTuple.Pack, TPySys.WriteStderr, for example.
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
+    {$IFDEF MSWINDOWS}WinApi.Windows, Winapi.PsApi, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
     System.Classes, System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils,
@@ -99,10 +100,7 @@ type
       function  CheckDLLbitness(const aFilename : string): boolean;
       {$ENDIF}
       function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
-      function  TryLoadFromHostSymbols : boolean;
-      function  TryLoadFromCurrentProcess : boolean;
       function  HasPythonSymbols : boolean;
-      function  LoadFromSymbols : boolean;
       function  FindPythonModule: boolean;
 
       procedure LoadAllFunctions;
@@ -1309,61 +1307,63 @@ begin
             (length(TPy.GetBuildInfo) > 0);
 end;
 
-function TP4PLoader.LoadFromSymbols : boolean;
-begin
-  Result := False;
-
-  if GetFileVersion(FFileVersion) then
-    begin
-      if (FFileVersion.Major = SUPPORTED_MAJOR_VERSION) and
-         (FFileVersion.Minor >= MIN_SUPPORTED_MINOR_VERSION) and
-         (FFileVersion.Minor <= MAX_SUPPORTED_MINOR_VERSION) then
-        begin
-          LoadAllFunctions;
-          FStatus := plsLoaded;
-          Initialize;
-          Result  := True;
-        end
-       else
-        begin
-          FLastErrorMessage := FLastErrorMessage + CRLF + 'Unknown Python library version.';
-          FStatus           := plsErrorDLLVersion;
-        end;
-    end;
-end;
-
-function TP4PLoader.TryLoadFromHostSymbols : boolean;
-begin
-  Result := False;
-
-  {$IFNDEF FPC}
-  FLibHandle := LoadLibrary('');
-  {$ELSE}
-  FLibHandle := 0;
-  {$ENDIF}
-
-  if HasPythonSymbols and
-     LoadFromSymbols then
-    Result := True
-   else
-    FLibHandle := 0;
-end;
-
 function TP4PLoader.FindPythonModule: boolean;
+{$IFDEF MSWINDOWS}
+const
+  MODULES_LENGTH = 4096;
+var
+  TempNeeded : DWORD;
+  i, j : integer;
+  TempProcHandle : THandle;
+  TempModulesArray : array [0..MODULES_LENGTH] of HMODULE;
+{$ENDIF}
 begin
   Result := False;
 
-end;
+  {$IFDEF MSWINDOWS}
+  FLibHandle := GetModuleHandle(nil);
 
-function TP4PLoader.TryLoadFromCurrentProcess : boolean;
-begin
-  Result := False;
+  if (FLibHandle = 0) then
+    FLibHandle := LoadLibrary('');
 
-  if FindPythonModule and
-     LoadFromSymbols then
-    Result := True
-   else
-    FLibHandle := 0;
+  if (FLibHandle = 0) then exit;
+
+  if HasPythonSymbols then
+    begin
+      Result := True;
+      exit;
+    end;
+
+  FLibHandle     := 0;
+  TempProcHandle := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, False, GetCurrentProcessId);
+
+  if (TempProcHandle > 0) then
+    try
+      if EnumProcessModules(TempProcHandle, @TempModulesArray[0], MODULES_LENGTH * SizeOf(HMODULE), TempNeeded) then
+        begin
+          i := 0;
+          j := min(MODULES_LENGTH, TempNeeded div SizeOf(HMODULE));
+
+          while (i < j) do
+            begin
+              FLibHandle := TempModulesArray[i];
+
+              if HasPythonSymbols then
+                begin
+                  Result := True;
+                  break;
+                end;
+
+              inc(i);
+            end;
+
+          if not(Result) then
+            FLibHandle := 0;
+        end;
+    finally
+      CloseHandle(TempProcHandle);
+    end
+  {$ENDIF}
 end;
 
 function TP4PLoader.LoadInExtensionModule : boolean;
@@ -1374,11 +1374,35 @@ begin
     begin
       FInExtensionModule := True;
 
-      if TryLoadFromHostSymbols or
-         TryLoadFromCurrentProcess then
-        Result := True
+      if FindPythonModule and
+         GetFileVersion(FFileVersion) then
+        begin
+          if (FFileVersion.Major = SUPPORTED_MAJOR_VERSION) and
+             (FFileVersion.Minor >= MIN_SUPPORTED_MINOR_VERSION) and
+             (FFileVersion.Minor <= MAX_SUPPORTED_MINOR_VERSION) then
+            begin
+              LoadAllFunctions;
+              FStatus := plsLoaded;
+              Initialize;
+              FMustFreeLibrary := False;
+              Result := True;
+            end
+           else
+            begin
+              FLastErrorMessage := FLastErrorMessage + CRLF + 'Unknown Python library version.';
+              FStatus           := plsErrorDLLVersion;
+            end;
+        end
        else
-        Result := Load();
+        begin
+          FLastErrorMessage := FLastErrorMessage + CRLF + 'Python library not available.';
+          FStatus           := plsErrorInitializingExtensionModule;
+        end;
+    end
+   else
+    begin
+      FLastErrorMessage := FLastErrorMessage + CRLF + 'LoadInExtensionModule can only be used by a module.';
+      FStatus           := plsErrorInitializingExtensionModule;
     end;
 end;
 

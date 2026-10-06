@@ -14716,7 +14716,7 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Create">
-<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-boolean-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateModuleDef">
@@ -14793,6 +14793,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Initialize">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Initialize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsExtension">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#IsExtension">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="LegacyInitialization">
@@ -15235,6 +15239,14 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FindPythonLib-string-TStringList-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FindPythonModule">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FindPythonModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FInExtensionModule">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FInExtensionModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FInteractive">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FInteractive">
 </object>
@@ -15359,6 +15371,10 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#GetIsFinalizing">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetIsHandleValid">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#GetIsHandleValid">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetLoaded">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#GetLoaded">
 </object>
@@ -15379,8 +15395,16 @@
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#GetVersion-integer-integer-integer-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="HasPythonSymbols">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#HasPythonSymbols">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Home">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#Home">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InExtensionModule">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#InExtensionModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Initialize">
@@ -15405,6 +15429,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="IsFinalizing">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#IsFinalizing">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsHandleValid">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#IsHandleValid">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Isolated">
@@ -15433,6 +15461,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Loaded">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#Loaded">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="LoadInExtensionModule">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#LoadInExtensionModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="LoadPythonLibrary">
@@ -16145,8 +16177,8 @@
 <param name="Local" value="uP4P.Py.TPy.html#IsFinalizing">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="IsIntialized">
-<param name="Local" value="uP4P.Py.TPy.html#IsIntialized">
+<param name="Name" value="IsInitialized">
+<param name="Local" value="uP4P.Py.TPy.html#IsInitialized">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IsNone">

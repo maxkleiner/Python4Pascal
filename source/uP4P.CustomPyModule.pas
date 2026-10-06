@@ -52,13 +52,19 @@ type
       /// Override this procedure to create your custom IPySlotManager instance.
       /// </summary>
       procedure CreateSlotManager; virtual;
-
+      /// <summary>
+      /// Initialize the module in Python 3.14 or older. It uses an
+      /// IPyModuleDef instance.
+      /// </summary>
       function  LegacyInitialization: boolean;
-
+      /// <summary>
+      /// Initialize the module in Python 3.15 or newer. It uses an
+      /// IPySlotManager instance.
+      /// </summary>
       function  UnifiedSlotInitialization: boolean;
 
     public
-      constructor Create(const aName: string);
+      constructor Create(const aName: string; aIsExtension: boolean = False);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       /// <summary>
@@ -84,6 +90,10 @@ type
       /// <para>Module name.</para>
       /// </summary>
       property Name_                         : AnsiString          read GetName;
+      /// <summary>
+      /// <para>True when this instance is an extension module.</para>
+      /// </summary>
+      property IsExtension                   : boolean             read FIsExtension;
       /// <summary>
       /// <para>the docstring of the new module.</para>
       /// </summary>
@@ -126,7 +136,7 @@ begin
   Result := 0;
 end;
 
-constructor TCustomPyModule.Create(const aName: string);
+constructor TCustomPyModule.Create(const aName: string; aIsExtension: boolean);
 begin
   inherited Create;
 
@@ -138,7 +148,7 @@ begin
   FOnAfterInitialization := nil;
   FMultIntprSupport      := miSupported;
   FGILUsed               := True;
-  FIsExtension           := False;
+  FIsExtension           := aIsExtension;
   FUseLegacyAPI          := not((GlobalP4PEngine <> nil) and
                                 GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0));
 end;

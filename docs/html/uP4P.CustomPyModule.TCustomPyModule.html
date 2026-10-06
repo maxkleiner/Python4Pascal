@@ -110,7 +110,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>constructor <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-">Create</a></strong>(const aName: string);</code></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-boolean-">Create</a></strong>(const aName: string; aIsExtension: boolean = False);</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -145,21 +145,25 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#DocStrings">DocStrings</a></strong>                    : string              read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">FDocStrings</a>               write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">FDocStrings</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#IsExtension">IsExtension</a></strong>                   : boolean             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FIsExtension">FIsExtension</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#DocStrings">DocStrings</a></strong>                    : string              read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">FDocStrings</a>               write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">FDocStrings</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#UseLegacyAPI">UseLegacyAPI</a></strong>                  : boolean             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FUseLegacyAPI">FUseLegacyAPI</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#MultIntprSupport">MultIntprSupport</a></strong>              : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>   read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FMultIntprSupport">FMultIntprSupport</a>         write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FMultIntprSupport">FMultIntprSupport</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#GILUsed">GILUsed</a></strong>                       : boolean             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">FGILUsed</a>                  write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">FGILUsed</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#OnAfterInitialization">OnAfterInitialization</a></strong>         : TNotifyEvent        read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>    write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>;</code></td>
 </tr>
@@ -303,7 +307,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="LegacyInitialization"></span><code>function <strong>LegacyInitialization</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Initialize the module in Python 3.14 or older. It uses an IPyModuleDef instance. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -311,12 +317,14 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="UnifiedSlotInitialization"></span><code>function <strong>UnifiedSlotInitialization</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Initialize the module in Python 3.15 or newer. It uses an IPySlotManager instance. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Create-string-"></span><code>constructor <strong>Create</strong>(const aName: string);</code></td>
+<td class="itemcode"><span id="Create-string-boolean-"></span><code>constructor <strong>Create</strong>(const aName: string; aIsExtension: boolean = False);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -406,6 +414,20 @@ body { margin: 0.5em; }
 
 
 <p>Module name.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsExtension"></span><code>property <strong>IsExtension</strong>                   : boolean             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FIsExtension">FIsExtension</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>True when this instance is an extension module.
 
 <p></p>
 </td></tr>

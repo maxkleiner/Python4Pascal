@@ -67,7 +67,8 @@ type
                       plsFinalized,
                       plsErrorDLLVersion,
                       plsErrorLoadingLibrary,
-                      plsErrorInitializingLibrary);
+                      plsErrorInitializingLibrary,
+                      plsErrorInitializingExtensionModule);
 
   /// <summary>
   /// Python library version information
@@ -1818,7 +1819,7 @@ type
     /// The module's index into its interpreter's modules_by_index cache.
     /// This is set for all extension modules but only used for legacy ones.
     /// (See PyInterpreterState.modules_by_index for more info.)
-    /// It is set by PyModuleDef_Init().
+    /// It is set by TPyModuleDef.Init().
     /// </summary>
     m_index    : Py_ssize_t;
     /// <summary>

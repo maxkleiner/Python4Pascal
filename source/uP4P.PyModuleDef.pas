@@ -90,7 +90,9 @@ type
       /// or a borrowed one; this reference must not be released.</para>
       /// </summary>
       class function Init(const def: PyModuleDef): PPyObject;
-
+      /// <summary>
+      /// Returns true if this class is fully initialized.
+      /// </summary>
       property  Initialized            : boolean        read FInitialized;
       /// <summary>
       /// <para>Module name.</para>
