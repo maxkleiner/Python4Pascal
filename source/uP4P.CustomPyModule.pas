@@ -12,7 +12,7 @@ uses
   {$IFDEF DELPHI16_UP}
     System.Classes, System.SysUtils, System.AnsiStrings,
   {$ELSE}
-    Classes, SysUtils, AnsiStrings,
+    Classes, SysUtils, {$IFDEF DELPHI12_UP}AnsiStrings,{$ENDIF}
   {$ENDIF}
   uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
