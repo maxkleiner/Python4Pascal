@@ -1618,7 +1618,10 @@ begin
   if (FStatus <> plsLoaded) then exit;
 
   if FInExtensionModule then
-    Result := True
+    begin
+      FStatus := plsInitialized;
+      Result  := True;
+    end
    else
     if PythonLibIsGreaterOrEqualThan(3, 14, 0) then
       Result := Initialize_PEP741

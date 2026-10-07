@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes, System.SysUtils,
+    System.Classes, System.SysUtils, System.AnsiStrings,
   {$ELSE}
-    Classes, SysUtils,
+    Classes, SysUtils, AnsiStrings,
   {$ENDIF}
   uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
@@ -249,9 +249,13 @@ end;
 
 function TCustomPyModule.SameAs(const other: PPyObject): boolean;
 begin
-  Result := assigned(FModule) and
-            assigned(other) and
-            FModule.SameAs(other);
+  Result := False;
+  if not(assigned(other)) then exit;
+
+  if assigned(FModule) then
+    Result := FModule.SameAs(other)
+   else
+    Result := (Trim(Name_) = TPyModule.GetName(other));
 end;
 
 function TCustomPyModule.LegacyInitialization: boolean;

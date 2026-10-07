@@ -21,6 +21,7 @@ library SimplePythonExtension;
 uses
   {$IFDEF DELPHI16_UP}
   System.SysUtils,
+  System.Classes,
   {$ELSE}
   SysUtils,
   Classes,
@@ -30,8 +31,8 @@ uses
 
 {$R *.res}
 
-exports
-  PyInit_SimplePythonExtension;
+exports PyInit_SimplePythonExtension;
+exports PyModExport_SimplePythonExtension;
 
 {$IFDEF MSWINDOWS}
 {$E pyd}

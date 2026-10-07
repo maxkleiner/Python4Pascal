@@ -13,6 +13,7 @@ uses
   uP4P.Interfaces, uP4P.Types, uP4P.Constants, uP4P.PyObject, uP4P.Engine;
 
 function PyInit_SimplePythonExtension: PPyObject; cdecl;
+function PyModExport_SimplePythonExtension: PPySlot; cdecl;
 
 implementation
 
@@ -26,11 +27,24 @@ function PyInit_SimplePythonExtension: PPyObject;
 begin
   GlobalP4PEngine := TP4PEngine.Create;
 
-  GExtension                  := TExtensionModule.Create('SimplePythonExtension', True);
-  GExtension.MultIntprSupport := piGilSupported;
+  if GlobalP4PEngine.LoadInExtensionModule then
+    begin
+      GExtension := TExtensionModule.Create;
+      Result     := PPyObject(GExtension.ModuleDef);
+    end
+   else
+    Result := nil;
+end;
+
+function PyModExport_SimplePythonExtension: PPySlot;
+begin
+  GlobalP4PEngine := TP4PEngine.Create;
 
   if GlobalP4PEngine.LoadInExtensionModule then
-    Result := PPyObject(GExtension.ModuleDef)
+    begin
+      GExtension := TExtensionModule.Create;
+      Result     := GExtension.Slots;
+    end
    else
     Result := nil;
 end;
