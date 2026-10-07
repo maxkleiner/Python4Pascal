@@ -23,7 +23,7 @@ uses
     {$IFDEF MSWINDOWS}WinApi.Windows, Winapi.PsApi, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
     System.Classes, System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils,
+    {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} {$IFNDEF FPC}PsApi,{$ENDIF} Classes, SysUtils,
     Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
     {$IFDEF FPC}dynlibs, JwaPsApi, FileUtil,{$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
