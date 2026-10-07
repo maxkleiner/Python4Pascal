@@ -25,7 +25,7 @@ uses
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows, Registry,{$ENDIF} Classes, SysUtils,
     Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
-    {$IFDEF FPC}dynlibs, FileUtil,{$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
+    {$IFDEF FPC}dynlibs, JwaPsApi, FileUtil,{$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 

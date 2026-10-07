@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Simple Python Module'
-  ClientHeight = 441
-  ClientWidth = 624
+  ClientHeight = 646
+  ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 237
-    Width = 624
+    Top = 293
+    Width = 736
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -27,11 +27,12 @@ object MainForm: TMainForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 624
+    Width = 736
     Height = 35
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 624
     object RunBtn: TButton
       Left = 5
       Top = 5
@@ -44,9 +45,9 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 240
-    Width = 624
-    Height = 201
+    Top = 296
+    Width = 736
+    Height = 350
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
@@ -55,8 +56,8 @@ object MainForm: TMainForm
   object CodeMem: TMemo
     Left = 0
     Top = 35
-    Width = 624
-    Height = 202
+    Width = 736
+    Height = 258
     Align = alClient
     Lines.Strings = (
       'import mytest'
@@ -67,7 +68,15 @@ object MainForm: TMainForm
       
         'print("Reading the previously saved value from the Delphi form..' +
         '.")'
-      'print(mytest.read())')
+      'print(mytest.read())'
+      ''
+      'print("Check if 42 is even...")'
+      'print(mytest.is_even(42))'
+      ''
+      'print("Check if 45 is even...")'
+      'print(mytest.is_even(45))')
     TabOrder = 2
+    ExplicitWidth = 624
+    ExplicitHeight = 202
   end
 end
