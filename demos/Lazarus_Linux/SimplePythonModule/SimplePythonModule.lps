@@ -18,7 +18,6 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="43"/>
         <CursorPos X="30" Y="61"/>
@@ -29,7 +28,10 @@
       <Unit>
         <Filename Value="uTestModule.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
+        <TopLine Value="137"/>
+        <CursorPos X="5" Y="172"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
