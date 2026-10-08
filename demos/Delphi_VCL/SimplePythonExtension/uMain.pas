@@ -55,9 +55,16 @@ begin
     FreeAndNil(GExtension);
 end;
 
+procedure FinalizeExtension;
+begin
+  if assigned(GExtension) then
+    GExtension.Finalize;
+end;
+
 initialization
 
 finalization
+  FinalizeExtension;
   DestroyGlobalP4PEngine;
   DestroyExtension;
 

@@ -1063,7 +1063,21 @@ type
       /// <para>The caller must have an attached thread state.</para>
       /// <para>Added in version 3.14.</para>
       /// </summary>
-      class function  fopen(const path: IPyObject; const mode: string): PFILE;
+      class function  fopen(const path: IPyObject; const mode: string): PFILE; overload;
+      /// <summary>
+      /// <para>Similar to fopen(), but path is a Python object and an exception
+      /// is set on error.</para>
+      /// <para>path must be a str object, a bytes object, or a path-like
+      /// object.</para>
+      /// <para>On success, return the new file pointer. On error, set an
+      /// exception and return nil.</para>
+      /// <para>The file must be closed by TPy.fclose() rather than calling
+      /// directly fclose().</para>
+      /// <para>The file descriptor is created non-inheritable (PEP 446).</para>
+      /// <para>The caller must have an attached thread state.</para>
+      /// <para>Added in version 3.14.</para>
+      /// </summary>
+      class function  fopen(const path, mode: string): PFILE; overload;
       /// <summary>
       /// <para>Close a file that was opened by TPy.fopen().</para>
       /// <para>On success, return 0. On error, return EOF and errno is set to
@@ -1146,7 +1160,7 @@ implementation
 
 uses
   uP4P.MiscFunctions, uP4P.PyStatus, uP4P.PyThreadState,
-  uP4P.PyInitConfig, uP4P.PyPreConfig;
+  uP4P.PyInitConfig, uP4P.PyPreConfig, uP4P.PyUnicode;
 
 class procedure TPy.FatalError(const message_: string);
 var
@@ -1792,6 +1806,21 @@ begin
     end
    else
     Result := nil;
+end;
+
+class function TPy.fopen(const path, mode: string): PFILE;
+var
+  TempPath : IPyObject;
+begin
+  Result := nil;
+
+  if (length(path) > 0) and FileExists(path) then
+    try
+      TempPath := TPyUnicode.FromString(path);
+      Result   := fopen(TempPath, mode);
+    finally
+      TempPath := nil;
+    end;
 end;
 
 class function TPy.fclose(file_: PFILE): integer;

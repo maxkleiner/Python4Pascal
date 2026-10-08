@@ -327,45 +327,49 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fopen-IPyObject-string-">fopen</a></strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fopen-IPyObject-string-">fopen</a></strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>; overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fopen-string-string-">fopen</a></strong>(const path, mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#fclose-PFILE-">fclose</a></strong>(file_: <a href="uP4P.Types.html#PFILE">PFILE</a>): integer;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#GetEnv-string-">GetEnv</a></strong>(const key: string): string;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#HashPointer-Pointer-">HashPointer</a></strong>(const ptr: Pointer): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#HashBuffer-Pointer-Py_ssize_t-">HashBuffer</a></strong>(const ptr: Pointer; len: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Types.html#Py_hash_t">Py_hash_t</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#Size-IPyObject-">Size</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.Py.TPy.html#SetSize-IPyObject-Py_ssize_t-">SetSize</a></strong>(const o: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; size_: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#PACK_FULL_VERSION-integer-integer-integer-integer-integer-">PACK_FULL_VERSION</a></strong>(major, minor, micro, release_level, release_serial: integer): cardinal;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#PACK_VERSION-integer-integer-">PACK_VERSION</a></strong>(major, minor: integer): cardinal;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#VERSION-integer-integer-integer-integer-integer-">VERSION</a></strong>(major, minor, micro, release_level, release_serial: integer): string;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.Py.TPy.html#VERSION_HEX">VERSION_HEX</a></strong>: cardinal;</code></td>
 </tr>
@@ -1876,7 +1880,33 @@ if (PyStatus_Exception(status)) {
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="fopen-IPyObject-string-"></span><code>class function <strong>fopen</strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>;</code></td>
+<td class="itemcode"><span id="fopen-IPyObject-string-"></span><code>class function <strong>fopen</strong>(const path: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; const mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Similar to fopen(), but path is a Python object and an exception is set on error.
+
+<p>path must be a str object, a bytes object, or a path-like object.
+
+<p>On success, return the new file pointer. On error, set an exception and return nil.
+
+<p>The file must be closed by TPy.fclose() rather than calling directly fclose().
+
+<p>The file descriptor is created non-inheritable (PEP 446).
+
+<p>The caller must have an attached thread state.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="fopen-string-string-"></span><code>class function <strong>fopen</strong>(const path, mode: string): <a href="uP4P.Types.html#PFILE">PFILE</a>; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

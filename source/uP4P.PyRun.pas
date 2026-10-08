@@ -10,9 +10,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes,
+    System.Classes, System.SysUtils,
   {$ELSE}
-    Classes,
+    Classes, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
@@ -130,7 +130,16 @@ type
       /// <para>This is a simplified interface to TPyRun.SimpleFileExFlags(),
       /// leaving closeit set to False and flags set to nil.</para>
       /// </summary>
-      class function SimpleFile(fp: PFILE; const filename: string): boolean;
+      class function SimpleFile(fp: PFILE; const filename: string): boolean; overload;
+      /// <summary>
+      /// <para>This is a simplified interface to TPyRun.SimpleFile() that
+      /// opens and closes the file automatically.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para>This function uses TPy.fopen which was added in Python
+      /// version 3.14.</para>
+      /// </remarks>
+      class function SimpleFile(const filename: string): boolean; overload;
       /// <summary>
       /// <para>This is a simplified interface to TPyRun.SimpleFileExFlags(),
       /// leaving flags set to nil.</para>
@@ -166,7 +175,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions;
+  uP4P.MiscFunctions, uP4P.Py;
 
 class function TPyRun.SimpleStringFlags(const command: string; flags: PPyCompilerFlags): boolean;
 var
@@ -348,6 +357,27 @@ begin
       TempFilename := StringToPyUTF8(filename);
       Result       := (PyRun_SimpleFile(fp, PAnsiChar(TempFilename)) = 0);
     end;
+end;
+
+class function TPyRun.SimpleFile(const filename: string): boolean;
+var
+  TempFP : PFILE;
+begin
+  Result := False;
+
+  try
+    TempFP := TPy.fopen(filename, 'r');
+
+    if assigned(TempFP) then
+      try
+        Result := SimpleFile(TempFP, filename);
+      finally
+        TPy.fclose(TempFP);
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('TPyRun.SimpleFile', e) then raise;
+  end;
 end;
 
 class function TPyRun.SimpleFileEx(fp: PFILE; const filename: string; closeit: boolean): boolean;

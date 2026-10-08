@@ -14,7 +14,7 @@ body { margin: 0.5em; }
 <body>
 <span id="TPyTimeModule"></span><h1 class="cio">Class TPyTimeModule</h1>
 <div class="sections">
-<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div></div>
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
 <span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
 <p class="unitlink">
 <a href="uP4P.PyTimeModule.html">uP4P.PyTimeModule</a></p>
@@ -42,6 +42,10 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.PyTimeModule.TPyTimeModule.html#FTimeStructType">FTimeStructType</a></strong>: Pointer;</code></td>
 </tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">FInExtensionModule</a></strong>: boolean;</code></td>
+</tr>
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
@@ -62,12 +66,27 @@ body { margin: 0.5em; }
 <td class="itemcode"><code>function <strong><a href="uP4P.PyTimeModule.TPyTimeModule.html#CheckTimeStruct-IPyObject-">CheckTimeStruct</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
 </table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyTimeModule.TPyTimeModule.html#InExtensionModule">InExtensionModule</a></strong> : boolean read <a href="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">FInExtensionModule</a> write <a href="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">FInExtensionModule</a>;</code></td>
+</tr>
+</table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Fields</h3>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FTimeStructType"></span><code><strong>FTimeStructType</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FInExtensionModule"></span><code><strong>FInExtensionModule</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -107,6 +126,21 @@ body { margin: 0.5em; }
 
 
 <p>Return true if aPyObject is an instance of the &quot;struct_time&quot; type.
+
+<p></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="InExtensionModule"></span><code>property <strong>InExtensionModule</strong> : boolean read <a href="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">FInExtensionModule</a> write <a href="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">FInExtensionModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This module was loaded from an extension module.
 
 <p></p>
 </td></tr>

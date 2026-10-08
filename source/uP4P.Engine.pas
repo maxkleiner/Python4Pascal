@@ -316,13 +316,19 @@ end;
 procedure TP4PEngine.CreateTimeModule;
 begin
   if not(assigned(FTimeModule)) then
-    FTimeModule := TPyTimeModule.Create;
+    begin
+      FTimeModule                   := TPyTimeModule.Create;
+      FTimeModule.InExtensionModule := InExtensionModule;
+    end;
 end;
 
 procedure TP4PEngine.CreateDateTimeModule;
 begin
   if not(assigned(FDateTimeModule)) then
-    FDateTimeModule := TPyDateTimeModule.Create;
+    begin
+      FDateTimeModule                   := TPyDateTimeModule.Create;
+      FDateTimeModule.InExtensionModule := InExtensionModule;
+    end;
 end;
 
 function TP4PEngine.GetIsMainThread: boolean;

@@ -29,13 +29,14 @@ type
   /// </remarks>
   TPyDateTimeModule = class(TImportedPyModule)
     protected
-      FDateType       : Pointer;
-      FDateTimeType   : Pointer;
-      FDeltaType      : Pointer;
-      FTimeType       : Pointer;
-      FTZInfoType     : Pointer;
-      FTimeTZType     : Pointer;
-      FDateTimeTZType : Pointer;
+      FDateType          : Pointer;
+      FDateTimeType      : Pointer;
+      FDeltaType         : Pointer;
+      FTimeType          : Pointer;
+      FTZInfoType        : Pointer;
+      FTimeTZType        : Pointer;
+      FDateTimeTZType    : Pointer;
+      FInExtensionModule : boolean;
 
       procedure Import; override;
       procedure Initialize; override;
@@ -146,7 +147,11 @@ type
       /// <summary>
       /// Pointer to the "datetime" type.
       /// </summary>
-      property DateTimeType   : Pointer  read FDateTimeType;
+      property DateTimeType      : Pointer  read FDateTimeType;
+      /// <summary>
+      /// <para>This module was loaded from an extension module.</para>
+      /// </summary>
+      property InExtensionModule : boolean  read FInExtensionModule   write FInExtensionModule;
   end;
 
 implementation
@@ -167,6 +172,8 @@ end;
 
 procedure TPyDateTimeModule.Finalize;
 begin
+  if FInExtensionModule then exit;
+
   DecRef(FDateType);
   DecRef(FDateTimeType);
   DecRef(FDeltaType);

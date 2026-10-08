@@ -143,7 +143,7 @@ var
   i : integer;
 begin
   if assigned(FSlotList) then
-    begin
+    try
       i := pred(FSlotList.Count);
       while (i >= 0) do
         begin
@@ -151,7 +151,7 @@ begin
           FSlotList[i] := nil;
           dec(i);
         end;
-
+    finally
       FreeAndNil(FSlotList);
     end;
 end;
@@ -170,7 +170,7 @@ var
   i : integer;
 begin
   if assigned(FMethodList) then
-    begin
+    try
       i := pred(FMethodList.Count);
       while (i >= 0) do
         begin
@@ -178,7 +178,7 @@ begin
           FMethodList[i] := nil;
           dec(i);
         end;
-
+    finally
       FreeAndNil(FMethodList);
     end;
 end;

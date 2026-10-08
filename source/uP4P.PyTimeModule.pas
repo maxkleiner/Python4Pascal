@@ -27,7 +27,8 @@ type
   /// </remarks>
   TPyTimeModule = class(TImportedPyModule)
     protected
-      FTimeStructType : Pointer;
+      FTimeStructType    : Pointer;
+      FInExtensionModule : boolean;
 
       procedure Import; override;
       procedure Initialize; override;
@@ -39,6 +40,10 @@ type
       /// type.</para>
       /// </summary>
       function CheckTimeStruct(const aPyObject: IPyObject): boolean;
+      /// <summary>
+      /// <para>This module was loaded from an extension module.</para>
+      /// </summary>
+      property InExtensionModule : boolean read FInExtensionModule write FInExtensionModule;
   end;
 
 implementation
@@ -53,7 +58,8 @@ end;
 
 procedure TPyTimeModule.Finalize;
 begin
-  DecRef(FTimeStructType);
+  if not(FInExtensionModule) then
+    DecRef(FTimeStructType);
 end;
 
 procedure TPyTimeModule.Import;

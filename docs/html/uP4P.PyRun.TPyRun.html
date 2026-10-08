@@ -91,29 +91,33 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFile-PFILE-string-">SimpleFile</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFile-PFILE-string-">SimpleFile</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean; overload;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFile-string-">SimpleFile</a></strong>(const filename: string): boolean; overload;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#SimpleFileEx-PFILE-string-boolean-">SimpleFileEx</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; closeit: boolean): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveOne-PFILE-string-">InteractiveOne</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#InteractiveLoop-PFILE-string-">InteractiveLoop</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#File_-PFILE-string-integer-IPyObject-IPyObject-">File_</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#FileEx-PFILE-string-integer-IPyObject-IPyObject-boolean-">FileEx</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; closeit: boolean): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyRun.TPyRun.html#FileFlags-PFILE-string-integer-IPyObject-IPyObject-PPyCompilerFlags-">FileFlags</a></strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string; start: integer; const globals, locals: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; flags: <a href="uP4P.Types.html#PPyCompilerFlags">PPyCompilerFlags</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
@@ -313,7 +317,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="SimpleFile-PFILE-string-"></span><code>class function <strong>SimpleFile</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean;</code></td>
+<td class="itemcode"><span id="SimpleFile-PFILE-string-"></span><code>class function <strong>SimpleFile</strong>(fp: <a href="uP4P.Types.html#PFILE">PFILE</a>; const filename: string): boolean; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -322,6 +326,24 @@ body { margin: 0.5em; }
 <p>This is a simplified interface to TPyRun.SimpleFileExFlags(), leaving closeit set to False and flags set to nil.
 
 <p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SimpleFile-string-"></span><code>class function <strong>SimpleFile</strong>(const filename: string): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>This is a simplified interface to TPyRun.SimpleFile() that opens and closes the file automatically.
+
+<p></p>
+<p>
+
+
+<p>This function uses TPy.fopen which was added in Python version 3.14.</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

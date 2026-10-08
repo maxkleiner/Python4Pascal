@@ -195,7 +195,11 @@ begin
   if assigned(FMethodList) then
     begin
       TempMethod := TPyMethodDef.Create(aName, aDocStrings, aMethod, aFlags);
-      Result     := (FMethodList.Add(TempMethod) >= 0);
+
+      if (FMethodList.Add(TempMethod) >= 0) then
+        Result := True
+       else
+        TempMethod.Free;
     end;
 end;
 
@@ -213,7 +217,11 @@ begin
   if assigned(FSlotList) then
     begin
       TempSlot := TPyModuleDef_Slot.Create(aSlot, aValue);
-      Result   := (FSlotList.Add(TempSlot) >= 0);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
     end;
 end;
 
@@ -330,7 +338,7 @@ var
   i : integer;
 begin
   if assigned(FSlotList) then
-    begin
+    try
       i := pred(FSlotList.Count);
       while (i >= 0) do
         begin
@@ -338,7 +346,7 @@ begin
           FSlotList[i] := nil;
           dec(i);
         end;
-
+    finally
       FreeAndNil(FSlotList);
     end;
 end;
@@ -357,7 +365,7 @@ var
   i : integer;
 begin
   if assigned(FMethodList) then
-    begin
+    try
       i := pred(FMethodList.Count);
       while (i >= 0) do
         begin
@@ -365,7 +373,7 @@ begin
           FMethodList[i] := nil;
           dec(i);
         end;
-
+    finally
       FreeAndNil(FMethodList);
     end;
 end;

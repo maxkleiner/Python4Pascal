@@ -70,6 +70,7 @@ type
       constructor Create(const aName: string; aIsExtension: boolean = False);
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
+      procedure   BeforeDestruction; override;
       /// <summary>
       /// <para>Test if this module is the same as the "other" module.</para>
       /// </summary>
@@ -83,6 +84,9 @@ type
       /// internal modules list in GlobalP4PEngine.</para>
       /// <para>This is necessary before calling TPy.EndInterpreter.</para>
       /// </summary>
+      /// <remarks>
+      /// <para>See the TP4PThread class.</para>
+      /// </remarks>
       procedure   Finalize;
 
       /// <summary>
@@ -167,7 +171,6 @@ end;
 destructor TCustomPyModule.Destroy;
 begin
   try
-    Finalize;
     FModuleDef   := nil;
     FSlotManager := nil;
   finally
@@ -183,11 +186,22 @@ begin
     GlobalP4PEngine.AddModule(self);
 end;
 
+procedure TCustomPyModule.BeforeDestruction;
+begin
+  try
+    Finalize;
+  finally
+    inherited BeforeDestruction;
+  end;
+end;
+
 procedure TCustomPyModule.Finalize;
 begin
-  if TPyObject.IsInitialized(FModule) and (GlobalP4PEngine <> nil) then
+  if (GlobalP4PEngine <> nil) then
     begin
-      GlobalP4PEngine.RemoveFromSysModules(self);
+      if TPyObject.IsInitialized(FModule) then
+        GlobalP4PEngine.RemoveFromSysModules(self);
+
       GlobalP4PEngine.RemoveModule(self);
     end;
 
@@ -296,8 +310,6 @@ begin
   if assigned(FModule) then exit;
 
   CreateSlotManager;
-
-  if not(assigned(FSlotManager)) then exit;
 
   FSlotManager.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
 

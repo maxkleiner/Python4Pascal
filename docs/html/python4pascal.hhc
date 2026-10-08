@@ -1912,6 +1912,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AfterConstruction">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="BeforeDestruction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#BeforeDestruction">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SameAs">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#SameAs">
 </object>
@@ -7346,6 +7350,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="EncodeLocale">
 <param name="Local" value="uP4P.Py.TPy.html#EncodeLocale">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="fopen">
+<param name="Local" value="uP4P.Py.TPy.html#fopen">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="fopen">
@@ -12961,6 +12969,10 @@
 <param name="Name" value="FDateTimeTZType">
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDateTimeTZType">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FInExtensionModule">
+<param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FInExtensionModule">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -12970,6 +12982,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="DateTimeType">
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#DateTimeType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InExtensionModule">
+<param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#InExtensionModule">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -19388,6 +19404,10 @@
 <param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFile">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SimpleFile">
+<param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFile">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SimpleFileEx">
 <param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFileEx">
 </object>
@@ -20930,6 +20950,20 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FTimeStructType">
 <param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#FTimeStructType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FInExtensionModule">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="InExtensionModule">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#InExtensionModule">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -36528,6 +36562,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AfterConstruction">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="BeforeDestruction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#BeforeDestruction">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Finalize">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Finalize">
 </object>
@@ -37790,6 +37828,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FinalizeEx">
 <param name="Local" value="uP4P.Py.TPy.html#FinalizeEx">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="fopen">
+<param name="Local" value="uP4P.Py.TPy.html#fopen">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="fopen">
@@ -43282,6 +43324,10 @@
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FDeltaType">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FInExtensionModule">
+<param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FInExtensionModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FTimeType">
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#FTimeType">
 </object>
@@ -43302,6 +43348,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="DateTimeType">
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#DateTimeType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="InExtensionModule">
+<param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html#InExtensionModule">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -48984,6 +49034,10 @@
 <param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFile">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SimpleFile">
+<param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFile">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SimpleFileEx">
 <param name="Local" value="uP4P.PyRun.TPyRun.html#SimpleFileEx">
 </object>
@@ -50296,8 +50350,22 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="FInExtensionModule">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#FInExtensionModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FTimeStructType">
 <param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#FTimeStructType">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="InExtensionModule">
+<param name="Local" value="uP4P.PyTimeModule.TPyTimeModule.html#InExtensionModule">
 </object>
 </ul>
 <li><object type="text/sitemap">
