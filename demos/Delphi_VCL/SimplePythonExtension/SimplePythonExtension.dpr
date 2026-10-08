@@ -35,13 +35,7 @@ exports
   PyInit_SimplePythonExtension,
   PyModExport_SimplePythonExtension;
 
-{$IFDEF MSWINDOWS}
 {$E pyd}
-{$ENDIF}
-
-{$IFDEF LINUX}
-{$SONAME 'SimplePythonExtension'}
-{$ENDIF}
 
 begin
   //
