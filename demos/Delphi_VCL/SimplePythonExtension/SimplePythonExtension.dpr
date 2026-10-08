@@ -31,8 +31,9 @@ uses
 
 {$R *.res}
 
-exports PyInit_SimplePythonExtension;
-exports PyModExport_SimplePythonExtension;
+exports
+  PyInit_SimplePythonExtension,
+  PyModExport_SimplePythonExtension;
 
 {$IFDEF MSWINDOWS}
 {$E pyd}

@@ -98,9 +98,16 @@ type
       function  SearchMicrosoftStoreRegistry(var aInstallPath: string): boolean;
       function  SearchUninstallRegistry(const aRegPath: string; aLocalMachine : boolean; var aInstallPath: string): boolean;
       function  CheckDLLbitness(const aFilename : string): boolean;
+      function  FindPythonModule_win: boolean;
+      {$ENDIF}
+      {$IFDEF MACOSX}
+      function  FindPythonModule_macos: boolean;
+      {$ENDIF}
+      {$IFDEF LINUX}
+      function  FindPythonModule_linux: boolean;
       {$ENDIF}
       function  SearchPythonHomeEnvironmentVariable(var aInstallPath: string): boolean;
-      function  HasPythonSymbols : boolean;
+      function  HasPythonSymbols: boolean;
       function  FindPythonModule: boolean;
 
       procedure LoadAllFunctions;
@@ -1297,18 +1304,8 @@ begin
    else
     Result := True;
 end;
-{$ENDIF}
 
-function TP4PLoader.HasPythonSymbols : boolean;
-begin
-  Load_pylifecycle;
-
-  Result := TPy.IsInitialized and
-            (length(TPy.GetBuildInfo) > 0);
-end;
-
-function TP4PLoader.FindPythonModule: boolean;
-{$IFDEF MSWINDOWS}
+function TP4PLoader.FindPythonModule_win: boolean;
 const
   MODULES_LENGTH = 4096;
 var
@@ -1316,11 +1313,8 @@ var
   i, j : integer;
   TempProcHandle : THandle;
   TempModulesArray : array [0..MODULES_LENGTH] of HMODULE;
-{$ENDIF}
 begin
-  Result := False;
-
-  {$IFDEF MSWINDOWS}
+  Result     := False;
   FLibHandle := GetModuleHandle(nil);
 
   if (FLibHandle = 0) then
@@ -1363,6 +1357,110 @@ begin
     finally
       CloseHandle(TempProcHandle);
     end
+end;
+{$ENDIF}
+
+{$IFDEF LINUX}
+function TP4PLoader.FindPythonModule_linux: boolean;
+{$IFDEF LINUXFMX}
+type
+  plink_map = ^link_map;
+  link_map = record
+    l_addr : Pointer;
+    l_name : PAnsiChar;
+    l_ld   : Pointer;
+    l_next : plink_map;
+    l_prev : plink_map;
+  end;
+{$ENDIF}
+var
+  TempLinkMap : plink_map;
+  TempPath    : AnsiString;
+begin
+  Result      := False;
+  TempLinkMap := plink_map(dlopen(nil, RTLD_NOW));
+
+  while assigned(TempLinkMap) do
+    begin
+      TempPath := AnsiString(TempLinkMap^.l_name);
+
+      if (length(TempPath) > 0) and FileExists(TempPath) then
+        begin
+          {$IFDEF FPC}
+          FLibHandle := TLibHandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+          {$ELSE}
+          FLibHandle := THandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+          {$ENDIF}
+          if HasPythonSymbols then
+            begin
+              Result := True;
+              break;
+            end;
+        end;
+
+      TempLinkMap := TempLinkMap^.l_next;
+    end;
+
+  if not(Result) then
+    FLibHandle := 0;
+end;
+{$ENDIF}
+
+{$IFDEF MACOSX}
+function TP4PLoader.FindPythonModule_macos: boolean;
+var
+  TempIndex : integer;
+  TempName  : PAnsiChar;
+begin
+  Result    := False;
+  TempIndex := 0;
+  TempName  := _dyld_get_image_name(TempIndex);
+
+  while assigned(TempName) do
+    begin
+      if FileExists(AnsiString(TempName)) then
+        begin
+          {$IFDEF FPC}
+          FLibHandle := TLibHandle(dlopen(TempPath, RTLD_LAZY + RTLD_GLOBAL));
+          {$ELSE}
+          FLibHandle := THandle(dlopen(TempPath, RTLD_LAZY + RTLD_GLOBAL));
+          {$ENDIF}
+          if HasPythonSymbols then
+            begin
+              Result := True;
+              break;
+            end;
+        end;
+
+      inc(TempIndex);
+      TempName := _dyld_get_image_name(TempIndex);
+    end;
+
+  if not(Result) then
+    FLibHandle := 0;
+end;
+{$ENDIF}
+
+function TP4PLoader.HasPythonSymbols: boolean;
+begin
+  Load_pylifecycle;
+
+  Result := TPy.IsInitialized and
+            (length(TPy.GetBuildInfo) > 0);
+end;
+
+function TP4PLoader.FindPythonModule: boolean;
+begin
+  {$IFDEF MSWINDOWS}
+  Result := FindPythonModule_win;
+  {$ENDIF}
+
+  {$IFDEF MACOSX}
+  Result := FindPythonModule_macos;
+  {$ENDIF}
+
+  {$IFDEF LINUX}
+  Result := FindPythonModule_linux;
   {$ENDIF}
 end;
 
