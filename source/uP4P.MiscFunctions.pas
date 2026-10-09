@@ -136,6 +136,18 @@ function PyStartSymbolToInt(start: TPyStartSymbols): integer;
 /// </summary>
 function CustomSplitString(const S, Delimiters: string): TStringDynArray;
 
+{$IFDEF APPLE}
+{$IFDEF FPC}
+{$linklib System}
+function _dyld_get_image_name(imageIndex: LongWord): PChar; cdecl; external name '_dyld_get_image_name';
+function _dyld_image_count: LongWord; cdecl; external name '_dyld_image_count';
+{$ELSE}
+const
+  libSystem = '/usr/lib/libSystem.dylib';
+
+function _dyld_image_count: UInt32; cdecl; external libSystem name '_dyld_image_count';
+{$ENDIF}
+{$ENDIF}
 
 implementation
 

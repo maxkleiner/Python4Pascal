@@ -100,8 +100,8 @@ type
       function  CheckDLLbitness(const aFilename : string): boolean;
       function  FindPythonModule_win: boolean;
       {$ENDIF}
-      {$IFDEF MACOSX}
-      function  FindPythonModule_macos: boolean;
+      {$IFDEF APPLE}
+      function  FindPythonModule_apple: boolean;
       {$ENDIF}
       {$IFDEF LINUX}
       function  FindPythonModule_linux: boolean;
@@ -1421,11 +1421,11 @@ begin
 end;
 {$ENDIF}
 
-{$IFDEF MACOSX}
-function TP4PLoader.FindPythonModule_macos: boolean;
+{$IFDEF APPLE}
+function TP4PLoader.FindPythonModule_apple: boolean;
 var
-  TempIndex : integer;
-  TempName  : PAnsiChar;
+  i, j : LongWord;
+  TempName : PAnsiChar;
 begin
   Result   := False;
   TempPath := '';
@@ -1442,11 +1442,13 @@ begin
     end;
 
   FLibHandle := 0;
-  TempIndex  := 0;
-  TempName   := _dyld_get_image_name(TempIndex);
+  i          := 0;
+  j          := _dyld_image_count();
 
-  while assigned(TempName) do
+  while (i < j) do
     begin
+      TempName := _dyld_get_image_name(i);
+
       if FileExists(AnsiString(TempName)) then
         begin
           {$IFDEF FPC}
@@ -1461,8 +1463,7 @@ begin
             end;
         end;
 
-      inc(TempIndex);
-      TempName := _dyld_get_image_name(TempIndex);
+      inc(i);
     end;
 
   if not(Result) then
@@ -1484,8 +1485,8 @@ begin
   Result := FindPythonModule_win;
   {$ENDIF}
 
-  {$IFDEF MACOSX}
-  Result := FindPythonModule_macos;
+  {$IFDEF APPLE}
+  Result := FindPythonModule_apple;
   {$ENDIF}
 
   {$IFDEF LINUX}
