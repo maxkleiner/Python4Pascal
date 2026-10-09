@@ -8,8 +8,8 @@ uses
   Classes, SysUtils,
   uP4P.Interfaces, uP4P.Types, uP4P.Constants, uP4P.PyObject, uP4P.Engine;
 
-function PyInit_SimplePythonExtension: PPyObject; cdecl;
-function PyModExport_SimplePythonExtension: PPySlot; cdecl;
+function PyInit_simplepythonextension: PPyObject; cdecl;
+function PyModExport_simplepythonextension: PPySlot; cdecl;
 
 implementation
 
@@ -19,7 +19,7 @@ uses
 var
   GExtension : TExtensionModule = nil;
 
-function PyInit_SimplePythonExtension: PPyObject; cdecl;
+function PyInit_simplepythonextension: PPyObject; cdecl;
 begin
   GlobalP4PEngine := TP4PEngine.Create;
 
@@ -32,7 +32,7 @@ begin
     Result := nil;
 end;
 
-function PyModExport_SimplePythonExtension: PPySlot; cdecl;
+function PyModExport_simplepythonextension: PPySlot; cdecl;
 begin
   GlobalP4PEngine := TP4PEngine.Create;
 
