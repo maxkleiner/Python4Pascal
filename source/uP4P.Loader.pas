@@ -1428,11 +1428,11 @@ var
   TempName : PAnsiChar;
 begin
   Result   := False;
-  TempPath := '';
+  TempName := '';
   {$IFDEF FPC}
-  FLibHandle := TLibHandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  FLibHandle := TLibHandle(dlopen(PAnsiChar(TempName), RTLD_LAZY + RTLD_GLOBAL));
   {$ELSE}
-  FLibHandle := THandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  FLibHandle := THandle(dlopen(PAnsiChar(TempName), RTLD_LAZY + RTLD_GLOBAL));
   {$ENDIF}
 
   if IsHandleValid and HasPythonSymbols then
@@ -1452,9 +1452,9 @@ begin
       if FileExists(AnsiString(TempName)) then
         begin
           {$IFDEF FPC}
-          FLibHandle := TLibHandle(dlopen(TempPath, RTLD_LAZY + RTLD_GLOBAL));
+          FLibHandle := TLibHandle(dlopen(TempName, RTLD_LAZY + RTLD_GLOBAL));
           {$ELSE}
-          FLibHandle := THandle(dlopen(TempPath, RTLD_LAZY + RTLD_GLOBAL));
+          FLibHandle := THandle(dlopen(TempName, RTLD_LAZY + RTLD_GLOBAL));
           {$ENDIF}
           if HasPythonSymbols then
             begin
