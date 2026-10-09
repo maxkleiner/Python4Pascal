@@ -140,7 +140,7 @@ function CustomSplitString(const S, Delimiters: string): TStringDynArray;
 implementation
 
 uses
-  {$IFDEF LINUXFPC}lcltype, Forms,{$ENDIF}
+  {$IFDEF LINUXFPC}lcltype,{$ENDIF}
   uP4P.Engine, uP4P.PyMem, uP4P.Constants;
 
 function GetModulePath : string;
@@ -251,7 +251,7 @@ begin
 
       {$IF DEFINED(LINUX) OR DEFINED(ANDROID)}
         {$IFDEF FPC}
-        Application.MessageBox(PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK)
+        // if (DisplayServer = ldsX11) then ShowX11Message(aError);
         {$ELSE}
         // TO-DO: Find a way to show message boxes in FMXLinux
         {$ENDIF}
