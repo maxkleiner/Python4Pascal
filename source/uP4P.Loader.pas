@@ -1377,7 +1377,21 @@ var
   TempLinkMap : plink_map;
   TempPath    : AnsiString;
 begin
-  Result      := False;
+  Result   := False;
+  TempPath := '';
+  {$IFDEF FPC}
+  FLibHandle := TLibHandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  {$ELSE}
+  FLibHandle := THandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  {$ENDIF}
+
+  if IsHandleValid and HasPythonSymbols then
+    begin
+      Result := True;
+      exit;
+    end;
+
+  FLibHandle  := 0;
   TempLinkMap := plink_map(dlopen(nil, RTLD_NOW));
 
   while assigned(TempLinkMap) do
@@ -1412,9 +1426,23 @@ var
   TempIndex : integer;
   TempName  : PAnsiChar;
 begin
-  Result    := False;
-  TempIndex := 0;
-  TempName  := _dyld_get_image_name(TempIndex);
+  Result   := False;
+  TempPath := '';
+  {$IFDEF FPC}
+  FLibHandle := TLibHandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  {$ELSE}
+  FLibHandle := THandle(dlopen(PAnsiChar(TempPath), RTLD_LAZY + RTLD_GLOBAL));
+  {$ENDIF}
+
+  if IsHandleValid and HasPythonSymbols then
+    begin
+      Result := True;
+      exit;
+    end;
+
+  FLibHandle := 0;
+  TempIndex  := 0;
+  TempName   := _dyld_get_image_name(TempIndex);
 
   while assigned(TempName) do
     begin
