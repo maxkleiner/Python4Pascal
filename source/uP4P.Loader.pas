@@ -20,12 +20,12 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows, Winapi.PsApi, System.Win.Registry,{$ELSE}Posix.DLfcn,{$ENDIF}
+    {$IFDEF MSWINDOWS}WinApi.Windows, Winapi.PsApi, System.Win.Registry,{$ELSE}Posix.DLfcn, Posix.Pthread,{$ENDIF}
     System.Classes, System.SysUtils, System.IOUtils, System.Types,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows, Registry, {$IFNDEF FPC}PsApi,{$ENDIF}{$ENDIF} Classes, SysUtils,
-    Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
-    {$IFDEF FPC}dynlibs, FileUtil, {$IFDEF MSWINDOWS}JwaPsApi,{$ELSE}dl,{$ENDIF}{$ENDIF}
+    {$IFDEF MSWINDOWS}Windows, Registry, {$IFDEF FPC}JwaPsApi,{$ELSE}PsApi,{$ENDIF}{$ENDIF}
+    Classes, SysUtils, Types,{$IFDEF DELPHI14_UP}IOUtils,{$ENDIF}
+    {$IFDEF FPC}dynlibs, FileUtil, {$IFNDEF MSWINDOWS}dl,{$ENDIF}{$ENDIF}
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Interfaces;
 
@@ -1329,6 +1329,7 @@ begin
     end;
 
   FLibHandle     := 0;
+  TempNeeded     := 0;
   TempProcHandle := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, False, GetCurrentProcessId);
 
   if (TempProcHandle > 0) then
