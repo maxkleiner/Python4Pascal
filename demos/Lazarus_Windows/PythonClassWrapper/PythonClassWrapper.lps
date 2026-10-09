@@ -17,9 +17,10 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="49"/>
-        <CursorPos X="93" Y="77"/>
+        <TopLine Value="113"/>
+        <CursorPos X="7" Y="135"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -27,12 +28,11 @@
       <Unit>
         <Filename Value="uMyClass.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="288"/>
         <CursorPos X="67" Y="304"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="uMainForm.lfm"/>
@@ -42,10 +42,8 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory>

@@ -50,8 +50,7 @@ object MainForm: TMainForm
     Font.Name = 'Consolas'
     Font.Style = []
     Lines.Strings = (
-      'print("Hello world!")'
-      '')
+      'print("Hello world!")')
     ParentFont = False
     ScrollBars = ssBoth
     TabOrder = 1

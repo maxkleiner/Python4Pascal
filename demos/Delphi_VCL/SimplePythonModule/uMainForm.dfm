@@ -32,7 +32,6 @@ object MainForm: TMainForm
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 624
     object RunBtn: TButton
       Left = 5
       Top = 5
@@ -76,7 +75,5 @@ object MainForm: TMainForm
       'print("Check if 45 is even...")'
       'print(mytest.is_even(45))')
     TabOrder = 2
-    ExplicitWidth = 624
-    ExplicitHeight = 202
   end
 end
