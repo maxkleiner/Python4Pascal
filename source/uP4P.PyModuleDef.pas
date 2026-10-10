@@ -91,6 +91,10 @@ type
       /// </summary>
       class function Init(const def: PyModuleDef): PPyObject;
       /// <summary>
+      /// <para>Returns true if the class is fully initialized.</para>
+      /// </summary>
+      class function IsInitialized(const aPyModuleDef: IPyModuleDef): boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
+      /// <summary>
       /// Returns true if this class is fully initialized.
       /// </summary>
       property  Initialized            : boolean        read FInitialized;
@@ -425,6 +429,11 @@ begin
     Result := PyModuleDef_Init(@def)
    else
     Result := nil;
+end;
+
+class function TPyModuleDef.IsInitialized(const aPyModuleDef: IPyModuleDef): boolean;
+begin
+  Result := (aPyModuleDef <> nil) and aPyModuleDef.Initialized;
 end;
 
 end.

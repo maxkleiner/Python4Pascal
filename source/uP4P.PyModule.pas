@@ -360,7 +360,17 @@ type
       /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken">See the article about PyModule_GetToken.</see></para>
       /// <para>Added in version 3.15.</para>
       /// </remarks>
-      class function GetToken(const module_: IPyObject; out result_: Pointer): boolean;
+      class function GetToken(const module_: IPyObject; out result_: Pointer): boolean; overload;
+      /// <summary>
+      /// <para>Set result_ to the module token for module and return True.
+      /// <para>On error, set result_ to nil, and return False with an
+      /// exception set.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken">See the article about PyModule_GetToken.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      class function GetToken(const module_: PPyObject; out result_: Pointer): boolean; overload;
       /// <summary>
       /// <para>The following function should only be used in a tp_traverse
       /// handler; calling them in other contexts may have unintended
@@ -657,9 +667,15 @@ end;
 
 class function TPyModule.GetToken(const module_: IPyObject; out result_: Pointer): boolean;
 begin
+  Result := assigned(module_) and
+            GetToken(module_.PyObject, result_);
+end;
+
+class function TPyModule.GetToken(const module_: PPyObject; out result_: Pointer): boolean;
+begin
   Result := assigned(PyModule_GetToken) and
-            TPyObject.IsInitialized(module_) and
-            (PyModule_GetToken(module_.PyObject, result_) = 0);
+            assigned(module_) and
+            (PyModule_GetToken(module_, result_) = 0);
 end;
 
 class function TPyModule.GetState_DuringGC(const module_: IPyObject): Pointer;

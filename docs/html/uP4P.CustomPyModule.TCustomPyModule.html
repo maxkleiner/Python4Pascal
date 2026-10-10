@@ -77,6 +77,14 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FUseLegacyAPI">FUseLegacyAPI</a></strong>: boolean;</code></td>
 </tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FID">FID</a></strong>: cardinal;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a></strong>: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>;</code></td>
+</tr>
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
@@ -94,53 +102,73 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a></strong>(aValue: boolean);</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#GetToken">GetToken</a></strong>: Pointer;</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#doOnAfterInitialization">doOnAfterInitialization</a></strong>: integer;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a></strong>(aValue: boolean);</code></td>
 </tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#doOnAfterInitialization-PPyObject-">doOnAfterInitialization</a></strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#CreateModuleDef">CreateModuleDef</a></strong>; virtual;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#CreateSlotManager">CreateSlotManager</a></strong>; virtual;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#LegacyInitialization">LegacyInitialization</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#UnifiedSlotInitialization">UnifiedSlotInitialization</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#AddModule">AddModule</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#RemoveModule">RemoveModule</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#AddToSysModules">AddToSysModules</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#RemoveFromSysModules">RemoveFromSysModules</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>constructor <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Create-string-boolean-">Create</a></strong>(const aName: string; aIsExtension: boolean = False);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>destructor <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Destroy">Destroy</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#SameAs-PPyObject-">SameAs</a></strong>(const other: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Initialize">Initialize</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Finalize">Finalize</a></strong>;</code></td>
 </tr>
@@ -184,6 +212,18 @@ body { margin: 0.5em; }
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#GILUsed">GILUsed</a></strong>                       : boolean             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">FGILUsed</a>                  write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">FGILUsed</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#ID">ID</a></strong>                            : cardinal            read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FID">FID</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#Token">Token</a></strong>                         : Pointer             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetToken">GetToken</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#ExecFunction">ExecFunction</a></strong>                  : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>     read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#OnAfterInitialization">OnAfterInitialization</a></strong>         : TNotifyEvent        read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>    write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>;</code></td>
 </tr>
@@ -270,6 +310,22 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FID"></span><code><strong>FID</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FExecFunction"></span><code><strong>FExecFunction</strong>: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
 <h3 class="detail">Methods</h3>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -298,6 +354,14 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetToken"></span><code>function <strong>GetToken</strong>: Pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="SetUseLegacyAPI-boolean-"></span><code>procedure <strong>SetUseLegacyAPI</strong>(aValue: boolean);</code></td>
 </tr>
 <tr><td colspan="2">
@@ -306,7 +370,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="doOnAfterInitialization"></span><code>function <strong>doOnAfterInitialization</strong>: integer;</code></td>
+<td class="itemcode"><span id="doOnAfterInitialization-PPyObject-"></span><code>function <strong>doOnAfterInitialization</strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): integer; virtual;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -355,6 +419,62 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p>
  Initialize the module in Python 3.15 or newer. It uses an IPySlotManager instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddModule"></span><code>procedure <strong>AddModule</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the module to the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="RemoveModule"></span><code>procedure <strong>RemoveModule</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the module from the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddToSysModules"></span><code>function <strong>AddToSysModules</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the module to sys.modules.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="RemoveFromSysModules"></span><code>function <strong>RemoveFromSysModules</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the module from sys.modules.
+
+<p></p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -552,6 +672,54 @@ body { margin: 0.5em; }
 
 
 <p>The module depends on the presence of the global interpreter lock (GIL)
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ID"></span><code>property <strong>ID</strong>                            : cardinal            read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FID">FID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Unique module ID.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Token"></span><code>property <strong>Token</strong>                         : Pointer             read <a href="uP4P.CustomPyModule.TCustomPyModule.html#GetToken">GetToken</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The module Token.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#ext-module-token">https://docs.python.org/3.15/c-api/module.html#ext-module-token</a>&quot;&gt;See the article about Module token.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExecFunction"></span><code>property <strong>ExecFunction</strong>                  : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>     read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The function that will execute, or initialize, the module.
 
 <p></p>
 </td></tr>

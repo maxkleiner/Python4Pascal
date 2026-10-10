@@ -36,17 +36,20 @@ type
       FMultIntprSupport      : TMultIntprSupport;
       FGILUsed               : boolean;
       FUseLegacyAPI          : boolean;
+      FID                    : cardinal;
+      FExecFunction          : exec_modulefunc;
 
       function  GetName: AnsiString;
       function  GetModuleDef: PPyModuleDef;
       function  GetSlots: PPySlot;
+      function  GetToken: Pointer;
 
       procedure SetUseLegacyAPI(aValue: boolean);
       /// <summary>
       /// <para>Internal function used to trigger the OnAfterInitialization
       /// event.</para>
       /// </summary>
-      function  doOnAfterInitialization: integer;
+      function  doOnAfterInitialization(module: PPyObject): integer; virtual;
       /// <summary>
       /// Override this procedure to create your custom IPyModuleDef instance.
       /// </summary>
@@ -65,6 +68,22 @@ type
       /// IPySlotManager instance.
       /// </summary>
       function  UnifiedSlotInitialization: boolean;
+      /// <summary>
+      /// <para>Add the module to the internal module list.</para>
+      /// </summary>
+      procedure AddModule; virtual;
+      /// <summary>
+      /// <para>Remove the module from the internal module list.</para>
+      /// </summary>
+      procedure RemoveModule; virtual;
+      /// <summary>
+      /// <para>Add the module to sys.modules.</para>
+      /// </summary>
+      function  AddToSysModules: boolean;
+      /// <summary>
+      /// <para>Remove the module from sys.modules.</para>
+      /// </summary>
+      function  RemoveFromSysModules: boolean;
 
     public
       constructor Create(const aName: string; aIsExtension: boolean = False);
@@ -127,6 +146,22 @@ type
       /// </summary>
       property GILUsed                       : boolean             read FGILUsed                  write FGILUsed;
       /// <summary>
+      /// <para>Unique module ID.</para>
+      /// </summary>
+      property ID                            : cardinal            read FID;
+      /// <summary>
+      /// <para>The module Token.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#ext-module-token">See the article about Module token.</see></para>
+      /// <para>Added in version 3.15.</para>
+      /// </remarks>
+      property Token                         : Pointer             read GetToken;
+      /// <summary>
+      /// <para>The function that will execute, or initialize, the module.</para>
+      /// </summary>
+      property ExecFunction                  : exec_modulefunc     read FExecFunction             write FExecFunction;
+      /// <summary>
       /// <para>Event triggered after the module has been initialized.</para>
       /// </summary>
       property OnAfterInitialization         : TNotifyEvent        read FOnAfterInitialization    write FOnAfterInitialization;
@@ -142,13 +177,12 @@ function Exec_Module(module: PPyObject): integer; cdecl;
 var
   TempModule : TCustomPyModule;
 begin
+  Result     := 0;
   TempModule := nil;
 
   if (GlobalP4PEngine <> nil) and
      GlobalP4PEngine.SearchModule(module, TempModule) then
-    TempModule.doOnAfterInitialization;
-
-  Result := 0;
+    Result := TempModule.doOnAfterInitialization(module);
 end;
 
 constructor TCustomPyModule.Create(const aName: string; aIsExtension: boolean);
@@ -164,8 +198,18 @@ begin
   FMultIntprSupport      := miSupported;
   FGILUsed               := True;
   FIsExtension           := aIsExtension;
-  FUseLegacyAPI          := not((GlobalP4PEngine <> nil) and
-                                GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0));
+  FExecFunction          := {$IFDEF FPC}@{$ENDIF}Exec_Module;
+
+  if (GlobalP4PEngine <> nil) then
+    begin
+      FID           := GlobalP4PEngine.NextID;
+      FUseLegacyAPI := not(GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0));
+    end
+   else
+    begin
+      FID           := 0;
+      FUseLegacyAPI := True;
+    end;
 end;
 
 destructor TCustomPyModule.Destroy;
@@ -182,8 +226,7 @@ procedure TCustomPyModule.AfterConstruction;
 begin
   inherited AfterConstruction;
 
-  if (GlobalP4PEngine <> nil) then
-    GlobalP4PEngine.AddModule(self);
+  AddModule;
 end;
 
 procedure TCustomPyModule.BeforeDestruction;
@@ -197,14 +240,8 @@ end;
 
 procedure TCustomPyModule.Finalize;
 begin
-  if (GlobalP4PEngine <> nil) then
-    begin
-      if TPyObject.IsInitialized(FModule) then
-        GlobalP4PEngine.RemoveFromSysModules(self);
-
-      GlobalP4PEngine.RemoveModule(self);
-    end;
-
+  RemoveFromSysModules;
+  RemoveModule;
   FModule := nil;
 end;
 
@@ -235,6 +272,29 @@ begin
     Result := nil;
 end;
 
+function TCustomPyModule.GetToken: Pointer;
+var
+  TempToken : pointer;
+begin
+  Result := nil;
+
+  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
+    begin
+      TempToken := nil;
+
+      if TPyObject.IsInitialized(FModule) and
+         TPyModule.GetToken(FModule, TempToken) and
+         (TempToken <> nil) then
+        Result := TempToken
+       else
+        if FUseLegacyAPI and
+           TPyModuleDef.IsInitialized(FModuleDef) then
+          Result := pointer(FModuleDef.ModuleDef)
+         else
+          Result := {%H-}pointer(FID);
+    end;
+end;
+
 procedure TCustomPyModule.SetUseLegacyAPI(aValue: boolean);
 begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
@@ -253,7 +313,7 @@ begin
   FSlotManager := TPySlotManager.Create(FName, FDocStrings);
 end;
 
-function TCustomPyModule.doOnAfterInitialization: integer;
+function TCustomPyModule.doOnAfterInitialization(module: PPyObject): integer;
 begin
   Result := 0;
 
@@ -262,6 +322,8 @@ begin
 end;
 
 function TCustomPyModule.SameAs(const other: PPyObject): boolean;
+var
+  TempToken : pointer;
 begin
   Result := False;
   if not(assigned(other)) then exit;
@@ -269,7 +331,15 @@ begin
   if assigned(FModule) then
     Result := FModule.SameAs(other)
    else
-    Result := (Trim(Name_) = TPyModule.GetName(other));
+    begin
+      TempToken := nil;
+
+      if TPyModule.GetToken(other, TempToken) and
+         (TempToken <> nil) then
+        Result := (TempToken = self.Token)
+       else
+        Result := (Trim(Name_) = TPyModule.GetName(other));
+    end;
 end;
 
 function TCustomPyModule.LegacyInitialization: boolean;
@@ -283,7 +353,7 @@ begin
 
   if not(FModuleDef.Initialized) then exit;
 
-  FModuleDef.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
+  FModuleDef.BuildMethodsAndSlots(FExecFunction, FMultIntprSupport, FGILUsed);
 
   if FIsExtension then
     Result := True
@@ -292,9 +362,9 @@ begin
       TempSpec := TPyModuleSpecHelper.FromModuleName(FModuleDef.Name_);
       FModule  := TPyModule.FromDefAndSpec(FModuleDef.ModuleDef, TempSpec);
 
-      if assigned(FModule) then
-        Result := GlobalP4PEngine.AddToSysModules(self) and
-                  TPyModule.ExecDef(FModule, FModuleDef.ModuleDef)
+      if AddToSysModules and
+         TPyModule.ExecDef(FModule, FModuleDef.ModuleDef) then
+        Result := True
        else
         GlobalP4PEngine.GetRaisedException;
     finally
@@ -311,7 +381,7 @@ begin
 
   CreateSlotManager;
 
-  FSlotManager.BuildMethodsAndSlots({$IFDEF FPC}@{$ENDIF}Exec_Module, FMultIntprSupport, FGILUsed);
+  FSlotManager.BuildMethodsAndSlots(FExecFunction, FMultIntprSupport, FGILUsed, {%H-}pointer(FID));
 
   if FIsExtension then
     Result := True
@@ -320,9 +390,9 @@ begin
       TempSpec := TPyModuleSpecHelper.FromModuleName(FSlotManager.Name_);
       FModule  := TPyModule.FromSlotsAndSpec(FSlotManager.Slots, TempSpec);
 
-      if assigned(FModule) then
-        Result := GlobalP4PEngine.AddToSysModules(self) and
-                  TPyModule.Exec(FModule)
+      if AddToSysModules and
+         TPyModule.Exec(FModule) then
+        Result := True
        else
         GlobalP4PEngine.GetRaisedException;
     finally
@@ -336,6 +406,34 @@ begin
     Result := LegacyInitialization
    else
     Result := UnifiedSlotInitialization;
+end;
+
+procedure TCustomPyModule.AddModule;
+begin
+  if (GlobalP4PEngine <> nil) then
+    GlobalP4PEngine.AddModule(self);
+end;
+
+procedure TCustomPyModule.RemoveModule;
+begin
+  if (GlobalP4PEngine <> nil) then
+    GlobalP4PEngine.RemoveModule(self);
+end;
+
+function TCustomPyModule.AddToSysModules: boolean;
+begin
+  Result := not(FIsExtension) and
+            (GlobalP4PEngine <> nil) and
+            TPyObject.IsInitialized(FModule) and
+            GlobalP4PEngine.AddToSysModules(self);
+end;
+
+function TCustomPyModule.RemoveFromSysModules: boolean;
+begin
+  Result := not(FIsExtension) and
+            (GlobalP4PEngine <> nil) and
+            TPyObject.IsInitialized(FModule) and
+            GlobalP4PEngine.RemoveFromSysModules(self);
 end;
 
 end.

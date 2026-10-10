@@ -53,6 +53,7 @@ type
       function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
       function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
       function  AddGILSlot(aGILUsed: boolean): boolean;
+      function  AddTokenSlot(aToken: pointer): boolean;
       function  AddSentinelMethod: boolean;
       procedure AddSentinelSlot;
       procedure AddMethodsSlot;
@@ -60,7 +61,7 @@ type
       /// <summary>
       /// Override this procedure to add your custom slots.
       /// </summary>
-      procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean); virtual;
+      procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer); virtual;
       /// <summary>
       /// Override this procedure to add your custom methods.
       /// </summary>
@@ -73,7 +74,7 @@ type
       /// <summary>
       /// Create the slots with the methods and all the module information.
       /// </summary>
-      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
 
       property  Name_                  : AnsiString     read GetName;
       /// <summary>
@@ -197,7 +198,7 @@ begin
   Result := AddMethod('', '', nil, 0);
 end;
 
-procedure TPySlotManager.AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+procedure TPySlotManager.AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
 begin
   AddNameSlot;
   AddDocStringsSlot;
@@ -205,6 +206,7 @@ begin
   AddExecSlot(aExecFunction);
   AddMultipleInterpretersSlot(aMultIntprSupport);
   AddGILSlot(aGILUsed);
+  AddTokenSlot(aToken);
 end;
 
 procedure TPySlotManager.AddAllMethods;
@@ -350,6 +352,24 @@ begin
     end;
 end;
 
+function TPySlotManager.AddTokenSlot(aToken: pointer): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aToken) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(TPy_mod.token, aToken);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
 function TPySlotManager.GetName: AnsiString;
 begin
   Result := StringToPyUTF8(FName);
@@ -399,9 +419,9 @@ begin
   Result := @FABIInfo;
 end;
 
-procedure TPySlotManager.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+procedure TPySlotManager.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
 begin
-  AddAllSlots(aExecFunction, aMultIntprSupport, aGILUsed);
+  AddAllSlots(aExecFunction, aMultIntprSupport, aGILUsed, aToken);
   AddAllMethods;
 
   if not(HasSentinelMethod) then

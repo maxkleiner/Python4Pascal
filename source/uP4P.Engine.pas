@@ -39,6 +39,7 @@ type
       FThreadState               : IPyThreadState;
       FMainThreadID              : TThreadID;
       FSavedThreadState          : boolean;
+      FIDGen                     : cardinal;
       FOnOutputMessage           : TOnOutputMessageEvent;
       FOnInputMessage            : TOnInputMessageEvent;
 
@@ -46,6 +47,7 @@ type
       function  GetSavedThreadState: boolean;
       function  GetInterpreterState: IPyInterpreterState;
       function  GetMainModule: IPyObject;
+      function  GetNextID: cardinal;
 
       procedure SetSavedThreadState(aValue: boolean);
 
@@ -74,7 +76,9 @@ type
       /// <para>Add the module to sys.modules.</para>
       /// </summary>
       function    AddToSysModules(const aModule: TCustomPyModule): boolean;
-
+      /// <summary>
+      /// <para>Remove the module from sys.modules.</para>
+      /// </summary>
       function    RemoveFromSysModules(const aModule: TCustomPyModule): boolean;
       /// <summary>
       /// <para>Add the module to the internal module list.</para>
@@ -147,6 +151,10 @@ type
       /// <para>The main module.</para>
       /// </summary>
       property MainModule                : IPyObject                read GetMainModule;
+      /// <summary>
+      /// <para>ID generator used for modules.</para>
+      /// </summary>
+      property NextID                    : cardinal                 read GetNextID;
       /// <summary>
       /// <para>Return True if this property runs in the same thread that
       /// created the TP4PEngine instance.</para>
@@ -222,6 +230,7 @@ begin
   FThreadState       := nil;
   FTimeModule        := nil;
   FDateTimeModule    := nil;
+  FIDGen             := 0;
   FOnOutputMessage   := nil;
   FOnInputMessage    := nil;
 end;
@@ -357,6 +366,23 @@ begin
       Result := FInterpreterState;
     finally
       Unlock;
+    end;
+end;
+
+function TP4PEngine.GetNextID: cardinal;
+begin
+  Result := 0;
+
+  if Lock then
+    try
+      if (FIDGen < pred(high(cardinal))) then
+        inc(FIDGen)
+       else
+        FIDGen := 1;
+
+      Result := FIDGen;
+    finally
+      UnLock;
     end;
 end;
 

@@ -4449,7 +4449,7 @@ type
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
-    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
     /// <summary>
     /// Override this procedure to add your custom methods.
     /// </summary>
@@ -4457,7 +4457,7 @@ type
     /// <summary>
     /// Create the slots with the methods and all the module information.
     /// </summary>
-    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
     /// <summary>
     /// <para>Module name.</para>
     /// </summary>

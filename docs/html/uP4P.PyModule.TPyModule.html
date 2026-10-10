@@ -149,13 +149,17 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken-IPyObject-Pointer-">GetToken</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken-IPyObject-Pointer-">GetToken</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean; overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetState_DuringGC-IPyObject-">GetState_DuringGC</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken-PPyObject-Pointer-">GetToken</a></strong>(const module_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out result_: Pointer): boolean; overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetState_DuringGC-IPyObject-">GetState_DuringGC</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): Pointer;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyModule.TPyModule.html#GetToken_DuringGC-IPyObject-Pointer-">GetToken_DuringGC</a></strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
 </tr>
@@ -723,7 +727,29 @@ if (PyModule_AddObject(module, &quot;spam&quot;, obj) &lt; 0) {
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="GetToken-IPyObject-Pointer-"></span><code>class function <strong>GetToken</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean;</code></td>
+<td class="itemcode"><span id="GetToken-IPyObject-Pointer-"></span><code>class function <strong>GetToken</strong>(const module_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; out result_: Pointer): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Set result_ to the module token for module and return True.
+
+<p>On error, set result_ to nil, and return False with an exception set.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken">https://docs.python.org/3.15/c-api/module.html#c.PyModule_GetToken</a>&quot;&gt;See the article about PyModule_GetToken.)
+
+<p>Added in version 3.15.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetToken-PPyObject-Pointer-"></span><code>class function <strong>GetToken</strong>(const module_: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; out result_: Pointer): boolean; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

@@ -142,39 +142,43 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddSentinelMethod">AddSentinelMethod</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddTokenSlot-pointer-">AddTokenSlot</a></strong>(aToken: pointer): boolean;</code></td>
 </tr>
 <tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddSentinelMethod">AddSentinelMethod</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddSentinelSlot">AddSentinelSlot</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddMethodsSlot">AddMethodsSlot</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddAllSlots-exec_modulefunc-TMultIntprSupport-boolean-">AddAllSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean); virtual;</code></td>
-</tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddAllSlots-exec_modulefunc-TMultIntprSupport-boolean-pointer-">AddAllSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean; aToken: pointer); virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AddAllMethods">AddAllMethods</a></strong>; virtual;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>constructor <strong><a href="uP4P.PySlotManager.TPySlotManager.html#Create-string-string-">Create</a></strong>(const aName: string; const aDocStrings: string = '');</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>destructor <strong><a href="uP4P.PySlotManager.TPySlotManager.html#Destroy">Destroy</a></strong>; override;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#BuildMethodsAndSlots-exec_modulefunc-TMultIntprSupport-boolean-">BuildMethodsAndSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlotManager.TPySlotManager.html#BuildMethodsAndSlots-exec_modulefunc-TMultIntprSupport-boolean-pointer-">BuildMethodsAndSlots</a></strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean; aToken: pointer);</code></td>
 </tr>
 </table>
 <span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
@@ -418,6 +422,14 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddTokenSlot-pointer-"></span><code>function <strong>AddTokenSlot</strong>(aToken: pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -442,7 +454,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddAllSlots-exec_modulefunc-TMultIntprSupport-boolean-"></span><code>procedure <strong>AddAllSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean); virtual;</code></td>
+<td class="itemcode"><span id="AddAllSlots-exec_modulefunc-TMultIntprSupport-boolean-pointer-"></span><code>procedure <strong>AddAllSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean; aToken: pointer); virtual;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -486,7 +498,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="BuildMethodsAndSlots-exec_modulefunc-TMultIntprSupport-boolean-"></span><code>procedure <strong>BuildMethodsAndSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean);</code></td>
+<td class="itemcode"><span id="BuildMethodsAndSlots-exec_modulefunc-TMultIntprSupport-boolean-pointer-"></span><code>procedure <strong>BuildMethodsAndSlots</strong>(const aExecFunction: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>; aMultIntprSupport : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>; aGILUsed: boolean; aToken: pointer);</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

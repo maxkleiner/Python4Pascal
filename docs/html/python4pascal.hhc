@@ -1811,6 +1811,14 @@
 <param name="Name" value="FUseLegacyAPI">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FUseLegacyAPI">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FID">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -1854,6 +1862,18 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GILUsed">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ID">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Token">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnAfterInitialization">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#OnAfterInitialization">
 </object>
@@ -1874,6 +1894,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetSlots">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetUseLegacyAPI">
@@ -1898,6 +1922,22 @@
 <li><object type="text/sitemap">
 <param name="Name" value="UnifiedSlotInitialization">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#UnifiedSlotInitialization">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddModule">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AddModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="RemoveModule">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#RemoveModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddToSysModules">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AddToSysModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="RemoveFromSysModules">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#RemoveFromSysModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Create">
@@ -1988,6 +2028,10 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#FSavedThreadState">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FIDGen">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#FIDGen">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FOnOutputMessage">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">
 </object>
@@ -2012,6 +2056,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="MainModule">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#MainModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="NextID">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#NextID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IsMainThread">
@@ -2058,6 +2106,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetMainModule">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#GetMainModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetNextID">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetNextID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetSavedThreadState">
@@ -6570,6 +6622,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="CheckDLLbitness">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#CheckDLLbitness">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FindPythonModule_win">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FindPythonModule_win">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SearchPythonHomeEnvironmentVariable">
@@ -17330,6 +17386,10 @@
 <param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetState_DuringGC">
 <param name="Local" value="uP4P.PyModule.TPyModule.html#GetState_DuringGC">
 </object>
@@ -17532,6 +17592,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Init">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsInitialized">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#IsInitialized">
 </object>
 </ul>
 </ul>
@@ -20110,6 +20174,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AddGILSlot">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#AddGILSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#AddTokenSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMethod">
@@ -36430,8 +36498,16 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FDocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FGILUsed">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FID">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#FID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FIsExtension">
@@ -36476,8 +36552,16 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#DocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GILUsed">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ID">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#ID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IsExtension">
@@ -36508,6 +36592,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Slots">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Token">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="UseLegacyAPI">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#UseLegacyAPI">
 </object>
@@ -36534,6 +36622,10 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#SameAs">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddToSysModules">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AddToSysModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="doOnAfterInitialization">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#doOnAfterInitialization">
 </object>
@@ -36550,8 +36642,16 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetSlots">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#GetToken">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="LegacyInitialization">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#LegacyInitialization">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="RemoveFromSysModules">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#RemoveFromSysModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="UnifiedSlotInitialization">
@@ -36570,12 +36670,20 @@
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#Finalize">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddModule">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#AddModule">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="CreateModuleDef">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#CreateModuleDef">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateSlotManager">
 <param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#CreateSlotManager">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="RemoveModule">
+<param name="Local" value="uP4P.CustomPyModule.TCustomPyModule.html#RemoveModule">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetUseLegacyAPI">
@@ -36718,6 +36826,10 @@
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#FDateTimeModule">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FIDGen">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#FIDGen">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FInterpreterState">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#FInterpreterState">
 </object>
@@ -36782,6 +36894,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="MainModule">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#MainModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="NextID">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#NextID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="OnInputMessage">
@@ -36852,6 +36968,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetMainModule">
 <param name="Local" value="uP4P.Engine.TP4PEngine.html#GetMainModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetNextID">
+<param name="Local" value="uP4P.Engine.TP4PEngine.html#GetNextID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetSavedThreadState">
@@ -37256,6 +37376,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FindPythonModule">
 <param name="Local" value="uP4P.Loader.TP4PLoader.html#FindPythonModule">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FindPythonModule_win">
+<param name="Local" value="uP4P.Loader.TP4PLoader.html#FindPythonModule_win">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBuildInfo">
@@ -47156,6 +47280,10 @@
 <param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetToken_DuringGC">
 <param name="Local" value="uP4P.PyModule.TPyModule.html#GetToken_DuringGC">
 </object>
@@ -47258,6 +47386,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Init">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsInitialized">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#IsInitialized">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddCreateSlot">
@@ -49608,6 +49740,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMethod">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#AddSentinelMethod">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#AddTokenSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetABIInfo">
