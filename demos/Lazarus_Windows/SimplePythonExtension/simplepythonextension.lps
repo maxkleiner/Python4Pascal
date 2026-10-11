@@ -14,7 +14,6 @@
       <Unit>
         <Filename Value="umain.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="3"/>
         <CursorPos X="60" Y="35"/>
@@ -24,8 +23,10 @@
       <Unit>
         <Filename Value="uextensionmodule.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <CursorPos Y="75"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="51"/>
+        <CursorPos X="52" Y="74"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
@@ -71,10 +72,11 @@
       </Unit>
       <Unit>
         <Filename Value="../../../source/uP4P.MiscFunctions.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="236"/>
-        <CursorPos X="11" Y="254"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="409"/>
+        <CursorPos X="30" Y="425"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../source/uP4P.Loader.pas"/>
@@ -85,13 +87,14 @@
       </Unit>
       <Unit>
         <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="278"/>
-        <CursorPos Y="339"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="369"/>
+        <CursorPos X="86" Y="385"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="3">
+    <JumpHistory HistoryIndex="13">
       <Position>
         <Filename Value="uextensionmodule.pas"/>
         <Caret Line="75" TopLine="53"/>
@@ -107,6 +110,46 @@
       <Position>
         <Filename Value="simplepythonextension.lpr"/>
         <Caret Line="16" Column="6"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="35" Column="60" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="295" Column="21" TopLine="279"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="385" Column="81" TopLine="369"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="295" Column="21" TopLine="280"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="300" Column="54" TopLine="278"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="295" Column="21" TopLine="279"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.MiscFunctions.pas"/>
+        <Caret Line="425" Column="30" TopLine="409"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="385" Column="81" TopLine="369"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="295" Column="29" TopLine="270"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
+        <Caret Line="304" Column="59" TopLine="279"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -125,6 +168,8 @@
         <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
         <Item3 Value="C:\Windows\system32\cmd.exe /C ${TargetCmdLine}"/>
       </List>
+      <List Name="WorkingDirectory" Type="File" Count="1"/>
+      <List Name="CommandLineParameters" Count="1"/>
     </HistoryLists>
   </ProjectSession>
 </CONFIG>
