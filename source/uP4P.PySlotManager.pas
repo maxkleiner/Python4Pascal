@@ -30,6 +30,7 @@ type
       FMethodList            : TList;
       FMethods               : PyMethodDefArray;
       FABIInfo               : PyAbiInfo;
+      FMustAddTokenSlot      : boolean;
 
       function  GetName: AnsiString;
       function  GetHasMethodsSlot: boolean;
@@ -98,6 +99,11 @@ type
       /// Return a pointer to the ABI info record.
       /// </summary>
       property  ABIInfo                : PPyAbiInfo     read GetABIInfo;
+      /// <summary>
+      /// Set this property to False in case you need to set a customized
+      /// token slot instead of adding the module ID as token.
+      /// </summary>
+      property  MustAddTokenSlot       : boolean        read FMustAddTokenSlot       write FMustAddTokenSlot;
   end;
 
 implementation
@@ -109,12 +115,13 @@ constructor TPySlotManager.Create(const aName: string; const aDocStrings: string
 begin
   inherited Create;
 
-  FName           := aName;
-  FDocStrings     := aDocStrings;
-  FSlotList       := nil;
-  FSlots          := nil;
-  FMethodList     := nil;
-  FMethods        := nil;
+  FName                  := aName;
+  FDocStrings            := aDocStrings;
+  FSlotList              := nil;
+  FSlots                 := nil;
+  FMethodList            := nil;
+  FMethods               := nil;
+  FMustAddTokenSlot      := True;
 
   TPyABIInfo.VAR_(FABIInfo);
 end;
@@ -206,7 +213,8 @@ begin
   AddExecSlot(aExecFunction);
   AddMultipleInterpretersSlot(aMultIntprSupport);
   AddGILSlot(aGILUsed);
-  AddTokenSlot(aToken);
+
+  if FMustAddTokenSlot then AddTokenSlot(aToken);
 end;
 
 procedure TPySlotManager.AddAllMethods;

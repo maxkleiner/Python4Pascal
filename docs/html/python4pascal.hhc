@@ -20063,6 +20063,10 @@
 <param name="Name" value="FABIInfo">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FABIInfo">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FMustAddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMustAddTokenSlot">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -20092,6 +20096,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ABIInfo">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#ABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MustAddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MustAddTokenSlot">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -49654,6 +49662,10 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMethods">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FMustAddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMustAddTokenSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FName">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FName">
 </object>
@@ -49686,6 +49698,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#HasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MustAddTokenSlot">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MustAddTokenSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Name_">

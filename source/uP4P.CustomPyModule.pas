@@ -93,7 +93,7 @@ type
       /// <summary>
       /// <para>Test if this module is the same as the "other" module.</para>
       /// </summary>
-      function    SameAs(const other: PPyObject): boolean;
+      function    SameAs(const other: PPyObject): boolean; virtual;
       /// <summary>
       /// <para>Create the module and all the slots and methods.</para>
       /// </summary>
