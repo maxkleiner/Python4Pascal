@@ -2,9 +2,9 @@
 
 Python4Pascal is an open source project used to embed Python in applications made with [Delphi](https://www.embarcadero.com/products/delphi/starter) or [Lazarus/FPC](https://www.lazarus-ide.org/).
 
-Python4Pascal is based in the [Python4Delphi project](https://github.com/lmbelo/python4delphi) made by Kiriakos Vlahos [PyScripter](https://github.com/pyscripter).
+Python4Pascal is based in the [Python4Delphi project](https://github.com/lmbelo/python4delphi) made by Kiriakos Vlahos [PyScripter](https://github.com/pyscripter).  The original license of that project still applies to Python4Pascal. Read the license terms in the LICENSE.md file.
 
-Python4Pascal supports Windows, Linux, macOS and Android.
+Python4Pascal uses [Python](https://github.com/python/cpython) 3.15, 3.14, 3.13, 3.12, 3.11 and 3.10, and it supports Windows, Linux, macOS and Android.
 
 Python4Pascal was developed and tested on Delphi 13.2, Delphi XE2, Delphi 7 and Lazarus 4.8/FPC 3.2.2. 
 
