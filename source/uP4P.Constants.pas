@@ -245,36 +245,321 @@ const
   {* include/object.h  include/cpython/object.h *}
   Py_PRINT_RAW    = 1;
 
+  /// <summary>
+  /// <para>Track types initialized using _PyStaticType_InitBuiltin().</para>
+  /// </summary>
   _Py_TPFLAGS_STATIC_BUILTIN          = 1 shl 1;
+  /// <summary>
+  /// <para>This bit indicates that instances of this type will have an
+  /// "inline values" array (containing the object's attributes) placed
+  /// directly after the end of the object.</para>
+  /// <para>This requires that Py_TPFLAGS_HAVE_GC is set.</para>
+  /// <para>The values array is placed inline directly after the rest of
+  /// the object. Implies Py_TPFLAGS_HAVE_GC.</para>
+  /// </summary>
   Py_TPFLAGS_INLINE_VALUES            = 1 shl 2;
+  /// <summary>
+  /// <para>This bit indicates that instances of the class should be weakly
+  /// referenceable.</para>
+  /// <para>If this flag is set, Py_TPFLAGS_HAVE_GC must also be set.</para>
+  /// <para>Added in version 3.12.</para>
+  /// <para>Placement of weakref pointers are managed by the VM, not by the
+  /// type. The VM will automatically set tp_weaklistoffset.
+  /// Implies Py_TPFLAGS_HAVE_GC.</para>
+  /// </summary>
   Py_TPFLAGS_MANAGED_WEAKREF          = 1 shl 3;
+  /// <summary>
+  /// <para>This bit indicates that instances of the class have a __dict__
+  /// attribute, and that the space for the dictionary is managed by the
+  /// VM.</para>
+  /// <para>If this flag is set, Py_TPFLAGS_HAVE_GC must also be set.</para>
+  /// <para>The type traverse function must call TPyObject.VisitManagedDict()
+  /// and its clear function must call TPyObject.ClearManagedDict().</para>
+  /// <para>Added in version 3.12.</para>
+  /// <para>Placement of dict (and values) pointers are managed by the VM,
+  /// not by the type. The VM will automatically set tp_dictoffset.
+  /// Implies Py_TPFLAGS_HAVE_GC.</para>
+  /// </summary>
   Py_TPFLAGS_MANAGED_DICT             = 1 shl 4;
+  /// <summary>
+  /// <para>These bits indicate that the VM will manage some fields by storing
+  /// them before the object. Currently, this macro is equivalent to
+  /// Py_TPFLAGS_MANAGED_DICT | Py_TPFLAGS_MANAGED_WEAKREF.</para>
+  /// <para>This macro value relies on the implementation of the VM, so its
+  /// value is not stable and may change in a future version. Prefer using
+  /// individual flags instead.</para>
+  /// <para>Added in version 3.12.</para>
+  /// <para>Type has dictionary or weakref pointers that are managed by VM and
+  /// has to allocate space to store these.</para>
+  /// </summary>
   Py_TPFLAGS_PREHEADER                = Py_TPFLAGS_MANAGED_WEAKREF or Py_TPFLAGS_MANAGED_DICT;
+  /// <summary>
+  /// <para>This bit indicates that instances of the class may match sequence
+  /// patterns when used as the subject of a match block. It is automatically
+  /// set when registering or subclassing collections.abc.Sequence, and unset
+  /// when registering collections.abc.Mapping.</para>
+  /// <para>Note: Py_TPFLAGS_MAPPING and Py_TPFLAGS_SEQUENCE are mutually
+  /// exclusive; it is an error to enable both flags simultaneously.</para>
+  /// <para>Set if instances of the type object are treated as sequences for
+  /// pattern matching.</para>
+  /// </summary>
   Py_TPFLAGS_SEQUENCE                 = 1 shl 5;
+  /// <summary>
+  /// <para>This bit indicates that instances of the class may match mapping
+  /// patterns when used as the subject of a match block. It is automatically
+  /// set when registering or subclassing collections.abc.Mapping, and unset
+  /// when registering collections.abc.Sequence.</para>
+  /// <para>Note: Py_TPFLAGS_MAPPING and Py_TPFLAGS_SEQUENCE are mutually
+  /// exclusive; it is an error to enable both flags simultaneously.</para>
+  /// <para>Set if instances of the type object are treated as mappings for
+  /// pattern matching.</para>
+  /// </summary>
   Py_TPFLAGS_MAPPING                  = 1 shl 6;
+  /// <summary>
+  /// <para>Disallow creating instances of the type: set tp_new to NULL and
+  /// don't create the __new__ key in the type dictionary.</para>
+  /// <para>The flag must be set before creating the type, not after.
+  /// For example, it must be set before TPyType.Ready() is called on the
+  /// type.</para>
+  /// <para>The flag is set automatically on static types if tp_base is nil or
+  /// &PyBaseObject_Type and tp_new is nil.</para>
+  /// <para>Disallow creating instances of the type: set tp_new to NULL and
+  /// don't create the "__new__" key in the type dictionary.</para>
+  /// </summary>
   Py_TPFLAGS_DISALLOW_INSTANTIATION   = 1 shl 7;
+  /// <summary>
+  /// <para>This bit is set for type objects that are immutable: type
+  /// attributes cannot be set nor deleted.</para>
+  /// <para>TPyType.Ready() automatically applies this flag to static
+  /// types.</para>
+  /// <para>Set if the type object is immutable: type attributes cannot be set
+  /// nor deleted.</para>
+  /// </summary>
   Py_TPFLAGS_IMMUTABLETYPE            = 1 shl 8;
+  /// <summary>
+  /// <para>This bit is set when the type object itself is allocated on the
+  /// heap, for example, types created dynamically using TPyType.FromSpec().
+  /// In this case, the ob_type field of its instances is considered a
+  /// reference to the type, and the type object is INCREF'ed when a new
+  /// instance is created, and DECREF'ed when an instance is destroyed (this
+  /// does not apply to instances of subtypes; only the type referenced by the
+  /// instance's ob_type gets INCREF'ed or DECREF'ed). Heap types should also
+  /// support garbage collection as they can form a reference cycle with their
+  /// own module object.</para>
+  /// <para>Set if the type object is dynamically allocated.</para>
+  /// </summary>
   Py_TPFLAGS_HEAPTYPE                 = 1 shl 9;
+  /// <summary>
+  /// <para>This bit is set when the type can be used as the base type of
+  /// another type. If this bit is clear, the type cannot be subtyped (similar
+  /// to a "final" class in Java).</para>
+  /// <para>Set if the type allows subclassing.</para>
+  /// </summary>
   Py_TPFLAGS_BASETYPE                 = 1 shl 10;
+  /// <summary>
+  /// <para>This bit is set when the class implements the vectorcall protocol.
+  /// See tp_vectorcall_offset for details.</para>
+  /// <para>Inheritance:</para>
+  /// <para>This bit is inherited if tp_call is also inherited.</para>
+  /// <para>Added in version 3.8: as _Py_TPFLAGS_HAVE_VECTORCALL</para>
+  /// <para>Changed in version 3.9: Renamed to the current name, without the
+  /// leading underscore. The old provisional name is soft deprecated.</para>
+  /// <para>Changed in version 3.12: This flag is now removed from a class when
+  /// the class's __call__() method is reassigned.</para>
+  /// <para>This flag can now be inherited by mutable classes.</para>
+  /// <para>Set if the type implements the vectorcall protocol (PEP 590).</para>
+  /// </summary>
   Py_TPFLAGS_HAVE_VECTORCALL          = 1 shl 11;
+  /// <summary>
+  /// <para>This bit is set when the type object has been fully initialized by
+  /// TPyType.Ready().</para>
+  /// <para>Set if the type is 'ready' -- fully initialized.</para>
+  /// </summary>
   Py_TPFLAGS_READY                    = 1 shl 12;
+  /// <summary>
+  /// <para>This bit is set while TPyType.Ready() is in the process of
+  /// initializing the type object.</para>
+  /// <para>Set while the type is being 'readied', to prevent recursive ready
+  /// calls.</para>
+  /// </summary>
   Py_TPFLAGS_READYING                 = 1 shl 13;
+  /// <summary>
+  /// <para>This bit is set when the object supports garbage collection. If
+  /// this bit is set, memory for new instances (see tp_alloc) must be
+  /// allocated using TPyObject.GC_New or TPyType.GenericAlloc() and
+  /// deallocated (see tp_free) using TPyObject.GC_Del(). More information in
+  /// section Supporting Cyclic Garbage Collection.</para>
+  /// <para>Objects support garbage collection (see objimpl.h).</para>
+  /// </summary>
   Py_TPFLAGS_HAVE_GC                  = 1 shl 14;
-  Py_TPFLAGS_HAVE_STACKLESS_EXTENSION = 0;
+  /// <summary>
+  /// <para>Internal. Do not set or unset this flag. Historically, this was a
+  /// reserved flag for use in Stackless Python.</para>
+  /// <para>Warning: This flag is present in header files, but is not be used.
+  /// This may be removed in a future version of CPython.</para>
+  /// <para>These two bits are preserved for Stackless Python.</para>
+  /// </summary>
+  Py_TPFLAGS_HAVE_STACKLESS_EXTENSION = 0; // 3 shl 15;
+  /// <summary>
+  /// <para>This is a bitmask of all the bits that pertain to the existence of
+  /// certain fields in the type object and its extension structures.
+  /// Currently, it includes the following bits:
+  /// Py_TPFLAGS_HAVE_STACKLESS_EXTENSION.</para>
+  /// </summary>
+  Py_TPFLAGS_DEFAULT                  = Py_TPFLAGS_HAVE_STACKLESS_EXTENSION;
+  /// <summary>
+  /// <para>This bit indicates that objects behave like unbound methods.</para>
+  /// <para>If this flag is set for type(meth), then:</para>
+  /// <code>
+  /// - meth.__get__(obj, cls)(*args, **kwds) (with obj not None) must be
+  ///   equivalent to meth(obj, *args, **kwds).
+  /// - meth.__get__(None, cls)(*args, **kwds) must be equivalent to
+  ///   meth(*args, **kwds).
+  /// </code>
+  /// <para>This flag enables an optimization for typical method calls like
+  /// obj.meth(): it avoids creating a temporary "bound method" object for
+  /// obj.meth.</para>
+  /// <para>Objects behave like an unbound method.</para>
+  /// </summary>
   Py_TPFLAGS_METHOD_DESCRIPTOR        = 1 shl 17;
+  /// <summary>
+  /// <para>Internal. Do not set or unset this flag. To indicate that a class
+  /// has changed call TPyType.Modified()</para>
+  /// <para>Warning: This flag is present in header files, but is not be used.
+  /// It will be removed in a future version of CPython</para>
+  /// <para>Unused. Legacy flag.</para>
+  /// </summary>
   Py_TPFLAGS_VALID_VERSION_TAG        = 1 shl 19;
+  /// <summary>
+  /// <para>This bit indicates that this is an abstract type and therefore
+  /// cannot be instantiated.</para>
+  /// <para>Type is abstract and cannot be instantiated.</para>
+  /// </summary>
   Py_TPFLAGS_IS_ABSTRACT              = 1 shl 20;
+  /// <summary>
+  /// <para>This undocumented flag gives certain built-ins their unique
+  /// pattern-matching behavior, which allows a single positional subpattern
+  /// to match against the subject itself (rather than a mapped attribute
+  /// on it)</para>
+  /// </summary>
   _Py_TPFLAGS_MATCH_SELF              = 1 shl 22;
+  /// <summary>
+  /// <para>Only usable with variable-size types, i.e. ones with non-zero
+  /// tp_itemsize.</para>
+  /// <para>Indicates that the variable-sized portion of an instance of this
+  /// type is at the end of the instance's memory area, at an offset of
+  /// Py_TYPE(obj)->tp_basicsize (which may be different in each
+  /// subclass).</para>
+  /// <para>When setting this flag, be sure that all superclasses either use
+  /// this memory layout, or are not variable-sized. Python does not check
+  /// this.</para>
+  /// <para>Added in version 3.12.</para>
+  /// <para>Items (ob_size*tp_itemsize) are found at the end of an
+  /// instance's memory.</para>
+  /// </summary>
   Py_TPFLAGS_ITEMS_AT_END             = 1 shl 23;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_LONG_SUBCLASS            = 1 shl 24;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_LIST_SUBCLASS            = 1 shl 25;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_TUPLE_SUBCLASS           = 1 shl 26;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_BYTES_SUBCLASS           = 1 shl 27;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_UNICODE_SUBCLASS         = 1 shl 28;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_DICT_SUBCLASS            = 1 shl 29;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_BASE_EXC_SUBCLASS        = 1 shl 30;
+  /// <summary>
+  /// <para>Functions such as TPy*.Check() will call TPyType.FastSubclass()
+  /// with one of these flags to quickly determine if a type is a subclass of a
+  /// built-in type; such specific checks are faster than a generic check, like
+  /// TPyObject.IsInstance(). Custom types that inherit from built-ins should
+  /// have their tp_flags set appropriately, or the code that interacts with
+  /// such types will behave differently depending on what kind of check is
+  /// used.</para>
+  /// <para>This flag is used to determine if a type is a subclass.</para>
+  /// </summary>
   Py_TPFLAGS_TYPE_SUBCLASS            = 1 shl 31;
+  /// <summary>
+  /// <para>This bit is set when the tp_finalize slot is present in the type
+  /// structure.</para>
+  /// <para>Added in version 3.4.</para>
+  /// <para>Deprecated since version 3.8: This flag isn't necessary anymore,
+  /// as the interpreter assumes the tp_finalize slot is always present in the
+  /// type structure.</para>
+  /// </summary>
   Py_TPFLAGS_HAVE_FINALIZE            = 1 shl  0;
+  /// <summary>
+  /// <para>This macro does nothing. Historically, this would indicate that
+  /// the tp_version_tag field was available and initialized.</para>
+  /// <para>Soft deprecated since version 3.13.</para>
+  /// </summary>
   Py_TPFLAGS_HAVE_VERSION_TAG         = 1 shl 18;
 
   Py_CONSTANT_NONE             = 0;

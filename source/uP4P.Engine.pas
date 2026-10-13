@@ -15,7 +15,8 @@ uses
     Classes, SysUtils, SyncObjs,
   {$ENDIF}
   uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.Loader,
-  uP4P.CustomPyModule, uP4P.IOPyModule, uP4P.PyTimeModule, uP4P.PyDateTimeModule;
+  uP4P.CustomPyModule, uP4P.IOPyModule, uP4P.PyTimeModule,
+  uP4P.PyDateTimeModule, uP4P.CustomHeapType;
 
 type
   TOnOutputMessageEvent = procedure(Sender: TObject; const message_: string) of object;
@@ -31,6 +32,7 @@ type
   TP4PEngine = class(TP4PLoader)
     protected
       FModules                   : TList;
+      FHeapTypes                 : TList;
       FSyncObj                   : TCriticalSection;
       FIOModule                  : TIOPyModule;
       FTimeModule                : TPyTimeModule;
@@ -58,6 +60,7 @@ type
       procedure DestroyTimeModule;
       procedure DestroyDateTimeModule;
       procedure DestroyModules;
+      procedure DestroyHeapTypes;
       procedure DestroySyncObj;
       procedure DestroyInterpreterState;
       procedure DestroyThreadState;
@@ -92,6 +95,18 @@ type
       /// <para>Search the module in the internal module list.</para>
       /// </summary>
       function    SearchModule(module: PPyObject; var aResult: TCustomPyModule): boolean;
+      /// <summary>
+      /// <para>Add the heap type to the internal module list.</para>
+      /// </summary>
+      procedure   AddHeapType(const aHeapType: TCustomHeapType);
+      /// <summary>
+      /// <para>Remove the heap type from the internal module list.</para>
+      /// </summary>
+      procedure   RemoveHeapType(const aHeapType: TCustomHeapType);
+      /// <summary>
+      /// <para>Search the heap type in the internal heap type list.</para>
+      /// </summary>
+      function    SearchHeapType(heaptype: PPyObject; var aResult: TCustomHeapType): boolean;
       /// <summary>
       /// <para>Return True if module is the internal IOModule.</para>
       /// </summary>
@@ -152,7 +167,7 @@ type
       /// </summary>
       property MainModule                : IPyObject                read GetMainModule;
       /// <summary>
-      /// <para>ID generator used for modules.</para>
+      /// <para>ID generator used for modules and heap types.</para>
       /// </summary>
       property NextID                    : cardinal                 read GetNextID;
       /// <summary>
@@ -224,6 +239,7 @@ begin
   FMainThreadID      := TThreadID(0);
   FSavedThreadState  := False;
   FModules           := nil;
+  FHeapTypes         := nil;
   FSyncObj           := nil;
   FIOModule          := nil;
   FInterpreterState  := nil;
@@ -239,6 +255,7 @@ destructor TP4PEngine.Destroy;
 begin
   try
     DestroyModules;
+    DestroyHeapTypes;
     DestroySyncObj;
   finally
     inherited Destroy;
@@ -251,6 +268,7 @@ begin
 
   FMainThreadID := CustomGetCurrentThreadId;
   FModules      := TList.Create;
+  FHeapTypes    := TList.Create;
   FSyncObj      := TCriticalSection.Create;
 end;
 
@@ -273,6 +291,17 @@ begin
     try
       if assigned(FModules) then
         FreeAndNil(FModules);
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TP4PEngine.DestroyHeapTypes;
+begin
+  if Lock then
+    try
+      if assigned(FHeapTypes) then
+        FreeAndNil(FHeapTypes);
     finally
       UnLock;
     end;
@@ -484,6 +513,55 @@ begin
             if TempModule.SameAs(module) then
               begin
                 aResult := TempModule;
+                Result  := True;
+                break;
+              end;
+          end;
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TP4PEngine.AddHeapType(const aHeapType: TCustomHeapType);
+begin
+  if Lock then
+    try
+      if assigned(FHeapTypes) then
+        FHeapTypes.Add(aHeapType);
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TP4PEngine.RemoveHeapType(const aHeapType: TCustomHeapType);
+begin
+  if Lock then
+    try
+      if assigned(FHeapTypes) then
+        FHeapTypes.Remove(aHeapType);
+    finally
+      UnLock;
+    end;
+end;
+
+function TP4PEngine.SearchHeapType(heaptype: PPyObject; var aResult: TCustomHeapType): boolean;
+var
+  i: integer;
+  TempHeapType : TCustomHeapType;
+begin
+  Result  := False;
+  aResult := nil;
+
+  if Lock then
+    try
+      if assigned(FHeapTypes) then
+        for i := 0 to pred(FHeapTypes.Count) do
+          begin
+            TempHeapType := TCustomHeapType(FHeapTypes[i]);
+
+            if TempHeapType.SameAs(heaptype) then
+              begin
+                aResult := TempHeapType;
                 Result  := True;
                 break;
               end;

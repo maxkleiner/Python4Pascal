@@ -172,6 +172,9 @@ contains
   uP4P.PyModuleDef_Slot in '..\source\uP4P.PyModuleDef_Slot.pas',
   uP4P.PyMethodDef in '..\source\uP4P.PyMethodDef.pas',
   uP4P.PySlotManager in '..\source\uP4P.PySlotManager.pas',
-  uP4P.PyCustomModuleSlotManager in '..\source\uP4P.PyCustomModuleSlotManager.pas';
+  uP4P.PyCustomModuleSlotManager in '..\source\uP4P.PyCustomModuleSlotManager.pas',
+  uP4P.PyType_Slot in '..\source\uP4P.PyType_Slot.pas',
+  uP4P.PyType_Spec in '..\source\uP4P.PyType_Spec.pas',
+  uP4P.CustomHeapType in '..\source\uP4P.CustomHeapType.pas';
 
 end.

@@ -922,6 +922,7 @@ type
     /// </summary>
     pfunc  : Pointer;
   end;
+  PyType_SlotArray = array of PyType_Slot;
 
   /// <summary>
   /// Record defining a type's behavior.
@@ -935,14 +936,15 @@ type
     /// </summary>
     name      : PAnsiChar;
     /// <summary>
-    /// If positive, specifies the size of the instance in bytes. It is used to
-    /// set PyTypeObject.tp_basicsize.
-    /// If zero, specifies that tp_basicsize should be inherited.
-    /// If negative, the absolute value specifies how much space instances of
-    /// the class need in addition to the superclass. Use PyObject_GetTypeData()
-    /// to get a pointer to subclass-specific memory reserved this way.
-    /// For negative basicsize, Python will insert padding when needed to meet
-    /// tp_basicsize's alignment requirements.
+    /// <para>If positive, specifies the size of the instance in bytes. It is
+    /// used to set PyTypeObject.tp_basicsize.</para>
+    /// <para>If zero, specifies that tp_basicsize should be inherited.</para>
+    /// <para>If negative, the absolute value specifies how much space
+    /// instances of the class need in addition to the superclass.</para>
+    /// <para>Use TPyObject.GetTypeData to get a pointer to subclass-specific
+    /// memory reserved this way.</para>
+    /// <para>For negative basicsize, Python will insert padding when needed
+    /// to meet tp_basicsize's alignment requirements.</para>
     /// </summary>
     basicsize : integer;
     /// <summary>

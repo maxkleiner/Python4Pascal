@@ -587,6 +587,18 @@
         <Filename Value="..\source\uP4P.PyCustomModuleSlotManager.pas"/>
         <UnitName Value="uP4P.PyCustomModuleSlotManager"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.CustomHeapType.pas"/>
+        <UnitName Value="uP4P.CustomHeapType"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyType_Spec.pas"/>
+        <UnitName Value="uP4P.PyType_Spec"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyType_Slot.pas"/>
+        <UnitName Value="uP4P.PyType_Slot"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils, {$IFDEF DELPHI12_UP}AnsiStrings,{$ENDIF}
   {$ENDIF}
-  uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.PyCustomModuleSlotManager;
+  uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
 
 type
   /// <summary>
@@ -171,7 +171,8 @@ implementation
 
 uses
   uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
-  uP4P.PyModuleDef, uP4P.PySlotManager, uP4P.MiscFunctions;
+  uP4P.PyModuleDef, uP4P.PySlotManager, uP4P.MiscFunctions,
+  uP4P.PyCustomModuleSlotManager;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var

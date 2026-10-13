@@ -4505,6 +4505,10 @@ type
     /// </summary>
     procedure BuildMethodsAndSlots;
     /// <summary>
+    /// Create the slots with all the heap type information.
+    /// </summary>
+    procedure BuildSlots;
+    /// <summary>
     /// Name of the new module or data type.
     /// </summary>
     property  Name_                  : AnsiString         read GetName                 write SetName;
@@ -4553,6 +4557,78 @@ type
     /// the module state's memory layout.
     /// </summary>
     property  Token                  : pointer            read GetToken                write SetToken;
+  end;
+
+  /// <summary>
+  /// Interface defining a type's behavior.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyType_Spec">See the article about PyType_Spec.</see></para>
+  /// </remarks>
+  IPyType_Spec = interface
+    ['{F55ADD9F-9ABD-4DF2-BD4A-1FDE6235826A}']
+    function  GetName: AnsiString;
+    function  GetBasicsize: integer;
+    function  GetItemsize: integer;
+    function  GetFlags: cardinal;
+    function  GetHasSentinelSlot: boolean;
+    function  GetSlots: PPyType_Slot;
+    function  GetTypeSpec: PPyType_Spec;
+
+    procedure SetName(const aValue: AnsiString);
+    procedure SetBasicsize(aValue: integer);
+    procedure SetItemsize(aValue: integer);
+    procedure SetFlags(aValue: cardinal);
+
+    procedure CreateSlotArray;
+
+    procedure DestroySlotList;
+    procedure DestroySlots;
+
+    procedure AddAllSlots;
+    function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
+    function  AddSentinelSlot: boolean;
+    /// <summary>
+    /// Create the slots with all the type information.
+    /// </summary>
+    procedure   BuildSlots;
+    /// <summary>
+    /// Name of the type, used to set PyTypeObject.tp_name.
+    /// </summary>
+    property Name_           : AnsiString        read GetName              write SetName;
+    /// <summary>
+    /// <para>If positive, specifies the size of the instance in bytes. It is
+    /// used to set PyTypeObject.tp_basicsize.</para>
+    /// <para>If zero, specifies that tp_basicsize should be inherited.</para>
+    /// <para>If negative, the absolute value specifies how much space
+    /// instances of the class need in addition to the superclass.</para>
+    /// <para>Use TPyObject.GetTypeData to get a pointer to subclass-specific
+    /// memory reserved this way.</para>
+    /// <para>For negative basicsize, Python will insert padding when needed
+    /// to meet tp_basicsize's alignment requirements.</para>
+    /// </summary>
+    property Basicsize       : integer           read GetBasicsize         write SetBasicsize;
+    /// <summary>
+    /// Size of one element of a variable-size type, in bytes. Used to set
+    /// PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
+    /// </summary>
+    property Itemsize        : integer           read GetItemsize          write SetItemsize;
+    /// <summary>
+    /// Type flags, used to set PyTypeObject.tp_flags.
+    /// </summary>
+    property Flags           : cardinal          read GetFlags             write SetFlags;
+    /// <summary>
+    /// Return True if the last slot has a {0, nil} value.
+    /// </summary>
+    property HasSentinelSlot : boolean           read GetHasSentinelSlot;
+    /// <summary>
+    /// Return a pointer to the first slot.
+    /// </summary>
+    property Slots           : PPyType_Slot      read GetSlots;
+    /// <summary>
+    /// Return a pointer to the PyType_Spec record.
+    /// </summary>
+    property TypeSpec        : PPyType_Spec      read GetTypeSpec;
   end;
 
 implementation

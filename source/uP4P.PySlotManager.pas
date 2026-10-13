@@ -93,6 +93,10 @@ type
       /// </summary>
       procedure   BuildMethodsAndSlots;
       /// <summary>
+      /// Create the slots with all the heap type information.
+      /// </summary>
+      procedure   BuildSlots;
+      /// <summary>
       /// Name of the new module or data type.
       /// </summary>
       property  Name_                  : AnsiString         read GetName                 write SetName;
@@ -525,6 +529,16 @@ begin
 
   CreateMethodArray;
   AddMethodsSlot;
+
+  if not(HasSentinelSlot) then
+    AddSentinelSlot;
+
+  CreateSlotArray;
+end;
+
+procedure TPySlotManager.BuildSlots;
+begin
+  AddAllSlots;
 
   if not(HasSentinelSlot) then
     AddSentinelSlot;
