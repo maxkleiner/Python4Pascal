@@ -25,8 +25,8 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="51"/>
-        <CursorPos X="52" Y="74"/>
+        <TopLine Value="67"/>
+        <CursorPos X="49" Y="91"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
@@ -94,7 +94,7 @@
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="13">
+    <JumpHistory HistoryIndex="14">
       <Position>
         <Filename Value="uextensionmodule.pas"/>
         <Caret Line="75" TopLine="53"/>
@@ -151,6 +151,10 @@
         <Filename Value="../../../source/uP4P.CustomPyModule.pas"/>
         <Caret Line="304" Column="59" TopLine="279"/>
       </Position>
+      <Position>
+        <Filename Value="simplepythonextension.lpr"/>
+        <Caret Line="16" Column="6"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -168,8 +172,6 @@
         <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
         <Item3 Value="C:\Windows\system32\cmd.exe /C ${TargetCmdLine}"/>
       </List>
-      <List Name="WorkingDirectory" Type="File" Count="1"/>
-      <List Name="CommandLineParameters" Count="1"/>
     </HistoryLists>
   </ProjectSession>
 </CONFIG>

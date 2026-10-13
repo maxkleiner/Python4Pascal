@@ -15,7 +15,7 @@ uses
     Classes, SysUtils,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyCustomModuleSlotManager;
 
 type
   TExtensionModule = class(TCustomPyModule)
@@ -35,7 +35,7 @@ type
       procedure AddAllMethods; override;
   end;
 
-  TExtensionPySlotManager = class(TPySlotManager)
+  TExtensionPySlotManager = class(TPyCustomModuleSlotManager)
     protected
       procedure AddAllMethods; override;
   end;
@@ -91,12 +91,12 @@ end;
 
 procedure TExtensionModule.CreateModuleDef;
 begin
-  FModuleDef := TExtensionPyModuleDef.Create(FName, FDocStrings);
+  FModuleDef := TExtensionPyModuleDef.Create;
 end;
 
 procedure TExtensionModule.CreateSlotManager;
 begin
-  FSlotManager := TExtensionPySlotManager.Create(FName, FDocStrings);
+  FSlotManager := TExtensionPySlotManager.Create;
 end;
 
 function TExtensionModule.NumberIsEven(args: PPyObject): PPyObject;

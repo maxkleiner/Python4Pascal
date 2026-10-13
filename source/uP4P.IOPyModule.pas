@@ -15,7 +15,8 @@ uses
     Classes,
   {$ENDIF}
   uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager,
+  uP4P.PyCustomModuleSlotManager;
 
 const
   IOPyModuleName = 'pyio';
@@ -68,7 +69,7 @@ type
   /// <para>TPyIOSlotManager is a custom TPySlotManager that declares custom
   /// write and read methods.</para>
   /// </summary>
-  TPyIOSlotManager = class(TPySlotManager)
+  TPyIOSlotManager = class(TPyCustomModuleSlotManager)
     protected
       /// <summary>
       /// This procedure adds the custom write and read methods.
@@ -177,12 +178,12 @@ end;
 
 procedure TIOPyModule.CreateModuleDef;
 begin
-  FModuleDef := TPyIOModuleDef.Create(FName, FDocStrings);
+  FModuleDef := TPyIOModuleDef.Create;
 end;
 
 procedure TIOPyModule.CreateSlotManager;
 begin
-  FSlotManager := TPyIOSlotManager.Create(FName, FDocStrings);
+  FSlotManager := TPyIOSlotManager.Create;
 end;
 
 class function TIOPyModule.RunInitCode: boolean;

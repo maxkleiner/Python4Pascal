@@ -15,7 +15,7 @@ uses
     Classes, Forms,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyCustomModuleSlotManager;
 
 const
   TEST_MODULE_NAME = 'mytest';
@@ -40,7 +40,7 @@ type
       procedure AddAllMethods; override;
   end;
 
-  TPyTestSlotManager = class(TPySlotManager)
+  TPyTestSlotManager = class(TPyCustomModuleSlotManager)
     protected
       procedure AddAllMethods; override;
   end;
@@ -98,12 +98,12 @@ end;
 
 procedure TTestModule.CreateModuleDef;
 begin
-  FModuleDef := TPyTestModuleDef.Create(FName, FDocStrings);
+  FModuleDef := TPyTestModuleDef.Create;
 end;
 
 procedure TTestModule.CreateSlotManager;
 begin
-  FSlotManager := TPyTestSlotManager.Create(FName, FDocStrings);
+  FSlotManager := TPyTestSlotManager.Create;
 end;
 
 function TTestModule.Write(args: PPyObject): PPyObject;

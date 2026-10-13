@@ -5932,6 +5932,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#Name_">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#HasSentinelSlot">
 </object>
@@ -5942,6 +5946,18 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ModuleDef">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#ModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GILUsed">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -5958,6 +5974,22 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetName">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelSlot">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelSlot">
 </object>
@@ -5968,6 +6000,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetModuleDef">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialize">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#Initialize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
@@ -5992,10 +6048,6 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AddSlot">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#AddSlot">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddCreateSlot">
-<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#AddCreateSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddExecSlot">
@@ -6030,6 +6082,10 @@
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Name_">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasMethodsSlot">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#HasMethodsSlot">
 </object>
@@ -6045,6 +6101,26 @@
 <param name="Name" value="Slots">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Slots">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ABIInfo">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#ABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Token">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Methods">
@@ -6054,6 +6130,26 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasMethodsSlot">
@@ -6070,6 +6166,34 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetSlots">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetABIInfo">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetToken">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddMethod">
@@ -12978,6 +13102,34 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="uP4P.PyCustomModuleSlotManager">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Classes">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.html#@Classes">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyCustomModuleSlotManager">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllSlots">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html#AddAllSlots">
+</object>
+</ul>
+</ul>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="uP4P.PyDateTimeModule">
 <param name="Local" value="uP4P.PyDateTimeModule.html">
 </object>
@@ -17453,6 +17605,18 @@
 <param name="Name" value="FInitialized">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FInitialized">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FGILUsed">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -17468,6 +17632,10 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Name_">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#HasSentinelSlot">
 </object>
@@ -17479,16 +17647,24 @@
 <param name="Name" value="ModuleDef">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#ModuleDef">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GILUsed">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Methods">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#@Methods">
 </object>
 <ul>
-<li><object type="text/sitemap">
-<param name="Name" value="Initialize">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">
-</object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateSlotArray">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#CreateSlotArray">
@@ -17522,6 +17698,22 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetName">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelSlot">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetHasSentinelSlot">
 </object>
@@ -17532,6 +17724,26 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetModuleDef">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetGILUsed">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
@@ -17558,10 +17770,6 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddCreateSlot">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddCreateSlot">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddExecSlot">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddExecSlot">
 </object>
@@ -17584,6 +17792,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AfterConstruction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialize">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="BuildMethodsAndSlots">
@@ -19867,10 +20079,6 @@
 <param name="Name" value="FPySlot">
 <param name="Local" value="uP4P.PySlot.TPySlot.html#FPySlot">
 </object>
-<li><object type="text/sitemap">
-<param name="Name" value="FStringValue">
-<param name="Local" value="uP4P.PySlot.TPySlot.html#FStringValue">
-</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -19968,12 +20176,12 @@
 <param name="Local" value="uP4P.PySlot.TPySlot.html#Set_END">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="Set_STRING">
-<param name="Local" value="uP4P.PySlot.TPySlot.html#Set_STRING">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="Set_STATIC_STRING">
 <param name="Local" value="uP4P.PySlot.TPySlot.html#Set_STATIC_STRING">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_STRING">
+<param name="Local" value="uP4P.PySlot.TPySlot.html#Set_STRING">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="DATA">
@@ -20064,8 +20272,20 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FABIInfo">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="FMustAddTokenSlot">
-<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMustAddTokenSlot">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FToken">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -20076,6 +20296,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Name_">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#Name_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#DocStrings">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasMethodsSlot">
@@ -20098,8 +20322,20 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#ABIInfo">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="MustAddTokenSlot">
-<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MustAddTokenSlot">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#Token">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -20110,6 +20346,26 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasMethodsSlot">
@@ -20130,6 +20386,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetABIInfo">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="DestroySlotList">
@@ -30886,6 +31166,18 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasSentinelMethod">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#HasSentinelMethod">
 </object>
@@ -30902,6 +31194,10 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#ModuleDef">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Name_">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#Name_">
 </object>
@@ -30911,10 +31207,6 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#@Methods">
 </object>
 <ul>
-<li><object type="text/sitemap">
-<param name="Name" value="AddCreateSlot">
-<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#AddCreateSlot">
-</object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddExecSlot">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#AddExecSlot">
@@ -30944,6 +31236,18 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#AddSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelMethod">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelMethod">
 </object>
@@ -30960,8 +31264,16 @@
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Initialize">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#Initialize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllMethods">
@@ -30974,6 +31286,26 @@
 <li><object type="text/sitemap">
 <param name="Name" value="BuildMethodsAndSlots">
 <param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#BuildMethodsAndSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.Interfaces.IPyModuleDef.html#SetName">
 </object>
 </ul>
 </ul>
@@ -31802,6 +32134,22 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="ABIInfo">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#ABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasMethodsSlot">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#HasMethodsSlot">
 </object>
@@ -31814,12 +32162,20 @@
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#HasSentinelSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#MultIntprSupport">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Name_">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Name_">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Slots">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Slots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#Token">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -31836,6 +32192,22 @@
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#AddSentinelMethod">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetABIInfo">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasMethodsSlot">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetHasMethodsSlot">
 </object>
@@ -31848,12 +32220,20 @@
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetHasSentinelSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetName">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetSlots">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#GetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllMethods">
@@ -31874,6 +32254,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="BuildMethodsAndSlots">
 <param name="Local" value="uP4P.Interfaces.IPySlotManager.html#BuildMethodsAndSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetToken">
+<param name="Local" value="uP4P.Interfaces.IPySlotManager.html#SetToken">
 </object>
 </ul>
 </ul>
@@ -43430,6 +43834,22 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="TPyCustomModuleSlotManager">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllSlots">
+<param name="Local" value="uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html#AddAllSlots">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="TPyDateTimeModule">
 <param name="Local" value="uP4P.PyDateTimeModule.TPyDateTimeModule.html">
 </object>
@@ -47324,6 +47744,14 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FDocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FInitialized">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FInitialized">
 </object>
@@ -47338,6 +47766,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FModuleDef">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#FMultIntprSupport">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FName">
@@ -47358,6 +47790,18 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HasSentinelMethod">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#HasSentinelMethod">
 </object>
@@ -47372,6 +47816,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ModuleDef">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#ModuleDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#MultIntprSupport">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Name_">
@@ -47396,12 +47844,12 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Init">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="IsInitialized">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#IsInitialized">
+<param name="Name" value="Initialize">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddCreateSlot">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddCreateSlot">
+<param name="Name" value="IsInitialized">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#IsInitialized">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddExecSlot">
@@ -47432,6 +47880,18 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelMethod">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetHasSentinelMethod">
 </object>
@@ -47448,12 +47908,12 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetModuleDef">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="GetName">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetName">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetMultIntprSupport">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="Initialize">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">
+<param name="Name" value="GetName">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#GetName">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
@@ -47494,6 +47954,26 @@
 <li><object type="text/sitemap">
 <param name="Name" value="DestroySlots">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#DestroySlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#SetName">
 </object>
 </ul>
 </ul>
@@ -49489,10 +49969,6 @@
 <param name="Name" value="FPySlot">
 <param name="Local" value="uP4P.PySlot.TPySlot.html#FPySlot">
 </object>
-<li><object type="text/sitemap">
-<param name="Name" value="FStringValue">
-<param name="Local" value="uP4P.PySlot.TPySlot.html#FStringValue">
-</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -49654,6 +50130,14 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FDocStrings">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FMethodList">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMethodList">
 </object>
@@ -49662,8 +50146,8 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMethods">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="FMustAddTokenSlot">
-<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMustAddTokenSlot">
+<param name="Name" value="FMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FMultIntprSupport">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FName">
@@ -49677,6 +50161,10 @@
 <param name="Name" value="FSlots">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FSlots">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#FToken">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -49686,6 +50174,18 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ABIInfo">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#ABIInfo">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="DocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#ExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GILUsed">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasMethodsSlot">
@@ -49700,8 +50200,8 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#HasSentinelSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="MustAddTokenSlot">
-<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MustAddTokenSlot">
+<param name="Name" value="MultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#MultIntprSupport">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Name_">
@@ -49710,6 +50210,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Slots">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#Slots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Token">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#Token">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -49766,6 +50270,18 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetABIInfo">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetDocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetGILUsed">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetHasMethodsSlot">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetHasMethodsSlot">
 </object>
@@ -49778,12 +50294,20 @@
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetHasSentinelSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetName">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetName">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetSlots">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#GetToken">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AfterConstruction">
@@ -49832,6 +50356,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="DestroySlots">
 <param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#DestroySlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDocStrings">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExecFunction">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetExecFunction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGILUsed">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetGILUsed">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMultIntprSupport">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetMultIntprSupport">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetToken">
+<param name="Local" value="uP4P.PySlotManager.TPySlotManager.html#SetToken">
 </object>
 </ul>
 </ul>

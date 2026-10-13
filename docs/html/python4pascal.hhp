@@ -128,6 +128,8 @@ uP4P.PyCoro.TPyCoro.html
 uP4P.PyCriticalSection.html
 uP4P.PyCriticalSection.TPyCriticalSection.html
 uP4P.PyCriticalSection.TPyCriticalSection2.html
+uP4P.PyCustomModuleSlotManager.html
+uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html
 uP4P.PyDateTimeModule.html
 uP4P.PyDateTimeModule.TPyDateTimeModule.html
 uP4P.PyDescr.html

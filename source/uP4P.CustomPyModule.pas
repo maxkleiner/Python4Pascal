@@ -14,7 +14,7 @@ uses
   {$ELSE}
     Classes, SysUtils, {$IFDEF DELPHI12_UP}AnsiStrings,{$ENDIF}
   {$ENDIF}
-  uP4P.Types, uP4P.Interfaces, uP4P.PyObject;
+  uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.PyCustomModuleSlotManager;
 
 type
   /// <summary>
@@ -171,7 +171,7 @@ implementation
 
 uses
   uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
-  uP4P.PyModuleDef, uP4P.PySlotManager;
+  uP4P.PyModuleDef, uP4P.PySlotManager, uP4P.MiscFunctions;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var
@@ -305,12 +305,12 @@ end;
 
 procedure TCustomPyModule.CreateModuleDef;
 begin
-  FModuleDef := TPyModuleDef.Create(FName, FDocStrings);
+  FModuleDef := TPyModuleDef.Create;
 end;
 
 procedure TCustomPyModule.CreateSlotManager;
 begin
-  FSlotManager := TPySlotManager.Create(FName, FDocStrings);
+  FSlotManager := TPyCustomModuleSlotManager.Create;
 end;
 
 function TCustomPyModule.doOnAfterInitialization(module: PPyObject): integer;
@@ -351,9 +351,15 @@ begin
 
   CreateModuleDef;
 
-  if not(FModuleDef.Initialized) then exit;
+  FModuleDef.Name_            := StringToPyUTF8(FName);
+  FModuleDef.DocStrings       := StringToPyUTF8(FDocStrings);
+  FModuleDef.ExecFunction     := FExecFunction;
+  FModuleDef.MultIntprSupport := FMultIntprSupport;
+  FModuleDef.GILUsed          := FGILUsed;
 
-  FModuleDef.BuildMethodsAndSlots(FExecFunction, FMultIntprSupport, FGILUsed);
+  if not(FModuleDef.Initialize) then exit;
+
+  FModuleDef.BuildMethodsAndSlots;
 
   if FIsExtension then
     Result := True
@@ -381,7 +387,14 @@ begin
 
   CreateSlotManager;
 
-  FSlotManager.BuildMethodsAndSlots(FExecFunction, FMultIntprSupport, FGILUsed, {%H-}pointer(FID));
+  FSlotManager.Name_            := StringToPyUTF8(FName);
+  FSlotManager.DocStrings       := StringToPyUTF8(FDocStrings);
+  FSlotManager.ExecFunction     := FExecFunction;
+  FSlotManager.MultIntprSupport := FMultIntprSupport;
+  FSlotManager.GILUsed          := FGILUsed;
+  FSlotManager.Token            := {%H-}pointer(FID);
+
+  FSlotManager.BuildMethodsAndSlots;
 
   if FIsExtension then
     Result := True

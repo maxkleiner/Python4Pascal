@@ -4386,13 +4386,27 @@ type
     ['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']
     function  GetInitialized: boolean;
     function  GetName: AnsiString;
+    function  GetDocStrings: AnsiString;
+    function  GetExecFunction: exec_modulefunc;
+    function  GetMultIntprSupport: TMultIntprSupport;
+    function  GetGILUsed: boolean;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
     function  GetModuleDef: PPyModuleDef;
+
+    procedure SetName(const aValue: AnsiString);
+    procedure SetDocStrings(const aValue: AnsiString);
+    procedure SetExecFunction(aValue: exec_modulefunc);
+    procedure SetMultIntprSupport(aValue: TMultIntprSupport);
+    procedure SetGILUsed(aValue: boolean);
+    /// <summary>
+    /// Initialize PyModuleDef and set the name and docstrings.
+    /// </summary>
+    function  Initialize: boolean;
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
-    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+    procedure AddAllSlots;
     /// <summary>
     /// Override this procedure to add your custom methods.
     /// </summary>
@@ -4401,34 +4415,52 @@ type
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelSlot: boolean;
     function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
-    function  AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
-    function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
-    function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
-    function  AddGILSlot(aGILUsed: boolean): boolean;
+    function  AddExecSlot: boolean;
+    function  AddMultipleInterpretersSlot: boolean;
+    function  AddGILSlot: boolean;
     /// <summary>
     /// Create the methods and the slots with all the module information.
     /// </summary>
-    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+    procedure BuildMethodsAndSlots;
     /// <summary>
     /// Returns true if this class is fully initialized.
     /// </summary>
-    property  Initialized            : boolean        read GetInitialized;
+    property  Initialized            : boolean            read GetInitialized;
     /// <summary>
-    /// <para>Module name.</para>
+    /// Name of the new module or data type.
     /// </summary>
-    property  Name_                  : AnsiString     read GetName;
+    property  Name_                  : AnsiString         read GetName                 write SetName;
+    /// <summary>
+    /// The docstring of the new module or data type.
+    /// </summary>
+    property  DocStrings             : AnsiString         read GetDocStrings           write SetDocStrings;
     /// <summary>
     /// Return True if the last slot in the list is a sentinel slot.
     /// </summary>
-    property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+    property  HasSentinelSlot        : boolean            read GetHasSentinelSlot;
     /// <summary>
     /// Return True if the last method in the list is a sentinel method.
     /// </summary>
-    property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+    property  HasSentinelMethod      : boolean            read GetHasSentinelMethod;
     /// <summary>
     /// Return a poiter to PyModuleDef.
     /// </summary>
-    property  ModuleDef              : PPyModuleDef   read GetModuleDef;
+    property  ModuleDef              : PPyModuleDef       read GetModuleDef;
+    /// <summary>
+    /// Function that will execute, or initialize, the module.
+    /// </summary>
+    property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
+    /// <summary>
+    /// This slot determines whether or not importing this module in a
+    /// subinterpreter will fail.
+    /// If it's not specified, the import machinery defaults to miSupported.
+    /// </summary>
+    property  MultIntprSupport       : TMultIntprSupport  read GetMultIntprSupport     write SetMultIntprSupport;
+    /// <summary>
+    /// The module depends on the presence of the global interpreter lock
+    /// (GIL) or it's safe to run without an active GIL.
+    /// </summary>
+    property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
   end;
 
   /// <summary>
@@ -4438,10 +4470,24 @@ type
   IPySlotManager = interface
     ['{BF8F4E05-1947-427F-A3E9-4BF76FBF6AA1}']
     function  GetName: AnsiString;
+    function  GetDocStrings: AnsiString;
+    function  GetExecFunction: exec_modulefunc;
+    function  GetMultIntprSupport: TMultIntprSupport;
+    function  GetGILUsed: boolean;
+    function  GetToken: pointer;
     function  GetHasMethodsSlot: boolean;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
     function  GetSlots: PPySlot;
+    function  GetABIInfo: PPyAbiInfo;
+
+    procedure SetName(const aValue: AnsiString);
+    procedure SetDocStrings(const aValue: AnsiString);
+    procedure SetExecFunction(aValue: exec_modulefunc);
+    procedure SetMultIntprSupport(aValue: TMultIntprSupport);
+    procedure SetGILUsed(aValue: boolean);
+    procedure SetToken(aValue: pointer);
+
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelMethod: boolean;
     procedure AddSentinelSlot;
@@ -4449,7 +4495,7 @@ type
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
-    procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
+    procedure AddAllSlots;
     /// <summary>
     /// Override this procedure to add your custom methods.
     /// </summary>
@@ -4457,27 +4503,56 @@ type
     /// <summary>
     /// Create the slots with the methods and all the module information.
     /// </summary>
-    procedure BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean; aToken: pointer);
+    procedure BuildMethodsAndSlots;
     /// <summary>
-    /// <para>Module name.</para>
+    /// Name of the new module or data type.
     /// </summary>
-    property  Name_                  : AnsiString     read GetName;
+    property  Name_                  : AnsiString         read GetName                 write SetName;
+    /// <summary>
+    /// The docstring of the new module or data type.
+    /// </summary>
+    property  DocStrings             : AnsiString         read GetDocStrings           write SetDocStrings;
     /// <summary>
     /// Return True if the slot list has a Py_mod_methods slot.
     /// </summary>
-    property  HasMethodsSlot         : boolean        read GetHasMethodsSlot;
+    property  HasMethodsSlot         : boolean            read GetHasMethodsSlot;
     /// <summary>
-    /// Return True if the last slot in the list is a sentinel slot.
+    /// Return True if the last slot has a Py_slot_end value in the
+    /// sl_id field.
     /// </summary>
-    property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+    property  HasSentinelSlot        : boolean            read GetHasSentinelSlot;
     /// <summary>
     /// Return True if the last method in the list is a sentinel method.
     /// </summary>
-    property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+    property  HasSentinelMethod      : boolean            read GetHasSentinelMethod;
     /// <summary>
     /// Return a pointer to the first slot.
     /// </summary>
-    property  Slots                  : PPySlot        read GetSlots;
+    property  Slots                  : PPySlot            read GetSlots;
+    /// <summary>
+    /// Return a pointer to the ABI info record.
+    /// </summary>
+    property  ABIInfo                : PPyAbiInfo         read GetABIInfo;
+    /// <summary>
+    /// Function that will execute, or initialize, the module.
+    /// </summary>
+    property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
+    /// <summary>
+    /// This slot determines whether or not importing this module in a
+    /// subinterpreter will fail.
+    /// If it's not specified, the import machinery defaults to miSupported.
+    /// </summary>
+    property  MultIntprSupport       : TMultIntprSupport  read GetMultIntprSupport     write SetMultIntprSupport;
+    /// <summary>
+    /// The module depends on the presence of the global interpreter lock
+    /// (GIL) or it's safe to run without an active GIL.
+    /// </summary>
+    property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
+    /// <summary>
+    /// The associated token is a pointer-sized value intended to identify of
+    /// the module state's memory layout.
+    /// </summary>
+    property  Token                  : pointer            read GetToken                write SetToken;
   end;
 
 implementation

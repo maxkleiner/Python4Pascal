@@ -583,6 +583,10 @@
         <Filename Value="..\source\uP4P.PySlotManager.pas"/>
         <UnitName Value="uP4P.PySlotManager"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyCustomModuleSlotManager.pas"/>
+        <UnitName Value="uP4P.PyCustomModuleSlotManager"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

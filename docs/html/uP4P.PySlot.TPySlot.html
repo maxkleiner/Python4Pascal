@@ -47,10 +47,6 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.PySlot.TPySlot.html#FPySlot">FPySlot</a></strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.PySlot.TPySlot.html#FStringValue">FStringValue</a></strong>: AnsiString;</code></td>
-</tr>
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
@@ -120,11 +116,11 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STRING-word-string-">Set_STRING</a></strong>(name_: word; const value_: string);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STATIC_STRING-word-AnsiString-">Set_STATIC_STRING</a></strong>(name_: word; const value_: AnsiString);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STATIC_STRING-word-string-">Set_STATIC_STRING</a></strong>(name_: word; const value_: string);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PySlot.TPySlot.html#Set_STRING-word-string-">Set_STRING</a></strong>(name_: word; const value_: string); overload;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -192,14 +188,6 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FPySlot"></span><code><strong>FPySlot</strong>: <a href="uP4P.Types.PySlot.html">PySlot</a>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="FStringValue"></span><code><strong>FStringValue</strong>: AnsiString;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -336,7 +324,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Set_STRING-word-string-"></span><code>procedure <strong>Set_STRING</strong>(name_: word; const value_: string);</code></td>
+<td class="itemcode"><span id="Set_STATIC_STRING-word-AnsiString-"></span><code>procedure <strong>Set_STATIC_STRING</strong>(name_: word; const value_: AnsiString);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -344,7 +332,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Set_STATIC_STRING-word-string-"></span><code>procedure <strong>Set_STATIC_STRING</strong>(name_: word; const value_: string);</code></td>
+<td class="itemcode"><span id="Set_STRING-word-string-"></span><code>procedure <strong>Set_STRING</strong>(name_: word; const value_: string); overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>

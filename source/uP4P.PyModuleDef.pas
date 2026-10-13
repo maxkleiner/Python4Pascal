@@ -35,8 +35,9 @@ type
       FMethodList            : TList;
       FMethods               : PyMethodDefArray;
       FInitialized           : boolean;
-
-      function  Initialize(const aName, aDocStrings: string) : boolean;
+      FExecFunction          : exec_modulefunc;
+      FMultIntprSupport      : TMultIntprSupport;
+      FGILUsed               : boolean;
 
       procedure CreateSlotArray;
       procedure CreateMethodArray;
@@ -48,14 +49,24 @@ type
 
       function  GetInitialized: boolean;
       function  GetName: AnsiString;
+      function  GetDocStrings: AnsiString;
+      function  GetExecFunction: exec_modulefunc;
+      function  GetMultIntprSupport: TMultIntprSupport;
+      function  GetGILUsed: boolean;
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
       function  GetModuleDef: PPyModuleDef;
 
+      procedure SetName(const aValue: AnsiString);
+      procedure SetDocStrings(const aValue: AnsiString);
+      procedure SetExecFunction(aValue: exec_modulefunc);
+      procedure SetMultIntprSupport(aValue: TMultIntprSupport);
+      procedure SetGILUsed(aValue: boolean);
+
       /// <summary>
       /// Override this procedure to add your custom slots.
       /// </summary>
-      procedure AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean); virtual;
+      procedure AddAllSlots; virtual;
       /// <summary>
       /// Override this procedure to add your custom methods.
       /// </summary>
@@ -65,19 +76,22 @@ type
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
       function  AddSentinelSlot: boolean;
       function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
-      function  AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
-      function  AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
-      function  AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
-      function  AddGILSlot(aGILUsed: boolean): boolean;
+      function  AddExecSlot: boolean;
+      function  AddMultipleInterpretersSlot: boolean;
+      function  AddGILSlot: boolean;
 
     public
-      constructor Create(const aName: string; const aDocStrings: string = '');
+      constructor Create;
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       /// <summary>
+      /// Initialize PyModuleDef and set the name and docstrings.
+      /// </summary>
+      function    Initialize: boolean;
+      /// <summary>
       /// Create the methods and the slots with all the module information.
       /// </summary>
-      procedure   BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean); virtual;
+      procedure   BuildMethodsAndSlots; virtual;
       /// <summary>
       /// <para>Ensure a module definition is a properly initialized Python
       /// object that correctly reports its type and a reference count.</para>
@@ -97,23 +111,42 @@ type
       /// <summary>
       /// Returns true if this class is fully initialized.
       /// </summary>
-      property  Initialized            : boolean        read FInitialized;
+      property  Initialized            : boolean            read GetInitialized;
       /// <summary>
-      /// <para>Module name.</para>
+      /// Name of the new module or data type.
       /// </summary>
-      property  Name_                  : AnsiString     read GetName;
+      property  Name_                  : AnsiString         read GetName                 write SetName;
+      /// <summary>
+      /// The docstring of the new module or data type.
+      /// </summary>
+      property  DocStrings             : AnsiString         read GetDocStrings           write SetDocStrings;
       /// <summary>
       /// Return True if the last slot in the list is a sentinel slot.
       /// </summary>
-      property  HasSentinelSlot        : boolean        read GetHasSentinelSlot;
+      property  HasSentinelSlot        : boolean            read GetHasSentinelSlot;
       /// <summary>
       /// Return True if the last method in the list is a sentinel method.
       /// </summary>
-      property  HasSentinelMethod      : boolean        read GetHasSentinelMethod;
+      property  HasSentinelMethod      : boolean            read GetHasSentinelMethod;
       /// <summary>
       /// Return a poiter to PyModuleDef.
       /// </summary>
-      property  ModuleDef              : PPyModuleDef   read GetModuleDef;
+      property  ModuleDef              : PPyModuleDef       read GetModuleDef;
+      /// <summary>
+      /// Function that will execute, or initialize, the module.
+      /// </summary>
+      property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
+      /// <summary>
+      /// This slot determines whether or not importing this module in a
+      /// subinterpreter will fail.
+      /// If it's not specified, the import machinery defaults to miSupported.
+      /// </summary>
+      property  MultIntprSupport       : TMultIntprSupport  read GetMultIntprSupport     write SetMultIntprSupport;
+      /// <summary>
+      /// The module depends on the presence of the global interpreter lock
+      /// (GIL) or it's safe to run without an active GIL.
+      /// </summary>
+      property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
   end;
 
 implementation
@@ -122,17 +155,20 @@ uses
   uP4P.MiscFunctions, uP4P.PyModuleDef_Slot, uP4P.PyMethodDef, uP4P.Py_mod,
   uP4P.Engine;
 
-constructor TPyModuleDef.Create(const aName, aDocStrings: string);
+constructor TPyModuleDef.Create;
 begin
   inherited Create;
 
-  FName           := StringToPyUTF8(aName);
-  FDocStrings     := StringToPyUTF8(aDocStrings);
-  FSlotList       := nil;
-  FSlots          := nil;
-  FMethodList     := nil;
-  FMethods        := nil;
-  FInitialized    := Initialize(aName, aDocStrings);
+  FName                  := '';
+  FDocStrings            := '';
+  FExecFunction          := nil;
+  FMultIntprSupport      := piUnknown;
+  FGILUsed               := True;
+  FSlotList              := nil;
+  FSlots                 := nil;
+  FMethodList            := nil;
+  FMethods               := nil;
+  FInitialized           := False;
 end;
 
 destructor TPyModuleDef.Destroy;
@@ -155,9 +191,9 @@ begin
   FMethodList := TList.Create;
 end;
 
-procedure TPyModuleDef.BuildMethodsAndSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+procedure TPyModuleDef.BuildMethodsAndSlots;
 begin
-  AddAllSlots(aExecFunction, aMultIntprSupport, aGILUsed);
+  AddAllSlots;
   AddAllMethods;
 
   if not(HasSentinelSlot) then
@@ -173,11 +209,11 @@ begin
   FModuleDef.m_methods := @FMethods[0];
 end;
 
-procedure TPyModuleDef.AddAllSlots(const aExecFunction: exec_modulefunc; aMultIntprSupport : TMultIntprSupport; aGILUsed: boolean);
+procedure TPyModuleDef.AddAllSlots;
 begin
-  AddExecSlot(aExecFunction);
-  AddMultipleInterpretersSlot(aMultIntprSupport);
-  AddGILSlot(aGILUsed);
+  AddExecSlot;
+  AddMultipleInterpretersSlot;
+  AddGILSlot;
 end;
 
 procedure TPyModuleDef.AddAllMethods;
@@ -229,41 +265,38 @@ begin
     end;
 end;
 
-function TPyModuleDef.AddCreateSlot(const aCreateFunction: create_modulefunc): boolean;
+function TPyModuleDef.AddExecSlot: boolean;
 begin
-  {$IFDEF FPC}
-  Result := AddSlot(TPy_mod.create, Pointer(aCreateFunction));
-  {$ELSE}
-  Result := AddSlot(TPy_mod.create, @aCreateFunction);
-  {$ENDIF}
+  Result := False;
+
+  if assigned(FExecFunction) then
+    begin
+      {$IFDEF FPC}
+      Result := AddSlot(TPy_mod.exec, Pointer(FExecFunction));
+      {$ELSE}
+      Result := AddSlot(TPy_mod.exec, @FExecFunction);
+      {$ENDIF}
+    end;
 end;
 
-function TPyModuleDef.AddExecSlot(const aExecFunction: exec_modulefunc): boolean;
+function TPyModuleDef.AddMultipleInterpretersSlot: boolean;
 begin
-  {$IFDEF FPC}
-  Result := AddSlot(TPy_mod.exec, Pointer(aExecFunction));
-  {$ELSE}
-  Result := AddSlot(TPy_mod.exec, @aExecFunction);
-  {$ENDIF}
-end;
+  Result := False;
 
-function TPyModuleDef.AddMultipleInterpretersSlot(aSupport: TMultIntprSupport): boolean;
-begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
-    case aSupport of
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) then
+    case FMultIntprSupport of
       miUnsupported  : Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED);
       piGilSupported : Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_PER_INTERPRETER_GIL_SUPPORTED);
-      else             Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
-    end
-   else
-    Result := False;
+      miSupported    : Result := AddSlot(TPy_mod.multiple_interpreters, Py_MOD_MULTIPLE_INTERPRETERS_SUPPORTED);
+    end;
 end;
 
-function TPyModuleDef.AddGILSlot(aGILUsed: boolean): boolean;
+function TPyModuleDef.AddGILSlot: boolean;
 begin
   if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 13, 0) then
     begin
-      if aGILUsed then
+      if FGILUsed then
         Result := AddSlot(TPy_mod.gil, Py_MOD_GIL_USED)
        else
         Result := AddSlot(TPy_mod.gil, Py_MOD_GIL_NOT_USED);
@@ -272,7 +305,7 @@ begin
     Result := False;
 end;
 
-function TPyModuleDef.Initialize(const aName, aDocStrings: string) : boolean;
+function TPyModuleDef.Initialize: boolean;
 begin
   Result := False;
 
@@ -281,17 +314,18 @@ begin
 
     if assigned(Init(FModuleDef)) then
       begin
-        if (length(aName) > 0) then
+        if (length(FName) > 0) then
           FModuleDef.m_name := PAnsiChar(FName)
          else
           FModuleDef.m_name := nil;
 
-        if (length(aDocStrings) > 0) then
+        if (length(FDocStrings) > 0) then
           FModuleDef.m_doc := PAnsiChar(FDocStrings)
          else
           FModuleDef.m_doc := nil;
 
-        Result := True;
+        FInitialized := True;
+        Result       := True;
       end;
   except
     on e : exception do
@@ -401,6 +435,26 @@ begin
   Result := FName;
 end;
 
+function TPyModuleDef.GetDocStrings: AnsiString;
+begin
+  Result := FDocStrings;
+end;
+
+function TPyModuleDef.GetExecFunction: exec_modulefunc;
+begin
+  Result := FExecFunction;
+end;
+
+function TPyModuleDef.GetMultIntprSupport: TMultIntprSupport;
+begin
+  Result := FMultIntprSupport;
+end;
+
+function TPyModuleDef.GetGILUsed: boolean;
+begin
+  Result := FGILUsed;
+end;
+
 function TPyModuleDef.GetHasSentinelSlot: boolean;
 begin
   Result := assigned(FSlotList) and
@@ -421,6 +475,31 @@ begin
     Result := @FModuleDef
    else
     Result := nil;
+end;
+
+procedure TPyModuleDef.SetName(const aValue: AnsiString);
+begin
+  FName := aValue;
+end;
+
+procedure TPyModuleDef.SetDocStrings(const aValue: AnsiString);
+begin
+  FDocStrings := aValue;
+end;
+
+procedure TPyModuleDef.SetExecFunction(aValue: exec_modulefunc);
+begin
+  FExecFunction := aValue;
+end;
+
+procedure TPyModuleDef.SetMultIntprSupport(aValue: TMultIntprSupport);
+begin
+  FMultIntprSupport := aValue;
+end;
+
+procedure TPyModuleDef.SetGILUsed(aValue: boolean);
+begin
+  FGILUsed := aValue;
 end;
 
 class function TPyModuleDef.Init(const def: PyModuleDef): PPyObject;

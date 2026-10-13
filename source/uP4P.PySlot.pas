@@ -29,7 +29,6 @@ type
   TPySlot = class
     protected
       FPySlot       : PySlot;
-      FStringValue  : AnsiString;
 
       function GetID : word;
       function GetFlags : word;
@@ -50,8 +49,11 @@ type
       procedure   Set_PTR(name_: word; value_: Pointer);
       procedure   Set_PTR_STATIC(name_: word; value_: Pointer);
       procedure   Set_END;
-      procedure   Set_STRING(name_: word; const value_: string);
-      procedure   Set_STATIC_STRING(name_: word; const value_: string);
+      procedure   Set_STATIC_STRING(name_: word; const value_: AnsiString);
+      procedure   Set_STRING(name_: word; const value_: string); overload;
+      {$IFDEF DELPHI12_UP}
+      procedure   Set_STRING(name_: word; const value_: AnsiString); overload;
+      {$ENDIF}
 
       /// <summary>
       /// <para>Convenience function to define a PySlot structure with sl_id and
@@ -130,8 +132,6 @@ begin
   inherited Create;
 
   FillChar(FPySlot, SizeOf(FPySlot), 0);
-
-  FStringValue := '';
 end;
 
 procedure TPySlot.Set_DATA(name_: word; value_: Pointer);
@@ -179,6 +179,11 @@ begin
   FPySlot := TPySlot.END_();
 end;
 
+procedure TPySlot.Set_STATIC_STRING(name_: word; const value_: AnsiString);
+begin
+  FPySlot := TPySlot.STATIC_DATA(name_, PAnsiChar(value_));
+end;
+
 procedure TPySlot.Set_STRING(name_: word; const value_: string);
 var
   TempValue : AnsiString;
@@ -187,11 +192,12 @@ begin
   FPySlot   := TPySlot.DATA(name_, PAnsiChar(TempValue));
 end;
 
-procedure TPySlot.Set_STATIC_STRING(name_: word; const value_: string);
+{$IFDEF DELPHI12_UP}
+procedure TPySlot.Set_STRING(name_: word; const value_: AnsiString);
 begin
-  FStringValue := StringToPyUTF8(value_);
-  FPySlot      := TPySlot.STATIC_DATA(name_, PAnsiChar(FStringValue));
+  FPySlot := TPySlot.DATA(name_, PAnsiChar(value_));
 end;
+{$ENDIF}
 
 function TPySlot.GetID : word;
 begin

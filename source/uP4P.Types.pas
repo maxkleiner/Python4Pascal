@@ -854,7 +854,11 @@ type
     /// <summary>
     /// The module supports being imported in subinterpreters, even when they have their own GIL. (See Isolating Extension Modules.)
     /// </summary>
-    piGilSupported
+    piGilSupported,
+    /// <summary>
+    /// Custom value used for initialization of TMultIntprSupport variables.
+    /// </summary>
+    piUnknown
   );
 
   _PyObjectIndexPair = record
