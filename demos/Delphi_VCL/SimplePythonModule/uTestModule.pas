@@ -15,7 +15,7 @@ uses
     Classes, Forms,
   {$ENDIF}
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyCustomModuleSlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyModuleSlotManager;
 
 const
   TEST_MODULE_NAME = 'mytest';
@@ -40,7 +40,7 @@ type
       procedure AddAllMethods; override;
   end;
 
-  TPyTestSlotManager = class(TPyCustomModuleSlotManager)
+  TPyTestSlotManager = class(TPyModuleSlotManager)
     protected
       procedure AddAllMethods; override;
   end;

@@ -246,6 +246,13 @@ const
   Py_PRINT_RAW    = 1;
 
   /// <summary>
+  /// <para>Used as a value with Py_tp_token to set the token to the class's
+  /// PyType_Spec. Expands to nil.</para>
+  /// <para>Added in version 3.14.</para>
+  /// </summary>
+  Py_TP_USE_SPEC                      : Pointer = nil;
+
+  /// <summary>
   /// <para>Track types initialized using _PyStaticType_InitBuiltin().</para>
   /// </summary>
   _Py_TPFLAGS_STATIC_BUILTIN          = 1 shl 1;
@@ -703,6 +710,14 @@ const
   Py_tp_del = 53;
   Py_tp_descr_get = 54;
   Py_tp_descr_set = 55;
+  /// <summary>
+  /// <para>An optional pointer to a NUL-terminated C string giving the
+  /// docstring for this type object. This is exposed as the __doc__ attribute
+  /// on the type and instances of the type.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#c.PyTypeObject.tp_doc">See the article about PyTypeObject.tp_doc.</see></para>
+  /// </remarks>
   Py_tp_doc = 56;
   Py_tp_getattr = 57;
   Py_tp_getattro = 58;

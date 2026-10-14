@@ -3,15 +3,14 @@ program SimplePythonModule;
 {$I ..\..\..\source\p4p.inc}
 
 uses
-  //FastMM4,
-  //FastMM5,
   {$IFDEF DELPHI16_UP}
   Vcl.Forms,
   {$ELSE}
   Forms,
-  {$ENDIF}
+  {$ENDIF }
   uMainForm in 'uMainForm.pas' {MainForm},
-  uTestModule in 'uTestModule.pas';
+  uTestModule in 'uTestModule.pas',
+  uTestHeapType in 'uTestHeapType.pas';
 
 {$R *.res}
 

@@ -243,10 +243,11 @@
         <DCCReference Include="..\source\uP4P.PyModuleDef_Slot.pas"/>
         <DCCReference Include="..\source\uP4P.PyMethodDef.pas"/>
         <DCCReference Include="..\source\uP4P.PySlotManager.pas"/>
-        <DCCReference Include="..\source\uP4P.PyCustomModuleSlotManager.pas"/>
+        <DCCReference Include="..\source\uP4P.PyModuleSlotManager.pas"/>
         <DCCReference Include="..\source\uP4P.PyType_Slot.pas"/>
         <DCCReference Include="..\source\uP4P.PyType_Spec.pas"/>
         <DCCReference Include="..\source\uP4P.CustomHeapType.pas"/>
+        <DCCReference Include="..\source\uP4P.PyHeapTypeSlotManager.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

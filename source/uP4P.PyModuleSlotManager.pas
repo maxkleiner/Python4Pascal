@@ -1,4 +1,4 @@
-unit uP4P.PyCustomModuleSlotManager;
+unit uP4P.PyModuleSlotManager;
 
 {$IFDEF FPC}
   {$MODE OBJFPC}{$H+}
@@ -16,15 +16,17 @@ type
   /// <para>TPyCustomModuleSlotManager is used to store the information about
   /// the module and to manage the method and slot lists.</para>
   /// </summary>
-  TPyCustomModuleSlotManager = class(TPySlotManager)
+  TPyModuleSlotManager = class(TPySlotManager)
     protected
       procedure AddAllSlots; override;
   end;
 
 implementation
 
-procedure TPyCustomModuleSlotManager.AddAllSlots;
+procedure TPyModuleSlotManager.AddAllSlots;
 begin
+  inherited AddAllSlots;
+
   AddNameSlot;
   AddDocStringsSlot;
   AddABIInfoSlot;

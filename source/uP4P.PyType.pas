@@ -66,7 +66,16 @@ type
       /// <para>See PyType_Slot.slot for possible values of the slot
       /// argument.</para>
       /// </summary>
-      class function GetSlot(type_: PPyTypeObject; i: integer): Pointer;
+      class function GetSlot(type_: PPyTypeObject; i: integer): Pointer; overload;
+      /// <summary>
+      /// <para>Return the function pointer stored in the given slot. If the
+      /// result is nil, this indicates that either the slot is nil, or that the
+      /// function was called with invalid parameters. Callers will typically
+      /// cast the result pointer into the appropriate function type.</para>
+      /// <para>See PyType_Slot.slot for possible values of the slot
+      /// argument.</para>
+      /// </summary>
+      class function GetSlot(const obj: IPyObject; i: integer): Pointer; overload;
       /// <summary>
       /// <para>Equivalent to
       /// TPyType.FromMetaclass(nil, module, spec, bases).</para>
@@ -531,6 +540,14 @@ begin
   if assigned(PyType_FromSpecWithBases) and
      TPyObject.IsInitialized(bases) then
     Result := TPyObject.Wrap(PyType_FromSpecWithBases(spec, bases.PyObject))
+   else
+    Result := nil;
+end;
+
+class function TPyType.GetSlot(const obj: IPyObject; i: integer): Pointer;
+begin
+  if TPyObject.IsInitialized(obj) then
+    Result := GetSlot(obj.PyTypeObject, i)
    else
     Result := nil;
 end;

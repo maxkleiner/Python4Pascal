@@ -35,6 +35,9 @@ type
       FMultIntprSupport      : TMultIntprSupport;
       FGILUsed               : boolean;
       FToken                 : pointer;
+      FMetaclass             : PPyTypeObject;
+      FModule                : IPyObject;
+      FBases                 : IPyObject;
 
       function  GetName: AnsiString;
       function  GetDocStrings: AnsiString;
@@ -47,6 +50,9 @@ type
       function  GetHasSentinelMethod: boolean;
       function  GetSlots: PPySlot;
       function  GetABIInfo: PPyAbiInfo;
+      function  GetMetaclass: PPyTypeObject;
+      function  GetModule: IPyObject;
+      function  GetBases: IPyObject;
 
       procedure SetName(const aValue: AnsiString);
       procedure SetDocStrings(const aValue: AnsiString);
@@ -54,6 +60,9 @@ type
       procedure SetMultIntprSupport(aValue: TMultIntprSupport);
       procedure SetGILUsed(aValue: boolean);
       procedure SetToken(aValue: pointer);
+      procedure SetMetaclass(aValue: PPyTypeObject);
+      procedure SetModule(const aValue: IPyObject);
+      procedure SetBases(const aValue: IPyObject);
 
       procedure DestroySlotList;
       procedure DestroySlots;
@@ -64,6 +73,7 @@ type
       procedure CreateMethodArray;
 
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      function  AddSentinelMethod: boolean;
       function  AddNameSlot: boolean;
       function  AddDocStringsSlot: boolean;
       function  AddABIInfoSlot: boolean;
@@ -71,9 +81,11 @@ type
       function  AddMultipleInterpretersSlot: boolean;
       function  AddGILSlot: boolean;
       function  AddTokenSlot: boolean;
-      function  AddSentinelMethod: boolean;
-      procedure AddSentinelSlot;
-      procedure AddMethodsSlot;
+      function  AddSentinelSlot: boolean;
+      function  AddMethodsSlot: boolean;
+      function  AddMetaclassSlot: boolean;
+      function  AddModuleSlot: boolean;
+      function  AddBasesSlot: boolean;
 
       /// <summary>
       /// Override this procedure to add your custom slots.
@@ -92,10 +104,6 @@ type
       /// Create the slots with the methods and all the module information.
       /// </summary>
       procedure   BuildMethodsAndSlots;
-      /// <summary>
-      /// Create the slots with all the heap type information.
-      /// </summary>
-      procedure   BuildSlots;
       /// <summary>
       /// Name of the new module or data type.
       /// </summary>
@@ -145,12 +153,35 @@ type
       /// the module state's memory layout.
       /// </summary>
       property  Token                  : pointer            read GetToken                write SetToken;
+      /// <summary>
+      /// <para>Metaclass is used to construct the resulting type object.</para>
+      /// <para>When metaclass is nil, the metaclass is derived from bases
+      /// (or Py_tp_base[s] slots if bases is nil, see below).</para>
+      /// <para>Metaclasses that override tp_new are not supported, except if
+      /// tp_new is nil.</para>
+      /// </summary>
+      property  Metaclass              : PPyTypeObject       read GetMetaclass           write SetMetaclass;
+      /// <summary>
+      /// <para>Module can be used to record the module in which the new class
+      /// is defined. It must be a module object or nil. If not nil, the module
+      /// is associated with the new type and can later be retrieved with
+      /// TPyType.GetModule(). The associated module is not inherited by
+      /// subclasses; it must be specified for each class individually.</para>
+      /// </summary>
+      property  Module                 : IPyObject           read GetModule              write SetModule;
+      /// <summary>
+      /// <para>Bases can be used to specify base classes; it can either be only
+      /// one class or a tuple of classes. If bases is nil, the Py_tp_bases slot
+      /// is used instead. If that also is nil, the Py_tp_base slot is used
+      /// instead. If that also is nil, the new type derives from object.</para>
+      /// </summary>
+      property  Bases                  : IPyObject           read GetBases               write SetBases;
   end;
 
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo;
+  uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo, uP4P.Engine, uP4P.PyObject;
 
 constructor TPySlotManager.Create;
 begin
@@ -166,6 +197,9 @@ begin
   FMultIntprSupport      := piUnknown;
   FGILUsed               := True;
   FToken                 := nil;
+  FMetaclass             := nil;
+  FModule                := nil;
+  FBases                 := nil;
 
   TPyABIInfo.VAR_(FABIInfo);
 end;
@@ -469,6 +503,21 @@ begin
   Result := @FABIInfo;
 end;
 
+function TPySlotManager.GetMetaclass: PPyTypeObject;
+begin
+  Result := FMetaclass;
+end;
+
+function TPySlotManager.GetModule: IPyObject;
+begin
+  Result := FModule;
+end;
+
+function TPySlotManager.GetBases: IPyObject;
+begin
+  Result := FBases;
+end;
+
 function TPySlotManager.GetExecFunction: exec_modulefunc;
 begin
   Result := FExecFunction;
@@ -519,6 +568,21 @@ begin
   FToken := aValue;
 end;
 
+procedure TPySlotManager.SetMetaclass(aValue: PPyTypeObject);
+begin
+  FMetaclass := aValue;
+end;
+
+procedure TPySlotManager.SetModule(const aValue: IPyObject);
+begin
+  FModule := aValue;
+end;
+
+procedure TPySlotManager.SetBases(const aValue: IPyObject);
+begin
+  FBases := aValue;
+end;
+
 procedure TPySlotManager.BuildMethodsAndSlots;
 begin
   AddAllSlots;
@@ -536,39 +600,98 @@ begin
   CreateSlotArray;
 end;
 
-procedure TPySlotManager.BuildSlots;
-begin
-  AddAllSlots;
-
-  if not(HasSentinelSlot) then
-    AddSentinelSlot;
-
-  CreateSlotArray;
-end;
-
-procedure TPySlotManager.AddMethodsSlot;
+function TPySlotManager.AddMethodsSlot: boolean;
 var
   TempSlot : TPySlot;
 begin
+  Result := False;
+
   if assigned(FSlotList) and assigned(FMethods) and (length(FMethods) > 0) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_STATIC_DATA(TPy_mod.methods, @FMethods[0]);
 
-      FSlotList.Add(TempSlot);
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
     end;
 end;
 
-procedure TPySlotManager.AddSentinelSlot;
+function TPySlotManager.AddMetaclassSlot: boolean;
 var
   TempSlot : TPySlot;
 begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FMetaclass) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_metaclass, FMetaclass);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPySlotManager.AddModuleSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and TPyObject.IsInitialized(FModule) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_module, FModule.PyObject);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPySlotManager.AddBasesSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and TPyObject.IsInitialized(FBases) then
+    begin
+      TempSlot := TPySlot.Create;
+
+      if (GlobalP4PEngine <> nil) and
+         GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
+        TempSlot.Set_DATA(Py_tp_bases, FBases.PyObject)
+       else
+        TempSlot.Set_DATA(Py_tp_base, FBases.PyObject);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPySlotManager.AddSentinelSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
   if assigned(FSlotList) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_END;
 
-      FSlotList.Add(TempSlot);
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
     end;
 end;
 

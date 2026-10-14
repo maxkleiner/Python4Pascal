@@ -130,7 +130,15 @@ type
       /// <para>Changed in version 3.11: TPy.Type_() is changed to an inline
       /// static function. The parameter type is no longer const PyObject*.</para>
       /// </summary>
-      class function  Type_(const aPyObject: IPyObject): PPyTypeObject;
+      class function  Type_(const aPyObject: IPyObject): PPyTypeObject; overload;
+      /// <summary>
+      /// <para>Get the type of the Python object aPyObject.</para>
+      /// <para>The returned reference is borrowed from aPyObject.</para>
+      /// <para>Do not release it with TPy.DecRef() or similar.</para>
+      /// <para>Changed in version 3.11: TPy.Type_() is changed to an inline
+      /// static function. The parameter type is no longer const PyObject*.</para>
+      /// </summary>
+      class function  Type_(obj: PPyObject): PPyTypeObject; overload;
       /// <summary>
       /// <para>Return non-zero if the object o type is aPyTypeObject.
       /// Return zero otherwise.</para>
@@ -1253,17 +1261,25 @@ begin
             (Py_IsNone(aPyObject.PyObject) <> 0);
 end;
 
-class function TPy.Type_(const aPyObject: IPyObject): PPyTypeObject;
+class function TPy.Type_(obj: PPyObject): PPyTypeObject;
 begin
   Result := nil;
 
-  if TPyObject.IsInitialized(aPyObject) then
+  if assigned(obj) then
     begin
       if assigned(Py_Type) then
-        Result := Py_Type(aPyObject.PyObject)
+        Result := Py_Type(obj)
        else
-        Result := aPyObject.PyObject^.ob_type;
+        Result := obj^.ob_type;
     end;
+end;
+
+class function TPy.Type_(const aPyObject: IPyObject): PPyTypeObject;
+begin
+  if TPyObject.IsInitialized(aPyObject) then
+    Result := Type_(aPyObject.PyObject)
+   else
+    Result := nil;
 end;
 
 class function TPy.IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;

@@ -150,7 +150,7 @@ type
       /// </summary>
       property ID                            : cardinal            read FID;
       /// <summary>
-      /// <para>The module Token.</para>
+      /// <para>The module token.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/module.html#ext-module-token">See the article about Module token.</see></para>
@@ -172,7 +172,7 @@ implementation
 uses
   uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
   uP4P.PyModuleDef, uP4P.PySlotManager, uP4P.MiscFunctions,
-  uP4P.PyCustomModuleSlotManager;
+  uP4P.PyModuleSlotManager;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var
@@ -311,7 +311,7 @@ end;
 
 procedure TCustomPyModule.CreateSlotManager;
 begin
-  FSlotManager := TPyCustomModuleSlotManager.Create;
+  FSlotManager := TPyModuleSlotManager.Create;
 end;
 
 function TCustomPyModule.doOnAfterInitialization(module: PPyObject): integer;

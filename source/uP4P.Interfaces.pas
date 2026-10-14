@@ -4480,6 +4480,9 @@ type
     function  GetHasSentinelMethod: boolean;
     function  GetSlots: PPySlot;
     function  GetABIInfo: PPyAbiInfo;
+    function  GetMetaclass: PPyTypeObject;
+    function  GetModule: IPyObject;
+    function  GetBases: IPyObject;
 
     procedure SetName(const aValue: AnsiString);
     procedure SetDocStrings(const aValue: AnsiString);
@@ -4487,11 +4490,22 @@ type
     procedure SetMultIntprSupport(aValue: TMultIntprSupport);
     procedure SetGILUsed(aValue: boolean);
     procedure SetToken(aValue: pointer);
+    procedure SetMetaclass(aValue: PPyTypeObject);
+    procedure SetModule(const aValue: IPyObject);
+    procedure SetBases(const aValue: IPyObject);
 
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelMethod: boolean;
-    procedure AddSentinelSlot;
-    procedure AddMethodsSlot;
+    function  AddNameSlot: boolean;
+    function  AddDocStringsSlot: boolean;
+    function  AddABIInfoSlot: boolean;
+    function  AddExecSlot: boolean;
+    function  AddMultipleInterpretersSlot: boolean;
+    function  AddGILSlot: boolean;
+    function  AddTokenSlot: boolean;
+    function  AddSentinelSlot: boolean;
+    function  AddMethodsSlot: boolean;
+
     /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
@@ -4504,10 +4518,6 @@ type
     /// Create the slots with the methods and all the module information.
     /// </summary>
     procedure BuildMethodsAndSlots;
-    /// <summary>
-    /// Create the slots with all the heap type information.
-    /// </summary>
-    procedure BuildSlots;
     /// <summary>
     /// Name of the new module or data type.
     /// </summary>
@@ -4557,6 +4567,29 @@ type
     /// the module state's memory layout.
     /// </summary>
     property  Token                  : pointer            read GetToken                write SetToken;
+    /// <summary>
+    /// <para>Metaclass is used to construct the resulting type object.</para>
+    /// <para>When metaclass is nil, the metaclass is derived from bases
+    /// (or Py_tp_base[s] slots if bases is nil, see below).</para>
+    /// <para>Metaclasses that override tp_new are not supported, except if
+    /// tp_new is nil.</para>
+    /// </summary>
+    property  Metaclass              : PPyTypeObject       read GetMetaclass           write SetMetaclass;
+    /// <summary>
+    /// <para>Module can be used to record the module in which the new class
+    /// is defined. It must be a module object or nil. If not nil, the module
+    /// is associated with the new type and can later be retrieved with
+    /// TPyType.GetModule(). The associated module is not inherited by
+    /// subclasses; it must be specified for each class individually.</para>
+    /// </summary>
+    property  Module                 : IPyObject           read GetModule              write SetModule;
+    /// <summary>
+    /// <para>Bases can be used to specify base classes; it can either be only
+    /// one class or a tuple of classes. If bases is nil, the Py_tp_bases slot
+    /// is used instead. If that also is nil, the Py_tp_base slot is used
+    /// instead. If that also is nil, the new type derives from object.</para>
+    /// </summary>
+    property  Bases                  : IPyObject           read GetBases               write SetBases;
   end;
 
   /// <summary>
@@ -4572,30 +4605,46 @@ type
     function  GetItemsize: integer;
     function  GetFlags: cardinal;
     function  GetHasSentinelSlot: boolean;
+    function  GetHasSentinelMethod: boolean;
     function  GetSlots: PPyType_Slot;
     function  GetTypeSpec: PPyType_Spec;
+    function  GetToken: pointer;
 
     procedure SetName(const aValue: AnsiString);
     procedure SetBasicsize(aValue: integer);
     procedure SetItemsize(aValue: integer);
     procedure SetFlags(aValue: cardinal);
+    procedure SetToken(aValue: pointer);
 
     procedure CreateSlotArray;
+    procedure CreateMethodArray;
 
     procedure DestroySlotList;
     procedure DestroySlots;
+    procedure DestroyMethodList;
+    procedure DestroyMethods;
 
+    /// <summary>
+    /// Override this procedure to add your custom slots.
+    /// </summary>
     procedure AddAllSlots;
+    /// <summary>
+    /// Override this procedure to add your custom methods.
+    /// </summary>
+    procedure AddAllMethods;
+
     function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
     function  AddSentinelSlot: boolean;
+    function  AddSentinelMethod: boolean;
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     /// <summary>
-    /// Create the slots with all the type information.
+    /// Create the methods and the slots with all the type information.
     /// </summary>
-    procedure   BuildSlots;
+    procedure BuildMethodsAndSlots;
     /// <summary>
     /// Name of the type, used to set PyTypeObject.tp_name.
     /// </summary>
-    property Name_           : AnsiString        read GetName              write SetName;
+    property Name_                   : AnsiString        read GetName              write SetName;
     /// <summary>
     /// <para>If positive, specifies the size of the instance in bytes. It is
     /// used to set PyTypeObject.tp_basicsize.</para>
@@ -4607,28 +4656,40 @@ type
     /// <para>For negative basicsize, Python will insert padding when needed
     /// to meet tp_basicsize's alignment requirements.</para>
     /// </summary>
-    property Basicsize       : integer           read GetBasicsize         write SetBasicsize;
+    property Basicsize               : integer           read GetBasicsize         write SetBasicsize;
     /// <summary>
     /// Size of one element of a variable-size type, in bytes. Used to set
     /// PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
     /// </summary>
-    property Itemsize        : integer           read GetItemsize          write SetItemsize;
+    property Itemsize                : integer           read GetItemsize          write SetItemsize;
     /// <summary>
     /// Type flags, used to set PyTypeObject.tp_flags.
     /// </summary>
-    property Flags           : cardinal          read GetFlags             write SetFlags;
+    property Flags                   : cardinal          read GetFlags             write SetFlags;
     /// <summary>
     /// Return True if the last slot has a {0, nil} value.
     /// </summary>
-    property HasSentinelSlot : boolean           read GetHasSentinelSlot;
+    property HasSentinelSlot         : boolean           read GetHasSentinelSlot;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel method.
+    /// </summary>
+    property HasSentinelMethod       : boolean           read GetHasSentinelMethod;
     /// <summary>
     /// Return a pointer to the first slot.
     /// </summary>
-    property Slots           : PPyType_Slot      read GetSlots;
+    property Slots                   : PPyType_Slot      read GetSlots;
     /// <summary>
     /// Return a pointer to the PyType_Spec record.
     /// </summary>
-    property TypeSpec        : PPyType_Spec      read GetTypeSpec;
+    property TypeSpec                : PPyType_Spec      read GetTypeSpec;
+    /// <summary>
+    /// <para>The associated token records a static memory layout ID for a
+    /// class.</para>
+    /// <para>Useg the special value Py_TP_USE_SPEC to set the token to the
+    /// class's PyType_Spec.</para>
+    /// <para>Added in version 3.14.</para>
+    /// </summary>
+    property  Token                  : pointer           read GetToken             write SetToken;
   end;
 
 implementation
