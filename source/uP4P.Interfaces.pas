@@ -4382,23 +4382,40 @@ type
     property Size         : Py_ssize_t            read GetSize;
   end;
 
+  /// <summary>
+  /// <para>IPyModuleDef is used to store the information about modules.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// </remarks>
   IPyModuleDef = interface
     ['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']
     function  GetInitialized: boolean;
     function  GetName: AnsiString;
     function  GetDocStrings: AnsiString;
+    function  GetCreateModuleFunction: create_modulefunc;
     function  GetExecFunction: exec_modulefunc;
     function  GetMultIntprSupport: TMultIntprSupport;
     function  GetGILUsed: boolean;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
     function  GetModuleDef: PPyModuleDef;
+    function  GetSize: integer;
+    function  GetTraverse: traverseproc;
+    function  GetClear: inquiry;
+    function  GetFree: freefunc;
 
     procedure SetName(const aValue: AnsiString);
     procedure SetDocStrings(const aValue: AnsiString);
+    procedure SetCreateModuleFunction(aValue: create_modulefunc);
     procedure SetExecFunction(aValue: exec_modulefunc);
     procedure SetMultIntprSupport(aValue: TMultIntprSupport);
     procedure SetGILUsed(aValue: boolean);
+    procedure SetSize(aValue: integer);
+    procedure SetTraverse(aValue: traverseproc);
+    procedure SetClear(aValue: inquiry);
+    procedure SetFree(aValue: freefunc);
     /// <summary>
     /// Initialize PyModuleDef and set the name and docstrings.
     /// </summary>
@@ -4415,6 +4432,7 @@ type
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelSlot: boolean;
     function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
+    function  AddCreateSlot: boolean;
     function  AddExecSlot: boolean;
     function  AddMultipleInterpretersSlot: boolean;
     function  AddGILSlot: boolean;
@@ -4447,6 +4465,11 @@ type
     /// </summary>
     property  ModuleDef              : PPyModuleDef       read GetModuleDef;
     /// <summary>
+    /// <para>Specifies a function that is called to create the module object
+    /// itself.</para>
+    /// </summary>
+    property  CreateModuleFunction   : create_modulefunc  read GetCreateModuleFunction write SetCreateModuleFunction;
+    /// <summary>
     /// Function that will execute, or initialize, the module.
     /// </summary>
     property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
@@ -4461,50 +4484,92 @@ type
     /// (GIL) or it's safe to run without an active GIL.
     /// </summary>
     property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
+    /// <summary>
+    /// Module state size. This value will be used in PyModuleDef.m_size.
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+    /// </remarks>
+    property  Size_                  : integer            read GetSize                 write SetSize;
+    /// <summary>
+    /// <para>A traversal function to call during GC traversal of the module
+    /// object, or nil if not needed.</para>
+    /// <para>This value will be used in PyModuleDef.m_traverse.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+    /// </remarks>
+    property  Traverse               : traverseproc       read GetTraverse             write SetTraverse;
+    /// <summary>
+    /// <para>A clear function to call during GC clearing of the module object,
+    /// or nil if not needed.</para>
+    /// <para>This value will be used in PyModuleDef.m_clear.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+    /// </remarks>
+    property  Clear_                 : inquiry            read GetClear                write SetClear;
+    /// <summary>
+    /// <para>A function to call during deallocation of the module object,
+    /// or nil if not needed.</para>
+    /// <para>This value will be used in PyModuleDef.m_free.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+    /// </remarks>
+    property  Free_                  : freefunc           read GetFree                 write SetFree;
   end;
 
   /// <summary>
-  /// <para>TPySlotManager is used to store the information about the module
-  /// and to manage the method and slot lists.</para>
+  /// <para>IPyModuleSlotManager is used to store the information about the
+  /// module and to manage the method and slot lists.</para>
   /// </summary>
-  IPySlotManager = interface
-    ['{BF8F4E05-1947-427F-A3E9-4BF76FBF6AA1}']
+  IPyModuleSlotManager = interface
+    ['{999AF3C1-4CB8-480F-82A5-60703372FA47}']
     function  GetName: AnsiString;
     function  GetDocStrings: AnsiString;
-    function  GetExecFunction: exec_modulefunc;
-    function  GetMultIntprSupport: TMultIntprSupport;
-    function  GetGILUsed: boolean;
     function  GetToken: pointer;
-    function  GetHasMethodsSlot: boolean;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
     function  GetSlots: PPySlot;
+    function  GetCreateModuleFunction: create_modulefunc;
+    function  GetExecFunction: exec_modulefunc;
+    function  GetMultIntprSupport: TMultIntprSupport;
+    function  GetGILUsed: boolean;
     function  GetABIInfo: PPyAbiInfo;
-    function  GetMetaclass: PPyTypeObject;
-    function  GetModule: IPyObject;
-    function  GetBases: IPyObject;
+    function  GetStateSize: integer;
+    function  GetStateTraverse: traverseproc;
+    function  GetStateClear: inquiry;
+    function  GetStateFree: inquiry;
 
     procedure SetName(const aValue: AnsiString);
     procedure SetDocStrings(const aValue: AnsiString);
+    procedure SetToken(aValue: pointer);
+    procedure SetCreateModuleFunction(aValue: create_modulefunc);
     procedure SetExecFunction(aValue: exec_modulefunc);
     procedure SetMultIntprSupport(aValue: TMultIntprSupport);
     procedure SetGILUsed(aValue: boolean);
-    procedure SetToken(aValue: pointer);
-    procedure SetMetaclass(aValue: PPyTypeObject);
-    procedure SetModule(const aValue: IPyObject);
-    procedure SetBases(const aValue: IPyObject);
+    procedure SetStateSize(aValue: integer);
+    procedure setStateTraverse(aValue: traverseproc);
+    procedure SetStateClear(aValue: inquiry);
+    procedure SetStateFree(aValue: inquiry);
 
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
     function  AddSentinelMethod: boolean;
+    function  AddSentinelSlot: boolean;
     function  AddNameSlot: boolean;
     function  AddDocStringsSlot: boolean;
+    function  AddTokenSlot: boolean;
+    function  AddMethodsSlot: boolean;
     function  AddABIInfoSlot: boolean;
+    function  AddCreateSlot: boolean;
     function  AddExecSlot: boolean;
     function  AddMultipleInterpretersSlot: boolean;
     function  AddGILSlot: boolean;
-    function  AddTokenSlot: boolean;
-    function  AddSentinelSlot: boolean;
-    function  AddMethodsSlot: boolean;
+    function  AddStateSizeSlot: boolean;
+    function  AddStateTraverseSlot: boolean;
+    function  AddStateClearSlot: boolean;
+    function  AddStateFreeSlot: boolean;
 
     /// <summary>
     /// Override this procedure to add your custom slots.
@@ -4518,18 +4583,138 @@ type
     /// Create the slots with the methods and all the module information.
     /// </summary>
     procedure BuildMethodsAndSlots;
+
     /// <summary>
-    /// Name of the new module or data type.
+    /// Name of the new module.
+    /// </summary>
+    property  Name_                  : AnsiString                   read GetName                 write SetName;
+    /// <summary>
+    /// The docstring of the new module.
+    /// </summary>
+    property  DocStrings             : AnsiString                   read GetDocStrings           write SetDocStrings;
+    /// <summary>
+    /// Return True if the last slot has a Py_slot_end value in the
+    /// sl_id field.
+    /// </summary>
+    property  HasSentinelSlot        : boolean                      read GetHasSentinelSlot;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel method.
+    /// </summary>
+    property  HasSentinelMethod      : boolean                      read GetHasSentinelMethod;
+    /// <summary>
+    /// Return a pointer to the first slot.
+    /// </summary>
+    property  Slots                  : PPySlot                      read GetSlots;
+    /// <summary>
+    /// The associated token is a pointer-sized value intended to identify
+    /// this object.
+    /// </summary>
+    property  Token                  : pointer                      read GetToken                write SetToken;
+    /// <summary>
+    /// <para>Specifies a function that is called to create the module object
+    /// itself.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create">See the article about Py_mod_create.</see></para>
+    /// </remarks>
+    property  CreateModuleFunction   : create_modulefunc            read GetCreateModuleFunction write SetCreateModuleFunction;
+    /// <summary>
+    /// <para>Specifies a function that is called to execute the module. This is
+    /// equivalent to executing the code of a Python module: typically, this
+    /// function adds classes and constants to the module.</para>
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec">See the article about Py_mod_exec.</see></para>
+    /// </remarks>
+    property  ExecFunction           : exec_modulefunc              read GetExecFunction         write SetExecFunction;
+    /// <summary>
+    /// This slot determines whether or not importing this module in a
+    /// subinterpreter will fail.
+    /// If it's not specified, the import machinery defaults to miSupported.
+    /// </summary>
+    property  MultIntprSupport       : TMultIntprSupport            read GetMultIntprSupport     write SetMultIntprSupport;
+    /// <summary>
+    /// The module depends on the presence of the global interpreter lock
+    /// (GIL) or it's safe to run without an active GIL.
+    /// </summary>
+    property  GILUsed                : boolean                      read GetGILUsed              write SetGILUsed;
+    /// <summary>
+    /// Return a pointer to the ABI info record.
+    /// </summary>
+    property  ABIInfo                : PPyAbiInfo                   read GetABIInfo;
+    /// <summary>
+    /// Size of the module state, in bytes.
+    /// </summary>
+    property  StateSize              : integer                      read GetStateSize            write SetStateSize;
+    /// <summary>
+    /// Traversal function to call during GC traversal of the module object.
+    /// </summary>
+    property  StateTraverse          : traverseproc                 read GetStateTraverse        write SetStateTraverse;
+    /// <summary>
+    /// Clear function to call during GC clearing of the module object.
+    /// </summary>
+    property  StateClear             : inquiry                      read GetStateClear           write SetStateClear;
+    /// <summary>
+    /// Function to call during deallocation of the module object.
+    /// </summary>
+    property  StateFree              : inquiry                      read GetStateFree            write SetStateFree;
+  end;
+
+  /// <summary>
+  /// <para>IPyHeapTypeSlotManager is used to store the information about the
+  /// heap type and to manage the method and slot lists.</para>
+  /// </summary>
+  IPyHeapTypeSlotManager = interface
+    ['{93297C49-56B5-40CD-B4AB-310194E65DEA}']
+    function  GetName: AnsiString;
+    function  GetDocStrings: AnsiString;
+    function  GetToken: pointer;
+    function  GetHasSentinelSlot: boolean;
+    function  GetHasSentinelMethod: boolean;
+    function  GetSlots: PPySlot;
+    function  GetMetaclass: PPyTypeObject;
+    function  GetModule: IPyObject;
+    function  GetBases: IPyObject;
+
+    procedure SetName(const aValue: AnsiString);
+    procedure SetDocStrings(const aValue: AnsiString);
+    procedure SetToken(aValue: pointer);
+    procedure SetMetaclass(aValue: PPyTypeObject);
+    procedure SetModule(const aValue: IPyObject);
+    procedure SetBases(const aValue: IPyObject);
+
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddSentinelMethod: boolean;
+    function  AddSentinelSlot: boolean;
+    function  AddNameSlot: boolean;
+    function  AddDocStringsSlot: boolean;
+    function  AddTokenSlot: boolean;
+    function  AddMethodsSlot: boolean;
+    function  AddMetaclassSlot: boolean;
+    function  AddModuleSlot: boolean;
+    function  AddBasesSlot: boolean;
+
+    /// <summary>
+    /// Override this procedure to add your custom slots.
+    /// </summary>
+    procedure AddAllSlots;
+    /// <summary>
+    /// Override this procedure to add your custom methods.
+    /// </summary>
+    procedure AddAllMethods;
+    /// <summary>
+    /// Create the slots with the methods and all the heap type information.
+    /// </summary>
+    procedure BuildMethodsAndSlots;
+
+    /// <summary>
+    /// Name of the new data type.
     /// </summary>
     property  Name_                  : AnsiString         read GetName                 write SetName;
     /// <summary>
-    /// The docstring of the new module or data type.
+    /// The docstring of the new data type.
     /// </summary>
     property  DocStrings             : AnsiString         read GetDocStrings           write SetDocStrings;
-    /// <summary>
-    /// Return True if the slot list has a Py_mod_methods slot.
-    /// </summary>
-    property  HasMethodsSlot         : boolean            read GetHasMethodsSlot;
     /// <summary>
     /// Return True if the last slot has a Py_slot_end value in the
     /// sl_id field.
@@ -4544,27 +4729,8 @@ type
     /// </summary>
     property  Slots                  : PPySlot            read GetSlots;
     /// <summary>
-    /// Return a pointer to the ABI info record.
-    /// </summary>
-    property  ABIInfo                : PPyAbiInfo         read GetABIInfo;
-    /// <summary>
-    /// Function that will execute, or initialize, the module.
-    /// </summary>
-    property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
-    /// <summary>
-    /// This slot determines whether or not importing this module in a
-    /// subinterpreter will fail.
-    /// If it's not specified, the import machinery defaults to miSupported.
-    /// </summary>
-    property  MultIntprSupport       : TMultIntprSupport  read GetMultIntprSupport     write SetMultIntprSupport;
-    /// <summary>
-    /// The module depends on the presence of the global interpreter lock
-    /// (GIL) or it's safe to run without an active GIL.
-    /// </summary>
-    property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
-    /// <summary>
-    /// The associated token is a pointer-sized value intended to identify of
-    /// the module state's memory layout.
+    /// The associated token is a pointer-sized value intended to identify
+    /// this object.
     /// </summary>
     property  Token                  : pointer            read GetToken                write SetToken;
     /// <summary>

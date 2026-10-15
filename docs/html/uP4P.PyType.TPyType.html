@@ -49,149 +49,153 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetSlot-PPyTypeObject-integer-">GetSlot</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; i: integer): Pointer;</code></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetSlot-PPyTypeObject-integer-">GetSlot</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; i: integer): Pointer; overload;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetSlot-IPyObject-integer-">GetSlot</a></strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: integer): Pointer; overload;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#FromModuleAndSpec-IPyObject-PPyType_Spec-IPyObject-">FromModuleAndSpec</a></strong>(const module: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; spec: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>; const bases: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModule-PPyTypeObject-">GetModule</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleState-PPyTypeObject-">GetModuleState</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): Pointer;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetName-PPyTypeObject-">GetName</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetQualName-PPyTypeObject-">GetQualName</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetFullyQualifiedName-PPyTypeObject-">GetFullyQualifiedName</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleName-PPyTypeObject-">GetModuleName</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#FromMetaclass-PPyTypeObject-IPyObject-PPyType_Spec-IPyObject-">FromMetaclass</a></strong>(metaclass: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const module: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; spec: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>; const bases: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetTypeDataSize-PPyTypeObject-">GetTypeDataSize</a></strong>(cls: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetBaseByToken-PPyTypeObject-Pointer-PPyTypeObject-">GetBaseByToken</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; tp_token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#IsSubtype-PPyTypeObject-PPyTypeObject-">IsSubtype</a></strong>(type1, type2: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean; overload;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#IsSubtype-IPyObject-PPyTypeObject-">IsSubtype</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; type2: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean; overload;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetFlags-PPyTypeObject-">GetFlags</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Types.html#C_ULong">C_ULong</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#Ready-PPyTypeObject-">Ready</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GenericAlloc-PPyTypeObject-Py_ssize_t-">GenericAlloc</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; nitems: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GenericNew-PPyTypeObject-IPyObject-IPyObject-">GenericNew</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const args, kwds: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyType.TPyType.html#ClearCache">ClearCache</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class procedure <strong><a href="uP4P.PyType.TPyType.html#Modified-PPyTypeObject-">Modified</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleByDef-PPyTypeObject-PPyModuleDef-">GetModuleByDef</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; def: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#Freeze-PPyTypeObject-">Freeze</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetDict-PPyTypeObject-">GetDict</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#AddWatcher-PyType_WatchCallback-">AddWatcher</a></strong>(callback: <a href="uP4P.Types.html#PyType_WatchCallback">PyType_WatchCallback</a>): integer;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#ClearWatcher-integer-">ClearWatcher</a></strong>(watcher_id: integer): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#Watch-integer-IPyObject-">Watch</a></strong>(watcher_id: integer; const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#Unwatch-integer-IPyObject-">Unwatch</a></strong>(watcher_id: integer; const type_: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#SUPPORTS_WEAKREFS-PPyTypeObject-">SUPPORTS_WEAKREFS</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#HasFeature-PPyTypeObject-C_ULong-">HasFeature</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; feature: <a href="uP4P.Types.html#C_ULong">C_ULong</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#FastSubclass-PPyTypeObject-C_ULong-">FastSubclass</a></strong>(aPyTypeObject: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; feature: <a href="uP4P.Types.html#C_ULong">C_ULong</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#Check-IPyObject-">Check</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#CheckExact-IPyObject-">CheckExact</a></strong>(const aPyObject: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#FromSlots-PPySlot-">FromSlots</a></strong>(slots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleByToken-PPyTypeObject-Pointer-">GetModuleByToken</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleState_DuringGC-PPyTypeObject-">GetModuleState_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): Pointer;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetBaseByToken_DuringGC-PPyTypeObject-Pointer-PPyTypeObject-">GetBaseByToken_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; token: Pointer; var result_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): integer;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModule_DuringGC-PPyTypeObject-">GetModule_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>class function <strong><a href="uP4P.PyType.TPyType.html#GetModuleByToken_DuringGC-PPyTypeObject-Pointer-">GetModuleByToken_DuringGC</a></strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; const mod_token: Pointer): <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
@@ -247,7 +251,23 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="GetSlot-PPyTypeObject-integer-"></span><code>class function <strong>GetSlot</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; i: integer): Pointer;</code></td>
+<td class="itemcode"><span id="GetSlot-PPyTypeObject-integer-"></span><code>class function <strong>GetSlot</strong>(type_: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>; i: integer): Pointer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Return the function pointer stored in the given slot. If the result is nil, this indicates that either the slot is nil, or that the function was called with invalid parameters. Callers will typically cast the result pointer into the appropriate function type.
+
+<p>See PyType_Slot.slot for possible values of the slot argument.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSlot-IPyObject-integer-"></span><code>class function <strong>GetSlot</strong>(const obj: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>; i: integer): Pointer; overload;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>

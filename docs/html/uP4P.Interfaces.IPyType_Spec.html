@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.Interfaces: Interface IPyType_Spec</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.5.snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="IPyType_Spec"></span><h1 class="cio">Interface IPyType_Spec</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.Interfaces.html">uP4P.Interfaces</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IPyType_Spec = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Interface defining a type's behavior. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/type.html#c.PyType_Spec">https://docs.python.org/3/c-api/type.html#c.PyType_Spec</a>&quot;&gt;See the article about PyType_Spec.)</p>
+<h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{F55ADD9F-9ABD-4DF2-BD4A-1FDE6235826A}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IPyType_Spec</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetName">GetName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetBasicsize">GetBasicsize</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetItemsize">GetItemsize</a></strong>: integer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetFlags">GetFlags</a></strong>: cardinal;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelSlot">GetHasSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelMethod">GetHasSentinelMethod</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetSlots">GetSlots</a></strong>: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetTypeSpec">GetTypeSpec</a></strong>: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#GetToken">GetToken</a></strong>: pointer;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#SetBasicsize-integer-">SetBasicsize</a></strong>(aValue: integer);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#SetItemsize-integer-">SetItemsize</a></strong>(aValue: integer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#SetFlags-cardinal-">SetFlags</a></strong>(aValue: cardinal);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#SetToken-pointer-">SetToken</a></strong>(aValue: pointer);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#CreateSlotArray">CreateSlotArray</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#CreateMethodArray">CreateMethodArray</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#DestroySlotList">DestroySlotList</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#DestroySlots">DestroySlots</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#DestroyMethodList">DestroyMethodList</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#DestroyMethods">DestroyMethods</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddAllSlots">AddAllSlots</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddAllMethods">AddAllMethods</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddSlot-integer-Pointer-">AddSlot</a></strong>(aSlot: integer; aPfunc: Pointer): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddSentinelMethod">AddSentinelMethod</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyType_Spec.html#AddMethod-string-string-PyCFunction-integer-">AddMethod</a></strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyType_Spec.html#BuildMethodsAndSlots">BuildMethodsAndSlots</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Name_">Name_</a></strong>                   : AnsiString        read <a href="uP4P.Interfaces.IPyType_Spec.html#GetName">GetName</a>              write <a href="uP4P.Interfaces.IPyType_Spec.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Basicsize">Basicsize</a></strong>               : integer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetBasicsize">GetBasicsize</a>         write <a href="uP4P.Interfaces.IPyType_Spec.html#SetBasicsize-integer-">SetBasicsize</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Itemsize">Itemsize</a></strong>                : integer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetItemsize">GetItemsize</a>          write <a href="uP4P.Interfaces.IPyType_Spec.html#SetItemsize-integer-">SetItemsize</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Flags">Flags</a></strong>                   : cardinal          read <a href="uP4P.Interfaces.IPyType_Spec.html#GetFlags">GetFlags</a>             write <a href="uP4P.Interfaces.IPyType_Spec.html#SetFlags-cardinal-">SetFlags</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#HasSentinelSlot">HasSentinelSlot</a></strong>         : boolean           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelSlot">GetHasSentinelSlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#HasSentinelMethod">HasSentinelMethod</a></strong>       : boolean           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelMethod">GetHasSentinelMethod</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Slots">Slots</a></strong>                   : <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>      read <a href="uP4P.Interfaces.IPyType_Spec.html#GetSlots">GetSlots</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#TypeSpec">TypeSpec</a></strong>                : <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>      read <a href="uP4P.Interfaces.IPyType_Spec.html#GetTypeSpec">GetTypeSpec</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyType_Spec.html#Token">Token</a></strong>                  : pointer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetToken">GetToken</a>             write <a href="uP4P.Interfaces.IPyType_Spec.html#SetToken-pointer-">SetToken</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBasicsize"></span><code>function <strong>GetBasicsize</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemsize"></span><code>function <strong>GetItemsize</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFlags"></span><code>function <strong>GetFlags</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelSlot"></span><code>function <strong>GetHasSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelMethod"></span><code>function <strong>GetHasSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSlots"></span><code>function <strong>GetSlots</strong>: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetTypeSpec"></span><code>function <strong>GetTypeSpec</strong>: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetToken"></span><code>function <strong>GetToken</strong>: pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetName-AnsiString-"></span><code>procedure <strong>SetName</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetBasicsize-integer-"></span><code>procedure <strong>SetBasicsize</strong>(aValue: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItemsize-integer-"></span><code>procedure <strong>SetItemsize</strong>(aValue: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetFlags-cardinal-"></span><code>procedure <strong>SetFlags</strong>(aValue: cardinal);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetToken-pointer-"></span><code>procedure <strong>SetToken</strong>(aValue: pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateSlotArray"></span><code>procedure <strong>CreateSlotArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateMethodArray"></span><code>procedure <strong>CreateMethodArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlotList"></span><code>procedure <strong>DestroySlotList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlots"></span><code>procedure <strong>DestroySlots</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethodList"></span><code>procedure <strong>DestroyMethodList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethods"></span><code>procedure <strong>DestroyMethods</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllSlots"></span><code>procedure <strong>AddAllSlots</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom slots. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllMethods"></span><code>procedure <strong>AddAllMethods</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom methods. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aPfunc: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BuildMethodsAndSlots"></span><code>procedure <strong>BuildMethodsAndSlots</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Create the methods and the slots with all the type information. </p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Name_"></span><code>property <strong>Name_</strong>                   : AnsiString        read <a href="uP4P.Interfaces.IPyType_Spec.html#GetName">GetName</a>              write <a href="uP4P.Interfaces.IPyType_Spec.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name of the type, used to set PyTypeObject.tp_name. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Basicsize"></span><code>property <strong>Basicsize</strong>               : integer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetBasicsize">GetBasicsize</a>         write <a href="uP4P.Interfaces.IPyType_Spec.html#SetBasicsize-integer-">SetBasicsize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>If positive, specifies the size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize.
+
+<p>If zero, specifies that tp_basicsize should be inherited.
+
+<p>If negative, the absolute value specifies how much space instances of the class need in addition to the superclass.
+
+<p>Use TPyObject.GetTypeData to get a pointer to subclass-specific memory reserved this way.
+
+<p>For negative basicsize, Python will insert padding when needed to meet tp_basicsize's alignment requirements.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Itemsize"></span><code>property <strong>Itemsize</strong>                : integer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetItemsize">GetItemsize</a>          write <a href="uP4P.Interfaces.IPyType_Spec.html#SetItemsize-integer-">SetItemsize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Flags"></span><code>property <strong>Flags</strong>                   : cardinal          read <a href="uP4P.Interfaces.IPyType_Spec.html#GetFlags">GetFlags</a>             write <a href="uP4P.Interfaces.IPyType_Spec.html#SetFlags-cardinal-">SetFlags</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Type flags, used to set PyTypeObject.tp_flags. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelSlot"></span><code>property <strong>HasSentinelSlot</strong>         : boolean           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelSlot">GetHasSentinelSlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last slot has a {0, nil} value. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelMethod"></span><code>property <strong>HasSentinelMethod</strong>       : boolean           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetHasSentinelMethod">GetHasSentinelMethod</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last method in the list is a sentinel method. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Slots"></span><code>property <strong>Slots</strong>                   : <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>      read <a href="uP4P.Interfaces.IPyType_Spec.html#GetSlots">GetSlots</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a pointer to the first slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TypeSpec"></span><code>property <strong>TypeSpec</strong>                : <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>      read <a href="uP4P.Interfaces.IPyType_Spec.html#GetTypeSpec">GetTypeSpec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a pointer to the PyType_Spec record. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Token"></span><code>property <strong>Token</strong>                  : pointer           read <a href="uP4P.Interfaces.IPyType_Spec.html#GetToken">GetToken</a>             write <a href="uP4P.Interfaces.IPyType_Spec.html#SetToken-pointer-">SetToken</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The associated token records a static memory layout ID for a class.
+
+<p>Useg the special value Py_TP_USE_SPEC to set the token to the class's PyType_Spec.
+
+<p>Added in version 3.14.
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
+</span>
+</body></html>

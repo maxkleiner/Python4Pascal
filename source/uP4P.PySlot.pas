@@ -33,7 +33,6 @@ type
       function GetID : word;
       function GetFlags : word;
       function GetIsEnd : boolean;
-      function GetIsMethods : boolean;
 
       procedure SetID(aValue: word);
       procedure SetFlags(aValue: word);
@@ -116,10 +115,6 @@ type
       /// Return True if the slot has a Py_slot_end value in the sl_id field.
       /// </summary>
       property IsEnd     : boolean   read GetIsEnd;
-      /// <summary>
-      /// Return True if the slot has a TPy_mod.methods value in the sl_id field.
-      /// </summary>
-      property IsMethods : boolean   read GetIsMethods;
   end;
 
 implementation
@@ -212,11 +207,6 @@ end;
 function TPySlot.GetIsEnd : boolean;
 begin
   Result := (FPySlot.sl_id = Py_slot_end);
-end;
-
-function TPySlot.GetIsMethods : boolean;
-begin
-  Result := (FPySlot.sl_id = TPy_mod.methods);
 end;
 
 procedure TPySlot.SetID(aValue: word);

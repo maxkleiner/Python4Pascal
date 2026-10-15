@@ -22,7 +22,19 @@ body { margin: 0.5em; }
 <p class="declaration">
 <code>type IPyModuleDef = interface(IInterface)</code></p>
 <h2 class="description">Description</h2>
-<p class="nodescription">This item has no description.</p><h6 class="description_section">Attributes</h6>
+<p>
+
+
+<p>IPyModuleDef is used to store the information about modules.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization</a>&quot;&gt;See the article about Multi-phase initialization.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">https://docs.python.org/3/c-api/structures.html#c.PyMethodDef</a>&quot;&gt;See the article about PyMethodDef.)</p>
+<h6 class="description_section">Attributes</h6>
 <dl class="attributes">
   <dt>GUID['{2AE205A2-DAC8-40F8-8662-3A8850F2B72D}']</dt>
   <dd></dd>
@@ -46,35 +58,59 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">GetExecFunction</a></strong>: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetCreateModuleFunction">GetCreateModuleFunction</a></strong>: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">GetExecFunction</a></strong>: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetMultIntprSupport">GetMultIntprSupport</a></strong>: <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetGILUsed">GetGILUsed</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelSlot">GetHasSentinelSlot</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetHasSentinelMethod">GetHasSentinelMethod</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetModuleDef">GetModuleDef</a></strong>: <a href="uP4P.Types.html#PPyModuleDef">PPyModuleDef</a>;</code></td>
 </tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetSize">GetSize</a></strong>: integer;</code></td>
+</tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetTraverse">GetTraverse</a></strong>: <a href="uP4P.Types.html#traverseproc">traverseproc</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetClear">GetClear</a></strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GetFree">GetFree</a></strong>: <a href="uP4P.Types.html#freefunc">freefunc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetDocStrings-AnsiString-">SetDocStrings</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetCreateModuleFunction-create_modulefunc-">SetCreateModuleFunction</a></strong>(aValue: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -87,6 +123,22 @@ body { margin: 0.5em; }
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetGILUsed-boolean-">SetGILUsed</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetSize-integer-">SetSize</a></strong>(aValue: integer);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetTraverse-traverseproc-">SetTraverse</a></strong>(aValue: <a href="uP4P.Types.html#traverseproc">traverseproc</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetClear-inquiry-">SetClear</a></strong>(aValue: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#SetFree-freefunc-">SetFree</a></strong>(aValue: <a href="uP4P.Types.html#freefunc">freefunc</a>);</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -118,17 +170,21 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddExecSlot">AddExecSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddCreateSlot">AddCreateSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddMultipleInterpretersSlot">AddMultipleInterpretersSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddExecSlot">AddExecSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddGILSlot">AddGILSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddMultipleInterpretersSlot">AddMultipleInterpretersSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyModuleDef.html#AddGILSlot">AddGILSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyModuleDef.html#BuildMethodsAndSlots">BuildMethodsAndSlots</a></strong>;</code></td>
 </tr>
@@ -161,15 +217,35 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#ExecFunction">ExecFunction</a></strong>           : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>    read <a href="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">GetExecFunction</a>         write <a href="uP4P.Interfaces.IPyModuleDef.html#SetExecFunction-exec_modulefunc-">SetExecFunction</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#CreateModuleFunction">CreateModuleFunction</a></strong>   : <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>  read <a href="uP4P.Interfaces.IPyModuleDef.html#GetCreateModuleFunction">GetCreateModuleFunction</a> write <a href="uP4P.Interfaces.IPyModuleDef.html#SetCreateModuleFunction-create_modulefunc-">SetCreateModuleFunction</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#MultIntprSupport">MultIntprSupport</a></strong>       : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>  read <a href="uP4P.Interfaces.IPyModuleDef.html#GetMultIntprSupport">GetMultIntprSupport</a>     write <a href="uP4P.Interfaces.IPyModuleDef.html#SetMultIntprSupport-TMultIntprSupport-">SetMultIntprSupport</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#ExecFunction">ExecFunction</a></strong>           : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>    read <a href="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">GetExecFunction</a>         write <a href="uP4P.Interfaces.IPyModuleDef.html#SetExecFunction-exec_modulefunc-">SetExecFunction</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#MultIntprSupport">MultIntprSupport</a></strong>       : <a href="uP4P.Types.html#TMultIntprSupport">TMultIntprSupport</a>  read <a href="uP4P.Interfaces.IPyModuleDef.html#GetMultIntprSupport">GetMultIntprSupport</a>     write <a href="uP4P.Interfaces.IPyModuleDef.html#SetMultIntprSupport-TMultIntprSupport-">SetMultIntprSupport</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#GILUsed">GILUsed</a></strong>                : boolean            read <a href="uP4P.Interfaces.IPyModuleDef.html#GetGILUsed">GetGILUsed</a>              write <a href="uP4P.Interfaces.IPyModuleDef.html#SetGILUsed-boolean-">SetGILUsed</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Size_">Size_</a></strong>                  : integer            read <a href="uP4P.Interfaces.IPyModuleDef.html#GetSize">GetSize</a>                 write <a href="uP4P.Interfaces.IPyModuleDef.html#SetSize-integer-">SetSize</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Traverse">Traverse</a></strong>               : <a href="uP4P.Types.html#traverseproc">traverseproc</a>       read <a href="uP4P.Interfaces.IPyModuleDef.html#GetTraverse">GetTraverse</a>             write <a href="uP4P.Interfaces.IPyModuleDef.html#SetTraverse-traverseproc-">SetTraverse</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Clear_">Clear_</a></strong>                 : <a href="uP4P.Types.html#inquiry">inquiry</a>            read <a href="uP4P.Interfaces.IPyModuleDef.html#GetClear">GetClear</a>                write <a href="uP4P.Interfaces.IPyModuleDef.html#SetClear-inquiry-">SetClear</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyModuleDef.html#Free_">Free_</a></strong>                  : <a href="uP4P.Types.html#freefunc">freefunc</a>           read <a href="uP4P.Interfaces.IPyModuleDef.html#GetFree">GetFree</a>                 write <a href="uP4P.Interfaces.IPyModuleDef.html#SetFree-freefunc-">SetFree</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -194,6 +270,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="GetDocStrings"></span><code>function <strong>GetDocStrings</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetCreateModuleFunction"></span><code>function <strong>GetCreateModuleFunction</strong>: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -249,6 +333,38 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSize"></span><code>function <strong>GetSize</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetTraverse"></span><code>function <strong>GetTraverse</strong>: <a href="uP4P.Types.html#traverseproc">traverseproc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetClear"></span><code>function <strong>GetClear</strong>: <a href="uP4P.Types.html#inquiry">inquiry</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFree"></span><code>function <strong>GetFree</strong>: <a href="uP4P.Types.html#freefunc">freefunc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetName-AnsiString-"></span><code>procedure <strong>SetName</strong>(const aValue: AnsiString);</code></td>
 </tr>
 <tr><td colspan="2">
@@ -258,6 +374,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetDocStrings-AnsiString-"></span><code>procedure <strong>SetDocStrings</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetCreateModuleFunction-create_modulefunc-"></span><code>procedure <strong>SetCreateModuleFunction</strong>(aValue: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -282,6 +406,38 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetGILUsed-boolean-"></span><code>procedure <strong>SetGILUsed</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetSize-integer-"></span><code>procedure <strong>SetSize</strong>(aValue: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetTraverse-traverseproc-"></span><code>procedure <strong>SetTraverse</strong>(aValue: <a href="uP4P.Types.html#traverseproc">traverseproc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetClear-inquiry-"></span><code>procedure <strong>SetClear</strong>(aValue: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetFree-freefunc-"></span><code>procedure <strong>SetFree</strong>(aValue: <a href="uP4P.Types.html#freefunc">freefunc</a>);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -344,6 +500,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aValue: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddCreateSlot"></span><code>function <strong>AddCreateSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -446,6 +610,20 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateModuleFunction"></span><code>property <strong>CreateModuleFunction</strong>   : <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>  read <a href="uP4P.Interfaces.IPyModuleDef.html#GetCreateModuleFunction">GetCreateModuleFunction</a> write <a href="uP4P.Interfaces.IPyModuleDef.html#SetCreateModuleFunction-create_modulefunc-">SetCreateModuleFunction</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Specifies a function that is called to create the module object itself.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="ExecFunction"></span><code>property <strong>ExecFunction</strong>           : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>    read <a href="uP4P.Interfaces.IPyModuleDef.html#GetExecFunction">GetExecFunction</a>         write <a href="uP4P.Interfaces.IPyModuleDef.html#SetExecFunction-exec_modulefunc-">SetExecFunction</a>;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -471,6 +649,80 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p>
  The module depends on the presence of the global interpreter lock (GIL) or it's safe to run without an active GIL. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Size_"></span><code>property <strong>Size_</strong>                  : integer            read <a href="uP4P.Interfaces.IPyModuleDef.html#GetSize">GetSize</a>                 write <a href="uP4P.Interfaces.IPyModuleDef.html#SetSize-integer-">SetSize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Module state size. This value will be used in PyModuleDef.m_size. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">https://docs.python.org/3/c-api/module.html#c.PyModuleDef</a>&quot;&gt;See the article about PyModuleDef.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Traverse"></span><code>property <strong>Traverse</strong>               : <a href="uP4P.Types.html#traverseproc">traverseproc</a>       read <a href="uP4P.Interfaces.IPyModuleDef.html#GetTraverse">GetTraverse</a>             write <a href="uP4P.Interfaces.IPyModuleDef.html#SetTraverse-traverseproc-">SetTraverse</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A traversal function to call during GC traversal of the module object, or nil if not needed.
+
+<p>This value will be used in PyModuleDef.m_traverse.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">https://docs.python.org/3/c-api/module.html#c.PyModuleDef</a>&quot;&gt;See the article about PyModuleDef.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Clear_"></span><code>property <strong>Clear_</strong>                 : <a href="uP4P.Types.html#inquiry">inquiry</a>            read <a href="uP4P.Interfaces.IPyModuleDef.html#GetClear">GetClear</a>                write <a href="uP4P.Interfaces.IPyModuleDef.html#SetClear-inquiry-">SetClear</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A clear function to call during GC clearing of the module object, or nil if not needed.
+
+<p>This value will be used in PyModuleDef.m_clear.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">https://docs.python.org/3/c-api/module.html#c.PyModuleDef</a>&quot;&gt;See the article about PyModuleDef.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Free_"></span><code>property <strong>Free_</strong>                  : <a href="uP4P.Types.html#freefunc">freefunc</a>           read <a href="uP4P.Interfaces.IPyModuleDef.html#GetFree">GetFree</a>                 write <a href="uP4P.Interfaces.IPyModuleDef.html#SetFree-freefunc-">SetFree</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>A function to call during deallocation of the module object, or nil if not needed.
+
+<p>This value will be used in PyModuleDef.m_free.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">https://docs.python.org/3/c-api/module.html#c.PyModuleDef</a>&quot;&gt;See the article about PyModuleDef.)</p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>

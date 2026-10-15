@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.CustomHeapType: Class TCustomHeapType</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.5.snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TCustomHeapType"></span><h1 class="cio">Class TCustomHeapType</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.CustomHeapType.html">uP4P.CustomHeapType</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TCustomHeapType = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TCustomHeapType</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FName">FName</a></strong>: string;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FHeapType">FHeapType</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FTypeSpec">FTypeSpec</a></strong>: <a href="uP4P.Interfaces.IPyType_Spec.html">IPyType_Spec</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FSlotManager">FSlotManager</a></strong>: <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html">IPyHeapTypeSlotManager</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FMetaclass">FMetaclass</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FModule">FModule</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FBases">FBases</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FUseLegacyAPI">FUseLegacyAPI</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FID">FID</a></strong>: cardinal;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetHeapType">GetHeapType</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetName">GetName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetSlots">GetSlots</a></strong>: <a href="uP4P.Types.html#PPySlot">PPySlot</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetTypeSpec">GetTypeSpec</a></strong>: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetMetaclass">GetMetaclass</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetModule">GetModule</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetBases">GetBases</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetUseLegacyAPI">GetUseLegacyAPI</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#GetToken">GetToken</a></strong>: pointer;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#SetMetaclass-PPyTypeObject-">SetMetaclass</a></strong>(aValue: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#SetModule-IPyObject-">SetModule</a></strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#SetBases-IPyObject-">SetBases</a></strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a></strong>(aValue: boolean);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#CreateTypeSpec">CreateTypeSpec</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#CreateSlotManager">CreateSlotManager</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#LegacyInitialization">LegacyInitialization</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#UnifiedSlotInitialization">UnifiedSlotInitialization</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#AddHeapType">AddHeapType</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#RemoveHeapType">RemoveHeapType</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Create-string-">Create</a></strong>(const aName: string);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>destructor <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#SameAs-PPyObject-">SameAs</a></strong>(const other: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; virtual;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Initialize">Initialize</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Finalize">Finalize</a></strong>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#HeapType">HeapType</a></strong>                      : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetHeapType">GetHeapType</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#TypeSpec">TypeSpec</a></strong>                      : <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>        read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetTypeSpec">GetTypeSpec</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Slots">Slots</a></strong>                         : <a href="uP4P.Types.html#PPySlot">PPySlot</a>             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetSlots">GetSlots</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Name_">Name_</a></strong>                         : AnsiString          read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetName">GetName</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Metaclass">Metaclass</a></strong>                     : <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>       read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetMetaclass">GetMetaclass</a>                write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetMetaclass-PPyTypeObject-">SetMetaclass</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Module">Module</a></strong>                        : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetModule">GetModule</a>                   write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetModule-IPyObject-">SetModule</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Bases">Bases</a></strong>                         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetBases">GetBases</a>                    write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetBases-IPyObject-">SetBases</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#UseLegacyAPI">UseLegacyAPI</a></strong>                  : boolean             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetUseLegacyAPI">GetUseLegacyAPI</a>             write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Token">Token</a></strong>                         : Pointer             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetToken">GetToken</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FName"></span><code><strong>FName</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FHeapType"></span><code><strong>FHeapType</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FTypeSpec"></span><code><strong>FTypeSpec</strong>: <a href="uP4P.Interfaces.IPyType_Spec.html">IPyType_Spec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FSlotManager"></span><code><strong>FSlotManager</strong>: <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html">IPyHeapTypeSlotManager</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FMetaclass"></span><code><strong>FMetaclass</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FModule"></span><code><strong>FModule</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FBases"></span><code><strong>FBases</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FUseLegacyAPI"></span><code><strong>FUseLegacyAPI</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FID"></span><code><strong>FID</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetHeapType"></span><code>function <strong>GetHeapType</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetSlots"></span><code>function <strong>GetSlots</strong>: <a href="uP4P.Types.html#PPySlot">PPySlot</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetTypeSpec"></span><code>function <strong>GetTypeSpec</strong>: <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetMetaclass"></span><code>function <strong>GetMetaclass</strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetModule"></span><code>function <strong>GetModule</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetBases"></span><code>function <strong>GetBases</strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetUseLegacyAPI"></span><code>function <strong>GetUseLegacyAPI</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetToken"></span><code>function <strong>GetToken</strong>: pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetMetaclass-PPyTypeObject-"></span><code>procedure <strong>SetMetaclass</strong>(aValue: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetModule-IPyObject-"></span><code>procedure <strong>SetModule</strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetBases-IPyObject-"></span><code>procedure <strong>SetBases</strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetUseLegacyAPI-boolean-"></span><code>procedure <strong>SetUseLegacyAPI</strong>(aValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CreateTypeSpec"></span><code>procedure <strong>CreateTypeSpec</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to create your custom IPyType_Spec instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="CreateSlotManager"></span><code>procedure <strong>CreateSlotManager</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to create your custom IPySlotManager instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="LegacyInitialization"></span><code>function <strong>LegacyInitialization</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the heap type in Python 3.14 or older. It uses an IPyType_Spec instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="UnifiedSlotInitialization"></span><code>function <strong>UnifiedSlotInitialization</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the heap type in Python 3.15 or newer. It uses an IPySlotManager instance. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddHeapType"></span><code>procedure <strong>AddHeapType</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the heap type to the internal heap type list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="RemoveHeapType"></span><code>procedure <strong>RemoveHeapType</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the heap type from the internal heap type list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-string-"></span><code>constructor <strong>Create</strong>(const aName: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AfterConstruction"></span><code>procedure <strong>AfterConstruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="BeforeDestruction"></span><code>procedure <strong>BeforeDestruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SameAs-PPyObject-"></span><code>function <strong>SameAs</strong>(const other: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Test if this heap type is the same as the &quot;other&quot; heap type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Create the heap type and all the slots.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Finalize"></span><code>procedure <strong>Finalize</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Destroy the heap type and remove it from the internal heap types list in GlobalP4PEngine.
+
+<p>This is necessary before calling TPy.EndInterpreter.
+
+<p></p>
+<p>
+
+
+<p>See the TP4PThread class.</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HeapType"></span><code>property <strong>HeapType</strong>                      : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetHeapType">GetHeapType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>PyObject instance of this heap type.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="TypeSpec"></span><code>property <strong>TypeSpec</strong>                      : <a href="uP4P.Types.html#PPyType_Spec">PPyType_Spec</a>        read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetTypeSpec">GetTypeSpec</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a pointer to the PyType_Spec record. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Slots"></span><code>property <strong>Slots</strong>                         : <a href="uP4P.Types.html#PPySlot">PPySlot</a>             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetSlots">GetSlots</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return a pointer to the first slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Name_"></span><code>property <strong>Name_</strong>                         : AnsiString          read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetName">GetName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>heap type name.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Metaclass"></span><code>property <strong>Metaclass</strong>                     : <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>       read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetMetaclass">GetMetaclass</a>                write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetMetaclass-PPyTypeObject-">SetMetaclass</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Metaclass is used to construct the resulting type object.
+
+<p>When metaclass is nil, the metaclass is derived from bases (or Py_tp_base[s] slots if bases is nil, see below).
+
+<p>Metaclasses that override tp_new are not supported, except if tp_new is nil.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Module"></span><code>property <strong>Module</strong>                        : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetModule">GetModule</a>                   write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetModule-IPyObject-">SetModule</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Module can be used to record the module in which the new class is defined. It must be a module object or nil. If not nil, the module is associated with the new type and can later be retrieved with TPyType.GetModule(). The associated module is not inherited by subclasses; it must be specified for each class individually.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Bases"></span><code>property <strong>Bases</strong>                         : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetBases">GetBases</a>                    write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetBases-IPyObject-">SetBases</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Bases can be used to specify base classes; it can either be only one class or a tuple of classes. If bases is nil, the Py_tp_bases slot is used instead. If that also is nil, the Py_tp_base slot is used instead. If that also is nil, the new type derives from object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="UseLegacyAPI"></span><code>property <strong>UseLegacyAPI</strong>                  : boolean             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetUseLegacyAPI">GetUseLegacyAPI</a>             write <a href="uP4P.CustomHeapType.TCustomHeapType.html#SetUseLegacyAPI-boolean-">SetUseLegacyAPI</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Use the legacy API to initialize the module.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Token"></span><code>property <strong>Token</strong>                         : Pointer             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetToken">GetToken</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The heap type token.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/type.html#c.Py_tp_token">https://docs.python.org/3.15/c-api/type.html#c.Py_tp_token</a>&quot;&gt;See the article about Py_tp_token.)
+
+<p>Added in version 3.14.</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
+</span>
+</body></html>

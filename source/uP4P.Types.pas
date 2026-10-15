@@ -866,41 +866,41 @@ type
     index_  : Py_ssize_t;
   end;
 
-  unaryfunc                      = function(ob1: PPyObject): PPyObject; cdecl;
-  binaryfunc                     = function(ob1, ob2: PPyObject): PPyObject; cdecl;
-  ternaryfunc                    = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
-  inquiry                        = function(ob1: PPyObject): integer; cdecl;
-  lenfunc                        = function(ob1: PPyObject): Py_ssize_t; cdecl;
-  ssizeargfunc                   = function(ob1: PPyObject; i: Py_ssize_t): PPyObject; cdecl;
-  ssizessizeargfunc              = function(ob1: PPyObject; i, j: Py_ssize_t): PPyObject; cdecl;
-  ssizeobjargproc                = function(ob1: PPyObject; i: NativeInt; ob2 : PPyObject): integer; cdecl;
-  ssizessizeobjargproc           = function(ob1: PPyObject; i, j: NativeInt; ob2 : PPyObject): integer; cdecl;
-  objobjargproc                  = function(ob1, ob2, ob3 : PPyObject): integer; cdecl;
-  objobjproc                     = function(ob1, ob2 : PPyObject): integer; cdecl;
-  visitproc                      = function(ob: PPyObject; p: Pointer): integer; cdecl;
-  traverseproc                   = function(ob: PPyObject; v: visitproc; p: Pointer): integer; cdecl;
-  freefunc                       = procedure(p: Pointer); cdecl;
-  destructor_                    = procedure(ob: PPyObject); cdecl;
-  getattrfunc                    = function(ob1: PPyObject; name: PAnsiChar): PPyObject; cdecl;
-  getattrofunc                   = function(ob1, ob2: PPyObject): PPyObject; cdecl;
-  setattrfunc                    = function(ob1: PPyObject; name: PAnsiChar; ob2: PPyObject): integer; cdecl;
-  setattrofunc                   = function(ob1, ob2, ob3: PPyObject): integer; cdecl;
-  reprfunc                       = function(ob: PPyObject): PPyObject; cdecl;
-  hashfunc                       = function(ob: PPyObject): Py_hash_t; cdecl;
-  richcmpfunc                    = function(ob1, ob2: PPyObject; i: Integer): PPyObject; cdecl;
-  getiterfunc                    = function(ob1: PPyObject) : PPyObject; cdecl;
-  iternextfunc                   = function(ob1: PPyObject): PPyObject; cdecl;
-  descrgetfunc                   = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
-  descrsetfunc                   = function(ob1, ob2, ob3: PPyObject): Integer; cdecl;
-  initproc                       = function(self, args, kwds: PPyObject): Integer; cdecl;
-  newfunc                        = function(subtype: PPyTypeObject; args, kwds: PPyObject): PPyObject; cdecl;
-  allocfunc                      = function(self: PPyTypeObject; nitems: Py_ssize_t): PPyObject; cdecl;
-  vectorcallfunc                 = function(callable, args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
-  sendfunc                       = function(iter, value: PPyObject; result: PPPyObject): PySendResult; cdecl;
-  create_modulefunc              = function(spec: PPyObject; def: PPyModuleDef): PPyObject; cdecl;
-  exec_modulefunc                = function(module: PPyObject): integer; cdecl;
-  _Py_funcptr_t                  = procedure(); cdecl;
-  _Py_iteritemfunc               = function(object_: PPyObject; index_: Py_ssize_t): _PyObjectIndexPair; cdecl;
+  unaryfunc                        = function(ob1: PPyObject): PPyObject; cdecl;
+  binaryfunc                       = function(ob1, ob2: PPyObject): PPyObject; cdecl;
+  ternaryfunc                      = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
+  inquiry                          = function(ob1: PPyObject): integer; cdecl;
+  lenfunc                          = function(ob1: PPyObject): Py_ssize_t; cdecl;
+  ssizeargfunc                     = function(ob1: PPyObject; i: Py_ssize_t): PPyObject; cdecl;
+  ssizessizeargfunc                = function(ob1: PPyObject; i, j: Py_ssize_t): PPyObject; cdecl;
+  ssizeobjargproc                  = function(ob1: PPyObject; i: NativeInt; ob2 : PPyObject): integer; cdecl;
+  ssizessizeobjargproc             = function(ob1: PPyObject; i, j: NativeInt; ob2 : PPyObject): integer; cdecl;
+  objobjargproc                    = function(ob1, ob2, ob3 : PPyObject): integer; cdecl;
+  objobjproc                       = function(ob1, ob2 : PPyObject): integer; cdecl;
+  visitproc                        = function(ob: PPyObject; p: Pointer): integer; cdecl;
+  traverseproc                     = function(ob: PPyObject; v: visitproc; p: Pointer): integer; cdecl;
+  freefunc                         = procedure(p: Pointer); cdecl;
+  destructor_                      = procedure(ob: PPyObject); cdecl;
+  getattrfunc                      = function(ob1: PPyObject; name: PAnsiChar): PPyObject; cdecl;
+  getattrofunc                     = function(ob1, ob2: PPyObject): PPyObject; cdecl;
+  setattrfunc                      = function(ob1: PPyObject; name: PAnsiChar; ob2: PPyObject): integer; cdecl;
+  setattrofunc                     = function(ob1, ob2, ob3: PPyObject): integer; cdecl;
+  reprfunc                         = function(ob: PPyObject): PPyObject; cdecl;
+  hashfunc                         = function(ob: PPyObject): Py_hash_t; cdecl;
+  richcmpfunc                      = function(ob1, ob2: PPyObject; i: Integer): PPyObject; cdecl;
+  getiterfunc                      = function(ob1: PPyObject) : PPyObject; cdecl;
+  iternextfunc                     = function(ob1: PPyObject): PPyObject; cdecl;
+  descrgetfunc                     = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
+  descrsetfunc                     = function(ob1, ob2, ob3: PPyObject): Integer; cdecl;
+  initproc                         = function(self, args, kwds: PPyObject): Integer; cdecl;
+  newfunc                          = function(subtype: PPyTypeObject; args, kwds: PPyObject): PPyObject; cdecl;
+  allocfunc                        = function(self: PPyTypeObject; nitems: Py_ssize_t): PPyObject; cdecl;
+  vectorcallfunc                   = function(callable, args: PPyObject; nargsf: NativeUInt; kwnames: PPyObject): PPyObject; cdecl;
+  sendfunc                         = function(iter, value: PPyObject; result: PPPyObject): PySendResult; cdecl;
+  create_modulefunc                = function(spec: PPyObject; def: PPyModuleDef): PPyObject; cdecl;
+  exec_modulefunc                  = function(module: PPyObject): integer; cdecl;
+  _Py_funcptr_t                    = procedure(); cdecl;
+  _Py_iteritemfunc                 = function(object_: PPyObject; index_: Py_ssize_t): _PyObjectIndexPair; cdecl;
 
   /// <summary>
   /// Record defining optional functionality of a type, containing a slot ID
@@ -1954,7 +1954,7 @@ type
     /// <para>Changed in version 3.9: No longer called before the module state
     /// is allocated.</para>
     /// </summary>
-    m_free     : inquiry;
+    m_free     : freefunc;
   end;
 
   {* include/monitoring.h  include/cpython/monitoring.h *}
@@ -3286,6 +3286,7 @@ type
     /// </summary>
     closure : Pointer;
   end;
+  PyGetSetDefArray = array of PyGetSetDef;
 
   /// <summary>
   /// Record which describes an attribute of a type which corresponds to a C
@@ -3321,6 +3322,7 @@ type
     /// </summary>
     doc    : PAnsiChar;
   end;
+  PyMemberDefArray = array of PyMemberDef;
 
   /// <summary>
   /// Describes a slot wrapper used by PyDescr_NewWrapper().

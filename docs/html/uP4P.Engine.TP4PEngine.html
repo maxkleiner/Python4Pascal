@@ -42,45 +42,49 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FSyncObj">FSyncObj</a></strong>: TCriticalSection;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FHeapTypes">FHeapTypes</a></strong>: TList;</code></td>
 </tr>
 <tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FSyncObj">FSyncObj</a></strong>: TCriticalSection;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FIOModule">FIOModule</a></strong>: <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FTimeModule">FTimeModule</a></strong>: <a href="uP4P.PyTimeModule.TPyTimeModule.html">TPyTimeModule</a>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FDateTimeModule">FDateTimeModule</a></strong>: <a href="uP4P.PyDateTimeModule.TPyDateTimeModule.html">TPyDateTimeModule</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FInterpreterState">FInterpreterState</a></strong>: <a href="uP4P.Interfaces.IPyInterpreterState.html">IPyInterpreterState</a>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FThreadState">FThreadState</a></strong>: <a href="uP4P.Interfaces.IPyThreadState.html">IPyThreadState</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FMainThreadID">FMainThreadID</a></strong>: TThreadID;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FSavedThreadState">FSavedThreadState</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FIDGen">FIDGen</a></strong>: cardinal;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FOnOutputMessage">FOnOutputMessage</a></strong>: <a href="uP4P.Engine.html#TOnOutputMessageEvent">TOnOutputMessageEvent</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Engine.TP4PEngine.html#FOnInputMessage">FOnInputMessage</a></strong>: <a href="uP4P.Engine.html#TOnInputMessageEvent">TOnInputMessageEvent</a>;</code></td>
 </tr>
@@ -137,67 +141,83 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroySyncObj">DestroySyncObj</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyHeapTypes">DestroyHeapTypes</a></strong>;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroySyncObj">DestroySyncObj</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyInterpreterState">DestroyInterpreterState</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#DestroyThreadState">DestroyThreadState</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#Lock">Lock</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#UnLock">UnLock</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#RedirectIO">RedirectIO</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#GetCurrentInterpreterState">GetCurrentInterpreterState</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>constructor <strong><a href="uP4P.Engine.TP4PEngine.html#Create">Create</a></strong>; override;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>destructor <strong><a href="uP4P.Engine.TP4PEngine.html#Destroy">Destroy</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#AddToSysModules-TCustomPyModule-">AddToSysModules</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#RemoveFromSysModules-TCustomPyModule-">RemoveFromSysModules</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#AddModule-TCustomPyModule-">AddModule</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#RemoveModule-TCustomPyModule-">RemoveModule</a></strong>(const aModule: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>);</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#SearchModule-PPyObject-TCustomPyModule-">SearchModule</a></strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; var aResult: <a href="uP4P.CustomPyModule.TCustomPyModule.html">TCustomPyModule</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#AddHeapType-TCustomHeapType-">AddHeapType</a></strong>(const aHeapType: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Engine.TP4PEngine.html#RemoveHeapType-TCustomHeapType-">RemoveHeapType</a></strong>(const aHeapType: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Engine.TP4PEngine.html#SearchHeapType-PPyObject-TCustomHeapType-">SearchHeapType</a></strong>(heaptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; var aResult: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>): boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -277,6 +297,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FModules"></span><code><strong>FModules</strong>: TList;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FHeapTypes"></span><code><strong>FHeapTypes</strong>: TList;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -469,6 +497,14 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="DestroyHeapTypes"></span><code>procedure <strong>DestroyHeapTypes</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="DestroySyncObj"></span><code>procedure <strong>DestroySyncObj</strong>;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -627,6 +663,48 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddHeapType-TCustomHeapType-"></span><code>procedure <strong>AddHeapType</strong>(const aHeapType: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Add the heap type to the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="RemoveHeapType-TCustomHeapType-"></span><code>procedure <strong>RemoveHeapType</strong>(const aHeapType: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Remove the heap type from the internal module list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SearchHeapType-PPyObject-TCustomHeapType-"></span><code>function <strong>SearchHeapType</strong>(heaptype: <a href="uP4P.Types.html#PPyObject">PPyObject</a>; var aResult: <a href="uP4P.CustomHeapType.TCustomHeapType.html">TCustomHeapType</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Search the heap type in the internal heap type list.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="IsIOModule-PPyObject-"></span><code>function <strong>IsIOModule</strong>(module: <a href="uP4P.Types.html#PPyObject">PPyObject</a>): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -778,7 +856,7 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>ID generator used for modules.
+<p>ID generator used for modules and heap types.
 
 <p></p>
 </td></tr>

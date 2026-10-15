@@ -55,7 +55,7 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FSlotManager">FSlotManager</a></strong>: <a href="uP4P.Interfaces.IPySlotManager.html">IPySlotManager</a>;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FSlotManager">FSlotManager</a></strong>: <a href="uP4P.Interfaces.IPyModuleSlotManager.html">IPyModuleSlotManager</a>;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -82,6 +82,10 @@ body { margin: 0.5em; }
 <td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FID">FID</a></strong>: cardinal;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FCreateModuleFunction">FCreateModuleFunction</a></strong>: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a></strong>: <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>;</code></td>
 </tr>
@@ -221,9 +225,13 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#ExecFunction">ExecFunction</a></strong>                  : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>     read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#CreateModuleFunction">CreateModuleFunction</a></strong>          : <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>   read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FCreateModuleFunction">FCreateModuleFunction</a>     write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FCreateModuleFunction">FCreateModuleFunction</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#ExecFunction">ExecFunction</a></strong>                  : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>     read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomPyModule.TCustomPyModule.html#OnAfterInitialization">OnAfterInitialization</a></strong>         : TNotifyEvent        read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>    write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FOnAfterInitialization">FOnAfterInitialization</a>;</code></td>
 </tr>
@@ -265,7 +273,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="FSlotManager"></span><code><strong>FSlotManager</strong>: <a href="uP4P.Interfaces.IPySlotManager.html">IPySlotManager</a>;</code></td>
+<td class="itemcode"><span id="FSlotManager"></span><code><strong>FSlotManager</strong>: <a href="uP4P.Interfaces.IPyModuleSlotManager.html">IPyModuleSlotManager</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -314,6 +322,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FID"></span><code><strong>FID</strong>: cardinal;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FCreateModuleFunction"></span><code><strong>FCreateModuleFunction</strong>: <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -699,7 +715,9 @@ body { margin: 0.5em; }
 <p>
 
 
-<p>The module Token.
+<p>The module token.
+
+<p>The associated token is a pointer-sized value intended to identify this object.
 
 <p></p>
 <p>
@@ -713,15 +731,37 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateModuleFunction"></span><code>property <strong>CreateModuleFunction</strong>          : <a href="uP4P.Types.html#create_modulefunc">create_modulefunc</a>   read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FCreateModuleFunction">FCreateModuleFunction</a>     write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FCreateModuleFunction">FCreateModuleFunction</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Specifies a function that is called to create the module object itself.
+
+<p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create</a>&quot;&gt;See the article about Py_mod_create.)</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="ExecFunction"></span><code>property <strong>ExecFunction</strong>                  : <a href="uP4P.Types.html#exec_modulefunc">exec_modulefunc</a>     read <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>             write <a href="uP4P.CustomPyModule.TCustomPyModule.html#FExecFunction">FExecFunction</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
 
 
-<p>The function that will execute, or initialize, the module.
+<p>Specifies a function that is called to execute the module. This is equivalent to executing the code of a Python module: typically, this function adds classes and constants to the module.
 
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec">https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec</a>&quot;&gt;See the article about Py_mod_exec.)</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

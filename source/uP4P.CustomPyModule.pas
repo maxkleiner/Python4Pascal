@@ -30,13 +30,14 @@ type
       FDocStrings            : string;
       FModule                : IPyObject;
       FModuleDef             : IPyModuleDef;
-      FSlotManager           : IPySlotManager;
+      FSlotManager           : IPyModuleSlotManager;
       FIsExtension           : boolean;
       FOnAfterInitialization : TNotifyEvent;
       FMultIntprSupport      : TMultIntprSupport;
       FGILUsed               : boolean;
       FUseLegacyAPI          : boolean;
       FID                    : cardinal;
+      FCreateModuleFunction  : create_modulefunc;
       FExecFunction          : exec_modulefunc;
 
       function  GetName: AnsiString;
@@ -151,6 +152,8 @@ type
       property ID                            : cardinal            read FID;
       /// <summary>
       /// <para>The module token.</para>
+      /// <para>The associated token is a pointer-sized value intended to
+      /// identify this object.</para>
       /// </summary>
       /// <remarks>
       /// <para><see href="https://docs.python.org/3.15/c-api/module.html#ext-module-token">See the article about Module token.</see></para>
@@ -158,8 +161,21 @@ type
       /// </remarks>
       property Token                         : Pointer             read GetToken;
       /// <summary>
-      /// <para>The function that will execute, or initialize, the module.</para>
+      /// <para>Specifies a function that is called to create the module object
+      /// itself.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_create">See the article about Py_mod_create.</see></para>
+      /// </remarks>
+      property CreateModuleFunction          : create_modulefunc   read FCreateModuleFunction     write FCreateModuleFunction;
+      /// <summary>
+      /// <para>Specifies a function that is called to execute the module. This is
+      /// equivalent to executing the code of a Python module: typically, this
+      /// function adds classes and constants to the module.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/module.html#c.Py_mod_exec">See the article about Py_mod_exec.</see></para>
+      /// </remarks>
       property ExecFunction                  : exec_modulefunc     read FExecFunction             write FExecFunction;
       /// <summary>
       /// <para>Event triggered after the module has been initialized.</para>
@@ -170,9 +186,8 @@ type
 implementation
 
 uses
-  uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine,
-  uP4P.PyModuleDef, uP4P.PySlotManager, uP4P.MiscFunctions,
-  uP4P.PyModuleSlotManager;
+  uP4P.PyModuleSpecHelper, uP4P.PyModule, uP4P.Engine, uP4P.MiscFunctions,
+  uP4P.PyModuleDef, uP4P.PyModuleSlotManager;
 
 function Exec_Module(module: PPyObject): integer; cdecl;
 var
@@ -200,6 +215,7 @@ begin
   FGILUsed               := True;
   FIsExtension           := aIsExtension;
   FExecFunction          := {$IFDEF FPC}@{$ENDIF}Exec_Module;
+  FCreateModuleFunction  := nil;
 
   if (GlobalP4PEngine <> nil) then
     begin
@@ -388,12 +404,13 @@ begin
 
   CreateSlotManager;
 
-  FSlotManager.Name_            := StringToPyUTF8(FName);
-  FSlotManager.DocStrings       := StringToPyUTF8(FDocStrings);
-  FSlotManager.ExecFunction     := FExecFunction;
-  FSlotManager.MultIntprSupport := FMultIntprSupport;
-  FSlotManager.GILUsed          := FGILUsed;
-  FSlotManager.Token            := {%H-}pointer(FID);
+  FSlotManager.Name_                := StringToPyUTF8(FName);
+  FSlotManager.DocStrings           := StringToPyUTF8(FDocStrings);
+  FSlotManager.ExecFunction         := FExecFunction;
+  FSlotManager.CreateModuleFunction := CreateModuleFunction;
+  FSlotManager.MultIntprSupport     := FMultIntprSupport;
+  FSlotManager.GILUsed              := FGILUsed;
+  FSlotManager.Token                := {%H-}pointer(FID);
 
   FSlotManager.BuildMethodsAndSlots;
 

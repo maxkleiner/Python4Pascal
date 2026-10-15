@@ -580,10 +580,6 @@
         <UnitName Value="uP4P.PyModuleDef_Slot"/>
       </Item>
       <Item>
-        <Filename Value="..\source\uP4P.PySlotManager.pas"/>
-        <UnitName Value="uP4P.PySlotManager"/>
-      </Item>
-      <Item>
         <Filename Value="..\source\uP4P.CustomHeapType.pas"/>
         <UnitName Value="uP4P.CustomHeapType"/>
       </Item>

@@ -682,6 +682,11 @@ const
   Py_sq_item = 44;
   Py_sq_length = 45;
   Py_sq_repeat = 46;
+  /// <summary>
+  /// <para>An optional pointer to an instance allocation function.</para>
+  /// <para>The function signature is:</para>
+  /// <code>PyObject *tp_alloc(PyTypeObject *self, Py_ssize_t nitems);</code>
+  /// </summary>
   Py_tp_alloc = 47;
   /// <summary>
   /// <para>Equivalent to Py_tp_bases (with s at the end). If both are
@@ -704,11 +709,52 @@ const
   /// of types.</para>
   /// </summary>
   Py_tp_bases = 49;
+  /// <summary>
+  /// <para>An optional pointer to a function that implements calling the
+  /// object. This should be nil if the object is not callable. The signature
+  /// is the same as for TPyObject.Call():</para>
+  /// <code>PyObject *tp_call(PyObject *self, PyObject *args, PyObject *kwargs);</code>
+  /// </summary>
   Py_tp_call = 50;
+  /// <summary>
+  /// <para>An optional pointer to a clear function. The signature is:</para>
+  /// <code>int tp_clear(PyObject *);</code>
+  /// <para>The purpose of this function is to break reference cycles that are
+  /// causing a cyclic isolate so that the objects can be safely destroyed.
+  /// A cleared object is a partially destroyed object; the object is not
+  /// obligated to satisfy design invariants held during normal use.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#c.PyTypeObject.tp_clear">See the article about PyTypeObject.tp_clear.</see></para>
+  /// </remarks>
   Py_tp_clear = 51;
+  /// <summary>
+  /// <para>A pointer to the instance destructor function. The function
+  /// signature is:</para>
+  /// <code>void tp_dealloc(PyObject *self);</code>
+  /// <para>The destructor function should remove all references which the
+  /// instance owns (e.g., call Py_CLEAR()), free all memory buffers owned by
+  /// the instance, and call the type's tp_free function to free the object
+  /// itself.</para>
+  /// </summary>
   Py_tp_dealloc = 52;
+  /// <summary>
+  /// <para>This is deprecated. Use Py_tp_finalize instead.</para>
+  /// </summary>
   Py_tp_del = 53;
+  /// <summary>
+  /// <para>An optional pointer to a "descriptor get" function. The function
+  /// signature is:</para>
+  /// <code>PyObject * tp_descr_get(PyObject *self, PyObject *obj, PyObject *type);</code>
+  /// </summary>
   Py_tp_descr_get = 54;
+  /// <summary>
+  /// <para>An optional pointer to a function for setting and deleting a
+  /// descriptor's value.</para>
+  /// <para>The function signature is:</para>
+  /// <code>int tp_descr_set(PyObject *self, PyObject *obj, PyObject *value);</code>
+  /// <para>The value argument is set to nil to delete the value.</para>
+  /// </summary>
   Py_tp_descr_set = 55;
   /// <summary>
   /// <para>An optional pointer to a NUL-terminated C string giving the
@@ -719,31 +765,288 @@ const
   /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#c.PyTypeObject.tp_doc">See the article about PyTypeObject.tp_doc.</see></para>
   /// </remarks>
   Py_tp_doc = 56;
+  /// <summary>
+  /// <para>An optional pointer to the get-attribute-string function.</para>
+  /// <para>This field is deprecated. When it is defined, it should point to a
+  /// function that acts the same as the Py_tp_getattro function, but taking a C
+  /// string instead of a Python string object to give the attribute name.</para>
+  /// </summary>
   Py_tp_getattr = 57;
+  /// <summary>
+  /// <para>An optional pointer to the get-attribute function.</para>
+  /// <para>The signature is the same as for TPyObject.GetAttr():</para>
+  /// <code>PyObject *tp_getattro(PyObject *self, PyObject *attr);</code>
+  /// <para>It is usually convenient to set this field to
+  /// TPyObject.GenericGetAttr(), which implements the normal way of looking
+  /// for object attributes.</para>
+  /// </summary>
   Py_tp_getattro = 58;
+  /// <summary>
+  /// <para>An optional pointer to a function that implements the built-in
+  /// function hash().</para>
+  /// <para>The signature is the same as for TPyObject.Hash():</para>
+  /// <code>Py_hash_t tp_hash(PyObject *);</code>
+  /// <para>The value -1 should not be returned as a normal return value; when
+  /// an error occurs during the computation of the hash value, the function
+  /// should set an exception and return -1.</para>
+  /// <para>When this field is not set (and tp_richcompare is not set), an
+  /// attempt to take the hash of the object raises TypeError. This is the same
+  /// as setting it to TPyObject.HashNotImplemented().</para>
+  /// <para>This field can be set explicitly to TPyObject.HashNotImplemented()
+  /// to block inheritance of the hash method from a parent type. This is
+  /// interpreted as the equivalent of __hash__ = None at the Python level,
+  /// causing isinstance(o, collections.Hashable) to correctly return False.
+  /// Note that the converse is also true - setting __hash__ = None on a class
+  /// at the Python level will result in the tp_hash slot being set to
+  /// TPyObject.HashNotImplemented().</para>
+  /// </summary>
   Py_tp_hash = 59;
+  /// <summary>
+  /// <para>An optional pointer to an instance initialization function.</para>
+  /// <para>This function corresponds to the __init__() method of classes.
+  /// Like __init__(), it is possible to create an instance without calling
+  /// __init__(), and it is possible to reinitialize an instance by calling
+  /// its __init__() method again.</para>
+  /// <para>The function signature is:</para>
+  /// <code>int tp_init(PyObject *self, PyObject *args, PyObject *kwds);</code>
+  /// <para>The self argument is the instance to be initialized; the args and
+  /// kwds arguments represent positional and keyword arguments of the call to
+  /// __init__().</para>
+  /// <para>The tp_init function, if not nil, is called when an instance is
+  /// created normally by calling its type, after the type's tp_new function
+  /// has returned an instance of the type. If the tp_new function returns an
+  /// instance of some other type that is not a subtype of the original type,
+  /// no tp_init function is called; if tp_new returns an instance of a subtype
+  /// of the original type, the subtype's tp_init is called.</para>
+  /// <para>Returns 0 on success, -1 and sets an exception on error.</para>
+  /// </summary>
   Py_tp_init = 60;
+  /// <summary>
+  /// <para>An optional pointer to a function called by the garbage
+  /// collector.</para>
+  /// <para>The garbage collector needs to know whether a particular object
+  /// is collectible or not. Normally, it is sufficient to look at the
+  /// object's type's tp_flags field, and check the Py_TPFLAGS_HAVE_GC flag bit.
+  /// But some types have a mixture of statically and dynamically allocated
+  /// instances, and the statically allocated instances are not collectible.
+  /// Such types should define this function; it should return 1 for a
+  /// collectible instance, and 0 for a non-collectible instance.
+  /// The signature is:</para>
+  /// <code>int tp_is_gc(PyObject *self);</code>
+  /// <para>(The only example of this are types themselves. The metatype,
+  /// PyType_Type, defines this function to distinguish between statically and
+  /// dynamically allocated types.)</para>
+  /// </summary>
   Py_tp_is_gc = 61;
+  /// <summary>
+  /// <para>An optional pointer to a function that returns an iterator for
+  /// the object. Its presence normally signals that the instances of this type
+  /// are iterable (although sequences may be iterable without this
+  /// function).</para>
+  /// <para>This function has the same signature as TPyObject.GetIter():</para>
+  /// <code>PyObject *tp_iter(PyObject *self);</code>
+  /// </summary>
   Py_tp_iter = 62;
+  /// <summary>
+  /// <para>An optional pointer to a function that returns the next item in an
+  /// iterator. The signature is:</para>
+  /// <code>PyObject *tp_iternext(PyObject *self);</code>
+  /// <para>When the iterator is exhausted, the tp_iternext function must
+  /// return nil; a StopIteration exception may or may not be set. When another
+  /// error occurs, it must return nil too. The presence of tp_iternext signals
+  /// that the instances of this type are iterators.</para>
+  /// <para>Iterator types should also define the tp_iter function, and that
+  /// function should return the iterator instance itself (not a new iterator
+  /// instance).</para>
+  /// <para>This function has the same signature as TPyIter.Next().</para>
+  /// </summary>
   Py_tp_iternext = 63;
+  /// <summary>
+  /// <para>An optional pointer to a static nil-terminated array of
+  /// PyMethodDef structures, declaring regular methods of this type.</para>
+  /// <para>For each entry in the array, an entry is added to the type's
+  /// dictionary (see tp_dict below) containing a method descriptor.</para>
+  /// </summary>
   Py_tp_methods = 64;
+  /// <summary>
+  /// <para>An optional pointer to an instance creation function.</para>
+  /// <para>The function signature is:</para>
+  /// <code>PyObject *tp_new(PyTypeObject *subtype, PyObject *args, PyObject *kwds);</code>
+  /// <para>The subtype argument is the type of the object being created;
+  /// the args and kwds arguments represent positional and keyword arguments
+  /// of the call to the type. Note that subtype doesn't have to equal the type
+  /// whose tp_new function is called; it may be a subtype of that type
+  /// (but not an unrelated type).</para>
+  /// <para>The tp_new function should call subtype->tp_alloc(subtype, nitems)
+  /// to allocate space for the object, and then do only as much further
+  /// initialization as is absolutely necessary. Initialization that can safely
+  /// be ignored or repeated should be placed in the tp_init handler. A good
+  /// rule of thumb is that for immutable types, all initialization should take
+  /// place in tp_new, while for mutable types, most initialization should be
+  /// deferred to tp_init.</para>
+  /// <para>Set the Py_TPFLAGS_DISALLOW_INSTANTIATION flag to disallow creating
+  /// instances of the type in Python.</para>
+  /// </summary>
   Py_tp_new = 65;
+  /// <summary>
+  /// <para>An optional pointer to a function that implements the built-in
+  /// function repr().</para>
+  /// <para>The signature is the same as for TPyObject.Repr():</para>
+  /// <code>PyObject *tp_repr(PyObject *self);</code>
+  /// <para>The function must return a string or a Unicode object. Ideally, this
+  /// function should return a string that, when passed to eval(), given a
+  /// suitable environment, returns an object with the same value. If this is
+  /// not feasible, it should return a string starting with '<' and ending
+  /// with '>' from which both the type and the value of the object can be
+  /// deduced.</para>
+  /// <para>When this field is not set, a string of the form <%s object at %p>
+  /// is returned, where %s is replaced by the type name, and %p by the object's
+  /// memory address.</para>
+  /// </summary>
   Py_tp_repr = 66;
+  /// <summary>
+  /// <para>An optional pointer to the rich comparison function, whose
+  /// signature is:</para>
+  /// <code>PyObject *tp_richcompare(PyObject *self, PyObject *other, int op);</code>
+  /// <para>The first parameter is guaranteed to be an instance of the type
+  /// that is defined by PyTypeObject.</para>
+  /// <para>The function should return the result of the comparison (usually
+  /// Py_True or Py_False). If the comparison is undefined, it must return
+  /// Py_NotImplemented, if another error occurred it must return nil and set
+  /// an exception condition.</para>
+  /// <para>The following constants are defined to be used as the third
+  /// argument for tp_richcompare and for TPyObject.RichCompare():</para>
+  /// <code>
+  /// Constant    Comparison
+  /// ----------------------
+  ///   Py_LT         <
+  ///   Py_LE         <=
+  ///   Py_EQ         ==
+  ///   Py_NE         !=
+  ///   Py_GT         >
+  ///   Py_GE         >=
+  /// </code>
+  /// </summary>
   Py_tp_richcompare = 67;
+  /// <summary>
+  /// <para>An optional pointer to the function for setting and deleting
+  /// attributes.</para>
+  /// <para>This field is deprecated. When it is defined, it should point to a
+  /// function that acts the same as the tp_setattro function, but taking a C
+  /// string instead of a Python string object to give the attribute
+  /// name.</para>
+  /// </summary>
   Py_tp_setattr = 68;
+  /// <summary>
+  /// <para>An optional pointer to the function for setting and deleting
+  /// attributes.</para>
+  /// <para>The signature is the same as for TPyObject.SetAttr():</para>
+  /// <code>int tp_setattro(PyObject *self, PyObject *attr, PyObject *value);</code>
+  /// <para>In addition, setting value to NULL to delete an attribute must be
+  /// supported. It is usually convenient to set this field to
+  /// TPyObject.GenericSetAttr(), which implements the normal way of setting
+  /// object attributes.</para>
+  /// </summary>
   Py_tp_setattro = 69;
+  /// <summary>
+  /// <para>An optional pointer to a function that implements the built-in
+  /// operation str(). (Note that str is a type now, and str() calls the
+  /// constructor for that type. This constructor calls TPyObject.Str() to do
+  /// the actual work, and TPyObject.Str() will call this handler.)</para>
+  /// <para>The signature is the same as for PyObject_Str():</para>
+  /// <code>PyObject *tp_str(PyObject *self);</code>
+  /// <para>The function must return a string or a Unicode object. It should
+  /// be a "friendly" string representation of the object, as this is the
+  /// representation that will be used, among other things, by the print()
+  /// function.</para>
+  /// </summary>
   Py_tp_str = 70;
+  /// <summary>
+  /// <para>An optional pointer to a traversal function for the garbage
+  /// collector. This is only used if the Py_TPFLAGS_HAVE_GC flag bit
+  /// is set.</para>
+  /// <para>See Traversal for documentation.</para>
+  /// </summary>
   Py_tp_traverse = 71;
+  /// <summary>
+  /// <para>An optional pointer to a static nil-terminated array of
+  /// PyMemberDef structures, declaring regular data members (fields or slots)
+  /// of instances of this type.</para>
+  /// <para>For each entry in the array, an entry is added to the type's
+  /// dictionary (see tp_dict below) containing a member descriptor.</para>
+  /// </summary>
   Py_tp_members = 72;
+  /// <summary>
+  /// <para>An optional pointer to a static nil-terminated array of
+  /// PyGetSetDef structures, declaring computed attributes of instances of
+  /// this type.</para>
+  /// <para>For each entry in the array, an entry is added to the type's
+  /// dictionary (see tp_dict below) containing a getset descriptor.</para>
+  /// </summary>
   Py_tp_getset = 73;
+  /// <summary>
+  /// <para>An optional pointer to an instance deallocation function.
+  /// Its signature is:</para>
+  /// <code>void tp_free(void *self);</code>
+  /// <para>This function must free the memory allocated by tp_alloc.</para>
+  /// </summary>
   Py_tp_free = 74;
   Py_nb_matrix_multiply = 75;
   Py_nb_inplace_matrix_multiply = 76;
   Py_am_await = 77;
   Py_am_aiter = 78;
   Py_am_anext = 79;
+  /// <summary>
+  /// <para>An optional pointer to an instance finalization function. This is
+  /// the C implementation of the __del__() special method.
+  /// Its signature is:</para>
+  /// <code>void tp_finalize(PyObject *self);</code>
+  /// <para>The primary purpose of finalization is to perform any non-trivial
+  /// cleanup that must be performed before the object is destroyed, while the
+  /// object and any other objects it directly or indirectly references are
+  /// still in a consistent state. The finalizer is allowed to execute
+  /// arbitrary Python code.</para>
+  /// <para>Before Python automatically finalizes an object, some of the
+  /// object's direct or indirect referents might have themselves been
+  /// automatically finalized. However, none of the referents will have been
+  /// automatically cleared (tp_clear) yet.</para>
+  /// <para>Other non-finalized objects might still be using a finalized object,
+  /// so the finalizer must leave the object in a sane state (e.g., invariants
+  /// are still met).</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#c.PyTypeObject.tp_finalize">See the article about PyTypeObject.tp_finalize.</see></para>
+  /// </remarks>
   Py_tp_finalize = 80;
   Py_am_send = 81;
+  /// <summary>
+  /// <para>A vectorcall function to use for calls of this type object
+  /// (rather than instances). In other words, tp_vectorcall can be used to
+  /// optimize type.__call__, which typically returns a new instance of
+  /// type.</para>
+  /// <para>As with any vectorcall function, if tp_vectorcall is nil, the
+  /// tp_call protocol (Py_TYPE(type)->tp_call) is used instead.</para>
+  /// <para>Note: The vectorcall protocol requires that the vectorcall function
+  /// has the same behavior as the corresponding tp_call. This means that
+  /// type->tp_vectorcall must match the behavior of
+  /// Py_TYPE(type)->tp_call.</para>
+  /// <para>Specifically, if type uses the default metaclass,
+  /// type->tp_vectorcall must behave the same as PyType_Type->tp_call,
+  /// which:</para>
+  /// <code>
+  /// - calls type->tp_new,
+  /// - if the result is a subclass of type, calls type->tp_init on the result
+  ///   of tp_new, and
+  /// - returns the result of tp_new.
+  /// </code>
+  /// <para>Typically, tp_vectorcall is overridden to optimize this process for
+  /// specific tp_new and tp_init. When doing this for user-subclassable types,
+  /// note that both can be overridden (using __new__() and __init__(),
+  /// respectively).</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#c.PyTypeObject.tp_vectorcall">See the article about PyTypeObject.tp_vectorcall.</see></para>
+  /// </remarks>
   Py_tp_vectorcall = 82;
   /// <summary>
   /// <para>Slot ID for recording a static memory layout ID for a class.</para>

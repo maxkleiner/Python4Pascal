@@ -38,6 +38,11 @@ type
       FExecFunction          : exec_modulefunc;
       FMultIntprSupport      : TMultIntprSupport;
       FGILUsed               : boolean;
+      FCreateModuleFunction  : create_modulefunc;
+      FSize                  : integer;
+      FTraverse              : traverseproc;
+      FClear                 : inquiry;
+      FFree                  : freefunc;
 
       procedure CreateSlotArray;
       procedure CreateMethodArray;
@@ -50,18 +55,28 @@ type
       function  GetInitialized: boolean;
       function  GetName: AnsiString;
       function  GetDocStrings: AnsiString;
+      function  GetCreateModuleFunction: create_modulefunc;
       function  GetExecFunction: exec_modulefunc;
       function  GetMultIntprSupport: TMultIntprSupport;
       function  GetGILUsed: boolean;
+      function  GetSize: integer;
+      function  GetTraverse: traverseproc;
+      function  GetClear: inquiry;
+      function  GetFree: freefunc;
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
       function  GetModuleDef: PPyModuleDef;
 
       procedure SetName(const aValue: AnsiString);
       procedure SetDocStrings(const aValue: AnsiString);
+      procedure SetCreateModuleFunction(aValue: create_modulefunc);
       procedure SetExecFunction(aValue: exec_modulefunc);
       procedure SetMultIntprSupport(aValue: TMultIntprSupport);
       procedure SetGILUsed(aValue: boolean);
+      procedure SetSize(aValue: integer);
+      procedure SetTraverse(aValue: traverseproc);
+      procedure SetClear(aValue: inquiry);
+      procedure SetFree(aValue: freefunc);
 
       /// <summary>
       /// Override this procedure to add your custom slots.
@@ -76,6 +91,7 @@ type
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
       function  AddSentinelSlot: boolean;
       function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
+      function  AddCreateSlot: boolean;
       function  AddExecSlot: boolean;
       function  AddMultipleInterpretersSlot: boolean;
       function  AddGILSlot: boolean;
@@ -133,6 +149,11 @@ type
       /// </summary>
       property  ModuleDef              : PPyModuleDef       read GetModuleDef;
       /// <summary>
+      /// <para>Specifies a function that is called to create the module object
+      /// itself.</para>
+      /// </summary>
+      property  CreateModuleFunction   : create_modulefunc  read GetCreateModuleFunction write SetCreateModuleFunction;
+      /// <summary>
       /// Function that will execute, or initialize, the module.
       /// </summary>
       property  ExecFunction           : exec_modulefunc    read GetExecFunction         write SetExecFunction;
@@ -147,6 +168,40 @@ type
       /// (GIL) or it's safe to run without an active GIL.
       /// </summary>
       property  GILUsed                : boolean            read GetGILUsed              write SetGILUsed;
+      /// <summary>
+      /// Module state size. This value will be used in PyModuleDef.m_size.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+      /// </remarks>
+      property  Size_                  : integer            read GetSize                 write SetSize;
+      /// <summary>
+      /// <para>A traversal function to call during GC traversal of the module
+      /// object, or nil if not needed.</para>
+      /// <para>This value will be used in PyModuleDef.m_traverse.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+      /// </remarks>
+      property  Traverse               : traverseproc       read GetTraverse             write SetTraverse;
+      /// <summary>
+      /// <para>A clear function to call during GC clearing of the module object,
+      /// or nil if not needed.</para>
+      /// <para>This value will be used in PyModuleDef.m_clear.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+      /// </remarks>
+      property  Clear_                 : inquiry            read GetClear                write SetClear;
+      /// <summary>
+      /// <para>A function to call during deallocation of the module object,
+      /// or nil if not needed.</para>
+      /// <para>This value will be used in PyModuleDef.m_free.</para>
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3/c-api/module.html#c.PyModuleDef">See the article about PyModuleDef.</see></para>
+      /// </remarks>
+      property  Free_                  : freefunc           read GetFree                 write SetFree;
   end;
 
 implementation
@@ -161,6 +216,7 @@ begin
 
   FName                  := '';
   FDocStrings            := '';
+  FCreateModuleFunction  := nil;
   FExecFunction          := nil;
   FMultIntprSupport      := piUnknown;
   FGILUsed               := True;
@@ -169,6 +225,10 @@ begin
   FMethodList            := nil;
   FMethods               := nil;
   FInitialized           := False;
+  FSize                  := low(integer);
+  FTraverse              := nil;
+  FClear                 := nil;
+  FFree                  := nil;
 end;
 
 destructor TPyModuleDef.Destroy;
@@ -207,10 +267,16 @@ begin
 
   FModuleDef.m_slots   := @FSlots[0];
   FModuleDef.m_methods := @FMethods[0];
+
+  if (FSize <> low(integer)) then FModuleDef.m_size     := FSize;
+  if assigned(FTraverse)     then FModuleDef.m_traverse := FTraverse;
+  if assigned(FClear)        then FModuleDef.m_clear    := FClear;
+  if assigned(FFree)         then FModuleDef.m_free     := FFree;
 end;
 
 procedure TPyModuleDef.AddAllSlots;
 begin
+  AddCreateSlot;
   AddExecSlot;
   AddMultipleInterpretersSlot;
   AddGILSlot;
@@ -262,6 +328,20 @@ begin
         Result := True
        else
         TempSlot.Free;
+    end;
+end;
+
+function TPyModuleDef.AddCreateSlot: boolean;
+begin
+  Result := False;
+
+  if assigned(FCreateModuleFunction) then
+    begin
+      {$IFDEF FPC}
+      Result := AddSlot(TPy_mod.create, Pointer(FCreateModuleFunction));
+      {$ELSE}
+      Result := AddSlot(TPy_mod.create, @FCreateModuleFunction);
+      {$ENDIF}
     end;
 end;
 
@@ -477,6 +557,26 @@ begin
     Result := nil;
 end;
 
+function TPyModuleDef.GetSize: integer;
+begin
+  Result := FSize;
+end;
+
+function TPyModuleDef.GetTraverse: traverseproc;
+begin
+  Result := FTraverse;
+end;
+
+function TPyModuleDef.GetClear: inquiry;
+begin
+  Result := FClear;
+end;
+
+function TPyModuleDef.GetFree: freefunc;
+begin
+  Result := FFree;
+end;
+
 procedure TPyModuleDef.SetName(const aValue: AnsiString);
 begin
   FName := aValue;
@@ -485,6 +585,16 @@ end;
 procedure TPyModuleDef.SetDocStrings(const aValue: AnsiString);
 begin
   FDocStrings := aValue;
+end;
+
+function TPyModuleDef.GetCreateModuleFunction: create_modulefunc;
+begin
+  Result := FCreateModuleFunction;
+end;
+
+procedure TPyModuleDef.SetCreateModuleFunction(aValue: create_modulefunc);
+begin
+  FCreateModuleFunction := aValue;
 end;
 
 procedure TPyModuleDef.SetExecFunction(aValue: exec_modulefunc);
@@ -501,6 +611,27 @@ procedure TPyModuleDef.SetGILUsed(aValue: boolean);
 begin
   FGILUsed := aValue;
 end;
+
+procedure TPyModuleDef.SetSize(aValue: integer);
+begin
+  FSize := aValue;
+end;
+
+procedure TPyModuleDef.SetTraverse(aValue: traverseproc);
+begin
+  FTraverse := aValue;
+end;
+
+procedure TPyModuleDef.SetClear(aValue: inquiry);
+begin
+  FClear := aValue;
+end;
+
+procedure TPyModuleDef.SetFree(aValue: freefunc);
+begin
+  FFree := aValue;
+end;
+
 
 class function TPyModuleDef.Init(const def: PyModuleDef): PPyObject;
 begin

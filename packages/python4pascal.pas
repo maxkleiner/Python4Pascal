@@ -43,9 +43,9 @@ uses
   uP4P.PyBytesWriter, uP4P.PyFrozenDict, uP4P.PyInterpreterGuard, 
   uP4P.PyInterpreterView, uP4P.PyTimeStruct, uP4P.Py_bf, uP4P.Py_mod, 
   uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, uP4P.PySlot, 
-  uP4P.PyMethodDef, uP4P.PyModuleDef_Slot, uP4P.PySlotManager, 
-  uP4P.CustomHeapType, uP4P.PyType_Spec, uP4P.PyType_Slot, 
-  uP4P.PyModuleSlotManager, uP4P.PyHeapTypeSlotManager, LazarusPackageIntf;
+  uP4P.PyMethodDef, uP4P.PyModuleDef_Slot, uP4P.CustomHeapType, 
+  uP4P.PyType_Spec, uP4P.PyType_Slot, uP4P.PyModuleSlotManager, 
+  uP4P.PyHeapTypeSlotManager, LazarusPackageIntf;
 
 implementation
 

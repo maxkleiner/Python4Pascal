@@ -24,6 +24,8 @@ AllConstants.html
 AllFunctions.html
 AllIdentifiers.html
 uP4P.Constants.html
+uP4P.CustomHeapType.html
+uP4P.CustomHeapType.TCustomHeapType.html
 uP4P.CustomPyModule.html
 uP4P.CustomPyModule.TCustomPyModule.html
 uP4P.Engine.html
@@ -52,7 +54,9 @@ uP4P.Interfaces.IPyCriticalSection.html
 uP4P.Interfaces.IPyCriticalSection2.html
 uP4P.Interfaces.IPyBytesWriter.html
 uP4P.Interfaces.IPyModuleDef.html
-uP4P.Interfaces.IPySlotManager.html
+uP4P.Interfaces.IPyModuleSlotManager.html
+uP4P.Interfaces.IPyHeapTypeSlotManager.html
+uP4P.Interfaces.IPyType_Spec.html
 uP4P.IOPyModule.html
 uP4P.IOPyModule.TIOPyModule.html
 uP4P.IOPyModule.TPyIOModuleDef.html
@@ -128,8 +132,6 @@ uP4P.PyCoro.TPyCoro.html
 uP4P.PyCriticalSection.html
 uP4P.PyCriticalSection.TPyCriticalSection.html
 uP4P.PyCriticalSection.TPyCriticalSection2.html
-uP4P.PyCustomModuleSlotManager.html
-uP4P.PyCustomModuleSlotManager.TPyCustomModuleSlotManager.html
 uP4P.PyDateTimeModule.html
 uP4P.PyDateTimeModule.TPyDateTimeModule.html
 uP4P.PyDescr.html
@@ -184,6 +186,8 @@ uP4P.PyGILState.html
 uP4P.PyGILState.TPyGILState.html
 uP4P.PyHash.html
 uP4P.PyHash.TPyHash.html
+uP4P.PyHeapTypeSlotManager.html
+uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html
 uP4P.PyImport.html
 uP4P.PyImport.TPyImport.html
 uP4P.PyIndex.html
@@ -230,6 +234,8 @@ uP4P.PyModuleDef.html
 uP4P.PyModuleDef.TPyModuleDef.html
 uP4P.PyModuleDef_Slot.html
 uP4P.PyModuleDef_Slot.TPyModuleDef_Slot.html
+uP4P.PyModuleSlotManager.html
+uP4P.PyModuleSlotManager.TPyModuleSlotManager.html
 uP4P.PyModuleSpecHelper.html
 uP4P.PyModuleSpecHelper.TPyModuleSpecHelper.html
 uP4P.PyMonitoring.html
@@ -275,8 +281,6 @@ uP4P.PySlice.html
 uP4P.PySlice.TPySlice.html
 uP4P.PySlot.html
 uP4P.PySlot.TPySlot.html
-uP4P.PySlotManager.html
-uP4P.PySlotManager.TPySlotManager.html
 uP4P.PyState.html
 uP4P.PyState.TPyState.html
 uP4P.PyStaticMethod.html
@@ -309,6 +313,10 @@ uP4P.PyTuple.html
 uP4P.PyTuple.TPyTuple.html
 uP4P.PyType.html
 uP4P.PyType.TPyType.html
+uP4P.PyType_Slot.html
+uP4P.PyType_Slot.TPyType_Slot.html
+uP4P.PyType_Spec.html
+uP4P.PyType_Spec.TPyType_Spec.html
 uP4P.PyUnicode.html
 uP4P.PyUnicode.TPyUnicode.html
 uP4P.PyUnicodeDecodeError.html

@@ -15,8 +15,7 @@ uses
     Classes,
   {$ENDIF}
   uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PySlotManager,
-  uP4P.PyModuleSlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyModuleSlotManager;
 
 const
   IOPyModuleName = 'pyio';

@@ -22,7 +22,7 @@ type
       FName                  : string;
       FHeapType              : IPyObject;
       FTypeSpec              : IPyType_Spec;
-      FSlotManager           : IPySlotManager;
+      FSlotManager           : IPyHeapTypeSlotManager;
       FMetaclass             : PPyTypeObject;
       FModule                : IPyObject;
       FBases                 : IPyObject;
@@ -151,8 +151,8 @@ type
 implementation
 
 uses
-  uP4P.PyModule, uP4P.Engine, uP4P.Constants, uP4P.PySlotManager,
-  uP4P.MiscFunctions, uP4P.PyType_Spec, uP4P.PyHeapTypeSlotManager;
+  uP4P.PyModule, uP4P.Engine, uP4P.Constants, uP4P.MiscFunctions,
+  uP4P.PyType_Spec, uP4P.PyHeapTypeSlotManager;
 
 constructor TCustomHeapType.Create(const aName: string);
 begin
