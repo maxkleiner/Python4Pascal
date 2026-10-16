@@ -33,33 +33,37 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FHeapType">FHeapType</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FDocStrings">FDocStrings</a></strong>: string;</code></td>
 </tr>
 <tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FHeapType">FHeapType</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FTypeSpec">FTypeSpec</a></strong>: <a href="uP4P.Interfaces.IPyType_Spec.html">IPyType_Spec</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FSlotManager">FSlotManager</a></strong>: <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html">IPyHeapTypeSlotManager</a>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FMetaclass">FMetaclass</a></strong>: <a href="uP4P.Types.html#PPyTypeObject">PPyTypeObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FModule">FModule</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FBases">FBases</a></strong>: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FUseLegacyAPI">FUseLegacyAPI</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#FID">FID</a></strong>: cardinal;</code></td>
 </tr>
@@ -209,6 +213,10 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#Token">Token</a></strong>                         : Pointer             read <a href="uP4P.CustomHeapType.TCustomHeapType.html#GetToken">GetToken</a>;</code></td>
 </tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.CustomHeapType.TCustomHeapType.html#DocStrings">DocStrings</a></strong>                    : string              read <a href="uP4P.CustomHeapType.TCustomHeapType.html#FDocStrings">FDocStrings</a>                 write <a href="uP4P.CustomHeapType.TCustomHeapType.html#FDocStrings">FDocStrings</a>;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Fields</h3>
@@ -216,6 +224,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="FName"></span><code><strong>FName</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDocStrings"></span><code><strong>FDocStrings</strong>: string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -664,6 +680,20 @@ body { margin: 0.5em; }
 <p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/type.html#c.Py_tp_token">https://docs.python.org/3.15/c-api/type.html#c.Py_tp_token</a>&quot;&gt;See the article about Py_tp_token.)
 
 <p>Added in version 3.14.</p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DocStrings"></span><code>property <strong>DocStrings</strong>                    : string              read <a href="uP4P.CustomHeapType.TCustomHeapType.html#FDocStrings">FDocStrings</a>                 write <a href="uP4P.CustomHeapType.TCustomHeapType.html#FDocStrings">FDocStrings</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The docstring for this type object. This is exposed as the __doc__ attribute on the type and instances of the type.
+
+<p></p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>

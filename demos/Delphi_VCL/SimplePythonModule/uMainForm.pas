@@ -110,8 +110,11 @@ end;
 
 function TMainForm.CreateType: boolean;
 begin
-  FTestType := TTestHeapType.Create(TEST_TYPE_NAME);
-  Result    := FTestType.Initialize;
+  FTestType            := TTestHeapType.Create(TEST_TYPE_NAME);
+  FTestType.DocStrings := 'test docstring';
+
+  Result := FTestType.Initialize and
+            TPyModule.AddObject(FTestModule.Module, TEST_TYPE_NAME, FTestType.HeapType);
 end;
 
 procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);

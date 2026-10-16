@@ -16,7 +16,7 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 293
+    Top = 309
     Width = 736
     Height = 3
     Cursor = crVSplit
@@ -44,9 +44,9 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 296
+    Top = 312
     Width = 736
-    Height = 350
+    Height = 334
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
@@ -56,7 +56,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 35
     Width = 736
-    Height = 258
+    Height = 274
     Align = alClient
     Lines.Strings = (
       'import mytest'
@@ -73,7 +73,12 @@ object MainForm: TMainForm
       'print(mytest.is_even(42))'
       ''
       'print("Check if 45 is even...")'
-      'print(mytest.is_even(45))')
+      'print(mytest.is_even(45))'
+      ''
+      'obj = mytest.mytype()'
+      'print(type(obj))'
+      'print(isinstance(obj, mytest.mytype))')
     TabOrder = 2
+    ExplicitHeight = 258
   end
 end

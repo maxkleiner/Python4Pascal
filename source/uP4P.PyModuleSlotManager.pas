@@ -109,7 +109,7 @@ type
       /// <summary>
       /// Create the slots with the methods and all the module information.
       /// </summary>
-      procedure   BuildMethodsAndSlots;
+      procedure   Initialize; virtual;
 
       /// <summary>
       /// Name of the new module or data type.
@@ -194,8 +194,7 @@ type
 implementation
 
 uses
-  uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo, uP4P.Engine, uP4P.PyObject,
-  uP4P.PySlot;
+  uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo, uP4P.PySlot;
 
 constructor TPyModuleSlotManager.Create;
 begin
@@ -793,7 +792,7 @@ begin
   //
 end;
 
-procedure TPyModuleSlotManager.BuildMethodsAndSlots;
+procedure TPyModuleSlotManager.Initialize;
 begin
   AddAllSlots;
   AddAllMethods;

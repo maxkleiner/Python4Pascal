@@ -120,7 +120,7 @@ type
 implementation
 
 uses
-  uP4P.MiscFunctions, uP4P.Py_mod;
+  uP4P.MiscFunctions;
 
 constructor TPySlot.Create;
 begin

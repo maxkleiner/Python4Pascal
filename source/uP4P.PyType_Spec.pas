@@ -27,23 +27,32 @@ type
     protected
       FTypeSpec   : PyType_Spec;
       FName       : AnsiString;
+      FDocStrings : AnsiString;
+      FToken      : pointer;
       FSlotList   : TList;
       FSlots      : PyType_SlotArray;
       FMethodList : TList;
       FMethods    : PyMethodDefArray;
-      FToken      : pointer;
+      FMemberList : TList;
+      FMembers    : PyMemberDefArray;
+      FGetSetList : TList;
+      FGetSets    : PyGetSetDefArray;
 
       function  GetName: AnsiString;
+      function  GetDocStrings: AnsiString;
       function  GetBasicsize: integer;
       function  GetItemsize: integer;
       function  GetFlags: cardinal;
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
+      function  GetHasSentinelMember: boolean;
+      function  GetHasSentinelGetSet: boolean;
       function  GetSlots: PPyType_Slot;
       function  GetTypeSpec: PPyType_Spec;
       function  GetToken: pointer;
 
       procedure SetName(const aValue: AnsiString);
+      procedure SetDocStrings(const aValue: AnsiString);
       procedure SetBasicsize(aValue: integer);
       procedure SetItemsize(aValue: integer);
       procedure SetFlags(aValue: cardinal);
@@ -51,11 +60,17 @@ type
 
       procedure CreateSlotArray;
       procedure CreateMethodArray;
+      procedure CreateMemberArray;
+      procedure CreateGetSetterArray;
 
       procedure DestroySlotList;
       procedure DestroySlots;
       procedure DestroyMethodList;
       procedure DestroyMethods;
+      procedure DestroyMemberList;
+      procedure DestroyMembers;
+      procedure DestroyGetSetList;
+      procedure DestroyGetSets;
 
       /// <summary>
       /// Override this procedure to add your custom slots.
@@ -65,26 +80,46 @@ type
       /// Override this procedure to add your custom methods.
       /// </summary>
       procedure AddAllMethods; virtual;
+      /// <summary>
+      /// Override this procedure to add your custom members.
+      /// </summary>
+      procedure AddAllMembers; virtual;
+      /// <summary>
+      /// Override this procedure to add your custom getsets.
+      /// </summary>
+      procedure AddAllGetSets; virtual;
 
       function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
+      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+      function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
       function  AddSentinelSlot: boolean;
       function  AddSentinelMethod: boolean;
-      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      function  AddSentinelMember: boolean;
+      function  AddSentinelGetSet: boolean;
       procedure AddMethodsSlot;
+      procedure AddMembersSlot;
+      procedure AddGetSetsSlot;
       procedure AddTokenSlot;
+      procedure AddDocSlot;
 
     public
       constructor Create;
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       /// <summary>
-      /// Create the methods and the slots with all the type information.
+      /// Create the methods and the slots with all the heap type information.
       /// </summary>
-      procedure   BuildMethodsAndSlots;
+      procedure   Initialize; virtual;
       /// <summary>
       /// Name of the type, used to set PyTypeObject.tp_name.
       /// </summary>
       property Name_                   : AnsiString        read GetName              write SetName;
+      /// <summary>
+      /// <para>The docstring for this type object. This is exposed as the
+      /// __doc__ attribute on the type and instances of the type.</para>
+      /// </summary>
+      property DocStrings              : AnsiString        read GetDocStrings        write SetDocStrings;
       /// <summary>
       /// <para>If positive, specifies the size of the instance in bytes. It is
       /// used to set PyTypeObject.tp_basicsize.</para>
@@ -103,7 +138,8 @@ type
       /// </summary>
       property Itemsize                : integer           read GetItemsize          write SetItemsize;
       /// <summary>
-      /// Type flags, used to set PyTypeObject.tp_flags.
+      /// <para>Type flags, used to set PyTypeObject.tp_flags.</para>
+      /// <para>Use the Py_TPFLAGS_* constants.</para>
       /// </summary>
       property Flags                   : cardinal          read GetFlags             write SetFlags;
       /// <summary>
@@ -114,6 +150,14 @@ type
       /// Return True if the last method in the list is a sentinel method.
       /// </summary>
       property HasSentinelMethod       : boolean           read GetHasSentinelMethod;
+      /// <summary>
+      /// Return True if the last method in the list is a sentinel member.
+      /// </summary>
+      property HasSentinelMember       : boolean           read GetHasSentinelMember;
+      /// <summary>
+      /// Return True if the last method in the list is a sentinel getsetter.
+      /// </summary>
+      property HasSentinelGetSet       : boolean           read GetHasSentinelGetSet;
       /// <summary>
       /// Return a pointer to the first slot.
       /// </summary>
@@ -135,7 +179,8 @@ type
 implementation
 
 uses
-  uP4P.PyMethodDef, uP4P.PyType_Slot, uP4P.Engine;
+  uP4P.PyMethodDef, uP4P.PyType_Slot, uP4P.Engine, uP4P.PyMemberDef,
+  uP4P.PyGetSetDef;
 
 constructor TPyType_Spec.Create;
 begin
@@ -158,6 +203,10 @@ begin
     DestroySlots;
     DestroyMethodList;
     DestroyMethods;
+    DestroyMemberList;
+    DestroyMembers;
+    DestroyGetSetList;
+    DestroyGetSets;
   finally
     inherited Destroy;
   end;
@@ -171,10 +220,12 @@ begin
   FMethodList := TList.Create;
 end;
 
-procedure TPyType_Spec.BuildMethodsAndSlots;
+procedure TPyType_Spec.Initialize;
 begin
   AddAllSlots;
   AddAllMethods;
+  AddAllMembers;
+  AddAllGetSets;
 
   if not(HasSentinelSlot) then
     AddSentinelSlot;
@@ -182,7 +233,15 @@ begin
   if not(HasSentinelMethod) then
     AddSentinelMethod;
 
+  if not(HasSentinelMember) then
+    AddSentinelMember;
+
+  if not(HasSentinelGetSet) then
+    AddSentinelGetSet;
+
   CreateMethodArray;
+  CreateMemberArray;
+  CreateGetSetterArray;
   CreateSlotArray;
 
   FTypeSpec.slots := Slots;
@@ -191,6 +250,11 @@ end;
 function TPyType_Spec.GetName: AnsiString;
 begin
   Result := FName;
+end;
+
+function TPyType_Spec.GetDocStrings: AnsiString;
+begin
+  Result := FDocStrings;
 end;
 
 function TPyType_Spec.GetBasicsize: integer;
@@ -222,6 +286,20 @@ begin
             TPyMethodDef(FMethodList[FMethodList.Count - 1]).IsSentinel;
 end;
 
+function TPyType_Spec.GetHasSentinelMember: boolean;
+begin
+  Result := assigned(FMemberList) and
+            (FMemberList.Count > 0) and
+            TPyMemberDef(FMemberList[FMemberList.Count - 1]).IsSentinel;
+end;
+
+function TPyType_Spec.GetHasSentinelGetSet: boolean;
+begin
+  Result := assigned(FGetSetList) and
+            (FGetSetList.Count > 0) and
+            TPyGetSetDef(FGetSetList[FGetSetList.Count - 1]).IsSentinel;
+end;
+
 function TPyType_Spec.GetSlots: PPyType_Slot;
 begin
   if (Length(FSlots) > 0) then
@@ -244,6 +322,11 @@ procedure TPyType_Spec.SetName(const aValue: AnsiString);
 begin
   FName          := aValue;
   FTypeSpec.name := PAnsiChar(FName);
+end;
+
+procedure TPyType_Spec.SetDocStrings(const aValue: AnsiString);
+begin
+  FDocStrings := aValue;
 end;
 
 procedure TPyType_Spec.SetBasicsize(aValue: integer);
@@ -320,6 +403,60 @@ begin
     end;
 end;
 
+procedure TPyType_Spec.DestroyMemberList;
+var
+  i : integer;
+begin
+  if assigned(FMemberList) then
+    try
+      i := pred(FMemberList.Count);
+      while (i >= 0) do
+        begin
+          TPyMemberDef(FMemberList[i]).Free;
+          FMemberList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FMemberList);
+    end;
+end;
+
+procedure TPyType_Spec.DestroyMembers;
+begin
+  if assigned(FMembers) then
+    begin
+      SetLength(FMembers, 0);
+      FMembers := nil;
+    end;
+end;
+
+procedure TPyType_Spec.DestroyGetSetList;
+var
+  i : integer;
+begin
+  if assigned(FGetSetList) then
+    try
+      i := pred(FGetSetList.Count);
+      while (i >= 0) do
+        begin
+          TPyGetSetDef(FGetSetList[i]).Free;
+          FGetSetList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FGetSetList);
+    end;
+end;
+
+procedure TPyType_Spec.DestroyGetSets;
+begin
+  if assigned(FGetSets) then
+    begin
+      SetLength(FGetSets, 0);
+      FGetSets := nil;
+    end;
+end;
+
 function TPyType_Spec.AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
 var
   TempSlot : TPyType_Slot;
@@ -344,12 +481,36 @@ end;
 
 procedure TPyType_Spec.AddAllSlots;
 begin
+  AddDocSlot;
+  AddMethodsSlot;
+  AddMembersSlot;
+  AddGetSetsSlot;
+  AddTokenSlot;
+end;
+
+procedure TPyType_Spec.AddAllMembers;
+begin
+  //
+end;
+
+procedure TPyType_Spec.AddAllGetSets;
+begin
   //
 end;
 
 function TPyType_Spec.AddSentinelMethod: boolean;
 begin
   Result := AddMethod('', '', nil, 0);
+end;
+
+function TPyType_Spec.AddSentinelMember: boolean;
+begin
+  Result := AddMember('', '', 0, 0, 0);
+end;
+
+function TPyType_Spec.AddSentinelGetSet: boolean;
+begin
+  Result := AddGetSet('', '', nil, nil, nil);
 end;
 
 function TPyType_Spec.AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
@@ -369,11 +530,56 @@ begin
     end;
 end;
 
+function TPyType_Spec.AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+var
+  TempMember : TPyMemberDef;
+begin
+  Result := False;
+
+  if assigned(FMemberList) then
+    begin
+      TempMember := TPyMemberDef.Create(aName, aDocStrings, aType, aFlags, aOffset);
+
+      if (FMemberList.Add(TempMember) >= 0) then
+        Result := True
+       else
+        TempMember.Free;
+    end;
+end;
+
+function TPyType_Spec.AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+var
+  TempGetSet : TPyGetSetDef;
+begin
+  Result := False;
+
+  if assigned(FGetSetList) then
+    begin
+      TempGetSet := TPyGetSetDef.Create(aName, aDocStrings, aGet, aSet, aClosure);
+
+      if (FGetSetList.Add(TempGetSet) >= 0) then
+        Result := True
+       else
+        TempGetSet.Free;
+    end;
+end;
+
 procedure TPyType_Spec.AddMethodsSlot;
 begin
-  //Don't add the methods slot if the only element in the list is the sentinel.
   if assigned(FMethods) and (length(FMethods) > 1) then
     AddSlot(Py_tp_methods, @FMethods[0]);
+end;
+
+procedure TPyType_Spec.AddMembersSlot;
+begin
+  if assigned(FMembers) and (length(FMembers) > 1) then
+    AddSlot(Py_tp_members, @FMembers[0]);
+end;
+
+procedure TPyType_Spec.AddGetSetsSlot;
+begin
+  if assigned(FGetSets) and (length(FGetSets) > 1) then
+    AddSlot(Py_tp_getset, @FGetSets[0]);
 end;
 
 procedure TPyType_Spec.AddTokenSlot;
@@ -381,6 +587,12 @@ begin
   if (GlobalP4PEngine <> nil) and
      GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 14, 0) then
     AddSlot(Py_tp_token, FToken);
+end;
+
+procedure TPyType_Spec.AddDocSlot;
+begin
+  if (length(FDocStrings) > 0) then
+    AddSlot(Py_tp_doc, PAnsiChar(FDocStrings));
 end;
 
 function TPyType_Spec.AddSentinelSlot: boolean;
@@ -421,6 +633,44 @@ begin
       while (i < FMethodList.Count) do
         begin
           FMethods[i] := TPyMethodDef(FMethodList[i]).Method;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyType_Spec.CreateMemberArray;
+var
+  i : integer;
+begin
+  DestroyMembers;
+
+  if assigned(FMemberList) and (FMemberList.Count > 0) then
+    begin
+      SetLength(FMembers, FMemberList.Count);
+
+      i := 0;
+      while (i < FMemberList.Count) do
+        begin
+          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyType_Spec.CreateGetSetterArray;
+var
+  i : integer;
+begin
+  DestroyGetSets;
+
+  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
+    begin
+      SetLength(FGetSets, FGetSetList.Count);
+
+      i := 0;
+      while (i < FGetSetList.Count) do
+        begin
+          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
           inc(i);
         end;
     end;

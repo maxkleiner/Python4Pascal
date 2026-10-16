@@ -4582,7 +4582,7 @@ type
     /// <summary>
     /// Create the slots with the methods and all the module information.
     /// </summary>
-    procedure BuildMethodsAndSlots;
+    procedure Initialize;
 
     /// <summary>
     /// Name of the new module.
@@ -4705,7 +4705,7 @@ type
     /// <summary>
     /// Create the slots with the methods and all the heap type information.
     /// </summary>
-    procedure BuildMethodsAndSlots;
+    procedure Initialize;
 
     /// <summary>
     /// Name of the new data type.
@@ -4767,16 +4767,20 @@ type
   IPyType_Spec = interface
     ['{F55ADD9F-9ABD-4DF2-BD4A-1FDE6235826A}']
     function  GetName: AnsiString;
+    function  GetDocStrings: AnsiString;
     function  GetBasicsize: integer;
     function  GetItemsize: integer;
     function  GetFlags: cardinal;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
+    function  GetHasSentinelMember: boolean;
+    function  GetHasSentinelGetSet: boolean;
     function  GetSlots: PPyType_Slot;
     function  GetTypeSpec: PPyType_Spec;
     function  GetToken: pointer;
 
     procedure SetName(const aValue: AnsiString);
+    procedure SetDocStrings(const aValue: AnsiString);
     procedure SetBasicsize(aValue: integer);
     procedure SetItemsize(aValue: integer);
     procedure SetFlags(aValue: cardinal);
@@ -4784,11 +4788,17 @@ type
 
     procedure CreateSlotArray;
     procedure CreateMethodArray;
+    procedure CreateMemberArray;
+    procedure CreateGetSetterArray;
 
     procedure DestroySlotList;
     procedure DestroySlots;
     procedure DestroyMethodList;
     procedure DestroyMethods;
+    procedure DestroyMemberList;
+    procedure DestroyMembers;
+    procedure DestroyGetSetList;
+    procedure DestroyGetSets;
 
     /// <summary>
     /// Override this procedure to add your custom slots.
@@ -4798,19 +4808,41 @@ type
     /// Override this procedure to add your custom methods.
     /// </summary>
     procedure AddAllMethods;
+    /// <summary>
+    /// Override this procedure to add your custom members.
+    /// </summary>
+    procedure AddAllMembers;
+    /// <summary>
+    /// Override this procedure to add your custom getsets.
+    /// </summary>
+    procedure AddAllGetSets;
 
     function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+    function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
     function  AddSentinelSlot: boolean;
     function  AddSentinelMethod: boolean;
-    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddSentinelMember: boolean;
+    function  AddSentinelGetSet: boolean;
+    procedure AddMethodsSlot;
+    procedure AddMembersSlot;
+    procedure AddGetSetsSlot;
+    procedure AddTokenSlot;
+    procedure AddDocSlot;
     /// <summary>
-    /// Create the methods and the slots with all the type information.
+    /// Create the methods and the slots with all the heap type information.
     /// </summary>
-    procedure BuildMethodsAndSlots;
+    procedure Initialize;
     /// <summary>
     /// Name of the type, used to set PyTypeObject.tp_name.
     /// </summary>
     property Name_                   : AnsiString        read GetName              write SetName;
+    /// <summary>
+    /// <para>The docstring for this type object. This is exposed as the
+    /// __doc__ attribute on the type and instances of the type.</para>
+    /// </summary>
+    property DocStrings              : AnsiString        read GetDocStrings        write SetDocStrings;
     /// <summary>
     /// <para>If positive, specifies the size of the instance in bytes. It is
     /// used to set PyTypeObject.tp_basicsize.</para>
@@ -4829,7 +4861,8 @@ type
     /// </summary>
     property Itemsize                : integer           read GetItemsize          write SetItemsize;
     /// <summary>
-    /// Type flags, used to set PyTypeObject.tp_flags.
+    /// <para>Type flags, used to set PyTypeObject.tp_flags.</para>
+    /// <para>Use the Py_TPFLAGS_* constants.</para>
     /// </summary>
     property Flags                   : cardinal          read GetFlags             write SetFlags;
     /// <summary>
@@ -4840,6 +4873,14 @@ type
     /// Return True if the last method in the list is a sentinel method.
     /// </summary>
     property HasSentinelMethod       : boolean           read GetHasSentinelMethod;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel member.
+    /// </summary>
+    property HasSentinelMember       : boolean           read GetHasSentinelMember;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel getsetter.
+    /// </summary>
+    property HasSentinelGetSet       : boolean           read GetHasSentinelGetSet;
     /// <summary>
     /// Return a pointer to the first slot.
     /// </summary>

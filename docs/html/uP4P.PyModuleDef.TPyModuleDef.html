@@ -266,25 +266,25 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AddGILSlot">AddGILSlot</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#BuildMethodsAndSlots">BuildMethodsAndSlots</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>constructor <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Create">Create</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-public">
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>destructor <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Destroy">Destroy</a></strong>; override;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
 </tr>
-<tr class="list2 visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">Initialize</a></strong>: boolean;</code></td>
-</tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#BuildMethodsAndSlots">BuildMethodsAndSlots</a></strong>; virtual;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#Initialize">Initialize</a></strong>: boolean; virtual;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -809,6 +809,16 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="BuildMethodsAndSlots"></span><code>procedure <strong>BuildMethodsAndSlots</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Create the methods and the slots with all the module information. </p>
+</td></tr>
+</table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -836,21 +846,11 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean;</code></td>
+<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean; virtual;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Initialize PyModuleDef and set the name and docstrings. </p>
-</td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="BuildMethodsAndSlots"></span><code>procedure <strong>BuildMethodsAndSlots</strong>; virtual;</code></td>
-</tr>
-<tr><td colspan="2">
-<p>
- Create the methods and the slots with all the module information. </p>
+ Initialize PyModuleDef and set all module information. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

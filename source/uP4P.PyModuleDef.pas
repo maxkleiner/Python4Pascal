@@ -95,19 +95,19 @@ type
       function  AddExecSlot: boolean;
       function  AddMultipleInterpretersSlot: boolean;
       function  AddGILSlot: boolean;
+      /// <summary>
+      /// Create the methods and the slots with all the module information.
+      /// </summary>
+      procedure   BuildMethodsAndSlots; virtual;
 
     public
       constructor Create;
       destructor  Destroy; override;
       procedure   AfterConstruction; override;
       /// <summary>
-      /// Initialize PyModuleDef and set the name and docstrings.
+      /// Initialize PyModuleDef and set all module information.
       /// </summary>
-      function    Initialize: boolean;
-      /// <summary>
-      /// Create the methods and the slots with all the module information.
-      /// </summary>
-      procedure   BuildMethodsAndSlots; virtual;
+      function    Initialize: boolean; virtual;
       /// <summary>
       /// <para>Ensure a module definition is a properly initialized Python
       /// object that correctly reports its type and a reference count.</para>
@@ -268,10 +268,12 @@ begin
   FModuleDef.m_slots   := @FSlots[0];
   FModuleDef.m_methods := @FMethods[0];
 
-  if (FSize <> low(integer)) then FModuleDef.m_size     := FSize;
-  if assigned(FTraverse)     then FModuleDef.m_traverse := FTraverse;
-  if assigned(FClear)        then FModuleDef.m_clear    := FClear;
-  if assigned(FFree)         then FModuleDef.m_free     := FFree;
+  if (length(FName) > 0)       then FModuleDef.m_name     := PAnsiChar(FName);
+  if (length(FDocStrings) > 0) then FModuleDef.m_doc      := PAnsiChar(FDocStrings);
+  if (FSize <> low(integer))   then FModuleDef.m_size     := FSize;
+  if assigned(FTraverse)       then FModuleDef.m_traverse := FTraverse;
+  if assigned(FClear)          then FModuleDef.m_clear    := FClear;
+  if assigned(FFree)           then FModuleDef.m_free     := FFree;
 end;
 
 procedure TPyModuleDef.AddAllSlots;
@@ -394,15 +396,7 @@ begin
 
     if assigned(Init(FModuleDef)) then
       begin
-        if (length(FName) > 0) then
-          FModuleDef.m_name := PAnsiChar(FName)
-         else
-          FModuleDef.m_name := nil;
-
-        if (length(FDocStrings) > 0) then
-          FModuleDef.m_doc := PAnsiChar(FDocStrings)
-         else
-          FModuleDef.m_doc := nil;
+        BuildMethodsAndSlots;
 
         FInitialized := True;
         Result       := True;

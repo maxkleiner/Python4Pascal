@@ -376,8 +376,6 @@ begin
 
   if not(FModuleDef.Initialize) then exit;
 
-  FModuleDef.BuildMethodsAndSlots;
-
   if FIsExtension then
     Result := True
    else
@@ -412,7 +410,7 @@ begin
   FSlotManager.GILUsed              := FGILUsed;
   FSlotManager.Token                := {%H-}pointer(FID);
 
-  FSlotManager.BuildMethodsAndSlots;
+  FSlotManager.Initialize;
 
   if FIsExtension then
     Result := True

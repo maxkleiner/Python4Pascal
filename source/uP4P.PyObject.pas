@@ -2702,7 +2702,7 @@ end;
 
 procedure TPyObject.SetPyObject(aValue: PPyObject);
 begin
-  PyObject := aValue;
+  FPyObject := aValue;
 end;
 
 procedure TPyObject.IncRef;

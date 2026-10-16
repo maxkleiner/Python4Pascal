@@ -20,6 +20,7 @@ type
   TCustomHeapType = class
     protected
       FName                  : string;
+      FDocStrings            : string;
       FHeapType              : IPyObject;
       FTypeSpec              : IPyType_Spec;
       FSlotManager           : IPyHeapTypeSlotManager;
@@ -146,6 +147,11 @@ type
       /// <para>Added in version 3.14.</para>
       /// </remarks>
       property Token                         : Pointer             read GetToken;
+      /// <summary>
+      /// <para>The docstring for this type object. This is exposed as the
+      /// __doc__ attribute on the type and instances of the type.</para>
+      /// </summary>
+      property DocStrings                    : string              read FDocStrings                 write FDocStrings;
   end;
 
 implementation
@@ -159,6 +165,7 @@ begin
   inherited Create;
 
   FName                  := aName;
+  FDocStrings            := '';
   FHeapType              := nil;
   FTypeSpec              := nil;
   FSlotManager           := nil;
@@ -321,10 +328,11 @@ begin
 
   CreateTypeSpec;
 
-  FTypeSpec.Name_ := StringToPyUTF8(FName);
-  FTypeSpec.Token := {%H-}pointer(FID);
+  FTypeSpec.Name_      := StringToPyUTF8(FName);
+  FTypeSpec.DocStrings := StringToPyUTF8(FDocStrings);
+  FTypeSpec.Token      := {%H-}pointer(FID);
 
-  FTypeSpec.BuildMethodsAndSlots;
+  FTypeSpec.Initialize;
 
   FHeapType := TPyType.FromMetaclass(FMetaclass, FModule, FTypeSpec.TypeSpec, FBases);
 
@@ -341,10 +349,14 @@ begin
 
   CreateSlotManager;
 
-  FSlotManager.Name_ := StringToPyUTF8(FName);
-  FSlotManager.Token := {%H-}pointer(FID);
+  FSlotManager.Name_      := StringToPyUTF8(FName);
+  FSlotManager.DocStrings := StringToPyUTF8(FDocStrings);
+  FSlotManager.Token      := {%H-}pointer(FID);
+  FSlotManager.Metaclass  := FMetaclass;
+  FSlotManager.Module     := FModule;
+  FSlotManager.Bases      := FBases;
 
-  FSlotManager.BuildMethodsAndSlots;
+  FSlotManager.Initialize;
 
   FHeapType := TPyType.FromSlots(FSlotManager.Slots);
 

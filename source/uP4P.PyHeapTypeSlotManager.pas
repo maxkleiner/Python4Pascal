@@ -86,7 +86,7 @@ type
       /// <summary>
       /// Create the slots with the methods and all the heap type information.
       /// </summary>
-      procedure   BuildMethodsAndSlots;
+      procedure   Initialize; virtual;
 
       /// <summary>
       /// Name of the new data type.
@@ -142,8 +142,7 @@ type
 implementation
 
 uses
-  uP4P.PyMethodDef, uP4P.Py_mod, uP4P.PyABIInfo, uP4P.Engine, uP4P.PyObject,
-  uP4P.PySlot;
+  uP4P.PyMethodDef, uP4P.Engine, uP4P.PyObject, uP4P.PySlot;
 
 constructor TPyHeapTypeSlotManager.Create;
 begin
@@ -437,7 +436,10 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and assigned(FToken) then
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 14, 0) and
+     assigned(FSlotList) and
+     assigned(FToken) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_DATA(Py_tp_token, FToken);
@@ -473,7 +475,10 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and assigned(FMetaclass) then
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     assigned(FMetaclass) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_DATA(Py_tp_metaclass, FMetaclass);
@@ -491,7 +496,10 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and TPyObject.IsInitialized(FModule) then
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     TPyObject.IsInitialized(FModule) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_DATA(Py_tp_module, FModule.PyObject);
@@ -541,7 +549,7 @@ begin
   //
 end;
 
-procedure TPyHeapTypeSlotManager.BuildMethodsAndSlots;
+procedure TPyHeapTypeSlotManager.Initialize;
 begin
   AddAllSlots;
   AddAllMethods;

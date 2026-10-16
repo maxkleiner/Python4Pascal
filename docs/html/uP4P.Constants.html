@@ -3433,7 +3433,7 @@ For release candidates</p>
 
 <p>
 
-<p>The destructor function should remove all references which the instance owns (e.g., call Py_CLEAR()), free all memory buffers owned by the instance, and call the type’s tp_free function to free the object itself.
+<p>The destructor function should remove all references which the instance owns (e.g., call Py_CLEAR()), free all memory buffers owned by the instance, and call the type's tp_free function to free the object itself.
 
 <p></p>
 </td></tr>
@@ -3595,7 +3595,7 @@ For release candidates</p>
 
 <p>The self argument is the instance to be initialized; the args and kwds arguments represent positional and keyword arguments of the call to __init__().
 
-<p>The tp_init function, if not nil, is called when an instance is created normally by calling its type, after the type’s tp_new function has returned an instance of the type. If the tp_new function returns an instance of some other type that is not a subtype of the original type, no tp_init function is called; if tp_new returns an instance of a subtype of the original type, the subtype's tp_init is called.
+<p>The tp_init function, if not nil, is called when an instance is created normally by calling its type, after the type's tp_new function has returned an instance of the type. If the tp_new function returns an instance of some other type that is not a subtype of the original type, no tp_init function is called; if tp_new returns an instance of a subtype of the original type, the subtype's tp_init is called.
 
 <p>Returns 0 on success, -1 and sets an exception on error.
 
@@ -3702,7 +3702,7 @@ For release candidates</p>
 
 <p>
 
-<p>The subtype argument is the type of the object being created; the args and kwds arguments represent positional and keyword arguments of the call to the type. Note that subtype doesn’t have to equal the type whose tp_new function is called; it may be a subtype of that type (but not an unrelated type).
+<p>The subtype argument is the type of the object being created; the args and kwds arguments represent positional and keyword arguments of the call to the type. Note that subtype doesn't have to equal the type whose tp_new function is called; it may be a subtype of that type (but not an unrelated type).
 
 <p>The tp_new function should call subtype-&gt;tp_alloc(subtype, nitems) to allocate space for the object, and then do only as much further initialization as is absolutely necessary. Initialization that can safely be ignored or repeated should be placed in the tp_init handler. A good rule of thumb is that for immutable types, all initialization should take place in tp_new, while for mutable types, most initialization should be deferred to tp_init.
 

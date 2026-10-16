@@ -247,6 +247,8 @@
         <DCCReference Include="..\source\uP4P.PyType_Spec.pas"/>
         <DCCReference Include="..\source\uP4P.CustomHeapType.pas"/>
         <DCCReference Include="..\source\uP4P.PyHeapTypeSlotManager.pas"/>
+        <DCCReference Include="..\source\uP4P.PyMemberDef.pas"/>
+        <DCCReference Include="..\source\uP4P.PyGetSetDef.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

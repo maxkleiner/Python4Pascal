@@ -599,6 +599,14 @@
         <Filename Value="..\source\uP4P.PyHeapTypeSlotManager.pas"/>
         <UnitName Value="uP4P.PyHeapTypeSlotManager"/>
       </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyGetSetDef.pas"/>
+        <UnitName Value="uP4P.PyGetSetDef"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uP4P.PyMemberDef.pas"/>
+        <UnitName Value="uP4P.PyMemberDef"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

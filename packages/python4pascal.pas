@@ -45,7 +45,8 @@ uses
   uP4P.Py_mp, uP4P.PyABIInfo, uP4P.PySentinel, uP4P.PyType, uP4P.PySlot, 
   uP4P.PyMethodDef, uP4P.PyModuleDef_Slot, uP4P.CustomHeapType, 
   uP4P.PyType_Spec, uP4P.PyType_Slot, uP4P.PyModuleSlotManager, 
-  uP4P.PyHeapTypeSlotManager, LazarusPackageIntf;
+  uP4P.PyHeapTypeSlotManager, uP4P.PyGetSetDef, uP4P.PyMemberDef, 
+  LazarusPackageIntf;
 
 implementation
 
