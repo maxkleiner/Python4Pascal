@@ -60,6 +60,14 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelMember">GetHasSentinelMember</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelGetSet">GetHasSentinelGetSet</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetSlots">GetSlots</a></strong>: <a href="uP4P.Types.html#PPySlot">PPySlot</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
@@ -100,7 +108,63 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#CreateSlotArray">CreateSlotArray</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#CreateMethodArray">CreateMethodArray</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#CreateMemberArray">CreateMemberArray</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#CreateGetSetArray">CreateGetSetArray</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroySlotList">DestroySlotList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroySlots">DestroySlots</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyMethodList">DestroyMethodList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyMethods">DestroyMethods</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyMemberList">DestroyMemberList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyMembers">DestroyMembers</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyGetSetList">DestroyGetSetList</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DestroyGetSets">DestroyGetSets</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethod-string-string-PyCFunction-integer-">AddMethod</a></strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMember-string-string-integer-integer-Py_ssize_t-">AddMember</a></strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetSet-string-string-getter-setter-pointer-">AddGetSet</a></strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer): boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -109,6 +173,14 @@ body { margin: 0.5em; }
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelMember">AddSentinelMember</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelGetSet">AddSentinelGetSet</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -125,6 +197,14 @@ body { margin: 0.5em; }
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethodsSlot">AddMethodsSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMembersSlot">AddMembersSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetSetsSlot">AddGetSetsSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -148,6 +228,14 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddAllMembers">AddAllMembers</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddAllGetSets">AddAllGetSets</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Initialize">Initialize</a></strong>;</code></td>
 </tr>
 </table>
@@ -168,6 +256,14 @@ body { margin: 0.5em; }
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#HasSentinelMethod">HasSentinelMethod</a></strong>      : boolean            read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelMethod">GetHasSentinelMethod</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#HasSentinelMember">HasSentinelMember</a></strong>      : boolean            read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelMember">GetHasSentinelMember</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#HasSentinelGetSet">HasSentinelGetSet</a></strong>      : boolean            read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelGetSet">GetHasSentinelGetSet</a>;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -228,6 +324,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="GetHasSentinelMethod"></span><code>function <strong>GetHasSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelMember"></span><code>function <strong>GetHasSentinelMember</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetHasSentinelGetSet"></span><code>function <strong>GetHasSentinelGetSet</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -315,7 +427,119 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateSlotArray"></span><code>procedure <strong>CreateSlotArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateMethodArray"></span><code>procedure <strong>CreateMethodArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateMemberArray"></span><code>procedure <strong>CreateMemberArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="CreateGetSetArray"></span><code>procedure <strong>CreateGetSetArray</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlotList"></span><code>procedure <strong>DestroySlotList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroySlots"></span><code>procedure <strong>DestroySlots</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethodList"></span><code>procedure <strong>DestroyMethodList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMethods"></span><code>procedure <strong>DestroyMethods</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMemberList"></span><code>procedure <strong>DestroyMemberList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyMembers"></span><code>procedure <strong>DestroyMembers</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyGetSetList"></span><code>procedure <strong>DestroyGetSetList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="DestroyGetSets"></span><code>procedure <strong>DestroyGetSets</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMember-string-string-integer-integer-Py_ssize_t-"></span><code>function <strong>AddMember</strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGetSet-string-string-getter-setter-pointer-"></span><code>function <strong>AddGetSet</strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -332,6 +556,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelMember"></span><code>function <strong>AddSentinelMember</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSentinelGetSet"></span><code>function <strong>AddSentinelGetSet</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -364,6 +604,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="AddMethodsSlot"></span><code>function <strong>AddMethodsSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMembersSlot"></span><code>function <strong>AddMembersSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGetSetsSlot"></span><code>function <strong>AddGetSetsSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -415,6 +671,26 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllMembers"></span><code>procedure <strong>AddAllMembers</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom members. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddAllGetSets"></span><code>procedure <strong>AddAllGetSets</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Override this procedure to add your custom getsets. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="Initialize"></span><code>procedure <strong>Initialize</strong>;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -461,6 +737,26 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p>
  Return True if the last method in the list is a sentinel method. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelMember"></span><code>property <strong>HasSentinelMember</strong>      : boolean            read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelMember">GetHasSentinelMember</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last method in the list is a sentinel member. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="HasSentinelGetSet"></span><code>property <strong>HasSentinelGetSet</strong>      : boolean            read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelGetSet">GetHasSentinelGetSet</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if the last method in the list is a sentinel getsetter. </p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

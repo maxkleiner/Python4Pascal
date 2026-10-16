@@ -29,6 +29,10 @@ type
       FSlots                 : PySlotArray;
       FMethodList            : TList;
       FMethods               : PyMethodDefArray;
+      FMemberList            : TList;
+      FMembers               : PyMemberDefArray;
+      FGetSetList            : TList;
+      FGetSets               : PyGetSetDefArray;
       FToken                 : pointer;
       FMetaclass             : PPyTypeObject;
       FModule                : IPyObject;
@@ -39,6 +43,8 @@ type
       function  GetToken: pointer;
       function  GetHasSentinelSlot: boolean;
       function  GetHasSentinelMethod: boolean;
+      function  GetHasSentinelMember: boolean;
+      function  GetHasSentinelGetSet: boolean;
       function  GetSlots: PPySlot;
       function  GetMetaclass: PPyTypeObject;
       function  GetModule: IPyObject;
@@ -51,21 +57,33 @@ type
       procedure SetModule(const aValue: IPyObject);
       procedure SetBases(const aValue: IPyObject);
 
+      procedure CreateSlotArray;
+      procedure CreateMethodArray;
+      procedure CreateMemberArray;
+      procedure CreateGetSetArray;
+
       procedure DestroySlotList;
       procedure DestroySlots;
       procedure DestroyMethodList;
       procedure DestroyMethods;
-
-      procedure CreateSlotArray;
-      procedure CreateMethodArray;
+      procedure DestroyMemberList;
+      procedure DestroyMembers;
+      procedure DestroyGetSetList;
+      procedure DestroyGetSets;
 
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+      function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
       function  AddSentinelMethod: boolean;
       function  AddSentinelSlot: boolean;
+      function  AddSentinelMember: boolean;
+      function  AddSentinelGetSet: boolean;
       function  AddNameSlot: boolean;
       function  AddDocStringsSlot: boolean;
       function  AddTokenSlot: boolean;
       function  AddMethodsSlot: boolean;
+      function  AddMembersSlot: boolean;
+      function  AddGetSetsSlot: boolean;
       function  AddMetaclassSlot: boolean;
       function  AddModuleSlot: boolean;
       function  AddBasesSlot: boolean;
@@ -78,6 +96,14 @@ type
       /// Override this procedure to add your custom methods.
       /// </summary>
       procedure AddAllMethods; virtual;
+      /// <summary>
+      /// Override this procedure to add your custom members.
+      /// </summary>
+      procedure AddAllMembers; virtual;
+      /// <summary>
+      /// Override this procedure to add your custom getsets.
+      /// </summary>
+      procedure AddAllGetSets; virtual;
 
     public
       constructor Create;
@@ -105,6 +131,14 @@ type
       /// Return True if the last method in the list is a sentinel method.
       /// </summary>
       property  HasSentinelMethod      : boolean            read GetHasSentinelMethod;
+      /// <summary>
+      /// Return True if the last method in the list is a sentinel member.
+      /// </summary>
+      property  HasSentinelMember      : boolean            read GetHasSentinelMember;
+      /// <summary>
+      /// Return True if the last method in the list is a sentinel getsetter.
+      /// </summary>
+      property  HasSentinelGetSet      : boolean            read GetHasSentinelGetSet;
       /// <summary>
       /// Return a pointer to the first slot.
       /// </summary>
@@ -142,7 +176,8 @@ type
 implementation
 
 uses
-  uP4P.PyMethodDef, uP4P.Engine, uP4P.PyObject, uP4P.PySlot;
+  uP4P.PyMethodDef, uP4P.Engine, uP4P.PyObject, uP4P.PySlot, uP4P.PyMemberDef,
+  uP4P.PyGetSetDef;
 
 constructor TPyHeapTypeSlotManager.Create;
 begin
@@ -154,6 +189,10 @@ begin
   FSlots                 := nil;
   FMethodList            := nil;
   FMethods               := nil;
+  FMemberList            := nil;
+  FMembers               := nil;
+  FGetSetList            := nil;
+  FGetSets               := nil;
   FToken                 := nil;
   FMetaclass             := nil;
   FModule                := nil;
@@ -167,6 +206,10 @@ begin
     DestroySlots;
     DestroyMethodList;
     DestroyMethods;
+    DestroyMemberList;
+    DestroyMembers;
+    DestroyGetSetList;
+    DestroyGetSets;
   finally
     inherited Destroy;
   end;
@@ -178,6 +221,8 @@ begin
 
   FSlotList   := TList.Create;
   FMethodList := TList.Create;
+  FMemberList := TList.Create;
+  FGetSetList := TList.Create;
 end;
 
 procedure TPyHeapTypeSlotManager.DestroySlotList;
@@ -234,6 +279,60 @@ begin
     end;
 end;
 
+procedure TPyHeapTypeSlotManager.DestroyMemberList;
+var
+  i : integer;
+begin
+  if assigned(FMemberList) then
+    try
+      i := pred(FMemberList.Count);
+      while (i >= 0) do
+        begin
+          TPyMemberDef(FMemberList[i]).Free;
+          FMemberList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FMemberList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyMembers;
+begin
+  if assigned(FMembers) then
+    begin
+      SetLength(FMembers, 0);
+      FMembers := nil;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyGetSetList;
+var
+  i : integer;
+begin
+  if assigned(FGetSetList) then
+    try
+      i := pred(FGetSetList.Count);
+      while (i >= 0) do
+        begin
+          TPyGetSetDef(FGetSetList[i]).Free;
+          FGetSetList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FGetSetList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyGetSets;
+begin
+  if assigned(FGetSets) then
+    begin
+      SetLength(FGetSets, 0);
+      FGetSets := nil;
+    end;
+end;
+
 procedure TPyHeapTypeSlotManager.CreateSlotArray;
 var
   i : integer;
@@ -272,6 +371,44 @@ begin
     end;
 end;
 
+procedure TPyHeapTypeSlotManager.CreateMemberArray;
+var
+  i : integer;
+begin
+  DestroyMembers;
+
+  if assigned(FMemberList) and (FMemberList.Count > 0) then
+    begin
+      SetLength(FMembers, FMemberList.Count);
+
+      i := 0;
+      while (i < FMemberList.Count) do
+        begin
+          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.CreateGetSetArray;
+var
+  i : integer;
+begin
+  DestroyGetSets;
+
+  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
+    begin
+      SetLength(FGetSets, FGetSetList.Count);
+
+      i := 0;
+      while (i < FGetSetList.Count) do
+        begin
+          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
+          inc(i);
+        end;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.GetName: AnsiString;
 begin
   Result := FName;
@@ -299,6 +436,20 @@ begin
   Result := assigned(FMethodList) and
             (FMethodList.Count > 0) and
             TPyMethodDef(FMethodList[FMethodList.Count - 1]).IsSentinel;
+end;
+
+function TPyHeapTypeSlotManager.GetHasSentinelMember: boolean;
+begin
+  Result := assigned(FMemberList) and
+            (FMemberList.Count > 0) and
+            TPyMemberDef(FMemberList[FMemberList.Count - 1]).IsSentinel;
+end;
+
+function TPyHeapTypeSlotManager.GetHasSentinelGetSet: boolean;
+begin
+  Result := assigned(FGetSetList) and
+            (FGetSetList.Count > 0) and
+            TPyGetSetDef(FGetSetList[FGetSetList.Count - 1]).IsSentinel;
 end;
 
 function TPyHeapTypeSlotManager.GetSlots: PPySlot;
@@ -371,9 +522,53 @@ begin
     end;
 end;
 
+function TPyHeapTypeSlotManager.AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+var
+  TempMember : TPyMemberDef;
+begin
+  Result := False;
+
+  if assigned(FMemberList) then
+    begin
+      TempMember := TPyMemberDef.Create(aName, aDocStrings, aType, aFlags, aOffset);
+
+      if (FMemberList.Add(TempMember) >= 0) then
+        Result := True
+       else
+        TempMember.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+var
+  TempGetSet : TPyGetSetDef;
+begin
+  Result := False;
+
+  if assigned(FGetSetList) then
+    begin
+      TempGetSet := TPyGetSetDef.Create(aName, aDocStrings, aGet, aSet, aClosure);
+
+      if (FGetSetList.Add(TempGetSet) >= 0) then
+        Result := True
+       else
+        TempGetSet.Free;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.AddSentinelMethod: boolean;
 begin
   Result := AddMethod('', '', nil, 0);
+end;
+
+function TPyHeapTypeSlotManager.AddSentinelMember: boolean;
+begin
+  Result := AddMember('', '', 0, 0, 0);
+end;
+
+function TPyHeapTypeSlotManager.AddSentinelGetSet: boolean;
+begin
+  Result := AddGetSet('', '', nil, nil, nil);
 end;
 
 function TPyHeapTypeSlotManager.AddSentinelSlot: boolean;
@@ -469,6 +664,42 @@ begin
     end;
 end;
 
+function TPyHeapTypeSlotManager.AddMembersSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FMembers) and (length(FMembers) > 0) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_DATA(Py_tp_members, @FMembers[0]);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddGetSetsSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FGetSets) and (length(FGetSets) > 0) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_DATA(Py_tp_getset, @FGetSets[0]);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.AddMetaclassSlot: boolean;
 var
   TempSlot : TPySlot;
@@ -541,6 +772,9 @@ begin
   AddMetaclassSlot;
   AddModuleSlot;
   AddBasesSlot;
+  AddMethodsSlot;
+  AddMembersSlot;
+  AddGetSetsSlot;
   AddTokenSlot;
 end;
 
@@ -549,16 +783,36 @@ begin
   //
 end;
 
+procedure TPyHeapTypeSlotManager.AddAllMembers;
+begin
+  //
+end;
+
+procedure TPyHeapTypeSlotManager.AddAllGetSets;
+begin
+  //
+end;
+
 procedure TPyHeapTypeSlotManager.Initialize;
 begin
-  AddAllSlots;
   AddAllMethods;
+  AddAllMembers;
+  AddAllGetSets;
 
   if not(HasSentinelMethod) then
     AddSentinelMethod;
 
+  if not(HasSentinelMember) then
+    AddSentinelMember;
+
+  if not(HasSentinelGetSet) then
+    AddSentinelGetSet;
+
   CreateMethodArray;
-  AddMethodsSlot;
+  CreateGetSetArray;
+  CreateSlotArray;
+
+  AddAllSlots;
 
   if not(HasSentinelSlot) then
     AddSentinelSlot;

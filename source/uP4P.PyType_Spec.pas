@@ -61,7 +61,7 @@ type
       procedure CreateSlotArray;
       procedure CreateMethodArray;
       procedure CreateMemberArray;
-      procedure CreateGetSetterArray;
+      procedure CreateGetSetArray;
 
       procedure DestroySlotList;
       procedure DestroySlots;
@@ -191,6 +191,10 @@ begin
   FSlots                 := nil;
   FMethodList            := nil;
   FMethods               := nil;
+  FMemberList            := nil;
+  FMembers               := nil;
+  FGetSetList            := nil;
+  FGetSets               := nil;
   FToken                 := Py_TP_USE_SPEC;
 
   FillChar(FTypeSpec, SizeOf(FTypeSpec), 0);
@@ -218,33 +222,8 @@ begin
 
   FSlotList   := TList.Create;
   FMethodList := TList.Create;
-end;
-
-procedure TPyType_Spec.Initialize;
-begin
-  AddAllSlots;
-  AddAllMethods;
-  AddAllMembers;
-  AddAllGetSets;
-
-  if not(HasSentinelSlot) then
-    AddSentinelSlot;
-
-  if not(HasSentinelMethod) then
-    AddSentinelMethod;
-
-  if not(HasSentinelMember) then
-    AddSentinelMember;
-
-  if not(HasSentinelGetSet) then
-    AddSentinelGetSet;
-
-  CreateMethodArray;
-  CreateMemberArray;
-  CreateGetSetterArray;
-  CreateSlotArray;
-
-  FTypeSpec.slots := Slots;
+  FMemberList := TList.Create;
+  FGetSetList := TList.Create;
 end;
 
 function TPyType_Spec.GetName: AnsiString;
@@ -657,7 +636,7 @@ begin
     end;
 end;
 
-procedure TPyType_Spec.CreateGetSetterArray;
+procedure TPyType_Spec.CreateGetSetArray;
 var
   i : integer;
 begin
@@ -674,6 +653,35 @@ begin
           inc(i);
         end;
     end;
+end;
+
+procedure TPyType_Spec.Initialize;
+begin
+  AddAllMethods;
+  AddAllMembers;
+  AddAllGetSets;
+
+  if not(HasSentinelMethod) then
+    AddSentinelMethod;
+
+  if not(HasSentinelMember) then
+    AddSentinelMember;
+
+  if not(HasSentinelGetSet) then
+    AddSentinelGetSet;
+
+  CreateMethodArray;
+  CreateMemberArray;
+  CreateGetSetArray;
+
+  AddAllSlots;
+
+  if not(HasSentinelSlot) then
+    AddSentinelSlot;
+
+  CreateSlotArray;
+
+  FTypeSpec.slots := Slots;
 end;
 
 end.

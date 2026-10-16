@@ -4671,6 +4671,8 @@ type
     function  GetToken: pointer;
     function  GetHasSentinelSlot: boolean;
     function  GetHasSentinelMethod: boolean;
+    function  GetHasSentinelMember: boolean;
+    function  GetHasSentinelGetSet: boolean;
     function  GetSlots: PPySlot;
     function  GetMetaclass: PPyTypeObject;
     function  GetModule: IPyObject;
@@ -4683,13 +4685,33 @@ type
     procedure SetModule(const aValue: IPyObject);
     procedure SetBases(const aValue: IPyObject);
 
+    procedure CreateSlotArray;
+    procedure CreateMethodArray;
+    procedure CreateMemberArray;
+    procedure CreateGetSetArray;
+
+    procedure DestroySlotList;
+    procedure DestroySlots;
+    procedure DestroyMethodList;
+    procedure DestroyMethods;
+    procedure DestroyMemberList;
+    procedure DestroyMembers;
+    procedure DestroyGetSetList;
+    procedure DestroyGetSets;
+
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+    function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
     function  AddSentinelMethod: boolean;
     function  AddSentinelSlot: boolean;
+    function  AddSentinelMember: boolean;
+    function  AddSentinelGetSet: boolean;
     function  AddNameSlot: boolean;
     function  AddDocStringsSlot: boolean;
     function  AddTokenSlot: boolean;
     function  AddMethodsSlot: boolean;
+    function  AddMembersSlot: boolean;
+    function  AddGetSetsSlot: boolean;
     function  AddMetaclassSlot: boolean;
     function  AddModuleSlot: boolean;
     function  AddBasesSlot: boolean;
@@ -4702,6 +4724,15 @@ type
     /// Override this procedure to add your custom methods.
     /// </summary>
     procedure AddAllMethods;
+    /// <summary>
+    /// Override this procedure to add your custom members.
+    /// </summary>
+    procedure AddAllMembers;
+    /// <summary>
+    /// Override this procedure to add your custom getsets.
+    /// </summary>
+    procedure AddAllGetSets;
+
     /// <summary>
     /// Create the slots with the methods and all the heap type information.
     /// </summary>
@@ -4724,6 +4755,14 @@ type
     /// Return True if the last method in the list is a sentinel method.
     /// </summary>
     property  HasSentinelMethod      : boolean            read GetHasSentinelMethod;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel member.
+    /// </summary>
+    property  HasSentinelMember      : boolean            read GetHasSentinelMember;
+    /// <summary>
+    /// Return True if the last method in the list is a sentinel getsetter.
+    /// </summary>
+    property  HasSentinelGetSet      : boolean            read GetHasSentinelGetSet;
     /// <summary>
     /// Return a pointer to the first slot.
     /// </summary>
@@ -4789,7 +4828,7 @@ type
     procedure CreateSlotArray;
     procedure CreateMethodArray;
     procedure CreateMemberArray;
-    procedure CreateGetSetterArray;
+    procedure CreateGetSetArray;
 
     procedure DestroySlotList;
     procedure DestroySlots;
