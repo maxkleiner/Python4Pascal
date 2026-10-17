@@ -102,6 +102,7 @@ type
       procedure AddGetSetsSlot;
       procedure AddTokenSlot;
       procedure AddDocSlot;
+      procedure AddReprSlot(const aFunc: tp_reprfunc);
 
     public
       constructor Create;
@@ -572,6 +573,12 @@ procedure TPyType_Spec.AddDocSlot;
 begin
   if (length(FDocStrings) > 0) then
     AddSlot(Py_tp_doc, PAnsiChar(FDocStrings));
+end;
+
+procedure TPyType_Spec.AddReprSlot(const aFunc: tp_reprfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_repr, @aFunc);
 end;
 
 function TPyType_Spec.AddSentinelSlot: boolean;

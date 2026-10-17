@@ -21,6 +21,10 @@ type
   /// <para>TPyCustomHeapTypeSlotManager is used to store the information about
   /// the heap type and to manage the method and slot lists.</para>
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/type.html#creating-heap-allocated-types">See the article about Creating Heap-Allocated Types.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject">See the article about PyTypeObject.</see></para>
+  /// </remarks>
   TPyHeapTypeSlotManager = class(TInterfacedObject, IPyHeapTypeSlotManager)
     protected
       FName                  : AnsiString;
@@ -37,6 +41,10 @@ type
       FMetaclass             : PPyTypeObject;
       FModule                : IPyObject;
       FBases                 : IPyObject;
+      FBasicsize             : Py_ssize_t;
+      FExtraBasicsize        : Py_ssize_t;
+      FItemsize              : Py_ssize_t;
+      FFlags                 : NativeUInt;
 
       function  GetName: AnsiString;
       function  GetDocStrings: AnsiString;
@@ -49,6 +57,10 @@ type
       function  GetMetaclass: PPyTypeObject;
       function  GetModule: IPyObject;
       function  GetBases: IPyObject;
+      function  GetBasicsize: Py_ssize_t;
+      function  GetExtraBasicsize: Py_ssize_t;
+      function  GetItemsize: Py_ssize_t;
+      function  GetFlags: NativeUInt;
 
       procedure SetName(const aValue: AnsiString);
       procedure SetDocStrings(const aValue: AnsiString);
@@ -56,6 +68,10 @@ type
       procedure SetMetaclass(aValue: PPyTypeObject);
       procedure SetModule(const aValue: IPyObject);
       procedure SetBases(const aValue: IPyObject);
+      procedure SetBasicSize(aValue: Py_ssize_t);
+      procedure SetExtraBasicSize(aValue: Py_ssize_t);
+      procedure SetItemSize(aValue: Py_ssize_t);
+      procedure SetFlags(aValue: NativeUInt);
 
       procedure CreateSlotArray;
       procedure CreateMethodArray;
@@ -87,6 +103,13 @@ type
       function  AddMetaclassSlot: boolean;
       function  AddModuleSlot: boolean;
       function  AddBasesSlot: boolean;
+      function  AddBasicsizeSlot: boolean;
+      function  AddExtraBasicsizeSlot: boolean;
+      function  AddItemsizeSlot: boolean;
+      function  AddFlagsSlot: boolean;
+      function  AddSlotsSlot(const aSlots: PPyType_Slot): boolean;
+      function  AddSubslotsSlot(const aSlots: PPySlot): boolean;
+      function  AddReprSlot(const aFunc: tp_reprfunc): boolean;
 
       /// <summary>
       /// Override this procedure to add your custom slots.
@@ -171,6 +194,73 @@ type
       /// instead. If that also is nil, the new type derives from object.</para>
       /// </summary>
       property  Bases                  : IPyObject           read GetBases               write SetBases;
+      /// <summary>
+      /// <para>The size of the instance in bytes. It is used to set
+      /// PyTypeObject.tp_basicsize.</para>
+      /// <para>The value must be positive.</para>
+      /// <para>This may not be used in PyType_Spec.slots. Use
+      /// PyType_Spec.basicsize instead.</para>
+      /// <para>This slot may not be used with TPyType.GetSlot(). Use
+      /// PyTypeObject.tp_basicsize instead if needed, but be aware that a
+      /// type's size is often considered an implementation detail.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      property  Basicsize              : Py_ssize_t          read GetBasicsize           write SetBasicsize;
+      /// <summary>
+      /// <para>Type data size in bytes, that is, how much space instances of
+      /// the class need in addition to space needed for superclasses.</para>
+      /// <para>The value is used, together with the size of superclasses, to
+      /// set PyTypeObject.tp_basicsize. Python will insert padding as needed
+      /// to meet tp_basicsize's alignment requirements.</para>
+      /// <para>Use TPyObject.GetTypeData() to get a pointer to
+      /// subclass-specific memory reserved this way.</para>
+      /// <para>The value must be positive. To specify that instances need no
+      /// additional size (that is, size should be inherited), omit the
+      /// Py_tp_extra_basicsize slot rather than set it to zero.</para>
+      /// <para>Specifying both Py_tp_basicsize and Py_tp_extra_basicsize is
+      /// an error.</para>
+      /// <para>This may not be used in PyType_Spec.slots. Use negative
+      /// PyType_Spec.basicsize instead.</para>
+      /// <para>This slot may not be used with TPyType.GetSlot().</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      property  ExtraBasicsize         : Py_ssize_t          read GetExtraBasicsize      write SetExtraBasicsize;
+      /// <summary>
+      /// <para>The size of one element of a variable-size type, in bytes.
+      /// Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation
+      /// for caveats.</para>
+      /// <para>The value must be positive.</para>
+      /// <para>If this slot is missing, tp_itemsize is inherited. Extending
+      /// arbitrary variable-sized classes is dangerous, since some types use
+      /// a fixed offset for variable-sized memory, which can then overlap
+      /// fixed-sized memory used by a subclass. To help prevent mistakes,
+      /// inheriting itemsize is only possible in the following
+      /// situations:</para>
+      /// <code>
+      /// - The base is not variable-sized (its tp_itemsize is zero).
+      /// - The requested PyType_Spec.basicsize is positive, suggesting that
+      ///   the memory layout of the base class is known.
+      /// - The requested PyType_Spec.basicsize is zero, suggesting that the
+      ///   subclass does not access the instance's memory directly.
+      /// </code>
+      /// <para>With the Py_TPFLAGS_ITEMS_AT_END flag.</para>
+      /// <para>This may not be used in PyType_Spec.slots. Use
+      /// PyType_Spec.itemsize instead.</para>
+      /// <para>This slot may not be used with TPyType.GetSlot().</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      property  Itemsize               : Py_ssize_t          read GetItemsize            write SetItemsize;
+      /// <summary>
+      /// <para>Type flags, used to set PyTypeObject.tp_flags.</para>
+      /// <para>The Py_TPFLAGS_HEAPTYPE flag is not set,
+      /// TPyType.FromSpecWithBases() sets it automatically.</para>
+      /// <para>This may not be used in PyType_Spec.slots. Use negative
+      /// PyType_Spec.basicsize instead.</para>
+      /// <para>This slot may not be used with TPyType.GetSlot().
+      /// Use TPyType.GetFlags() instead.</para>
+      /// <para>Added in version 3.15.</para>
+      /// </summary>
+      property  Flags                  : NativeUInt          read GetFlags               write SetFlags;
   end;
 
 implementation
@@ -197,6 +287,10 @@ begin
   FMetaclass             := nil;
   FModule                := nil;
   FBases                 := nil;
+  FBasicsize             := low(Py_ssize_t);
+  FExtraBasicsize        := low(Py_ssize_t);
+  FItemsize              := low(Py_ssize_t);
+  FFlags                 := 0;
 end;
 
 destructor TPyHeapTypeSlotManager.Destroy;
@@ -475,6 +569,26 @@ begin
   Result := FBases;
 end;
 
+function TPyHeapTypeSlotManager.GetBasicsize: Py_ssize_t;
+begin
+  Result := FBasicsize;
+end;
+
+function TPyHeapTypeSlotManager.GetExtraBasicsize: Py_ssize_t;
+begin
+  Result := FExtraBasicsize;
+end;
+
+function TPyHeapTypeSlotManager.GetItemsize: Py_ssize_t;
+begin
+  Result := FItemsize;
+end;
+
+function TPyHeapTypeSlotManager.GetFlags: NativeUInt;
+begin
+  Result := FFlags;
+end;
+
 procedure TPyHeapTypeSlotManager.SetName(const aValue: AnsiString);
 begin
   FName := aValue;
@@ -503,6 +617,26 @@ end;
 procedure TPyHeapTypeSlotManager.SetBases(const aValue: IPyObject);
 begin
   FBases := aValue;
+end;
+
+procedure TPyHeapTypeSlotManager.SetBasicSize(aValue: Py_ssize_t);
+begin
+  FBasicsize := aValue;
+end;
+
+procedure TPyHeapTypeSlotManager.SetExtraBasicSize(aValue: Py_ssize_t);
+begin
+  FExtraBasicsize := aValue;
+end;
+
+procedure TPyHeapTypeSlotManager.SetItemSize(aValue: Py_ssize_t);
+begin
+  FItemsize := aValue;
+end;
+
+procedure TPyHeapTypeSlotManager.SetFlags(aValue: NativeUInt);
+begin
+  FFlags := aValue;
 end;
 
 function TPyHeapTypeSlotManager.AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
@@ -595,7 +729,10 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and (length(FName) > 0) then
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (length(FName) > 0) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_STATIC_STRING(Py_tp_name, FName);
@@ -652,7 +789,7 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and assigned(FMethods) and (length(FMethods) > 0) then
+  if assigned(FSlotList) and assigned(FMethods) and (length(FMethods) > 1) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_STATIC_DATA(Py_tp_methods, @FMethods[0]);
@@ -670,7 +807,7 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and assigned(FMembers) and (length(FMembers) > 0) then
+  if assigned(FSlotList) and assigned(FMembers) and (length(FMembers) > 1) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_STATIC_DATA(Py_tp_members, @FMembers[0]);
@@ -688,7 +825,7 @@ var
 begin
   Result := False;
 
-  if assigned(FSlotList) and assigned(FGetSets) and (length(FGetSets) > 0) then
+  if assigned(FSlotList) and assigned(FGetSets) and (length(FGetSets) > 1) then
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_STATIC_DATA(Py_tp_getset, @FGetSets[0]);
@@ -765,6 +902,154 @@ begin
     end;
 end;
 
+function TPyHeapTypeSlotManager.AddBasicsizeSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (FBasicsize <> low(Py_ssize_t)) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_SIZE(Py_tp_basicsize, FBasicsize);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddExtraBasicsizeSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (FExtraBasicsize <> low(Py_ssize_t)) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_SIZE(Py_tp_extra_basicsize, FExtraBasicsize);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddItemsizeSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (FItemsize <> low(Py_ssize_t)) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_SIZE(Py_tp_itemsize, FItemsize);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddFlagsSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (FFlags <> 0) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_UINT64(Py_tp_flags, FFlags);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddSlotsSlot(const aSlots: PPyType_Slot): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     assigned(aSlots) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_slots, aSlots);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddSubslotsSlot(const aSlots: PPySlot): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     assigned(aSlots) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_slot_subslots, aSlots);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddReprSlot(const aFunc: tp_reprfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_repr, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_repr, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
 procedure TPyHeapTypeSlotManager.AddAllSlots;
 begin
   AddNameSlot;
@@ -776,6 +1061,10 @@ begin
   AddMembersSlot;
   AddGetSetsSlot;
   AddTokenSlot;
+  AddBasicsizeSlot;
+  AddExtraBasicsizeSlot;
+  AddItemsizeSlot;
+  AddFlagsSlot;
 end;
 
 procedure TPyHeapTypeSlotManager.AddAllMethods;

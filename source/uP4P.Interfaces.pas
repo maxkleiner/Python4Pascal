@@ -4664,6 +4664,10 @@ type
   /// <para>IPyHeapTypeSlotManager is used to store the information about the
   /// heap type and to manage the method and slot lists.</para>
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/type.html#creating-heap-allocated-types">See the article about Creating Heap-Allocated Types.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject">See the article about PyTypeObject.</see></para>
+  /// </remarks>
   IPyHeapTypeSlotManager = interface
     ['{93297C49-56B5-40CD-B4AB-310194E65DEA}']
     function  GetName: AnsiString;
@@ -4677,6 +4681,10 @@ type
     function  GetMetaclass: PPyTypeObject;
     function  GetModule: IPyObject;
     function  GetBases: IPyObject;
+    function  GetBasicsize: Py_ssize_t;
+    function  GetExtraBasicsize: Py_ssize_t;
+    function  GetItemsize: Py_ssize_t;
+    function  GetFlags: NativeUInt;
 
     procedure SetName(const aValue: AnsiString);
     procedure SetDocStrings(const aValue: AnsiString);
@@ -4684,6 +4692,10 @@ type
     procedure SetMetaclass(aValue: PPyTypeObject);
     procedure SetModule(const aValue: IPyObject);
     procedure SetBases(const aValue: IPyObject);
+    procedure SetBasicSize(aValue: Py_ssize_t);
+    procedure SetExtraBasicSize(aValue: Py_ssize_t);
+    procedure SetItemSize(aValue: Py_ssize_t);
+    procedure SetFlags(aValue: NativeUInt);
 
     procedure CreateSlotArray;
     procedure CreateMethodArray;
@@ -4715,6 +4727,11 @@ type
     function  AddMetaclassSlot: boolean;
     function  AddModuleSlot: boolean;
     function  AddBasesSlot: boolean;
+    function  AddBasicsizeSlot: boolean;
+    function  AddExtraBasicsizeSlot: boolean;
+    function  AddItemsizeSlot: boolean;
+    function  AddFlagsSlot: boolean;
+    function  AddSubslotsSlot(const aSlots: PPySlot): boolean;
 
     /// <summary>
     /// Override this procedure to add your custom slots.
@@ -4795,6 +4812,73 @@ type
     /// instead. If that also is nil, the new type derives from object.</para>
     /// </summary>
     property  Bases                  : IPyObject           read GetBases               write SetBases;
+    /// <summary>
+    /// <para>The size of the instance in bytes. It is used to set
+    /// PyTypeObject.tp_basicsize.</para>
+    /// <para>The value must be positive.</para>
+    /// <para>This may not be used in PyType_Spec.slots. Use
+    /// PyType_Spec.basicsize instead.</para>
+    /// <para>This slot may not be used with TPyType.GetSlot(). Use
+    /// PyTypeObject.tp_basicsize instead if needed, but be aware that a
+    /// type's size is often considered an implementation detail.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    property  Basicsize              : Py_ssize_t          read GetBasicsize           write SetBasicsize;
+    /// <summary>
+    /// <para>Type data size in bytes, that is, how much space instances of
+    /// the class need in addition to space needed for superclasses.</para>
+    /// <para>The value is used, together with the size of superclasses, to
+    /// set PyTypeObject.tp_basicsize. Python will insert padding as needed
+    /// to meet tp_basicsize's alignment requirements.</para>
+    /// <para>Use TPyObject.GetTypeData() to get a pointer to
+    /// subclass-specific memory reserved this way.</para>
+    /// <para>The value must be positive. To specify that instances need no
+    /// additional size (that is, size should be inherited), omit the
+    /// Py_tp_extra_basicsize slot rather than set it to zero.</para>
+    /// <para>Specifying both Py_tp_basicsize and Py_tp_extra_basicsize is
+    /// an error.</para>
+    /// <para>This may not be used in PyType_Spec.slots. Use negative
+    /// PyType_Spec.basicsize instead.</para>
+    /// <para>This slot may not be used with TPyType.GetSlot().</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    property  ExtraBasicsize         : Py_ssize_t          read GetExtraBasicsize      write SetExtraBasicsize;
+    /// <summary>
+    /// <para>The size of one element of a variable-size type, in bytes.
+    /// Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation
+    /// for caveats.</para>
+    /// <para>The value must be positive.</para>
+    /// <para>If this slot is missing, tp_itemsize is inherited. Extending
+    /// arbitrary variable-sized classes is dangerous, since some types use
+    /// a fixed offset for variable-sized memory, which can then overlap
+    /// fixed-sized memory used by a subclass. To help prevent mistakes,
+    /// inheriting itemsize is only possible in the following
+    /// situations:</para>
+    /// <code>
+    /// - The base is not variable-sized (its tp_itemsize is zero).
+    /// - The requested PyType_Spec.basicsize is positive, suggesting that
+    ///   the memory layout of the base class is known.
+    /// - The requested PyType_Spec.basicsize is zero, suggesting that the
+    ///   subclass does not access the instance's memory directly.
+    /// </code>
+    /// <para>With the Py_TPFLAGS_ITEMS_AT_END flag.</para>
+    /// <para>This may not be used in PyType_Spec.slots. Use
+    /// PyType_Spec.itemsize instead.</para>
+    /// <para>This slot may not be used with TPyType.GetSlot().</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    property  Itemsize               : Py_ssize_t          read GetItemsize            write SetItemsize;
+    /// <summary>
+    /// <para>Type flags, used to set PyTypeObject.tp_flags.</para>
+    /// <para>The Py_TPFLAGS_HEAPTYPE flag is not set,
+    /// TPyType.FromSpecWithBases() sets it automatically.</para>
+    /// <para>This may not be used in PyType_Spec.slots. Use negative
+    /// PyType_Spec.basicsize instead.</para>
+    /// <para>This slot may not be used with TPyType.GetSlot().
+    /// Use TPyType.GetFlags() instead.</para>
+    /// <para>Added in version 3.15.</para>
+    /// </summary>
+    property  Flags                  : NativeUInt          read GetFlags               write SetFlags;
   end;
 
   /// <summary>
