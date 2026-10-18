@@ -143,7 +143,12 @@ type
       /// <para>Return non-zero if the object o type is aPyTypeObject.
       /// Return zero otherwise.</para>
       /// </summary>
-      class function  IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+      class function  IsType(o: PPyObject; aPyTypeObject: PPyTypeObject): boolean; overload;
+      /// <summary>
+      /// <para>Return non-zero if the object o type is aPyTypeObject.
+      /// Return zero otherwise.</para>
+      /// </summary>
+      class function  IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean; overload;
       /// <summary>
       /// <para>Get the reference count of the Python object aPyObject.</para>
       /// <para>Note that the returned value may not actually reflect how many
@@ -1282,18 +1287,24 @@ begin
     Result := nil;
 end;
 
-class function TPy.IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+class function TPy.IsType(o: PPyObject; aPyTypeObject: PPyTypeObject): boolean;
 begin
-  if TPyObject.IsInitialized(o) and
+  if assigned(o) and
      assigned(aPyTypeObject) then
     begin
       if assigned(Py_IS_TYPE) then
-        Result := (Py_IS_TYPE(o.PyObject, aPyTypeObject) <> 0)
+        Result := (Py_IS_TYPE(o, aPyTypeObject) <> 0)
        else
         Result := (Type_(o) = aPyTypeObject);
     end
    else
     Result := False;
+end;
+
+class function TPy.IsType(const o: IPyObject; aPyTypeObject: PPyTypeObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(o) and
+            IsType(o.PyObject, aPyTypeObject);
 end;
 
 class function TPy.RefCnt(const aPyObject: IPyObject): Py_ssize_t;

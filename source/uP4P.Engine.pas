@@ -106,7 +106,7 @@ type
       /// <summary>
       /// <para>Search the heap type in the internal heap type list.</para>
       /// </summary>
-      function    SearchHeapType(heaptype: PPyObject; var aResult: TCustomHeapType): boolean;
+      function    SearchHeapType(aObject: PPyObject; aAllowSubtypes: boolean; var aResult: TCustomHeapType): boolean;
       /// <summary>
       /// <para>Return True if module is the internal IOModule.</para>
       /// </summary>
@@ -224,7 +224,8 @@ uses
     {$IFNDEF FPC}Types,{$ENDIF}
   {$ENDIF}
   uP4P.MiscFunctions, uP4P.PyImport, uP4P.PyDict, uP4P.PyErr, uP4P.PyUnicode,
-  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState, uP4P.Constants;
+  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState, uP4P.Constants,
+  uP4P.Py;
 
 procedure DestroyGlobalP4PEngine;
 begin
@@ -544,9 +545,9 @@ begin
     end;
 end;
 
-function TP4PEngine.SearchHeapType(heaptype: PPyObject; var aResult: TCustomHeapType): boolean;
+function TP4PEngine.SearchHeapType(aObject: PPyObject; aAllowSubtypes: boolean; var aResult: TCustomHeapType): boolean;
 var
-  i: integer;
+  i            : integer;
   TempHeapType : TCustomHeapType;
 begin
   Result  := False;
@@ -559,7 +560,8 @@ begin
           begin
             TempHeapType := TCustomHeapType(FHeapTypes[i]);
 
-            if TempHeapType.SameAs(heaptype) then
+            if (aAllowSubtypes and TempHeapType.Check(aObject)) or
+               (not(aAllowSubtypes) and TempHeapType.CheckExact(aObject)) then
               begin
                 aResult := TempHeapType;
                 Result  := True;

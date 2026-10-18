@@ -114,7 +114,7 @@ begin
   FTestType.DocStrings := 'test docstring';
 
   Result := FTestType.Initialize and
-            TPyModule.AddObject(FTestModule.Module, TEST_TYPE_NAME, FTestType.HeapType);
+            TPyModule.AddObjectRef(FTestModule.Module, TEST_TYPE_NAME, FTestType.HeapType);
 end;
 
 procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
@@ -130,6 +130,7 @@ end;
 
 procedure TMainForm.RunBtnClick(Sender: TObject);
 begin
+  LogMem.Lines.Clear;
   if TPyRun.SimpleString(CodeMem.Text) then
     LogMem.Lines.Add('Code run correctly.')
    else

@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Simple Python Module'
-  ClientHeight = 646
+  ClientHeight = 699
   ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object MainForm: TMainForm
   TextHeight = 15
   object Splitter1: TSplitter
     Left = 0
-    Top = 309
+    Top = 333
     Width = 736
     Height = 3
     Cursor = crVSplit
@@ -44,9 +44,9 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Top = 312
+    Top = 336
     Width = 736
-    Height = 334
+    Height = 363
     Align = alBottom
     ReadOnly = True
     ScrollBars = ssBoth
@@ -56,7 +56,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 35
     Width = 736
-    Height = 274
+    Height = 298
     Align = alClient
     Lines.Strings = (
       'import mytest'
@@ -77,8 +77,9 @@ object MainForm: TMainForm
       ''
       'obj = mytest.mytype()'
       'print(type(obj))'
-      'print(isinstance(obj, mytest.mytype))')
+      'print(isinstance(obj, mytest.mytype))'
+      'print(obj.getid())'
+      'print(repr(obj))')
     TabOrder = 2
-    ExplicitHeight = 258
   end
 end

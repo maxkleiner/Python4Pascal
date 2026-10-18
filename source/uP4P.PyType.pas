@@ -129,6 +129,18 @@ type
       /// </summary>
       class function GetName(type_: PPyTypeObject): IPyObject;
       /// <summary>
+      /// <para>Return the type's name. Equivalent to getting the type's
+      /// __name__ attribute.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
+      class function GetNameAsString(type_: PPyTypeObject): string;
+      /// <summary>
+      /// <para>Return the type's name. Equivalent to getting the type's
+      /// __name__ attribute.</para>
+      /// <para>Added in version 3.11.</para>
+      /// </summary>
+      class function GetNameAsAnsiString(type_: PPyTypeObject): AnsiString;
+      /// <summary>
       /// <para>Return the type's qualified name. Equivalent to getting the
       /// type's __qualname__ attribute.</para>
       /// <para>Added in version 3.11.</para>
@@ -604,6 +616,30 @@ begin
     Result := TPyObject.Wrap(PyType_GetName(type_))
    else
     Result := nil;
+end;
+
+class function TPyType.GetNameAsString(type_: PPyTypeObject): string;
+var
+  TempResult : IPyObject;
+begin
+  TempResult := GetName(type_);
+
+  if assigned(TempResult) then
+    Result := TempResult.AsString
+   else
+    Result := '';
+end;
+
+class function TPyType.GetNameAsAnsiString(type_: PPyTypeObject): AnsiString;
+var
+  TempResult : IPyObject;
+begin
+  TempResult := GetName(type_);
+
+  if assigned(TempResult) then
+    Result := TempResult.AsAnsiString
+   else
+    Result := '';
 end;
 
 class function TPyType.GetQualName(type_: PPyTypeObject): IPyObject;

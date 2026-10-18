@@ -341,11 +341,12 @@ end;
 function TCustomPyModule.SameAs(const other: PPyObject): boolean;
 var
   TempToken : pointer;
+  TempName  : AnsiString;
 begin
   Result := False;
   if not(assigned(other)) then exit;
 
-  if assigned(FModule) then
+  if TPyObject.IsInitialized(FModule) then
     Result := FModule.SameAs(other)
    else
     begin
@@ -355,7 +356,10 @@ begin
          (TempToken <> nil) then
         Result := (TempToken = self.Token)
        else
-        Result := (Trim(Name_) = TPyModule.GetName(other));
+        begin
+          TempName := TPyModule.GetName(other);
+          Result   := (trim(Name_) = trim(TempName));
+        end;
     end;
 end;
 

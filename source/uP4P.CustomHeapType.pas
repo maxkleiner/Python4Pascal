@@ -39,6 +39,7 @@ type
       function  GetBases: IPyObject;
       function  GetUseLegacyAPI: boolean;
       function  GetToken: pointer;
+      function  GetAsPyTypeObject: PPyTypeObject;
 
       procedure SetMetaclass(aValue: PPyTypeObject);
       procedure SetModule(const aValue: IPyObject);
@@ -82,6 +83,14 @@ type
       /// type.</para>
       /// </summary>
       function    SameAs(const other: PPyObject): boolean; virtual;
+
+      function    CheckExact(const aPyObject: IPyObject): boolean; overload;
+
+      function    CheckExact(aPyObject: PPyObject): boolean; overload;
+
+      function    Check(const aPyObject: IPyObject): boolean; overload;
+
+      function    Check(aPyObject: PPyObject): boolean; overload;
       /// <summary>
       /// <para>Create the heap type and all the slots.</para>
       /// </summary>
@@ -95,7 +104,12 @@ type
       /// <para>See the TP4PThread class.</para>
       /// </remarks>
       procedure   Finalize;
+      /// <summary>
+      /// <para>Unique heap type ID.</para>
+      /// </summary>
+      property ID                            : cardinal            read FID;
 
+      property AsPyTypeObject                : PPyTypeObject       read GetAsPyTypeObject;
       /// <summary>
       /// <para>PyObject instance of this heap type.</para>
       /// </summary>
@@ -158,7 +172,7 @@ implementation
 
 uses
   uP4P.PyModule, uP4P.Engine, uP4P.Constants, uP4P.MiscFunctions,
-  uP4P.PyType_Spec, uP4P.PyHeapTypeSlotManager;
+  uP4P.PyType_Spec, uP4P.PyHeapTypeSlotManager, uP4P.Py;
 
 constructor TCustomHeapType.Create(const aName: string);
 begin
@@ -269,6 +283,14 @@ begin
   Result := TPyType.GetSlot(FHeapType, Py_tp_token);
 end;
 
+function TCustomHeapType.GetAsPyTypeObject: PPyTypeObject;
+begin
+  if TPyObject.IsInitialized(FHeapType) then
+    Result := PPyTypeObject(FHeapType.PyObject)
+   else
+    Result := nil;
+end;
+
 function TCustomHeapType.GetSlots: PPySlot;
 begin
   if assigned(FSlotManager) then
@@ -312,13 +334,32 @@ end;
 
 function TCustomHeapType.SameAs(const other: PPyObject): boolean;
 begin
-  Result := False;
-  if not(assigned(other)) then exit;
+  Result := assigned(FHeapType) and
+            FHeapType.SameAs(other);
+end;
 
-  if assigned(FHeapType) then
-    Result := FHeapType.SameAs(other)
-   else
-    Result := (Trim(Name_) = TPyModule.GetName(other));
+function TCustomHeapType.CheckExact(const aPyObject: IPyObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(aPyObject) and
+            aPyObject.IsType(AsPyTypeObject);
+end;
+
+function TCustomHeapType.CheckExact(aPyObject: PPyObject): boolean;
+begin
+  Result := assigned(aPyObject) and
+            TPy.IsType(aPyObject, AsPyTypeObject);
+end;
+
+function TCustomHeapType.Check(const aPyObject: IPyObject): boolean;
+begin
+  Result := TPyObject.IsInitialized(aPyObject) and
+            aPyObject.TypeCheck(AsPyTypeObject);
+end;
+
+function TCustomHeapType.Check(aPyObject: PPyObject): boolean;
+begin
+  Result := assigned(aPyObject) and
+            TPyType.IsSubtype(TPy.Type_(aPyObject), AsPyTypeObject);
 end;
 
 function TCustomHeapType.LegacyInitialization: boolean;
