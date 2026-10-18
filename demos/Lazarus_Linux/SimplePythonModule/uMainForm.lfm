@@ -74,6 +74,12 @@ object MainForm: TMainForm
       ''
       'print("Check if 45 is even...")'
       'print(mytest.is_even(45))'
+      ''
+      'obj = mytest.mytype()'
+      'print(type(obj))'
+      'print(isinstance(obj, mytest.mytype))'
+      'print(obj.getid())'
+      'print(repr(obj))'
     )
     TabOrder = 2
   end

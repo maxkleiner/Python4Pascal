@@ -9,7 +9,7 @@ uses
   Controls, Forms, Dialogs, StdCtrls, ExtCtrls,
   uP4P.Interfaces, uP4P.PyObject, uP4P.Engine, uP4P.Py, uP4P.PyImport,
   uP4P.PyModule, uP4P.PyEval, uP4P.PyRun, uP4P.Constants,
-  uTestModule;
+  uTestModule, uTestHeapType;
 
 type
   TMainForm = class(TForm)
@@ -23,9 +23,11 @@ type
     procedure RunBtnClick(Sender: TObject);
   private
     FTestModule  : TTestModule;
+    FTestType    : TTestHeapType;
     FCustomValue : string;
 
     function  CreateModule: boolean;
+    function  CreateType: boolean;
     procedure GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
   public
     property CustomValue : string read FCustomValue write FCustomValue;
@@ -42,6 +44,9 @@ procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if assigned(FTestModule) then
     FreeAndNil(FTestModule);
+
+  if assigned(FTestType) then
+    FreeAndNil(FTestType);
 
   DestroyGlobalP4PEngine;
 end;
@@ -60,7 +65,8 @@ begin
 
       if GlobalP4PEngine.Load and
          GlobalP4PEngine.Initialize and
-         CreateModule then
+         CreateModule and
+         CreateType then
         LogMem.Lines.Add('Python initialized. ' + GlobalP4PEngine.buildinfo)
        else
         begin
@@ -75,6 +81,15 @@ begin
   FTestModule          := TTestModule.Create(TEST_MODULE_NAME);
   FTestModule.MainForm := self;
   Result               := FTestModule.Initialize;
+end;   
+
+function TMainForm.CreateType: boolean;
+begin
+  FTestType            := TTestHeapType.Create(TEST_TYPE_NAME);
+  FTestType.DocStrings := 'test docstring';
+
+  Result := FTestType.Initialize and
+            TPyModule.AddObjectRef(FTestModule.Module, TEST_TYPE_NAME, FTestType.HeapType);
 end;
 
 procedure TMainForm.GlobalP4PEngine_OnOutputMessage(Sender: TObject; const message_: string);
