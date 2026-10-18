@@ -17,6 +17,14 @@ uses
   uP4P.Types, uP4P.Interfaces, uP4P.PyObject, uP4P.PyType;
 
 type
+  /// <summary>
+  /// <para>TCustomHeapType is the base class for all the heap types created with
+  /// the Python API methods.</para>
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3.15/c-api/typeobj.html#heap-types">See the article about Heap Types.</see></para>
+  /// <para><see href="https://docs.python.org/3.15/c-api/type.html#creating-heap-allocated-types">See the article about Creating Heap-Allocated Types.</see></para>
+  /// </remarks>
   TCustomHeapType = class
     protected
       FName                  : string;
@@ -83,13 +91,25 @@ type
       /// type.</para>
       /// </summary>
       function    SameAs(const other: PPyObject): boolean; virtual;
-
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance of this heap
+      /// type.</para>
+      /// </summary>
       function    CheckExact(const aPyObject: IPyObject): boolean; overload;
-
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance of this heap
+      /// type.</para>
+      /// </summary>
       function    CheckExact(aPyObject: PPyObject): boolean; overload;
-
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance or a subtype of this
+      /// heap type.</para>
+      /// </summary>
       function    Check(const aPyObject: IPyObject): boolean; overload;
-
+      /// <summary>
+      /// <para>Return true if aPyObject is an instance or a subtype of this
+      /// heap type.</para>
+      /// </summary>
       function    Check(aPyObject: PPyObject): boolean; overload;
       /// <summary>
       /// <para>Create the heap type and all the slots.</para>
@@ -105,7 +125,7 @@ type
       /// </remarks>
       procedure   Finalize;
       /// <summary>
-      /// <para>Unique heap type ID.</para>
+      /// <para>Unique ID of this heap type.</para>
       /// </summary>
       property ID                            : cardinal            read FID;
 
@@ -171,8 +191,8 @@ type
 implementation
 
 uses
-  uP4P.PyModule, uP4P.Engine, uP4P.Constants, uP4P.MiscFunctions,
-  uP4P.PyType_Spec, uP4P.PyHeapTypeSlotManager, uP4P.Py;
+  uP4P.Engine, uP4P.Constants, uP4P.MiscFunctions, uP4P.PyType_Spec, uP4P.Py,
+  uP4P.PyHeapTypeSlotManager;
 
 constructor TCustomHeapType.Create(const aName: string);
 begin
@@ -316,7 +336,8 @@ end;
 
 procedure TCustomHeapType.SetUseLegacyAPI(aValue: boolean);
 begin
-  if (GlobalP4PEngine <> nil) and GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) then
     FUseLegacyAPI := aValue
    else
     FUseLegacyAPI := True;

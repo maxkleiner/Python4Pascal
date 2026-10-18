@@ -1,10 +1,10 @@
 object MainForm: TMainForm
   Left = 0
-  Height = 627
+  Height = 757
   Top = 0
   Width = 802
   Caption = 'Simple Python Module'
-  ClientHeight = 627
+  ClientHeight = 757
   ClientWidth = 802
   Color = clBtnFace
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Cursor = crVSplit
     Left = 0
     Height = 3
-    Top = 264
+    Top = 344
     Width = 802
     Align = alBottom
     ResizeAnchor = akBottom
@@ -46,8 +46,8 @@ object MainForm: TMainForm
   end
   object LogMem: TMemo
     Left = 0
-    Height = 360
-    Top = 267
+    Height = 410
+    Top = 347
     Width = 802
     Align = alBottom
     ReadOnly = True
@@ -56,7 +56,7 @@ object MainForm: TMainForm
   end
   object CodeMem: TMemo
     Left = 0
-    Height = 229
+    Height = 309
     Top = 35
     Width = 802
     Align = alClient
@@ -74,6 +74,12 @@ object MainForm: TMainForm
       ''
       'print("Check if 45 is even...")'
       'print(mytest.is_even(45))'
+      ''
+      'obj = mytest.mytype()'
+      'print(type(obj))'
+      'print(isinstance(obj, mytest.mytype))'
+      'print(obj.getid())'
+      'print(repr(obj))'
     )
     TabOrder = 2
   end

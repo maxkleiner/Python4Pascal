@@ -4711,27 +4711,192 @@ type
     procedure DestroyGetSetList;
     procedure DestroyGetSets;
 
+    /// <summary>
+    /// Add a method.
+    /// </summary>
     function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    /// <summary>
+    /// Add a member.
+    /// </summary>
     function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+    /// <summary>
+    /// Add a getset.
+    /// </summary>
     function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+
+    /// <summary>
+    /// Add a sentinel method slot.
+    /// </summary>
     function  AddSentinelMethod: boolean;
-    function  AddSentinelSlot: boolean;
+    /// <summary>
+    /// Add a sentinel member slot.
+    /// </summary>
     function  AddSentinelMember: boolean;
+    /// <summary>
+    /// Add a sentinel getset slot.
+    /// </summary>
     function  AddSentinelGetSet: boolean;
-    function  AddNameSlot: boolean;
-    function  AddDocStringsSlot: boolean;
-    function  AddTokenSlot: boolean;
-    function  AddMethodsSlot: boolean;
-    function  AddMembersSlot: boolean;
-    function  AddGetSetsSlot: boolean;
-    function  AddMetaclassSlot: boolean;
-    function  AddModuleSlot: boolean;
+    /// <summary>
+    /// Add a sentinel slot.
+    /// </summary>
+    function  AddSentinelSlot: boolean;
+
+    /// <summary>
+    /// Add a Py_tp_alloc slot.
+    /// </summary>
+    function  AddAllocSlot(const aFunc: allocfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_base(s) slot.
+    /// </summary>
     function  AddBasesSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_basicsize slot.
+    /// </summary>
     function  AddBasicsizeSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_call slot.
+    /// </summary>
+    function  AddCallSlot(const aFunc: ternaryfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_clear slot.
+    /// </summary>
+    function  AddClearSlot(const aFunc: inquiry): boolean;
+    /// <summary>
+    /// Add a Py_tp_dealloc slot.
+    /// </summary>
+    function  AddDeallocSlot(const aFunc: destructor_): boolean;
+    /// <summary>
+    /// Add a Py_tp_del slot.
+    /// </summary>
+    function  AddDelSlot(const aFunc: destructor_): boolean;
+    /// <summary>
+    /// Add a Py_tp_descr_get slot.
+    /// </summary>
+    function  AddDescrGetSlot(const aFunc: descrgetfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_descr_set slot.
+    /// </summary>
+    function  AddDescrSetSlot(const aFunc: descrsetfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_doc slot.
+    /// </summary>
+    function  AddDocSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_extra_basicsize slot.
+    /// </summary>
     function  AddExtraBasicsizeSlot: boolean;
-    function  AddItemsizeSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_finalize slot.
+    /// </summary>
+    function  AddFinalizeSlot(const aFunc: destructor_): boolean;
+    /// <summary>
+    /// Add a Py_tp_flags slot.
+    /// </summary>
     function  AddFlagsSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_free slot.
+    /// </summary>
+    function  AddFreeSlot(const aFunc: freefunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_getattr slot.
+    /// </summary>
+    function  AddGetAttrSlot(const aFunc: getattrfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_getattro slot.
+    /// </summary>
+    function  AddGetAttroSlot(const aFunc: getattrofunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_getset slot.
+    /// </summary>
+    function  AddGetSetsSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_hash slot.
+    /// </summary>
+    function  AddHashSlot(const aFunc: hashfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_init slot.
+    /// </summary>
+    function  AddInitSlot(const aFunc: initproc): boolean;
+    /// <summary>
+    /// Add a Py_tp_is_gc slot.
+    /// </summary>
+    function  AddIsGCSlot(const aFunc: inquiry): boolean;
+    /// <summary>
+    /// Add a Py_tp_itemsize slot.
+    /// </summary>
+    function  AddItemsizeSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_iter slot.
+    /// </summary>
+    function  AddIterSlot(const aFunc: getiterfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_iternext slot.
+    /// </summary>
+    function  AddIterNextSlot(const aFunc: iternextfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_members slot.
+    /// </summary>
+    function  AddMembersSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_metaclass slot.
+    /// </summary>
+    function  AddMetaclassSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_methods slot.
+    /// </summary>
+    function  AddMethodsSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_module slot.
+    /// </summary>
+    function  AddModuleSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_name slot.
+    /// </summary>
+    function  AddNameSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_new slot.
+    /// </summary>
+    function  AddNewSlot(const aFunc: newfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_repr slot.
+    /// </summary>
+    function  AddReprSlot(const aFunc: reprfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_richcompare slot.
+    /// </summary>
+    function  AddRichCompareSlot(const aFunc: richcmpfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_setattr slot.
+    /// </summary>
+    function  AddSetAttrSlot(const aFunc: setattrfunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_setattro slot.
+    /// </summary>
+    function  AddSetAttroSlot(const aFunc: setattrofunc): boolean;
+    /// <summary>
+    /// Add a Py_tp_slots slot.
+    /// </summary>
+    function  AddSlotsSlot(const aSlots: PPyType_Slot): boolean;
+    /// <summary>
+    /// Add a Py_tp_str slot.
+    /// </summary>
+    function  AddStrSlot(const aFunc: reprfunc): boolean;
+    /// <summary>
+    /// Add a Py_slot_subslots slot.
+    /// </summary>
     function  AddSubslotsSlot(const aSlots: PPySlot): boolean;
+    /// <summary>
+    /// Add a Py_tp_token slot.
+    /// </summary>
+    function  AddTokenSlot: boolean;
+    /// <summary>
+    /// Add a Py_tp_traverse slot.
+    /// </summary>
+    function  AddTraverseSlot(const aFunc: traverseproc): boolean;
+    /// <summary>
+    /// Add a Py_tp_vectorcall slot.
+    /// </summary>
+    function  AddVectorcallSlot(const aFunc: vectorcallfunc): boolean;
 
     /// <summary>
     /// Override this procedure to add your custom slots.
@@ -4924,6 +5089,165 @@ type
     procedure DestroyGetSets;
 
     /// <summary>
+    /// Add a generic slot.
+    /// </summary>
+    function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
+    /// <summary>
+    /// Add a method.
+    /// </summary>
+    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+    /// <summary>
+    /// Add a member.
+    /// </summary>
+    function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+    /// <summary>
+    /// Add a getset.
+    /// </summary>
+    function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+
+    /// <summary>
+    /// Add a sentinel method slot.
+    /// </summary>
+    function  AddSentinelMethod: boolean;
+    /// <summary>
+    /// Add a sentinel member slot.
+    /// </summary>
+    function  AddSentinelMember: boolean;
+    /// <summary>
+    /// Add a sentinel getset slot.
+    /// </summary>
+    function  AddSentinelGetSet: boolean;
+    /// <summary>
+    /// Add a sentinel slot.
+    /// </summary>
+    function  AddSentinelSlot: boolean;
+
+    /// <summary>
+    /// Add a Py_tp_alloc slot.
+    /// </summary>
+    procedure AddAllocSlot(const aFunc: allocfunc);
+    /// <summary>
+    /// Add a Py_tp_call slot.
+    /// </summary>
+    procedure AddCallSlot(const aFunc: ternaryfunc);
+    /// <summary>
+    /// Add a Py_tp_clear slot.
+    /// </summary>
+    procedure AddClearSlot(const aFunc: inquiry);
+    /// <summary>
+    /// Add a Py_tp_dealloc slot.
+    /// </summary>
+    procedure AddDeallocSlot(const aFunc: destructor_);
+    /// <summary>
+    /// Add a Py_tp_del slot.
+    /// </summary>
+    procedure AddDelSlot(const aFunc: destructor_);
+    /// <summary>
+    /// Add a Py_tp_descr_get slot.
+    /// </summary>
+    procedure AddDescrGetSlot(const aFunc: descrgetfunc);
+    /// <summary>
+    /// Add a Py_tp_descr_set slot.
+    /// </summary>
+    procedure AddDescrSetSlot(const aFunc: descrsetfunc);
+    /// <summary>
+    /// Add a Py_tp_doc slot.
+    /// </summary>
+    procedure AddDocSlot;
+    /// <summary>
+    /// Add a Py_tp_finalize slot.
+    /// </summary>
+    procedure AddFinalizeSlot(const aFunc: destructor_);
+    /// <summary>
+    /// Add a Py_tp_free slot.
+    /// </summary>
+    procedure AddFreeSlot(const aFunc: freefunc);
+    /// <summary>
+    /// Add a Py_tp_getattr slot.
+    /// </summary>
+    procedure AddGetAttrSlot(const aFunc: getattrfunc);
+    /// <summary>
+    /// Add a Py_tp_getattro slot.
+    /// </summary>
+    procedure AddGetAttroSlot(const aFunc: getattrofunc);
+    /// <summary>
+    /// Add a Py_tp_getset slot.
+    /// </summary>
+    procedure AddGetSetsSlot;
+    /// <summary>
+    /// Add a Py_tp_hash slot.
+    /// </summary>
+    procedure AddHashSlot(const aFunc: hashfunc);
+    /// <summary>
+    /// Add a Py_tp_init slot.
+    /// </summary>
+    procedure AddInitSlot(const aFunc: initproc);
+    /// <summary>
+    /// Add a Py_tp_is_gc slot.
+    /// </summary>
+    procedure AddIsGCSlot(const aFunc: inquiry);
+    /// <summary>
+    /// Add a Py_tp_iter slot.
+    /// </summary>
+    procedure AddIterSlot(const aFunc: getiterfunc);
+    /// <summary>
+    /// Add a Py_tp_iternext slot.
+    /// </summary>
+    procedure AddIterNextSlot(const aFunc: iternextfunc);
+    /// <summary>
+    /// Add a Py_tp_members slot.
+    /// </summary>
+    procedure AddMembersSlot;
+    /// <summary>
+    /// Add a Py_tp_methods slot.
+    /// </summary>
+    procedure AddMethodsSlot;
+    /// <summary>
+    /// Add a Py_tp_new slot.
+    /// </summary>
+    procedure AddNewSlot(const aFunc: newfunc);
+    /// <summary>
+    /// Add a Py_tp_repr slot.
+    /// </summary>
+    procedure AddReprSlot(const aFunc: reprfunc);
+    /// <summary>
+    /// Add a Py_tp_richcompare slot.
+    /// </summary>
+    procedure AddRichCompareSlot(const aFunc: richcmpfunc);
+    /// <summary>
+    /// Add a Py_tp_setattr slot.
+    /// </summary>
+    procedure AddSetAttrSlot(const aFunc: setattrfunc);
+    /// <summary>
+    /// Add a Py_tp_setattro slot.
+    /// </summary>
+    procedure AddSetAttroSlot(const aFunc: setattrofunc);
+    /// <summary>
+    /// Add a Py_tp_slots slot.
+    /// </summary>
+    procedure AddSlotsSlot(const aSlots: PPyType_Slot);
+    /// <summary>
+    /// Add a Py_tp_str slot.
+    /// </summary>
+    procedure AddStrSlot(const aFunc: reprfunc);
+    /// <summary>
+    /// Add a Py_slot_subslots slot.
+    /// </summary>
+    procedure AddSubslotsSlot(const aSlots: PPySlot);
+    /// <summary>
+    /// Add a Py_tp_token slot.
+    /// </summary>
+    procedure AddTokenSlot;
+    /// <summary>
+    /// Add a Py_tp_traverse slot.
+    /// </summary>
+    procedure AddTraverseSlot(const aFunc: traverseproc);
+    /// <summary>
+    /// Add a Py_tp_vectorcall slot.
+    /// </summary>
+    procedure AddVectorcallSlot(const aFunc: vectorcallfunc);
+
+    /// <summary>
     /// Override this procedure to add your custom slots.
     /// </summary>
     procedure AddAllSlots;
@@ -4939,20 +5263,6 @@ type
     /// Override this procedure to add your custom getsets.
     /// </summary>
     procedure AddAllGetSets;
-
-    function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
-    function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
-    function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
-    function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
-    function  AddSentinelSlot: boolean;
-    function  AddSentinelMethod: boolean;
-    function  AddSentinelMember: boolean;
-    function  AddSentinelGetSet: boolean;
-    procedure AddMethodsSlot;
-    procedure AddMembersSlot;
-    procedure AddGetSetsSlot;
-    procedure AddTokenSlot;
-    procedure AddDocSlot;
     /// <summary>
     /// Create the methods and the slots with all the heap type information.
     /// </summary>

@@ -18,10 +18,9 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="76"/>
-        <CursorPos X="7" Y="89"/>
+        <TopLine Value="78"/>
+        <CursorPos X="65" Y="91"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -83,10 +82,12 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.Engine.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="8"/>
-        <CursorPos X="34" Y="15"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="212"/>
+        <CursorPos X="75" Y="227"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.PyMem.pas"/>
@@ -168,8 +169,8 @@
       <Unit>
         <Filename Value="..\..\..\source\uP4P.PySlot.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="29" Y="17"/>
+        <TopLine Value="107"/>
+        <CursorPos X="21" Y="123"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -266,8 +267,8 @@
       <Unit>
         <Filename Value="..\..\..\source\uP4P.PySlotManager.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="92"/>
-        <CursorPos X="53" Y="105"/>
+        <TopLine Value="168"/>
+        <CursorPos X="50" Y="184"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -935,13 +936,66 @@
         <CursorPos X="16" Y="136"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.CustomHeapType.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="179"/>
+        <CursorPos X="61" Y="200"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyType_Spec.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="17"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyMemberDef.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="13" Y="17"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyGetSetDef.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="54" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyHeapTypeSlotManager.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="129"/>
+        <CursorPos X="48" Y="145"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uP4P.PyModuleSlotManager.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="181"/>
+        <CursorPos X="50" Y="197"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="4">
       <Position>
         <Filename Value="SimplePythonThread.lpr"/>
       </Position>
       <Position>
         <Filename Value="SimplePythonThread.lpr"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="89" Column="7" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="91" Column="65" TopLine="78"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uP4P.CustomHeapType.pas"/>
+        <Caret Line="200" Column="61" TopLine="179"/>
       </Position>
     </JumpHistory>
     <RunParams>

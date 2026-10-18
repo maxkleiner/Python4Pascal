@@ -888,7 +888,7 @@ type
   reprfunc                         = function(ob: PPyObject): PPyObject; cdecl;
   hashfunc                         = function(ob: PPyObject): Py_hash_t; cdecl;
   richcmpfunc                      = function(ob1, ob2: PPyObject; i: Integer): PPyObject; cdecl;
-  getiterfunc                      = function(ob1: PPyObject) : PPyObject; cdecl;
+  getiterfunc                      = function(ob1: PPyObject): PPyObject; cdecl;
   iternextfunc                     = function(ob1: PPyObject): PPyObject; cdecl;
   descrgetfunc                     = function(ob1, ob2, ob3: PPyObject): PPyObject; cdecl;
   descrsetfunc                     = function(ob1, ob2, ob3: PPyObject): Integer; cdecl;
@@ -901,28 +901,6 @@ type
   exec_modulefunc                  = function(module: PPyObject): integer; cdecl;
   _Py_funcptr_t                    = procedure(); cdecl;
   _Py_iteritemfunc                 = function(object_: PPyObject; index_: Py_ssize_t): _PyObjectIndexPair; cdecl;
-
-  {* Functions defined in the documentation of the PyTypeObject slots *}
-  {* https://docs.python.org/3.15/c-api/typeobj.html *}
-  tp_deallocfunc                   = procedure(self: PPyObject); cdecl;
-  tp_reprfunc                      = function(self: PPyObject): PPyObject; cdecl;
-  tp_hashfunc                      = function(self: PPyObject): Py_hash_t; cdecl;
-  tp_callfunc                      = function(self, args, kwargs: PPyObject): PPyObject; cdecl;
-  tp_strfunc                       = function(self: PPyObject): PPyObject; cdecl;
-  tp_getattrofunc                  = function(self, attr: PPyObject): PPyObject; cdecl;
-  tp_setattrofunc                  = function(self, args, value: PPyObject): integer; cdecl;
-  tp_clearfunc                     = function(self: PPyObject): integer; cdecl;
-  tp_richcomparefunc               = function(self, other: PPyObject; op: integer): PPyObject; cdecl;
-  tp_iterfunc                      = function(self: PPyObject): PPyObject; cdecl;
-  tp_iternextfunc                  = function(self: PPyObject): PPyObject; cdecl;
-  tp_descr_getfunc                 = function(self, obj, type_: PPyObject): PPyObject; cdecl;
-  tp_descr_setfunc                 = function(self, obj, value: PPyObject): integer; cdecl;
-  tp_initfunc                      = function(self, args, kwds: PPyObject): integer; cdecl;
-  tp_allocfunc                     = function(self: PPyTypeObject; nitems: Py_ssize_t): PPyObject; cdecl;
-  tp_newfunc                       = function(subtype: PPyTypeObject; args, kwds: PPyObject): PPyObject; cdecl;
-  tp_freefunc                      = procedure(self: pointer); cdecl;
-  tp_is_gcfunc                     = function(self: PPyObject): integer; cdecl;
-  tp_finalizefunc                  = procedure(self: PPyObject); cdecl;
 
 
   /// <summary>

@@ -17,9 +17,9 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="60"/>
-        <CursorPos X="7" Y="80"/>
+        <CursorPos X="34" Y="28"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -27,20 +27,17 @@
       <Unit>
         <Filename Value="uTestModule.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="85"/>
-        <CursorPos X="44" Y="106"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="32" Y="7"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1312"/>
         <CursorPos X="23" Y="1332"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\winunits-jedi\src\jwapsapi.pas"/>
@@ -52,19 +49,17 @@
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.MiscFunctions.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="50" Y="147"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.PyObject.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2594"/>
         <CursorPos X="71" Y="2619"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uP4P.PyObjectVariantType.pas"/>
@@ -73,8 +68,18 @@
         <CursorPos X="36" Y="708"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="uTestHeapType.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="87"/>
+        <CursorPos X="16" Y="118"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="8">
+    <JumpHistory HistoryIndex="9">
       <Position>
         <Filename Value="uMainForm.pas"/>
         <Caret Line="79" TopLine="63"/>
@@ -88,28 +93,32 @@
         <Caret Line="80" Column="28" TopLine="57"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <Caret Line="26" Column="32" TopLine="10"/>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="100" Column="48" TopLine="86"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <Caret Line="1342" Column="28" TopLine="1327"/>
+        <Filename Value="uMainForm.pas"/>
+        <Caret Line="97" Column="5" TopLine="91"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.MiscFunctions.pas"/>
-        <Caret Line="143" Column="29" TopLine="130"/>
+        <Filename Value="uTestModule.pas"/>
+        <Caret Line="2" Column="28"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.MiscFunctions.pas"/>
-        <Caret Line="147" Column="50" TopLine="126"/>
+        <Filename Value="uTestModule.pas"/>
+        <Caret Line="178" Column="5" TopLine="146"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.Loader.pas"/>
-        <Caret Line="1332" Column="23" TopLine="1312"/>
+        <Filename Value="uTestHeapType.pas"/>
+        <Caret Line="7" Column="32"/>
       </Position>
       <Position>
-        <Filename Value="..\..\..\source\uP4P.PyObject.pas"/>
-        <Caret Line="2610" Column="51" TopLine="2594"/>
+        <Filename Value="uTestHeapType.pas"/>
+        <Caret Line="49" Column="3" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="uTestHeapType.pas"/>
+        <Caret Line="118" Column="16" TopLine="87"/>
       </Position>
     </JumpHistory>
     <RunParams>

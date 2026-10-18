@@ -224,8 +224,7 @@ uses
     {$IFNDEF FPC}Types,{$ENDIF}
   {$ENDIF}
   uP4P.MiscFunctions, uP4P.PyImport, uP4P.PyDict, uP4P.PyErr, uP4P.PyUnicode,
-  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState, uP4P.Constants,
-  uP4P.Py;
+  uP4P.PyInterpreterState, uP4P.PyEval, uP4P.PyThreadState, uP4P.Constants;
 
 procedure DestroyGlobalP4PEngine;
 begin

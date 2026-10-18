@@ -206,22 +206,6 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllSlots">AddAllSlots</a></strong>; virtual;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMethods">AddAllMethods</a></strong>; virtual;</code></td>
-</tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMembers">AddAllMembers</a></strong>; virtual;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllGetSets">AddAllGetSets</a></strong>; virtual;</code></td>
-</tr>
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSlot-integer-Pointer-">AddSlot</a></strong>(aSlot: integer; aPfunc: Pointer): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
@@ -238,27 +222,67 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
-</tr>
-<tr class="list2 visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelMethod">AddSentinelMethod</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelMember">AddSentinelMember</a></strong>: boolean;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelGetSet">AddSentinelGetSet</a></strong>: boolean;</code></td>
 </tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
+</tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddMethodsSlot">AddMethodsSlot</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllocSlot-allocfunc-">AddAllocSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#allocfunc">allocfunc</a>);</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddMembersSlot">AddMembersSlot</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddCallSlot-ternaryfunc-">AddCallSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddClearSlot-inquiry-">AddClearSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDeallocSlot-destructor_-">AddDeallocSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDelSlot-destructor_-">AddDelSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrGetSlot-descrgetfunc-">AddDescrGetSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#descrgetfunc">descrgetfunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrSetSlot-descrsetfunc-">AddDescrSetSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#descrsetfunc">descrsetfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDocSlot">AddDocSlot</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddFinalizeSlot-destructor_-">AddFinalizeSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddFreeSlot-freefunc-">AddFreeSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#freefunc">freefunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttrSlot-getattrfunc-">AddGetAttrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getattrfunc">getattrfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttroSlot-getattrofunc-">AddGetAttroSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getattrofunc">getattrofunc</a>);</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -266,11 +290,91 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddTokenSlot">AddTokenSlot</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddHashSlot-hashfunc-">AddHashSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#hashfunc">hashfunc</a>);</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddDocSlot">AddDocSlot</a></strong>;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddInitSlot-initproc-">AddInitSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#initproc">initproc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddIsGCSlot-inquiry-">AddIsGCSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddIterSlot-getiterfunc-">AddIterSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getiterfunc">getiterfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddIterNextSlot-iternextfunc-">AddIterNextSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#iternextfunc">iternextfunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddMembersSlot">AddMembersSlot</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddMethodsSlot">AddMethodsSlot</a></strong>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddNewSlot-newfunc-">AddNewSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#newfunc">newfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddReprSlot-reprfunc-">AddReprSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddRichCompareSlot-richcmpfunc-">AddRichCompareSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#richcmpfunc">richcmpfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttrSlot-setattrfunc-">AddSetAttrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#setattrfunc">setattrfunc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttroSlot-setattrofunc-">AddSetAttroSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#setattrofunc">setattrofunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSlotsSlot-PPyType_Slot-">AddSlotsSlot</a></strong>(const aSlots: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddStrSlot-reprfunc-">AddStrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddSubslotsSlot-PPySlot-">AddSubslotsSlot</a></strong>(const aSlots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddTokenSlot">AddTokenSlot</a></strong>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddTraverseSlot-traverseproc-">AddTraverseSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#traverseproc">traverseproc</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddVectorcallSlot-vectorcallfunc-">AddVectorcallSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllSlots">AddAllSlots</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMethods">AddAllMethods</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMembers">AddAllMembers</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyType_Spec.TPyType_Spec.html#AddAllGetSets">AddAllGetSets</a></strong>; virtual;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -682,6 +786,396 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aPfunc: Pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a generic slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a method. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddMember-string-string-integer-integer-Py_ssize_t-"></span><code>function <strong>AddMember</strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a member. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddGetSet-string-string-getter-setter-pointer-"></span><code>function <strong>AddGetSet</strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a getset. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a sentinel method slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSentinelMember"></span><code>function <strong>AddSentinelMember</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a sentinel member slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSentinelGetSet"></span><code>function <strong>AddSentinelGetSet</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a sentinel getset slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a sentinel slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddAllocSlot-allocfunc-"></span><code>procedure <strong>AddAllocSlot</strong>(const aFunc: <a href="uP4P.Types.html#allocfunc">allocfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_alloc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddCallSlot-ternaryfunc-"></span><code>procedure <strong>AddCallSlot</strong>(const aFunc: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_call slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddClearSlot-inquiry-"></span><code>procedure <strong>AddClearSlot</strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_clear slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddDeallocSlot-destructor_-"></span><code>procedure <strong>AddDeallocSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_dealloc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddDelSlot-destructor_-"></span><code>procedure <strong>AddDelSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_del slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddDescrGetSlot-descrgetfunc-"></span><code>procedure <strong>AddDescrGetSlot</strong>(const aFunc: <a href="uP4P.Types.html#descrgetfunc">descrgetfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_descr_get slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddDescrSetSlot-descrsetfunc-"></span><code>procedure <strong>AddDescrSetSlot</strong>(const aFunc: <a href="uP4P.Types.html#descrsetfunc">descrsetfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_descr_set slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddDocSlot"></span><code>procedure <strong>AddDocSlot</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_doc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddFinalizeSlot-destructor_-"></span><code>procedure <strong>AddFinalizeSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_finalize slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddFreeSlot-freefunc-"></span><code>procedure <strong>AddFreeSlot</strong>(const aFunc: <a href="uP4P.Types.html#freefunc">freefunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_free slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddGetAttrSlot-getattrfunc-"></span><code>procedure <strong>AddGetAttrSlot</strong>(const aFunc: <a href="uP4P.Types.html#getattrfunc">getattrfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getattr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddGetAttroSlot-getattrofunc-"></span><code>procedure <strong>AddGetAttroSlot</strong>(const aFunc: <a href="uP4P.Types.html#getattrofunc">getattrofunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getattro slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddGetSetsSlot"></span><code>procedure <strong>AddGetSetsSlot</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getset slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddHashSlot-hashfunc-"></span><code>procedure <strong>AddHashSlot</strong>(const aFunc: <a href="uP4P.Types.html#hashfunc">hashfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_hash slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddInitSlot-initproc-"></span><code>procedure <strong>AddInitSlot</strong>(const aFunc: <a href="uP4P.Types.html#initproc">initproc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_init slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddIsGCSlot-inquiry-"></span><code>procedure <strong>AddIsGCSlot</strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_is_gc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddIterSlot-getiterfunc-"></span><code>procedure <strong>AddIterSlot</strong>(const aFunc: <a href="uP4P.Types.html#getiterfunc">getiterfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_iter slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddIterNextSlot-iternextfunc-"></span><code>procedure <strong>AddIterNextSlot</strong>(const aFunc: <a href="uP4P.Types.html#iternextfunc">iternextfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_iternext slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddMembersSlot"></span><code>procedure <strong>AddMembersSlot</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_members slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddMethodsSlot"></span><code>procedure <strong>AddMethodsSlot</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_methods slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddNewSlot-newfunc-"></span><code>procedure <strong>AddNewSlot</strong>(const aFunc: <a href="uP4P.Types.html#newfunc">newfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_new slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddReprSlot-reprfunc-"></span><code>procedure <strong>AddReprSlot</strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_repr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddRichCompareSlot-richcmpfunc-"></span><code>procedure <strong>AddRichCompareSlot</strong>(const aFunc: <a href="uP4P.Types.html#richcmpfunc">richcmpfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_richcompare slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSetAttrSlot-setattrfunc-"></span><code>procedure <strong>AddSetAttrSlot</strong>(const aFunc: <a href="uP4P.Types.html#setattrfunc">setattrfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_setattr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSetAttroSlot-setattrofunc-"></span><code>procedure <strong>AddSetAttroSlot</strong>(const aFunc: <a href="uP4P.Types.html#setattrofunc">setattrofunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_setattro slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSlotsSlot-PPyType_Slot-"></span><code>procedure <strong>AddSlotsSlot</strong>(const aSlots: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_slots slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddStrSlot-reprfunc-"></span><code>procedure <strong>AddStrSlot</strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_str slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddSubslotsSlot-PPySlot-"></span><code>procedure <strong>AddSubslotsSlot</strong>(const aSlots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_slot_subslots slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddTokenSlot"></span><code>procedure <strong>AddTokenSlot</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_token slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddTraverseSlot-traverseproc-"></span><code>procedure <strong>AddTraverseSlot</strong>(const aFunc: <a href="uP4P.Types.html#traverseproc">traverseproc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_traverse slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddVectorcallSlot-vectorcallfunc-"></span><code>procedure <strong>AddVectorcallSlot</strong>(const aFunc: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_vectorcall slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="AddAllSlots"></span><code>procedure <strong>AddAllSlots</strong>; virtual;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -718,110 +1212,6 @@ body { margin: 0.5em; }
 <p>
  Override this procedure to add your custom getsets. </p>
 </td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aPfunc: Pointer): boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddMember-string-string-integer-integer-Py_ssize_t-"></span><code>function <strong>AddMember</strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddGetSet-string-string-getter-setter-pointer-"></span><code>function <strong>AddGetSet</strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer): boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddSentinelMember"></span><code>function <strong>AddSentinelMember</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddSentinelGetSet"></span><code>function <strong>AddSentinelGetSet</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddMethodsSlot"></span><code>procedure <strong>AddMethodsSlot</strong>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddMembersSlot"></span><code>procedure <strong>AddMembersSlot</strong>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddGetSetsSlot"></span><code>procedure <strong>AddGetSetsSlot</strong>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddTokenSlot"></span><code>procedure <strong>AddTokenSlot</strong>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddDocSlot"></span><code>procedure <strong>AddDocSlot</strong>;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">

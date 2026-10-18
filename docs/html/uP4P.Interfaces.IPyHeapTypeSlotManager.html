@@ -28,6 +28,12 @@ body { margin: 0.5em; }
 <p>IPyHeapTypeSlotManager is used to store the information about the heap type and to manage the method and slot lists.
 
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/type.html#creating-heap-allocated-types">https://docs.python.org/3.15/c-api/type.html#creating-heap-allocated-types</a>&quot;&gt;See the article about Creating Heap-Allocated Types.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject">https://docs.python.org/3/c-api/type.html#c.PyTypeObject</a>&quot;&gt;See the article about PyTypeObject.)</p>
 <h6 class="description_section">Attributes</h6>
 <dl class="attributes">
   <dt>GUID['{93297C49-56B5-40CD-B4AB-310194E65DEA}']</dt>
@@ -84,6 +90,22 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBasicsize">GetBasicsize</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetExtraBasicsize">GetExtraBasicsize</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetItemsize">GetItemsize</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetFlags">GetFlags</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
 </tr>
 <tr class="list visibility-public">
@@ -105,6 +127,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBases-IPyObject-">SetBases</a></strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBasicSize-Py_ssize_t-">SetBasicSize</a></strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetExtraBasicSize-Py_ssize_t-">SetExtraBasicSize</a></strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetItemSize-Py_ssize_t-">SetItemSize</a></strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetFlags-NativeUInt-">SetFlags</a></strong>(aValue: NativeUInt);</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -172,39 +210,111 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelMember">AddSentinelMember</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelGetSet">AddSentinelGetSet</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelMember">AddSentinelMember</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddAllocSlot-allocfunc-">AddAllocSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#allocfunc">allocfunc</a>): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelGetSet">AddSentinelGetSet</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasesSlot">AddBasesSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNameSlot">AddNameSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasicsizeSlot">AddBasicsizeSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocStringsSlot">AddDocStringsSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddCallSlot-ternaryfunc-">AddCallSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>): boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTokenSlot">AddTokenSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddClearSlot-inquiry-">AddClearSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethodsSlot">AddMethodsSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDeallocSlot-destructor_-">AddDeallocSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMembersSlot">AddMembersSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDelSlot-destructor_-">AddDelSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrGetSlot-descrgetfunc-">AddDescrGetSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#descrgetfunc">descrgetfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrSetSlot-descrsetfunc-">AddDescrSetSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#descrsetfunc">descrsetfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocSlot">AddDocSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddExtraBasicsizeSlot">AddExtraBasicsizeSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFinalizeSlot-destructor_-">AddFinalizeSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFlagsSlot">AddFlagsSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFreeSlot-freefunc-">AddFreeSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#freefunc">freefunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttrSlot-getattrfunc-">AddGetAttrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getattrfunc">getattrfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttroSlot-getattrofunc-">AddGetAttroSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getattrofunc">getattrofunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetSetsSlot">AddGetSetsSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddHashSlot-hashfunc-">AddHashSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#hashfunc">hashfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddInitSlot-initproc-">AddInitSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#initproc">initproc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIsGCSlot-inquiry-">AddIsGCSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddItemsizeSlot">AddItemsizeSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterSlot-getiterfunc-">AddIterSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#getiterfunc">getiterfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterNextSlot-iternextfunc-">AddIterNextSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#iternextfunc">iternextfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMembersSlot">AddMembersSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -212,11 +322,59 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddModuleSlot">AddModuleSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethodsSlot">AddMethodsSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasesSlot">AddBasesSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddModuleSlot">AddModuleSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNameSlot">AddNameSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNewSlot-newfunc-">AddNewSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#newfunc">newfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddReprSlot-reprfunc-">AddReprSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddRichCompareSlot-richcmpfunc-">AddRichCompareSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#richcmpfunc">richcmpfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttrSlot-setattrfunc-">AddSetAttrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#setattrfunc">setattrfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttroSlot-setattrofunc-">AddSetAttroSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#setattrofunc">setattrofunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSlotsSlot-PPyType_Slot-">AddSlotsSlot</a></strong>(const aSlots: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddStrSlot-reprfunc-">AddStrSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>): boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSubslotsSlot-PPySlot-">AddSubslotsSlot</a></strong>(const aSlots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTokenSlot">AddTokenSlot</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTraverseSlot-traverseproc-">AddTraverseSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#traverseproc">traverseproc</a>): boolean;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddVectorcallSlot-vectorcallfunc-">AddVectorcallSlot</a></strong>(const aFunc: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -284,6 +442,22 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Bases">Bases</a></strong>                  : <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>           read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBases">GetBases</a>               write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBases-IPyObject-">SetBases</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Basicsize">Basicsize</a></strong>              : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBasicsize">GetBasicsize</a>           write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBasicSize-Py_ssize_t-">SetBasicsize</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#ExtraBasicsize">ExtraBasicsize</a></strong>         : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetExtraBasicsize">GetExtraBasicsize</a>      write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetExtraBasicSize-Py_ssize_t-">SetExtraBasicsize</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Itemsize">Itemsize</a></strong>               : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetItemsize">GetItemsize</a>            write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetItemSize-Py_ssize_t-">SetItemsize</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Flags">Flags</a></strong>                  : NativeUInt          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetFlags">GetFlags</a>               write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetFlags-NativeUInt-">SetFlags</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -379,6 +553,38 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetBasicsize"></span><code>function <strong>GetBasicsize</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetExtraBasicsize"></span><code>function <strong>GetExtraBasicsize</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetItemsize"></span><code>function <strong>GetItemsize</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetFlags"></span><code>function <strong>GetFlags</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetName-AnsiString-"></span><code>procedure <strong>SetName</strong>(const aValue: AnsiString);</code></td>
 </tr>
 <tr><td colspan="2">
@@ -420,6 +626,38 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><span id="SetBases-IPyObject-"></span><code>procedure <strong>SetBases</strong>(const aValue: <a href="uP4P.Interfaces.IPyObject.html">IPyObject</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetBasicSize-Py_ssize_t-"></span><code>procedure <strong>SetBasicSize</strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetExtraBasicSize-Py_ssize_t-"></span><code>procedure <strong>SetExtraBasicSize</strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetItemSize-Py_ssize_t-"></span><code>procedure <strong>SetItemSize</strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="SetFlags-NativeUInt-"></span><code>procedure <strong>SetFlags</strong>(aValue: NativeUInt);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -526,7 +764,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a method. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -534,7 +774,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddMember-string-string-integer-integer-Py_ssize_t-"></span><code>function <strong>AddMember</strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a member. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -542,7 +784,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddGetSet-string-string-getter-setter-pointer-"></span><code>function <strong>AddGetSet</strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a getset. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -550,15 +794,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel method slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -566,7 +804,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSentinelMember"></span><code>function <strong>AddSentinelMember</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel member slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -574,71 +814,29 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSentinelGetSet"></span><code>function <strong>AddSentinelGetSet</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel getset slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddNameSlot"></span><code>function <strong>AddNameSlot</strong>: boolean;</code></td>
+<td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddDocStringsSlot"></span><code>function <strong>AddDocStringsSlot</strong>: boolean;</code></td>
+<td class="itemcode"><span id="AddAllocSlot-allocfunc-"></span><code>function <strong>AddAllocSlot</strong>(const aFunc: <a href="uP4P.Types.html#allocfunc">allocfunc</a>): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddTokenSlot"></span><code>function <strong>AddTokenSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddMethodsSlot"></span><code>function <strong>AddMethodsSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddMembersSlot"></span><code>function <strong>AddMembersSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddGetSetsSlot"></span><code>function <strong>AddGetSetsSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddMetaclassSlot"></span><code>function <strong>AddMetaclassSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-public wide_list">
-<tr class="list visibility-public">
-<td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="AddModuleSlot"></span><code>function <strong>AddModuleSlot</strong>: boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_tp_alloc slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -646,7 +844,379 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddBasesSlot"></span><code>function <strong>AddBasesSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_tp_base(s) slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddBasicsizeSlot"></span><code>function <strong>AddBasicsizeSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_basicsize slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddCallSlot-ternaryfunc-"></span><code>function <strong>AddCallSlot</strong>(const aFunc: <a href="uP4P.Types.html#ternaryfunc">ternaryfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_call slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddClearSlot-inquiry-"></span><code>function <strong>AddClearSlot</strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_clear slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddDeallocSlot-destructor_-"></span><code>function <strong>AddDeallocSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_dealloc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddDelSlot-destructor_-"></span><code>function <strong>AddDelSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_del slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddDescrGetSlot-descrgetfunc-"></span><code>function <strong>AddDescrGetSlot</strong>(const aFunc: <a href="uP4P.Types.html#descrgetfunc">descrgetfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_descr_get slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddDescrSetSlot-descrsetfunc-"></span><code>function <strong>AddDescrSetSlot</strong>(const aFunc: <a href="uP4P.Types.html#descrsetfunc">descrsetfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_descr_set slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddDocSlot"></span><code>function <strong>AddDocSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_doc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddExtraBasicsizeSlot"></span><code>function <strong>AddExtraBasicsizeSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_extra_basicsize slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddFinalizeSlot-destructor_-"></span><code>function <strong>AddFinalizeSlot</strong>(const aFunc: <a href="uP4P.Types.html#destructor_">destructor_</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_finalize slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddFlagsSlot"></span><code>function <strong>AddFlagsSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_flags slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddFreeSlot-freefunc-"></span><code>function <strong>AddFreeSlot</strong>(const aFunc: <a href="uP4P.Types.html#freefunc">freefunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_free slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGetAttrSlot-getattrfunc-"></span><code>function <strong>AddGetAttrSlot</strong>(const aFunc: <a href="uP4P.Types.html#getattrfunc">getattrfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getattr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGetAttroSlot-getattrofunc-"></span><code>function <strong>AddGetAttroSlot</strong>(const aFunc: <a href="uP4P.Types.html#getattrofunc">getattrofunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getattro slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddGetSetsSlot"></span><code>function <strong>AddGetSetsSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_getset slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddHashSlot-hashfunc-"></span><code>function <strong>AddHashSlot</strong>(const aFunc: <a href="uP4P.Types.html#hashfunc">hashfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_hash slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddInitSlot-initproc-"></span><code>function <strong>AddInitSlot</strong>(const aFunc: <a href="uP4P.Types.html#initproc">initproc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_init slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddIsGCSlot-inquiry-"></span><code>function <strong>AddIsGCSlot</strong>(const aFunc: <a href="uP4P.Types.html#inquiry">inquiry</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_is_gc slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddItemsizeSlot"></span><code>function <strong>AddItemsizeSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_itemsize slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddIterSlot-getiterfunc-"></span><code>function <strong>AddIterSlot</strong>(const aFunc: <a href="uP4P.Types.html#getiterfunc">getiterfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_iter slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddIterNextSlot-iternextfunc-"></span><code>function <strong>AddIterNextSlot</strong>(const aFunc: <a href="uP4P.Types.html#iternextfunc">iternextfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_iternext slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMembersSlot"></span><code>function <strong>AddMembersSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_members slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMetaclassSlot"></span><code>function <strong>AddMetaclassSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_metaclass slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddMethodsSlot"></span><code>function <strong>AddMethodsSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_methods slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddModuleSlot"></span><code>function <strong>AddModuleSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_module slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddNameSlot"></span><code>function <strong>AddNameSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_name slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddNewSlot-newfunc-"></span><code>function <strong>AddNewSlot</strong>(const aFunc: <a href="uP4P.Types.html#newfunc">newfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_new slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddReprSlot-reprfunc-"></span><code>function <strong>AddReprSlot</strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_repr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddRichCompareSlot-richcmpfunc-"></span><code>function <strong>AddRichCompareSlot</strong>(const aFunc: <a href="uP4P.Types.html#richcmpfunc">richcmpfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_richcompare slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSetAttrSlot-setattrfunc-"></span><code>function <strong>AddSetAttrSlot</strong>(const aFunc: <a href="uP4P.Types.html#setattrfunc">setattrfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_setattr slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSetAttroSlot-setattrofunc-"></span><code>function <strong>AddSetAttroSlot</strong>(const aFunc: <a href="uP4P.Types.html#setattrofunc">setattrofunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_setattro slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSlotsSlot-PPyType_Slot-"></span><code>function <strong>AddSlotsSlot</strong>(const aSlots: <a href="uP4P.Types.html#PPyType_Slot">PPyType_Slot</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_slots slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddStrSlot-reprfunc-"></span><code>function <strong>AddStrSlot</strong>(const aFunc: <a href="uP4P.Types.html#reprfunc">reprfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_str slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddSubslotsSlot-PPySlot-"></span><code>function <strong>AddSubslotsSlot</strong>(const aSlots: <a href="uP4P.Types.html#PPySlot">PPySlot</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_slot_subslots slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddTokenSlot"></span><code>function <strong>AddTokenSlot</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_token slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddTraverseSlot-traverseproc-"></span><code>function <strong>AddTraverseSlot</strong>(const aFunc: <a href="uP4P.Types.html#traverseproc">traverseproc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_traverse slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="AddVectorcallSlot-vectorcallfunc-"></span><code>function <strong>AddVectorcallSlot</strong>(const aFunc: <a href="uP4P.Types.html#vectorcallfunc">vectorcallfunc</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a Py_tp_vectorcall slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
@@ -821,6 +1391,115 @@ body { margin: 0.5em; }
 
 
 <p>Bases can be used to specify base classes; it can either be only one class or a tuple of classes. If bases is nil, the Py_tp_bases slot is used instead. If that also is nil, the Py_tp_base slot is used instead. If that also is nil, the new type derives from object.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Basicsize"></span><code>property <strong>Basicsize</strong>              : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBasicsize">GetBasicsize</a>           write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBasicSize-Py_ssize_t-">SetBasicsize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The size of the instance in bytes. It is used to set PyTypeObject.tp_basicsize.
+
+<p>The value must be positive.
+
+<p>This may not be used in PyType_Spec.slots. Use PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot(). Use PyTypeObject.tp_basicsize instead if needed, but be aware that a type's size is often considered an implementation detail.
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="ExtraBasicsize"></span><code>property <strong>ExtraBasicsize</strong>         : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetExtraBasicsize">GetExtraBasicsize</a>      write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetExtraBasicSize-Py_ssize_t-">SetExtraBasicsize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Type data size in bytes, that is, how much space instances of the class need in addition to space needed for superclasses.
+
+<p>The value is used, together with the size of superclasses, to set PyTypeObject.tp_basicsize. Python will insert padding as needed to meet tp_basicsize's alignment requirements.
+
+<p>Use TPyObject.GetTypeData() to get a pointer to subclass-specific memory reserved this way.
+
+<p>The value must be positive. To specify that instances need no additional size (that is, size should be inherited), omit the Py_tp_extra_basicsize slot rather than set it to zero.
+
+<p>Specifying both Py_tp_basicsize and Py_tp_extra_basicsize is an error.
+
+<p>This may not be used in PyType_Spec.slots. Use negative PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot().
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Itemsize"></span><code>property <strong>Itemsize</strong>               : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetItemsize">GetItemsize</a>            write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetItemSize-Py_ssize_t-">SetItemsize</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>The size of one element of a variable-size type, in bytes. Used to set PyTypeObject.tp_itemsize. See tp_itemsize documentation for caveats.
+
+<p>The value must be positive.
+
+<p>If this slot is missing, tp_itemsize is inherited. Extending arbitrary variable-sized classes is dangerous, since some types use a fixed offset for variable-sized memory, which can then overlap fixed-sized memory used by a subclass. To help prevent mistakes, inheriting itemsize is only possible in the following situations:
+
+<p></p>
+
+<pre class="preformatted">
+- The base is not variable-sized (its tp_itemsize is zero).
+- The requested PyType_Spec.basicsize is positive, suggesting that
+  the memory layout of the base class is known.
+- The requested PyType_Spec.basicsize is zero, suggesting that the
+  subclass does not access the instance's memory directly.</pre>
+
+<p>
+
+<p>With the Py_TPFLAGS_ITEMS_AT_END flag.
+
+<p>This may not be used in PyType_Spec.slots. Use PyType_Spec.itemsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot().
+
+<p>Added in version 3.15.
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Flags"></span><code>property <strong>Flags</strong>                  : NativeUInt          read <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetFlags">GetFlags</a>               write <a href="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetFlags-NativeUInt-">SetFlags</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+
+
+<p>Type flags, used to set PyTypeObject.tp_flags.
+
+<p>The Py_TPFLAGS_HEAPTYPE flag is not set, TPyType.FromSpecWithBases() sets it automatically.
+
+<p>This may not be used in PyType_Spec.slots. Use negative PyType_Spec.basicsize instead.
+
+<p>This slot may not be used with TPyType.GetSlot(). Use TPyType.GetFlags() instead.
+
+<p>Added in version 3.15.
 
 <p></p>
 </td></tr>

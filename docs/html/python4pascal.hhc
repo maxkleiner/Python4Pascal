@@ -1826,6 +1826,14 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="ID">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#ID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AsPyTypeObject">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#AsPyTypeObject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="HeapType">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#HeapType">
 </object>
@@ -1908,6 +1916,10 @@
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#GetToken">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetAsPyTypeObject">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#GetAsPyTypeObject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetMetaclass">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#SetMetaclass">
 </object>
@@ -1966,6 +1978,22 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SameAs">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#SameAs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CheckExact">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#CheckExact">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CheckExact">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#CheckExact">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Check">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Check">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Check">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Check">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Initialize">
@@ -6699,6 +6727,22 @@
 <param name="Name" value="Bases">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Bases">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="Basicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Basicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExtraBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#ExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Itemsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Itemsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Flags">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Methods">
@@ -6750,6 +6794,22 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExtraBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetItemsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetItemsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetFlags">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetName">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetName">
 </object>
@@ -6772,6 +6832,22 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetBases">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBases">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetBasicSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExtraBasicSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetExtraBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetItemSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetItemSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetFlags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateSlotArray">
@@ -6838,10 +6914,6 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelMethod">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddSentinelSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelSlot">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMember">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelMember">
 </object>
@@ -6850,40 +6922,164 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddNameSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNameSlot">
+<param name="Name" value="AddSentinelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocStringsSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocStringsSlot">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddAllocSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddTokenSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTokenSlot">
+<param name="Name" value="AddBasesSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasesSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMethodsSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethodsSlot">
+<param name="Name" value="AddBasicsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasicsizeSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMembersSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMembersSlot">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddExtraBasicsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddExtraBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFlagsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFlagsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttroSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetSetsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddItemsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddItemsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMembersSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMembersSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddMetaclassSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMetaclassSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMethodsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddMethodsSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddModuleSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddModuleSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddBasesSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasesSlot">
+<param name="Name" value="AddNameSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNameSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTokenSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
@@ -7092,22 +7288,6 @@
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#DestroyGetSets">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddAllSlots">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllSlots">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllMethods">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllMethods">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllMembers">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllMembers">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllGetSets">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllGetSets">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSlot">
 </object>
@@ -7124,10 +7304,6 @@
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddSentinelSlot">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSentinelSlot">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMethod">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSentinelMethod">
 </object>
@@ -7140,24 +7316,148 @@
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSentinelGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMethodsSlot">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddMethodsSlot">
+<param name="Name" value="AddSentinelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMembersSlot">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddMembersSlot">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetAttroSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetSetsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIterSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMembersSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddMembersSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMethodsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddMethodsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddTokenSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocSlot">
-<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDocSlot">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddVectorcallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllSlots">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllMethods">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllMethods">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllMembers">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllMembers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllGetSets">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllGetSets">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Initialize">
@@ -8234,6 +8534,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Type_">
 <param name="Local" value="uP4P.Py.TPy.html#Type_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsType">
+<param name="Local" value="uP4P.Py.TPy.html#IsType">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IsType">
@@ -15881,6 +16185,22 @@
 <param name="Name" value="FBases">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FBases">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FItemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FItemsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FFlags">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -15930,6 +16250,22 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Bases">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Bases">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Basicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Basicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#ExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Itemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Itemsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Flags">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -15982,6 +16318,22 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetItemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetItemsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetFlags">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetName">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetName">
 </object>
@@ -16004,6 +16356,22 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetBases">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetBases">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetBasicSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExtraBasicSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetExtraBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetItemSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetItemSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetFlags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateSlotArray">
@@ -16070,10 +16438,6 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelMethod">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddSentinelSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelSlot">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMember">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelMember">
 </object>
@@ -16082,40 +16446,164 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddNameSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddNameSlot">
+<param name="Name" value="AddSentinelSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocStringsSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDocStringsSlot">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddAllocSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddTokenSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddTokenSlot">
+<param name="Name" value="AddBasesSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddBasesSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMethodsSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddMethodsSlot">
+<param name="Name" value="AddBasicsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddBasicsizeSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMembersSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddMembersSlot">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddExtraBasicsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddExtraBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFlagsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFlagsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetAttroSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetSetsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddItemsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddItemsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIterSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMembersSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddMembersSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddMetaclassSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddMetaclassSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMethodsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddMethodsSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddModuleSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddModuleSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddBasesSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddBasesSlot">
+<param name="Name" value="AddNameSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddNameSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTokenSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
@@ -23044,6 +23532,14 @@
 <param name="Local" value="uP4P.PyType.TPyType.html#GetName">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetNameAsString">
+<param name="Local" value="uP4P.PyType.TPyType.html#GetNameAsString">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetNameAsAnsiString">
+<param name="Local" value="uP4P.PyType.TPyType.html#GetNameAsAnsiString">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetQualName">
 <param name="Local" value="uP4P.PyType.TPyType.html#GetQualName">
 </object>
@@ -23480,22 +23976,6 @@
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#DestroyGetSets">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddAllSlots">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllSlots">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllMethods">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMethods">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllMembers">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMembers">
-</object>
-<li><object type="text/sitemap">
-<param name="Name" value="AddAllGetSets">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllGetSets">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSlot">
 </object>
@@ -23512,10 +23992,6 @@
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddSentinelSlot">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelSlot">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelMethod">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelMethod">
 </object>
@@ -23528,24 +24004,148 @@
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelGetSet">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMethodsSlot">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddMethodsSlot">
+<param name="Name" value="AddSentinelSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMembersSlot">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddMembersSlot">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttroSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetSetsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIterSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMembersSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddMembersSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMethodsSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddMethodsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddTokenSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocSlot">
-<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDocSlot">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddVectorcallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllSlots">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllMethods">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMethods">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllMembers">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMembers">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddAllGetSets">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllGetSets">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Create">
@@ -31720,8 +32320,20 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Bases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Basicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Basicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="DocStrings">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExtraBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#ExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Flags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelGetSet">
@@ -31738,6 +32350,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#HasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Itemsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#Itemsize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Metaclass">
@@ -31766,12 +32382,68 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddBasesSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasesSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocStringsSlot">
-<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocStringsSlot">
+<param name="Name" value="AddBasicsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddExtraBasicsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddExtraBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFlagsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFlagsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetAttrSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSet">
@@ -31780,6 +32452,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddGetSetsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddItemsizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddItemsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddIterSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddMember">
@@ -31810,6 +32506,18 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNameSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelGetSet">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelGetSet">
 </object>
@@ -31826,16 +32534,56 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBases">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetBasicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetDocStrings">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExtraBasicsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetFlags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelGetSet">
@@ -31852,6 +32600,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelSlot">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetHasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetItemsize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#GetItemsize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetMetaclass">
@@ -31946,8 +32698,24 @@
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetBasicSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetBasicSize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetDocStrings">
 <param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExtraBasicSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetExtraBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetItemSize">
+<param name="Local" value="uP4P.Interfaces.IPyHeapTypeSlotManager.html#SetItemSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetMetaclass">
@@ -35008,16 +35776,80 @@
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllMethods">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddAllSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDescrSetSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddDocSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddDocSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddGetSetsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddIterSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddMembersSlot">
@@ -35028,8 +35860,48 @@
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddMethodsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.Interfaces.IPyType_Spec.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateGetSetArray">
@@ -39476,6 +40348,10 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="AsPyTypeObject">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#AsPyTypeObject">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Bases">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Bases">
 </object>
@@ -39486,6 +40362,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="HeapType">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#HeapType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ID">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#ID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Metaclass">
@@ -39530,12 +40410,32 @@
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Destroy">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Check">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Check">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Check">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Check">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CheckExact">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#CheckExact">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CheckExact">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#CheckExact">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Initialize">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#Initialize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SameAs">
 <param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#SameAs">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAsPyTypeObject">
+<param name="Local" value="uP4P.CustomHeapType.TCustomHeapType.html#GetAsPyTypeObject">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBases">
@@ -41240,6 +42140,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="IsTrue">
 <param name="Local" value="uP4P.Py.TPy.html#IsTrue">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsType">
+<param name="Local" value="uP4P.Py.TPy.html#IsType">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="IsType">
@@ -48048,8 +48952,20 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FBasicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FDocStrings">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FFlags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FGetSetList">
@@ -48058,6 +48974,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FGetSets">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FGetSets">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FItemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#FItemsize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FMemberList">
@@ -48110,8 +49030,20 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Bases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Basicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Basicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="DocStrings">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#DocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#ExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Flags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelGetSet">
@@ -48128,6 +49060,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="HasSentinelSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#HasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Itemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Itemsize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Metaclass">
@@ -48164,12 +49100,68 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#Destroy">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddBasesSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddBasesSlot">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddDocStringsSlot">
-<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDocStringsSlot">
+<param name="Name" value="AddBasicsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDescrSetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDocSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddDocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddExtraBasicsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddExtraBasicsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFlagsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFlagsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetAttrSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSet">
@@ -48178,6 +49170,30 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddGetSetsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddItemsizeSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddItemsizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddIterSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddMember">
@@ -48208,6 +49224,18 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddNameSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelGetSet">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelGetSet">
 </object>
@@ -48224,16 +49252,56 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSentinelSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBases">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetBasicsize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetDocStrings">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetExtraBasicsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetExtraBasicsize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetFlags">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelGetSet">
@@ -48250,6 +49318,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetHasSentinelSlot">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetHasSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetItemsize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#GetItemsize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetMetaclass">
@@ -48348,8 +49420,24 @@
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetBases">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetBasicSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetBasicSize">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetDocStrings">
 <param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetDocStrings">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetExtraBasicSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetExtraBasicSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetItemSize">
+<param name="Local" value="uP4P.PyHeapTypeSlotManager.TPyHeapTypeSlotManager.html#SetItemSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetMetaclass">
@@ -54626,6 +55714,14 @@
 <param name="Local" value="uP4P.PyType.TPyType.html#GetName">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetNameAsAnsiString">
+<param name="Local" value="uP4P.PyType.TPyType.html#GetNameAsAnsiString">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetNameAsString">
+<param name="Local" value="uP4P.PyType.TPyType.html#GetNameAsString">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetQualName">
 <param name="Local" value="uP4P.PyType.TPyType.html#GetQualName">
 </object>
@@ -54950,16 +56046,80 @@
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllMethods">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddAllocSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllocSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddAllSlots">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddAllSlots">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddCallSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddCallSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddClearSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddClearSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDeallocSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDeallocSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDelSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrGetSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrGetSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddDescrSetSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDescrSetSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddDocSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddDocSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddFinalizeSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddFinalizeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddFreeSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddFreeSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttroSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddGetAttrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetAttrSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddGetSetsSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddGetSetsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddHashSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddHashSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddInitSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddInitSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIsGCSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIsGCSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterNextSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIterNextSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddIterSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddIterSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddMembersSlot">
@@ -54970,8 +56130,48 @@
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddMethodsSlot">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AddNewSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddNewSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddReprSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddReprSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddRichCompareSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddRichCompareSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttroSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttroSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSetAttrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSetAttrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSlotsSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSlotsSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddStrSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddStrSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddSubslotsSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddSubslotsSlot">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="AddTokenSlot">
 <param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddTokenSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddTraverseSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddTraverseSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddVectorcallSlot">
+<param name="Local" value="uP4P.PyType_Spec.TPyType_Spec.html#AddVectorcallSlot">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="CreateGetSetArray">

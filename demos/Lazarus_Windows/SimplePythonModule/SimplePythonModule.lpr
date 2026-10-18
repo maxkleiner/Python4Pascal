@@ -5,7 +5,7 @@ program SimplePythonModule;
 uses
   Forms, Interfaces,
   uMainForm in 'uMainForm.pas' {MainForm},
-  uTestModule in 'uTestModule.pas';
+  uTestModule in 'uTestModule.pas', uTestHeapType;
 
 {$R *.res}
 

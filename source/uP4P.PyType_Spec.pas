@@ -73,6 +73,165 @@ type
       procedure DestroyGetSets;
 
       /// <summary>
+      /// Add a generic slot.
+      /// </summary>
+      function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
+      /// <summary>
+      /// Add a method.
+      /// </summary>
+      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      /// <summary>
+      /// Add a member.
+      /// </summary>
+      function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+      /// <summary>
+      /// Add a getset.
+      /// </summary>
+      function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+
+      /// <summary>
+      /// Add a sentinel method slot.
+      /// </summary>
+      function  AddSentinelMethod: boolean;
+      /// <summary>
+      /// Add a sentinel member slot.
+      /// </summary>
+      function  AddSentinelMember: boolean;
+      /// <summary>
+      /// Add a sentinel getset slot.
+      /// </summary>
+      function  AddSentinelGetSet: boolean;
+      /// <summary>
+      /// Add a sentinel slot.
+      /// </summary>
+      function  AddSentinelSlot: boolean;
+
+      /// <summary>
+      /// Add a Py_tp_alloc slot.
+      /// </summary>
+      procedure AddAllocSlot(const aFunc: allocfunc);
+      /// <summary>
+      /// Add a Py_tp_call slot.
+      /// </summary>
+      procedure AddCallSlot(const aFunc: ternaryfunc);
+      /// <summary>
+      /// Add a Py_tp_clear slot.
+      /// </summary>
+      procedure AddClearSlot(const aFunc: inquiry);
+      /// <summary>
+      /// Add a Py_tp_dealloc slot.
+      /// </summary>
+      procedure AddDeallocSlot(const aFunc: destructor_);
+      /// <summary>
+      /// Add a Py_tp_del slot.
+      /// </summary>
+      procedure AddDelSlot(const aFunc: destructor_);
+      /// <summary>
+      /// Add a Py_tp_descr_get slot.
+      /// </summary>
+      procedure AddDescrGetSlot(const aFunc: descrgetfunc);
+      /// <summary>
+      /// Add a Py_tp_descr_set slot.
+      /// </summary>
+      procedure AddDescrSetSlot(const aFunc: descrsetfunc);
+      /// <summary>
+      /// Add a Py_tp_doc slot.
+      /// </summary>
+      procedure AddDocSlot;
+      /// <summary>
+      /// Add a Py_tp_finalize slot.
+      /// </summary>
+      procedure AddFinalizeSlot(const aFunc: destructor_);
+      /// <summary>
+      /// Add a Py_tp_free slot.
+      /// </summary>
+      procedure AddFreeSlot(const aFunc: freefunc);
+      /// <summary>
+      /// Add a Py_tp_getattr slot.
+      /// </summary>
+      procedure AddGetAttrSlot(const aFunc: getattrfunc);
+      /// <summary>
+      /// Add a Py_tp_getattro slot.
+      /// </summary>
+      procedure AddGetAttroSlot(const aFunc: getattrofunc);
+      /// <summary>
+      /// Add a Py_tp_getset slot.
+      /// </summary>
+      procedure AddGetSetsSlot;
+      /// <summary>
+      /// Add a Py_tp_hash slot.
+      /// </summary>
+      procedure AddHashSlot(const aFunc: hashfunc);
+      /// <summary>
+      /// Add a Py_tp_init slot.
+      /// </summary>
+      procedure AddInitSlot(const aFunc: initproc);
+      /// <summary>
+      /// Add a Py_tp_is_gc slot.
+      /// </summary>
+      procedure AddIsGCSlot(const aFunc: inquiry);
+      /// <summary>
+      /// Add a Py_tp_iter slot.
+      /// </summary>
+      procedure AddIterSlot(const aFunc: getiterfunc);
+      /// <summary>
+      /// Add a Py_tp_iternext slot.
+      /// </summary>
+      procedure AddIterNextSlot(const aFunc: iternextfunc);
+      /// <summary>
+      /// Add a Py_tp_members slot.
+      /// </summary>
+      procedure AddMembersSlot;
+      /// <summary>
+      /// Add a Py_tp_methods slot.
+      /// </summary>
+      procedure AddMethodsSlot;
+      /// <summary>
+      /// Add a Py_tp_new slot.
+      /// </summary>
+      procedure AddNewSlot(const aFunc: newfunc);
+      /// <summary>
+      /// Add a Py_tp_repr slot.
+      /// </summary>
+      procedure AddReprSlot(const aFunc: reprfunc);
+      /// <summary>
+      /// Add a Py_tp_richcompare slot.
+      /// </summary>
+      procedure AddRichCompareSlot(const aFunc: richcmpfunc);
+      /// <summary>
+      /// Add a Py_tp_setattr slot.
+      /// </summary>
+      procedure AddSetAttrSlot(const aFunc: setattrfunc);
+      /// <summary>
+      /// Add a Py_tp_setattro slot.
+      /// </summary>
+      procedure AddSetAttroSlot(const aFunc: setattrofunc);
+      /// <summary>
+      /// Add a Py_tp_slots slot.
+      /// </summary>
+      procedure AddSlotsSlot(const aSlots: PPyType_Slot);
+      /// <summary>
+      /// Add a Py_tp_str slot.
+      /// </summary>
+      procedure AddStrSlot(const aFunc: reprfunc);
+      /// <summary>
+      /// Add a Py_slot_subslots slot.
+      /// </summary>
+      procedure AddSubslotsSlot(const aSlots: PPySlot);
+      /// <summary>
+      /// Add a Py_tp_token slot.
+      /// </summary>
+      procedure AddTokenSlot;
+      /// <summary>
+      /// Add a Py_tp_traverse slot.
+      /// </summary>
+      procedure AddTraverseSlot(const aFunc: traverseproc);
+      /// <summary>
+      /// Add a Py_tp_vectorcall slot.
+      /// </summary>
+      procedure AddVectorcallSlot(const aFunc: vectorcallfunc);
+
+      /// <summary>
       /// Override this procedure to add your custom slots.
       /// </summary>
       procedure AddAllSlots; virtual;
@@ -88,21 +247,6 @@ type
       /// Override this procedure to add your custom getsets.
       /// </summary>
       procedure AddAllGetSets; virtual;
-
-      function  AddSlot(aSlot: integer; aPfunc: Pointer): boolean;
-      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
-      function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
-      function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
-      function  AddSentinelSlot: boolean;
-      function  AddSentinelMethod: boolean;
-      function  AddSentinelMember: boolean;
-      function  AddSentinelGetSet: boolean;
-      procedure AddMethodsSlot;
-      procedure AddMembersSlot;
-      procedure AddGetSetsSlot;
-      procedure AddTokenSlot;
-      procedure AddDocSlot;
-      procedure AddReprSlot(const aFunc: tp_reprfunc);
 
     public
       constructor Create;
@@ -329,6 +473,82 @@ begin
   FToken := aValue;
 end;
 
+procedure TPyType_Spec.CreateSlotArray;
+var
+  i : integer;
+begin
+  DestroySlots;
+
+  if assigned(FSlotList) and (FSlotList.Count > 0) then
+    begin
+      SetLength(FSlots, FSlotList.Count);
+
+      i := 0;
+      while (i < FSlotList.Count) do
+        begin
+          FSlots[i] := TPyType_Slot(FSlotList[i]).Slot;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyType_Spec.CreateMethodArray;
+var
+  i : integer;
+begin
+  DestroyMethods;
+
+  if assigned(FMethodList) and (FMethodList.Count > 0) then
+    begin
+      SetLength(FMethods, FMethodList.Count);
+
+      i := 0;
+      while (i < FMethodList.Count) do
+        begin
+          FMethods[i] := TPyMethodDef(FMethodList[i]).Method;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyType_Spec.CreateMemberArray;
+var
+  i : integer;
+begin
+  DestroyMembers;
+
+  if assigned(FMemberList) and (FMemberList.Count > 0) then
+    begin
+      SetLength(FMembers, FMemberList.Count);
+
+      i := 0;
+      while (i < FMemberList.Count) do
+        begin
+          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyType_Spec.CreateGetSetArray;
+var
+  i : integer;
+begin
+  DestroyGetSets;
+
+  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
+    begin
+      SetLength(FGetSets, FGetSetList.Count);
+
+      i := 0;
+      while (i < FGetSetList.Count) do
+        begin
+          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
+          inc(i);
+        end;
+    end;
+end;
+
 procedure TPyType_Spec.DestroySlotList;
 var
   i : integer;
@@ -454,45 +674,6 @@ begin
     end;
 end;
 
-procedure TPyType_Spec.AddAllMethods;
-begin
-  //
-end;
-
-procedure TPyType_Spec.AddAllSlots;
-begin
-  AddDocSlot;
-  AddMethodsSlot;
-  AddMembersSlot;
-  AddGetSetsSlot;
-  AddTokenSlot;
-end;
-
-procedure TPyType_Spec.AddAllMembers;
-begin
-  //
-end;
-
-procedure TPyType_Spec.AddAllGetSets;
-begin
-  //
-end;
-
-function TPyType_Spec.AddSentinelMethod: boolean;
-begin
-  Result := AddMethod('', '', nil, 0);
-end;
-
-function TPyType_Spec.AddSentinelMember: boolean;
-begin
-  Result := AddMember('', '', 0, 0, 0);
-end;
-
-function TPyType_Spec.AddSentinelGetSet: boolean;
-begin
-  Result := AddGetSet('', '', nil, nil, nil);
-end;
-
 function TPyType_Spec.AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
 var
   TempMethod : TPyMethodDef;
@@ -544,10 +725,132 @@ begin
     end;
 end;
 
-procedure TPyType_Spec.AddMethodsSlot;
+function TPyType_Spec.AddSentinelMethod: boolean;
 begin
-  if assigned(FMethods) and (length(FMethods) > 1) then
-    AddSlot(Py_tp_methods, @FMethods[0]);
+  Result := AddMethod('', '', nil, 0);
+end;
+
+function TPyType_Spec.AddSentinelMember: boolean;
+begin
+  Result := AddMember('', '', 0, 0, 0);
+end;
+
+function TPyType_Spec.AddSentinelGetSet: boolean;
+begin
+  Result := AddGetSet('', '', nil, nil, nil);
+end;
+
+function TPyType_Spec.AddSentinelSlot: boolean;
+begin
+  Result := AddSlot(0, nil);
+end;
+
+procedure TPyType_Spec.AddAllocSlot(const aFunc: allocfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_alloc, @aFunc);
+end;
+
+procedure TPyType_Spec.AddCallSlot(const aFunc: ternaryfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_call, @aFunc);
+end;
+
+procedure TPyType_Spec.AddClearSlot(const aFunc: inquiry);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_clear, @aFunc);
+end;
+
+procedure TPyType_Spec.AddDeallocSlot(const aFunc: destructor_);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_dealloc, @aFunc);
+end;
+
+procedure TPyType_Spec.AddDelSlot(const aFunc: destructor_);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_del, @aFunc);
+end;
+
+procedure TPyType_Spec.AddDescrGetSlot(const aFunc: descrgetfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_descr_get, @aFunc);
+end;
+
+procedure TPyType_Spec.AddDescrSetSlot(const aFunc: descrsetfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_descr_set, @aFunc);
+end;
+
+procedure TPyType_Spec.AddDocSlot;
+begin
+  if (length(FDocStrings) > 0) then
+    AddSlot(Py_tp_doc, PAnsiChar(FDocStrings));
+end;
+
+procedure TPyType_Spec.AddFinalizeSlot(const aFunc: destructor_);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_finalize, @aFunc);
+end;
+
+procedure TPyType_Spec.AddFreeSlot(const aFunc: freefunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_free, @aFunc);
+end;
+
+procedure TPyType_Spec.AddGetAttrSlot(const aFunc: getattrfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_getattr, @aFunc);
+end;
+
+procedure TPyType_Spec.AddGetAttroSlot(const aFunc: getattrofunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_getattro, @aFunc);
+end;
+
+procedure TPyType_Spec.AddGetSetsSlot;
+begin
+  if assigned(FGetSets) and (length(FGetSets) > 1) then
+    AddSlot(Py_tp_getset, @FGetSets[0]);
+end;
+
+procedure TPyType_Spec.AddHashSlot(const aFunc: hashfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_hash, @aFunc);
+end;
+
+procedure TPyType_Spec.AddInitSlot(const aFunc: initproc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_init, @aFunc);
+end;
+
+procedure TPyType_Spec.AddIsGCSlot(const aFunc: inquiry);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_is_gc, @aFunc);
+end;
+
+procedure TPyType_Spec.AddIterSlot(const aFunc: getiterfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_iter, @aFunc);
+end;
+
+procedure TPyType_Spec.AddIterNextSlot(const aFunc: iternextfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_iternext, @aFunc);
 end;
 
 procedure TPyType_Spec.AddMembersSlot;
@@ -556,10 +859,58 @@ begin
     AddSlot(Py_tp_members, @FMembers[0]);
 end;
 
-procedure TPyType_Spec.AddGetSetsSlot;
+procedure TPyType_Spec.AddMethodsSlot;
 begin
-  if assigned(FGetSets) and (length(FGetSets) > 1) then
-    AddSlot(Py_tp_getset, @FGetSets[0]);
+  if assigned(FMethods) and (length(FMethods) > 1) then
+    AddSlot(Py_tp_methods, @FMethods[0]);
+end;
+
+procedure TPyType_Spec.AddNewSlot(const aFunc: newfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_new, @aFunc);
+end;
+
+procedure TPyType_Spec.AddReprSlot(const aFunc: reprfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_repr, @aFunc);
+end;
+
+procedure TPyType_Spec.AddRichCompareSlot(const aFunc: richcmpfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_richcompare, @aFunc);
+end;
+
+procedure TPyType_Spec.AddSetAttrSlot(const aFunc: setattrfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_setattr, @aFunc);
+end;
+
+procedure TPyType_Spec.AddSetAttroSlot(const aFunc: setattrofunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_setattro, @aFunc);
+end;
+
+procedure TPyType_Spec.AddSlotsSlot(const aSlots: PPyType_Slot);
+begin
+  if assigned(aSlots) then
+    AddSlot(Py_tp_slots, aSlots);
+end;
+
+procedure TPyType_Spec.AddStrSlot(const aFunc: reprfunc);
+begin
+  if assigned(aFunc) then
+    AddSlot(Py_tp_str, @aFunc);
+end;
+
+procedure TPyType_Spec.AddSubslotsSlot(const aSlots: PPySlot);
+begin
+  if assigned(aSlots) then
+    AddSlot(Py_slot_subslots, aSlots);
 end;
 
 procedure TPyType_Spec.AddTokenSlot;
@@ -569,97 +920,40 @@ begin
     AddSlot(Py_tp_token, FToken);
 end;
 
-procedure TPyType_Spec.AddDocSlot;
-begin
-  if (length(FDocStrings) > 0) then
-    AddSlot(Py_tp_doc, PAnsiChar(FDocStrings));
-end;
-
-procedure TPyType_Spec.AddReprSlot(const aFunc: tp_reprfunc);
+procedure TPyType_Spec.AddTraverseSlot(const aFunc: traverseproc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_repr, @aFunc);
+    AddSlot(Py_tp_traverse, @aFunc);
 end;
 
-function TPyType_Spec.AddSentinelSlot: boolean;
+procedure TPyType_Spec.AddVectorcallSlot(const aFunc: vectorcallfunc);
 begin
-  Result := AddSlot(0, nil);
+  if assigned(aFunc) then
+    AddSlot(Py_tp_vectorcall, @aFunc);
 end;
 
-procedure TPyType_Spec.CreateSlotArray;
-var
-  i : integer;
+procedure TPyType_Spec.AddAllSlots;
 begin
-  DestroySlots;
-
-  if assigned(FSlotList) and (FSlotList.Count > 0) then
-    begin
-      SetLength(FSlots, FSlotList.Count);
-
-      i := 0;
-      while (i < FSlotList.Count) do
-        begin
-          FSlots[i] := TPyType_Slot(FSlotList[i]).Slot;
-          inc(i);
-        end;
-    end;
+  AddDocSlot;
+  AddMethodsSlot;
+  AddMembersSlot;
+  AddGetSetsSlot;
+  AddTokenSlot;
 end;
 
-procedure TPyType_Spec.CreateMethodArray;
-var
-  i : integer;
+procedure TPyType_Spec.AddAllMethods;
 begin
-  DestroyMethods;
-
-  if assigned(FMethodList) and (FMethodList.Count > 0) then
-    begin
-      SetLength(FMethods, FMethodList.Count);
-
-      i := 0;
-      while (i < FMethodList.Count) do
-        begin
-          FMethods[i] := TPyMethodDef(FMethodList[i]).Method;
-          inc(i);
-        end;
-    end;
+  //
 end;
 
-procedure TPyType_Spec.CreateMemberArray;
-var
-  i : integer;
+procedure TPyType_Spec.AddAllMembers;
 begin
-  DestroyMembers;
-
-  if assigned(FMemberList) and (FMemberList.Count > 0) then
-    begin
-      SetLength(FMembers, FMemberList.Count);
-
-      i := 0;
-      while (i < FMemberList.Count) do
-        begin
-          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
-          inc(i);
-        end;
-    end;
+  //
 end;
 
-procedure TPyType_Spec.CreateGetSetArray;
-var
-  i : integer;
+procedure TPyType_Spec.AddAllGetSets;
 begin
-  DestroyGetSets;
-
-  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
-    begin
-      SetLength(FGetSets, FGetSetList.Count);
-
-      i := 0;
-      while (i < FGetSetList.Count) do
-        begin
-          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
-          inc(i);
-        end;
-    end;
+  //
 end;
 
 procedure TPyType_Spec.Initialize;

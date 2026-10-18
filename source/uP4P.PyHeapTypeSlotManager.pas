@@ -87,29 +87,192 @@ type
       procedure DestroyGetSetList;
       procedure DestroyGetSets;
 
+      /// <summary>
+      /// Add a method.
+      /// </summary>
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      /// <summary>
+      /// Add a member.
+      /// </summary>
       function  AddMember(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: Py_ssize_t): boolean;
+      /// <summary>
+      /// Add a getset.
+      /// </summary>
       function  AddGetSet(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer): boolean;
+
+      /// <summary>
+      /// Add a sentinel method slot.
+      /// </summary>
       function  AddSentinelMethod: boolean;
-      function  AddSentinelSlot: boolean;
+      /// <summary>
+      /// Add a sentinel member slot.
+      /// </summary>
       function  AddSentinelMember: boolean;
+      /// <summary>
+      /// Add a sentinel getset slot.
+      /// </summary>
       function  AddSentinelGetSet: boolean;
-      function  AddNameSlot: boolean;
-      function  AddDocStringsSlot: boolean;
-      function  AddTokenSlot: boolean;
-      function  AddMethodsSlot: boolean;
-      function  AddMembersSlot: boolean;
-      function  AddGetSetsSlot: boolean;
-      function  AddMetaclassSlot: boolean;
-      function  AddModuleSlot: boolean;
+      /// <summary>
+      /// Add a sentinel slot.
+      /// </summary>
+      function  AddSentinelSlot: boolean;
+
+      /// <summary>
+      /// Add a Py_tp_alloc slot.
+      /// </summary>
+      function  AddAllocSlot(const aFunc: allocfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_base(s) slot.
+      /// </summary>
       function  AddBasesSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_basicsize slot.
+      /// </summary>
       function  AddBasicsizeSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_call slot.
+      /// </summary>
+      function  AddCallSlot(const aFunc: ternaryfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_clear slot.
+      /// </summary>
+      function  AddClearSlot(const aFunc: inquiry): boolean;
+      /// <summary>
+      /// Add a Py_tp_dealloc slot.
+      /// </summary>
+      function  AddDeallocSlot(const aFunc: destructor_): boolean;
+      /// <summary>
+      /// Add a Py_tp_del slot.
+      /// </summary>
+      function  AddDelSlot(const aFunc: destructor_): boolean;
+      /// <summary>
+      /// Add a Py_tp_descr_get slot.
+      /// </summary>
+      function  AddDescrGetSlot(const aFunc: descrgetfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_descr_set slot.
+      /// </summary>
+      function  AddDescrSetSlot(const aFunc: descrsetfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_doc slot.
+      /// </summary>
+      function  AddDocSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_extra_basicsize slot.
+      /// </summary>
       function  AddExtraBasicsizeSlot: boolean;
-      function  AddItemsizeSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_finalize slot.
+      /// </summary>
+      function  AddFinalizeSlot(const aFunc: destructor_): boolean;
+      /// <summary>
+      /// Add a Py_tp_flags slot.
+      /// </summary>
       function  AddFlagsSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_free slot.
+      /// </summary>
+      function  AddFreeSlot(const aFunc: freefunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_getattr slot.
+      /// </summary>
+      function  AddGetAttrSlot(const aFunc: getattrfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_getattro slot.
+      /// </summary>
+      function  AddGetAttroSlot(const aFunc: getattrofunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_getset slot.
+      /// </summary>
+      function  AddGetSetsSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_hash slot.
+      /// </summary>
+      function  AddHashSlot(const aFunc: hashfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_init slot.
+      /// </summary>
+      function  AddInitSlot(const aFunc: initproc): boolean;
+      /// <summary>
+      /// Add a Py_tp_is_gc slot.
+      /// </summary>
+      function  AddIsGCSlot(const aFunc: inquiry): boolean;
+      /// <summary>
+      /// Add a Py_tp_itemsize slot.
+      /// </summary>
+      function  AddItemsizeSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_iter slot.
+      /// </summary>
+      function  AddIterSlot(const aFunc: getiterfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_iternext slot.
+      /// </summary>
+      function  AddIterNextSlot(const aFunc: iternextfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_members slot.
+      /// </summary>
+      function  AddMembersSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_metaclass slot.
+      /// </summary>
+      function  AddMetaclassSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_methods slot.
+      /// </summary>
+      function  AddMethodsSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_module slot.
+      /// </summary>
+      function  AddModuleSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_name slot.
+      /// </summary>
+      function  AddNameSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_new slot.
+      /// </summary>
+      function  AddNewSlot(const aFunc: newfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_repr slot.
+      /// </summary>
+      function  AddReprSlot(const aFunc: reprfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_richcompare slot.
+      /// </summary>
+      function  AddRichCompareSlot(const aFunc: richcmpfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_setattr slot.
+      /// </summary>
+      function  AddSetAttrSlot(const aFunc: setattrfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_setattro slot.
+      /// </summary>
+      function  AddSetAttroSlot(const aFunc: setattrofunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_slots slot.
+      /// </summary>
       function  AddSlotsSlot(const aSlots: PPyType_Slot): boolean;
+      /// <summary>
+      /// Add a Py_tp_str slot.
+      /// </summary>
+      function  AddStrSlot(const aFunc: reprfunc): boolean;
+      /// <summary>
+      /// Add a Py_slot_subslots slot.
+      /// </summary>
       function  AddSubslotsSlot(const aSlots: PPySlot): boolean;
-      function  AddReprSlot(const aFunc: tp_reprfunc): boolean;
+      /// <summary>
+      /// Add a Py_tp_token slot.
+      /// </summary>
+      function  AddTokenSlot: boolean;
+      /// <summary>
+      /// Add a Py_tp_traverse slot.
+      /// </summary>
+      function  AddTraverseSlot(const aFunc: traverseproc): boolean;
+      /// <summary>
+      /// Add a Py_tp_vectorcall slot.
+      /// </summary>
+      function  AddVectorcallSlot(const aFunc: vectorcallfunc): boolean;
 
       /// <summary>
       /// Override this procedure to add your custom slots.
@@ -319,190 +482,6 @@ begin
   FGetSetList := TList.Create;
 end;
 
-procedure TPyHeapTypeSlotManager.DestroySlotList;
-var
-  i : integer;
-begin
-  if assigned(FSlotList) then
-    try
-      i := pred(FSlotList.Count);
-      while (i >= 0) do
-        begin
-          TPySlot(FSlotList[i]).Free;
-          FSlotList[i] := nil;
-          dec(i);
-        end;
-    finally
-      FreeAndNil(FSlotList);
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroySlots;
-begin
-  if assigned(FSlots) then
-    begin
-      SetLength(FSlots, 0);
-      FSlots := nil;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyMethodList;
-var
-  i : integer;
-begin
-  if assigned(FMethodList) then
-    try
-      i := pred(FMethodList.Count);
-      while (i >= 0) do
-        begin
-          TPyMethodDef(FMethodList[i]).Free;
-          FMethodList[i] := nil;
-          dec(i);
-        end;
-    finally
-      FreeAndNil(FMethodList);
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyMethods;
-begin
-  if assigned(FMethods) then
-    begin
-      SetLength(FMethods, 0);
-      FMethods := nil;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyMemberList;
-var
-  i : integer;
-begin
-  if assigned(FMemberList) then
-    try
-      i := pred(FMemberList.Count);
-      while (i >= 0) do
-        begin
-          TPyMemberDef(FMemberList[i]).Free;
-          FMemberList[i] := nil;
-          dec(i);
-        end;
-    finally
-      FreeAndNil(FMemberList);
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyMembers;
-begin
-  if assigned(FMembers) then
-    begin
-      SetLength(FMembers, 0);
-      FMembers := nil;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyGetSetList;
-var
-  i : integer;
-begin
-  if assigned(FGetSetList) then
-    try
-      i := pred(FGetSetList.Count);
-      while (i >= 0) do
-        begin
-          TPyGetSetDef(FGetSetList[i]).Free;
-          FGetSetList[i] := nil;
-          dec(i);
-        end;
-    finally
-      FreeAndNil(FGetSetList);
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.DestroyGetSets;
-begin
-  if assigned(FGetSets) then
-    begin
-      SetLength(FGetSets, 0);
-      FGetSets := nil;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.CreateSlotArray;
-var
-  i : integer;
-begin
-  DestroySlots;
-
-  if assigned(FSlotList) and (FSlotList.Count > 0) then
-    begin
-      SetLength(FSlots, FSlotList.Count);
-
-      i := 0;
-      while (i < FSlotList.Count) do
-        begin
-          FSlots[i] := TPySlot(FSlotList[i]).Slot;
-          inc(i);
-        end;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.CreateMethodArray;
-var
-  i : integer;
-begin
-  DestroyMethods;
-
-  if assigned(FMethodList) and (FMethodList.Count > 0) then
-    begin
-      SetLength(FMethods, FMethodList.Count);
-
-      i := 0;
-      while (i < FMethodList.Count) do
-        begin
-          FMethods[i] := TPyMethodDef(FMethodList[i]).Method;
-          inc(i);
-        end;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.CreateMemberArray;
-var
-  i : integer;
-begin
-  DestroyMembers;
-
-  if assigned(FMemberList) and (FMemberList.Count > 0) then
-    begin
-      SetLength(FMembers, FMemberList.Count);
-
-      i := 0;
-      while (i < FMemberList.Count) do
-        begin
-          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
-          inc(i);
-        end;
-    end;
-end;
-
-procedure TPyHeapTypeSlotManager.CreateGetSetArray;
-var
-  i : integer;
-begin
-  DestroyGetSets;
-
-  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
-    begin
-      SetLength(FGetSets, FGetSetList.Count);
-
-      i := 0;
-      while (i < FGetSetList.Count) do
-        begin
-          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
-          inc(i);
-        end;
-    end;
-end;
-
 function TPyHeapTypeSlotManager.GetName: AnsiString;
 begin
   Result := FName;
@@ -639,6 +618,190 @@ begin
   FFlags := aValue;
 end;
 
+procedure TPyHeapTypeSlotManager.CreateSlotArray;
+var
+  i : integer;
+begin
+  DestroySlots;
+
+  if assigned(FSlotList) and (FSlotList.Count > 0) then
+    begin
+      SetLength(FSlots, FSlotList.Count);
+
+      i := 0;
+      while (i < FSlotList.Count) do
+        begin
+          FSlots[i] := TPySlot(FSlotList[i]).Slot;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.CreateMethodArray;
+var
+  i : integer;
+begin
+  DestroyMethods;
+
+  if assigned(FMethodList) and (FMethodList.Count > 0) then
+    begin
+      SetLength(FMethods, FMethodList.Count);
+
+      i := 0;
+      while (i < FMethodList.Count) do
+        begin
+          FMethods[i] := TPyMethodDef(FMethodList[i]).Method;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.CreateMemberArray;
+var
+  i : integer;
+begin
+  DestroyMembers;
+
+  if assigned(FMemberList) and (FMemberList.Count > 0) then
+    begin
+      SetLength(FMembers, FMemberList.Count);
+
+      i := 0;
+      while (i < FMemberList.Count) do
+        begin
+          FMembers[i] := TPyMemberDef(FMemberList[i]).MemberDef;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.CreateGetSetArray;
+var
+  i : integer;
+begin
+  DestroyGetSets;
+
+  if assigned(FGetSetList) and (FGetSetList.Count > 0) then
+    begin
+      SetLength(FGetSets, FGetSetList.Count);
+
+      i := 0;
+      while (i < FGetSetList.Count) do
+        begin
+          FGetSets[i] := TPyGetSetDef(FGetSetList[i]).GetSetDef;
+          inc(i);
+        end;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroySlotList;
+var
+  i : integer;
+begin
+  if assigned(FSlotList) then
+    try
+      i := pred(FSlotList.Count);
+      while (i >= 0) do
+        begin
+          TPySlot(FSlotList[i]).Free;
+          FSlotList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FSlotList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroySlots;
+begin
+  if assigned(FSlots) then
+    begin
+      SetLength(FSlots, 0);
+      FSlots := nil;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyMethodList;
+var
+  i : integer;
+begin
+  if assigned(FMethodList) then
+    try
+      i := pred(FMethodList.Count);
+      while (i >= 0) do
+        begin
+          TPyMethodDef(FMethodList[i]).Free;
+          FMethodList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FMethodList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyMethods;
+begin
+  if assigned(FMethods) then
+    begin
+      SetLength(FMethods, 0);
+      FMethods := nil;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyMemberList;
+var
+  i : integer;
+begin
+  if assigned(FMemberList) then
+    try
+      i := pred(FMemberList.Count);
+      while (i >= 0) do
+        begin
+          TPyMemberDef(FMemberList[i]).Free;
+          FMemberList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FMemberList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyMembers;
+begin
+  if assigned(FMembers) then
+    begin
+      SetLength(FMembers, 0);
+      FMembers := nil;
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyGetSetList;
+var
+  i : integer;
+begin
+  if assigned(FGetSetList) then
+    try
+      i := pred(FGetSetList.Count);
+      while (i >= 0) do
+        begin
+          TPyGetSetDef(FGetSetList[i]).Free;
+          FGetSetList[i] := nil;
+          dec(i);
+        end;
+    finally
+      FreeAndNil(FGetSetList);
+    end;
+end;
+
+procedure TPyHeapTypeSlotManager.DestroyGetSets;
+begin
+  if assigned(FGetSets) then
+    begin
+      SetLength(FGetSets, 0);
+      FGetSets := nil;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
 var
   TempMethod : TPyMethodDef;
@@ -723,154 +886,20 @@ begin
     end;
 end;
 
-function TPyHeapTypeSlotManager.AddNameSlot: boolean;
+function TPyHeapTypeSlotManager.AddAllocSlot(const aFunc: allocfunc): boolean;
 var
   TempSlot : TPySlot;
 begin
   Result := False;
 
-  if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
-     assigned(FSlotList) and
-     (length(FName) > 0) then
+  if assigned(FSlotList) and assigned(aFunc) then
     begin
       TempSlot := TPySlot.Create;
-      TempSlot.Set_STATIC_STRING(Py_tp_name, FName);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddDocStringsSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if assigned(FSlotList) and (length(FDocStrings) > 0) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_STRING(Py_tp_doc, FDocStrings);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddTokenSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 14, 0) and
-     assigned(FSlotList) and
-     assigned(FToken) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_DATA(Py_tp_token, FToken);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddMethodsSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if assigned(FSlotList) and assigned(FMethods) and (length(FMethods) > 1) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_STATIC_DATA(Py_tp_methods, @FMethods[0]);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddMembersSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if assigned(FSlotList) and assigned(FMembers) and (length(FMembers) > 1) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_STATIC_DATA(Py_tp_members, @FMembers[0]);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddGetSetsSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if assigned(FSlotList) and assigned(FGetSets) and (length(FGetSets) > 1) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_STATIC_DATA(Py_tp_getset, @FGetSets[0]);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddMetaclassSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
-     assigned(FSlotList) and
-     assigned(FMetaclass) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_DATA(Py_tp_metaclass, FMetaclass);
-
-      if (FSlotList.Add(TempSlot) >= 0) then
-        Result := True
-       else
-        TempSlot.Free;
-    end;
-end;
-
-function TPyHeapTypeSlotManager.AddModuleSlot: boolean;
-var
-  TempSlot : TPySlot;
-begin
-  Result := False;
-
-  if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
-     assigned(FSlotList) and
-     TPyObject.IsInitialized(FModule) then
-    begin
-      TempSlot := TPySlot.Create;
-      TempSlot.Set_DATA(Py_tp_module, FModule.PyObject);
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_alloc, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_alloc, @aFunc);
+      {$ENDIF}
 
       if (FSlotList.Add(TempSlot) >= 0) then
         Result := True
@@ -923,6 +952,156 @@ begin
     end;
 end;
 
+function TPyHeapTypeSlotManager.AddCallSlot(const aFunc: ternaryfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_call, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_call, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddClearSlot(const aFunc: inquiry): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_clear, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_clear, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddDeallocSlot(const aFunc: destructor_): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_dealloc, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_dealloc, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddDelSlot(const aFunc: destructor_): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_del, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_del, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddDescrGetSlot(const aFunc: descrgetfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_descr_get, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_descr_get, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddDescrSetSlot(const aFunc: descrsetfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_descr_set, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_descr_set, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddDocSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and (length(FDocStrings) > 0) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STRING(Py_tp_doc, FDocStrings);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.AddExtraBasicsizeSlot: boolean;
 var
   TempSlot : TPySlot;
@@ -944,19 +1123,20 @@ begin
     end;
 end;
 
-function TPyHeapTypeSlotManager.AddItemsizeSlot: boolean;
+function TPyHeapTypeSlotManager.AddFinalizeSlot(const aFunc: destructor_): boolean;
 var
   TempSlot : TPySlot;
 begin
   Result := False;
 
-  if (GlobalP4PEngine <> nil) and
-     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
-     assigned(FSlotList) and
-     (FItemsize <> low(Py_ssize_t)) then
+  if assigned(FSlotList) and assigned(aFunc) then
     begin
       TempSlot := TPySlot.Create;
-      TempSlot.Set_SIZE(Py_tp_itemsize, FItemsize);
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_finalize, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_finalize, @aFunc);
+      {$ENDIF}
 
       if (FSlotList.Add(TempSlot) >= 0) then
         Result := True
@@ -986,6 +1166,430 @@ begin
     end;
 end;
 
+function TPyHeapTypeSlotManager.AddFreeSlot(const aFunc: freefunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_free, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_free, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddGetAttrSlot(const aFunc: getattrfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_getattr, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_getattr, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddGetAttroSlot(const aFunc: getattrofunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_getattro, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_getattro, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddGetSetsSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FGetSets) and (length(FGetSets) > 1) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_DATA(Py_tp_getset, @FGetSets[0]);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddHashSlot(const aFunc: hashfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_hash, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_hash, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddInitSlot(const aFunc: initproc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_init, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_init, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddIsGCSlot(const aFunc: inquiry): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_is_gc, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_is_gc, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddItemsizeSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (FItemsize <> low(Py_ssize_t)) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_SIZE(Py_tp_itemsize, FItemsize);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddIterSlot(const aFunc: getiterfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_iter, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_iter, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddIterNextSlot(const aFunc: iternextfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_iternext, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_iternext, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddMembersSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FMembers) and (length(FMembers) > 1) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_DATA(Py_tp_members, @FMembers[0]);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddMetaclassSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     assigned(FMetaclass) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_metaclass, FMetaclass);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddMethodsSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(FMethods) and (length(FMethods) > 1) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_DATA(Py_tp_methods, @FMethods[0]);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddModuleSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     TPyObject.IsInitialized(FModule) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_module, FModule.PyObject);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddNameSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 15, 0) and
+     assigned(FSlotList) and
+     (length(FName) > 0) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_STATIC_STRING(Py_tp_name, FName);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddNewSlot(const aFunc: newfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_new, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_new, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddReprSlot(const aFunc: reprfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_repr, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_repr, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddRichCompareSlot(const aFunc: richcmpfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_richcompare, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_richcompare, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddSetAttrSlot(const aFunc: setattrfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_setattr, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_setattr, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddSetAttroSlot(const aFunc: setattrofunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_setattro, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_setattro, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
 function TPyHeapTypeSlotManager.AddSlotsSlot(const aSlots: PPyType_Slot): boolean;
 var
   TempSlot : TPySlot;
@@ -999,6 +1603,28 @@ begin
     begin
       TempSlot := TPySlot.Create;
       TempSlot.Set_DATA(Py_tp_slots, aSlots);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddStrSlot(const aFunc: reprfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_str, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_str, @aFunc);
+      {$ENDIF}
 
       if (FSlotList.Add(TempSlot) >= 0) then
         Result := True
@@ -1028,7 +1654,28 @@ begin
     end;
 end;
 
-function TPyHeapTypeSlotManager.AddReprSlot(const aFunc: tp_reprfunc): boolean;
+function TPyHeapTypeSlotManager.AddTokenSlot: boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if (GlobalP4PEngine <> nil) and
+     GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 14, 0) and
+     assigned(FSlotList) and
+     assigned(FToken) then
+    begin
+      TempSlot := TPySlot.Create;
+      TempSlot.Set_DATA(Py_tp_token, FToken);
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddTraverseSlot(const aFunc: traverseproc): boolean;
 var
   TempSlot : TPySlot;
 begin
@@ -1038,9 +1685,31 @@ begin
     begin
       TempSlot := TPySlot.Create;
       {$IFDEF FPC}
-      TempSlot.Set_FUNC(Py_tp_repr, _Py_funcptr_t(aFunc));
+      TempSlot.Set_FUNC(Py_tp_traverse, _Py_funcptr_t(aFunc));
       {$ELSE}
-      TempSlot.Set_FUNC(Py_tp_repr, @aFunc);
+      TempSlot.Set_FUNC(Py_tp_traverse, @aFunc);
+      {$ENDIF}
+
+      if (FSlotList.Add(TempSlot) >= 0) then
+        Result := True
+       else
+        TempSlot.Free;
+    end;
+end;
+
+function TPyHeapTypeSlotManager.AddVectorcallSlot(const aFunc: vectorcallfunc): boolean;
+var
+  TempSlot : TPySlot;
+begin
+  Result := False;
+
+  if assigned(FSlotList) and assigned(aFunc) then
+    begin
+      TempSlot := TPySlot.Create;
+      {$IFDEF FPC}
+      TempSlot.Set_FUNC(Py_tp_vectorcall, _Py_funcptr_t(aFunc));
+      {$ELSE}
+      TempSlot.Set_FUNC(Py_tp_vectorcall, @aFunc);
       {$ENDIF}
 
       if (FSlotList.Add(TempSlot) >= 0) then
@@ -1053,7 +1722,7 @@ end;
 procedure TPyHeapTypeSlotManager.AddAllSlots;
 begin
   AddNameSlot;
-  AddDocStringsSlot;
+  AddDocSlot;
   AddMetaclassSlot;
   AddModuleSlot;
   AddBasesSlot;
