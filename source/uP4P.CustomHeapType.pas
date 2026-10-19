@@ -384,9 +384,11 @@ begin
 end;
 
 function TCustomHeapType.LegacyInitialization: boolean;
+var
+  TempHasMetaclass, TempHasModule, TempHasBases : boolean;
 begin
   Result := False;
-  if assigned(FHeapType) then exit;
+  if not(assigned(GlobalP4PEngine)) or assigned(FHeapType) then exit;
 
   CreateTypeSpec;
 
@@ -396,7 +398,24 @@ begin
 
   FTypeSpec.Initialize;
 
-  FHeapType := TPyType.FromMetaclass(FMetaclass, FModule, FTypeSpec.TypeSpec, FBases);
+  TempHasMetaclass := assigned(FMetaclass);
+  TempHasModule    := TPyObject.IsInitialized(FModule);
+  TempHasBases     := TPyObject.IsInitialized(FBases);
+
+  if GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0) and
+     TempHasMetaclass and
+     TempHasModule and
+     TempHasBases then
+    FHeapType := TPyType.FromMetaclass(FMetaclass, FModule, FTypeSpec.TypeSpec, FBases)
+   else
+    if TempHasModule and
+       TempHasBases then
+      FHeapType := TPyType.FromModuleAndSpec(FModule, FTypeSpec.TypeSpec, FBases)
+     else
+      if TempHasBases then
+        FHeapType := TPyType.FromSpecWithBases(FTypeSpec.TypeSpec, FBases)
+       else
+        FHeapType := TPyType.FromSpec(FTypeSpec.TypeSpec);
 
   if TPyObject.IsInitialized(FHeapType) then
     Result := True
@@ -407,7 +426,7 @@ end;
 function TCustomHeapType.UnifiedSlotInitialization: boolean;
 begin
   Result := False;
-  if assigned(FHeapType) then exit;
+  if not(assigned(GlobalP4PEngine)) or assigned(FHeapType) then exit;
 
   CreateSlotManager;
 

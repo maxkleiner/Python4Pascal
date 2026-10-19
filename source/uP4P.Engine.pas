@@ -673,16 +673,18 @@ var
   TempType : PPyObject;
   TempValue, TempTraceback : IPyObject;
 begin
+  Result := False;
+
   if PythonLibIsGreaterOrEqualThan(3, 12, 0) then
     TempValue := TPyErr.GetRaisedException()
    else
     TPyErr.Fetch(TempType, TempValue, TempTraceback);
 
-  FLastErrorMessage := TempValue.AsString;
-  Result            := (length(FLastErrorMessage) > 0);
-
   if TPyObject.IsInitialized(TempValue) then
     begin
+      FLastErrorMessage := TempValue.AsString;
+      Result            := (length(FLastErrorMessage) > 0);
+
       if PythonLibIsGreaterOrEqualThan(3, 12, 0) then
         TPyErr.SetRaisedException(TempValue)
        else
