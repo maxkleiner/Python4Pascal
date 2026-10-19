@@ -27,7 +27,11 @@ type
     protected
       FThreadInit        : TP4PThreadInit;
       FErrorMsg          : string;
-      FOnExecutePython   : TNotifyEvent;
+      FOnExecutePython   : TNotifyEvent;    
+      FOnFinalizeModules : TNotifyEvent;
+      FOnDestroyModules  : TNotifyEvent;
+
+      procedure SetThreadInit(aValue: TP4PThreadInit);
 
       procedure Execute; override;
       procedure ExecuteGILState;
@@ -40,6 +44,8 @@ type
 
       procedure CreateModuleAndExecute(var aModule: TIOPyModule; aGILSupport: boolean = False);
 
+      procedure doOnFinalizeModules; virtual;
+      procedure doOnDestroyModules; virtual;
       procedure doOnExecutePython; virtual;
 
     public
@@ -47,7 +53,7 @@ type
       /// <summary>
       /// Thread initialization method.
       /// </summary>
-      property  ThreadInit        : TP4PThreadInit    read FThreadInit           write FThreadInit;
+      property  ThreadInit        : TP4PThreadInit    read FThreadInit           write SetThreadInit;
       /// <summary>
       /// Last error message.
       /// </summary>
@@ -57,6 +63,16 @@ type
       /// Python code.
       /// </summary>
       property  OnExecutePython   : TNotifyEvent      read FOnExecutePython      write FOnExecutePython;
+      /// <summary>
+      /// This event is triggered before the TPy.EndInterpreter call and it's
+      /// used to finalize the modules and types.
+      /// </summary>
+      property  OnFinalizeModules : TNotifyEvent      read FOnFinalizeModules    write FOnFinalizeModules;
+      /// <summary>
+      /// This event is triggered after the TPy.EndInterpreter call and it's
+      /// used to destroy the modules and types.
+      /// </summary>
+      property  OnDestroyModules  : TNotifyEvent      read FOnDestroyModules     write FOnDestroyModules;
   end;
 
 implementation
@@ -70,14 +86,37 @@ begin
   inherited AfterConstruction;
 
   FOnExecutePython   := nil;
+  FOnFinalizeModules := nil;
+  FOnDestroyModules  := nil;
   FThreadInit        := ti_GILState;
   FErrorMsg          := '';
+end;
+
+procedure TP4PThread.SetThreadInit(aValue: TP4PThreadInit);
+begin
+  if (GlobalP4PEngine <> nil) and
+     (GlobalP4PEngine.PythonLibIsGreaterOrEqualThan(3, 12, 0)) then
+    FThreadInit := aValue
+   else
+    FThreadInit := ti_GILState;
 end;
 
 procedure TP4PThread.doOnExecutePython;
 begin
   if assigned(FOnExecutePython) then
     FOnExecutePython(self);
+end;
+
+procedure TP4PThread.doOnFinalizeModules;
+begin                        
+  if assigned(FOnFinalizeModules) then
+    FOnFinalizeModules(self);
+end;
+
+procedure TP4PThread.doOnDestroyModules;
+begin
+  if assigned(FOnDestroyModules) then
+    FOnDestroyModules(self);
 end;
 
 procedure TP4PThread.ExecuteGILState;
@@ -152,8 +191,12 @@ begin
       if assigned(TempModule) then
         TempModule.Finalize;
 
+      doOnFinalizeModules;
+
       TPy.EndInterpreter(TempThreadState);
       TempThreadState := nil;
+
+      doOnDestroyModules;
 
       if assigned(TempModule) then
         FreeAndNil(TempModule);
@@ -192,8 +235,12 @@ begin
       if assigned(TempModule) then
         TempModule.Finalize;
 
+      doOnFinalizeModules;
+
       TPy.EndInterpreter(TempThreadState);
       TempThreadState := nil;
+
+      doOnDestroyModules;
 
       if assigned(TempModule) then
         FreeAndNil(TempModule);
@@ -233,8 +280,12 @@ begin
             if assigned(TempModule) then
               TempModule.Finalize;
 
+            doOnFinalizeModules;
+
             TPy.EndInterpreter(TempThreadState);
             TempThreadState := nil;
+
+            doOnDestroyModules;
 
             if assigned(TempModule) then
               FreeAndNil(TempModule);
@@ -289,8 +340,12 @@ begin
             if assigned(TempModule) then
               TempModule.Finalize;
 
+            doOnFinalizeModules;
+
             TPy.EndInterpreter(TempThreadState);
             TempThreadState := nil;
+
+            doOnDestroyModules;
 
             if assigned(TempModule) then
               FreeAndNil(TempModule);

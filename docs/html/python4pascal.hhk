@@ -17299,8 +17299,16 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#CreateModuleAndExecute-TIOPyModule-boolean-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="doOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="doOnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#doOnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="doOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnFinalizeModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="ErrorMsg">
@@ -17343,16 +17351,36 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FErrorMsg">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FOnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FOnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FThreadInit">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FThreadInit">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="OnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#OnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="OnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnFinalizeModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#SetThreadInit-TP4PThreadInit-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="ThreadInit">

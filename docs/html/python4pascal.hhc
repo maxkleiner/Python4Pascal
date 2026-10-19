@@ -25179,6 +25179,14 @@
 <param name="Name" value="FOnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FOnExecutePython">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnDestroyModules">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -25197,12 +25205,24 @@
 <param name="Name" value="OnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#OnExecutePython">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="OnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnFinalizeModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="OnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnDestroyModules">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Methods">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#@Methods">
 </object>
 <ul>
+<li><object type="text/sitemap">
+<param name="Name" value="SetThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#SetThreadInit">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="Execute">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#Execute">
@@ -25238,6 +25258,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="CreateModuleAndExecute">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#CreateModuleAndExecute">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="doOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnFinalizeModules">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="doOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnDestroyModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="doOnExecutePython">
@@ -41886,8 +41914,16 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FErrorMsg">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FOnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#FOnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="FThreadInit">
@@ -41904,8 +41940,16 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ErrorMsg">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="OnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#OnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="OnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#OnFinalizeModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="ThreadInit">
@@ -41926,8 +41970,16 @@
 <param name="Local" value="uP4P.Thread.TP4PThread.html#CreateModuleAndExecute">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="doOnDestroyModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnDestroyModules">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="doOnExecutePython">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#doOnExecutePython">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="doOnFinalizeModules">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#doOnFinalizeModules">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Execute">
@@ -41960,6 +42012,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ExecuteSubinterpreterSharedGILWithGuard">
 <param name="Local" value="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGILWithGuard">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetThreadInit">
+<param name="Local" value="uP4P.Thread.TP4PThread.html#SetThreadInit">
 </object>
 </ul>
 </ul>

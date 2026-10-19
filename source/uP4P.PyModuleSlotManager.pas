@@ -76,21 +76,69 @@ type
       procedure CreateSlotArray;
       procedure CreateMethodArray;
 
+      /// <summary>
+      /// Add a method.
+      /// </summary>
       function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      /// <summary>
+      /// Add a sentinel method slot.
+      /// </summary>
       function  AddSentinelMethod: boolean;
+      /// <summary>
+      /// Add a sentinel slot.
+      /// </summary>
       function  AddSentinelSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_name slot.
+      /// </summary>
       function  AddNameSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_doc slot.
+      /// </summary>
       function  AddDocStringsSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_token slot.
+      /// </summary>
       function  AddTokenSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_methods slot.
+      /// </summary>
       function  AddMethodsSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_create slot.
+      /// </summary>
       function  AddCreateSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_exec slot.
+      /// </summary>
       function  AddExecSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_multiple_interpreters slot.
+      /// </summary>
       function  AddMultipleInterpretersSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_gil slot.
+      /// </summary>
       function  AddGILSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_abi slot.
+      /// </summary>
       function  AddABIInfoSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_state_size slot.
+      /// </summary>
       function  AddStateSizeSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_state_traverse slot.
+      /// </summary>
       function  AddStateTraverseSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_state_clear slot.
+      /// </summary>
       function  AddStateClearSlot: boolean;
+      /// <summary>
+      /// Adds a Py_mod_state_free slot.
+      /// </summary>
       function  AddStateFreeSlot: boolean;
 
       /// <summary>

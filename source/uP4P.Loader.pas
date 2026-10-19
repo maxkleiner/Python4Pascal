@@ -12,7 +12,7 @@ unit uP4P.Loader;
 {$ENDIF}{$ENDIF}
 
 interface
-  //TODO: Add support for heap types.
+  //TODO: See how the python source code uses the Py_tp_getset and Py_tp_members slots.
   //TODO: See other cpython wrappers.
   //TODO: See the changes in default text encoding.
   //TODO: See if it's possible to support the free threaded mode. PyObject (_object) changes.

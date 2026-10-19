@@ -46,50 +46,70 @@ body { margin: 0.5em; }
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a></strong>: TNotifyEvent;</code></td>
 </tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">FOnFinalizeModules</a></strong>: TNotifyEvent;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.Thread.TP4PThread.html#FOnDestroyModules">FOnDestroyModules</a></strong>: TNotifyEvent;</code></td>
+</tr>
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#Execute">Execute</a></strong>; override;</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#SetThreadInit-TP4PThreadInit-">SetThreadInit</a></strong>(aValue: <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>);</code></td>
 </tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#Execute">Execute</a></strong>; override;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteGILState">ExecuteGILState</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSharedInterpreter">ExecuteSharedInterpreter</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSharedInterpreterWithView">ExecuteSharedInterpreterWithView</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGIL">ExecuteSubinterpreterSharedGIL</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterSharedGILWithGuard">ExecuteSubinterpreterSharedGILWithGuard</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGIL">ExecuteSubinterpreterOwnGIL</a></strong>;</code></td>
 </tr>
-<tr class="list2 visibility-protected">
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#ExecuteSubinterpreterOwnGILWithGuard">ExecuteSubinterpreterOwnGILWithGuard</a></strong>;</code></td>
 </tr>
-<tr class="list visibility-protected">
+<tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#CreateModuleAndExecute-TIOPyModule-boolean-">CreateModuleAndExecute</a></strong>(var aModule: <a href="uP4P.IOPyModule.TIOPyModule.html">TIOPyModule</a>; aGILSupport: boolean = False);</code></td>
 </tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#doOnFinalizeModules">doOnFinalizeModules</a></strong>; virtual;</code></td>
+</tr>
 <tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#doOnDestroyModules">doOnDestroyModules</a></strong>; virtual;</code></td>
+</tr>
+<tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#doOnExecutePython">doOnExecutePython</a></strong>; virtual;</code></td>
 </tr>
-<tr class="list visibility-public">
+<tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>procedure <strong><a href="uP4P.Thread.TP4PThread.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
 </tr>
@@ -98,7 +118,7 @@ body { margin: 0.5em; }
 <table class="summary wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#ThreadInit">ThreadInit</a></strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>;</code></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#ThreadInit">ThreadInit</a></strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#SetThreadInit-TP4PThreadInit-">SetThreadInit</a>;</code></td>
 </tr>
 <tr class="list2 visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
@@ -107,6 +127,14 @@ body { margin: 0.5em; }
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
 <td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#OnExecutePython">OnExecutePython</a></strong>   : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>      write <a href="uP4P.Thread.TP4PThread.html#FOnExecutePython">FOnExecutePython</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#OnFinalizeModules">OnFinalizeModules</a></strong> : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">FOnFinalizeModules</a>    write <a href="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">FOnFinalizeModules</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.Thread.TP4PThread.html#OnDestroyModules">OnDestroyModules</a></strong>  : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnDestroyModules">FOnDestroyModules</a>     write <a href="uP4P.Thread.TP4PThread.html#FOnDestroyModules">FOnDestroyModules</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -135,7 +163,31 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
 </table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOnFinalizeModules"></span><code><strong>FOnFinalizeModules</strong>: TNotifyEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FOnDestroyModules"></span><code><strong>FOnDestroyModules</strong>: TNotifyEvent;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
 <h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetThreadInit-TP4PThreadInit-"></span><code>procedure <strong>SetThreadInit</strong>(aValue: <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -211,6 +263,22 @@ body { margin: 0.5em; }
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="doOnFinalizeModules"></span><code>procedure <strong>doOnFinalizeModules</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="doOnDestroyModules"></span><code>procedure <strong>doOnDestroyModules</strong>; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
 <td class="itemcode"><span id="doOnExecutePython"></span><code>procedure <strong>doOnExecutePython</strong>; virtual;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -228,7 +296,7 @@ body { margin: 0.5em; }
 <table class="detail visibility-public wide_list">
 <tr class="list visibility-public">
 <td class="visibility"><span class="badge vis-public">Public</span></td>
-<td class="itemcode"><span id="ThreadInit"></span><code>property <strong>ThreadInit</strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>;</code></td>
+<td class="itemcode"><span id="ThreadInit"></span><code>property <strong>ThreadInit</strong>        : <a href="uP4P.Types.html#TP4PThreadInit">TP4PThreadInit</a>    read <a href="uP4P.Thread.TP4PThread.html#FThreadInit">FThreadInit</a>           write <a href="uP4P.Thread.TP4PThread.html#SetThreadInit-TP4PThreadInit-">SetThreadInit</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
@@ -253,6 +321,26 @@ body { margin: 0.5em; }
 <tr><td colspan="2">
 <p>
  Event triggered when the thread is initialized. Use it to execute the Python code. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OnFinalizeModules"></span><code>property <strong>OnFinalizeModules</strong> : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">FOnFinalizeModules</a>    write <a href="uP4P.Thread.TP4PThread.html#FOnFinalizeModules">FOnFinalizeModules</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ This event is triggered before the TPy.EndInterpreter call and it's used to finalize the modules and types. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="OnDestroyModules"></span><code>property <strong>OnDestroyModules</strong>  : TNotifyEvent      read <a href="uP4P.Thread.TP4PThread.html#FOnDestroyModules">FOnDestroyModules</a>     write <a href="uP4P.Thread.TP4PThread.html#FOnDestroyModules">FOnDestroyModules</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ This event is triggered after the TPy.EndInterpreter call and it's used to destroy the modules and types. </p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
