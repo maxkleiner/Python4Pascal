@@ -748,43 +748,43 @@ end;
 procedure TPyType_Spec.AddAllocSlot(const aFunc: allocfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_alloc, @aFunc);
+    AddSlot(Py_tp_alloc, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddCallSlot(const aFunc: ternaryfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_call, @aFunc);
+    AddSlot(Py_tp_call, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddClearSlot(const aFunc: inquiry);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_clear, @aFunc);
+    AddSlot(Py_tp_clear, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddDeallocSlot(const aFunc: destructor_);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_dealloc, @aFunc);
+    AddSlot(Py_tp_dealloc, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddDelSlot(const aFunc: destructor_);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_del, @aFunc);
+    AddSlot(Py_tp_del, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddDescrGetSlot(const aFunc: descrgetfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_descr_get, @aFunc);
+    AddSlot(Py_tp_descr_get, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddDescrSetSlot(const aFunc: descrsetfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_descr_set, @aFunc);
+    AddSlot(Py_tp_descr_set, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddDocSlot;
@@ -796,25 +796,25 @@ end;
 procedure TPyType_Spec.AddFinalizeSlot(const aFunc: destructor_);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_finalize, @aFunc);
+    AddSlot(Py_tp_finalize, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddFreeSlot(const aFunc: freefunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_free, @aFunc);
+    AddSlot(Py_tp_free, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddGetAttrSlot(const aFunc: getattrfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_getattr, @aFunc);
+    AddSlot(Py_tp_getattr, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddGetAttroSlot(const aFunc: getattrofunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_getattro, @aFunc);
+    AddSlot(Py_tp_getattro, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddGetSetsSlot;
@@ -826,31 +826,31 @@ end;
 procedure TPyType_Spec.AddHashSlot(const aFunc: hashfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_hash, @aFunc);
+    AddSlot(Py_tp_hash, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddInitSlot(const aFunc: initproc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_init, @aFunc);
+    AddSlot(Py_tp_init, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddIsGCSlot(const aFunc: inquiry);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_is_gc, @aFunc);
+    AddSlot(Py_tp_is_gc, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddIterSlot(const aFunc: getiterfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_iter, @aFunc);
+    AddSlot(Py_tp_iter, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddIterNextSlot(const aFunc: iternextfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_iternext, @aFunc);
+    AddSlot(Py_tp_iternext, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddMembersSlot;
@@ -868,31 +868,31 @@ end;
 procedure TPyType_Spec.AddNewSlot(const aFunc: newfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_new, @aFunc);
+    AddSlot(Py_tp_new, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddReprSlot(const aFunc: reprfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_repr, @aFunc);
+    AddSlot(Py_tp_repr, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddRichCompareSlot(const aFunc: richcmpfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_richcompare, @aFunc);
+    AddSlot(Py_tp_richcompare, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddSetAttrSlot(const aFunc: setattrfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_setattr, @aFunc);
+    AddSlot(Py_tp_setattr, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddSetAttroSlot(const aFunc: setattrofunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_setattro, @aFunc);
+    AddSlot(Py_tp_setattro, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddSlotsSlot(const aSlots: PPyType_Slot);
@@ -904,7 +904,7 @@ end;
 procedure TPyType_Spec.AddStrSlot(const aFunc: reprfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_str, @aFunc);
+    AddSlot(Py_tp_str, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddSubslotsSlot(const aSlots: PPySlot);
@@ -923,13 +923,13 @@ end;
 procedure TPyType_Spec.AddTraverseSlot(const aFunc: traverseproc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_traverse, @aFunc);
+    AddSlot(Py_tp_traverse, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddVectorcallSlot(const aFunc: vectorcallfunc);
 begin
   if assigned(aFunc) then
-    AddSlot(Py_tp_vectorcall, @aFunc);
+    AddSlot(Py_tp_vectorcall, {$IFNDEF FPC}@{$ENDIF}aFunc);
 end;
 
 procedure TPyType_Spec.AddAllSlots;
