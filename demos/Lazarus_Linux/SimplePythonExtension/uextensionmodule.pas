@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils,
   uP4P.LibFunctions, uP4P.Types, uP4P.Constants, uP4P.Interfaces, uP4P.PyObject,
-  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyCustomModuleSlotManager;
+  uP4P.CustomPyModule, uP4P.PyNone, uP4P.PyModuleDef, uP4P.PyModuleSlotManager;
 
 type
   TExtensionModule = class(TCustomPyModule)
@@ -27,7 +27,7 @@ type
       procedure AddAllMethods; override;
   end;
 
-  TExtensionPySlotManager = class(TPyCustomModuleSlotManager)
+  TExtensionPySlotManager = class(TPyModuleSlotManager)
     protected
       procedure AddAllMethods; override;
   end;
