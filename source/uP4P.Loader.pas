@@ -12,11 +12,8 @@ unit uP4P.Loader;
 {$ENDIF}{$ENDIF}
 
 interface
-  //TODO: See how the python source code uses the Py_tp_getset and Py_tp_members slots.
-  //TODO: See other cpython wrappers.
-  //TODO: See the changes in default text encoding.
-  //TODO: See if it's possible to support the free threaded mode. PyObject (_object) changes.
   //TODO: See if it's possible to debug and fix the FPC issue #39815 -> https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
+  //TODO: See if it's possible to support the free threaded mode. PyObject (_object) changes.
   //TODO: Find a better way to call python functions with a variable number of arguments. TPyTuple.Pack, TPySys.WriteStderr, for example.
 
 uses

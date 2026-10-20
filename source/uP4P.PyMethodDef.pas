@@ -39,8 +39,7 @@ type
       /// </summary>
       property Method      : PyMethodDef       read FMethod;
       /// <summary>
-      /// Return True if this is the last method definition in the slot list.
-      /// The sentinel method definition has a 0 as ml_flags and a nil value in
+      /// Return True if this item has a 0 as ml_flags and a nil value in
       /// ml_meth and ml_doc.
       /// </summary>
       property IsSentinel  : boolean           read GetIsSentinel;

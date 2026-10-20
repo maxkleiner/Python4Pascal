@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyMemberDef: Class TPyMemberDef</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.5.snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyMemberDef"></span><h1 class="cio">Class TPyMemberDef</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyMemberDef.html">uP4P.PyMemberDef</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyMemberDef = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Class that describes an attribute of a type which corresponds to a C struct member. When defining a class, put a nil-terminated array of these structures in the tp_members slot. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMemberDef">https://docs.python.org/3/c-api/structures.html#c.PyMemberDef</a>&quot;&gt;See the article about PyMemberDef.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#common-object-structures">https://docs.python.org/3/c-api/structures.html#common-object-structures</a>&quot;&gt;See the article about Common Object Structures.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyMemberDef</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#FMemberDef">FMemberDef</a></strong>: <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#FName">FName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#FDoc">FDoc</a></strong>: AnsiString;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetName">GetName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetType">GetType</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetOffset">GetOffset</a></strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetFlags">GetFlags</a></strong>: integer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetDoc">GetDoc</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetMemberDef">GetMemberDef</a></strong>: <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#GetIsSentinel">GetIsSentinel</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#SetType-integer-">SetType</a></strong>(aValue: integer);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#SetOffset-Py_ssize_t-">SetOffset</a></strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#SetFlags-integer-">SetFlags</a></strong>(aValue: integer);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#SetDoc-AnsiString-">SetDoc</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Create-string-string-integer-integer-Py_ssize_t-">Create</a></strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Name_">Name_</a></strong>      : AnsiString    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetName">GetName</a>        write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Type_">Type_</a></strong>      : integer       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetType">GetType</a>        write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetType-integer-">SetType</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Offset">Offset</a></strong>     : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetOffset">GetOffset</a>      write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetOffset-Py_ssize_t-">SetOffset</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Flags">Flags</a></strong>      : integer       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetFlags">GetFlags</a>       write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetFlags-integer-">SetFlags</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#Doc">Doc</a></strong>        : AnsiString    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetDoc">GetDoc</a>         write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetDoc-AnsiString-">SetDoc</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#MemberDef">MemberDef</a></strong>  : <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>   read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetMemberDef">GetMemberDef</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyMemberDef.TPyMemberDef.html#IsSentinel">IsSentinel</a></strong> : boolean       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetIsSentinel">GetIsSentinel</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FMemberDef"></span><code><strong>FMemberDef</strong>: <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FName"></span><code><strong>FName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDoc"></span><code><strong>FDoc</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetType"></span><code>function <strong>GetType</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetOffset"></span><code>function <strong>GetOffset</strong>: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetFlags"></span><code>function <strong>GetFlags</strong>: integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetDoc"></span><code>function <strong>GetDoc</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetMemberDef"></span><code>function <strong>GetMemberDef</strong>: <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsSentinel"></span><code>function <strong>GetIsSentinel</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetName-AnsiString-"></span><code>procedure <strong>SetName</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetType-integer-"></span><code>procedure <strong>SetType</strong>(aValue: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetOffset-Py_ssize_t-"></span><code>procedure <strong>SetOffset</strong>(aValue: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetFlags-integer-"></span><code>procedure <strong>SetFlags</strong>(aValue: integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetDoc-AnsiString-"></span><code>procedure <strong>SetDoc</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-string-string-integer-integer-Py_ssize_t-"></span><code>constructor <strong>Create</strong>(const aName, aDocStrings: string; aType, aFlags: integer; aOffset: <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Name_"></span><code>property <strong>Name_</strong>      : AnsiString    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetName">GetName</a>        write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Name of the member. A nil value marks the end of a PyMemberDef[] array. The string should be static, no copy is made of it. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Type_"></span><code>property <strong>Type_</strong>      : integer       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetType">GetType</a>        write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetType-integer-">SetType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The type of the member in the C struct. See Member types for the possible values. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Offset"></span><code>property <strong>Offset</strong>     : <a href="uP4P.Types.html#Py_ssize_t">Py_ssize_t</a>    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetOffset">GetOffset</a>      write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetOffset-Py_ssize_t-">SetOffset</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The offset in bytes that the member is located on the type's object struct. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Flags"></span><code>property <strong>Flags</strong>      : integer       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetFlags">GetFlags</a>       write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetFlags-integer-">SetFlags</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Zero or more of the Member flags, combined using bitwise OR. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Doc"></span><code>property <strong>Doc</strong>        : AnsiString    read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetDoc">GetDoc</a>         write <a href="uP4P.PyMemberDef.TPyMemberDef.html#SetDoc-AnsiString-">SetDoc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The docstring, or nil. The string should be static, no copy is made of it. Typically, it is defined using PyDoc_STR. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="MemberDef"></span><code>property <strong>MemberDef</strong>  : <a href="uP4P.Types.PyMemberDef.html">PyMemberDef</a>   read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetMemberDef">GetMemberDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the PyMemberDef record. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsSentinel"></span><code>property <strong>IsSentinel</strong> : boolean       read  <a href="uP4P.PyMemberDef.TPyMemberDef.html#GetIsSentinel">GetIsSentinel</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if all the PyMemberDef fields are nil or empty. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
+</span>
+</body></html>

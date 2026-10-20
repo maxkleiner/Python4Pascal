@@ -1202,7 +1202,19 @@ body { margin: 0.5em; }
 
 <p>Set the internal PyObject to nil.
 
+<p>This procedure is used when the ownership of the current PyObject reference was transferred to another method and the current instance is not allowed to keep using the PyObject reference.
+
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/intro.html#reference-count-details">https://docs.python.org/3.15/c-api/intro.html#reference-count-details</a>&quot;&gt;See the article about Reference Count Details.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-steal">https://docs.python.org/3.15/glossary.html#term-steal</a>&quot;&gt;See the definition of &quot;steal&quot;.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-borrowed-reference">https://docs.python.org/3.15/glossary.html#term-borrowed-reference</a>&quot;&gt;See the definition of &quot;borrowed reference&quot;.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-strong-reference">https://docs.python.org/3.15/glossary.html#term-strong-reference</a>&quot;&gt;See the definition of &quot;strong reference&quot;.)</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">
@@ -2517,6 +2529,16 @@ body { margin: 0.5em; }
 <p>This function must be used when passing a PyObject pointer to a function that steals the PyObject reference.
 
 <p></p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/c-api/intro.html#reference-count-details">https://docs.python.org/3.15/c-api/intro.html#reference-count-details</a>&quot;&gt;See the article about Reference Count Details.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-steal">https://docs.python.org/3.15/glossary.html#term-steal</a>&quot;&gt;See the definition of &quot;steal&quot;.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-borrowed-reference">https://docs.python.org/3.15/glossary.html#term-borrowed-reference</a>&quot;&gt;See the definition of &quot;borrowed reference&quot;.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3.15/glossary.html#term-strong-reference">https://docs.python.org/3.15/glossary.html#term-strong-reference</a>&quot;&gt;See the definition of &quot;strong reference&quot;.)</p>
 </td></tr>
 </table>
 <table class="detail visibility-public wide_list">

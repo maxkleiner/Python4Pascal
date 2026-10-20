@@ -182,6 +182,8 @@ uP4P.PyGen.html
 uP4P.PyGen.TPyGen.html
 uP4P.PyGenericAlias.html
 uP4P.PyGenericAlias.TPyGenericAlias.html
+uP4P.PyGetSetDef.html
+uP4P.PyGetSetDef.TPyGetSetDef.html
 uP4P.PyGILState.html
 uP4P.PyGILState.TPyGILState.html
 uP4P.PyHash.html
@@ -222,6 +224,8 @@ uP4P.PyMem.html
 uP4P.PyMem.TPyMem.html
 uP4P.PyMember.html
 uP4P.PyMember.TPyMember.html
+uP4P.PyMemberDef.html
+uP4P.PyMemberDef.TPyMemberDef.html
 uP4P.PyMemoryView.html
 uP4P.PyMemoryView.TPyMemoryView.html
 uP4P.PyMethod.html

@@ -37,8 +37,7 @@ type
       /// </summary>
       property Slot        : PyModuleDef_Slot  read FSlot;
       /// <summary>
-      /// Return True if this is the last slot in the list. The sentinel
-      /// slot has 0 as ID and nil as value.
+      /// Return True if this item has 0 as ID and nil as value.
       /// </summary>
       property IsSentinel  : boolean           read GetIsSentinel;
   end;

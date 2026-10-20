@@ -21,6 +21,11 @@ type
   /// <para>TPyCustomModuleSlotManager is used to store the information about
   /// the module and to manage the method and slot lists.</para>
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#implementing-functions-and-methods">See the article about Implementing functions and methods.</see></para>
+  /// </remarks>
   TPyModuleSlotManager = class(TInterfacedObject, IPyModuleSlotManager)
     protected
       FName                  : AnsiString;

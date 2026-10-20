@@ -22,6 +22,7 @@ type
   /// </summary>
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#accessing-attributes-of-extension-types">See the article about Accessing attributes of extension types.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#common-object-structures">See the article about Common Object Structures.</see></para>
   /// </remarks>
   TPyMember = class
     public

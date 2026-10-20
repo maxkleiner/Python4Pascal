@@ -17,6 +17,14 @@ uses
   uP4P.Types;
 
 type
+  /// <summary>
+  /// Class used to define property-like access for a type. See also description
+  /// of the PyTypeObject.tp_getset slot.
+  /// </summary>
+  /// <remarks>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyGetSetDef">See the article about PyGetSetDef.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#common-object-structures">See the article about Common Object Structures.</see></para>
+  /// </remarks>
   TPyGetSetDef = class
     protected
       FGetSetDef  : PyGetSetDef;
@@ -39,15 +47,36 @@ type
 
     public
       constructor Create(const aName, aDocStrings: string; const aGet: getter; const aSet: setter; aClosure: pointer);
-
+      /// <summary>
+      /// attribute name
+      /// </summary>
       property Name_      : AnsiString    read  GetName       write SetName;
+      /// <summary>
+      /// function to get the attribute.
+      /// </summary>
       property Get_       : getter        read  GetGet_       write SetGet_;
+      /// <summary>
+      /// Optional function to set or delete the attribute. If nil, the attribute
+      /// is read-only.
+      /// </summary>
       property Set_       : setter        read  GetSet_       write SetSet_;
-      property Closure    : pointer       read  GetClosure    write SetClosure;
+      /// <summary>
+      /// optional docstring
+      /// </summary>
       property Doc        : AnsiString    read  GetDoc        write SetDoc;
+      /// <summary>
+      /// Optional user data pointer, providing additional data for getter and
+      /// setter.
+      /// </summary>
+      property Closure    : pointer       read  GetClosure    write SetClosure;
+      /// <summary>
+      /// Return the PyGetSetDef record.
+      /// </summary>
       property GetSetDef  : PyGetSetDef   read  GetGetSetDef;
+      /// <summary>
+      /// Return True if all the PyGetSetDef fields are nil.
+      /// </summary>
       property IsSentinel : boolean       read  GetIsSentinel;
-
   end;
 
 implementation

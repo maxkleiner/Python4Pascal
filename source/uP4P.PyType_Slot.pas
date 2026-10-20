@@ -36,8 +36,7 @@ type
       /// </summary>
       property Slot        : PyType_Slot       read FSlot;
       /// <summary>
-      /// Return True if this is the last slot in the list. The sentinel
-      /// slot has 0 as ID and nil as pfunc.
+      /// Return True if this is item has 0 as ID and nil as pfunc.
       /// </summary>
       property IsSentinel  : boolean           read GetIsSentinel;
   end;

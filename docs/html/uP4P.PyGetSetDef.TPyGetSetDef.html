@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>python4pascal: uP4P.PyGetSetDef: Class TPyGetSetDef</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 1.0.5.snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="bootstrap.min.css">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+<style type="text/css">
+body { margin: 0.5em; }
+.badge { padding: 0.1em 0.5em; color: white; }
+</style></head>
+<body>
+<span id="TPyGetSetDef"></span><h1 class="cio">Class TPyGetSetDef</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uP4P.PyGetSetDef.html">uP4P.PyGetSetDef</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPyGetSetDef = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Class used to define property-like access for a type. See also description of the PyTypeObject.tp_getset slot. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyGetSetDef">https://docs.python.org/3/c-api/structures.html#c.PyGetSetDef</a>&quot;&gt;See the article about PyGetSetDef.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#common-object-structures">https://docs.python.org/3/c-api/structures.html#common-object-structures</a>&quot;&gt;See the article about Common Object Structures.)</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TPyGetSetDef</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#FGetSetDef">FGetSetDef</a></strong>: <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#FName">FName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code><strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#FDoc">FDoc</a></strong>: AnsiString;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetName">GetName</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGet_">GetGet_</a></strong>: <a href="uP4P.Types.html#getter">getter</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSet_">GetSet_</a></strong>: <a href="uP4P.Types.html#setter">setter</a>;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetClosure">GetClosure</a></strong>: pointer;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetDoc">GetDoc</a></strong>: AnsiString;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGetSetDef">GetGetSetDef</a></strong>: <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>;</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetIsSentinel">GetIsSentinel</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetName-AnsiString-">SetName</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetGet_-getter-">SetGet_</a></strong>(const aValue: <a href="uP4P.Types.html#getter">getter</a>);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetSet_-setter-">SetSet_</a></strong>(const aValue: <a href="uP4P.Types.html#setter">setter</a>);</code></td>
+</tr>
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetClosure-pointer-">SetClosure</a></strong>(const aValue: pointer);</code></td>
+</tr>
+<tr class="list2 visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><code>procedure <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetDoc-AnsiString-">SetDoc</a></strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>constructor <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Create-string-string-getter-setter-pointer-">Create</a></strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer);</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Name_">Name_</a></strong>      : AnsiString    read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetName">GetName</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Get_">Get_</a></strong>       : <a href="uP4P.Types.html#getter">getter</a>        read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGet_">GetGet_</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetGet_-getter-">SetGet_</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Set_">Set_</a></strong>       : <a href="uP4P.Types.html#setter">setter</a>        read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSet_">GetSet_</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetSet_-setter-">SetSet_</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Doc">Doc</a></strong>        : AnsiString    read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetDoc">GetDoc</a>        write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetDoc-AnsiString-">SetDoc</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#Closure">Closure</a></strong>    : pointer       read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetClosure">GetClosure</a>    write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetClosure-pointer-">SetClosure</a>;</code></td>
+</tr>
+<tr class="list2 visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSetDef">GetSetDef</a></strong>  : <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>   read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGetSetDef">GetGetSetDef</a>;</code></td>
+</tr>
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><code>property <strong><a href="uP4P.PyGetSetDef.TPyGetSetDef.html#IsSentinel">IsSentinel</a></strong> : boolean       read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetIsSentinel">GetIsSentinel</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FGetSetDef"></span><code><strong>FGetSetDef</strong>: <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FName"></span><code><strong>FName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="FDoc"></span><code><strong>FDoc</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetName"></span><code>function <strong>GetName</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetGet_"></span><code>function <strong>GetGet_</strong>: <a href="uP4P.Types.html#getter">getter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetSet_"></span><code>function <strong>GetSet_</strong>: <a href="uP4P.Types.html#setter">setter</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetClosure"></span><code>function <strong>GetClosure</strong>: pointer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetDoc"></span><code>function <strong>GetDoc</strong>: AnsiString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetGetSetDef"></span><code>function <strong>GetGetSetDef</strong>: <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="GetIsSentinel"></span><code>function <strong>GetIsSentinel</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetName-AnsiString-"></span><code>procedure <strong>SetName</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetGet_-getter-"></span><code>procedure <strong>SetGet_</strong>(const aValue: <a href="uP4P.Types.html#getter">getter</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetSet_-setter-"></span><code>procedure <strong>SetSet_</strong>(const aValue: <a href="uP4P.Types.html#setter">setter</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetClosure-pointer-"></span><code>procedure <strong>SetClosure</strong>(const aValue: pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="SetDoc-AnsiString-"></span><code>procedure <strong>SetDoc</strong>(const aValue: AnsiString);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Create-string-string-getter-setter-pointer-"></span><code>constructor <strong>Create</strong>(const aName, aDocStrings: string; const aGet: <a href="uP4P.Types.html#getter">getter</a>; const aSet: <a href="uP4P.Types.html#setter">setter</a>; aClosure: pointer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Name_"></span><code>property <strong>Name_</strong>      : AnsiString    read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetName">GetName</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetName-AnsiString-">SetName</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ attribute name </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Get_"></span><code>property <strong>Get_</strong>       : <a href="uP4P.Types.html#getter">getter</a>        read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGet_">GetGet_</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetGet_-getter-">SetGet_</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ function to get the attribute. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Set_"></span><code>property <strong>Set_</strong>       : <a href="uP4P.Types.html#setter">setter</a>        read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSet_">GetSet_</a>       write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetSet_-setter-">SetSet_</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Optional function to set or delete the attribute. If nil, the attribute is read-only. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Doc"></span><code>property <strong>Doc</strong>        : AnsiString    read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetDoc">GetDoc</a>        write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetDoc-AnsiString-">SetDoc</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ optional docstring </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="Closure"></span><code>property <strong>Closure</strong>    : pointer       read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetClosure">GetClosure</a>    write <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#SetClosure-pointer-">SetClosure</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Optional user data pointer, providing additional data for getter and setter. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="GetSetDef"></span><code>property <strong>GetSetDef</strong>  : <a href="uP4P.Types.PyGetSetDef.html">PyGetSetDef</a>   read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGetSetDef">GetGetSetDef</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the PyGetSetDef record. </p>
+</td></tr>
+</table>
+<table class="detail visibility-public wide_list">
+<tr class="list visibility-public">
+<td class="visibility"><span class="badge vis-public">Public</span></td>
+<td class="itemcode"><span id="IsSentinel"></span><code>property <strong>IsSentinel</strong> : boolean       read  <a href="uP4P.PyGetSetDef.TPyGetSetDef.html#GetIsSentinel">GetIsSentinel</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return True if all the PyGetSetDef fields are nil. </p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 1.0.5.snapshot</a>. </em>
+</span>
+</body></html>

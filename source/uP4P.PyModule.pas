@@ -537,16 +537,15 @@ var
 begin
   Result := False;
 
-  if assigned(PyModule_Add) and
+  if assigned(PyModule_AddObject) and
      TPyObject.IsInitialized(module_) and
      TPyObject.IsInitialized(value) then
     begin
       TempName := StringToPyUTF8(name_);
-
-      if (PyModule_Add(module_.PyObject, PAnsiChar(TempName), value.PyObject) = 0) then
+      if (PyModule_AddObject(module_.PyObject, PAnsiChar(TempName), value.PyObject) = 0) then
         begin
-          Result := True;
           value.InitPyObject;
+          Result := True;
         end;
     end;
 end;

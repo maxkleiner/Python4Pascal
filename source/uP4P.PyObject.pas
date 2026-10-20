@@ -143,7 +143,16 @@ type
       function  TypeCheck(aPyTypeObject: PPyTypeObject): boolean;
       /// <summary>
       /// <para>Set the internal PyObject to nil.</para>
+      /// <para>This procedure is used when the ownership of the current
+      /// PyObject reference was transferred to another method and the current
+      /// instance is not allowed to keep using the PyObject reference.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/intro.html#reference-count-details">See the article about Reference Count Details.</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-steal">See the definition of "steal".</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-borrowed-reference">See the definition of "borrowed reference".</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-strong-reference">See the definition of "strong reference".</see></para>
+      /// </remarks>
       procedure InitPyObject;
       /// <summary>
       /// <para>Return 1 if inst is an instance of the class cls or a subclass
@@ -861,6 +870,12 @@ type
       /// <para>This function must be used when passing a PyObject pointer
       /// to a function that steals the PyObject reference.</para>
       /// </summary>
+      /// <remarks>
+      /// <para><see href="https://docs.python.org/3.15/c-api/intro.html#reference-count-details">See the article about Reference Count Details.</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-steal">See the definition of "steal".</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-borrowed-reference">See the definition of "borrowed reference".</see></para>
+      /// <para><see href="https://docs.python.org/3.15/glossary.html#term-strong-reference">See the definition of "strong reference".</see></para>
+      /// </remarks>
       function  UnWrap: Pointer;
       /// <summary>
       /// <para>Dump this object to stderr. This should only be used for

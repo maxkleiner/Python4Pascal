@@ -356,37 +356,35 @@ begin
      TPyObject.IsInitialized(bytes_) and
      TPyObject.IsInitialized(newpart) then
     begin
-      TempBytes := bytes_.PyObject;
+      TempBytes := bytes_.UnWrap;
+
       PyBytes_Concat(@TempBytes, newpart.PyObject);
 
       if assigned(TempBytes) then
-        bytes_.PyObject := TempBytes
-       else
-        bytes_.InitPyObject;
+        begin
+          bytes_.PyObject    := TempBytes;
+          bytes_.ObjRefOwner := True;
+        end;
     end;
 end;
 
 class procedure TPyBytes.ConcatAndDel(const bytes_, newpart: IPyObject);
 var
-  TempRefCnt : integer;
-  TempBytes  : PPyObject;
+  TempBytes : PPyObject;
 begin
   if assigned(PyBytes_ConcatAndDel) and
      TPyObject.IsInitialized(bytes_) and
      TPyObject.IsInitialized(newpart) then
     begin
-      TempBytes  := bytes_.PyObject;
-      TempRefCnt := newpart.RefCnt;
+      TempBytes := bytes_.UnWrap;
 
-      PyBytes_ConcatAndDel(@TempBytes, newpart.PyObject);
+      PyBytes_ConcatAndDel(@TempBytes, newpart.UnWrap);
 
       if assigned(TempBytes) then
-        bytes_.PyObject := TempBytes
-       else
-        bytes_.InitPyObject;
-
-      if (TempRefCnt = 1) then
-        newpart.InitPyObject;
+        begin
+          bytes_.PyObject    := TempBytes;
+          bytes_.ObjRefOwner := True;
+        end;
     end;
 end;
 

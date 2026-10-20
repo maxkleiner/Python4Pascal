@@ -15986,6 +15986,134 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="uP4P.PyGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Classes">
+<param name="Local" value="uP4P.PyGetSetDef.html#@Classes">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FGetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FDoc">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Name_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Name_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Get_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Set_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Doc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Doc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Closure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Closure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsSentinel">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#IsSentinel">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="GetName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetClosure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetClosure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetIsSentinel">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetIsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetGet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetSet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetSet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetClosure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetClosure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Create">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Create">
+</object>
+</ul>
+</ul>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="uP4P.PyGILState">
 <param name="Local" value="uP4P.PyGILState.html">
 </object>
@@ -19010,6 +19138,134 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="uP4P.PyMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Classes">
+<param name="Local" value="uP4P.PyMemberDef.html#@Classes">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FMemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FDoc">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Name_">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Name_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Type_">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Type_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Offset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Offset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Flags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Doc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Doc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#MemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsSentinel">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#IsSentinel">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="GetName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetType">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetOffset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetOffset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetMemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetIsSentinel">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetIsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetType">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetOffset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetOffset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Create">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Create">
+</object>
+</ul>
+</ul>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="uP4P.PyMemoryView">
 <param name="Local" value="uP4P.PyMemoryView.html">
 </object>
@@ -19590,12 +19846,12 @@
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddSentinelMethod">
 </object>
 <li><object type="text/sitemap">
-<param name="Name" value="AddMethod">
-<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddMethod">
-</object>
-<li><object type="text/sitemap">
 <param name="Name" value="AddSentinelSlot">
 <param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddSentinelSlot">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AddMethod">
+<param name="Local" value="uP4P.PyModuleDef.TPyModuleDef.html#AddMethod">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AddSlot">
@@ -48894,6 +49150,122 @@
 </ul>
 </ul>
 <li><object type="text/sitemap">
+<param name="Name" value="TPyGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FGetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#FName">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Closure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Closure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Doc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Doc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Get_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Get_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsSentinel">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#IsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Name_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Name_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Set_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Set_">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Create">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#Create">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetClosure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetClosure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGetSetDef">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGetSetDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetGet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetGet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetIsSentinel">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetIsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetSet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#GetSet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetClosure">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetClosure">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDoc">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetGet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetGet_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetSet_">
+<param name="Local" value="uP4P.PyGetSetDef.TPyGetSetDef.html#SetSet_">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
 <param name="Name" value="TPyGILState">
 <param name="Local" value="uP4P.PyGILState.TPyGILState.html">
 </object>
@@ -51706,6 +52078,122 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetOne">
 <param name="Local" value="uP4P.PyMember.TPyMember.html#SetOne">
+</object>
+</ul>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="TPyMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Fields">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Fields">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="FDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FMemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="FName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#FName">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Properties">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Properties">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Doc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Doc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Flags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Flags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="IsSentinel">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#IsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="MemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#MemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Name_">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Name_">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Offset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Offset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Type_">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Type_">
+</object>
+</ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Methods">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#@Methods">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="Create">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#Create">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetFlags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetIsSentinel">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetIsSentinel">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMemberDef">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetMemberDef">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetOffset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetOffset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetType">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#GetType">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetDoc">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetDoc">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFlags">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetFlags">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetName">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetName">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetOffset">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetOffset">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetType">
+<param name="Local" value="uP4P.PyMemberDef.TPyMemberDef.html#SetType">
 </object>
 </ul>
 </ul>

@@ -33,7 +33,9 @@ body { margin: 0.5em; }
 
 <p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization</a>&quot;&gt;See the article about Multi-phase initialization.)
 
-<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">https://docs.python.org/3/c-api/structures.html#c.PyMethodDef</a>&quot;&gt;See the article about PyMethodDef.)</p>
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">https://docs.python.org/3/c-api/structures.html#c.PyMethodDef</a>&quot;&gt;See the article about PyMethodDef.)
+
+<p>&lt;see href=&quot;<a href="https://docs.python.org/3/c-api/structures.html#implementing-functions-and-methods">https://docs.python.org/3/c-api/structures.html#implementing-functions-and-methods</a>&quot;&gt;See the article about Implementing functions and methods.)</p>
 <span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
 <ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
 <li class="thisitem">TPyModuleDef</li></ul><h2 class="overview">Overview</h2>
@@ -240,11 +242,11 @@ body { margin: 0.5em; }
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AddMethod-string-string-PyCFunction-integer-">AddMethod</a></strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AddSentinelSlot">AddSentinelSlot</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uP4P.PyModuleDef.TPyModuleDef.html#AddMethod-string-string-PyCFunction-integer-">AddMethod</a></strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
 </tr>
 <tr class="list2 visibility-protected">
 <td class="visibility"><span class="badge vis-protected">Protected</span></td>
@@ -751,15 +753,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSentinelMethod"></span><code>function <strong>AddSentinelMethod</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
-</table>
-<table class="detail visibility-protected wide_list">
-<tr class="list visibility-protected">
-<td class="visibility"><span class="badge vis-protected">Protected</span></td>
-<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
-</tr>
-<tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel method slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -767,7 +763,19 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSentinelSlot"></span><code>function <strong>AddSentinelSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a sentinel slot. </p>
+</td></tr>
+</table>
+<table class="detail visibility-protected wide_list">
+<tr class="list visibility-protected">
+<td class="visibility"><span class="badge vis-protected">Protected</span></td>
+<td class="itemcode"><span id="AddMethod-string-string-PyCFunction-integer-"></span><code>function <strong>AddMethod</strong>(const aName, aDocStrings: string; const aMethod: <a href="uP4P.Types.html#PyCFunction">PyCFunction</a>; aFlags: integer): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add a generic method. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -775,7 +783,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddSlot-integer-Pointer-"></span><code>function <strong>AddSlot</strong>(aSlot: integer; aValue: Pointer): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a generic slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -783,7 +793,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddCreateSlot"></span><code>function <strong>AddCreateSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_mod_create slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -791,7 +803,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddExecSlot"></span><code>function <strong>AddExecSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_mod_exec slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -799,7 +813,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddMultipleInterpretersSlot"></span><code>function <strong>AddMultipleInterpretersSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_mod_multiple_interpreters slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">
@@ -807,7 +823,9 @@ body { margin: 0.5em; }
 <td class="itemcode"><span id="AddGILSlot"></span><code>function <strong>AddGILSlot</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
-<p class="nodescription">This item has no description.</p></td></tr>
+<p>
+ Add a Py_mod_gil slot. </p>
+</td></tr>
 </table>
 <table class="detail visibility-protected wide_list">
 <tr class="list visibility-protected">

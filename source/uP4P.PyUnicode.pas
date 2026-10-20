@@ -615,7 +615,7 @@ type
       /// difference being that it decrements the reference count of right by
       /// one.</para>
       /// </summary>
-      class procedure AppendAndDel(const left, right: IPyObject);
+      class procedure AppendAndDel(const p_left, right: IPyObject);
       /// <summary>
       /// <para>Split a string giving a list of Unicode strings. If sep is nil,
       /// splitting will be done at all whitespace substrings. Otherwise,
@@ -1026,8 +1026,9 @@ begin
       
       if (PyUnicode_Resize(@TempObj, length_) = 0) then
         begin
-          Result := True;         
-          unicode.PyObject := TempObj;
+          unicode.PyObject    := TempObj;
+          unicode.ObjRefOwner := True;
+          Result              := True;
         end;
     end;
 end;
@@ -1620,28 +1621,31 @@ begin
 
       PyUnicode_Append(@TempObj, right.PyObject);
 
-      p_left.PyObject := TempObj;
+      if assigned(TempObj) then
+        begin
+          p_left.PyObject    := TempObj;
+          p_left.ObjRefOwner := True;
+        end;
     end;
 end;
 
-class procedure TPyUnicode.AppendAndDel(const left, right: IPyObject);
+class procedure TPyUnicode.AppendAndDel(const p_left, right: IPyObject);
 var
-  TempRefCnt : integer;
-  TempObj    : PPyObject;
+  TempObj : PPyObject;
 begin
   if assigned(PyUnicode_AppendAndDel) and
-     TPyObject.IsInitialized(left) and
+     TPyObject.IsInitialized(p_left) and
      TPyObject.IsInitialized(right) then
     begin
-      TempObj    := left.Unwrap;
-      TempRefCnt := right.RefCnt;
+      TempObj := p_left.Unwrap;
 
-      PyUnicode_AppendAndDel(@TempObj, right.PyObject);
+      PyUnicode_AppendAndDel(@TempObj, right.UnWrap);
 
-      left.PyObject := TempObj;
-
-      if (TempRefCnt = 1) then
-        right.InitPyObject;
+      if assigned(TempObj) then
+        begin
+          p_left.PyObject    := TempObj;
+          p_left.ObjRefOwner := True;
+        end;
     end;
 end;
 

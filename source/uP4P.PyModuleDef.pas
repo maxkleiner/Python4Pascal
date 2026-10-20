@@ -24,6 +24,7 @@ type
   /// <remarks>
   /// <para><see href="https://docs.python.org/3/c-api/extension-modules.html#multi-phase-initialization">See the article about Multi-phase initialization.</see></para>
   /// <para><see href="https://docs.python.org/3/c-api/structures.html#c.PyMethodDef">See the article about PyMethodDef.</see></para>
+  /// <para><see href="https://docs.python.org/3/c-api/structures.html#implementing-functions-and-methods">See the article about Implementing functions and methods.</see></para>
   /// </remarks>
   TPyModuleDef = class(TInterfacedObject, IPyModuleDef)
     protected
@@ -87,18 +88,42 @@ type
       /// </summary>
       procedure AddAllMethods; virtual;
 
+      /// <summary>
+      /// Add a sentinel method slot.
+      /// </summary>
       function  AddSentinelMethod: boolean;
-      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      /// <summary>
+      /// Add a sentinel slot.
+      /// </summary>
       function  AddSentinelSlot: boolean;
+      /// <summary>
+      /// Add a generic method.
+      /// </summary>
+      function  AddMethod(const aName, aDocStrings: string; const aMethod: PyCFunction; aFlags: integer): boolean;
+      /// <summary>
+      /// Add a generic slot.
+      /// </summary>
       function  AddSlot(aSlot: integer; aValue: Pointer): boolean;
+      /// <summary>
+      /// Add a Py_mod_create slot.
+      /// </summary>
       function  AddCreateSlot: boolean;
+      /// <summary>
+      /// Add a Py_mod_exec slot.
+      /// </summary>
       function  AddExecSlot: boolean;
+      /// <summary>
+      /// Add a Py_mod_multiple_interpreters slot.
+      /// </summary>
       function  AddMultipleInterpretersSlot: boolean;
+      /// <summary>
+      /// Add a Py_mod_gil slot.
+      /// </summary>
       function  AddGILSlot: boolean;
       /// <summary>
       /// Create the methods and the slots with all the module information.
       /// </summary>
-      procedure   BuildMethodsAndSlots; virtual;
+      procedure BuildMethodsAndSlots; virtual;
 
     public
       constructor Create;
