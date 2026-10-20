@@ -12,9 +12,6 @@ unit uP4P.Loader;
 {$ENDIF}{$ENDIF}
 
 interface
-  //TODO: See if it's possible to debug and fix the FPC issue #39815 -> https://gitlab.com/freepascal.org/fpc/source/-/work_items/39815
-  //TODO: See if it's possible to support the free threaded mode. PyObject (_object) changes.
-  //TODO: Find a better way to call python functions with a variable number of arguments. TPyTuple.Pack, TPySys.WriteStderr, for example.
 
 uses
   {$IFDEF DELPHI16_UP}
@@ -211,7 +208,9 @@ type
       procedure   Finalize; virtual;
 
       /// <summary>
-      ///	Used to set the current directory when the libraries are loaded. This is required if the application is launched from a different application.
+      ///	Used to set the current directory when the libraries are loaded.
+      /// This is required if the application is launched from a different
+      /// application.
       /// </summary>
       property SetCurrentDir                     : boolean                                      read FSetCurrentDir                     write FSetCurrentDir;
       /// <summary>
@@ -235,11 +234,13 @@ type
       /// </summary>
       property ReRaiseExceptions                 : boolean                                      read FReRaiseExceptions                 write FReRaiseExceptions;
       /// <summary>
-      /// Last error message that is usually shown when there's an initialization problem.
+      /// Last error message that is usually shown when there's an
+      /// initialization problem.
       /// </summary>
       property LastErrorMessage                  : string                                       read FLastErrorMessage;
       /// <summary>
-      /// Set to true when you need to use a showmessage dialog to show the error messages.
+      /// Set to true when you need to use a showmessage dialog to show the
+      /// error messages.
       /// </summary>
       property ShowMessageDlg                    : boolean                                      read FShowMessageDlg                    write FShowMessageDlg;
       /// <summary>
