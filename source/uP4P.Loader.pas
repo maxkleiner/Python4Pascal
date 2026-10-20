@@ -1491,6 +1491,10 @@ begin
   {$IFDEF LINUX}
   Result := FindPythonModule_linux;
   {$ENDIF}
+
+  {$IFDEF ANDROID}
+  Result := False;
+  {$ENDIF}
 end;
 
 function TP4PLoader.LoadInExtensionModule : boolean;
