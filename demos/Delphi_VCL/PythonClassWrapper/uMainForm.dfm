@@ -101,7 +101,7 @@ object MainForm: TMainForm
       Width = 100
       Height = 24
       Anchors = [akLeft, akTop, akRight, akBottom]
-      Caption = 'Run code'
+      Caption = '1. Run code'
       TabOrder = 0
       OnClick = RunBtnClick
     end
@@ -111,7 +111,7 @@ object MainForm: TMainForm
       Width = 100
       Height = 24
       Anchors = [akLeft, akTop, akRight, akBottom]
-      Caption = 'Wrap MyClass'
+      Caption = '2. Wrap MyClass'
       TabOrder = 1
       OnClick = WrapClassBtnClick
     end
@@ -121,7 +121,7 @@ object MainForm: TMainForm
       Width = 100
       Height = 24
       Align = alRight
-      Caption = 'Test MyClass'
+      Caption = '3. Test MyClass'
       TabOrder = 2
       OnClick = TestMyClassBtnClick
     end
